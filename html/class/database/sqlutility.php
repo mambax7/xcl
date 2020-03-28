@@ -154,10 +154,10 @@ class SqlUtility
 
             // CREATE TABLE force utf8
             // DB Engine use default (remove MyISAM)
-            if ($matches[1] == "CREATE TABLE") {
-                $matches[0] = preg_replace("/ ENGINE=MyISAM/i", "", $matches[0]);
-                if (!preg_match("/ CHARACTER SET /i", $matches[0])) {
-                    $matches[0] .= " CHARACTER SET utf8";
+            if ($matches[1] == 'CREATE TABLE') {
+                $matches[0] = preg_replace('/ ENGINE=MyISAM/i', '', $matches[0]);
+                if (!preg_match('/ CHARACTER SET /i', $matches[0])) {
+                    $matches[0] .= ' CHARACTER SET utf8';
                 }
             }
             return $matches;
