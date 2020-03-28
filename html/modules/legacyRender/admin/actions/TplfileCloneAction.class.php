@@ -53,7 +53,7 @@ class LegacyRender_TplfileCloneAction extends LegacyRender_AbstractEditAction
         $this->mActionForm->prepare();
     }
 
-    public function executeViewInput(&$controller, &$xoopsUser, &$render)
+    public function executeViewInput(&$controller, &$xoopsUser, $render)
     {
         $render->setTemplateName('tplfile_clone.html');
         $render->setAttribute('actionForm', $this->mActionForm);
@@ -61,14 +61,14 @@ class LegacyRender_TplfileCloneAction extends LegacyRender_AbstractEditAction
         $render->setAttribute('tpl_id', xoops_getrequest('tpl_id'));
     }
 
-    public function executeViewSuccess(&$controller, &$xoopsUser, &$render)
+    public function executeViewSuccess($controller, &$xoopsUser, &$render)
     {
         $tplset = $this->mObject->get('tpl_tplset');
         $module = $this->mObject->get('tpl_module');
         $controller->executeForward("./index.php?action=TplfileList&tpl_tplset=${tplset}&tpl_module=${module}");
     }
 
-    public function executeViewError(&$controller, &$xoopsUser, &$render)
+    public function executeViewError($controller, &$xoopsUser, &$render)
     {
         $controller->executeRedirect('./index.php?action=TplsetList', 1, _AD_LEGACYRENDER_ERROR_DBUPDATE_FAILED);
     }

@@ -195,7 +195,7 @@ class XoopsTpl extends Smarty
      * @param   string  $data
      * @return  string  Rendered output  
      **/
-    public function xoops_fetchFromData(&$data)
+    public function xoops_fetchFromData($data)
     {
         $dummyfile = XOOPS_CACHE_PATH.'/dummy_'.time();
         $fp = fopen($dummyfile, 'w');

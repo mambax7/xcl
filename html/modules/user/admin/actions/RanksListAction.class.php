@@ -52,7 +52,7 @@ class User_RanksListAction extends User_AbstractListAction
         return './index.php?action=RanksList';
     }
 
-    public function executeViewIndex(&$controller, &$xoopsUser, &$render)
+    public function executeViewIndex(&$controller, &$xoopsUser, $render)
     {
         $render->setTemplateName('ranks_list.html');
         $render->setAttribute('objects', $this->mObjects);
@@ -146,7 +146,7 @@ class User_RanksListAction extends User_AbstractListAction
      * @param $xoopsUser
      * @param $render
      */
-    public function executeViewInput(&$controller, &$xoopsUser, &$render)
+    public function executeViewInput(&$controller, &$xoopsUser, $render)
     {
         $render->setTemplateName('ranks_list_confirm.html');
         $render->setAttribute('ranksObjects', $this->mRanksObjects);
@@ -161,17 +161,17 @@ class User_RanksListAction extends User_AbstractListAction
     }
 
 
-    public function executeViewSuccess(&$controller, &$xoopsUser, &$renderer)
+    public function executeViewSuccess($controller, &$xoopsUser, &$renderer)
     {
         $controller->executeForward('./index.php?action=RanksList');
     }
 
-    public function executeViewError(&$controller, &$xoopsUser, &$renderer)
+    public function executeViewError($controller, &$xoopsUser, &$renderer)
     {
         $controller->executeRedirect('./index.php?action=RanksList', 1, _MD_USER_ERROR_DBUPDATE_FAILED);
     }
 
-    public function executeViewCancel(&$controller, &$xoopsUser, &$renderer)
+    public function executeViewCancel($controller, &$xoopsUser, &$renderer)
     {
         $controller->executeForward('./index.php?action=RanksList');
     }

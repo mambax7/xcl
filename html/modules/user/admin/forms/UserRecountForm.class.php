@@ -36,12 +36,12 @@ class User_RecountForm extends XCube_ActionForm
         $this->mFieldProperties['uid']->addVar('module', 'user');
     }
 
-    public function load(&$obj)
+    public function load($obj)
     {
         $this->set('uid', $obj->get('uid'));
     }
 
-    public function update(&$obj)
+    public function update($obj)
     {
         $obj->set('uid', $this->get('uid'));
     }

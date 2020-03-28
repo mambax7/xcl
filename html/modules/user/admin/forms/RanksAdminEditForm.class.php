@@ -73,7 +73,7 @@ class User_RanksAdminEditForm extends XCube_ActionForm
         }
     }
     
-    public function load(&$obj)
+    public function load($obj)
     {
         $this->set('rank_id', $obj->get('rank_id'));
         $this->set('rank_title', $obj->get('rank_title'));
@@ -85,7 +85,7 @@ class User_RanksAdminEditForm extends XCube_ActionForm
         $this->mOldFileName = $obj->get('rank_image');
     }
 
-    public function update(&$obj)
+    public function update($obj)
     {
         $obj->set('rank_id', $this->get('rank_id'));
         $obj->set('rank_title', $this->get('rank_title'));

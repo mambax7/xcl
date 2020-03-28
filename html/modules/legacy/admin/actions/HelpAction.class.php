@@ -160,7 +160,7 @@ class Legacy_HelpAction extends Legacy_Action
         return $controller->mRoot->mContext->mUser->isInRole('Module.' . $dirname . '.Admin');
     }
     
-    public function getDefaultView(&$controller, &$xoopsUser)
+    public function getDefaultView($controller, &$xoopsUser)
     {
         $moduleHandler =& xoops_gethandler('module');
         $this->mModuleObject =& $moduleHandler->getByDirname($this->_mDirname);
@@ -208,7 +208,7 @@ class Legacy_HelpAction extends Legacy_Action
         }
     }
     
-    public function executeViewSuccess(&$controller, &$xoopsUser, &$renderer)
+    public function executeViewSuccess(&$controller, &$xoopsUser, $renderer)
     {
         $renderer->setTemplateName('help.html');
         
@@ -218,7 +218,7 @@ class Legacy_HelpAction extends Legacy_Action
         $renderer->setAttribute('contents', $this->mContents);
     }
 
-    public function executeViewError(&$controller, &$xoopsUser, &$renderer)
+    public function executeViewError($controller, &$xoopsUser, &$renderer)
     {
         $controller->executeRedirect('./index.php?action=ModuleList', 1, $this->mErrorMessage);
     }

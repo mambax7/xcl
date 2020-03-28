@@ -107,7 +107,7 @@ class MessageInboxHandler extends XoopsObjectGenericHandler
         return parent::_makeCriteria4sql($criteria);
     }
   
-    private function _chane_old(&$criteria)
+    private function _chane_old($criteria)
     {
         if (is_a($criteria, 'CriteriaElement')) {
             if ($criteria->hasChildElements()) {

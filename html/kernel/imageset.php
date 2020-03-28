@@ -83,7 +83,7 @@ class XoopsImagesetHandler extends XoopsObjectHandler
         return $ret;
     }
 
-    public function insert(&$imgset)
+    public function insert($imgset)
     {
         if ('xoopsimageset' != strtolower(get_class($imgset))) {
             return false;
@@ -113,7 +113,7 @@ class XoopsImagesetHandler extends XoopsObjectHandler
         return true;
     }
 
-    public function delete(&$imgset)
+    public function delete($imgset)
     {
         if ('xoopsimageset' != strtolower(get_class($imgset))) {
             return false;

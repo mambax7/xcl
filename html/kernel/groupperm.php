@@ -189,7 +189,7 @@ class XoopsGroupPermHandler extends XoopsObjectHandler
      * 
      * @return	bool    TRUE on success
      */
-    public function insert(&$perm)
+    public function insert($perm)
     {
         if ('xoopsgroupperm' != strtolower(get_class($perm))) {
             return false;
@@ -228,7 +228,7 @@ class XoopsGroupPermHandler extends XoopsObjectHandler
      * 
      * @return	bool    TRUE on success
      */
-    public function delete(&$perm)
+    public function delete($perm)
     {
         if ('xoopsgroupperm' != strtolower(get_class($perm))) {
             return false;
@@ -294,7 +294,7 @@ class XoopsGroupPermHandler extends XoopsObjectHandler
         if (!$result) {
             return 0;
         }
-        list($count) = $db->fetchRow($result);
+        [$count] = $db->fetchRow($result);
         return $count;
     }
 

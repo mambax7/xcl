@@ -30,7 +30,7 @@ class LegacyRender_BannerfinishDeleteAction extends LegacyRender_AbstractDeleteA
         $this->mActionForm->prepare();
     }
 
-    public function executeViewInput(&$controller, &$xoopsUser, &$render)
+    public function executeViewInput(&$controller, &$xoopsUser, $render)
     {
         $render->setTemplateName('bannerfinish_delete.html');
         $render->setAttribute('actionForm', $this->mActionForm);
@@ -38,17 +38,17 @@ class LegacyRender_BannerfinishDeleteAction extends LegacyRender_AbstractDeleteA
         $render->setAttribute('object', $this->mObject);
     }
 
-    public function executeViewSuccess(&$controller, &$xoopsUser, &$render)
+    public function executeViewSuccess($controller, &$xoopsUser, &$render)
     {
         $controller->executeForward('./index.php?action=BannerfinishList');
     }
 
-    public function executeViewError(&$controller, &$xoopsUser, &$render)
+    public function executeViewError($controller, &$xoopsUser, &$render)
     {
         $controller->executeRedirect('./index.php?action=BannerfinishList', 1, _AD_LEGACYRENDER_ERROR_DBUPDATE_FAILED);
     }
     
-    public function executeViewCancel(&$controller, &$xoopsUser, &$render)
+    public function executeViewCancel($controller, &$xoopsUser, &$render)
     {
         $controller->executeForward('./index.php?action=BannerfinishList');
     }

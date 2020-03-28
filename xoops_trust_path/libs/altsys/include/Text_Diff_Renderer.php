@@ -126,7 +126,7 @@ class Text_Diff_Renderer
         return $output . $this->_endDiff();
     }
 
-    public function _block($xbeg, $xlen, $ybeg, $ylen, &$edits)
+    public function _block($xbeg, $xlen, $ybeg, $ylen, $edits)
     {
         $output = $this->_startBlock($this->_blockHeader($xbeg, $xlen, $ybeg, $ylen));
 

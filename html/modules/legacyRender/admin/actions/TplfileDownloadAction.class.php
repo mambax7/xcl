@@ -49,7 +49,7 @@ class LegacyRender_TplfileDownloadAction extends LegacyRender_Action
         exit(0);
     }
 
-    public function executeViewError(&$controller, &$xoopsUser, &$render)
+    public function executeViewError($controller, &$xoopsUser, &$render)
     {
         $controller->executeRedirect('./index.php?action=TplsetList', 1, _AD_LEGACYRENDER_ERROR_DBUPDATE_FAILED);
     }

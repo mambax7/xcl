@@ -8,7 +8,7 @@ if (!defined('XOOPS_ROOT_PATH')) {
 }
 class Message_Module extends Legacy_ModuleAdapter
 {
-    public function __construct(&$xoopsModule)
+    public function __construct($xoopsModule)
     {
         // ! call parent::__construct() instead of parent::Controller()
         parent::__construct($xoopsModule);

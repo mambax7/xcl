@@ -47,7 +47,7 @@ class Profile_ActionFrame
         $root->mContext->mModule->setAttribute('actionName', $name);
     }
 
-    public function _createAction(&$actionFrame)
+    public function _createAction($actionFrame)
     {
         if (is_object($this->mAction)) {
             return;

@@ -63,7 +63,7 @@ class Profile_DataEditAction extends Profile_AbstractEditAction
      * @public
      * @param $render
      */
-    public function executeViewInput(&$render)
+    public function executeViewInput($render)
     {
         $render->setTemplateName('profile_data_edit.html');
         $render->setAttribute('actionForm', $this->mActionForm);

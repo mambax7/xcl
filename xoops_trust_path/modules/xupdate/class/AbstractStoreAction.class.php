@@ -179,7 +179,7 @@ class Xupdate_AbstractStoreAction extends Xupdate_AbstractListAction
      *
      * @return	void
     **/
-    public function executeViewIndex(&$render)
+    public function executeViewIndex($render)
     {
         $render->setTemplateName('admin_'.$this->template.'_store.html');
         
@@ -255,7 +255,7 @@ class Xupdate_AbstractStoreAction extends Xupdate_AbstractListAction
      * To support a template writer, this send the list of mid that actionForm kept.
      * @param $render
      */
-    public function executeViewInput(&$render)
+    public function executeViewInput($render)
     {
         $render->setTemplateName('admin_'.$this->template.'_store_confirm.html');
 

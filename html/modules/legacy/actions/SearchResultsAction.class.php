@@ -25,7 +25,7 @@ class Legacy_SearchResultsAction extends Legacy_Action
     
     public $mConfig = [];
     
-    public function prepare(&$controller, &$xoopsUser)
+    public function prepare($controller, &$xoopsUser)
     {
         $root =& $controller->mRoot;
         $root->mLanguageManager->loadPageTypeMessageCatalog('search');
@@ -154,7 +154,7 @@ class Legacy_SearchResultsAction extends Legacy_Action
         return $ret;
     }
 
-    public function executeViewError(&$controller, &$xoopsUser, &$render)
+    public function executeViewError($controller, &$xoopsUser, &$render)
     {
         $controller->executeForward(XOOPS_URL . '/');
     }

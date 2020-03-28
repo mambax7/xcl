@@ -4,7 +4,7 @@ require_once XOOPS_TRUST_PATH . '/modules/pico/class/FormProcessByHtml.class.php
 require_once XOOPS_TRUST_PATH . '/modules/pico/class/PicoFormProcessBySmartyBase.class.php';
 
 
-function smarty_function_formmail4fleamarket($params, &$smarty)
+function smarty_function_formmail4fleamarket($params, $smarty)
 {
 	$controller = new PicoFormProcessBySmartyFormmail4fleamarket();
 	$controller->parseParameters($params);

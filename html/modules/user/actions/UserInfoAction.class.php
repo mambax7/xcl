@@ -54,7 +54,7 @@ class User_UserInfoAction extends User_Action
         return false;
     }
 
-    public function getDefaultView(&$controller, &$xoopsUser)
+    public function getDefaultView($controller, $xoopsUser)
     {
         $uid = isset($_GET['uid']) ? (int)xoops_getrequest('uid') : 0;
         
@@ -122,7 +122,7 @@ class User_UserInfoAction extends User_Action
      * @param $xoopsUser
      * @param $render
      */
-    public function executeViewSuccess(&$controller, &$xoopsUser, &$render)
+    public function executeViewSuccess(&$controller, $xoopsUser, $render)
     {
         $render->setTemplateName('user_userinfo.html');
         $render->setAttribute('thisUser', $this->mObject);
@@ -153,7 +153,7 @@ class User_UserInfoAction extends User_Action
         }
     }
 
-    public function executeViewError(&$controller, &$xoopsUser, &$render)
+    public function executeViewError($controller, &$xoopsUser, &$render)
     {
         $controller->executeForward(XOOPS_URL . '/user.php');
     }

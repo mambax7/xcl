@@ -47,7 +47,7 @@ class MessageSettingsForm extends XCube_ActionForm
         }
     }
   
-    public function update(&$obj)
+    public function update($obj)
     {
         $root = XCube_Root::getSingleton();
         $obj->set('uid', $root->mContext->mXoopsUser->get('uid'));
@@ -58,7 +58,7 @@ class MessageSettingsForm extends XCube_ActionForm
         $obj->set('blacklist', $this->get('blacklist'));
     }
   
-    public function load(&$obj)
+    public function load($obj)
     {
         $this->set('usepm', $obj->get('usepm'));
         $this->set('tomail', $obj->get('tomail'));

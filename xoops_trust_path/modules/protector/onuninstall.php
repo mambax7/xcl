@@ -62,7 +62,7 @@ if (! function_exists('protector_onuninstall_base')) {
     return true ;
     }
 
-    function protector_message_append_onuninstall(&$module_obj, &$log)
+    function protector_message_append_onuninstall(&$module_obj, $log)
     {
         if (is_array(@$GLOBALS['ret'])) {
             foreach ($GLOBALS['ret'] as $message) {

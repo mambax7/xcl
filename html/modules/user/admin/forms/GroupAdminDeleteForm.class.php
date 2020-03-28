@@ -40,12 +40,12 @@ class User_GroupAdminDeleteForm extends XCube_ActionForm
         }
     }
 
-    public function load(&$obj)
+    public function load($obj)
     {
         $this->set('groupid', $obj->get('groupid'));
     }
 
-    public function update(&$obj)
+    public function update($obj)
     {
         $obj->setVar('groupid', $this->get('groupid'));
     }

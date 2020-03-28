@@ -58,7 +58,7 @@ class User_AvatarAdminEditForm extends XCube_ActionForm
         }
     }
     
-    public function load(&$obj)
+    public function load($obj)
     {
         $this->set('avatar_id', $obj->get('avatar_id'));
         $this->set('avatar_name', $obj->get('avatar_name'));
@@ -69,7 +69,7 @@ class User_AvatarAdminEditForm extends XCube_ActionForm
         $this->mOldFileName = $obj->get('avatar_file');
     }
 
-    public function update(&$obj)
+    public function update($obj)
     {
         $obj->set('avatar_id', $this->get('avatar_id'));
         $obj->set('avatar_name', $this->get('avatar_name'));

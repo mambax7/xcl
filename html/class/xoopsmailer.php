@@ -491,7 +491,7 @@ class xoopsmailer
     }
 
     // public
-    public function setToUsers(&$user)
+    public function setToUsers($user)
     {
         if (!is_array($user)) {
             //@ToDo $user should be either XoopsUser or UserUsersObject now

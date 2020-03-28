@@ -15,7 +15,7 @@ if (!defined('XOOPS_ROOT_PATH')) {
 class Legacy_Identity extends XCube_Identity
 {
     // !Fix PHP7 NOTICE: deprecated constructor
-    public function __construct(&$xoopsUser)
+    public function __construct($xoopsUser)
     //public function Legacy_Identity(&$xoopsUser)
     {
         // ! call parent::__construct() instead of parent::Controller()

@@ -128,7 +128,7 @@ class Xupdate_AbstractInstallAction extends Xupdate_AbstractAction
      *
      * @return	void
     **/
-    public function executeViewIndex(&$render)
+    public function executeViewIndex($render)
     {
         $jQuery = $this->mRoot->mContext->getAttribute('headerScript');
         $jQuery->addScript($this->modalBoxJs(), false);
@@ -242,7 +242,7 @@ class Xupdate_AbstractInstallAction extends Xupdate_AbstractAction
      *
      * @return	void
      **/
-    public function executeViewSuccess(&$render)
+    public function executeViewSuccess($render)
     {
         $xupdateFtpModuleInstall = new Xupdate_FtpModuleInstall();// Xupdate instance
         //setup

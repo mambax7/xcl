@@ -47,7 +47,7 @@ class Profile_Admin_DefinitionsListAction extends Profile_AbstractListAction
      * @public
      * @param $render
      */
-    public function executeViewIndex(&$render)
+    public function executeViewIndex($render)
     {
         $render->setTemplateName('definitions_list.html');
         #cubson::lazy_load_array('definitions', $this->mObjects);

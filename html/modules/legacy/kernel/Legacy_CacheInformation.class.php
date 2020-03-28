@@ -200,7 +200,7 @@ class Legacy_BlockCacheInformation extends Legacy_AbstractCacheInformation
       * 
       * @param Legacy_AbstractBlockProcedure $blockProcedure
       */
-     public function setBlock(&$blockProcedure)
+     public function setBlock($blockProcedure)
      {
          $this->mBlock = $blockProcedure->_mBlock;
      }

@@ -22,7 +22,7 @@ class LegacyRender_Cacheclear extends XCube_ActionFilter
         $this->mRoot->mDelegateManager->add('Legacy_ModuleUninstaller._fireNotifyUninstallTemplateBegun', [$this, 'cacheClear']);
     }
     
-    public function cacheClear(&$module)
+    public function cacheClear($module)
     {
         $handler =& xoops_getmodulehandler('tplfile', 'legacyRender');
         

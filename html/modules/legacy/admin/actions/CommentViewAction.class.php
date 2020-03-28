@@ -31,7 +31,7 @@ class Legacy_CommentViewAction extends Legacy_Action
         return LEGACY_FRAME_VIEW_SUCCESS;
     }
         
-    public function executeViewSuccess(&$controller, &$xoopsUser, &$render)
+    public function executeViewSuccess(&$controller, &$xoopsUser, $render)
     {
         //
         // Lazy load
@@ -59,7 +59,7 @@ class Legacy_CommentViewAction extends Legacy_Action
         $render->setAttribute('children', $children);
     }
     
-    public function executeViewError(&$controller, &$xoopsUser, &$render)
+    public function executeViewError($controller, &$xoopsUser, &$render)
     {
         $controller->executeForward('./index.php');
     }

@@ -51,7 +51,7 @@ class User_UserDeleteAction extends User_Action
         return Legacy_Utils::getUserName(Legacy_Utils::getUid());
     }
 
-    public function prepare(&$controller, &$xoopsUser, $moduleConfig)
+    public function prepare($controller, $xoopsUser, $moduleConfig)
     {
         $this->mSelfDelete = $moduleConfig['self_delete'];
         $this->mSelfDeleteConfirmMessage = $moduleConfig['self_delete_confirm'];
@@ -82,7 +82,7 @@ class User_UserDeleteAction extends User_Action
         return true;
     }
 
-    public function hasPermission(&$controller, &$xoopsUser, $moduleConfig)
+    public function hasPermission(&$controller, $xoopsUser, $moduleConfig)
     {
         if (1 == $xoopsUser->get('uid')) {
             return false;
@@ -145,7 +145,7 @@ class User_UserDeleteAction extends User_Action
         $flag |= false;
     }
     
-    public function executeViewInput(&$controller, &$xoopsUser, &$render)
+    public function executeViewInput(&$controller, &$xoopsUser, $render)
     {
         $render->setTemplateName('user_delete.html');
         $render->setAttribute('object', $this->mObject);
@@ -153,13 +153,13 @@ class User_UserDeleteAction extends User_Action
         $render->setAttribute('self_delete_message', $this->mSelfDeleteConfirmMessage);
     }
     
-    public function executeViewSuccess(&$controller, &$xoopsUser, &$render)
+    public function executeViewSuccess(&$controller, &$xoopsUser, $render)
     {
         $render->setTemplateName('user_delete_success.html');
         $render->setAttribute('object', $this->mObject);
     }
     
-    public function executeViewError(&$controller, &$xoopsUser, &$render)
+    public function executeViewError($controller, &$xoopsUser, &$render)
     {
         $controller->executeRedirect(XOOPS_URL . '/', 3, _MD_USER_ERROR_DBUPDATE_FAILED);
     }

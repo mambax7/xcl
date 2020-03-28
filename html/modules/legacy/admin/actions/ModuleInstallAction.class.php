@@ -104,7 +104,7 @@ class Legacy_ModuleInstallAction extends Legacy_Action
         $this->mInstallFail->register('Legacy_ModuleInstallAction.InstallFail');
     }
     
-    public function prepare(&$controller, &$xoopsUser)
+    public function prepare($controller, &$xoopsUser)
     {
         $dirname = $controller->mRoot->mContext->mRequest->getRequest('dirname');
         
@@ -217,7 +217,7 @@ class Legacy_ModuleInstallAction extends Legacy_Action
      * @param $renderer
      * @todo no $renderer. It should be $render.
      */
-    public function executeViewInput(&$controller, &$xoopsUser, &$renderer)
+    public function executeViewInput(&$controller, &$xoopsUser, $renderer)
     {
         $renderer->setTemplateName('module_install.html');
         $renderer->setAttribute('module', $this->mXoopsModule);
@@ -225,7 +225,7 @@ class Legacy_ModuleInstallAction extends Legacy_Action
         $renderer->setAttribute('currentVersion', round($this->mXoopsModule->get('version') / 100, 2));
     }
 
-    public function executeViewCancel(&$controller, &$xoopsUser, &$render)
+    public function executeViewCancel($controller, &$xoopsUser, &$render)
     {
         $controller->executeForward('./index.php?action=InstallList');
     }

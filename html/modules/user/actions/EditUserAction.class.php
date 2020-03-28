@@ -87,7 +87,7 @@ class User_EditUserAction extends User_AbstractEditAction
      * @param $moduleConfig
      * @return bool
      */
-    public function hasPermission(&$controller, &$xoopsUser, $moduleConfig)
+    public function hasPermission($controller, $xoopsUser, $moduleConfig)
     {
         if (!is_object($this->mObject)) {
             return false;
@@ -116,7 +116,7 @@ class User_EditUserAction extends User_AbstractEditAction
         }
     }
 
-    public function executeViewInput(&$controller, &$xoopsUser, &$render)
+    public function executeViewInput(&$controller, &$xoopsUser, $render)
     {
         $render->setTemplateName('user_edituser.html');
         $render->setAttribute('actionForm', $this->mActionForm);
@@ -180,13 +180,13 @@ class User_EditUserAction extends User_AbstractEditAction
         $headerScript->addScript('$(".datepicker").each(function(){$(this).datepicker({dateFormat: "'._JSDATEPICKSTRING.'"});});');
     }
 
-    public function executeViewSuccess(&$controller, &$xoopsUser, &$render)
+    public function executeViewSuccess($controller, &$xoopsUser, &$render)
     {
         $redirect = xoops_getrequest('xoops_redirect');
         $controller->executeForward(($redirect && '/' === $redirect[0])? $redirect : (XOOPS_URL . '/userinfo.php?uid=' . $this->mObject->getShow('uid')));
     }
 
-    public function executeViewError(&$controller, &$xoopsUser, &$render)
+    public function executeViewError($controller, &$xoopsUser, &$render)
     {
         $controller->executeRedirect(XOOPS_URL . '/', 1, _MD_USER_ERROR_DBUPDATE_FAILED);
     }

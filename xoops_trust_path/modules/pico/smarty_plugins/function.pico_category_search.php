@@ -7,7 +7,7 @@ require_once XOOPS_TRUST_PATH . '/modules/pico/class/PicoPermission.class.php';
 require_once XOOPS_TRUST_PATH . '/modules/pico/class/PicoModelCategory.class.php';
 require_once XOOPS_TRUST_PATH . '/modules/pico/class/PicoModelContent.class.php';
 
-function smarty_function_pico_category_search($params, &$smarty)
+function smarty_function_pico_category_search($params, $smarty)
 {
 	$dir = @$params['dir'] . @$params['dirname'];
 	$cat_title = @$params['title'] . @$params['cat_title'];

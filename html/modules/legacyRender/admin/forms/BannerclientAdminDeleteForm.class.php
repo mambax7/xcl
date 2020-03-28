@@ -33,12 +33,12 @@ class LegacyRender_BannerclientAdminDeleteForm extends XCube_ActionForm
         $this->mFieldProperties['cid']->addMessage('required', _AD_LEGACYRENDER_ERROR_REQUIRED, _AD_LEGACYRENDER_LANG_CID);
     }
 
-    public function load(&$obj)
+    public function load($obj)
     {
         $this->set('cid', $obj->get('cid'));
     }
 
-    public function update(&$obj)
+    public function update($obj)
     {
         $obj->set('cid', $this->get('cid'));
     }

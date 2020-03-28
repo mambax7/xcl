@@ -71,7 +71,7 @@ class User_Mailjob_linkListAction extends User_AbstractListAction
         return $this->getDefaultView($controller, $xoopsUser);
     }
 
-    public function executeViewIndex(&$controller, &$xoopsUser, &$render)
+    public function executeViewIndex(&$controller, &$xoopsUser, $render)
     {
         $render->setTemplateName('mailjob_link_list.html');
         #cubson::lazy_load_array('mailjob_link', $this->mObjects);
@@ -81,7 +81,7 @@ class User_Mailjob_linkListAction extends User_AbstractListAction
         $render->setAttribute('actionForm', $this->mActionForm);
     }
 
-    public function executeViewError(&$controller, &$xoopsUser, &$render)
+    public function executeViewError($controller, &$xoopsUser, &$render)
     {
         $controller->executeForward('./index.php?action=MailjobList');
     }

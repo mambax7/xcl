@@ -34,7 +34,7 @@ class Legacy_SiteClose extends XCube_ActionFilter
      * @param $context
      * @see preBlockFilter()
      */
-    public static function callbackSetupUser(&$principal, &$controller, &$context)
+    public static function callbackSetupUser(&$principal, $controller, $context)
     {
         $accessAllowFlag = false;
         $xoopsConfig = $controller->mRoot->mContext->getXoopsConfig();
@@ -85,7 +85,7 @@ class Legacy_SiteClose extends XCube_ActionFilter
      * @var XoopsUser &$xoopsUser
      * @see preBlockFilter
      */
-    public function callbackCheckLoginSuccess(&$xoopsUser)
+    public function callbackCheckLoginSuccess($xoopsUser)
     {
         //
         // This check is not needed. :)

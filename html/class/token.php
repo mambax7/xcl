@@ -225,7 +225,7 @@ class XoopsTokenHandler
      * Register token to session.
      * @param $token
      */
-    public function register(&$token)
+    public function register($token)
     {
         $_SESSION[XOOPS_TOKEN_SESSION_STRING][$this->_prefix.$token->_name_] = $token;
     }
@@ -234,7 +234,7 @@ class XoopsTokenHandler
      * Unregister token to session.
      * @param $token
      */
-    public function unregister(&$token)
+    public function unregister($token)
     {
         unset($_SESSION[XOOPS_TOKEN_SESSION_STRING][$this->_prefix.$token->_name_]);
     }
@@ -261,7 +261,7 @@ class XoopsTokenHandler
      * @param If         $clearIfValid token passed validation, $token will be unregistered.
      * @return  bool
      */
-    public function validate(&$token, $clearIfValid)
+    public function validate($token, $clearIfValid)
     {
         $req_token = isset($_REQUEST[ $token->getTokenName() ]) ?
                 trim($_REQUEST[ $token->getTokenName() ]) : null;
@@ -348,12 +348,12 @@ class XoopsMultiTokenHandler
         return $ret;
     }
 
-    public function register(&$token)
+    public function register($token)
     {
         $_SESSION[XOOPS_TOKEN_MULTI_SESSION_STRING][$this->_prefix.$token->_name_][$token->getSerialNumber()] = $token;
     }
 
-    public function unregister(&$token)
+    public function unregister($token)
     {
         unset($_SESSION[XOOPS_TOKEN_MULTI_SESSION_STRING][$this->_prefix.$token->_name_][$token->getSerialNumber()]);
     }

@@ -98,7 +98,7 @@ class Legacy_ModuleUpdateAction extends Legacy_Action
         $this->mUpdateFail->register('Legacy_ModuleUpdateAction.UpdateFail');
     }
     
-    public function prepare(&$controller, &$xoopsUser)
+    public function prepare($controller, &$xoopsUser)
     {
         $dirname = $controller->mRoot->mContext->mRequest->getRequest('dirname');
         
@@ -195,7 +195,7 @@ class Legacy_ModuleUpdateAction extends Legacy_Action
         $renderer->setAttribute('isLatestUpgrade', $this->mInstaller->isLatestUpgrade());
     }
 
-    public function executeViewInput(&$controller, &$xoopsUser, &$renderer)
+    public function executeViewInput(&$controller, &$xoopsUser, $renderer)
     {
         $renderer->setTemplateName('module_update.html');
         $renderer->setAttribute('module', $this->mXoopsModule);
@@ -205,7 +205,7 @@ class Legacy_ModuleUpdateAction extends Legacy_Action
         $renderer->setAttribute('isPhasedMode', $this->mInstaller->hasUpgradeMethod());
     }
     
-    public function executeViewCancel(&$controller, &$xoopsUser, &$renderer)
+    public function executeViewCancel($controller, &$xoopsUser, &$renderer)
     {
         $controller->executeForward('./index.php?action=ModuleList');
     }

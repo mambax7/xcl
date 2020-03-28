@@ -32,7 +32,7 @@ include_once './class/dbmanager.php';
 // the defaults specified in the database...!!!! (and don't have problem
 // of missing fields in install file, when add new fields to database)
 
-function make_groups(&$dbm)
+function make_groups($dbm)
 {
     $gruops['XOOPS_GROUP_ADMIN'] = $dbm->insert('groups', " VALUES (0, '".addslashes(_INSTALL_WEBMASTER)."', '".addslashes(_INSTALL_WEBMASTERD)."', 'Admin')");
     $gruops['XOOPS_GROUP_USERS'] = $dbm->insert('groups', " VALUES (0, '".addslashes(_INSTALL_REGUSERS)."', '".addslashes(_INSTALL_REGUSERSD)."', 'User')");
@@ -44,7 +44,7 @@ function make_groups(&$dbm)
 
     return $gruops;
 }
-function make_data(&$dbm, &$cm, $adminname, $adminpass, $adminmail, $language, $gruops, $timezone)
+function make_data($dbm, &$cm, $adminname, $adminpass, $adminmail, $language, $gruops, $timezone)
 {
     $tables = [];
 
@@ -193,7 +193,7 @@ function make_data(&$dbm, &$cm, $adminname, $adminpass, $adminmail, $language, $
  * @param string $language language
  * @param        $groups
  */
-function installModule(&$dbm, $mid, $module, $module_name, $language = 'english', &$groups)
+function installModule($dbm, $mid, $module, $module_name, $language = 'english', $groups)
 {
     if (file_exists("../modules/${module}/language/${language}/modinfo.php")) {
         include "../modules/${module}/language/${language}/modinfo.php";

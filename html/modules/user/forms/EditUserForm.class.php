@@ -156,7 +156,7 @@ class User_EditUserForm extends User_AbstractUserEditForm
         XCube_DelegateUtils::call('Legacy_Profile.SetupActionForm', $this);
     }
     
-    public function load(&$obj)
+    public function load($obj)
     {
         $this->set('uid', $obj->get('uid'));
         $this->set('name', $obj->get('name'));
@@ -194,7 +194,7 @@ class User_EditUserForm extends User_AbstractUserEditForm
         XCube_DelegateUtils::call('Legacy_Profile.LoadActionForm', $this);
     }
     
-    public function update(&$obj)
+    public function update($obj)
     {
         $obj->set('name', $this->get('name'));
         

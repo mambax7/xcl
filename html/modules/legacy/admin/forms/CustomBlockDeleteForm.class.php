@@ -37,7 +37,7 @@ class Legacy_CustomBlockDeleteForm extends XCube_ActionForm
         $this->mFieldProperties['bid']->addMessage('required', _MD_LEGACY_ERROR_REQUIRED, _AD_LEGACY_LANG_BID);
     }
 
-    public function load(&$obj)
+    public function load($obj)
     {
         $this->set('bid', $obj->get('bid'));
     }

@@ -88,7 +88,7 @@ if (! function_exists('altsys_onupdate_base')) {
         return true ;
     }
 
-    function altsys_message_append_onupdate(&$module_obj, &$log)
+    function altsys_message_append_onupdate(&$module_obj, $log)
     {
         if (is_array(@$GLOBALS['msgs'])) {
             foreach ($GLOBALS['msgs'] as $message) {

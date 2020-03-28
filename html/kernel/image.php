@@ -120,7 +120,7 @@ class XoopsImageHandler extends XoopsObjectHandler
      * @param   object  &$image {@link XoopsImage} 
      * @return  bool
      **/
-    public function insert(&$image)
+    public function insert($image)
     {
         if ('xoopsimage' != strtolower(get_class($image))) {
             return false;
@@ -174,7 +174,7 @@ class XoopsImageHandler extends XoopsObjectHandler
      * @param   object  &$image {@link XoopsImage} 
      * @return  bool
      **/
-    public function delete(&$image)
+    public function delete($image)
     {
         if ('xoopsimage' != strtolower(get_class($image))) {
             return false;
@@ -245,7 +245,7 @@ class XoopsImageHandler extends XoopsObjectHandler
         if (!$result =& $this->db->query($sql)) {
             return 0;
         }
-        list($count) = $this->db->fetchRow($result);
+        [$count] = $this->db->fetchRow($result);
         return $count;
     }
 

@@ -78,7 +78,7 @@ class User_UserSearchListAction extends User_AbstractListAction
         }
     }
 
-    public function executeViewIndex(&$controller, &$xoopsUser, &$render)
+    public function executeViewIndex($controller, &$xoopsUser, $render)
     {
         $controller->mRoot->mDelegateManager->add('Legacy.Event.Explaceholder.Get.UserPagenaviOtherUrl', 'User_UserSearchListAction::renderOtherUrlControl');
         $controller->mRoot->mDelegateManager->add('Legacy.Event.Explaceholder.Get.UserSearchPagenaviHidden', 'User_UserSearchListAction::renderHiddenControl');
@@ -158,7 +158,7 @@ class User_UserSearchListAction extends User_AbstractListAction
      * @param $xoopsUser
      * @param $render
      */
-    public function executeViewInput(&$controller, &$xoopsUser, &$render)
+    public function executeViewInput($controller, &$xoopsUser, $render)
     {
         $render->setTemplateName('user_search_list_confirm.html');
         $render->setAttribute('userObjects', $this->mUserObjects);
@@ -176,17 +176,17 @@ class User_UserSearchListAction extends User_AbstractListAction
     }
 
 
-    public function executeViewSuccess(&$controller, &$xoopsUser, &$renderer)
+    public function executeViewSuccess($controller, &$xoopsUser, &$renderer)
     {
         $controller->executeForward('./index.php?action=UserSearchList'.$this->getExtraURL());
     }
 
-    public function executeViewError(&$controller, &$xoopsUser, &$renderer)
+    public function executeViewError($controller, &$xoopsUser, &$renderer)
     {
         $controller->executeRedirect('./index.php?action=UserSearchList'.$this->getExtraURL(), 1, _MD_USER_ERROR_DBUPDATE_FAILED);
     }
 
-    public function executeViewCancel(&$controller, &$xoopsUser, &$renderer)
+    public function executeViewCancel($controller, &$xoopsUser, &$renderer)
     {
         $controller->executeForward('./index.php?action=UserSearchList'.$this->getExtraURL());
     }

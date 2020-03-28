@@ -155,7 +155,7 @@ class XoopsMemberHandler
      * @param XoopsUser $object or XoopsGroup
      * @return bool
      */
-    public function delete(&$object)
+    public function delete($object)
     {
         if ($object instanceof \XoopsUser) {
             return $this->deleteUser($object);
@@ -170,7 +170,7 @@ class XoopsMemberHandler
      * @param object $group reference to the group to delete
      * @return bool FALSE if failed
      */
-    public function deleteGroup(&$group)
+    public function deleteGroup($group)
     {
         $this->_gHandler->delete($group);
         $this->_mHandler->deleteAll(new Criteria('groupid', $group->getVar('groupid')));
@@ -183,7 +183,7 @@ class XoopsMemberHandler
      * @param object $user reference to the user to delete
      * @return bool FALSE if failed
      */
-    public function deleteUser(&$user)
+    public function deleteUser($user)
     {
         $this->_uHandler->delete($user);
         $this->_mHandler->deleteAll(new Criteria('uid', $user->getVar('uid')));
@@ -197,7 +197,7 @@ class XoopsMemberHandler
      * @return bool TRUE if already in database and unchanged
      * FALSE on failure
      */
-    public function insertGroup(&$group)
+    public function insertGroup($group)
     {
         return $this->_gHandler->insert($group);
     }
@@ -210,7 +210,7 @@ class XoopsMemberHandler
      * @return bool TRUE if already in database and unchanged
      *                     FALSE on failure
      */
-    public function insertUser(&$user, $force = false)
+    public function insertUser($user, $force = false)
     {
         return $this->_uHandler->insert($user, $force);
     }
@@ -504,7 +504,7 @@ class XoopsMemberHandler
      * @param string $fieldValue updated value for the field
      * @return bool TRUE if success or unchanged, FALSE on failure
      */
-    public function updateUserByField(&$user, $fieldName, $fieldValue)
+    public function updateUserByField($user, $fieldName, $fieldValue)
     {
         $user->setVar($fieldName, $fieldValue);
         return $this->insertUser($user);
@@ -529,7 +529,7 @@ class XoopsMemberHandler
      * @param object $user reference to the {@link XoopsUser} object
      * @return bool successful?
      */
-    public function activateUser(&$user)
+    public function activateUser($user)
     {
         if (0 != $user->getVar('level')) {
             return true;

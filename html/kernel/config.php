@@ -129,7 +129,7 @@ class XoopsConfigHandler
      * @param object  &$config reference to the {@link XoopsConfigItem}
      * @return bool
      */
-    public function insertConfig(&$config)
+    public function insertConfig($config)
     {
         if (!$this->_cHandler->insert($config)) {
             return false;
@@ -155,7 +155,7 @@ class XoopsConfigHandler
      * @param object  &$config reference to a {@link XoopsConfigItem}
      * @return bool
      */
-    public function deleteConfig(&$config)
+    public function deleteConfig($config)
     {
         if (!$this->_cHandler->delete($config)) {
             return false;

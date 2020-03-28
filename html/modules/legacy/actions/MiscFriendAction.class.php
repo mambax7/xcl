@@ -20,7 +20,7 @@ class Legacy_MiscFriendAction extends Legacy_Action
     public $mActionForm = null;
     public $mMailer = null;
     
-    public function hasPermission(&$controller, &$xoopsUser)
+    public function hasPermission(&$controller, $xoopsUser)
     {
         return is_object($xoopsUser);
     }
@@ -63,18 +63,18 @@ class Legacy_MiscFriendAction extends Legacy_Action
         return $this->mMailer->send() ? LEGACY_FRAME_VIEW_SUCCESS : LEGACY_FRAME_VIEW_ERROR;
     }
     
-    public function executeViewInput(&$controller, &$xoopsUser, &$render)
+    public function executeViewInput(&$controller, &$xoopsUser, $render)
     {
         $render->setTemplateName('legacy_misc_friend.html');
         $render->setAttribute('actionForm', $this->mActionForm);
     }
 
-    public function executeViewSuccess(&$controller, &$xoopsUser, &$render)
+    public function executeViewSuccess(&$controller, &$xoopsUser, $render)
     {
         $render->setTemplateName('legacy_misc_friend_success.html');
     }
 
-    public function executeViewError(&$controller, &$xoopsUser, &$render)
+    public function executeViewError(&$controller, &$xoopsUser, $render)
     {
         $render->setTemplateName('legacy_misc_friend_error.html');
         $render->setAttribute('xoopsMailer', $this->mMailer);

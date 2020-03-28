@@ -84,7 +84,7 @@ class XoopsImagesetimgHandler extends XoopsObjectHandler
         return $ret;
     }
 
-    public function insert(&$imgsetimg)
+    public function insert($imgsetimg)
     {
         if ('xoopsimagesetimg' != strtolower(get_class($imgsetimg))) {
             return false;
@@ -114,7 +114,7 @@ class XoopsImagesetimgHandler extends XoopsObjectHandler
         return true;
     }
 
-    public function delete(&$imgsetimg)
+    public function delete($imgsetimg)
     {
         if ('xoopsimagesetimg' != strtolower(get_class($imgsetimg))) {
             return false;
@@ -163,7 +163,7 @@ class XoopsImagesetimgHandler extends XoopsObjectHandler
         if (!$result =& $this->db->query($sql)) {
             return 0;
         }
-        list($count) = $this->db->fetchRow($result);
+        [$count] = $this->db->fetchRow($result);
         return $count;
     }
 

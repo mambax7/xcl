@@ -59,7 +59,7 @@ class Legacy_ThemeSelectForm extends XCube_ActionForm
         return $ret;
     }
     
-    public function load(&$themeArr)
+    public function load($themeArr)
     {
         foreach ($themeArr as $themeName) {
             $this->set('select', $themeName, 1);

@@ -145,7 +145,7 @@ class Legacy_ActSearchAction extends Legacy_Action
         }
     }
 
-    public function hasPermission(&$controller, &$xoopsUser)
+    public function hasPermission(&$controller, $xoopsUser)
     {
         $permHandler =& xoops_gethandler('groupperm');
         return $permHandler->checkRight('module_admin', -1, $xoopsUser->getGroups());
@@ -191,20 +191,20 @@ class Legacy_ActSearchAction extends Legacy_Action
         $this->mActionForm->prepare();
     }
 
-    public function executeViewSuccess(&$controller, &$xoopsUser, &$render)
+    public function executeViewSuccess(&$controller, &$xoopsUser, $render)
     {
         $render->setTemplateName('legacy_admin_actionsearch_success.html');
         $render->setAttribute('records', $this->mRecords);
         $render->setAttribute('actionForm', $this->mActionForm);
     }
 
-    public function executeViewInput(&$controller, &$xoopsUser, &$render)
+    public function executeViewInput(&$controller, &$xoopsUser, $render)
     {
         $render->setTemplateName('legacy_admin_actionsearch_input.html');
         $render->setAttribute('actionForm', $this->mActionForm);
     }
     
-    public function executeViewError(&$controller, &$xoopsUser, &$render)
+    public function executeViewError(&$controller, &$xoopsUser, $render)
     {
         $render->setTemplateName('legacy_admin_actionsearch_error.html');
         $render->setAttribute('actionForm', $this->mActionForm);

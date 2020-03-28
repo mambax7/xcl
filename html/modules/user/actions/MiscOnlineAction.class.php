@@ -13,7 +13,7 @@ require_once XOOPS_MODULE_PATH . '/user/forms/OnlineFilterForm.class.php';
 
 class User_MiscOnlineAction extends User_AbstractListAction
 {
-    public function prepare(&$controller, &$xoopsUser, $moduleConfig)
+    public function prepare($controller, &$xoopsUser, $moduleConfig)
     {
         $controller->mRoot->mLanguageManager->loadModuleMessageCatalog('user');
     }
@@ -35,7 +35,7 @@ class User_MiscOnlineAction extends User_AbstractListAction
         return './misc.php?type=online';
     }
 
-    public function executeViewIndex(&$controller, &$xoopsUser, &$render)
+    public function executeViewIndex($controller, &$xoopsUser, $render)
     {
         $render->setTemplateName('user_misc_online.html');
         

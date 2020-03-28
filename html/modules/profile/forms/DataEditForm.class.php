@@ -71,7 +71,7 @@ class Profile_DataEditForm extends XCube_ActionForm
      * @public
      * @param $obj
      */
-    public function load(&$obj)
+    public function load($obj)
     {
         $this->set('uid', $obj->get('uid'));
         foreach (array_keys($this->mDef) as $key) {
@@ -83,7 +83,7 @@ class Profile_DataEditForm extends XCube_ActionForm
      * @public
      * @param $obj
      */
-    public function update(&$obj)
+    public function update($obj)
     {
         $obj->set('uid', $this->get('uid'));
         foreach (array_keys($this->mDef) as $key) {

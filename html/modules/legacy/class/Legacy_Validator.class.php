@@ -16,7 +16,7 @@ require_once XOOPS_ROOT_PATH . '/core/XCube_Validator.class.php';
 
 class XCube_ObjectExistValidator extends XCube_Validator
 {
-    public function isValid(&$form, $vars)
+    public function isValid($form, $vars)
     {
         if ($form->isNull()) {
             return true;

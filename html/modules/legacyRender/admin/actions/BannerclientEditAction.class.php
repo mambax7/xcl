@@ -30,7 +30,7 @@ class LegacyRender_BannerclientEditAction extends LegacyRender_AbstractEditActio
         $this->mActionForm->prepare();
     }
 
-    public function executeViewInput(&$controller, &$xoopsUser, &$render)
+    public function executeViewInput(&$controller, &$xoopsUser, $render)
     {
         $render->setTemplateName('bannerclient_edit.html');
         $render->setAttribute('actionForm', $this->mActionForm);
@@ -39,17 +39,17 @@ class LegacyRender_BannerclientEditAction extends LegacyRender_AbstractEditActio
         $render->setAttribute('object', $this->mObject);
     }
 
-    public function executeViewSuccess(&$controller, &$xoopsUser, &$render)
+    public function executeViewSuccess($controller, &$xoopsUser, &$render)
     {
         $controller->executeForward('./index.php?action=BannerclientList');
     }
 
-    public function executeViewError(&$controller, &$xoopsUser, &$render)
+    public function executeViewError($controller, &$xoopsUser, &$render)
     {
         $controller->executeRedirect('./index.php?action=BannerclientList', 1, _AD_LEGACYRENDER_ERROR_DBUPDATE_FAILED);
     }
 
-    public function executeViewCancel(&$controller, &$xoopsUser, &$render)
+    public function executeViewCancel($controller, &$xoopsUser, &$render)
     {
         $controller->executeForward('./index.php?action=BannerclientList');
     }

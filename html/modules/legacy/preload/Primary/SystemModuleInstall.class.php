@@ -33,7 +33,7 @@ class Legacy_SystemModuleInstall extends XCube_ActionFilter
      * @param $context
      * @see preBlockFilter()
      */
-    public function callbackSetupUser(&$principal, &$controller, &$context)
+    public function callbackSetupUser(&$principal, $controller, $context)
     {
         $retArray = Legacy_Utils::checkSystemModules();
         $accessAllowFlag = false;
@@ -216,7 +216,7 @@ class Legacy_SystemModuleInstall extends XCube_ActionFilter
      * @var XoopsUser &$xoopsUser
      * @see preBlockFilter
      */
-    public function callbackCheckLoginSuccess(&$xoopsUser)
+    public function callbackCheckLoginSuccess($xoopsUser)
     {
         //
         // This check is not needed. :)

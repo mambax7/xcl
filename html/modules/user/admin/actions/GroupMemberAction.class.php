@@ -136,7 +136,7 @@ class User_GroupMemberAction extends User_Action
         }
     }
 
-    public function executeViewIndex(&$controller, &$xoopsUser, &$render)
+    public function executeViewIndex(&$controller, &$xoopsUser, $render)
     {
         $render->setTemplateName('group_member.html');
         $render->setAttribute('group', $this->mGroup);

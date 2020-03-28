@@ -22,7 +22,7 @@ class Legacy_ImageListAction extends Legacy_AbstractListAction
 {
     public $mImgcatId = null;
     
-    public function prepare(&$controller, &$xoopsUser)
+    public function prepare($controller, &$xoopsUser)
     {
         $controller->setDialogMode(true);
         
@@ -59,7 +59,7 @@ class Legacy_ImageListAction extends Legacy_AbstractListAction
         return $result;
     }
 
-    public function executeViewIndex(&$controller, &$xoopsUser, &$render)
+    public function executeViewIndex(&$controller, $xoopsUser, $render)
     {
         $render->setTemplateName('legacy_image_list.html');
         
@@ -96,7 +96,7 @@ class Legacy_ImageListAction extends Legacy_AbstractListAction
         $render->setAttribute('target', htmlspecialchars(xoops_getrequest('target'), ENT_QUOTES));
     }
 
-    public function executeViewError(&$controller, &$xoopsUser, &$render)
+    public function executeViewError($controller, &$xoopsUser, &$render)
     {
         $controller->executeForward(XOOPS_URL . '/imagemanager.php?op=list');
     }

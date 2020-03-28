@@ -143,7 +143,7 @@ class newAction extends AbstractAction
         return $tpl->fetch(_MY_MODULE_PATH.'language/'.$this->root->mLanguageManager->mLanguageName.'/invitation.tpl');
     }
   
-    private function update_outbox(&$obj)
+    private function update_outbox($obj)
     {
         $outHand = xoops_getmodulehandler('outbox');
         $outHand->deleteDays($this->root->mContext->mModuleConfig['savedays']);
@@ -156,7 +156,7 @@ class newAction extends AbstractAction
         return $outHand->insert($outObj);
     }
   
-    public function executeView(&$render)
+    public function executeView($render)
     {
         $render->setTemplateName('message_new.html');
         $render->setAttribute('mActionForm', $this->mActionForm);

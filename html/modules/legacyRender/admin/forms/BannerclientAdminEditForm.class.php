@@ -87,7 +87,7 @@ class LegacyRender_BannerclientAdminEditForm extends XCube_ActionForm
         }
     }
 
-    public function load(&$obj)
+    public function load($obj)
     {
         $this->set('cid', $obj->get('cid'));
         $this->set('name', $obj->get('name'));
@@ -98,7 +98,7 @@ class LegacyRender_BannerclientAdminEditForm extends XCube_ActionForm
         $this->set('extrainfo', $obj->get('extrainfo'));
     }
 
-    public function update(&$obj)
+    public function update($obj)
     {
         $obj->set('cid', $this->get('cid'));
         $obj->set('name', $this->get('name'));

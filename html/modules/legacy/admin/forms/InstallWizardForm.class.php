@@ -38,12 +38,12 @@ class Legacy_InstallWizardForm extends XCube_ActionForm
         $this->mFieldProperties['agree']->addVar('min', '1');
     }
 
-    public function load(&$obj)
+    public function load($obj)
     {
         $this->set('dirname', $obj->get('dirname'));
     }
 
-    public function update(&$obj)
+    public function update($obj)
     {
         $obj->set('dirname', $this->get('dirname'));
     }

@@ -29,7 +29,7 @@ class User_UserDataUploadDoAction extends User_UserDataUploadAction
     
     
     /// 実行
-    public function executeViewSuccess(&$controller, &$xoopsUser, &$render)
+    public function executeViewSuccess($controller, &$xoopsUser, &$render)
     {
         $csv_data = $_SESSION['user_csv_upload_data'];
         $user_handler =& $this->_getHandler();

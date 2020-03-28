@@ -25,7 +25,7 @@ class Profile_Admin_DataDownloadAction extends Profile_AbstractListAction
         return './index.php?action=DataDownload';
     }
     
-    public function executeViewIndex(&$render)
+    public function executeViewIndex($render)
     {
         $render->setTemplateName('data_download.html');
         $handler =& $this->_getHandler();

@@ -26,7 +26,7 @@ class LegacyRender_TplfileViewAction extends LegacyRender_Action
         return LEGACYRENDER_FRAME_VIEW_SUCCESS;
     }
 
-    public function executeViewSuccess(&$controller, &$xoopsUser, &$render)
+    public function executeViewSuccess(&$controller, &$xoopsUser, $render)
     {
         $this->mObject->loadSource();
 
@@ -34,7 +34,7 @@ class LegacyRender_TplfileViewAction extends LegacyRender_Action
         $render->setAttribute('object', $this->mObject);
     }
 
-    public function executeViewError(&$controller, &$xoopsUser, &$render)
+    public function executeViewError($controller, &$xoopsUser, &$render)
     {
         $controller->executeRedirect('./index.php?action=TplsetList', 1, _AD_LEGACYRENDER_ERROR_OBJECT_IS_NOT_EXIST);
     }

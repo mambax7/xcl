@@ -30,12 +30,12 @@ class LegacyRender_TplfileAdminDeleteForm extends XCube_ActionForm
         $this->mFieldProperties['tpl_id']->addMessage('required', _AD_LEGACYRENDER_ERROR_REQUIRED, _AD_LEGACYRENDER_LANG_TPL_ID);
     }
 
-    public function load(&$obj)
+    public function load($obj)
     {
         $this->set('tpl_id', $obj->get('tpl_id'));
     }
 
-    public function update(&$obj)
+    public function update($obj)
     {
         $obj->set('tpl_id', $this->get('tpl_id'));
     }

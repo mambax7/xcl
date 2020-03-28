@@ -485,7 +485,7 @@ class RpcMethodNameHandler extends XmlTagHandler
      * @author
      * @see
      */
-    public function handleCharacterData(&$parser, &$data)
+    public function handleCharacterData($parser, &$data)
     {
         $parser->setMethodName($data);
     }
@@ -517,7 +517,7 @@ class RpcIntHandler extends XmlTagHandler
      * @author
      * @see
      */
-    public function handleCharacterData(&$parser, &$data)
+    public function handleCharacterData($parser, $data)
     {
         $parser->setTempValue((int)$data);
     }
@@ -549,7 +549,7 @@ class RpcDoubleHandler extends XmlTagHandler
      * @author
      * @see
      */
-    public function handleCharacterData(&$parser, &$data)
+    public function handleCharacterData($parser, &$data)
     {
         $data = (float)$data;
         $parser->setTempValue($data);
@@ -582,7 +582,7 @@ class RpcBooleanHandler extends XmlTagHandler
      * @author
      * @see
      */
-    public function handleCharacterData(&$parser, &$data)
+    public function handleCharacterData($parser, &$data)
     {
         $data = (boolean)$data;
         $parser->setTempValue($data);
@@ -615,7 +615,7 @@ class RpcStringHandler extends XmlTagHandler
      * @author
      * @see
      */
-    public function handleCharacterData(&$parser, &$data)
+    public function handleCharacterData($parser, $data)
     {
         $parser->setTempValue((string)$data);
     }
@@ -647,7 +647,7 @@ class RpcDateTimeHandler extends XmlTagHandler
      * @author
      * @see
      */
-    public function handleCharacterData(&$parser, &$data)
+    public function handleCharacterData($parser, $data)
     {
         $matches = [];
         if (!preg_match('/^([0-9]{4})([0-9]{2})([0-9]{2})T([0-9]{2}):([0-9]{2}):([0-9]{2})$/', $data, $matches)) {
@@ -684,7 +684,7 @@ class RpcBase64Handler extends XmlTagHandler
      * @author
      * @see
      */
-    public function handleCharacterData(&$parser, &$data)
+    public function handleCharacterData($parser, $data)
     {
         $parser->setTempValue(base64_decode($data));
     }
@@ -716,7 +716,7 @@ class RpcNameHandler extends XmlTagHandler
      * @author
      * @see
      */
-    public function handleCharacterData(&$parser, &$data)
+    public function handleCharacterData($parser, &$data)
     {
         switch ($parser->getParentTag()) {
         case 'member':
@@ -755,7 +755,7 @@ class RpcValueHandler extends XmlTagHandler
      * @author
      * @see
      */
-    public function handleCharacterData(&$parser, &$data)
+    public function handleCharacterData($parser, &$data)
     {
         switch ($parser->getParentTag()) {
         case 'member':
@@ -794,7 +794,7 @@ class RpcValueHandler extends XmlTagHandler
      * @author
      * @see
      */
-    public function handleEndElement(&$parser)
+    public function handleEndElement($parser)
     {
         switch ($parser->getCurrentTag()) {
         case 'member':
@@ -838,7 +838,7 @@ class RpcMemberHandler extends XmlTagHandler
      * @author
      * @see
      */
-    public function handleBeginElement(&$parser, &$attributes)
+    public function handleBeginElement($parser, &$attributes)
     {
         $parser->setWorkingLevel();
         $parser->resetTempMember();
@@ -853,7 +853,7 @@ class RpcMemberHandler extends XmlTagHandler
      * @author
      * @see
      */
-    public function handleEndElement(&$parser)
+    public function handleEndElement($parser)
     {
         $member =& $parser->getTempMember();
         $parser->releaseWorkingLevel();
@@ -887,7 +887,7 @@ class RpcArrayHandler extends XmlTagHandler
      * @author
      * @see
      */
-    public function handleBeginElement(&$parser, &$attributes)
+    public function handleBeginElement($parser, &$attributes)
     {
         $parser->setWorkingLevel();
         $parser->resetTempArray();
@@ -902,7 +902,7 @@ class RpcArrayHandler extends XmlTagHandler
      * @author
      * @see
      */
-    public function handleEndElement(&$parser)
+    public function handleEndElement($parser)
     {
         $parser->setTempValue($parser->getTempArray());
         $parser->releaseWorkingLevel();
@@ -935,7 +935,7 @@ class RpcStructHandler extends XmlTagHandler
      * @author
      * @see
      */
-    public function handleBeginElement(&$parser, &$attributes)
+    public function handleBeginElement($parser, &$attributes)
     {
         $parser->setWorkingLevel();
         $parser->resetTempStruct();
@@ -950,7 +950,7 @@ class RpcStructHandler extends XmlTagHandler
      * @author
      * @see
      */
-    public function handleEndElement(&$parser)
+    public function handleEndElement($parser)
     {
         $parser->setTempValue($parser->getTempStruct());
         $parser->releaseWorkingLevel();

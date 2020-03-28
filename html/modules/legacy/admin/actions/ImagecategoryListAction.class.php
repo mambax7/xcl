@@ -57,7 +57,7 @@ class Legacy_ImagecategoryListAction extends Legacy_AbstractListAction
         return './index.php?action=ImagecategoryList';
     }
 
-    public function executeViewIndex(&$controller, &$xoopsUser, &$render)
+    public function executeViewIndex(&$controller, &$xoopsUser, $render)
     {
         $render->setTemplateName('imagecategory_list.html');
         $render->setAttribute('objects', $this->mObjects);
@@ -170,7 +170,7 @@ class Legacy_ImagecategoryListAction extends Legacy_AbstractListAction
      * @param $xoopsUser
      * @param $render
      */
-    public function executeViewInput(&$controller, &$xoopsUser, &$render)
+    public function executeViewInput(&$controller, &$xoopsUser, $render)
     {
         $render->setTemplateName('imagecategory_list_confirm.html');
         $render->setAttribute('imagecategoryObjects', $this->mImagecategoryObjects);
@@ -184,17 +184,17 @@ class Legacy_ImagecategoryListAction extends Legacy_AbstractListAction
     }
 
 
-    public function executeViewSuccess(&$controller, &$xoopsUser, &$renderer)
+    public function executeViewSuccess($controller, &$xoopsUser, &$renderer)
     {
         $controller->executeForward('./index.php?action=ImagecategoryList');
     }
 
-    public function executeViewError(&$controller, &$xoopsUser, &$renderer)
+    public function executeViewError($controller, &$xoopsUser, &$renderer)
     {
         $controller->executeRedirect('./index.php?action=ImagecategoryList', 1, _MD_LEGACY_ERROR_DBUPDATE_FAILED);
     }
 
-    public function executeViewCancel(&$controller, &$xoopsUser, &$renderer)
+    public function executeViewCancel($controller, &$xoopsUser, &$renderer)
     {
         $controller->executeForward('./index.php?action=ImagecategoryList');
     }

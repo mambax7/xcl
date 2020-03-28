@@ -68,7 +68,7 @@ class Legacy_BlockListAction extends Legacy_AbstractListAction
         return './index.php?action=BlockList';
     }
 
-    public function executeViewIndex(&$controller, &$xoopsUser, &$render)
+    public function executeViewIndex($controller, &$xoopsUser, $render)
     {
         $render->setTemplateName('block_list.html');
         foreach (array_keys($this->mObjects) as $key) {
@@ -217,7 +217,7 @@ class Legacy_BlockListAction extends Legacy_AbstractListAction
     }
 
 
-    public function executeViewInput(&$controller, &$xoopsUser, &$render)
+    public function executeViewInput(&$controller, &$xoopsUser, $render)
     {
         $render->setTemplateName('block_list_confirm.html');
         $render->setAttribute('blockObjects', $this->mBlockObjects);
@@ -234,17 +234,17 @@ class Legacy_BlockListAction extends Legacy_AbstractListAction
         $render->setAttribute('cachetimeArr', $cachetimeArr);
     }
 
-    public function executeViewSuccess(&$controller, &$xoopsUser, &$render)
+    public function executeViewSuccess($controller, &$xoopsUser, &$render)
     {
         $controller->executeForward('./index.php?action=BlockList');
     }
 
-    public function executeViewError(&$controller, &$xoopsUser, &$render)
+    public function executeViewError($controller, &$xoopsUser, &$render)
     {
         $controller->executeRedirect('./index.php?action=BlockInstallList', 1, _MD_LEGACY_ERROR_DBUPDATE_FAILED);
     }
 
-    public function executeViewCancel(&$controller, &$xoopsUser, &$renderer)
+    public function executeViewCancel($controller, &$xoopsUser, &$renderer)
     {
         $controller->executeForward('./index.php?action=BlockList');
     }

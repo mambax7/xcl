@@ -41,14 +41,14 @@ class User_GroupAdminEditForm extends XCube_ActionForm
         $this->mFieldProperties['name']->addVar('maxlength', '50');
     }
 
-    public function load(&$obj)
+    public function load($obj)
     {
         $this->set('groupid', $obj->get('groupid'));
         $this->set('name', $obj->get('name'));
         $this->set('description', $obj->get('description'));
     }
 
-    public function update(&$obj)
+    public function update($obj)
     {
         $obj->set('groupid', $this->get('groupid'));
         $obj->set('name', $this->get('name'));

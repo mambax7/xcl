@@ -38,12 +38,12 @@ class User_LostPassAction extends User_Action
     }
     
     //// Allow anonymous users only.
-    public function hasPermission(&$controller, &$xoopsUser, $moduleConfig)
+    public function hasPermission($controller, &$xoopsUser, $moduleConfig)
     {
         return !$controller->mRoot->mContext->mUser->mIdentity->isAuthenticated();
     }
 
-    public function getDefaultView(&$controller, &$xoopsUser)
+    public function getDefaultView($controller, &$xoopsUser)
     {
         $root =& XCube_Root::getSingleton();
         $code = $root->mContext->mRequest->getRequest('code');    // const $code
@@ -55,7 +55,7 @@ class User_LostPassAction extends User_Action
         }
     }
 
-    public function _updatePassword(&$controller)
+    public function _updatePassword($controller)
     {
         $this->mActionForm->fetch();
 
@@ -92,7 +92,7 @@ class User_LostPassAction extends User_Action
         return USER_FRAME_VIEW_SUCCESS;
     }
 
-    public function execute(&$controller, &$xoopsUser)
+    public function execute($controller, &$xoopsUser)
     {
         $this->mActionForm->fetch();
         $this->mActionForm->validate();
@@ -125,18 +125,18 @@ class User_LostPassAction extends User_Action
         return USER_FRAME_VIEW_SUCCESS;
     }
     
-    public function executeViewInput(&$controller, &$xoopsUser, &$render)
+    public function executeViewInput(&$controller, &$xoopsUser, $render)
     {
         $render->setTemplateName('user_lostpass.html');
         $render->setAttribute('actionForm', $this->mActionForm);
     }
 
-    public function executeViewSuccess(&$controller, &$xoopsUser, &$render)
+    public function executeViewSuccess($controller, &$xoopsUser, &$render)
     {
         $controller->executeRedirect(XOOPS_URL . '/', 3, _MD_USER_MESSAGE_SEND_PASSWORD);
     }
 
-    public function executeViewError(&$controller, &$xoopsUser, &$render)
+    public function executeViewError($controller, &$xoopsUser, &$render)
     {
         $controller->executeRedirect(XOOPS_URL . '/', 3, _MD_USER_ERROR_SEND_MAIL);
     }

@@ -79,7 +79,7 @@ class User_AvatarSelectAction extends User_AbstractEditAction
      * @param $moduleConfig
      * @return bool
      */
-    public function hasPermission(&$controller, &$xoopsUser, $moduleConfig)
+    public function hasPermission($controller, $xoopsUser, $moduleConfig)
     {
         if (!is_object($this->mObject)) {
             return false;
@@ -133,17 +133,17 @@ class User_AvatarSelectAction extends User_AbstractEditAction
      * @param $controller
      * @param $xoopsUser
      */
-    public function getDefaultView(&$controller, &$xoopsUser)
+    public function getDefaultView($controller, &$xoopsUser)
     {
         $controller->executeForward(XOOPS_URL . '/edituser.php?op=avatarform&uid=' . $this->mObject->get('uid'));
     }
     
-    public function executeViewSuccess(&$controller, &$xoopsUser, &$renderSystem)
+    public function executeViewSuccess($controller, &$xoopsUser, &$renderSystem)
     {
         $controller->executeForward(XOOPS_URL . '/userinfo.php?op=avatarform&uid=' . $this->mActionForm->get('uid'));
     }
 
-    public function executeViewError(&$controller, &$xoopsUser, &$renderSystem)
+    public function executeViewError($controller, &$xoopsUser, &$renderSystem)
     {
         $controller->executeRedirect(XOOPS_URL . '/userinfo.php?op=avatarform&uid=' . $this->mActionForm->get('uid'), 1, _MD_USER_ERROR_DBUPDATE_FAILED);
     }

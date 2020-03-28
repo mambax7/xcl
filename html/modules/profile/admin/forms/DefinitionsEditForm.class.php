@@ -81,7 +81,7 @@ class Profile_Admin_DefinitionsEditForm extends XCube_ActionForm
      * @public
      * @param $obj
      */
-    public function load(&$obj)
+    public function load($obj)
     {
         $this->set('field_id', $obj->get('field_id'));
         $this->set('field_name', $obj->get('field_name'));
@@ -100,7 +100,7 @@ class Profile_Admin_DefinitionsEditForm extends XCube_ActionForm
      * @public
      * @param $obj
      */
-    public function update(&$obj)
+    public function update($obj)
     {
         $obj->set('field_id', $this->get('field_id'));
         $obj->set('field_name', $this->get('field_name'));

@@ -74,7 +74,7 @@ class Legacy_ImageListAction extends Legacy_AbstractListAction
         return $result;
     }
 
-    public function executeViewIndex(&$controller, &$xoopsUser, &$render)
+    public function executeViewIndex($controller, &$xoopsUser, $render)
     {
         $render->setTemplateName('image_list.html');
         
@@ -102,7 +102,7 @@ class Legacy_ImageListAction extends Legacy_AbstractListAction
         $render->setAttribute('notdisplayImageTotal', $image_total - $display_image_total);
     }
 
-    public function executeViewError(&$controller, &$xoopsUser, &$render)
+    public function executeViewError($controller, &$xoopsUser, &$render)
     {
         $controller->executeForward('./index.php?action=ImagecategoryList');
     }

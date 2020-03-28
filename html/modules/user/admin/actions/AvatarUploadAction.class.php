@@ -80,7 +80,7 @@ class User_AvatarUploadAction extends User_Action
         return USER_FRAME_VIEW_SUCCESS;
     }
     
-    public function _fetchZipAvatarImages(&$files, &$avatarimages)
+    public function _fetchZipAvatarImages($files, &$avatarimages)
     {
         foreach ($files as $file) {
             $file_pos = strrpos($file['filename'], '/') ;
@@ -95,7 +95,7 @@ class User_AvatarUploadAction extends User_Action
         return true;
     }
 
-    public function _fetchTarAvatarImages(&$files, &$avatarimages)
+    public function _fetchTarAvatarImages($files, &$avatarimages)
     {
         foreach ($files as $id => $info) {
             $file_pos = strrpos($info['name'], '/') ;
@@ -110,7 +110,7 @@ class User_AvatarUploadAction extends User_Action
         return true;
     }
 
-    public function _saveAvatarImages(&$avatarimages)
+    public function _saveAvatarImages($avatarimages)
     {
         if (0 == count($avatarimages)) {
             return true;
@@ -158,18 +158,18 @@ class User_AvatarUploadAction extends User_Action
         return true;
     }
     
-    public function executeViewInput(&$controller, &$xoopsUser, &$render)
+    public function executeViewInput(&$controller, &$xoopsUser, $render)
     {
         $render->setTemplateName('avatar_upload.html');
         $render->setAttribute('actionForm', $this->mActionForm);
     }
 
-    public function executeViewSuccess(&$controller, &$xoopsUser, &$render)
+    public function executeViewSuccess($controller, &$xoopsUser, &$render)
     {
         $controller->executeForward('./index.php?action=AvatarList');
     }
 
-    public function executeViewError(&$controller, &$xoopsUser, &$render)
+    public function executeViewError($controller, &$xoopsUser, $render)
     {
         if (0 == count($this->mErrorMessages)) {
             $controller->executeRedirect('./index.php?action=AvatarList', 1, _AD_USER_ERROR_DBUPDATE_FAILED);
@@ -179,7 +179,7 @@ class User_AvatarUploadAction extends User_Action
         }
     }
     
-    public function executeViewCancel(&$controller, &$xoopsUser, &$render)
+    public function executeViewCancel($controller, &$xoopsUser, &$render)
     {
         $controller->executeForward('./index.php?action=AvatarList');
     }

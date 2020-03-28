@@ -2826,7 +2826,7 @@ class soap_transport_http extends nusoap_base
      * @access    private
      * @return bool
      */
-    public function isSkippableCurlHeader(&$data)
+    public function isSkippableCurlHeader($data)
     {
         $skipHeaders = [
             'HTTP/1.1 100',
@@ -5729,7 +5729,7 @@ class wsdl extends nusoap_base
      * @return bool whether they parameters are unwrapped (and should be wrapped)
      * @access private
      */
-    public function parametersMatchWrapped($type, &$parameters)
+    public function parametersMatchWrapped($type, $parameters)
     {
         $this->debug("in parametersMatchWrapped type=$type, parameters=");
         $this->appendDebug($this->varDump($parameters));

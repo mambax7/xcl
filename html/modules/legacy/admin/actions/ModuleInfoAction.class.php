@@ -56,14 +56,14 @@ class Legacy_ModuleInfoAction extends Legacy_Action
         return LEGACY_FRAME_VIEW_SUCCESS;
     }
     
-    public function executeViewSuccess(&$controller, &$xoopsUser, &$renderer)
+    public function executeViewSuccess(&$controller, &$xoopsUser, $renderer)
     {
         $renderer->setTemplateName('module_information.html');
         $renderer->setAttribute('module', $this->mModuleObject);
         $renderer->setAttribute('installed', $this->mInstalledFlag);
     }
 
-    public function executeViewError(&$controller, &$xoopsUser, &$renderer)
+    public function executeViewError($controller, &$xoopsUser, &$renderer)
     {
         $controller->executeRedirect('./index.php?action=ModuleList', 1, _AD_LEGACY_ERROR_MODULE_NOT_FOUND);
     }

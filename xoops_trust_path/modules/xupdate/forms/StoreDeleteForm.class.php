@@ -58,7 +58,7 @@ class Xupdate_StoreDeleteForm extends XCube_ActionForm
      * 
      * @return  void
     **/
-    public function load(/*** XoopsSimpleObject ***/ &$obj)
+    public function load(/*** XoopsSimpleObject ***/ $obj)
     {
         $this->set('sid', $obj->get('sid'));
     }
@@ -70,7 +70,7 @@ class Xupdate_StoreDeleteForm extends XCube_ActionForm
      * 
      * @return  void
     **/
-    public function update(/*** XoopsSimpleObject ***/ &$obj)
+    public function update(/*** XoopsSimpleObject ***/ $obj)
     {
         $obj->set('sid', $this->get('sid'));
     }

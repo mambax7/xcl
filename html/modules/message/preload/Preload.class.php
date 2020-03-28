@@ -31,7 +31,7 @@ class Message_Preload extends XCube_ActionFilter
         $this->mRoot->mDelegateManager->add('Legacy_RenderSystem.SetupXoopsTpl', 'Message_Preload::addFilter');
     }
   
-    public static function addFilter(&$xoopsTpl)
+    public static function addFilter($xoopsTpl)
     {
         $xoopsTpl->plugins_dir[] = XOOPS_MODULE_PATH.'/message/smarty';
     }
@@ -53,7 +53,7 @@ class Message_Preload extends XCube_ActionFilter
         }
     }
   
-    public static function _createAction(&$actionFrame)
+    public static function _createAction($actionFrame)
     {
         if (is_object($actionFrame->mAction)) {
             return;

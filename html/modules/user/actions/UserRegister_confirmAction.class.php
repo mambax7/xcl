@@ -34,7 +34,7 @@ class User_UserRegister_confirmAction extends User_Action
      * @param $xoopsUser
      * @param $moduleConfig
      */
-    public function prepare(&$controller, &$xoopsUser, $moduleConfig)
+    public function prepare($controller, &$xoopsUser, $moduleConfig)
     {
         $this->mConfig = $moduleConfig;
 
@@ -87,7 +87,7 @@ class User_UserRegister_confirmAction extends User_Action
      * @access private
      * @param $controller
      */
-    public function _getRegistForm(&$controller)
+    public function _getRegistForm($controller)
     {
         $this->mRegistForm = unserialize($_SESSION['user_register_actionform']);
         if (!is_object($this->mRegistForm)) {
@@ -105,7 +105,7 @@ class User_UserRegister_confirmAction extends User_Action
         unset($_SESSION['user_register_actionform']);
     }
     
-    public function _processMail(&$controller)
+    public function _processMail($controller)
     {
         $activationType = $this->mConfig['activation_type'];
         
@@ -126,7 +126,7 @@ class User_UserRegister_confirmAction extends User_Action
         }    // TODO CHECKS and use '_MD_USER_ERROR_YOURREGMAILNG'
     }
     
-    public function _eventNotifyMail(&$controller)
+    public function _eventNotifyMail($controller)
     {
         if (1 == $this->mConfig['new_user_notify'] && !empty($this->mConfig['new_user_notify_group'])) {
             $builder =new User_RegistUserNotifyMailBuilder();
@@ -144,7 +144,7 @@ class User_UserRegister_confirmAction extends User_Action
         $this->mActionForm->prepare();
     }
 
-    public function executeViewError(&$controller, &$xoopsUser, &$render)
+    public function executeViewError($controller, &$xoopsUser, &$render)
     {
         $controller->executeRedirect(XOOPS_URL . '/', 1, $this->mRedirectMessage);
     }
@@ -158,19 +158,19 @@ class User_UserRegister_confirmAction extends User_Action
      *
      * @return    void
      */
-    public function executeViewCancel(&$controller, &$xoopsUser, &$render)
+    public function executeViewCancel($controller, &$xoopsUser, &$render)
     {
         $controller->executeForward(XOOPS_URL.'/register.php');
     }
 
-    public function executeViewInput(&$controller, &$xoopsUser, &$render)
+    public function executeViewInput(&$controller, &$xoopsUser, $render)
     {
         $render->setTemplateName('user_register_confirm.html');
         $render->setAttribute('actionForm', $this->mActionForm);
         $render->setAttribute('registForm', $this->mRegistForm);
     }
     
-    public function executeViewSuccess(&$controller, &$xoopsUser, &$render)
+    public function executeViewSuccess($controller, &$xoopsUser, $render)
     {
         $activationType = $this->mConfig['activation_type'];
 

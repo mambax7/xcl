@@ -42,7 +42,7 @@ class User_UserActivateAction extends User_AbstractEditAction
         return false;
     }
     
-    public function getDefaultView(&$controller, &$xoopsUser)
+    public function getDefaultView($controller, &$xoopsUser)
     {
         if ((!isset($_REQUEST['actkey'])) || (!$this->mObject)) {
             $controller->executeForward(XOOPS_URL . '/');

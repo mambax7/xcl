@@ -188,7 +188,7 @@ class XoopsCommentHandler extends XoopsObjectHandler
      * 
      * @return  bool
      **/
-    public function insert(&$comment)
+    public function insert($comment)
     {
         if ('xoopscomment' != strtolower(get_class($comment))) {
             return false;
@@ -227,7 +227,7 @@ class XoopsCommentHandler extends XoopsObjectHandler
      * 
      * @return  bool
      **/
-    public function delete(&$comment)
+    public function delete($comment)
     {
         if ('xoopscomment' != strtolower(get_class($comment))) {
             return false;
@@ -292,7 +292,7 @@ class XoopsCommentHandler extends XoopsObjectHandler
         if (!$result =& $this->db->query($sql)) {
             return 0;
         }
-        list($count) = $this->db->fetchRow($result);
+        [$count] = $this->db->fetchRow($result);
         return $count;
     }
 
@@ -432,7 +432,7 @@ class XoopsCommentHandler extends XoopsObjectHandler
      * 
      * @return  bool
      **/
-    public function updateByField(&$comment, $field_name, $field_value)
+    public function updateByField($comment, $field_name, $field_value)
     {
         $comment->unsetNew();
         $comment->setVar($field_name, $field_value);

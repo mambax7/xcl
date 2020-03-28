@@ -62,7 +62,7 @@ class Legacy_AbstractCommentAdminEditForm extends XCube_ActionForm
         $this->mFieldProperties['com_text']->addMessage('required', _MD_LEGACY_ERROR_REQUIRED, _MD_LEGACY_LANG_COM_TEXT);
     }
 
-    public function load(&$obj)
+    public function load($obj)
     {
         $this->set('com_id', $obj->get('com_id'));
         $this->set('com_icon', $obj->get('com_icon'));
@@ -77,7 +77,7 @@ class Legacy_AbstractCommentAdminEditForm extends XCube_ActionForm
         $this->set('dobr', $obj->get('dobr'));
     }
 
-    public function update(&$obj)
+    public function update($obj)
     {
         $obj->set('com_id', $this->get('com_id'));
         $obj->set('com_icon', $this->get('com_icon'));

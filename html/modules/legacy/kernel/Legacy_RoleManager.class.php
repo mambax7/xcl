@@ -19,7 +19,7 @@ class Legacy_RoleManager
      * @static
      * @param XoopsModule $module
      */
-    public function loadRolesByModule(&$module)
+    public function loadRolesByModule($module)
     {
         static $cache;
         

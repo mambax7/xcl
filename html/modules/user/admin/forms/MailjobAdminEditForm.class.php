@@ -76,7 +76,7 @@ class User_MailjobAdminEditForm extends XCube_ActionForm
         }
     }
 
-    public function load(&$obj)
+    public function load($obj)
     {
         $this->set('mailjob_id', $obj->get('mailjob_id'));
         $this->set('title', $obj->get('title'));
@@ -87,7 +87,7 @@ class User_MailjobAdminEditForm extends XCube_ActionForm
         $this->set('is_mail', $obj->get('is_mail'));
     }
 
-    public function update(&$obj)
+    public function update($obj)
     {
         $obj->set('mailjob_id', $this->get('mailjob_id'));
         $obj->set('title', $this->get('title'));

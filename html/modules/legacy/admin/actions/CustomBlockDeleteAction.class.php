@@ -61,7 +61,7 @@ class Legacy_CustomBlockDeleteAction extends Legacy_AbstractDeleteAction
         return parent::execute($controller, $xoopsUser);
     }
 
-    public function executeViewInput(&$controller, &$xoopsUser, &$render)
+    public function executeViewInput(&$controller, &$xoopsUser, $render)
     {
         $render->setTemplateName('customblock_delete.html');
         $render->setAttribute('actionForm', $this->mActionForm);
@@ -76,17 +76,17 @@ class Legacy_CustomBlockDeleteAction extends Legacy_AbstractDeleteAction
         $render->setAttribute('object', $this->mObject);
     }
 
-    public function executeViewSuccess(&$controller, &$xoopsUser, &$render)
+    public function executeViewSuccess($controller, &$xoopsUser, &$render)
     {
         $controller->executeForward('./index.php?action=BlockInstallList');
     }
 
-    public function executeViewError(&$controller, &$xoopsUser, &$render)
+    public function executeViewError($controller, &$xoopsUser, &$render)
     {
         $controller->executeRedirect('./index.php?action=BlockInstallList', 1, _MD_LEGACY_ERROR_DBUPDATE_FAILED);
     }
 
-    public function executeViewCancel(&$controller, &$xoopsUser, &$render)
+    public function executeViewCancel($controller, &$xoopsUser, &$render)
     {
         if ($this->mObject->isNew()) {
             $controller->executeForward('./index.php?action=BlockInstallList');

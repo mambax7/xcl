@@ -25,7 +25,7 @@ class User_UserRegisterAction extends User_Action
     public $mConfig;
     public $mEnableAgreeFlag = false;
 
-    public function prepare(&$controller, &$xoopsUser, $moduleConfig)
+    public function prepare($controller, $xoopsUser, $moduleConfig)
     {
         $this->mConfig = $moduleConfig;
         
@@ -40,7 +40,7 @@ class User_UserRegisterAction extends User_Action
         }
     }
 
-    public function execute(&$controller, &$xoopsUser)
+    public function execute($controller, &$xoopsUser)
     {
         $this->_processActionForm();
         $this->mActionForm->fetch();
@@ -83,7 +83,7 @@ class User_UserRegisterAction extends User_Action
         $this->mActionForm->set('timezone_offset', $root->mContext->getXoopsConfig('default_TZ'));
     }
 
-    public function executeViewInput(&$controller, &$xoopsUser, &$renderSystem)
+    public function executeViewInput(&$controller, &$xoopsUser, $renderSystem)
     {
         $renderSystem->setTemplateName('user_register_form.html');
         //

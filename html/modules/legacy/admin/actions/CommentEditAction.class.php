@@ -61,7 +61,7 @@ class Legacy_CommentEditAction extends Legacy_AbstractEditAction
         $this->mActionForm->prepare();
     }
 
-    public function executeViewInput(&$controller, &$xoopsUser, &$render)
+    public function executeViewInput(&$controller, &$xoopsUser, $render)
     {
         $this->mObject->loadUser();
         $this->mObject->loadModule();
@@ -88,17 +88,17 @@ class Legacy_CommentEditAction extends Legacy_AbstractEditAction
         $render->setAttribute('statusArr', $statusArr);
     }
 
-    public function executeViewSuccess(&$controller, &$xoopsUser, &$render)
+    public function executeViewSuccess($controller, &$xoopsUser, &$render)
     {
         $controller->executeForward('./index.php?action=CommentList');
     }
 
-    public function executeViewError(&$controller, &$xoopsUser, &$render)
+    public function executeViewError($controller, &$xoopsUser, &$render)
     {
         $controller->executeRedirect('./index.php?action=CommentList', 1, _MD_LEGACY_ERROR_DBUPDATE_FAILED);
     }
     
-    public function executeViewCancel(&$controller, &$xoopsUser, &$render)
+    public function executeViewCancel($controller, &$xoopsUser, &$render)
     {
         $controller->executeForward('./index.php?action=CommentList');
     }
@@ -108,7 +108,7 @@ class Legacy_CommentEditAction extends Legacy_AbstractEditAction
      * @param $comment
      * @return Return array as the informations of comments. If $comment has fatal status, return false.
      */
-    public function loadCallbackFile(&$comment)
+    public function loadCallbackFile($comment)
     {
         $handler =& xoops_gethandler('module');
         $module =& $handler->get($comment->get('com_modid'));

@@ -48,7 +48,7 @@ class Profile_AssetPreload extends XCube_ActionFilter
      * @private
      * @param $user
      */
-    public function deleteProfile(&$user)
+    public function deleteProfile($user)
     {
         $handler = Legacy_Utils::getModuleHandler('data', 'profile');
         $handler->deleteAll(new Criteria('uid', $user->get('uid')), true);

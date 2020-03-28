@@ -54,7 +54,7 @@ class Legacy_BlockInformation
      * @param $block
      * @return bool
      */
-    public function isEqual(&$block)
+    public function isEqual($block)
     {
         if ($this->mFuncNum != $block->mFuncNum) {
             return false;
@@ -83,7 +83,7 @@ class Legacy_BlockInformation
         return true;
     }
 
-    public function update(&$block)
+    public function update($block)
     {
         $this->mStatus = LEGACY_INSTALLINFO_STATUS_UPDATED;
 
@@ -135,7 +135,7 @@ class Legacy_BlockInfoCollection
      * Updates the list of blocks by comparing with $collection.
      * @param $collection
      */
-    public function update(&$collection)
+    public function update($collection)
     {
         foreach (array_keys($this->mBlocks) as $idx) {
             $t_block =& $collection->get($this->mBlocks[$idx]->mFuncNum);
@@ -212,7 +212,7 @@ class Legacy_PreferenceInformation
      * @param $preference
      * @return bool
      */
-    public function isEqual(&$preference)
+    public function isEqual($preference)
     {
         if ($this->mName != $preference->mName) {
             return false;
@@ -245,7 +245,7 @@ class Legacy_PreferenceInformation
         return true;
     }
 
-    public function update(&$preference)
+    public function update($preference)
     {
         $this->mStatus = LEGACY_INSTALLINFO_STATUS_UPDATED;
 
@@ -372,7 +372,7 @@ class Legacy_PreferenceInfoCollection
      * @todo need delete notifications' data
      * @param $collection
      */
-    public function update(&$collection)
+    public function update($collection)
     {
         //
         // Preferences
@@ -466,13 +466,13 @@ class Legacy_PreferenceOptionInfoCollection
     {
     }
 
-    public function add(&$option)
+    public function add($option)
     {
         $this->mOptions[] = $option;
         return true;
     }
 
-    public function isEqual(&$collection)
+    public function isEqual($collection)
     {
         if (count($this->mOptions) != count($collection->mOptions)) {
             return false;
@@ -654,7 +654,7 @@ class Legacy_ModinfoX2FileReader extends Legacy_AbstractModinfoReader
         return $info;
     }
 
-    public function _loadCommentPreferenceInfomations(&$modversion, &$collection)
+    public function _loadCommentPreferenceInfomations($modversion, $collection)
     {
         if (isset($modversion['hasComments']) && true == $modversion['hasComments']) {
             require_once XOOPS_ROOT_PATH . '/include/comment_constants.php';
@@ -686,7 +686,7 @@ class Legacy_ModinfoX2FileReader extends Legacy_AbstractModinfoReader
         }
     }
 
-    public function _loadNotificationPreferenceInfomations(&$modversion, &$collection)
+    public function _loadNotificationPreferenceInfomations($modversion, $collection)
     {
         if (isset($modversion['hasNotification']) && true == $modversion['hasNotification']) {
             require_once XOOPS_ROOT_PATH . '/include/notification_constants.php';
@@ -835,7 +835,7 @@ class Legacy_ModinfoX2DBReader extends Legacy_AbstractModinfoReader
         $this->_mDirname = $dirname;
     }
 
-    public function &_createBlockInformation(&$block)
+    public function &_createBlockInformation($block)
     {
         $info =new Legacy_BlockInformation($block->get('func_num'), $block->get('name'), $block->get('func_file'), $block->get('show_func'), $block->get('edit_func'), $block->get('template'), $block->get('options'));
         return $info;
@@ -863,7 +863,7 @@ class Legacy_ModinfoX2DBReader extends Legacy_AbstractModinfoReader
         return $collection;
     }
 
-    public function &_createPreferenceInformation(&$config)
+    public function &_createPreferenceInformation($config)
     {
         $info =new Legacy_PreferenceInformation($config->get('conf_name'), $config->get('conf_title'), $config->get('conf_desc'), $config->get('conf_formtype'), $config->get('conf_valuetype'), $config->get('conf_value'));
 

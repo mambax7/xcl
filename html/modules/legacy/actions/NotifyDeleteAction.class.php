@@ -28,7 +28,7 @@ class Legacy_NotifyDeleteAction extends Legacy_Action
     
     public $mErrorMessage = null;
     
-    public function prepare(&$controller, &$xoopsUser)
+    public function prepare($controller, &$xoopsUser)
     {
         $controller->mRoot->mLanguageManager->loadPageTypeMessageCatalog('notification');
         $controller->mRoot->mLanguageManager->loadModuleMessageCatalog('legacy');
@@ -37,7 +37,7 @@ class Legacy_NotifyDeleteAction extends Legacy_Action
         $this->mActionForm->prepare();
     }
 
-    public function hasPermission(&$controller, &$xoopsUser)
+    public function hasPermission(&$controller, $xoopsUser)
     {
         return is_object($xoopsUser);
     }
@@ -49,7 +49,7 @@ class Legacy_NotifyDeleteAction extends Legacy_Action
      * @param $xoopsUser
      * @return int
      */
-    public function execute(&$contoller, &$xoopsUser)
+    public function execute(&$contoller, $xoopsUser)
     {
         $this->mActionForm->fetch();
         $this->mActionForm->validate();
@@ -77,18 +77,18 @@ class Legacy_NotifyDeleteAction extends Legacy_Action
         return $successFlag ? LEGACY_FRAME_VIEW_SUCCESS : LEGACY_FRAME_VIEW_ERROR;
     }
         
-    public function executeViewInput(&$controller, &$xoopsUser, &$render)
+    public function executeViewInput(&$controller, &$xoopsUser, $render)
     {
         $render->setTemplateName('legacy_notification_delete.html');
         $render->setAttribute('actionForm', $this->mActionForm);
     }
 
-    public function executeViewSuccess(&$controller, &$xoopsUser, &$render)
+    public function executeViewSuccess($controller, &$xoopsUser, &$render)
     {
         $controller->executeForward(XOOPS_URL . '/notifications.php');
     }
 
-    public function executeViewError(&$controller, &$xoopsUser, &$render)
+    public function executeViewError($controller, &$xoopsUser, &$render)
     {
         $controller->executeRedirect(XOOPS_URL . '/notifications.php', 2, _NOT_NOTHINGTODELETE);
     }

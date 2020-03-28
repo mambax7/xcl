@@ -26,7 +26,7 @@ class User_UserDataUploadConfAction extends User_UserDataUploadAction
     
     
     /// 確認画面を表示
-    public function executeViewSuccess(&$controller, &$xoopsUser, &$render)
+    public function executeViewSuccess(&$controller, &$xoopsUser, $render)
     {
         /// success
         $render->setTemplateName('user_data_upload_conf.html');

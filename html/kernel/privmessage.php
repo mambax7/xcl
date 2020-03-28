@@ -136,7 +136,7 @@ class XoopsPrivmessageHandler extends XoopsObjectHandler
      * @param bool   $force
      * @return    bool
      */
-    public function insert(&$pm, $force=false)
+    public function insert($pm, $force=false)
     {
         if ('xoopsprivmessage' != strtolower(get_class($pm))) {
             return false;
@@ -175,7 +175,7 @@ class XoopsPrivmessageHandler extends XoopsObjectHandler
  * @param 	object 	$pm 	{@link XoopsPrivmessage} object
  * @return 	bool
  **/
-    public function delete(&$pm)
+    public function delete($pm)
     {
         if ('xoopsprivmessage' != strtolower(get_class($pm))) {
             return false;
@@ -266,7 +266,7 @@ class XoopsPrivmessageHandler extends XoopsObjectHandler
         if (!$result = $this->db->query($sql)) {
             return 0;
         }
-        list($count) = $this->db->fetchRow($result);
+        [$count] = $this->db->fetchRow($result);
         return $count;
     }
 
@@ -275,7 +275,7 @@ class XoopsPrivmessageHandler extends XoopsObjectHandler
  * @param 	object 	$pm 	{@link XoopsPrivmessage} object
  * @return 	bool
  **/
-    public function setRead(&$pm)
+    public function setRead($pm)
     {
         if ('xoopsprivmessage' != strtolower(get_class($pm))) {
             return false;

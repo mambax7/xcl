@@ -61,13 +61,13 @@ class Legacy_InstallWizardAction extends Legacy_AbstractModuleInstallAction
         $this->mLicenceText = file_get_contents($path);
     }
     
-    public function executeViewSuccess(&$controller, &$xoopsUser, &$render)
+    public function executeViewSuccess(&$controller, &$xoopsUser, $render)
     {
         $render->setTemplateName('module_install_success.html');
         $render->setAttribute('log', $this->mLog->mMessages);
     }
 
-    public function executeViewIndex(&$controller, &$xoopsUser, &$render)
+    public function executeViewIndex($controller, &$xoopsUser, $render)
     {
         $render->setAttribute('module', $this->mModuleObject);
         $render->setAttribute('actionForm', $this->mActionForm);
@@ -81,7 +81,7 @@ class Legacy_InstallWizardAction extends Legacy_AbstractModuleInstallAction
         }
     }
 
-    public function executeViewInput(&$controller, &$xoopsUser, &$render)
+    public function executeViewInput(&$controller, &$xoopsUser, $render)
     {
         $render->setTemplateName('install_wizard_licence.html');
         $render->setAttribute('module', $this->mModuleObject);

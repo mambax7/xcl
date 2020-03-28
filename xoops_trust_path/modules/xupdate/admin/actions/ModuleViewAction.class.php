@@ -79,7 +79,7 @@ class Xupdate_Admin_ModuleViewAction extends Xupdate_AbstractAction
      *
      * @return	void
     **/
-    public function executeViewSuccess(&$render)
+    public function executeViewSuccess($render)
     {
         if ($this->mRoot->mContext->mRequest->getRequest('checkonly')) {
             while (ob_get_level() && @ ob_end_clean()) {

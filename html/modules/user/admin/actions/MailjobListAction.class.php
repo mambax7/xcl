@@ -30,7 +30,7 @@ class User_MailjobListAction extends User_AbstractListAction
         return './index.php?action=MailjobList';
     }
 
-    public function executeViewIndex(&$controller, &$xoopsUser, &$render)
+    public function executeViewIndex(&$controller, &$xoopsUser, $render)
     {
         $render->setTemplateName('mailjob_list.html');
         

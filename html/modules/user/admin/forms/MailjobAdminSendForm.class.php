@@ -33,7 +33,7 @@ class User_MailjobAdminSendForm extends XCube_ActionForm
         $this->mFieldProperties['mailjob_id']->addMessage('required', _MD_USER_ERROR_REQUIRED, _AD_USER_LANG_MAILJOB_ID);
     }
 
-    public function load(&$obj)
+    public function load($obj)
     {
         $this->set('mailjob_id', $obj->get('mailjob_id'));
     }

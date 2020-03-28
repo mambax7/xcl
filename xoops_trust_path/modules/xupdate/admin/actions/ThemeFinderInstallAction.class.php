@@ -76,7 +76,7 @@ class Xupdate_Admin_ThemeFinderInstallAction extends Xupdate_AbstractAction
      *
      * @return	void
     **/
-    public function executeViewIndex(&$render)
+    public function executeViewIndex($render)
     {
         $jQuery = $this->mRoot->mContext->getAttribute('headerScript');
         $jQuery->addScript($this->modalBoxJs(), false);
@@ -127,7 +127,7 @@ class Xupdate_Admin_ThemeFinderInstallAction extends Xupdate_AbstractAction
      *
      * @return	void
      **/
-    public function executeViewSuccess(&$render)
+    public function executeViewSuccess($render)
     {
         $render->setTemplateName('admin_themefinder_install.html');
 

@@ -29,7 +29,7 @@ class User_UserSearchAction extends User_Action
         return USER_FRAME_VIEW_INPUT;
     }
     
-    public function executeViewInput(&$controller, &$xoopsUser, &$render)
+    public function executeViewInput(&$controller, &$xoopsUser, $render)
     {
         $render->setTemplateName('user_search.html');
         $render->setAttribute('actionForm', $this->mActionForm);

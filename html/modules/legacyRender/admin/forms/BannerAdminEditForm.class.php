@@ -85,7 +85,7 @@ class LegacyRender_BannerAdminEditForm extends XCube_ActionForm
         }
     }
 
-    public function load(&$obj)
+    public function load($obj)
     {
         $this->set('bid', $obj->get('bid'));
         $this->set('cid', $obj->get('cid'));
@@ -96,7 +96,7 @@ class LegacyRender_BannerAdminEditForm extends XCube_ActionForm
         $this->set('htmlcode', $obj->get('htmlcode'));
     }
 
-    public function update(&$obj)
+    public function update($obj)
     {
         $obj->set('bid', $this->get('bid'));
         $obj->set('cid', $this->get('cid'));

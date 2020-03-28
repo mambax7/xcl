@@ -65,12 +65,12 @@ class XoopsZipDownloader extends XoopsDownloader
         $this->archiver->addFile($data, $filename, filemtime($filepath));
     }
 
-    public function addFileData(&$data, $filename, $time=0)
+    public function addFileData($data, $filename, $time=0)
     {
         $this->archiver->addFile($data, $filename, $time);
     }
 
-    public function addBinaryFileData(&$data, $filename, $time=0)
+    public function addBinaryFileData($data, $filename, $time=0)
     {
         $this->addFileData($data, $filename, $time);
     }

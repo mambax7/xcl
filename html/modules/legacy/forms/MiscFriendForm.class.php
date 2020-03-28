@@ -55,13 +55,13 @@ class Legacy_MiscFriendForm extends XCube_ActionForm
         $this->mFieldProperties['fmail']->addMessage('email', _MD_LEGACY_ERROR_EMAIL, _MD_LEGACY_LANG_FMAIL);
     }
     
-    public function load(&$user)
+    public function load($user)
     {
         $this->set('yname', $user->get('uname'));
         $this->set('ymail', $user->get('email'));
     }
     
-    public function update(&$mailer)
+    public function update($mailer)
     {
         $mailer->assign('YOUR_NAME', $this->get('yname'));
         $mailer->assign('FRIEND_NAME', $this->get('fname'));

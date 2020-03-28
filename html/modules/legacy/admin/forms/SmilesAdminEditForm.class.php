@@ -68,7 +68,7 @@ class Legacy_SmilesAdminEditForm extends XCube_ActionForm
         }
     }
 
-    public function load(&$obj)
+    public function load($obj)
     {
         $this->set('id', $obj->get('id'));
         $this->set('code', $obj->get('code'));
@@ -79,7 +79,7 @@ class Legacy_SmilesAdminEditForm extends XCube_ActionForm
         $this->mOldFileName = $obj->get('smile_url');
     }
 
-    public function update(&$obj)
+    public function update($obj)
     {
         $obj->set('id', $this->get('id'));
         $obj->set('code', $this->get('code'));

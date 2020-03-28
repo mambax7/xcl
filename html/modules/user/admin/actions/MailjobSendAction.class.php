@@ -73,24 +73,24 @@ class User_MailjobSendAction extends User_Action
         return ($this->mMailjob->mUserCount > 0) ? USER_FRAME_VIEW_INPUT : USER_FRAME_VIEW_SUCCESS;
     }
 
-    public function executeViewSuccess(&$controller, &$xoopsUser, &$render)
+    public function executeViewSuccess($controller, &$xoopsUser, &$render)
     {
         $controller->executeForward('./index.php?action=MailjobList');
     }
 
-    public function executeViewError(&$controller, &$xoopsUser, &$render)
+    public function executeViewError($controller, &$xoopsUser, &$render)
     {
         $controller->executeRedirect('./index.php?action=MailjobList', 1, _AD_USER_ERROR_MAILJOB_SEND_FAIL);
     }
 
-    public function executeViewInput(&$controller, &$xoopsUser, &$render)
+    public function executeViewInput(&$controller, &$xoopsUser, $render)
     {
         $render->setTemplateName('mailjob_send.html');
         $render->setAttribute('object', $this->mMailjob);
         $render->setAttribute('actionForm', $this->mActionForm);
     }
     
-    public function executeViewCancel(&$controller, &$xoopsUser, &$render)
+    public function executeViewCancel($controller, &$xoopsUser, &$render)
     {
         $controller->executeForward('./index.php?action=MailjobList');
     }
@@ -104,7 +104,7 @@ class User_MailjobSendAction extends User_Action
      * @param $to_user
      * @param $from_user
      */
-    public function sendPM(&$link, &$mailjob, &$to_user, &$from_user)
+    public function sendPM($link, $mailjob, &$to_user, &$from_user)
     {
         $handler =& xoops_gethandler('privmessage');
         
@@ -120,7 +120,7 @@ class User_MailjobSendAction extends User_Action
         }
     }
 
-    public function sendMail(&$link, &$mailjob, $to_user, $from_user)
+    public function sendMail($link, $mailjob, $to_user, $from_user)
     {
         $xoopsMailer =& getMailer();
         $xoopsMailer->useMail();

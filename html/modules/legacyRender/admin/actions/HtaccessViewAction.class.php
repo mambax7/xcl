@@ -15,7 +15,7 @@ class LegacyRender_HtaccessViewAction extends LegacyRender_Action
         return LEGACYRENDER_FRAME_VIEW_SUCCESS;
     }
 
-    public function executeViewSuccess(&$controller, &$xoopsUser, &$render)
+    public function executeViewSuccess(&$controller, &$xoopsUser, $render)
     {
         XCube_Root::getSingleton()->mLanguageManager->loadGlobalMessageCatalog();
     

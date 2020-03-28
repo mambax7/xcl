@@ -69,7 +69,7 @@ class sendAction extends AbstractAction
         }
     }
   
-    public function executeView(&$render)
+    public function executeView($render)
     {
         $root = XCube_Root::getSingleton();
         $render->setTemplateName('message_outboxlist.html');

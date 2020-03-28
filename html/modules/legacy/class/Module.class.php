@@ -14,12 +14,12 @@ if (!defined('XOOPS_ROOT_PATH')) {
 
 class Legacy_Module extends Legacy_ModuleAdapter
 {
-    public function Legacy_Module(&$xoopsModule)
+    public function Legacy_Module($xoopsModule)
     {
         self::__construct($xoopsModule);
     }
 
-    public function __construct(&$xoopsModule)
+    public function __construct($xoopsModule)
     {
         parent::__construct($xoopsModule);
         $this->mGetAdminMenu =new XCube_Delegate();

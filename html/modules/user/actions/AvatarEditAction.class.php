@@ -163,7 +163,7 @@ class User_AvatarEditAction extends User_AbstractEditAction
      * @param $moduleConfig
      * @return bool
      */
-    public function hasPermission(&$controller, &$xoopsUser, $moduleConfig)
+    public function hasPermission($controller, $xoopsUser, $moduleConfig)
     {
         if (!is_object($this->mObject)) {
             return false;
@@ -306,7 +306,7 @@ class User_AvatarEditAction extends User_AbstractEditAction
             return;
         }
         $filePath = XOOPS_UPLOAD_PATH.'/'.$formFile->getFileName();
-        list($width, $height, $type, $attr)=getimagesize($filePath);
+        [$width, $height, $type, $attr]=getimagesize($filePath);
         switch ($type) {
             case 2:
             $source = imagecreatefromjpeg($filePath);
@@ -356,7 +356,7 @@ class User_AvatarEditAction extends User_AbstractEditAction
         return ['width' => (int)($width * $scale), 'height' => (int)($height * $scale)];
     }
 
-    public function executeViewInput(&$controller, &$xoopsUser, &$render)
+    public function executeViewInput(&$controller, &$xoopsUser, $render)
     {
         $render->setTemplateName('user_avatar_edit.html');
         $render->setAttribute('actionForm', $this->mActionForm);
@@ -372,12 +372,12 @@ class User_AvatarEditAction extends User_AbstractEditAction
         $render->setAttribute('avatarSelectForm', $this->mAvatarSelectForm);
     }
     
-    public function executeViewSuccess(&$controller, &$xoopsUser, $render)
+    public function executeViewSuccess($controller, &$xoopsUser, $render)
     {
         $controller->executeForward(XOOPS_URL . '/userinfo.php?uid=' . $this->mActionForm->get('uid'));
     }
 
-    public function executeViewError(&$controller, &$xoopsUser, &$render)
+    public function executeViewError($controller, &$xoopsUser, &$render)
     {
         $controller->executeRedirect(XOOPS_URL . '/userinfo.php?uid=' . $this->mActionForm->get('uid'), 1, _MD_USER_ERROR_DBUPDATE_FAILED);
     }

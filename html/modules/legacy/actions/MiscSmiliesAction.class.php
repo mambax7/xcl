@@ -48,7 +48,7 @@ class Legacy_MiscSmiliesAction extends Legacy_AbstractListAction
         return parent::getDefaultView($controller, $xoopsUser);
     }
     
-    public function executeViewIndex(&$controller, &$xoopsUser, &$render)
+    public function executeViewIndex($controller, &$xoopsUser, $render)
     {
         //
         // Because this action's template uses BASE message catalog, load it.
@@ -63,7 +63,7 @@ class Legacy_MiscSmiliesAction extends Legacy_AbstractListAction
         $render->setAttribute('targetName', $this->mTargetName);
     }
 
-    public function executeViewError(&$controller, &$xoopsUser, &$render)
+    public function executeViewError(&$controller, &$xoopsUser, $render)
     {
         $render->setTemplateName('legacy_dummy.html');
     }

@@ -60,7 +60,7 @@ class UserinfoAction extends User_UserInfoAction
         require_once XOOPS_MODULE_PATH.'/user/language/'.$language . '/main.php';
     }
 
-    public function executeView(&$render)
+    public function executeView($render)
     {
         $render->setTemplateName('message_userinfo.html');
         $render->setAttribute('thisUser', $this->mObject);

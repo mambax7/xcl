@@ -26,7 +26,7 @@ class User_GroupListAction extends User_AbstractListAction
         return './index.php?action=GroupList';
     }
 
-    public function executeViewIndex(&$controller, &$xoopsUser, &$render)
+    public function executeViewIndex(&$controller, &$xoopsUser, $render)
     {
         $render->setTemplateName('group_list.html');
         $render->setAttribute('objects', $this->mObjects);

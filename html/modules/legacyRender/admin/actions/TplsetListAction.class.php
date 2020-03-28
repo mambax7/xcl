@@ -59,7 +59,7 @@ class LegacyRender_TplsetListAction extends LegacyRender_AbstractListAction
         return $this->getDefaultView($controller, $xoopsUser);
     }
 
-    public function executeViewIndex(&$controller, &$xoopsUser, &$render)
+    public function executeViewIndex($controller, &$xoopsUser, $render)
     {
         //
         // Load the list of module templates.

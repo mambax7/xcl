@@ -132,7 +132,7 @@ class XCube_PageNavigator
         $this->mFetch->call(new XCube_Ref($this));
     }
     
-    public function fetchNaviControl(&$navi)
+    public function fetchNaviControl($navi)
     {
         $root =& XCube_Root::getSingleton();
         

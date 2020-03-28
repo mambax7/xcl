@@ -101,7 +101,7 @@ class XoopsAvatarHandler extends XoopsObjectHandler
         return $ret;
     }
 
-    public function insert(&$avatar)
+    public function insert($avatar)
     {
         if ('xoopsavatar' != strtolower(get_class($avatar))) {
             return false;
@@ -131,7 +131,7 @@ class XoopsAvatarHandler extends XoopsObjectHandler
         return true;
     }
 
-    public function delete(&$avatar)
+    public function delete($avatar)
     {
         if ('xoopsavatar' != strtolower(get_class($avatar))) {
             return false;
@@ -184,7 +184,7 @@ class XoopsAvatarHandler extends XoopsObjectHandler
         if (!$result =& $this->db->query($sql)) {
             return 0;
         }
-        list($count) = $this->db->fetchRow($result);
+        [$count] = $this->db->fetchRow($result);
         return $count;
     }
 
@@ -204,7 +204,7 @@ class XoopsAvatarHandler extends XoopsObjectHandler
         return true;
     }
 
-    public function &getUser(&$avatar)
+    public function &getUser($avatar)
     {
         $ret = [];
         if ('xoopsavatar' != strtolower(get_class($avatar))) {

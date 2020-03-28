@@ -52,12 +52,12 @@ class User_AvatarSelectForm extends XCube_ActionForm
         }
     }
     
-    public function load(&$obj)
+    public function load($obj)
     {
         $this->set('uid', $obj->get('uid'));
     }
     
-    public function update(&$obj)
+    public function update($obj)
     {
         $handler =& xoops_getmodulehandler('avatar', 'user');
         

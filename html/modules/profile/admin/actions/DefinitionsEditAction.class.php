@@ -83,7 +83,7 @@ $("#legacy_xoopsform_type").change(function(){
      * @public
      * @param $render
      */
-    public function executeViewInput(&$render)
+    public function executeViewInput($render)
     {
         $gHandler =& xoops_gethandler('group');
     

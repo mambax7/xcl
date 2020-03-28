@@ -128,7 +128,7 @@ class XoopsGroupHandler extends XoopsObjectHandler
      * @param object reference to the group object
      * @return mixed ID of the group if inserted, FALSE if failed, TRUE if already present and unchanged.
      */
-    public function insert(&$group)
+    public function insert($group)
     {
         if ('xoopsgroup' != strtolower(get_class($group))) {
             return false;
@@ -165,7 +165,7 @@ class XoopsGroupHandler extends XoopsObjectHandler
      * @param object $group reference to the group to be removed
      * @return bool FALSE if failed
      */
-    public function delete(&$group)
+    public function delete($group)
     {
         if ('xoopsgroup' != strtolower(get_class($group))) {
             return false;
@@ -293,7 +293,7 @@ class XoopsMembershipHandler extends XoopsObjectHandler
      * @param object $mship reference to the membership object
      * @return bool TRUE if already in DB or successful, FALSE if failed
      */
-    public function insert(&$mship)
+    public function insert($mship)
     {
         if ('xoopsmembership' != strtolower(get_class($mship))) {
             return false;
@@ -330,7 +330,7 @@ class XoopsMembershipHandler extends XoopsObjectHandler
      * @param object $mship reference to the membership object
      * @return bool FALSE if failed
      */
-    public function delete(&$mship)
+    public function delete($mship)
     {
         if ('xoopsmembership' != strtolower(get_class($mship))) {
             return false;
@@ -394,7 +394,7 @@ class XoopsMembershipHandler extends XoopsObjectHandler
         if (!$result) {
             return 0;
         }
-        list($count) = $db->fetchRow($result);
+        [$count] = $db->fetchRow($result);
         return $count;
     }
 

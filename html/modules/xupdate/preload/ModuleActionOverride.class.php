@@ -19,7 +19,7 @@ class Xupdate_ModuleActionOverride extends XCube_ActionFilter
 
     // override Legacy_ActionFrame::_createAction()
     // if XCL supports delegate "Module(Install|Update|Uninstall).Success" can remove this function
-    public function _createAction(&$actionFrame)
+    public function _createAction($actionFrame)
     {
         if (is_object($actionFrame->mAction)) {
             return;

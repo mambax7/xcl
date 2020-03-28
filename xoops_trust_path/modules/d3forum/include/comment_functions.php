@@ -5,7 +5,7 @@ require_once dirname(__DIR__) . '/include/common_functions.php' ;
 
 
 // old interface
-function d3forum_display_comment_topicscount( $mydirname , $forum_id , $params , $mode = 'post' , &$smarty )
+function d3forum_display_comment_topicscount( $mydirname , $forum_id , $params , $mode = 'post' , $smarty )
 {
 	global $xoopsUser , $xoopsConfig ;
 

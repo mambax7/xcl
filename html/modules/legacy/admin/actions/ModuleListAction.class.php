@@ -120,7 +120,7 @@ class Legacy_ModuleListAction extends Legacy_Action
      * @param $xoopsUser
      * @param $render
      */
-    public function executeViewInput(&$controller, &$xoopsUser, &$render)
+    public function executeViewInput(&$controller, &$xoopsUser, $render)
     {
         $render->setTemplateName('module_list_confirm.html');
         $render->setAttribute('moduleObjects', $this->mModuleObjects);
@@ -134,7 +134,7 @@ class Legacy_ModuleListAction extends Legacy_Action
         $render->setAttribute('mids', array_keys($t_arr));
     }
 
-    public function executeViewIndex(&$controller, &$xoopsUser, &$render)
+    public function executeViewIndex(&$controller, &$xoopsUser, $render)
     {
         $render->setTemplateName('module_list.html');
         $render->setAttribute('actionForm', $this->mActionForm);
@@ -156,17 +156,17 @@ class Legacy_ModuleListAction extends Legacy_Action
         $render->setAttribute('inactiveModuleTotal', $module_total - $active_module_total);
     }
 
-    public function executeViewSuccess(&$controller, &$xoopsUser, &$renderer)
+    public function executeViewSuccess($controller, &$xoopsUser, &$renderer)
     {
         $controller->executeForward('./index.php?action=ModuleList');
     }
 
-    public function executeViewError(&$controller, &$xoopsUser, &$renderer)
+    public function executeViewError($controller, &$xoopsUser, &$renderer)
     {
         $controller->executeRedirect('./index.php?action=ModuleList', 1, _MD_LEGACY_ERROR_DBUPDATE_FAILED);
     }
 
-    public function executeViewCancel(&$controller, &$xoopsUser, &$renderer)
+    public function executeViewCancel($controller, &$xoopsUser, &$renderer)
     {
         $controller->executeForward('./index.php?action=ModuleList');
     }

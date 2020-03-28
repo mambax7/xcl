@@ -47,7 +47,7 @@ class PicoFormProcessBySmartyBase
         $this->mypluginname = 'base';
     }
 
-    public function init($params, &$smarty)
+    public function init($params, $smarty)
     {
         $this->mydirname     = $smarty->_tpl_vars['mydirname'];
         $this->mod_url       = $smarty->_tpl_vars['mod_url'];
@@ -174,7 +174,7 @@ class PicoFormProcessBySmartyBase
         $langman->read($filename . '.php', $this->mydirname, 'pico');
     }
 
-    public function fetchFormBody($params, &$smarty)
+    public function fetchFormBody($params, $smarty)
     {
         // get captured form
         if (!empty($params['name']) && !empty($smarty->_smarty_vars['capture'][$params['name']])) {
@@ -315,7 +315,7 @@ class PicoFormProcessBySmartyBase
         $this->error_html .= _MD_PICO_FORMMAIL_BLOCK_ERROR_END;
     }
 
-    public function execute($params, &$smarty)
+    public function execute($params, $smarty)
     {
         // initials
         $this->init($params, $smarty);

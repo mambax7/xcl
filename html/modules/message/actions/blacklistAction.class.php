@@ -99,7 +99,7 @@ class blacklistAction extends AbstractAction
         }
     }
   
-    public function executeView(&$render)
+    public function executeView($render)
     {
         $render->setTemplateName('message_blaclist.html');
         $render->setAttribute('blackuser', $this->blackuser);

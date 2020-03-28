@@ -294,7 +294,7 @@ class XoopsNotificationHandler extends XoopsObjectHandler
      *
      * @return  bool
      **/
-    public function insert(&$notification)
+    public function insert($notification)
     {
         if ('xoopsnotification' != strtolower(get_class($notification))) {
             return false;
@@ -331,7 +331,7 @@ class XoopsNotificationHandler extends XoopsObjectHandler
      *
      * @return  bool
      **/
-    public function delete(&$notification)
+    public function delete($notification)
     {
         if ('xoopsnotification' != strtolower(get_class($notification))) {
             return false;
@@ -397,7 +397,7 @@ class XoopsNotificationHandler extends XoopsObjectHandler
         if (!$result =& $this->db->query($sql)) {
             return 0;
         }
-        list($count) = $this->db->fetchRow($result);
+        [$count] = $this->db->fetchRow($result);
         return $count;
     }
 
@@ -935,7 +935,7 @@ class XoopsNotificationHandler extends XoopsObjectHandler
      *
      * @return  bool
      **/
-    public function updateByField(&$notification, $field_name, $field_value)
+    public function updateByField($notification, $field_name, $field_value)
     {
         $notification->unsetNew();
         $notification->setVar($field_name, $field_value);

@@ -33,7 +33,7 @@ class XCube_Validator
 
 class XCube_RequiredValidator extends XCube_Validator
 {
-    public function isValid(&$form, $vars)
+    public function isValid($form, $vars)
     {
         return !$form->isNull();
     }
@@ -41,7 +41,7 @@ class XCube_RequiredValidator extends XCube_Validator
 
 class XCube_MinlengthValidator extends XCube_Validator
 {
-    public function isValid(&$form, $vars)
+    public function isValid($form, $vars)
     {
         if ($form->isNull()) {
             return true;
@@ -53,7 +53,7 @@ class XCube_MinlengthValidator extends XCube_Validator
 
 class XCube_MaxlengthValidator extends XCube_Validator
 {
-    public function isValid(&$form, $vars)
+    public function isValid($form, $vars)
     {
         if ($form->isNull()) {
             return true;
@@ -65,7 +65,7 @@ class XCube_MaxlengthValidator extends XCube_Validator
 
 class XCube_MinValidator extends XCube_Validator
 {
-    public function isValid(&$form, $vars)
+    public function isValid($form, $vars)
     {
         if ($form->isNull()) {
             return true;
@@ -77,7 +77,7 @@ class XCube_MinValidator extends XCube_Validator
 
 class XCube_MaxValidator extends XCube_Validator
 {
-    public function isValid(&$form, $vars)
+    public function isValid($form, $vars)
     {
         if ($form->isNull()) {
             return true;
@@ -89,7 +89,7 @@ class XCube_MaxValidator extends XCube_Validator
 
 class XCube_IntRangeValidator extends XCube_Validator
 {
-    public function isValid(&$form, $vars)
+    public function isValid($form, $vars)
     {
         if ($form->isNull()) {
             return true;
@@ -101,7 +101,7 @@ class XCube_IntRangeValidator extends XCube_Validator
 
 class XCube_EmailValidator extends XCube_Validator
 {
-    public function isValid(&$form, $vars)
+    public function isValid($form, $vars)
     {
         if ($form->isNull()) {
             return true;
@@ -113,7 +113,7 @@ class XCube_EmailValidator extends XCube_Validator
 
 class XCube_MaskValidator extends XCube_Validator
 {
-    public function isValid(&$form, $vars)
+    public function isValid($form, $vars)
     {
         if ($form->isNull()) {
             return true;
@@ -125,7 +125,7 @@ class XCube_MaskValidator extends XCube_Validator
 
 class XCube_ExtensionValidator extends XCube_Validator
 {
-    public function isValid(&$form, $vars)
+    public function isValid($form, $vars)
     {
         if ($form->isNull()) {
             return true;
@@ -148,7 +148,7 @@ class XCube_ExtensionValidator extends XCube_Validator
 
 class XCube_MaxfilesizeValidator extends XCube_Validator
 {
-    public function isValid(&$form, $vars)
+    public function isValid($form, $vars)
     {
         if ($form->isNull()) {
             return true;

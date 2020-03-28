@@ -445,7 +445,7 @@ class XoopsBlockHandler extends XoopsObjectHandler
      * @param bool $autolink
      * @return bool TRUE if succesful
      */
-    public function insert(&$block, $autolink=false)
+    public function insert($block, $autolink=false)
     {
         if ('xoopsblock' != strtolower(get_class($block))) {
             return false;
@@ -495,7 +495,7 @@ class XoopsBlockHandler extends XoopsObjectHandler
      * @param object XoopsBlock $block reference to the block to delete
      * @return bool TRUE if succesful
      **/
-    public function delete(&$block)
+    public function delete($block)
     {
         if ('xoopsblock' != strtolower(get_class($block))) {
             return false;
@@ -947,7 +947,7 @@ class XoopsBlockHandler extends XoopsObjectHandler
         if (!$result = $db->query($sql)) {
             return 0;
         }
-        list($count) = $db->fetchRow($result);
+        [$count] = $db->fetchRow($result);
         return $count;
     }
 

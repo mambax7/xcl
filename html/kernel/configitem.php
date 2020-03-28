@@ -222,7 +222,7 @@ class XoopsConfigItem extends XoopsObject
      * @param XoopsConfigItem $config
      * @return bool
      */
-    public function isEqual(&$config)
+    public function isEqual($config)
     {
         $flag = true;
         
@@ -360,7 +360,7 @@ class XoopsConfigItemHandler extends XoopsObjectHandler
      * @param	object  &$config    {@link XoopsConfigItem} object
      * @return  mixed   FALSE on fail.
      */
-    public function insert(&$config)
+    public function insert($config)
     {
         if ('xoopsconfigitem' != strtolower(get_class($config))) {
             return false;
@@ -397,7 +397,7 @@ class XoopsConfigItemHandler extends XoopsObjectHandler
      * @param	object  &$config    Config to delete
      * @return	bool    Successful?
      */
-    public function delete(&$config)
+    public function delete($config)
     {
         if ('xoopsconfigitem' != strtolower(get_class($config))) {
             return false;
@@ -463,7 +463,7 @@ class XoopsConfigItemHandler extends XoopsObjectHandler
         if (!$result) {
             return false;
         }
-        list($count) = $db->fetchRow($result);
+        [$count] = $db->fetchRow($result);
         return $count;
     }
 }

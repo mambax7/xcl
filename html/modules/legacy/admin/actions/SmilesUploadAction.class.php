@@ -80,7 +80,7 @@ class Legacy_SmilesUploadAction extends Legacy_Action
         return LEGACY_FRAME_VIEW_SUCCESS;
     }
 
-    public function _fetchZipSmilesImages(&$files, &$smilesimages)
+    public function _fetchZipSmilesImages($files, &$smilesimages)
     {
         foreach ($files as $file) {
             $file_pos = strrpos($file['filename'], '/') ;
@@ -95,7 +95,7 @@ class Legacy_SmilesUploadAction extends Legacy_Action
         return true;
     }
     
-    public function _fetchTarSmilesImages(&$files, &$smilesimages)
+    public function _fetchTarSmilesImages($files, &$smilesimages)
     {
         foreach ($files as $id => $info) {
             $file_pos = strrpos($info['name'], '/') ;
@@ -110,7 +110,7 @@ class Legacy_SmilesUploadAction extends Legacy_Action
         return true;
     }
 
-    public function _saveSmilesImages(&$smilesimages)
+    public function _saveSmilesImages($smilesimages)
     {
         if (0 == count($smilesimages)) {
             return true;
@@ -156,18 +156,18 @@ class Legacy_SmilesUploadAction extends Legacy_Action
         return true;
     }
     
-    public function executeViewInput(&$controller, &$xoopsUser, &$render)
+    public function executeViewInput(&$controller, &$xoopsUser, $render)
     {
         $render->setTemplateName('smiles_upload.html');
         $render->setAttribute('actionForm', $this->mActionForm);
     }
 
-    public function executeViewSuccess(&$controller, &$xoopsUser, &$render)
+    public function executeViewSuccess($controller, &$xoopsUser, &$render)
     {
         $controller->executeForward('./index.php?action=SmilesList');
     }
 
-    public function executeViewError(&$controller, &$xoopsUser, &$render)
+    public function executeViewError($controller, &$xoopsUser, $render)
     {
         if (0 == count($this->mErrorMessages)) {
             $controller->executeRedirect('./index.php?action=SmilesList', 1, _AD_LEGACY_ERROR_DBUPDATE_FAILED);
@@ -177,7 +177,7 @@ class Legacy_SmilesUploadAction extends Legacy_Action
         }
     }
     
-    public function executeViewCancel(&$controller, &$xoopsUser, &$render)
+    public function executeViewCancel($controller, &$xoopsUser, &$render)
     {
         $controller->executeForward('./index.php?action=SmilesList');
     }

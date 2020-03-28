@@ -30,12 +30,12 @@ class Legacy_ModuleUpdateForm extends XCube_ActionForm
         $this->mFormProperties['force'] =new XCube_BoolProperty('force');
     }
 
-    public function load(&$obj)
+    public function load($obj)
     {
         $this->set('dirname', $obj->get('dirname'));
     }
 
-    public function update(&$obj)
+    public function update($obj)
     {
         $obj->set('dirname', $this->get('dirname'));
     }

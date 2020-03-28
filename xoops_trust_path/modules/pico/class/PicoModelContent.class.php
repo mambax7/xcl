@@ -16,7 +16,7 @@ class PicoContentHandler
         $this->mydirname = $mydirname;
     }
 
-    public function getCategoryContents(&$categoryObj, $return_prohibited_also = false)
+    public function getCategoryContents($categoryObj, $return_prohibited_also = false)
     {
         $db = XoopsDatabaseFactory::getDatabaseConnection();
 
@@ -42,7 +42,7 @@ class PicoContentHandler
         return $ret;
     }
 
-    public function getCategoryLatestContents(&$categoryObj, $num = 10, $fetch_from_subcategories = false)
+    public function getCategoryLatestContents($categoryObj, $num = 10, $fetch_from_subcategories = false)
     {
         $db = XoopsDatabaseFactory::getDatabaseConnection();
 

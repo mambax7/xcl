@@ -26,7 +26,7 @@ class Legacy_NotifyListAction extends Legacy_Action
     public $mModules = [];
     public $mActionForm = null;
     
-    public function prepare(&$controller, &$xoopsUser)
+    public function prepare($controller, &$xoopsUser)
     {
         $root =& $controller->mRoot;
         $root->mLanguageManager->loadPageTypeMessageCatalog('notification');
@@ -36,12 +36,12 @@ class Legacy_NotifyListAction extends Legacy_Action
         $this->mActionForm->prepare();
     }
     
-    public function hasPermission(&$controller, &$xoopsUser)
+    public function hasPermission(&$controller, $xoopsUser)
     {
         return is_object($xoopsUser);
     }
 
-    public function getDefaultView(&$contoller, &$xoopsUser)
+    public function getDefaultView(&$contoller, $xoopsUser)
     {
         $criteria =new Criteria('not_uid', $xoopsUser->get('uid'));
         $criteria->setSort('not_modid, not_category, not_itemid');
@@ -140,7 +140,7 @@ class Legacy_NotifyListAction extends Legacy_Action
         return LEGACY_FRAME_VIEW_INDEX;
     }
 
-    public function executeViewIndex(&$controller, &$xoopsUser, &$render)
+    public function executeViewIndex(&$controller, &$xoopsUser, $render)
     {
         $render->setTemplateName('legacy_notification_list.html');
         
@@ -149,7 +149,7 @@ class Legacy_NotifyListAction extends Legacy_Action
         $render->setAttribute('actionForm', $this->mActionForm);
     }
 
-    public function executeViewError(&$controller, &$xoopsUser, &$render)
+    public function executeViewError($controller, &$xoopsUser, &$render)
     {
         $controller->executeForward('./index.php?action=NotifyList');
     }

@@ -490,7 +490,7 @@ class xoops_elFinder {
 		}
 	}
 	
-	public function netmountCallback($cmd, &$result, $args, $elfinder) {
+	public function netmountCallback($cmd, $result, $args, $elfinder) {
 		if (is_object($this->xoopsUser) && (!empty($result['sync']) || !empty($result['added']) || !empty($result['removed']))) {
 			if ($uid = $this->xoopsUser->getVar('uid')) {
 				$session = $elfinder->getSession();
@@ -552,7 +552,7 @@ class xoops_elFinder {
 		return $token;
 	}
 
-	public function notifyMail($cmd, &$result, $args, $elfinder) {
+	public function notifyMail($cmd, $result, $args, $elfinder) {
 		if (!empty($result['added'])) {
 			$mail = false;
 			if (is_object($this->xoopsUser)) {
@@ -676,7 +676,7 @@ EOD;
 	 * @return void|true
 	 * @author Dmitry (dio) Levashov
 	 **/
-	public function log($cmd, &$result, $args, $elfinder) {
+	public function log($cmd, $result, $args, $elfinder) {
 		$log = $cmd.' ['.date('d.m H:s')."]\n";
 		
 		if (!empty($result['error'])) {

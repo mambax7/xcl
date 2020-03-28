@@ -44,7 +44,7 @@ class Profile_DataDeleteForm extends XCube_ActionForm
      * @public
      * @param $obj
      */
-    public function load(&$obj)
+    public function load($obj)
     {
         $this->set('uid', $obj->get('uid'));
     }
@@ -53,7 +53,7 @@ class Profile_DataDeleteForm extends XCube_ActionForm
      * @public
      * @param $obj
      */
-    public function update(&$obj)
+    public function update($obj)
     {
         $obj->set('uid', $this->get('uid'));
     }

@@ -1,6 +1,6 @@
 <?php
 
-function smarty_function_pico_subcattree($params, &$smarty)
+function smarty_function_pico_subcattree($params, $smarty)
 {
 	$mydirname = @$params['dir'] . @$params['dirname'];
 	$cat_id = @$params['id'] + @$params['cat_id'];

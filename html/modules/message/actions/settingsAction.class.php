@@ -40,7 +40,7 @@ class settingsAction extends AbstractAction
         }
     }
   
-    public function executeView(&$render)
+    public function executeView($render)
     {
         $render->setTemplateName('message_settings.html');
         $render->setAttribute('mActionForm', $this->mActionForm);

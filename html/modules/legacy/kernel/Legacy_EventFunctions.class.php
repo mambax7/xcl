@@ -127,7 +127,7 @@ class Legacy_EventFunction
      * 
      * @param XCube_RenderBuffer $render
      */
-    public static function notifications_select(&$render)
+    public static function notifications_select($render)
     {
         require_once XOOPS_ROOT_PATH . '/include/notification_constants.php';
         require_once XOOPS_ROOT_PATH . '/include/notification_functions.php';

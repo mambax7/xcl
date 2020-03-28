@@ -461,7 +461,7 @@ class XoopsModuleHandler extends XoopsObjectHandler
      * @param	object	&$module reference to a {@link XoopsModule}
      * @return	bool
      **/
-    public function insert(&$module)
+    public function insert($module)
     {
         if ('xoopsmodule' != strtolower(get_class($module))) {
             return false;
@@ -515,7 +515,7 @@ class XoopsModuleHandler extends XoopsObjectHandler
      * @param	object	&$module
      * @return	bool
      **/
-    public function delete(&$module)
+    public function delete($module)
     {
         if ('xoopsmodule' != strtolower(get_class($module))) {
             return false;
@@ -638,7 +638,7 @@ class XoopsModuleHandler extends XoopsObjectHandler
         if (!$result =& $this->db->query($sql)) {
             return 0;
         }
-        list($count) = $this->db->fetchRow($result);
+        [$count] = $this->db->fetchRow($result);
         return $count;
     }
 

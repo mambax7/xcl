@@ -199,7 +199,7 @@ class Xupdate_Updater
      * 
      * @return  void
     **/
-    public function setCurrentXoopsModule(/*** XoopsModule ***/ &$module)
+    public function setCurrentXoopsModule(/*** XoopsModule ***/ $module)
     {
         $moduleHandler =& Xupdate_Utils::getXoopsHandler('module');
         $cloneModule =& $moduleHandler->create();

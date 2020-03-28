@@ -45,7 +45,7 @@ class Profile_DataListAction extends Profile_AbstractListAction
      * @public
      * @param $render
      */
-    public function executeViewIndex(&$render)
+    public function executeViewIndex($render)
     {
         $render->setTemplateName('profile_data_list.html');
         $render->setAttribute('objects', $this->mObjects);

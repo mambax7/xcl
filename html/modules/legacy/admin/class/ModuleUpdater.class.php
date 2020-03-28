@@ -124,7 +124,7 @@ class Legacy_ModulePhasedUpgrader
      * @public
      * @param XoopsModule $xoopsModule
      */
-    public function setCurrentXoopsModule(&$xoopsModule)
+    public function setCurrentXoopsModule($xoopsModule)
     {
         $handler =& xoops_gethandler('module');
         $cloneModule =& $handler->create();

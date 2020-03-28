@@ -101,7 +101,7 @@ function d3forum_onupdate_base( $module , $mydirname )
 	return true ;
 }
 
-function d3forum_message_append_onupdate( &$module_obj , &$log )
+function d3forum_message_append_onupdate( &$module_obj , $log )
 {
 	if( is_array( @$GLOBALS['msgs'] ) ) {
 		foreach( $GLOBALS['msgs'] as $message ) {

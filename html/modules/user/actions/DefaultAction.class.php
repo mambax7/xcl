@@ -29,12 +29,12 @@ class User_DefaultAction extends User_Action
         $this->_mAllowRegister = $moduleConfig['allow_register'];
     }
 
-    public function getDefaultView(&$controller, &$xoopsUser)
+    public function getDefaultView(&$controller, $xoopsUser)
     {
         return is_object($xoopsUser) ? USER_FRAME_VIEW_ERROR : USER_FRAME_VIEW_INPUT;
     }
     
-    public function executeViewInput(&$controller, &$xoopsUser, &$render)
+    public function executeViewInput($controller, &$xoopsUser, $render)
     {
         $render->setTemplateName('user_default.html');
         $render->setAttribute('allowRegister', $this->_mAllowRegister);
@@ -45,7 +45,7 @@ class User_DefaultAction extends User_Action
         }
     }
 
-    public function executeViewError(&$controller, &$xoopsUser, &$render)
+    public function executeViewError($controller, $xoopsUser, &$render)
     {
         $controller->executeForward('index.php?action=UserInfo&uid=' . $xoopsUser->get('uid'));
     }

@@ -794,7 +794,7 @@ function xoops_groupperm_deletebymoditem($module_id, $perm_name, $item_id = null
     return $gperm_handler->deleteByModule($module_id, $perm_name, $item_id);
 }
 
-function &xoops_utf8_encode(&$text)
+function &xoops_utf8_encode($text)
 {
     if (XOOPS_USE_MULTIBYTES == 1) {
         if (function_exists('mb_convert_encoding')) {
@@ -807,7 +807,7 @@ function &xoops_utf8_encode(&$text)
     return $out_text;
 }
 
-function &xoops_convert_encoding(&$text)
+function &xoops_convert_encoding($text)
 {
     return xoops_utf8_encode($text);
 }

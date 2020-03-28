@@ -461,7 +461,7 @@ class XoopsForm
      * @param   object  &$tpl    reference to a {@link Smarty} object
      * @see     Smarty
      */
-    public function assign(&$tpl)
+    public function assign($tpl)
     {
         $i = 0;
         $elements = [];

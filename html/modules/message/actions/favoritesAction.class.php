@@ -108,7 +108,7 @@ class favoritesAction extends AbstractAction
         }
     }
   
-    public function executeView(&$render)
+    public function executeView($render)
     {
         $render->setTemplateName('message_favorites.html');
         $render->setAttribute('fuser', $this->favorites);

@@ -86,7 +86,7 @@ class Legacy_ActionFrame
         $this->mMode = $mode;
     }
 
-    public function _createAction(&$actionFrame)
+    public function _createAction($actionFrame)
     {
         if (is_object($actionFrame->mAction)) {
             return;

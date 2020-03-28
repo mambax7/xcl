@@ -62,7 +62,7 @@ class viewAction extends AbstractAction
         }
     }
   
-    private function send_mail(&$obj)
+    private function send_mail($obj)
     {
         /*
     require_once XOOPS_ROOT_PATH.'/class/mail/phpmailer/class.phpmailer.php';
@@ -85,7 +85,7 @@ class viewAction extends AbstractAction
         $mailer->send();
     }
   
-    public function executeView(&$render)
+    public function executeView($render)
     {
         if ('inbox' == $this->inout) {
             $render->setTemplateName('message_inboxview.html');

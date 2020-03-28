@@ -55,7 +55,7 @@ class Legacy_CommentListAction extends Legacy_AbstractListAction
         return './index.php?action=CommentList';
     }
 
-    public function executeViewIndex(&$controller, &$xoopsUser, &$render)
+    public function executeViewIndex(&$controller, &$xoopsUser, $render)
     {
         //
         // Load the module and the comment user infomations.
@@ -311,7 +311,7 @@ class Legacy_CommentListAction extends Legacy_AbstractListAction
      * @param $xoopsUser
      * @param $render
      */
-    public function executeViewInput(&$controller, &$xoopsUser, &$render)
+    public function executeViewInput(&$controller, &$xoopsUser, $render)
     {
         foreach (array_keys($this->mCommentObjects) as $key) {
             $this->mCommentObjects[$key]->loadModule();
@@ -330,17 +330,17 @@ class Legacy_CommentListAction extends Legacy_AbstractListAction
         $render->setAttribute('cids', array_keys($t_arr));
     }
 
-    public function executeViewSuccess(&$controller, &$xoopsUser, &$renderer)
+    public function executeViewSuccess($controller, &$xoopsUser, &$renderer)
     {
         $controller->executeForward('./index.php?action=CommentList');
     }
 
-    public function executeViewError(&$controller, &$xoopsUser, &$renderer)
+    public function executeViewError($controller, &$xoopsUser, &$renderer)
     {
         $controller->executeRedirect('./index.php?action=CommentList', 1, _MD_LEGACY_ERROR_DBUPDATE_FAILED);
     }
 
-    public function executeViewCancel(&$controller, &$xoopsUser, &$renderer)
+    public function executeViewCancel($controller, &$xoopsUser, &$renderer)
     {
         $controller->executeForward('./index.php?action=CommentList');
     }

@@ -128,7 +128,7 @@ class Legacy_ThemeListAction extends Legacy_Action
         return $this->getDefaultView($controller, $xoopsUser);
     }
     
-    public function executeViewIndex(&$controller, &$xoopsUser, &$render)
+    public function executeViewIndex(&$controller, &$xoopsUser, $render)
     {
         $render->setTemplateName('theme_list.html');
         $render->setAttribute('themes', $this->mThemes);

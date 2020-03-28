@@ -93,7 +93,7 @@ class Legacy_PreferenceEditAction extends Legacy_Action
         return LEGACY_FRAME_VIEW_SUCCESS;
     }
 
-    public function executeViewInput(&$controller, &$xoopsUser, &$render)
+    public function executeViewInput(&$controller, &$xoopsUser, $render)
     {
         $render->setTemplateName('preference_edit.html');
         $render->setAttribute('actionForm', $this->mActionForm);
@@ -197,7 +197,7 @@ class Legacy_PreferenceEditAction extends Legacy_Action
         $this->mState->executeViewSuccess($controller, $xoopsUser, $render);
     }
 
-    public function executeViewError(&$controller, &$xoopsUser, &$render)
+    public function executeViewError($controller, &$xoopsUser, &$render)
     {
         $controller->executeRedirect('./index.php?action=PreferenceList', 1, _MD_LEGACY_ERROR_DBUPDATE_FAILED);
     }
@@ -261,7 +261,7 @@ class Legacy_PreferenceEditState extends Legacy_AbstractPreferenceEditState
         $this->_mMaster->mPreparedFlag = true;
     }
     
-    public function hasPermission(&$controller, &$xoopsUser)
+    public function hasPermission(&$controller, $xoopsUser)
     {
         $moduleHandler =& xoops_gethandler('module');
         $module =& $moduleHandler->getByDirname('legacy');
@@ -270,7 +270,7 @@ class Legacy_PreferenceEditState extends Legacy_AbstractPreferenceEditState
         return $permHandler->checkRight('module_admin', $module->get('mid'), $xoopsUser->getGroups());
     }
     
-    public function postFilter(&$objectArr, &$actionForm)
+    public function postFilter($objectArr, $actionForm)
     {
         $themeName = null;
         $allowedThemes = null;
@@ -304,12 +304,12 @@ class Legacy_PreferenceEditState extends Legacy_AbstractPreferenceEditState
         } // GIJ
     }
     
-    public function executeViewSuccess(&$controller, &$xoopsUser, &$render)
+    public function executeViewSuccess($controller, &$xoopsUser, &$render)
     {
         $controller->executeForward('./index.php?action=PreferenceList');
     }
 
-    public function executeViewCancel(&$controller, &$xoopsUser, &$render)
+    public function executeViewCancel($controller, &$xoopsUser, &$render)
     {
         $controller->executeForward('./index.php?action=PreferenceList');
     }
@@ -343,13 +343,13 @@ class Legacy_ModulePreferenceEditState extends Legacy_AbstractPreferenceEditStat
         $this->_mMaster->mPreparedFlag = true;
     }
 
-    public function hasPermission(&$controller, &$xoopsUser)
+    public function hasPermission($controller, &$xoopsUser)
     {
         $controller->mRoot->mRoleManager->loadRolesByModule($this->_mMaster->mModule);
         return $controller->mRoot->mContext->mUser->isInRole('Module.' . $this->_mMaster->mModule->get('dirname') . '.Admin');
     }
     
-    public function executeViewSuccess(&$controller, &$xoopsUser, &$render)
+    public function executeViewSuccess($controller, &$xoopsUser, &$render)
     {
         $module = Legacy_Utils::createModule($this->_mMaster->mModule);
         XCube_DelegateUtils::call('Legacy.Admin.Event.ModulePreference.' . ucfirst($this->_mMaster->mModule->get('dirname')) . '.Success', new XCube_Ref($module), new XCube_Ref($this->_mMaster->mModule));
@@ -357,7 +357,7 @@ class Legacy_ModulePreferenceEditState extends Legacy_AbstractPreferenceEditStat
         $controller->executeForward($module->getAdminIndex());
     }
 
-    public function executeViewCancel(&$controller, &$xoopsUser, &$render)
+    public function executeViewCancel($controller, &$xoopsUser, &$render)
     {
         $module = Legacy_Utils::createModule($this->_mMaster->mModule);
         $controller->executeForward($module->getAdminIndex());

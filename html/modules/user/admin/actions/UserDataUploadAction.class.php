@@ -23,7 +23,7 @@ class User_UserDataUploadAction extends User_Action
         return './index.php?action=UserDataUpload';
     }
 
-    public function executeViewIndex(&$controller, &$xoopsUser, &$render)
+    public function executeViewIndex(&$controller, &$xoopsUser, $render)
     {
         $render->setTemplateName('user_data_upload.html');
     }

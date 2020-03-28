@@ -30,7 +30,7 @@ class LegacyRender_BannerclientListAction extends LegacyRender_AbstractListActio
         return './index.php?action=BannerclientList';
     }
 
-    public function executeViewIndex(&$controller, &$xoopsUser, &$render)
+    public function executeViewIndex(&$controller, &$xoopsUser, $render)
     {
         $render->setTemplateName('bannerclient_list.html');
         foreach (array_keys($this->mObjects) as $key) {

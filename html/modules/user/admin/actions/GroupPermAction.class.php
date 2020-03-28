@@ -114,7 +114,7 @@ class User_GroupPermAction extends User_GroupPropertyAction
         $render->setAttribute('systemPermissions', $this->mSystemPermissions);
     }
 
-    public function executeViewSuccess(&$controller, &$xoopsUser, &$render)
+    public function executeViewSuccess($controller, &$xoopsUser, &$render)
     {
         $controller->executeForward('index.php?action=GroupPerm&groupid=' . $this->mGroup->getVar('groupid'));
     }

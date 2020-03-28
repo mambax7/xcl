@@ -42,7 +42,7 @@ class User_PrimaryFilter extends XCube_ActionFilter
  */
 class User_Utils
 {
-    public static function setupUser(&$principal, &$controller, &$context)
+    public static function setupUser(&$principal, &$controller, $context)
     {
         if (is_object($context->mXoopsUser)) {
             return;

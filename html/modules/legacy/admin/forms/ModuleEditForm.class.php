@@ -81,7 +81,7 @@ class Legacy_ModuleEditForm extends XCube_ActionForm
         }
     }
 */
-    public function load(&$obj)
+    public function load($obj)
     {
         $this->set('mid', $obj->get('mid'));
         $this->set('name', $obj->get('name'));
@@ -92,7 +92,7 @@ class Legacy_ModuleEditForm extends XCube_ActionForm
         $this->set('module_cache', $module_cache);
     }
 
-    public function update(&$obj)
+    public function update($obj)
     {
         $obj->set('name', $this->get('name'));
         $obj->set('weight', $this->get('weight'));

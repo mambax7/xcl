@@ -113,7 +113,7 @@ class XoopsTplfileHandler extends XoopsObjectHandler
         return $ret;
     }
 
-    public function loadSource(&$tplfile)
+    public function loadSource($tplfile)
     {
         if ('xoopstplfile' != strtolower(get_class($tplfile))) {
             return false;
@@ -129,7 +129,7 @@ class XoopsTplfileHandler extends XoopsObjectHandler
         return true;
     }
 
-    public function insert(&$tplfile)
+    public function insert($tplfile)
     {
         if ('xoopstplfile' != strtolower(get_class($tplfile))) {
             return false;
@@ -175,7 +175,7 @@ class XoopsTplfileHandler extends XoopsObjectHandler
         return true;
     }
 
-    public function forceUpdate(&$tplfile)
+    public function forceUpdate($tplfile)
     {
         if ('xoopstplfile' != strtolower(get_class($tplfile))) {
             return false;
@@ -206,7 +206,7 @@ class XoopsTplfileHandler extends XoopsObjectHandler
         }
     }
 
-    public function delete(&$tplfile)
+    public function delete($tplfile)
     {
         if ('xoopstplfile' != strtolower(get_class($tplfile))) {
             return false;
@@ -284,7 +284,7 @@ class XoopsTplfileHandler extends XoopsObjectHandler
         if (!$result =& $this->db->query($sql)) {
             return 0;
         }
-        list($count) = $this->db->fetchRow($result);
+        [$count] = $this->db->fetchRow($result);
         return $count;
     }
 

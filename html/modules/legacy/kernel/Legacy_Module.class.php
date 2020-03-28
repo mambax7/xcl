@@ -423,7 +423,7 @@ class Legacy_ModuleAdapter extends Legacy_AbstractModule
      * @return void
      * @see Legacy_ActionSearchArgs
      */
-    public function doActionSearch(&$searchArgs)
+    public function doActionSearch($searchArgs)
     {
         if (!is_object($searchArgs)) {
             return;

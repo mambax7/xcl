@@ -93,7 +93,7 @@ class XoopsConfigOption extends XoopsObject
      * @param $option
      * @return bool
      */
-    public function isEqual(&$option)
+    public function isEqual($option)
     {
         $flag = true;
         
@@ -165,7 +165,7 @@ class XoopsConfigOptionHandler extends XoopsObjectHandler
      * @param	object  &$confoption    reference to a {@link XoopsConfigOption} 
      * @return	bool    TRUE if successfull.
      */
-    public function insert(&$confoption)
+    public function insert($confoption)
     {
         if ('xoopsconfigoption' != strtolower(get_class($confoption))) {
             return false;
@@ -201,7 +201,7 @@ class XoopsConfigOptionHandler extends XoopsObjectHandler
      * @param	object  &$confoption    reference to a {@link XoopsConfigOption} 
      * @return	bool    TRUE if successful
      */
-    public function delete(&$confoption)
+    public function delete($confoption)
     {
         if ('xoopsconfigoption' != strtolower(get_class($confoption))) {
             return false;

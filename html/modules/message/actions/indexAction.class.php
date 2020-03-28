@@ -71,7 +71,7 @@ class indexAction extends AbstractAction
         }
     }
   
-    public function executeView(&$render)
+    public function executeView($render)
     {
         $render->setTemplateName('message_inboxlist.html');
         $render->setAttribute('ListData', $this->listdata);

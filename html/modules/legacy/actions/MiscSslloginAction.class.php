@@ -24,7 +24,7 @@ class Legacy_MiscSslloginAction extends Legacy_Action
         return LEGACY_FRAME_VIEW_INDEX;
     }
     
-    public function executeViewIndex(&$controller, &$xoopsUser, &$render)
+    public function executeViewIndex($controller, $xoopsUser, $render)
     {
         //
         // Because this action's template uses USER message catalog, load it.

@@ -50,7 +50,7 @@ class Legacy_ImageUploadAction extends Legacy_ImageEditAction
         $this->mActionForm->prepare();
     }
     
-    public function hasPermission(&$controller, &$xoopsUser)
+    public function hasPermission(&$controller, $xoopsUser)
     {
         $groups = [];
         if (is_object($xoopsUser)) {

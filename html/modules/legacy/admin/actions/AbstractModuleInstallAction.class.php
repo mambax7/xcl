@@ -108,7 +108,7 @@ class Legacy_AbstractModuleInstallAction extends Legacy_Action
     {
     }
 
-    public function executeViewError(&$controller, &$xoopsUser, &$renderer)
+    public function executeViewError(&$controller, &$xoopsUser, $renderer)
     {
         $renderer->setTemplateName('install_wizard_error.html');
         $renderer->setAttribute('log', $this->mLog);

@@ -132,7 +132,7 @@ class ThemeSetDateCreatedHandler extends XmlTagHandler
         return 'dateCreated';
     }
 
-    public function handleCharacterData(&$parser, &$data)
+    public function handleCharacterData($parser, &$data)
     {
         switch ($parser->getParentTag()) {
         case 'themeset':
@@ -155,12 +155,12 @@ class ThemeSetAuthorHandler extends XmlTagHandler
         return 'author';
     }
 
-    public function handleBeginElement(&$parser, &$attributes)
+    public function handleBeginElement($parser, &$attributes)
     {
         $parser->resetTempArr();
     }
 
-    public function handleEndElement(&$parser)
+    public function handleEndElement($parser)
     {
         $parser->setCreditsData($parser->getTempArr());
     }
@@ -177,7 +177,7 @@ class ThemeSetDescriptionHandler extends XmlTagHandler
         return 'description';
     }
 
-    public function handleCharacterData(&$parser, &$data)
+    public function handleCharacterData($parser, &$data)
     {
         switch ($parser->getParentTag()) {
         case 'template':
@@ -203,7 +203,7 @@ class ThemeSetGeneratorHandler extends XmlTagHandler
         return 'generator';
     }
 
-    public function handleCharacterData(&$parser, &$data)
+    public function handleCharacterData($parser, &$data)
     {
         switch ($parser->getParentTag()) {
         case 'themeset':
@@ -226,7 +226,7 @@ class ThemeSetNameHandler extends XmlTagHandler
         return 'name';
     }
 
-    public function handleCharacterData(&$parser, &$data)
+    public function handleCharacterData($parser, &$data)
     {
         switch ($parser->getParentTag()) {
         case 'themeset':
@@ -252,7 +252,7 @@ class ThemeSetEmailHandler extends XmlTagHandler
         return 'email';
     }
 
-    public function handleCharacterData(&$parser, &$data)
+    public function handleCharacterData($parser, &$data)
     {
         switch ($parser->getParentTag()) {
         case 'author':
@@ -275,7 +275,7 @@ class ThemeSetLinkHandler extends XmlTagHandler
         return 'link';
     }
 
-    public function handleCharacterData(&$parser, &$data)
+    public function handleCharacterData($parser, &$data)
     {
         switch ($parser->getParentTag()) {
         case 'author':
@@ -298,13 +298,13 @@ class ThemeSetTemplateHandler extends XmlTagHandler
         return 'template';
     }
 
-    public function handleBeginElement(&$parser, &$attributes)
+    public function handleBeginElement($parser, &$attributes)
     {
         $parser->resetTempArr();
         $parser->setTempArr('name', $attributes['name']);
     }
 
-    public function handleEndElement(&$parser)
+    public function handleEndElement($parser)
     {
         $parser->setTemplatesData($parser->getTempArr());
     }
@@ -321,13 +321,13 @@ class ThemeSetImageHandler extends XmlTagHandler
         return 'image';
     }
 
-    public function handleBeginElement(&$parser, &$attributes)
+    public function handleBeginElement($parser, &$attributes)
     {
         $parser->resetTempArr();
         $parser->setTempArr('name', $attributes[0]);
     }
 
-    public function handleEndElement(&$parser)
+    public function handleEndElement($parser)
     {
         $parser->setImagesData($parser->getTempArr());
     }
@@ -344,7 +344,7 @@ class ThemeSetModuleHandler extends XmlTagHandler
         return 'module';
     }
 
-    public function handleCharacterData(&$parser, &$data)
+    public function handleCharacterData($parser, &$data)
     {
         switch ($parser->getParentTag()) {
         case 'template':
@@ -368,7 +368,7 @@ class ThemeSetFileTypeHandler extends XmlTagHandler
         return 'fileType';
     }
 
-    public function handleCharacterData(&$parser, &$data)
+    public function handleCharacterData($parser, &$data)
     {
         switch ($parser->getParentTag()) {
         case 'template':
@@ -391,7 +391,7 @@ class ThemeSetTagHandler extends XmlTagHandler
         return 'tag';
     }
 
-    public function handleCharacterData(&$parser, &$data)
+    public function handleCharacterData($parser, &$data)
     {
         switch ($parser->getParentTag()) {
         case 'image':

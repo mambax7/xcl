@@ -107,7 +107,7 @@ class Legacy_ModuleUninstallAction extends Legacy_Action
         $this->mUninstallFail->register('Legacy_ModuleUninstallAction.UninstallFail');
     }
 
-    public function prepare(&$controller, &$xoopsUser)
+    public function prepare($controller, &$xoopsUser)
     {
         $dirname = $controller->mRoot->mContext->mRequest->getRequest('dirname');
 
@@ -187,7 +187,7 @@ class Legacy_ModuleUninstallAction extends Legacy_Action
         $renderer->setAttribute('log', $this->mInstaller->mLog->mMessages);
     }
 
-    public function executeViewInput(&$controller, &$xoopsUser, &$renderer)
+    public function executeViewInput(&$controller, &$xoopsUser, $renderer)
     {
         $renderer->setTemplateName('module_uninstall.html');
         $renderer->setAttribute('actionForm', $this->mActionForm);
@@ -195,7 +195,7 @@ class Legacy_ModuleUninstallAction extends Legacy_Action
         $renderer->setAttribute('currentVersion', round($this->mXoopsModule->get('version') / 100, 2)); // !TODO version revision
     }
 
-    public function executeViewCancel(&$controller, &$xoopsUser, &$renderer)
+    public function executeViewCancel($controller, &$xoopsUser, &$renderer)
     {
         $controller->executeForward('./index.php?action=ModuleList');
     }

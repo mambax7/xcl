@@ -35,7 +35,7 @@ class Legacy_PreferenceListAction extends Legacy_Action
         return $this->getDefaultView($controller, $xoopsUser);
     }
 
-    public function executeViewIndex(&$controller, &$xoopsUser, &$render)
+    public function executeViewIndex(&$controller, &$xoopsUser, $render)
     {
         $render->setTemplateName('preference_list.html');
         $render->setAttribute('objects', $this->mObjects);

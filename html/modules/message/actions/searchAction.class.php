@@ -57,7 +57,7 @@ class searchAction extends AbstractAction
         }
     }
   
-    public function executeView(&$render)
+    public function executeView($render)
     {
         $render->setTemplateName('message_usersearch.html');
         $render->setAttribute('mActionform', $this->mActionform);

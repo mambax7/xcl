@@ -267,7 +267,7 @@ class XoopsObjectGenericHandler extends XoopsObjectHandler
      * @param $obj
      * @return string
      */
-    public function _insert(&$obj)
+    public function _insert($obj)
     {
         $fileds= [];
         $values= [];
@@ -314,7 +314,7 @@ class XoopsObjectGenericHandler extends XoopsObjectHandler
      * @param xoopsObject $obj
      * @return Array
     */
-    public function _makeVars4sql(&$obj)
+    public function _makeVars4sql($obj)
     {
         $ret = [];
         foreach ($obj->gets() as $key => $value) {
@@ -350,7 +350,7 @@ class XoopsObjectGenericHandler extends XoopsObjectHandler
      * @param XoopsSimpleObject $obj
      * @return string|null
      */
-    public function _makeCriteriaElement4sql($criteria, &$obj)
+    public function _makeCriteriaElement4sql($criteria, $obj)
     {
         if ($criteria instanceof \CriteriaElement) {
             if ($criteria->hasChildElements()) {

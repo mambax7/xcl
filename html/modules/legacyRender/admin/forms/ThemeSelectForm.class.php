@@ -45,14 +45,14 @@ class LegacyRender_ThemeSelectForm extends XCube_ActionForm
         return null;
     }
     
-    public function load(&$objs)
+    public function load($objs)
     {
         foreach ($objs as $obj) {
             $this->set('select', $obj->get('id'), $obj->get('enable_select'));
         }
     }
 
-    public function update(&$objs)
+    public function update($objs)
     {
         foreach (array_keys($objs) as $key) {
             $objs[$key]->set('enable_select', $this->get('select', $objs[$key]->get('id')));

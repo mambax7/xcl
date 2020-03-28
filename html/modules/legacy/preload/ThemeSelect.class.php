@@ -55,7 +55,7 @@ class Legacy_ThemeSelect extends XCube_ActionFilter
      * @param $controller
      * @param $context
      */
-    public function doChangeTheme(&$principal, &$controller, &$context)
+    public function doChangeTheme(&$principal, $controller, &$context)
     {
         if (!empty($_POST['xoops_theme_select'])) {
             $xoops_theme_select = explode('!-!', $_POST['xoops_theme_select']);
@@ -69,7 +69,7 @@ class Legacy_ThemeSelect extends XCube_ActionFilter
         }
     }
 
-    public function callbackCheckLoginSuccess(&$xoopsUser)
+    public function callbackCheckLoginSuccess($xoopsUser)
     {
         //
         // Check Theme and set it to session.

@@ -1281,7 +1281,7 @@ class Archive_Zip
      * @param $p_params
      * @return int
      */
-  public function _addFile($p_filename, &$p_header, $p_add_dir, $p_remove_dir, $p_remove_all_dir, &$p_params)
+  public function _addFile($p_filename, &$p_header, $p_add_dir, $p_remove_dir, $p_remove_all_dir, $p_params)
   {
       $v_result=1;
 
@@ -1563,7 +1563,7 @@ class Archive_Zip
      * @param $p_header
      * @return int
      */
-  public function _writeCentralFileHeader(&$p_header)
+  public function _writeCentralFileHeader($p_header)
   {
       $v_result=1;
 
@@ -1772,7 +1772,7 @@ class Archive_Zip
      * @param $p_params
      * @return int
      */
-  public function _extractByRule(&$p_file_list, &$p_params)
+  public function _extractByRule(&$p_file_list, $p_params)
   {
       $v_result=1;
 
@@ -2001,7 +2001,7 @@ class Archive_Zip
      * @param $p_params
      * @return int
      */
-  public function _extractFile(&$p_entry, $p_path, $p_remove_path, $p_remove_all_path, &$p_params)
+  public function _extractFile(&$p_entry, $p_path, $p_remove_path, $p_remove_all_path, $p_params)
   {
       $v_result=1;
 
@@ -2238,7 +2238,7 @@ class Archive_Zip
      * @param $p_string
      * @return int
      */
-  public function _extractFileAsString(&$p_entry, &$p_string)
+  public function _extractFileAsString($p_entry, &$p_string)
   {
       $v_result=1;
 
@@ -2642,7 +2642,7 @@ class Archive_Zip
      * @param $p_params
      * @return int
      */
-  public function _deleteByRule(&$p_result_list, &$p_params)
+  public function _deleteByRule(&$p_result_list, $p_params)
   {
       $v_result=1;
       $v_list_detail = [];
@@ -2983,7 +2983,7 @@ class Archive_Zip
      * @param $p_archive_to_add
      * @return int
      */
-  public function _merge(&$p_archive_to_add)
+  public function _merge($p_archive_to_add)
   {
       $v_result=1;
 

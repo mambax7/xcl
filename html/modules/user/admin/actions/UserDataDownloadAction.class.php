@@ -23,7 +23,7 @@ class User_UserDataDownloadAction extends User_Action
         return './index.php?action=UserDataDownload';
     }
 
-    public function executeViewIndex(&$controller, &$xoopsUser, &$render)
+    public function executeViewIndex(&$controller, &$xoopsUser, $render)
     {
         $render->setTemplateName('user_data_download.html');
         $member_handler =& xoops_gethandler('member');

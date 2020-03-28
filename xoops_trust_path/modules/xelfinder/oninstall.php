@@ -105,7 +105,7 @@ function xelfinder_oninstall_base( $module , $mydirname )
 	return true ;
 }
 
-function xelfinder_message_append_oninstall( &$module_obj , &$log )
+function xelfinder_message_append_oninstall( &$module_obj , $log )
 {
 	if( is_array( @$GLOBALS['ret'] ) ) {
 		foreach( $GLOBALS['ret'] as $message ) {

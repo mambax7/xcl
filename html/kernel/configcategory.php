@@ -142,7 +142,7 @@ class XoopsConfigCategoryHandler extends XoopsObjectHandler
      * 
      * @return	bool    TRUE on success
      */
-    public function insert(&$confcat)
+    public function insert($confcat)
     {
         if ('xoopsconfigcategory' != strtolower(get_class($confcat))) {
             return false;
@@ -179,7 +179,7 @@ class XoopsConfigCategoryHandler extends XoopsObjectHandler
      * 
      * @return	bool    TRUE on success
      */
-    public function delete(&$confcat)
+    public function delete($confcat)
     {
         if ('xoopsconfigcategory' != strtolower(get_class($confcat))) {
             return false;

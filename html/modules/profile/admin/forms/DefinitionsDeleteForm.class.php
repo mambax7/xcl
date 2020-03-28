@@ -44,7 +44,7 @@ class Profile_Admin_DefinitionsDeleteForm extends XCube_ActionForm
      * @public
      * @param $obj
      */
-    public function load(&$obj)
+    public function load($obj)
     {
         $this->set('field_id', $obj->get('field_id'));
     }
@@ -53,7 +53,7 @@ class Profile_Admin_DefinitionsDeleteForm extends XCube_ActionForm
      * @public
      * @param $obj
      */
-    public function update(&$obj)
+    public function update($obj)
     {
         $obj->set('field_id', $this->get('field_id'));
     }

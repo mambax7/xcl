@@ -166,7 +166,7 @@ class RssTitleHandler extends XmlTagHandler
         return 'title';
     }
 
-    public function handleCharacterData(&$parser, &$data)
+    public function handleCharacterData($parser, &$data)
     {
         switch ($parser->getParentTag()) {
         case 'channel':
@@ -197,7 +197,7 @@ class RssLinkHandler extends XmlTagHandler
         return 'link';
     }
 
-    public function handleCharacterData(&$parser, &$data)
+    public function handleCharacterData($parser, &$data)
     {
         switch ($parser->getParentTag()) {
         case 'channel':
@@ -228,7 +228,7 @@ class RssDescriptionHandler extends XmlTagHandler
         return 'description';
     }
 
-    public function handleCharacterData(&$parser, &$data)
+    public function handleCharacterData($parser, &$data)
     {
         switch ($parser->getParentTag()) {
         case 'channel':
@@ -259,7 +259,7 @@ class RssGeneratorHandler extends XmlTagHandler
         return 'generator';
     }
 
-    public function handleCharacterData(&$parser, &$data)
+    public function handleCharacterData($parser, &$data)
     {
         switch ($parser->getParentTag()) {
         case 'channel':
@@ -283,7 +283,7 @@ class RssCopyrightHandler extends XmlTagHandler
         return 'copyright';
     }
 
-    public function handleCharacterData(&$parser, &$data)
+    public function handleCharacterData($parser, &$data)
     {
         switch ($parser->getParentTag()) {
         case 'channel':
@@ -307,7 +307,7 @@ class RssNameHandler extends XmlTagHandler
         return 'name';
     }
 
-    public function handleCharacterData(&$parser, &$data)
+    public function handleCharacterData($parser, &$data)
     {
         switch ($parser->getParentTag()) {
         case 'textInput':
@@ -331,7 +331,7 @@ class RssManagingEditorHandler extends XmlTagHandler
         return 'managingEditor';
     }
 
-    public function handleCharacterData(&$parser, &$data)
+    public function handleCharacterData($parser, &$data)
     {
         switch ($parser->getParentTag()) {
         case 'channel':
@@ -355,7 +355,7 @@ class RssLanguageHandler extends XmlTagHandler
         return 'language';
     }
 
-    public function handleCharacterData(&$parser, &$data)
+    public function handleCharacterData($parser, &$data)
     {
         switch ($parser->getParentTag()) {
         case 'channel':
@@ -379,7 +379,7 @@ class RssWebMasterHandler extends XmlTagHandler
         return 'webMaster';
     }
 
-    public function handleCharacterData(&$parser, &$data)
+    public function handleCharacterData($parser, &$data)
     {
         switch ($parser->getParentTag()) {
         case 'channel':
@@ -403,7 +403,7 @@ class RssDocsHandler extends XmlTagHandler
         return 'docs';
     }
 
-    public function handleCharacterData(&$parser, &$data)
+    public function handleCharacterData($parser, &$data)
     {
         switch ($parser->getParentTag()) {
         case 'channel':
@@ -427,7 +427,7 @@ class RssTtlHandler extends XmlTagHandler
         return 'ttl';
     }
 
-    public function handleCharacterData(&$parser, &$data)
+    public function handleCharacterData($parser, &$data)
     {
         switch ($parser->getParentTag()) {
         case 'channel':
@@ -451,12 +451,12 @@ class RssTextInputHandler extends XmlTagHandler
         return 'textInput';
     }
 
-    public function handleBeginElement(&$parser, &$attributes)
+    public function handleBeginElement($parser, &$attributes)
     {
         $parser->resetTempArr();
     }
 
-    public function handleEndElement(&$parser)
+    public function handleEndElement($parser)
     {
         $parser->setChannelData('textinput', $parser->getTempArr());
     }
@@ -474,7 +474,7 @@ class RssLastBuildDateHandler extends XmlTagHandler
         return 'lastBuildDate';
     }
 
-    public function handleCharacterData(&$parser, &$data)
+    public function handleCharacterData($parser, &$data)
     {
         switch ($parser->getParentTag()) {
         case 'channel':
@@ -511,7 +511,7 @@ class RssUrlHandler extends XmlTagHandler
         return 'url';
     }
 
-    public function handleCharacterData(&$parser, &$data)
+    public function handleCharacterData($parser, &$data)
     {
         if ('image' == $parser->getParentTag()) {
             $parser->setImageData('url', $data);
@@ -531,7 +531,7 @@ class RssWidthHandler extends XmlTagHandler
         return 'width';
     }
 
-    public function handleCharacterData(&$parser, &$data)
+    public function handleCharacterData($parser, &$data)
     {
         if ('image' == $parser->getParentTag()) {
             $parser->setImageData('width', $data);
@@ -551,7 +551,7 @@ class RssHeightHandler extends XmlTagHandler
         return 'height';
     }
 
-    public function handleCharacterData(&$parser, &$data)
+    public function handleCharacterData($parser, &$data)
     {
         if ('image' == $parser->getParentTag()) {
             $parser->setImageData('height', $data);
@@ -571,12 +571,12 @@ class RssItemHandler extends XmlTagHandler
         return 'item';
     }
 
-    public function handleBeginElement(&$parser, &$attributes)
+    public function handleBeginElement($parser, &$attributes)
     {
         $parser->resetTempArr();
     }
 
-    public function handleEndElement(&$parser)
+    public function handleEndElement($parser)
     {
         $parser->setItems($parser->getTempArr());
     }
@@ -594,7 +594,7 @@ class RssCategoryHandler extends XmlTagHandler
         return 'category';
     }
 
-    public function handleCharacterData(&$parser, &$data)
+    public function handleCharacterData($parser, &$data)
     {
         switch ($parser->getParentTag()) {
         case 'channel':
@@ -620,7 +620,7 @@ class RssCommentsHandler extends XmlTagHandler
         return 'comments';
     }
 
-    public function handleCharacterData(&$parser, &$data)
+    public function handleCharacterData($parser, &$data)
     {
         if ('item' == $parser->getParentTag()) {
             $parser->setTempArr('comments', $data);
@@ -640,7 +640,7 @@ class RssPubDateHandler extends XmlTagHandler
         return 'pubDate';
     }
 
-    public function handleCharacterData(&$parser, &$data)
+    public function handleCharacterData($parser, &$data)
     {
         switch ($parser->getParentTag()) {
         case 'channel':
@@ -667,7 +667,7 @@ class RssGuidHandler extends XmlTagHandler
         return 'guid';
     }
 
-    public function handleCharacterData(&$parser, &$data)
+    public function handleCharacterData($parser, &$data)
     {
         if ('item' == $parser->getParentTag()) {
             $parser->setTempArr('guid', $data);
@@ -687,7 +687,7 @@ class RssAuthorHandler extends XmlTagHandler
         return 'author';
     }
 
-    public function handleCharacterData(&$parser, &$data)
+    public function handleCharacterData($parser, &$data)
     {
         if ('item' == $parser->getParentTag()) {
             $parser->setTempArr('author', $data);
@@ -707,14 +707,14 @@ class RssSourceHandler extends XmlTagHandler
         return 'source';
     }
 
-    public function handleBeginElement(&$parser, &$attributes)
+    public function handleBeginElement($parser, &$attributes)
     {
         if ('item' == $parser->getParentTag()) {
             $parser->setTempArr('source_url', $attributes['url']);
         }
     }
 
-    public function handleCharacterData(&$parser, &$data)
+    public function handleCharacterData($parser, &$data)
     {
         if ('item' == $parser->getParentTag()) {
             $parser->setTempArr('source', $data);
