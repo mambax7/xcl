@@ -249,7 +249,7 @@ class FormProcessByHtml
                     $value = $this->convertZenToHan(trim($value));
                     if (!empty($value)) {
                         if (is_numeric($value)) {
-                            $value = floatval($value);
+                            $value = (float)$value;
                         } else {
                             $this->fields[$field_name]['errors'][] = 'invalid number';
                         }

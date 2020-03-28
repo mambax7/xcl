@@ -170,7 +170,7 @@ class Legacy_Utils
      */
     public static function convertVersionIntToFloat($version)
     {
-        return round((float)(intval($version) / 100), 2);
+        return round((float)((int)$version / 100), 2);
     }
 
     /**

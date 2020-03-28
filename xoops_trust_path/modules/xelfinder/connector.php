@@ -272,7 +272,7 @@ try {
 		
 		// set umask
 		foreach(['default', 'users_dir', 'guest_dir', 'group_dir'] as $_key) {
-			$config[$_key.'_umask'] = (string)dechex(0xfff - intval(strval($config[$_key . '_item_perm']), 16));
+			$config[$_key.'_umask'] = (string)dechex(0xfff - intval((string)$config[$_key . '_item_perm'], 16));
 		}
 		
 		// set uploadAllow
