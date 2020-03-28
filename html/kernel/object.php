@@ -469,7 +469,7 @@ class XoopsObject extends AbstractXoopsObject
     /**
      * Return value as raw.
      * @param $key
-     * @return
+     * @return mixed
      * @deprecated
      */
     public function getProperty($key)

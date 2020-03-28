@@ -470,9 +470,7 @@ class XoopsObjectGenericHandler extends XoopsObjectHandler
     /**
      * getDataname
      *
-     * @param void
-     *
-     * @return	string[]
+     * @return string|null
      */
     public function getDataname()
     {

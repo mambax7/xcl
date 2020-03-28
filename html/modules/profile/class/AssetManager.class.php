@@ -44,7 +44,7 @@ class Profile_AssetManager
      * @public
      * @param $type
      * @param $name
-     * @return |null |null
+     * @return mixed|null
      */
     public function &create($type, $name)
     {
@@ -66,7 +66,7 @@ class Profile_AssetManager
      * @private
      * @param $type
      * @param $name
-     * @return |null |null
+     * @return mixed|null
      */
     public function &_fallbackCreate($type, $name)
     {
@@ -114,7 +114,7 @@ class Profile_AssetManager
     /**
      * @private
      * @param $name
-     * @return
+     * @return mixed
      */
     public function &_createHandler($name)
     {

@@ -461,12 +461,12 @@ class XoopsMysqliDatabaseSafe extends XoopsMysqliDatabase
 
     /**
      * perform a query on the database
-     * 
-     * @param string $sql a valid MySQL query
-     * @param int $limit number of records to return
-     * @param int $start offset of first record to return
-     * @return resource query result or FALSE if successful
-     * or TRUE if successful and no result
+     *
+     * @param string $sql   a valid MySQL query
+     * @param int    $limit number of records to return
+     * @param int    $start offset of first record to return
+     * @return bool|\mysqli_result query result or FALSE if successful
+     *                      or TRUE if successful and no result
      */
     public function &query($sql, $limit=0, $start=0)
     {
