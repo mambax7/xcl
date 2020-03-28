@@ -22,7 +22,7 @@ class LegacyRender_TplsetListAction extends LegacyRender_AbstractListAction
     
     public function &_getHandler()
     {
-        $handler =& xoops_getmodulehandler('tplset');
+        $handler =& xoops_getModuleHandler('tplset');
         return $handler;
     }
 
@@ -42,7 +42,7 @@ class LegacyRender_TplsetListAction extends LegacyRender_AbstractListAction
         $this->mActionForm->fetch();
         $this->mActionForm->validate();
         if (!$this->mActionForm->hasError()) {
-            $configHandler =& xoops_gethandler('config');
+            $configHandler =& xoops_getHandler('config');
 
             $criteria =new CriteriaCompo();
             $criteria->add(new Criteria('conf_name', 'template_set'));
@@ -81,7 +81,7 @@ class LegacyRender_TplsetListAction extends LegacyRender_AbstractListAction
         //
         // Assign recent modified tplfile objects
         //
-        $handler =& xoops_getmodulehandler('tplfile');
+        $handler =& xoops_getModuleHandler('tplfile');
         $recentObjects =& $handler->getRecentModifyFile();
         
         $render->setAttribute('recentObjects', $recentObjects);

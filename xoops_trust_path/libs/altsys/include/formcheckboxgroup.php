@@ -55,7 +55,7 @@ include_once XOOPS_ROOT_PATH . '/class/xoopsform/formcheckbox.php';
  * @author	    Kazumi Ono	<onokazu@xoops.org>
  * @copyright	copyright (c) 2000-2003 XOOPS.org
  */
-class AltsysFormCheckboxGroup extends XoopsFormCheckbox
+class AltsysFormCheckboxGroup extends XoopsFormCheckBox
 {
     /**
      * Constructor
@@ -67,8 +67,8 @@ class AltsysFormCheckboxGroup extends XoopsFormCheckbox
      */
     public function __construct($caption, $name, $include_anon=false, $value=null)
     {
-        $this->XoopsFormCheckbox($caption, $name, $value);
-        $member_handler =& xoops_gethandler('member');
+        $this->XoopsFormCheckBox($caption, $name, $value);
+        $member_handler =& xoops_getHandler('member');
         if (!$include_anon) {
             $options = $member_handler->getGroupList(new Criteria('groupid', XOOPS_GROUP_ANONYMOUS, '!='));
         } else {

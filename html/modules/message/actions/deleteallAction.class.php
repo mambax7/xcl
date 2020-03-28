@@ -28,7 +28,7 @@ class deleteallAction extends AbstractAction
             return;
         }
     
-        $modHand = xoops_getmodulehandler($this->inout);
+        $modHand = xoops_getModuleHandler($this->inout);
     
         foreach ($delid as $boxid) {
             $modObj = $modHand->get((int)$boxid);

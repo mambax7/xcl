@@ -20,7 +20,7 @@ class User_GroupEditAction extends User_AbstractEditAction
     
     public function &_getHandler()
     {
-        $handler =& xoops_getmodulehandler('groups');
+        $handler =& xoops_getModuleHandler('groups');
         return $handler;
     }
 

@@ -145,7 +145,7 @@ class Legacy_EventFunction
             $categories =& notificationSubscribableCategoryInfo();
             $event_count = 0;
             if (!empty($categories)) {
-                $notification_handler =& xoops_gethandler('notification');
+                $notification_handler =& xoops_getHandler('notification');
                 foreach ($categories as $category) {
                     $section['name'] = $category['name'];
                     $section['title'] = $category['title'];
@@ -203,7 +203,7 @@ class Legacy_EventFunction
      */
     public static function recountPost(&$posts, $xoopsUser)
     {
-        $handler =& xoops_gethandler('comment');
+        $handler =& xoops_getHandler('comment');
         $criteria =new Criteria('com_uid', $xoopsUser->get('uid'));
         $posts += $handler->getCount($criteria);
     }

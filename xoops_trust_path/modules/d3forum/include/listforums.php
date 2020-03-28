@@ -66,7 +66,7 @@ while( $forum_row = $db->fetchArray( $frs ) ) {
 	if( empty( $u2t_time ) ) $u2t_time = 0 ;
 
 	// get last poster's object
-	$user_handler =& xoops_gethandler( 'user' ) ;
+	$user_handler =& xoops_getHandler( 'user' ) ;
 	$last_poster_obj =& $user_handler->get((int)$forum_row['uid']) ;
 	if( is_object( $last_poster_obj ) ) {
 		// naao from

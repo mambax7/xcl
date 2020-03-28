@@ -222,7 +222,7 @@ class Net_SFTP_Stream
             if (isset($context[$scheme]['password'])) {
                 $pass = $context[$scheme]['password'];
             }
-            if (isset($context[$scheme]['privkey']) && is_object($context[$scheme]['privkey']) && 'Crypt_RSA' == get_Class($context[$scheme]['privkey'])) {
+            if (isset($context[$scheme]['privkey']) && is_object($context[$scheme]['privkey']) && 'Crypt_RSA' == get_class($context[$scheme]['privkey'])) {
                 $pass = $context[$scheme]['privkey'];
             }
 

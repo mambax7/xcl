@@ -94,7 +94,7 @@ while( $topic_row = $db->fetchArray( $trs ) ) {
 	$topic_id = (int)$topic_row['topic_id'];
 
 	// get last poster's object
-	$user_handler =& xoops_gethandler( 'user' ) ;
+	$user_handler =& xoops_getHandler( 'user' ) ;
 	$last_poster_obj =& $user_handler->get((int)$topic_row['topic_last_uid']) ;
 	$first_poster_obj =& $user_handler->get((int)$topic_row['topic_first_uid']) ;
 	// naao from

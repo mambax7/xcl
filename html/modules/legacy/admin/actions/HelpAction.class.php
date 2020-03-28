@@ -162,7 +162,7 @@ class Legacy_HelpAction extends Legacy_Action
     
     public function getDefaultView($controller, &$xoopsUser)
     {
-        $moduleHandler =& xoops_gethandler('module');
+        $moduleHandler =& xoops_getHandler('module');
         $this->mModuleObject =& $moduleHandler->getByDirname($this->_mDirname);
         
         $language = $controller->mRoot->mContext->getXoopsConfig('language');

@@ -15,7 +15,7 @@ class User_MailjobSendAction extends User_Action
     {
         $id = (int)xoops_getrequest('mailjob_id');
         
-        $handler =& xoops_getmodulehandler('mailjob');
+        $handler =& xoops_getModuleHandler('mailjob');
         
         $this->mMailjob =& $handler->get($id);
 
@@ -106,7 +106,7 @@ class User_MailjobSendAction extends User_Action
      */
     public function sendPM($link, $mailjob, &$to_user, &$from_user)
     {
-        $handler =& xoops_gethandler('privmessage');
+        $handler =& xoops_getHandler('privmessage');
         
         $pm =& $handler->create();
         

@@ -57,7 +57,7 @@ class PicoControllerQueryContents extends PicoControllerAbstract
         // breadcrumbs
         $breadcrumbsObj = &AltsysBreadcrumbs::getInstance();
         $breadcrumbsObj->appendPath('', $query4assign['title']);
-        $this->assign['xoops_breadcrumbs'] = $breadcrumbsObj->getXoopsbreadcrumbs();
+        $this->assign['xoops_breadcrumbs'] = $breadcrumbsObj->getXoopsBreadcrumbs();
         $this->assign['xoops_pagetitle']   = $query4assign['title'];
 
         // views ('list')

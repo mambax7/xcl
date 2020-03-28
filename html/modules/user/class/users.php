@@ -78,7 +78,7 @@ class UserUsersObject extends XoopsSimpleObject
     public function _loadGroups()
     {
         if (!$this->_mGroupsLoadedFlag) {
-            $handler = &xoops_getmodulehandler('groups_users_link', 'user');
+            $handler = &xoops_getModuleHandler('groups_users_link', 'user');
             $links = &$handler->getObjects(new Criteria('uid', $this->get('uid')));
             foreach ($links as $link) {
                 $this->Groups[] = $link->get('groupid');
@@ -95,7 +95,7 @@ class UserUsersObject extends XoopsSimpleObject
             $t_rank = xoops_getrank($this->get('rank'), $this->get('posts'));
             $rank_id = $t_rank['id'];
 
-            $handler = &xoops_getmodulehandler('ranks');
+            $handler = &xoops_getModuleHandler('ranks');
             $this->mRank = &$handler->get($rank_id);
 
             $this->_mRankLoadedFlag = true;
@@ -204,7 +204,7 @@ class UserUsersHandler extends XoopsObjectGenericHandler
 
             $user->_loadGroups();
 
-            $handler = &xoops_getmodulehandler('groups_users_link', 'user');
+            $handler = &xoops_getModuleHandler('groups_users_link', 'user');
             $oldLinkArr = &$handler->getObjects(new Criteria('uid', $user->get('uid')), $force);
 
             //

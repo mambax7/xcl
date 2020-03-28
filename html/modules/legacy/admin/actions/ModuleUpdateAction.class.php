@@ -102,7 +102,7 @@ class Legacy_ModuleUpdateAction extends Legacy_Action
     {
         $dirname = $controller->mRoot->mContext->mRequest->getRequest('dirname');
         
-        $handler =& xoops_gethandler('module');
+        $handler =& xoops_getHandler('module');
         $this->mXoopsModule =& $handler->getByDirname($dirname);
         
         if (!is_object($this->mXoopsModule)) {

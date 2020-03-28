@@ -50,7 +50,7 @@ class Legacy_SearchShowallbyuserAction extends Legacy_SearchShowallAction
     {
         parent::executeViewIndex($controller, $xoopsUser, $render);
         
-        $handler =& xoops_gethandler('user');
+        $handler =& xoops_getHandler('user');
         $user =& $handler->get($this->mActionForm->get('uid'));
         
         $render->setAttribute('targetUser', $user);

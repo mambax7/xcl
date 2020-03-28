@@ -17,7 +17,7 @@ function d3forum_global_search_base( $mydirname , $keywords , $andor , $limit , 
 {
 
 
-	(method_exists('MyTextSanitizer', 'sGetInstance') and $myts =& MyTextSanitizer::sGetInstance()) || $myts =& MyTextsanitizer::getInstance() ;
+	(method_exists('MyTextSanitizer', 'sGetInstance') and $myts =& MyTextSanitizer::sGetInstance()) || $myts =& MyTextSanitizer::getInstance() ;
 	$db =& Database::getInstance() ;
 
 	$andor = strtoupper( $andor ) ;

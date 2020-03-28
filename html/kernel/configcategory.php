@@ -204,7 +204,7 @@ class XoopsConfigCategoryHandler extends XoopsObjectHandler
         $ret = [];
         $limit = $start = 0;
         $sql = 'SELECT * FROM '.$this->db->prefix('configcategory');
-        if (isset($criteria) && $criteria instanceof \criteriaelement) {
+        if (isset($criteria) && $criteria instanceof \CriteriaElement) {
             $sql .= ' '.$criteria->renderWhere();
             $sort = !in_array($criteria->getSort(), ['confcat_id', 'confcat_name', 'confcat_order']) ? 'confcat_order' : $criteria->getSort();
             $sql .= ' ORDER BY '.$sort.' '.$criteria->getOrder();

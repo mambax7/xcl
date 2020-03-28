@@ -91,7 +91,7 @@ class Legacy_CommentFilterForm extends Legacy_AbstractFilterForm
         } elseif (isset($_REQUEST['dirname'])) {
             $this->mNavi->addExtra('dirname', xoops_getrequest('dirname'));
 
-            $handler =& xoops_gethandler('module');
+            $handler =& xoops_getHandler('module');
             $module =& $handler->getByDirname(xoops_getrequest('dirname'));
             if (is_object($module)) {
                 $this->_mCriteria->add(new Criteria('com_modid', $module->get('mid')));
@@ -140,7 +140,7 @@ class Legacy_CommentFilterForm extends Legacy_AbstractFilterForm
                 //search about uname
             if ('guest' != $this->mKeyword) {
                 //in case of member
-            $cm_handler =& xoops_gethandler('member');
+            $cm_handler =& xoops_getHandler('member');
                 $cm_user =& $cm_handler->getUsers(new Criteria('uname', $this->mKeyword));
                 if (1 == count($cm_user) && is_object($cm_user[0])) {
                     $cm_user_uid = $cm_user[0]->getVar('uid');

@@ -23,7 +23,7 @@ class My_Mailer extends PHPMailer
     public function prepare()
     {
         $root = XCube_Root::getSingleton();
-        $handler = xoops_gethandler('config');
+        $handler = xoops_getHandler('config');
         $xoopsMailerConfig = $handler->getConfigsByCat(XOOPS_CONF_MAILER);
         $this->reset();
     

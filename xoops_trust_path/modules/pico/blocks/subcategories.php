@@ -14,9 +14,9 @@ function b_pico_subcategories_show($options)
 	(method_exists('MyTextSanitizer', 'sGetInstance') and $myts = &MyTextSanitizer::sGetInstance()) || $myts = &MyTextSanitizer::getInstance();
 	$uid = is_object(@$xoopsUser) ? $xoopsUser->getVar('uid') : 0;
 
-	$module_handler = &xoops_gethandler('module');
+	$module_handler = &xoops_getHandler('module');
 	$module = &$module_handler->getByDirname($mydirname);
-	$config_handler = &xoops_gethandler('config');
+	$config_handler = &xoops_getHandler('config');
 	$configs = $config_handler->getConfigList($module->mid());
 
 	// categories can be read by current viewer (check by category_permissions)

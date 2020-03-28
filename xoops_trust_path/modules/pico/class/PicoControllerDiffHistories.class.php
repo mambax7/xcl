@@ -65,7 +65,7 @@ class PicoControllerDiffHistories extends PicoControllerAbstract
 
         // breadcrumbs
         $breadcrumbsObj->appendPath('', 'DIFF');
-        $this->assign['xoops_breadcrumbs'] = $breadcrumbsObj->getXoopsbreadcrumbs();
+        $this->assign['xoops_breadcrumbs'] = $breadcrumbsObj->getXoopsBreadcrumbs();
         $this->assign['xoops_pagetitle']   = _MD_PICO_HISTORY;
 
         // view

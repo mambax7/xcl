@@ -60,7 +60,7 @@ class PicoControllerGetMenu extends PicoControllerAbstract
         $lastnode4assign = 'menu' == @$_GET['page'] ? _MD_PICO_MENU : $GLOBALS['xoopsModule']->getVar('name');
         $breadcrumbsObj  = &AltsysBreadcrumbs::getInstance();
         $breadcrumbsObj->appendPath('', $lastnode4assign);
-        $this->assign['xoops_breadcrumbs'] = $breadcrumbsObj->getXoopsbreadcrumbs();
+        $this->assign['xoops_breadcrumbs'] = $breadcrumbsObj->getXoopsBreadcrumbs();
         $this->assign['xoops_pagetitle']   = $lastnode4assign;
 
         // views (no views other than 'menu')

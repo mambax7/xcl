@@ -20,7 +20,7 @@ class LegacyRender_TplfileEditAction extends LegacyRender_AbstractEditAction
     
     public function &_getHandler()
     {
-        $handler =& xoops_getmodulehandler('tplfile');
+        $handler =& xoops_getModuleHandler('tplfile');
         return $handler;
     }
 

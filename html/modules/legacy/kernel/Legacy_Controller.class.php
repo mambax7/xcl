@@ -585,7 +585,7 @@ class Legacy_Controller extends XCube_Controller
         //
         // Set member handler to global variables for compatibility with XOOPS 2.0.x.
         //
-        $GLOBALS['xoopsMemberHandler'] = xoops_gethandler('member');
+        $GLOBALS['xoopsMemberHandler'] = xoops_getHandler('member');
         $GLOBALS['member_handler'] =& $GLOBALS['xoopsMemberHandler'];
     }
 
@@ -637,7 +637,7 @@ class Legacy_Controller extends XCube_Controller
         $this->mGetLanguageName->call(new XCube_Ref($language));
 
         if (null == $language) {
-            $handler = xoops_gethandler('config');
+            $handler = xoops_getHandler('config');
             $criteria = new CriteriaCompo(new Criteria('conf_modid', 0));
             $criteria->add(new Criteria('conf_catid', XOOPS_CONF));
             $criteria->add(new Criteria('conf_name', 'language'));
@@ -714,14 +714,14 @@ class Legacy_Controller extends XCube_Controller
 
     public function _setupConfig()
     {
-        $configHandler = xoops_gethandler('config');
+        $configHandler = xoops_getHandler('config');
 
         $this->mRoot->mContext->mXoopsConfig =& $configHandler->getConfigsByCat(XOOPS_CONF);
 
         $this->mRoot->mContext->mXoopsConfig['language'] = $this->mRoot->mLanguageManager->getLanguage();
         $GLOBALS['xoopsConfig'] =& $this->mRoot->mContext->mXoopsConfig; // Compatiblity for 2.0.x
         $GLOBALS['config_handler'] =& $configHandler;
-        $GLOBALS['module_handler'] = xoops_gethandler('module');
+        $GLOBALS['module_handler'] = xoops_getHandler('module');
 
         if (0 == count($this->mRoot->mContext->mXoopsConfig)) {
             return;
@@ -775,7 +775,7 @@ class Legacy_Controller extends XCube_Controller
             if ($this->mActiveModules) {
                 $moduleObjects = $this->mActiveModules;
             } else {
-                $moduleHandler = xoops_gethandler('module');
+                $moduleHandler = xoops_getHandler('module');
                 $criteria = new Criteria('isactive', 1);
                 $this->mActiveModules =
             $moduleObjects =& $moduleHandler->getObjects($criteria);
@@ -1034,7 +1034,7 @@ class Legacy_Controller extends XCube_Controller
 
                 // RMV-NOTIFY
                 // Perform some maintenance of notification records
-                $notification_handler = xoops_gethandler('notification');
+                $notification_handler = xoops_getHandler('notification');
                 $notification_handler->doLoginMaintenance($this->mRoot->mContext->mXoopsUser->get('uid'));
 
                 XCube_DelegateUtils::call('Site.CheckLogin.Success', new XCube_Ref($this->mRoot->mContext->mXoopsUser));
@@ -1459,7 +1459,7 @@ class Legacy_AbstractControllerStrategy
      */
     public function setupModuleContext(&$context, $dirname)
     {
-        $handler = xoops_gethandler('module');
+        $handler = xoops_getHandler('module');
         $module =& $handler->getByDirname($dirname);
 
         if (!is_object($module)) {

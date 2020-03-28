@@ -90,7 +90,7 @@ class Xupdate_TagClientDelegate implements Legacy_iTagClientDelegate
             $list['dirname'][] = $dirname;
             $list['dataname'][] = $dataname;
             $list['data'][] = $objs;
-            $handler = xoops_gethandler('module');
+            $handler = xoops_getHandler('module');
             $module = $handler->getByDirname($dirname);
             $list['title'][] = $module->name() . ' - ' . ucfirst($contents);
             $list['template_name'][] = 'db:' . $dirname . '_modulestore_inc.html';

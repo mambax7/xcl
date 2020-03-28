@@ -16,7 +16,7 @@ class User_RanksEditAction extends User_AbstractEditAction
 
     public function &_getHandler()
     {
-        $handler =& xoops_getmodulehandler('ranks');
+        $handler =& xoops_getModuleHandler('ranks');
         return $handler;
     }
 

@@ -190,7 +190,7 @@ class XoopsGroupHandler extends XoopsObjectHandler
         $limit = $start = 0;
         $db = &$this->db;
         $sql = 'SELECT * FROM '.$db->prefix('groups');
-        if (isset($criteria) && $criteria instanceof \criteriaelement) {
+        if (isset($criteria) && $criteria instanceof \CriteriaElement) {
             $sql .= ' '.$criteria->renderWhere();
             $limit = $criteria->getLimit();
             $start = $criteria->getStart();
@@ -355,7 +355,7 @@ class XoopsMembershipHandler extends XoopsObjectHandler
         $limit = $start = 0;
         $db = &$this->db;
         $sql = 'SELECT * FROM '.$db->prefix('groups_users_link');
-        if (isset($criteria) && $criteria instanceof \criteriaelement) {
+        if (isset($criteria) && $criteria instanceof \CriteriaElement) {
             $sql .= ' '.$criteria->renderWhere();
             $limit = $criteria->getLimit();
             $start = $criteria->getStart();
@@ -387,7 +387,7 @@ class XoopsMembershipHandler extends XoopsObjectHandler
     {
         $db = &$this->db;
         $sql = 'SELECT COUNT(*) FROM '.$db->prefix('groups_users_link');
-        if (isset($criteria) && $criteria instanceof \criteriaelement) {
+        if (isset($criteria) && $criteria instanceof \CriteriaElement) {
             $sql .= ' '.$criteria->renderWhere();
         }
         $result = $db->query($sql);
@@ -407,7 +407,7 @@ class XoopsMembershipHandler extends XoopsObjectHandler
     public function deleteAll($criteria = null)
     {
         $sql = 'DELETE FROM '.$this->db->prefix('groups_users_link');
-        if (isset($criteria) && $criteria instanceof \criteriaelement) {
+        if (isset($criteria) && $criteria instanceof \CriteriaElement) {
             $sql .= ' '.$criteria->renderWhere();
         }
         if (!$result = $this->db->query($sql)) {

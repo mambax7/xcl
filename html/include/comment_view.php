@@ -39,7 +39,7 @@ if (!defined('XOOPS_ROOT_PATH') || !is_object($xoopsModule)) {
 require_once XOOPS_ROOT_PATH.'/include/comment_constants.php';
 
 if (XOOPS_COMMENT_APPROVENONE != $xoopsModuleConfig['com_rule']) {
-    $gperm_handler = & xoops_gethandler('groupperm');
+    $gperm_handler = & xoops_getHandler('groupperm');
     $groups = ($xoopsUser) ? $xoopsUser -> getGroups() : XOOPS_GROUP_ANONYMOUS;
     $xoopsTpl->assign('xoops_iscommentadmin', $gperm_handler->checkRight('system_admin', LEGACY_SYSTEM_COMMENT, $groups));
 
@@ -83,7 +83,7 @@ if (XOOPS_COMMENT_APPROVENONE != $xoopsModuleConfig['com_rule']) {
 
         $com_id = isset($_GET['com_id']) ? (int)$_GET['com_id'] : 0;
         $com_rootid = isset($_GET['com_rootid']) ? (int)$_GET['com_rootid'] : 0;
-        $comment_handler =& xoops_gethandler('comment');
+        $comment_handler =& xoops_getHandler('comment');
         if ('flat' == $com_mode) {
             $comments =& $comment_handler->getByItemId($xoopsModule->getVar('mid'), $com_itemid, $com_dborder);
             include_once XOOPS_ROOT_PATH.'/class/commentrenderer.php';

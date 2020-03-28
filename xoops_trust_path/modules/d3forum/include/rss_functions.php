@@ -2,9 +2,9 @@
 function d3forum_get_rssdata ($mydirname, $limit=0, $offset=0, $forum_id=0, $cat_ids= [], $last_post=false, $_show_hidden_topic=null){
 
 	// Settings
-	$module_handler = xoops_gethandler('module');
+	$module_handler = xoops_getHandler('module');
 	$module = $module_handler->getByDirname($mydirname);
-	$config_handler = xoops_gethandler('config');
+	$config_handler = xoops_getHandler('config');
 	$configs = $config_handler->getConfigList( $module->mid() ) ;
 	if (!empty($configs['rss_show_hidden'])) {
 		if (empty($configs['rss_hidden_title'])) {

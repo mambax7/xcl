@@ -15,7 +15,7 @@ class LegacyRender_BannerclientListAction extends LegacyRender_AbstractListActio
 {
     public function &_getHandler()
     {
-        $handler =& xoops_getmodulehandler('bannerclient');
+        $handler =& xoops_getModuleHandler('bannerclient');
         return $handler;
     }
 

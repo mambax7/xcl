@@ -72,7 +72,7 @@ abstract class Legacy_AbstractClientObjectHandler extends XoopsObjectGenericHand
      */
     protected function _setClientData(/*** XoopsSimpleObject ***/ $obj)
     {
-        $handler = xoops_gethandler('config');
+        $handler = xoops_getHandler('config');
         $conf = $handler->getConfigsByDirname($obj->getDirname());
     
         $ret = true;
@@ -112,7 +112,7 @@ abstract class Legacy_AbstractClientObjectHandler extends XoopsObjectGenericHand
      */
     protected function _deleteClientData(/*** XoopsSimpleObject ***/ $obj)
     {
-        $handler = xoops_gethandler('config');
+        $handler = xoops_getHandler('config');
         $conf = $handler->getConfigsByDirname($obj->getDirname());
     
         $ret = true;

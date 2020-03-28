@@ -20,7 +20,7 @@ class User_UserDeleteAction extends User_AbstractDeleteAction
 
     public function &_getHandler()
     {
-        $handler =& xoops_gethandler('user');
+        $handler =& xoops_getHandler('user');
         return $handler;
     }
 
@@ -44,7 +44,7 @@ class User_UserDeleteAction extends User_AbstractDeleteAction
     public function _doExecute()
     {
         XCube_DelegateUtils::call('Legacy.Admin.Event.UserDelete', new XCube_Ref($this->mObject));
-        $handler =& xoops_gethandler('member');
+        $handler =& xoops_getHandler('member');
         if ($handler->delete($this->mObject)) {
             XCube_DelegateUtils::call('Legacy.Admin.Event.UserDelete.Success', new XCube_Ref($this->mObject));
             return USER_FRAME_VIEW_SUCCESS;

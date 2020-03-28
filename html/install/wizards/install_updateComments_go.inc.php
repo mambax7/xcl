@@ -11,7 +11,7 @@
     include '../mainfile.php';
     include '../class/xoopscomments.php';
     include '../include/comment_constants.php';
-    $module_handler =& xoops_gethandler('module');
+    $module_handler =& xoops_getHandler('module');
     $old_commentd_mods = ['news' => 'comments', 'xoopspoll' => 'xoopspollcomments'];
     $title = _INSTALL_L147;
     $content = '';
@@ -19,7 +19,7 @@
         $moduleobj =& $module_handler->getByDirname($module);
         if (is_object($moduleobj)) {
             $content .= '<h5>'.$moduleobj->getVar('name').'</h5>';
-            $comment_handler =& xoops_gethandler('comment');
+            $comment_handler =& xoops_getHandler('comment');
             $criteria = new CriteriaCompo();
             $criteria->setOrder('DESC');
             $criteria->setSort('com_id');

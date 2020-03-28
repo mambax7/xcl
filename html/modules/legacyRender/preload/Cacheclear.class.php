@@ -24,7 +24,7 @@ class LegacyRender_Cacheclear extends XCube_ActionFilter
     
     public function cacheClear($module)
     {
-        $handler =& xoops_getmodulehandler('tplfile', 'legacyRender');
+        $handler =& xoops_getModuleHandler('tplfile', 'legacyRender');
         
         $criteria =new Criteria('tpl_module', $module->get('dirname'));
         $tplfileArr = $handler->getObjects($criteria);

@@ -42,7 +42,7 @@ class LegacyImageObject extends XoopsSimpleObject
     public function loadImagecategory()
     {
         if (false == $this->_mImageCategoryLoadedFlag) {
-            $handler =& xoops_getmodulehandler('imagecategory', 'legacy');
+            $handler =& xoops_getModuleHandler('imagecategory', 'legacy');
             $this->mImageCategory =& $handler->get($this->get('imgcat_id'));
             $this->_mImageCategoryLoadedFlag = true;
         }
@@ -51,7 +51,7 @@ class LegacyImageObject extends XoopsSimpleObject
     public function loadImagebody()
     {
         if (false == $this->_mImageBodyLoadedFlag) {
-            $handler =& xoops_getmodulehandler('imagebody', 'legacy');
+            $handler =& xoops_getModuleHandler('imagebody', 'legacy');
             $this->mImageBody =& $handler->get($this->get('image_id'));
             $this->_mImageBodyLoadedFlag = true;
         }
@@ -59,7 +59,7 @@ class LegacyImageObject extends XoopsSimpleObject
 
     public function &createImagebody()
     {
-        $handler =& xoops_getmodulehandler('imagebody', 'legacy');
+        $handler =& xoops_getModuleHandler('imagebody', 'legacy');
         $obj =& $handler->create();
         $obj->set('image_id', $this->get('image_id'));
         return $obj;
@@ -77,7 +77,7 @@ class LegacyImageHandler extends XoopsObjectGenericHandler
         if (parent::insert($obj, $force)) {
             if (is_object($obj->mImageBody)) {
                 $obj->mImageBody->set('image_id', $obj->get('image_id'));
-                $handler =& xoops_getmodulehandler('imagebody', 'legacy');
+                $handler =& xoops_getModuleHandler('imagebody', 'legacy');
                 return $handler->insert($obj->mImageBody, $force);
             }
             
@@ -106,7 +106,7 @@ class LegacyImageHandler extends XoopsObjectGenericHandler
             }
             
             if (is_object($obj->mImageBody)) {
-                $handler =& xoops_getmodulehandler('imagebody', 'legacy');
+                $handler =& xoops_getModuleHandler('imagebody', 'legacy');
                 $handler->delete($obj->mImageBody, $force);
             }
             

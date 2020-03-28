@@ -193,7 +193,7 @@ class PicoContent
     public function getData4html($process_body = false)
     {
         $myts         = &PicoTextSanitizer::sGetInstance();
-        $user_handler = &xoops_gethandler('user');
+        $user_handler = &xoops_getHandler('user');
         $mod_config   = $this->categoryObj->getOverriddenModConfig();
         $cat_data     = $this->categoryObj->getData();
 

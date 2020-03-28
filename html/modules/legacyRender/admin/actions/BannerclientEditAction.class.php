@@ -20,7 +20,7 @@ class LegacyRender_BannerclientEditAction extends LegacyRender_AbstractEditActio
 
     public function &_getHandler()
     {
-        $handler =& xoops_getmodulehandler('bannerclient');
+        $handler =& xoops_getModuleHandler('bannerclient');
         return $handler;
     }
 

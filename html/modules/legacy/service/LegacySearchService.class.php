@@ -133,7 +133,7 @@ class Legacy_SearchService extends XCube_Service
             return $ret;
         }
 
-        $handler =& xoops_gethandler('module');
+        $handler =& xoops_getHandler('module');
         
         $criteria = new CriteriaCompo();
         $criteria->add(new Criteria('isactive', 1));
@@ -148,7 +148,7 @@ class Legacy_SearchService extends XCube_Service
 
         $result = $db->query($sql);
 
-        $handler =& xoops_gethandler('groupperm');
+        $handler =& xoops_getHandler('groupperm');
         $groupArr = Legacy_SearchUtils::getUserGroups();
 
         $ret = [];
@@ -215,7 +215,7 @@ class Legacy_SearchService extends XCube_Service
             $timezone = $root->mContext->getXoopsConfig('server_TZ') * 3600;
         }
 
-        $handler =& xoops_gethandler('module');
+        $handler =& xoops_getHandler('module');
         $xoopsModule =& $handler->get($mid);
         if (!is_object($xoopsModule)) {
             return $ret;

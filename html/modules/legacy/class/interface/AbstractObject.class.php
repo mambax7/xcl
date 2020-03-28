@@ -200,7 +200,7 @@ abstract class Legacy_AbstractObject extends XoopsSimpleObject
     **/
     public function loadTag()
     {
-        $chandler = xoops_gethandler('config');
+        $chandler = xoops_getHandler('config');
         $configArr = $chandler->getConfigsByDirname($this->getDirname());
     
         if (false == $this->_mIsTagLoaded && $tagDirname = $configArr['tag_dirname']) {

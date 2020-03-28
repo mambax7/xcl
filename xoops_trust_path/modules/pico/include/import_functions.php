@@ -120,7 +120,7 @@ function pico_import_from_smartsection($mydirname, $import_mid)
 	$import_mid = (int)$import_mid;
 
 	// get name of `contents` table 
-	$module_handler = &xoops_gethandler('module');
+	$module_handler = &xoops_getHandler('module');
 	$module = &$module_handler->get($import_mid);
 	$from_tables = $module->getInfo('tables');
 	if (5 != count($from_tables)) pico_import_errordie();
@@ -170,7 +170,7 @@ function pico_import_from_tinyd($mydirname, $import_mid)
 	$db = XoopsDatabaseFactory::getDatabaseConnection();
 
 	// get name of `contents` table 
-	$module_handler = &xoops_gethandler('module');
+	$module_handler = &xoops_getHandler('module');
 	$module = &$module_handler->get($import_mid);
 	list($from_table_base) = $module->getInfo('tables');
 	if (empty($from_table_base)) pico_import_errordie();
@@ -215,7 +215,7 @@ function pico_import_from_pico($mydirname, $import_mid)
 {
 	$db = XoopsDatabaseFactory::getDatabaseConnection();
 
-	$module_handler = &xoops_gethandler('module');
+	$module_handler = &xoops_getHandler('module');
 	$from_module = &$module_handler->get($import_mid);
 
 	foreach ($GLOBALS['pico_tables'] as $table_name => $columns) {
@@ -233,7 +233,7 @@ function pico_import_a_content_from_pico($mydirname, $import_mid, $content_id)
 {
 	$db = XoopsDatabaseFactory::getDatabaseConnection();
 
-	$module_handler = &xoops_gethandler('module');
+	$module_handler = &xoops_getHandler('module');
 	$from_module = &$module_handler->get($import_mid);
 
 	// contents table

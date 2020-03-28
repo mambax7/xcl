@@ -163,7 +163,7 @@ class Legacy_AdminDashboard extends XCube_ActionFilter
                 if (file_exists($template)) {
                 
                 // Module Handler
-                $moduleHandler =& xoops_gethandler('module');
+                $moduleHandler =& xoops_getHandler('module');
                 $module_total = $moduleHandler->getCount();
                 $active_module_total = $moduleHandler->getCount(new Criteria('isactive', 1));
 

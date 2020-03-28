@@ -30,7 +30,7 @@ class Legacy_ImagecategoryListAction extends Legacy_AbstractListAction
 
     public function &_getHandler()
     {
-        $handler =& xoops_getmodulehandler('imagecategory');
+        $handler =& xoops_getModuleHandler('imagecategory');
         return $handler;
     }
 
@@ -73,7 +73,7 @@ class Legacy_ImagecategoryListAction extends Legacy_AbstractListAction
         $render->setAttribute('fileImgcatTotal', $file_imgcat_total);
         $render->setAttribute('dbImgcatTotal', $imgcat_total - $file_imgcat_total);
         //total of image(s)
-        $image_handler =& xoops_getmodulehandler('image');
+        $image_handler =& xoops_getModuleHandler('image');
         $image_total = $image_handler->getCount();
         $display_image_total = $image_handler->getCount(new Criteria('image_display', 1));
         $render->setAttribute('ImageTotal', $image_total);
@@ -101,7 +101,7 @@ class Legacy_ImagecategoryListAction extends Legacy_AbstractListAction
     public function _processConfirm(&$controller, &$xoopsUser)
     {
         $nameArr = $this->mActionForm->get('name');
-        $imagecategoryHandler =& xoops_getmodulehandler('imagecategory');
+        $imagecategoryHandler =& xoops_getModuleHandler('imagecategory');
         //
         // Do mapping.
         //
@@ -120,7 +120,7 @@ class Legacy_ImagecategoryListAction extends Legacy_AbstractListAction
     public function _processSave(&$controller, &$xoopsUser)
     {
         $nameArr = $this->mActionForm->get('name');
-        $imagecategoryHandler =& xoops_getmodulehandler('imagecategory');
+        $imagecategoryHandler =& xoops_getModuleHandler('imagecategory');
 
         foreach (array_keys($nameArr) as $icid) {
             $imagecategory =& $imagecategoryHandler->get($icid);

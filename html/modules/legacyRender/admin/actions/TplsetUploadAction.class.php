@@ -55,7 +55,7 @@ class LegacyRender_TplsetUploadAction extends LegacyRender_Action
         // TODO We should define the access method because we oftern 
         //      access private member of XCube_FormFile.
         //
-        $tar->openTar($formFile->_mTmpFileName);
+        $tar->openTAR($formFile->_mTmpFileName);
 
         if (!is_array($tar->files)) {
             return LEGACYRENDER_FRAME_VIEW_ERROR;
@@ -82,7 +82,7 @@ class LegacyRender_TplsetUploadAction extends LegacyRender_Action
             return LEGACYRENDER_FRAME_VIEW_ERROR;
         }
         
-        $handler =& xoops_getmodulehandler('tplset');
+        $handler =& xoops_getModuleHandler('tplset');
         if (0 != $handler->getCount(new Criteria('tplset_name', $tplsetName))) {
             $this->_addErrorMessage(XCube_Utils::formatString(_AD_LEGACYRENDER_ERROR_TPLSET_ALREADY_EXISTS, $tplsetName));
             return LEGACYRENDER_FRAME_VIEW_ERROR;
@@ -109,7 +109,7 @@ class LegacyRender_TplsetUploadAction extends LegacyRender_Action
     
     public function _fetchTemplateFiles($tar, $tplset, &$themeimages)
     {
-        $handler =& xoops_getmodulehandler('tplfile');
+        $handler =& xoops_getModuleHandler('tplfile');
         foreach ($tar->files as $id => $info) {
             $infoArr = explode('/', str_replace("\\", '/', $info['name']));
             if (isset($infoArr[3]) && 'blocks' == trim($infoArr[3])) {
@@ -144,7 +144,7 @@ class LegacyRender_TplsetUploadAction extends LegacyRender_Action
             return true;
         }
         
-        $handler =& xoops_gethandler('imageset');
+        $handler =& xoops_getHandler('imageset');
         $imgset =& $handler->create();
         $imgset->set('imgset_name', $tplset->get('tplset_name'));
         $imgset->set('imgset_refid', 0);
@@ -159,7 +159,7 @@ class LegacyRender_TplsetUploadAction extends LegacyRender_Action
             return false;
         }
         
-        $handler =& xoops_gethandler('imagesetimg');
+        $handler =& xoops_getHandler('imagesetimg');
         for ($i = 0; $i < count($themeimages); $i++) {
             if (isset($themeimages[$i]['name']) && '' != $themeimages[$i]['name']) {
                 $image =& $handler->create();

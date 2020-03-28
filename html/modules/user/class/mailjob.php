@@ -61,7 +61,7 @@ class UserMailjobObject extends XoopsSimpleObject
     public function loadUserCount()
     {
         if (!$this->_mUserCountLoadedFlag) {
-            $handler = &xoops_getmodulehandler('mailjob_link', 'user');
+            $handler = &xoops_getModuleHandler('mailjob_link', 'user');
             $this->mUserCount = $handler->getCount(new Criteria('mailjob_id', $this->get('mailjob_id')));
             $this->_mUserCountLoadedFlag = true;
         }
@@ -73,7 +73,7 @@ class UserMailjobObject extends XoopsSimpleObject
     public function loadUser()
     {
         if (!$this->_mUsersLoadedFlag) {
-            $handler = &xoops_getmodulehandler('mailjob_link', 'user');
+            $handler = &xoops_getModuleHandler('mailjob_link', 'user');
             $this->mUsers = &$handler->getObjects(new Criteria('mailjob_id', $this->get('mailjob_id')));
             $this->_mUsersLoadedFlag = true;
         }
@@ -86,7 +86,7 @@ class UserMailjobObject extends XoopsSimpleObject
      */
     public function &getUsers($retry)
     {
-        $handler = &xoops_getmodulehandler('mailjob_link', 'user');
+        $handler = &xoops_getModuleHandler('mailjob_link', 'user');
 
         $criteria = new CriteriaCompo();
         $criteria->add(new Criteria('mailjob_id', $this->get('mailjob_id')));
@@ -112,9 +112,9 @@ class UserMailjobObject extends XoopsSimpleObject
         $root = &XCube_Root::getSingleton();
 
         $userArr = &$this->getUsers($this->getCurrentRetry());
-        $handler = &xoops_getmodulehandler('mailjob_link', 'user');
+        $handler = &xoops_getModuleHandler('mailjob_link', 'user');
 
-        $userHandler = &xoops_gethandler('user');
+        $userHandler = &xoops_getHandler('user');
 
         foreach (array_keys($userArr) as $key) {
             $to_user = &$userHandler->get($userArr[$key]->get('uid'));
@@ -159,7 +159,7 @@ class UserMailjobObject extends XoopsSimpleObject
 
     public function getCurrentRetry()
     {
-        $handler = &xoops_getmodulehandler('mailjob_link', 'user');
+        $handler = &xoops_getModuleHandler('mailjob_link', 'user');
         return $handler->getCurrentRetry($this->get('mailjob_id'));
     }
 }

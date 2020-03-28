@@ -44,7 +44,7 @@ class User_AvatarSelectForm extends XCube_ActionForm
         //
         // Check whether specified avatar_id exists. 
         //
-        $handler =& xoops_getmodulehandler('avatar', 'user');
+        $handler =& xoops_getModuleHandler('avatar', 'user');
         $obj =& $handler->get($this->mSelectedId);
         
         if (!is_object($obj)) {
@@ -59,7 +59,7 @@ class User_AvatarSelectForm extends XCube_ActionForm
     
     public function update($obj)
     {
-        $handler =& xoops_getmodulehandler('avatar', 'user');
+        $handler =& xoops_getModuleHandler('avatar', 'user');
         
         if (0 == $this->mSelectedId) {
             $obj->set('user_avatar', 'blank.gif');

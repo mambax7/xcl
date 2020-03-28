@@ -24,7 +24,7 @@ class Legacy_CustomBlockDeleteAction extends Legacy_AbstractDeleteAction
 
     public function &_getHandler()
     {
-        $handler =& xoops_getmodulehandler('newblocks');
+        $handler =& xoops_getModuleHandler('newblocks');
         return $handler;
     }
 

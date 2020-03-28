@@ -32,7 +32,7 @@ class Legacy_ImageListAction extends Legacy_AbstractListAction
     
     public function &_getHandler()
     {
-        $handler =& xoops_getmodulehandler('image', 'legacy');
+        $handler =& xoops_getModuleHandler('image', 'legacy');
         return $handler;
     }
 
@@ -52,7 +52,7 @@ class Legacy_ImageListAction extends Legacy_AbstractListAction
         $result = parent::getDefaultView($controller, $xoopsUser);
         if (LEGACY_FRAME_VIEW_INDEX == $result) {
             $this->mImgcatId = xoops_getrequest('imgcat_id');
-            $handler =& xoops_getmodulehandler('imagecategory', 'legacy');
+            $handler =& xoops_getModuleHandler('imagecategory', 'legacy');
             $this->mCategory =& $handler->get($this->mImgcatId);
         }
         
@@ -72,7 +72,7 @@ class Legacy_ImageListAction extends Legacy_AbstractListAction
         
         $render->setAttribute('imgcatId', $this->mImgcatId);
         
-        $handler =& xoops_getmodulehandler('imagecategory', 'legacy');
+        $handler =& xoops_getModuleHandler('imagecategory', 'legacy');
         
         if (is_object($xoopsUser)) {
             $groups = $xoopsUser->getGroups();

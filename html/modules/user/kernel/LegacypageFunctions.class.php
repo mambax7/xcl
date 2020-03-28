@@ -229,7 +229,7 @@ class User_LegacypageFunctions
         $root = XCube_Root::getSingleton();
         $root->mLanguageManager->loadModuleMessageCatalog('user');
 
-        $userHandler = xoops_getmodulehandler('users', 'user');
+        $userHandler = xoops_getModuleHandler('users', 'user');
         
         $criteria = new CriteriaCompo();
         $criteria->add(new Criteria('uname', xoops_getrequest('uname')));
@@ -249,7 +249,7 @@ class User_LegacypageFunctions
             return;
         }
         
-        $handler =& xoops_gethandler('user');
+        $handler =& xoops_getHandler('user');
         $user =& $handler->get($userArr[0]->get('uid'));
         
         if (is_callable([$user, 'getNumGroups'])) { // Compatible for replaced handler.
@@ -288,7 +288,7 @@ class User_LegacypageFunctions
     public static function checkLoginSuccess(&$xoopsUser)
     {
         if (is_object($xoopsUser)) {
-            $handler = xoops_gethandler('user');
+            $handler = xoops_getHandler('user');
             $xoopsUser->set('last_login', time());
             
             $handler->insert($xoopsUser);
@@ -317,7 +317,7 @@ class User_LegacypageFunctions
 
         // clear entry from online users table
         if (is_object($xoopsUser)) {
-            $onlineHandler =& xoops_gethandler('online');
+            $onlineHandler =& xoops_getHandler('online');
             $onlineHandler->destroy($xoopsUser->get('uid'));
         }
         

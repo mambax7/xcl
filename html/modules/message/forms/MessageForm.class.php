@@ -59,7 +59,7 @@ class MessageForm extends XCube_ActionForm
     {
         if ('' != $this->get('uname')) {
             $uname = mb_strcut($this->get('uname'), 0, 30);
-            $userhand = xoops_gethandler('user');
+            $userhand = xoops_getHandler('user');
             $criteria = new CriteriaCompo(new Criteria('uname', $uname));
             $uobj = $userhand->getObjects($criteria);
             if (isset($uobj) && is_array($uobj) && 1 == count($uobj)) {
@@ -99,7 +99,7 @@ class MessageForm extends XCube_ActionForm
             $title = 'Re: '.$title;
         }
     
-        $userhand = xoops_gethandler('user');
+        $userhand = xoops_getHandler('user');
         $uobj = $userhand->get($obj->get('from_uid'));
         if (is_object($uobj)) {
             $this->set('uname', $uobj->get('uname'));

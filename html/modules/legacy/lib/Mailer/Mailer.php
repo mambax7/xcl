@@ -32,7 +32,7 @@ class Legacy_Mailer extends PHPMailer
     {
         $root =& XCube_Root::getSingleton();
         
-        $handler =& xoops_gethandler('config');
+        $handler =& xoops_getHandler('config');
         $xoopsMailerConfig =& $handler->getConfigsByCat(XOOPS_CONF_MAILER);
         $this->reset();
         
@@ -50,7 +50,7 @@ class Legacy_Mailer extends PHPMailer
         
         switch ($xoopsMailerConfig['mailmethod']) {
             case 'smtpauth':
-                $this->IsSMTP();
+                $this->isSMTP();
                 $this->SMTPAuth = true;
                 $this->Host = implode(';', $xoopsMailerConfig['smtphost']);
                 $this->Username = $xoopsMailerConfig['smtpuser'];
@@ -58,13 +58,13 @@ class Legacy_Mailer extends PHPMailer
                 break;
                 
             case 'smtp':
-                $this->IsSMTP();
+                $this->isSMTP();
                 $this->SMTPAuth = false;
                 $this->Host = implode(';', $xoopsMailerConfig['smtphost']);
                 break;
                 
             case 'sendmail':
-                $this->IsSendmail();
+                $this->isSendmail();
                 $this->Sendmail = $xoopsMailerConfig['sendmailpath'];
                 break;
         }
@@ -94,12 +94,12 @@ class Legacy_Mailer extends PHPMailer
     
     public function setTo($add, $name)
     {
-        $this->AddAddress($add, $this->convertLocal($name, true));
+        $this->addAddress($add, $this->convertLocal($name, true));
     }
     
     public function reset()
     {
-        $this->ClearAllRecipients();
+        $this->clearAllRecipients();
         $this->Body = '';
         $this->Subject = '';
     }

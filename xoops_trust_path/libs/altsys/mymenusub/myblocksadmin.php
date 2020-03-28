@@ -12,7 +12,7 @@ if ('__CustomBlocks__' == $current_dirname) {
     return ;
 }
 
-    $module_handler4menu =& xoops_gethandler('module');
+    $module_handler4menu =& xoops_getHandler('module');
     $criteria4menu = new CriteriaCompo(new Criteria('isactive', 1));
     //$criteria4menu->add(new Criteria('hasmain', 1));
     $criteria4menu->add(new Criteria('mid', '1', '>'));

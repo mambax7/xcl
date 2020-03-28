@@ -22,7 +22,7 @@ class viewAction extends AbstractAction
         }
     
         $boxid = (int)$this->root->mContext->mRequest->getRequest($this->inout);
-        $modHand = xoops_getmodulehandler($this->inout);
+        $modHand = xoops_getModuleHandler($this->inout);
         $modObj = $modHand->get($boxid);
         if (!is_object($modObj)) {
             $this->setErr(_MD_MESSAGE_ACTIONMSG1);

@@ -20,7 +20,7 @@ class User_UserActivateAction extends User_AbstractEditAction
     
     public function &_getHandler()
     {
-        $handler =& xoops_getmodulehandler('users', 'user');
+        $handler =& xoops_getModuleHandler('users', 'user');
         return $handler;
     }
     

@@ -32,7 +32,7 @@
 
 if (!defined('XOOPS_LISTS_INCLUDED')) {
     define('XOOPS_LISTS_INCLUDED', 1);
-    class xoopslists
+    class XoopsLists
     {
         public static function getTimeZoneList()
         {

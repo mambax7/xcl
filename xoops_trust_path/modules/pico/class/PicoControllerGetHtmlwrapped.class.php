@@ -75,7 +75,7 @@ class PicoControllerGetHtmlwrapped extends PicoControllerAbstract
         // breadcrumbs
         $breadcrumbsObj = &AltsysBreadcrumbs::getInstance();
         $breadcrumbsObj->appendPath('', $this->assign['content']['subject']);
-        $this->assign['xoops_breadcrumbs'] = $breadcrumbsObj->getXoopsbreadcrumbs();
+        $this->assign['xoops_breadcrumbs'] = $breadcrumbsObj->getXoopsBreadcrumbs();
         $this->assign['xoops_pagetitle']   = $this->assign['content']['subject'];
 
         // views

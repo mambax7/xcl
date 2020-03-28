@@ -49,7 +49,7 @@ class Legacy_CustomBlockEditAction extends Legacy_BlockEditAction
         //
         // Build active modules list and set.
         //
-        $handler =& xoops_gethandler('module');
+        $handler =& xoops_getHandler('module');
         $moduleArr[0] =& $handler->create();
         $moduleArr[0]->set('mid', -1);
         $moduleArr[0]->set('name', _AD_LEGACY_LANG_TOPPAGE);
@@ -66,25 +66,25 @@ class Legacy_CustomBlockEditAction extends Legacy_BlockEditAction
         $moduleArr = array_merge($moduleArr, $t_Arr);
         $render->setAttribute('moduleArr', $moduleArr);
         
-        $handler =& xoops_getmodulehandler('columnside');
+        $handler =& xoops_getModuleHandler('columnside');
         $columnSideArr =& $handler->getObjects();
         $render->setAttribute('columnSideArr', $columnSideArr);
 
-        $handler =& xoops_gethandler('group');
+        $handler =& xoops_getHandler('group');
         $groupArr =& $handler->getObjects();
         $render->setAttribute('groupArr', $groupArr);
         
         //
         // Build cachetime list and set.
         //
-        $handler =& xoops_gethandler('cachetime');
+        $handler =& xoops_getHandler('cachetime');
         $cachetimeArr =& $handler->getObjects();
         $render->setAttribute('cachetimeArr', $cachetimeArr);
 
         //
         // Build ctype list and set.
         //
-        $handler =& xoops_getmodulehandler('blockctype');
+        $handler =& xoops_getModuleHandler('blockctype');
         $ctypeArr =& $handler->getObjects();
         $render->setAttribute('ctypeArr', $ctypeArr);
     }

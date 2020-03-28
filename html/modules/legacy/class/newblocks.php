@@ -65,7 +65,7 @@ class LegacyNewblocksObject extends XoopsSimpleObject
     
     public function loadModule()
     {
-        $handler =& xoops_gethandler('module');
+        $handler =& xoops_getHandler('module');
         $this->mModule =& $handler->get($this->get('mid'));
     }
 
@@ -76,7 +76,7 @@ class LegacyNewblocksObject extends XoopsSimpleObject
      */
     public function loadGroup()
     {
-        $handler =& xoops_gethandler('groupperm');
+        $handler =& xoops_getHandler('groupperm');
         $criteria =new CriteriaCompo();
         $criteria->add(new Criteria('gperm_modid', 1));
         $criteria->add(new Criteria('gperm_itemid', $this->get('bid')));
@@ -84,7 +84,7 @@ class LegacyNewblocksObject extends XoopsSimpleObject
         
         $gpermArr =&  $handler->getObjects($criteria);
         
-        $handler =& xoops_gethandler('group');
+        $handler =& xoops_getHandler('group');
         foreach ($gpermArr as $gperm) {
             $this->mGroup[] =& $handler->get($gperm->get('gperm_groupid'));
         }
@@ -92,7 +92,7 @@ class LegacyNewblocksObject extends XoopsSimpleObject
     
     public function loadBmodule()
     {
-        $handler =& xoops_getmodulehandler('block_module_link', 'legacy');
+        $handler =& xoops_getModuleHandler('block_module_link', 'legacy');
         $criteria =new Criteria('block_id', $this->get('bid'));
         
         $this->mBmodule =& $handler->getObjects($criteria);
@@ -100,13 +100,13 @@ class LegacyNewblocksObject extends XoopsSimpleObject
     
     public function loadColumn()
     {
-        $handler =& xoops_getmodulehandler('columnside', 'legacy');
+        $handler =& xoops_getModuleHandler('columnside', 'legacy');
         $this->mColumn =& $handler->get($this->get('side'));
     }
     
     public function loadCachetime()
     {
-        $handler =& xoops_gethandler('cachetime');
+        $handler =& xoops_getHandler('cachetime');
         $this->mCachetime =& $handler->get($this->get('bcachetime'));
     }
 }
@@ -123,13 +123,13 @@ class LegacyNewblocksHandler extends XoopsObjectGenericHandler
             //
             // Delete related data from block_module_link.
             //
-            $handler =& xoops_getmodulehandler('block_module_link', 'legacy');
+            $handler =& xoops_getModuleHandler('block_module_link', 'legacy');
             $handler->deleteAll(new Criteria('block_id'), $obj->get('bid'));
             
             //
             // Delete related permissions from groupperm.
             //
-            $handler =& xoops_gethandler('groupperm');
+            $handler =& xoops_getHandler('groupperm');
 
             $criteria =new CriteriaCompo();
             $criteria->add(new Criteria('gperm_modid', 1));

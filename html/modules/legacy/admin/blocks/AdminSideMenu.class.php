@@ -80,8 +80,8 @@ class Legacy_AdminSideMenu extends Legacy_AbstractBlockProcedure
         
         if ('legacy' == $this->mCurrentModule->get('dirname')) {
             if ('help' == xoops_getrequest('action')) {
-                $moduleHandler =& xoops_gethandler('module');
-                $t_module =& $moduleHandler->getByDirname(xoops_gethandler('legacy'));
+                $moduleHandler =& xoops_getHandler('module');
+                $t_module =& $moduleHandler->getByDirname(xoops_getHandler('legacy'));
                 if (is_object($t_module)) {
                     $this->mCurrentModule =& $t_module;
                 }
@@ -108,7 +108,7 @@ class Legacy_AdminSideMenu extends Legacy_AbstractBlockProcedure
 
         $result=$db->query($sql);
         
-        $handler =& xoops_gethandler('module');
+        $handler =& xoops_getHandler('module');
         
         while (list($weight, $mid) = $db->fetchRow($result)) {
             $xoopsModule = & $handler->get($mid);

@@ -56,10 +56,10 @@ class Message_Block extends Legacy_BlockProcedure
             $render->setAttribute('UserSearch', true);
         }
     
-        $modHand = xoops_getmodulehandler('inbox', 'message');
+        $modHand = xoops_getModuleHandler('inbox', 'message');
         $render->setAttribute('incount', $modHand->getInboxCount($uid));
     
-        $modHand = xoops_getmodulehandler('outbox', 'message');
+        $modHand = xoops_getModuleHandler('outbox', 'message');
         $render->setAttribute('outcount', $modHand->getOutboxCount($uid));
         $render->setAttribute('message_url', XOOPS_URL.'/modules/message/index.php');
         $renderSystem = $root->getRenderSystem($this->getRenderSystemName());

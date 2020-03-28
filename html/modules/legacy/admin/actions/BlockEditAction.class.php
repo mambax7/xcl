@@ -31,7 +31,7 @@ class Legacy_BlockEditAction extends Legacy_AbstractEditAction
     {
         parent::prepare($controller, $xoopsUser);
         if (is_object($this->mObject)) {
-            $handler =& xoops_gethandler('module');
+            $handler =& xoops_getHandler('module');
             $module =& $handler->get($this->mObject->get('mid'));
             if (is_object($module)) {
                 $controller->mRoot->mLanguageManager->loadModinfoMessageCatalog($module->get('dirname'));
@@ -47,7 +47,7 @@ class Legacy_BlockEditAction extends Legacy_AbstractEditAction
     
     public function &_getHandler()
     {
-        $handler =& xoops_getmodulehandler('newblocks');
+        $handler =& xoops_getModuleHandler('newblocks');
         return $handler;
     }
 
@@ -96,7 +96,7 @@ class Legacy_BlockEditAction extends Legacy_AbstractEditAction
             //
             // Reset block_module_link.
             //
-            $handler =& xoops_getmodulehandler('block_module_link', 'legacy');
+            $handler =& xoops_getModuleHandler('block_module_link', 'legacy');
             $handler->deleteAll(new Criteria('block_id', $this->mObject->get('bid')));
             foreach ($this->mObject->mBmodule as $bmodule) {
                 //
@@ -114,7 +114,7 @@ class Legacy_BlockEditAction extends Legacy_AbstractEditAction
                 $currentGroupid[] = $group->get('groupid');
             }
             
-            $permHandler =& xoops_gethandler('groupperm');
+            $permHandler =& xoops_getHandler('groupperm');
             $criteria =new CriteriaCompo();
             $criteria->add(new Criteria('gperm_modid', 1));
             $criteria->add(new Criteria('gperm_itemid', $this->mObject->get('bid')));
@@ -165,7 +165,7 @@ class Legacy_BlockEditAction extends Legacy_AbstractEditAction
         //
         // Build active modules list and set.
         //
-        $handler =& xoops_gethandler('module');
+        $handler =& xoops_getHandler('module');
         $moduleArr[0] =& $handler->create();
         $moduleArr[0]->set('mid', -1);
         $moduleArr[0]->set('name', _AD_LEGACY_LANG_TOPPAGE);
@@ -182,18 +182,18 @@ class Legacy_BlockEditAction extends Legacy_AbstractEditAction
         $moduleArr = array_merge($moduleArr, $t_Arr);
         $render->setAttribute('moduleArr', $moduleArr);
         
-        $handler =& xoops_getmodulehandler('columnside');
+        $handler =& xoops_getModuleHandler('columnside');
         $columnSideArr =& $handler->getObjects();
         $render->setAttribute('columnSideArr', $columnSideArr);
 
-        $handler =& xoops_gethandler('group');
+        $handler =& xoops_getHandler('group');
         $groupArr =& $handler->getObjects();
         $render->setAttribute('groupArr', $groupArr);
         
         //
         // Build cachetime list and set.
         //
-        $handler =& xoops_gethandler('cachetime');
+        $handler =& xoops_getHandler('cachetime');
         $cachetimeArr =& $handler->getObjects();
         $render->setAttribute('cachetimeArr', $cachetimeArr);
 

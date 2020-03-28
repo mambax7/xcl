@@ -34,7 +34,7 @@ class Legacy_ModuleInfoAction extends Legacy_Action
             return LEGACY_FRAME_VIEW_ERROR;
         }
 
-        $moduleHandler =& xoops_gethandler('module');
+        $moduleHandler =& xoops_getHandler('module');
         $this->mModuleObject =& $moduleHandler->getByDirname($dirname);
 
         //

@@ -24,7 +24,7 @@ class Legacy_SmilesDeleteAction extends Legacy_AbstractDeleteAction
 
     public function &_getHandler()
     {
-        $handler =& xoops_getmodulehandler('smiles');
+        $handler =& xoops_getModuleHandler('smiles');
         return $handler;
     }
 

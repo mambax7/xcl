@@ -206,7 +206,7 @@ class XoopsImageHandler extends XoopsObjectHandler
         } else {
             $sql = 'SELECT * FROM '.$this->db->prefix('image');
         }
-        if (isset($criteria) && $criteria instanceof \criteriaelement) {
+        if (isset($criteria) && $criteria instanceof \CriteriaElement) {
             $sql .= ' '.$criteria->renderWhere();
             $sort = !in_array($criteria->getSort(), ['image_id', 'image_created', 'image_mimetype', 'image_display', 'image_weight']) ? 'image_weight' : $criteria->getSort();
             $sql .= ' ORDER BY '.$sort.' '.$criteria->getOrder();
@@ -239,7 +239,7 @@ class XoopsImageHandler extends XoopsObjectHandler
     public function getCount($criteria = null)
     {
         $sql = 'SELECT COUNT(*) FROM '.$this->db->prefix('image');
-        if (isset($criteria) && $criteria instanceof \criteriaelement) {
+        if (isset($criteria) && $criteria instanceof \CriteriaElement) {
             $sql .= ' '.$criteria->renderWhere();
         }
         if (!$result =& $this->db->query($sql)) {

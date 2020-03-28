@@ -873,7 +873,7 @@ EOD;
 		}
 
 		$member_handler = xoops_getHandler('member');
-		$myts = method_exists('MyTextsanitizer', 'sGetInstance')? MyTextsanitizer::sGetInstance() : MyTextsanitizer::getInstance();
+		$myts = method_exists('MyTextSanitizer', 'sGetInstance')? MyTextSanitizer::sGetInstance() : MyTextSanitizer::getInstance();
 		$user = $member_handler->loginUser(addslashes($myts->stripSlashesGPC($uname)), addslashes($myts->stripSlashesGPC($pass)));
 		if ($user) {
 			// check site current status

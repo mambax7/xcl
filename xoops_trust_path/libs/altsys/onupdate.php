@@ -42,7 +42,7 @@ if (! function_exists('altsys_onupdate_base')) {
 
 
     // TEMPLATES (all templates have been already removed by modulesadmin)
-    $tplfile_handler =& xoops_gethandler('tplfile') ;
+    $tplfile_handler =& xoops_getHandler('tplfile') ;
         $tpl_path = __DIR__ . '/templates' ;
         if ($handler = @opendir($tpl_path . '/')) {
             while (false !== ($file = readdir($handler))) {

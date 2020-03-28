@@ -33,11 +33,11 @@ function b_altsys_admin_menu_show($options)
     $db =& XoopsDatabaseFactory::getDatabaseConnection();
     (method_exists('MyTextSanitizer', 'sGetInstance') and $myts =& MyTextSanitizer::sGetInstance()) || $myts =& MyTextSanitizer::getInstance();
 
-    $module_handler =& xoops_gethandler('module');
+    $module_handler =& xoops_getHandler('module');
     $current_module =& $module_handler->getByDirname($mydirname);
-    $config_handler =& xoops_gethandler('config');
+    $config_handler =& xoops_getHandler('config');
     $current_configs = $config_handler->getConfigList($current_module->mid()) ;
-    $moduleperm_handler =& xoops_gethandler('groupperm');
+    $moduleperm_handler =& xoops_getHandler('groupperm');
     $admin_mids = $moduleperm_handler->getItemIds('module_admin', $xoopsUser->getGroups());
     $modules = $module_handler->getObjects(new Criteria('mid', '('.implode(',', $admin_mids) . ')', 'IN'), true) ;
 
@@ -72,7 +72,7 @@ function b_altsys_admin_menu_show($options)
 
         // for modules overriding Module.class.php (eg. Analyzer for XC)
         if (empty($submenus4assign) && defined('XOOPS_CUBE_LEGACY') && ! empty($modinfo['cube_style'])) {
-            $module_handler =& xoops_gethandler('module');
+            $module_handler =& xoops_getHandler('module');
             $module =& $module_handler->get($mid);
             $moduleObj =& Legacy_Utils::createModule($module);
             $modinfo['adminindex'] = $moduleObj->getAdminIndex() ;

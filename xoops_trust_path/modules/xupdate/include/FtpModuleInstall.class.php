@@ -136,7 +136,7 @@ class Xupdate_FtpModuleInstall extends Xupdate_FtpCommonZipArchive
                             
                             // do close site
                             if (isset($_POST['do_closesite']) || ! $this->mRoot->mContext->getXoopsConfig('closesite')) {
-                                $cHandler =& xoops_gethandler('config');
+                                $cHandler =& xoops_getHandler('config');
                                 $_criteria = new CriteriaCompo();
                                 $_criteria->add(new Criteria('conf_modid', 0));
                                 $_criteria->add(new Criteria('conf_catid', 1));

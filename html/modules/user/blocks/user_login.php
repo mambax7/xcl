@@ -5,7 +5,7 @@ function b_user_login_show()
     
     if (!$xoopsUser) {
         $block = [];
-        $config_handler =& xoops_gethandler('config');
+        $config_handler =& xoops_getHandler('config');
         $moduleConfig =& $config_handler->getConfigsByDirname('user');
         
         if (isset($_COOKIE[$moduleConfig['usercookie']])) {

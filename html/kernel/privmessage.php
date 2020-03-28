@@ -66,7 +66,7 @@ class XoopsPrivmessage extends XoopsObject
     
     public function &getFromUser()
     {
-        $userHandler=xoops_gethandler('user');
+        $userHandler=xoops_getHandler('user');
         $user=&$userHandler->get($this->getVar('from_userid'));
         return $user;
     }
@@ -197,7 +197,7 @@ class XoopsPrivmessageHandler extends XoopsObjectHandler
         $ret = [];
         $limit = $start = 0;
         $sql = 'SELECT * FROM '.$this->db->prefix('priv_msgs');
-        if (isset($criteria) && $criteria instanceof \criteriaelement) {
+        if (isset($criteria) && $criteria instanceof \CriteriaElement) {
             $sql .= ' '.$criteria->renderWhere();
             $sort = !in_array($criteria->getSort(), ['msg_id', 'msg_time', 'from_userid']) ? 'msg_id' : $criteria->getSort();
             $sql .= ' ORDER BY '.$sort.' '.$criteria->getOrder();
@@ -260,7 +260,7 @@ class XoopsPrivmessageHandler extends XoopsObjectHandler
     public function getCount($criteria = null)
     {
         $sql = 'SELECT COUNT(*) FROM '.$this->db->prefix('priv_msgs');
-        if (isset($criteria) && $criteria instanceof \criteriaelement) {
+        if (isset($criteria) && $criteria instanceof \CriteriaElement) {
             $sql .= ' '.$criteria->renderWhere();
         }
         if (!$result = $this->db->query($sql)) {

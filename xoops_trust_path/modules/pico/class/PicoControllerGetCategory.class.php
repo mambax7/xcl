@@ -61,7 +61,7 @@ class PicoControllerGetCategory extends PicoControllerAbstract
         }
 
         $breadcrumbsObj                    = &AltsysBreadcrumbs::getInstance();
-        $this->assign['xoops_breadcrumbs'] = $breadcrumbsObj->getXoopsbreadcrumbs();
+        $this->assign['xoops_breadcrumbs'] = $breadcrumbsObj->getXoopsBreadcrumbs();
         $this->assign['xoops_pagetitle']   = $this->assign['category']['title'];
 
         // views (no views other than 'listcontents')

@@ -26,7 +26,7 @@ class User_UserListAction extends User_AbstractListAction
 
     public function &_getHandler()
     {
-        $handler =& xoops_getmodulehandler('users');
+        $handler =& xoops_getModuleHandler('users');
         return $handler;
     }
 
@@ -91,7 +91,7 @@ class User_UserListAction extends User_AbstractListAction
     public function _processConfirm(&$controller, &$xoopsUser)
     {
         $levelArr = $this->mActionForm->get('level');
-        $userHandler =& xoops_getmodulehandler('users');
+        $userHandler =& xoops_getModuleHandler('users');
         //
         // Do mapping.
         //
@@ -109,7 +109,7 @@ class User_UserListAction extends User_AbstractListAction
     public function _processSave(&$controller, &$xoopsUser)
     {
         $levelArr = $this->mActionForm->get('level');
-        $userHandler =& xoops_gethandler('user');
+        $userHandler =& xoops_getHandler('user');
 
         foreach (array_keys($levelArr) as $uid) {
             if (1 != $uid) {
@@ -135,7 +135,7 @@ class User_UserListAction extends User_AbstractListAction
                         $user =& $userHandler->get($uid);
                         if (is_object($user)) {
                             XCube_DelegateUtils::call('Legacy.Admin.Event.UserDelete', new XCube_Ref($user));
-                            $memberhandler =& xoops_gethandler('member');
+                            $memberhandler =& xoops_getHandler('member');
                             if ($memberhandler->delete($user)) {
                                 XCube_DelegateUtils::call('Legacy.Admin.Event.UserDelete.Success', new XCube_Ref($user));
                             } else {

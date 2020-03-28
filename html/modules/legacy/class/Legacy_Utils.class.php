@@ -27,7 +27,7 @@ class Legacy_Utils
         $root=&XCube_Root::getSingleton();
         $systemModules = array_map('trim', explode(',', $root->getSiteConfig('Cube', 'SystemModules')));
         $recommendedModules = array_map('trim', explode(',', $root->getSiteConfig('Cube', 'RecommendedModules')));
-        $moduleHandler =& xoops_gethandler('module');
+        $moduleHandler =& xoops_getHandler('module');
         $uninstalledModules = [];
         $disabledModules = [];
         foreach ($systemModules as $systemModule) {
@@ -198,7 +198,7 @@ class Legacy_Utils
         $name = null;
         XCube_DelegateUtils::call('Legacy_User.GetUserName', new XCube_Ref($name), $uid);
         if (! $name) {
-            $handler =& xoops_gethandler('member');
+            $handler =& xoops_getHandler('member');
             $user =& $handler->getUser((int)$uid);
             if ($user) {
                 $name = $user->getShow('uname');
@@ -222,7 +222,7 @@ class Legacy_Utils
         $cri->add(new Criteria('trust_dirname', $trustDirname));
         $cri->addSort('weight', 'ASC');
         $cri->addSort('mid', 'ASC');
-        foreach (xoops_gethandler('module')->getObjects($cri) as $module) {
+        foreach (xoops_getHandler('module')->getObjects($cri) as $module) {
             $list[] = $module->get('dirname');
         }
         return $list;
@@ -237,7 +237,7 @@ class Legacy_Utils
     **/
     public static function getTrustDirnameByDirname(/*** string ***/ $dirname)
     {
-        $handler =& xoops_gethandler('module');
+        $handler =& xoops_getHandler('module');
         $module =& $handler->getByDirname($dirname);
         if ($module) {
             return $module->get('trust_dirname') ?: null;
@@ -255,7 +255,7 @@ class Legacy_Utils
     **/
     public static function formatPagetitle(/*** string ***/ $modulename, /*** string ***/ $pagetitle, /*** string ***/ $action)
     {
-        $handler = xoops_gethandler('config');
+        $handler = xoops_getHandler('config');
         $configArr = $handler->getConfigsByDirname('legacyRender');
     
         $replace = [$modulename, $pagetitle, $action];
@@ -289,7 +289,7 @@ class Legacy_Utils
             $instance = new $className($root->mController->getDB(), $dirname);
             return $instance;
         } else {
-            return xoops_getmodulehandler($name, $dirname);
+            return xoops_getModuleHandler($name, $dirname);
         }
     }
 
@@ -362,7 +362,7 @@ class Legacy_Utils
         $cri->add(new Criteria('role', $role));
         $cri->addSort('weight', 'ASC');
         $cri->addSort('mid', 'ASC');
-        foreach (xoops_gethandler('module')->getObjects($cri) as $module) {
+        foreach (xoops_getHandler('module')->getObjects($cri) as $module) {
             $list[] = $module->get('dirname');
         }
         return $list;

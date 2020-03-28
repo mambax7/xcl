@@ -39,9 +39,9 @@ function b_pico_menu_show($options)
 	}
 
 	// module config (not overridden yet)
-	$module_handler = &xoops_gethandler('module');
+	$module_handler = &xoops_getHandler('module');
 	$module = &$module_handler->getByDirname($mydirname);
-	$config_handler = &xoops_gethandler('config');
+	$config_handler = &xoops_getHandler('config');
 	$configs = $config_handler->getConfigList($module->mid());
 
 	// constpref

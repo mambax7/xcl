@@ -76,13 +76,13 @@ class Legacy_ModuleInstaller
      */
     public function _installModule()
     {
-        $moduleHandler =& xoops_gethandler('module');
+        $moduleHandler =& xoops_getHandler('module');
         if (!$moduleHandler->insert($this->_mXoopsModule)) {
             $this->mLog->addError('*Could not install module information*');
             return false;
         }
         
-        $gpermHandler =& xoops_gethandler('groupperm');
+        $gpermHandler =& xoops_getHandler('groupperm');
 
         //
         // Add a permission which administrators can manage.
@@ -127,7 +127,7 @@ class Legacy_ModuleInstaller
         if ($this->_mXoopsModule->getInfo('hasMain')) {
             $read_any = $this->_mXoopsModule->getInfo('read_any');
             if ($read_any) {
-                $memberHandler =& xoops_gethandler('member');
+                $memberHandler =& xoops_getHandler('member');
                 $groupObjects =& $memberHandler->getGroups();
                 //
                 // Add a permission all group members and guest can read.
@@ -167,7 +167,7 @@ class Legacy_ModuleInstaller
      */
     public function &_createPermission($group)
     {
-        $gpermHandler =& xoops_gethandler('groupperm');
+        $gpermHandler =& xoops_getHandler('groupperm');
 
         $perm =& $gpermHandler->create();
 

@@ -24,7 +24,7 @@ class Emaillogin extends XCube_ActionFilter
     
         $root->mLanguageManager->loadModuleMessageCatalog('user');
 
-        $userHandler =& xoops_getmodulehandler('users', 'user');
+        $userHandler =& xoops_getModuleHandler('users', 'user');
     
         $criteria = new CriteriaCompo();
         if ('' != xoops_getrequest('uname') && false !== strpos(xoops_getrequest('uname'), '@')) {
@@ -43,7 +43,7 @@ class Emaillogin extends XCube_ActionFilter
             return;
         }
     
-        $handler =& xoops_gethandler('user');
+        $handler =& xoops_getHandler('user');
         $user =& $handler->get($userArr[0]->get('uid'));
         $xoopsUser = $user;
   

@@ -31,7 +31,7 @@ class Legacy_MiscSslloginAction extends Legacy_Action
         //
         $root =& $controller->mRoot;
     
-        $config_handler =& xoops_gethandler('config');
+        $config_handler =& xoops_getHandler('config');
         $moduleConfigUser =& $config_handler->getConfigsByDirname('user');
     
         if (1 == $moduleConfigUser['use_ssl'] && ! empty($_POST[$moduleConfigUser['sslpost_name']])) {

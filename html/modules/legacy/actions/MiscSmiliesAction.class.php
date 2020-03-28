@@ -24,7 +24,7 @@ class Legacy_MiscSmiliesAction extends Legacy_AbstractListAction
 
     public function &_getHandler()
     {
-        $handler =& xoops_getmodulehandler('smiles', 'legacy');
+        $handler =& xoops_getModuleHandler('smiles', 'legacy');
         return $handler;
     }
 

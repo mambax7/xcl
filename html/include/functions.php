@@ -577,7 +577,7 @@ function &getMailer()
  * @param bool $optional
  * @return bool|mixed|null
  */
-function &xoops_gethandler($name, $optional = false)
+function &xoops_getHandler($name, $optional = false)
 {
     static $handlers= [];
     $name = strtolower(trim($name));
@@ -613,7 +613,7 @@ function &xoops_gethandler($name, $optional = false)
     return $falseRet;
 }
 
-function &xoops_getmodulehandler($name = null, $module_dir = null, $optional = false)
+function &xoops_getModuleHandler($name = null, $module_dir = null, $optional = false)
 {
     static $handlers;
     // if $module_dir is not specified
@@ -723,19 +723,19 @@ function xoops_substr($str, $start, $length, $trimmarker = '...')
 
 function xoops_notification_deletebymodule($module_id)
 {
-    $notification_handler =& xoops_gethandler('notification');
+    $notification_handler =& xoops_getHandler('notification');
     return $notification_handler->unsubscribeByModule($module_id);
 }
 
 function xoops_notification_deletebyuser($user_id)
 {
-    $notification_handler =& xoops_gethandler('notification');
+    $notification_handler =& xoops_getHandler('notification');
     return $notification_handler->unsubscribeByUser($user_id);
 }
 
 function xoops_notification_deletebyitem($module_id, $category, $item_id)
 {
-    $notification_handler =& xoops_gethandler('notification');
+    $notification_handler =& xoops_getHandler('notification');
     return $notification_handler->unsubscribeByItem($module_id, $category, $item_id);
 }
 
@@ -743,7 +743,7 @@ function xoops_notification_deletebyitem($module_id, $category, $item_id)
 
 function xoops_comment_count($module_id, $item_id = null)
 {
-    $comment_handler =& xoops_gethandler('comment');
+    $comment_handler =& xoops_getHandler('comment');
     $criteria = new CriteriaCompo(new Criteria('com_modid', (int)$module_id));
     if (isset($item_id)) {
         $criteria->add(new Criteria('com_itemid', (int)$item_id));
@@ -754,7 +754,7 @@ function xoops_comment_count($module_id, $item_id = null)
 function xoops_comment_delete($module_id, $item_id)
 {
     if ((int)$module_id > 0 && (int)$item_id > 0) {
-        $comment_handler =& xoops_gethandler('comment');
+        $comment_handler =& xoops_getHandler('comment');
         $comments =& $comment_handler->getByItemId($module_id, $item_id);
         if (is_array($comments)) {
             $count = count($comments);
@@ -768,7 +768,7 @@ function xoops_comment_delete($module_id, $item_id)
                     }
                 }
             }
-            $member_handler =& xoops_gethandler('member');
+            $member_handler =& xoops_getHandler('member');
             foreach ($deleted_num as $user_id => $post_num) {
                 // update user posts
                 $com_poster = $member_handler->getUser($user_id);
@@ -790,7 +790,7 @@ function xoops_groupperm_deletebymoditem($module_id, $perm_name, $item_id = null
     if ((int)$module_id <= 1) {
         return false;
     }
-    $gperm_handler =& xoops_gethandler('groupperm');
+    $gperm_handler =& xoops_getHandler('groupperm');
     return $gperm_handler->deleteByModule($module_id, $perm_name, $item_id);
 }
 
@@ -816,7 +816,7 @@ function xoops_getLinkedUnameFromId($userid)
 {
     $userid = (int)$userid;
     if ($userid > 0) {
-        $member_handler =& xoops_gethandler('member');
+        $member_handler =& xoops_getHandler('member');
         $user =& $member_handler->getUser($userid);
         if (is_object($user)) {
             $linkeduser = '<a href="'.XOOPS_URL.'/userinfo.php?uid='.$userid.'">'. $user->getVar('uname').'</a>';

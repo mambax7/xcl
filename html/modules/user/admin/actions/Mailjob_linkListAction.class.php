@@ -23,7 +23,7 @@ class User_Mailjob_linkListAction extends User_AbstractListAction
     
     public function &_getHandler()
     {
-        $handler =& xoops_getmodulehandler('mailjob_link');
+        $handler =& xoops_getModuleHandler('mailjob_link');
         return $handler;
     }
 
@@ -40,7 +40,7 @@ class User_Mailjob_linkListAction extends User_AbstractListAction
     
     public function getDefaultView(&$controller, &$xoopsUser)
     {
-        $handler =& xoops_getmodulehandler('mailjob', 'user');
+        $handler =& xoops_getModuleHandler('mailjob', 'user');
         $this->mMailjob =& $handler->get($this->mActionForm->get('mailjob_id'));
         
         if (null == $this->mMailjob) {
@@ -60,7 +60,7 @@ class User_Mailjob_linkListAction extends User_AbstractListAction
         $mailjob_id = $this->mActionForm->get('mailjob_id');
         $uidArr = $this->mActionForm->get('uid');
         
-        $handler =& xoops_getmodulehandler('mailjob_link', 'user');
+        $handler =& xoops_getModuleHandler('mailjob_link', 'user');
         foreach (array_keys($uidArr) as $uid) {
             $mailjob_link =& $handler->get($mailjob_id, $uid);
             if (null != $mailjob_link) {

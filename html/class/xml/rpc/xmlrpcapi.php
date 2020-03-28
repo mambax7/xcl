@@ -72,13 +72,13 @@ class XoopsXmlRpcApi
         if (isset($this->user)) {
             return true;
         }
-        $member_handler =& xoops_gethandler('member');
+        $member_handler =& xoops_getHandler('member');
         $this->user =& $member_handler->loginUser(addslashes($username), addslashes($password));
         if (!is_object($this->user)) {
             unset($this->user);
             return false;
         }
-        $moduleperm_handler =& xoops_gethandler('groupperm');
+        $moduleperm_handler =& xoops_getHandler('groupperm');
         if (!$moduleperm_handler->checkRight('module_read', $this->module->getVar('mid'), $this->user->getGroups())) {
             unset($this->user);
             return false;

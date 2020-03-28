@@ -65,7 +65,7 @@ class User_AvatarUploadAction extends User_Action
         else {
             require_once XOOPS_ROOT_PATH . '/class/class.tar.php';
             $tar =new tar();
-            $tar->openTar($formFile->_mTmpFileName);
+            $tar->openTAR($formFile->_mTmpFileName);
             if (!is_array(@$tar->files)) {
                 return USER_FRAME_VIEW_ERROR;
             }
@@ -116,7 +116,7 @@ class User_AvatarUploadAction extends User_Action
             return true;
         }
         
-        $avatarhandler =& xoops_getmodulehandler('avatar');
+        $avatarhandler =& xoops_getModuleHandler('avatar');
 
         for ($i = 0; $i < count($avatarimages); $i++) {
             $ext_pos = strrpos($avatarimages[$i]['name'], '.') ;

@@ -112,7 +112,7 @@ class XoopsUser extends XoopsObject
             if (is_array($id)) {
                 $this->assignVars($id);
             } else {
-                $member_handler = xoops_gethandler('member');
+                $member_handler = xoops_getHandler('member');
                 $user =& $member_handler->getUser($id);
                 foreach ($user->vars as $k => $v) {
                     $this->assignVar($k, $v['value']);
@@ -155,7 +155,7 @@ class XoopsUser extends XoopsObject
             if (isset($nameCache[$field][$userid])) {
                 return $nameCache[$field][$userid];
             }
-            $member_handler = xoops_gethandler('member');
+            $member_handler = xoops_getHandler('member');
             $user =& $member_handler->getUser($userid);
             if (is_object($user)) {
                 return ($nameCache[$field][$userid] = $user->getVar($field));
@@ -170,7 +170,7 @@ class XoopsUser extends XoopsObject
      */
     public function incrementPost()
     {
-        $member_handler = xoops_gethandler('member');
+        $member_handler = xoops_getHandler('member');
         return $member_handler->updateUserByField($this, 'posts', $this->getVar('posts') + 1);
     }
     /**
@@ -200,7 +200,7 @@ class XoopsUser extends XoopsObject
         }
         
         if (empty($this->_groups)) {
-            $member_handler = xoops_gethandler('member');
+            $member_handler = xoops_getHandler('member');
             $this->_groups = $member_handler->getGroupsByUser($this->getVar('uid'));
         }
         return $this->_groups;
@@ -244,7 +244,7 @@ class XoopsUser extends XoopsObject
             $module_id = 0;
         }
         static $moduleperm_handler;
-        isset($moduleperm_handler) || $moduleperm_handler = xoops_gethandler('groupperm');
+        isset($moduleperm_handler) || $moduleperm_handler = xoops_getHandler('groupperm');
         return $moduleperm_handler->checkRight('module_admin', $module_id, $this->getGroups());
     }
     /**
@@ -276,7 +276,7 @@ class XoopsUser extends XoopsObject
     public function isOnline()
     {
         if (!isset($this->_isOnline)) {
-            $onlinehandler = xoops_gethandler('online');
+            $onlinehandler = xoops_getHandler('online');
             $this->_isOnline = ($onlinehandler->getCount(new Criteria('online_uid', $this->getVar('uid', 'N'))) > 0) ? true : false;
         }
         return $this->_isOnline;
@@ -591,7 +591,7 @@ class XoopsUserHandler extends XoopsObjectHandler
         // RMV-NOTIFY
         // Added two fields, notify_method, notify_mode
         if ($user->isNew()) {
-            $config = xoops_gethandler('config');
+            $config = xoops_getHandler('config');
             $options = $config->getConfigs(new Criteria('conf_name', 'notify_method'));
             if (isset($options) and (1 == count($options))) {
                 $notify_method = $options[0]->getvar('conf_value');
@@ -654,7 +654,7 @@ class XoopsUserHandler extends XoopsObjectHandler
         $ret = [];
         $limit = $start = 0;
         $sql = 'SELECT * FROM '.$this->db->prefix('users');
-        if (isset($criteria) && $criteria instanceof \criteriaelement) {
+        if (isset($criteria) && $criteria instanceof \CriteriaElement) {
             $sql .= ' '.$criteria->renderWhere();
             if ('' != $criteria->getSort()) {
                 $sql .= ' ORDER BY '.$criteria->getSort().' '.$criteria->getOrder();
@@ -688,7 +688,7 @@ class XoopsUserHandler extends XoopsObjectHandler
         $ret = [];
         $limit = $start = 0;
         $sql = 'SELECT * FROM '.$this->db->prefix('users');
-        if (isset($criteria) && $criteria instanceof \criteriaelement) {
+        if (isset($criteria) && $criteria instanceof \CriteriaElement) {
             $sql .= ' '.$criteria->renderWhere();
             if ('' != $criteria->getSort()) {
                 $sql .= ' ORDER BY '.$criteria->getSort().' '.$criteria->getOrder();
@@ -748,7 +748,7 @@ class XoopsUserHandler extends XoopsObjectHandler
     public function getCount($criteria = null)
     {
         $sql = 'SELECT COUNT(*) FROM '.$this->db->prefix('users');
-        if (isset($criteria) && $criteria instanceof \criteriaelement) {
+        if (isset($criteria) && $criteria instanceof \CriteriaElement) {
             $sql .= ' '.$criteria->renderWhere();
         }
         $result = $this->db->query($sql);
@@ -768,7 +768,7 @@ class XoopsUserHandler extends XoopsObjectHandler
     public function deleteAll($criteria = null)
     {
         $sql = 'DELETE FROM '.$this->db->prefix('users');
-        if (isset($criteria) && $criteria instanceof \criteriaelement) {
+        if (isset($criteria) && $criteria instanceof \CriteriaElement) {
             $sql .= ' '.$criteria->renderWhere();
         }
         if (!$result = $this->db->query($sql)) {
@@ -790,7 +790,7 @@ class XoopsUserHandler extends XoopsObjectHandler
     {
         $set_clause = is_numeric($fieldvalue) ? $fieldname.' = '.$fieldvalue : $fieldname.' = '.$this->db->quoteString($fieldvalue);
         $sql = 'UPDATE '.$this->db->prefix('users').' SET '.$set_clause;
-        if (isset($criteria) && $criteria instanceof \criteriaelement) {
+        if (isset($criteria) && $criteria instanceof \CriteriaElement) {
             $sql .= ' '.$criteria->renderWhere();
         }
         if (!$result = $this->db->query($sql)) {

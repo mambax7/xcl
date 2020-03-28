@@ -2567,7 +2567,7 @@ class Archive_Zip
         $v_byte = @fread($this->_zip_fd, 1);
 
         // -----  Add the byte
-        $v_bytes = ($v_bytes << 8) | Ord($v_byte);
+        $v_bytes = ($v_bytes << 8) | ord($v_byte);
 
         // ----- Compare the bytes
         if (0x504b0506 == $v_bytes) {

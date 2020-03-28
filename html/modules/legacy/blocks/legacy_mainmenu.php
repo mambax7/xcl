@@ -29,12 +29,12 @@ function b_legacy_mainmenu_show($options)
     $block = [];
     $block['_display_'] = true;
 
-    $module_handler =& xoops_gethandler('module');
+    $module_handler =& xoops_getHandler('module');
     $criteria = new CriteriaCompo(new Criteria('hasmain', 1));
     $criteria->add(new Criteria('isactive', 1));
     $criteria->add(new Criteria('weight', 0, '>'));
     $modules =& $module_handler->getObjects($criteria, true);
-    $moduleperm_handler =& xoops_gethandler('groupperm');
+    $moduleperm_handler =& xoops_getHandler('groupperm');
     $groups = is_object($xoopsUser) ? $xoopsUser->getGroups() : XOOPS_GROUP_ANONYMOUS;
     $read_allowed = $moduleperm_handler->getItemIds('module_read', $groups);
     $all_links = (int)$options[0];

@@ -26,7 +26,7 @@ class User_AvatarSelectAction extends User_AbstractEditAction
     {
         parent::prepare($controller, $xoopsUser, $moduleConfig);
 
-        $handler =& xoops_getmodulehandler('avatar', 'user');
+        $handler =& xoops_getModuleHandler('avatar', 'user');
         $criteria =new Criteria('avatar_file', $xoopsUser->get('user_avatar'));
         $avatarArr =& $handler->getObjects($criteria);
         if (count($avatarArr) > 0) {
@@ -41,7 +41,7 @@ class User_AvatarSelectAction extends User_AbstractEditAction
     
     public function &_getHandler()
     {
-        $handler =& xoops_getmodulehandler('users', 'user');
+        $handler =& xoops_getModuleHandler('users', 'user');
         return $handler;
     }
 
@@ -97,7 +97,7 @@ class User_AvatarSelectAction extends User_AbstractEditAction
     public function _doExecute()
     {
         if ($this->mObjectHandler->insert($this->mObject)) {
-            $avatarHandler =& xoops_getmodulehandler('avatar', 'user');
+            $avatarHandler =& xoops_getModuleHandler('avatar', 'user');
 
             //
             // If old avatar is a cutom avatar, delete it.
@@ -109,7 +109,7 @@ class User_AvatarSelectAction extends User_AbstractEditAction
             //
             // Delete all of links about this user from avatar_user_link.
             //
-            $linkHandler =& xoops_getmodulehandler('avatar_user_link', 'user');
+            $linkHandler =& xoops_getModuleHandler('avatar_user_link', 'user');
             $linkHandler->deleteAllByUser($this->mObject);
             
             //

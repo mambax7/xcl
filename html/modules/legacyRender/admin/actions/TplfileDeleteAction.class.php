@@ -16,7 +16,7 @@ class LegacyRender_TplfileDeleteAction extends LegacyRender_AbstractDeleteAction
 
     public function &_getHandler()
     {
-        $handler =& xoops_getmodulehandler('tplfile');
+        $handler =& xoops_getModuleHandler('tplfile');
         return $handler;
     }
 

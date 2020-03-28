@@ -566,7 +566,7 @@ class Net_SFTP extends Net_SSH2
                 return false;
         }
 
-        $this->pwd = $this->_realpath('.');
+        $this->pwd = $this->_realPath('.');
 
         $this->_update_stat_cache($this->pwd, []);
 
@@ -648,7 +648,7 @@ class Net_SFTP extends Net_SSH2
      * @access private
      * @see    self::chdir()
      */
-    public function _realpath($path)
+    public function _realPath($path)
     {
         if (false === $this->pwd) {
             // https://tools.ietf.org/html/draft-ietf-secsh-filexfer-13#section-8.9
@@ -718,7 +718,7 @@ class Net_SFTP extends Net_SSH2
             $dir .= '/';
         }
 
-        $dir = $this->_realpath($dir);
+        $dir = $this->_realPath($dir);
 
         // confirm that $dir is, in fact, a valid directory
         if ($this->use_stat_cache && is_array($this->_query_stat_cache($dir))) {
@@ -797,7 +797,7 @@ class Net_SFTP extends Net_SSH2
                 }
                 continue;
             }
-            if (is_array($this->_query_stat_cache($this->_realpath($dir . '/' . $value)))) {
+            if (is_array($this->_query_stat_cache($this->_realPath($dir . '/' . $value)))) {
                 $temp   = $this->_nlist_helper($dir . '/' . $value, true, $relativeDir . $value . '/');
                 $result = array_merge($result, $temp);
             } else {
@@ -830,7 +830,7 @@ class Net_SFTP extends Net_SSH2
                 unset($files[$key]);
                 continue;
             }
-            if ('.' != $key && '..' != $key && is_array($this->_query_stat_cache($this->_realpath($dir . '/' . $key)))) {
+            if ('.' != $key && '..' != $key && is_array($this->_query_stat_cache($this->_realPath($dir . '/' . $key)))) {
                 $depth++;
                 $files[$key] = $this->rawlist($dir . '/' . $key, true);
                 $depth--;
@@ -856,7 +856,7 @@ class Net_SFTP extends Net_SSH2
             return false;
         }
 
-        $dir = $this->_realpath($dir . '/');
+        $dir = $this->_realPath($dir . '/');
         if (false === $dir) {
             return false;
         }
@@ -916,7 +916,7 @@ class Net_SFTP extends Net_SSH2
                             $this->_update_stat_cache($dir . '/' . $shortname, []);
                         } else {
                             if ('..' == $shortname) {
-                                $temp = $this->_realpath($dir . '/..') . '/.';
+                                $temp = $this->_realPath($dir . '/..') . '/.';
                             } else {
                                 $temp = $dir . '/' . $shortname;
                             }
@@ -1179,7 +1179,7 @@ class Net_SFTP extends Net_SSH2
             return false;
         }
 
-        $filename = $this->_realpath($filename);
+        $filename = $this->_realPath($filename);
         if (false === $filename) {
             return false;
         }
@@ -1234,7 +1234,7 @@ class Net_SFTP extends Net_SSH2
             return false;
         }
 
-        $filename = $this->_realpath($filename);
+        $filename = $this->_realPath($filename);
         if (false === $filename) {
             return false;
         }
@@ -1346,7 +1346,7 @@ class Net_SFTP extends Net_SSH2
             return false;
         }
 
-        $filename = $this->_realpath($filename);
+        $filename = $this->_realPath($filename);
         if (false === $filename) {
             return false;
         }
@@ -1484,7 +1484,7 @@ class Net_SFTP extends Net_SSH2
             return false;
         }
 
-        $filename = $this->_realpath($filename);
+        $filename = $this->_realPath($filename);
         if (false === $filename) {
             return false;
         }
@@ -1611,7 +1611,7 @@ class Net_SFTP extends Net_SSH2
             return false;
         }
 
-        $link = $this->_realpath($link);
+        $link = $this->_realPath($link);
 
         if (!$this->_send_sftp_packet(NET_SFTP_READLINK, pack('Na*', strlen($link), $link))) {
             return false;
@@ -1655,8 +1655,8 @@ class Net_SFTP extends Net_SSH2
             return false;
         }
 
-        $target = $this->_realpath($target);
-        $link   = $this->_realpath($link);
+        $target = $this->_realPath($target);
+        $link   = $this->_realPath($link);
 
         $packet = pack('Na*Na*', strlen($target), $target, strlen($link), $link);
         if (!$this->_send_sftp_packet(NET_SFTP_SYMLINK, $packet)) {
@@ -1693,7 +1693,7 @@ class Net_SFTP extends Net_SSH2
             return false;
         }
 
-        $dir = $this->_realpath($dir);
+        $dir = $this->_realPath($dir);
         // by not providing any permissions, hopefully the server will use the logged in users umask - their
         // default permissions.
         $attr = -1 == $mode ? "\0\0\0\0" : pack('N2', NET_SFTP_ATTR_PERMISSIONS, $mode & 07777);
@@ -1757,7 +1757,7 @@ class Net_SFTP extends Net_SSH2
             return false;
         }
 
-        $dir = $this->_realpath($dir);
+        $dir = $this->_realPath($dir);
         if (false === $dir) {
             return false;
         }
@@ -1841,7 +1841,7 @@ class Net_SFTP extends Net_SSH2
             return false;
         }
 
-        $remote_file = $this->_realpath($remote_file);
+        $remote_file = $this->_realPath($remote_file);
         if (false === $remote_file) {
             return false;
         }
@@ -2057,7 +2057,7 @@ class Net_SFTP extends Net_SSH2
             return false;
         }
 
-        $remote_file = $this->_realpath($remote_file);
+        $remote_file = $this->_realPath($remote_file);
         if (false === $remote_file) {
             return false;
         }
@@ -2171,7 +2171,7 @@ class Net_SFTP extends Net_SSH2
             return false;
         }
 
-        $path = $this->_realpath($path);
+        $path = $this->_realPath($path);
         if (false === $path) {
             return false;
         }
@@ -2284,7 +2284,7 @@ class Net_SFTP extends Net_SSH2
     public function file_exists($path)
     {
         if ($this->use_stat_cache) {
-            $path = $this->_realpath($path);
+            $path = $this->_realPath($path);
 
             $result = $this->_query_stat_cache($path);
 
@@ -2354,7 +2354,7 @@ class Net_SFTP extends Net_SSH2
      */
     public function is_readable($path)
     {
-        $path = $this->_realpath($path);
+        $path = $this->_realPath($path);
 
         $packet = pack('Na*N2', strlen($path), $path, NET_SFTP_OPEN_READ, 0);
         if (!$this->_send_sftp_packet(NET_SFTP_OPEN, $packet)) {
@@ -2382,7 +2382,7 @@ class Net_SFTP extends Net_SSH2
      */
     public function is_writable($path)
     {
-        $path = $this->_realpath($path);
+        $path = $this->_realPath($path);
 
         $packet = pack('Na*N2', strlen($path), $path, NET_SFTP_OPEN_WRITE, 0);
         if (!$this->_send_sftp_packet(NET_SFTP_OPEN, $packet)) {
@@ -2563,7 +2563,7 @@ class Net_SFTP extends Net_SSH2
     public function _get_xstat_cache_prop($path, $prop, $type)
     {
         if ($this->use_stat_cache) {
-            $path = $this->_realpath($path);
+            $path = $this->_realPath($path);
 
             $result = $this->_query_stat_cache($path);
 
@@ -2595,8 +2595,8 @@ class Net_SFTP extends Net_SSH2
             return false;
         }
 
-        $oldname = $this->_realpath($oldname);
-        $newname = $this->_realpath($newname);
+        $oldname = $this->_realPath($oldname);
+        $newname = $this->_realPath($newname);
         if (false === $oldname || false === $newname) {
             return false;
         }

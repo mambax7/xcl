@@ -24,7 +24,7 @@ class Legacy_ImagecategoryDeleteAction extends Legacy_AbstractDeleteAction
 
     public function &_getHandler()
     {
-        $handler =& xoops_getmodulehandler('imagecategory');
+        $handler =& xoops_getModuleHandler('imagecategory');
         return $handler;
     }
 

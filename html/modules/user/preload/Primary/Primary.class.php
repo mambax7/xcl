@@ -49,7 +49,7 @@ class User_Utils
         }
 
         if (!empty($_SESSION['xoopsUserId'])) {
-            $memberHandler = xoops_gethandler('member');
+            $memberHandler = xoops_getHandler('member');
             $user =& $memberHandler->getUser($_SESSION['xoopsUserId']);
             $context->mXoopsUser =& $user;
             if (is_object($context->mXoopsUser)) {

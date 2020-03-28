@@ -20,7 +20,7 @@ class User_UserEditAction extends User_AbstractEditAction
     
     public function &_getHandler()
     {
-        $handler =& xoops_getmodulehandler('users');
+        $handler =& xoops_getModuleHandler('users');
         return $handler;
     }
 
@@ -53,17 +53,17 @@ class User_UserEditAction extends User_AbstractEditAction
         //
         // Get some objects for input form.
         //
-        $tzoneHandler =& xoops_gethandler('timezone');
+        $tzoneHandler =& xoops_getHandler('timezone');
         $timezones =& $tzoneHandler->getObjects();
         
         $render->setAttribute('timezones', $timezones);
 
-        $rankHandler =& xoops_getmodulehandler('ranks');
+        $rankHandler =& xoops_getModuleHandler('ranks');
         $ranks =& $rankHandler->getObjects(new Criteria('rank_special', 1));
 
         $render->setAttribute('ranks', $ranks);
         
-        $groupHandler =& xoops_gethandler('group');
+        $groupHandler =& xoops_getHandler('group');
         $groups =& $groupHandler->getObjects(null, true);
         
         $groupOptions = [];

@@ -670,7 +670,7 @@ class tar
         }
 
         // Encode processed files into TAR file format
-        $this->__generateTar();
+        $this->__generateTAR();
 
         // GZ Compress the data if we need to
         if ($useGzip) {
@@ -706,7 +706,7 @@ class tar
         }
 
         // Encode processed files into TAR file format
-        $this->__generateTar();
+        $this->__generateTAR();
 
         // GZ Compress the data if we need to
         if ($useGzip) {

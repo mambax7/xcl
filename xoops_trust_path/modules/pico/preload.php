@@ -19,7 +19,7 @@ if (!class_exists('PicoPreloadBase')) {
 		public function getRSSItems(&$items)
 		{
 			/*		$mydirname = $this->mydirname ;
-		$module_handler =& xoops_gethandler( 'module' ) ;
+		$module_handler =& xoops_getHandler( 'module' ) ;
 		$xoopsModule =& $module_handler->getByDirname( $this->mydirname ) ;
 		$xoopsDB = XoopsDatabaseFactory::getDatabaseConnection() ;
 		$_GET['page'] = 'rss' ;

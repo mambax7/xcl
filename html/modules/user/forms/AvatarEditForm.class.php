@@ -89,7 +89,7 @@ class User_AvatarEditForm extends XCube_ActionForm
     {
         $avatar = null;
         if (null != $this->mFormFile) {
-            $avatarHandler =& xoops_getmodulehandler('avatar', 'user');
+            $avatarHandler =& xoops_getModuleHandler('avatar', 'user');
             $avatar =& $avatarHandler->create();
             $avatar->set('avatar_file', $this->mFormFile->getFileName());
             $avatar->set('avatar_mimetype', $this->mFormFile->getContentType());

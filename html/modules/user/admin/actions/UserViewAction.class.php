@@ -40,7 +40,7 @@ class User_UserViewAction extends User_AbstractViewAction
 
     public function &_getHandler()
     {
-        $handler =& xoops_getmodulehandler('users');
+        $handler =& xoops_getModuleHandler('users');
         return $handler;
     }
     
@@ -83,7 +83,7 @@ class User_UserViewAction extends User_AbstractViewAction
         $posts = 0;
         $this->mGetUserPosts->call(new XCube_Ref($posts), $this->mObject);
         
-        $handler =& xoops_getmodulehandler('users');
+        $handler =& xoops_getModuleHandler('users');
         return $handler->insert($this->mObject) ? USER_FRAME_VIEW_SUCCESS
                                                 : USER_FRAME_VIEW_ERROR;
     }
@@ -96,7 +96,7 @@ class User_UserViewAction extends User_AbstractViewAction
         
         $render->setAttribute('rank', $this->mObject->getRank());
         
-        $handler =& xoops_gethandler('timezone');
+        $handler =& xoops_getHandler('timezone');
         $timezone =& $handler->get($this->mObject->get('timezone_offset'));
         $render->setAttribute('timezone', $timezone);
         

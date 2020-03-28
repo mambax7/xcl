@@ -58,7 +58,7 @@ class User_UserInfoAction extends User_Action
     {
         $uid = isset($_GET['uid']) ? (int)xoops_getrequest('uid') : 0;
         
-        $handler =& xoops_gethandler('user');
+        $handler =& xoops_getHandler('user');
         $this->mObject =& $handler->get($uid);
         
         if (!is_object($this->mObject)) {
@@ -67,7 +67,7 @@ class User_UserInfoAction extends User_Action
         
         $t_rank = xoops_getrank($this->mObject->get('rank'), $this->mObject->get('posts'));
         
-        $rankHandler =& xoops_getmodulehandler('ranks', 'user');
+        $rankHandler =& xoops_getModuleHandler('ranks', 'user');
         $this->mRankObject =& $rankHandler->get($t_rank['id']);
         
         $root =& $controller->mRoot;

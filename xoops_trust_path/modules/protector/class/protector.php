@@ -1,6 +1,6 @@
 <?php
 
-class protector
+class Protector
 {
     public $mydirname;
 
@@ -142,7 +142,7 @@ class protector
 
         $db = &Database::getInstance();
         $db->queryF('UPDATE `'.$db->prefix('config')."` SET `conf_value`='".addslashes($value)."' WHERE `conf_title` like '".$constpref."%' AND `conf_name`='".addslashes($name)."' LIMIT 1");
-        $this->updateConfFromDB();
+        $this->updateConfFromDb();
     }
 
     public function updateConfFromDb()

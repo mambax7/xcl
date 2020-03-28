@@ -39,7 +39,7 @@ class User_EditUserAction extends User_AbstractEditAction
     
     public function &_getHandler()
     {
-        $handler =& xoops_getmodulehandler('users', 'user');
+        $handler =& xoops_getModuleHandler('users', 'user');
         return $handler;
     }
 
@@ -124,7 +124,7 @@ class User_EditUserAction extends User_AbstractEditAction
         $render->setAttribute('currentUser', $xoopsUser);
         $render->setAttribute('allow_chgmail', $this->mConfig['allow_chgmail']);
         
-        $handler =& xoops_gethandler('timezone');
+        $handler =& xoops_getHandler('timezone');
         $timezoneArr =& $handler->getObjects();
         $render->setAttribute('timezones', $timezoneArr);
         

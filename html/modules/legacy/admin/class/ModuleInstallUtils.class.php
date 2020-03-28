@@ -295,7 +295,7 @@ class Legacy_ModuleInstallUtils
      */
     public static function installModuleTemplate($module, $template, $log)
     {
-        $tplHandler =& xoops_gethandler('tplfile');
+        $tplHandler =& xoops_getHandler('tplfile');
 
         $fileName = trim($template['file']);
 
@@ -359,7 +359,7 @@ class Legacy_ModuleInstallUtils
         //
         // The following processing depends on the structure of Legacy_RenderSystem.
         //
-        $tplHandler =& xoops_gethandler('tplfile');
+        $tplHandler =& xoops_getHandler('tplfile');
         $delTemplates = null;
         
         $delTemplates =& $tplHandler->find($tplset, 'module', $module->get('mid'));
@@ -473,7 +473,7 @@ class Legacy_ModuleInstallUtils
      */
     public static function uninstallAllOfBlocks($module, $log)
     {
-        $handler =& xoops_gethandler('block');
+        $handler =& xoops_getHandler('block');
         $criteria = new Criteria('mid', $module->get('mid'));
 
         $blockArr =& $handler->getObjectsDirectly($criteria);
@@ -500,7 +500,7 @@ class Legacy_ModuleInstallUtils
         $edit_func = isset($block['edit_func']) ? $block['edit_func'] : null;
         $template = isset($block['template']) ? $block['template'] : null;
         $visible = isset($block['visible']) ? $block['visible'] : (isset($block['visible_any']) ? $block['visible_any']: 0);
-        $blockHandler =& xoops_gethandler('block');
+        $blockHandler =& xoops_getHandler('block');
         $blockObj =& $blockHandler->create();
 
         $blockObj->set('mid', $module->getVar('mid'));
@@ -546,7 +546,7 @@ class Legacy_ModuleInstallUtils
     public static function installBlock($module, &$blockObj, $block, $log)
     {
         $isNew = $blockObj->isNew();
-        $blockHandler =& xoops_gethandler('block');
+        $blockHandler =& xoops_getHandler('block');
 
         if (!empty($block['show_all_module'])) {
             $autolink = false;
@@ -560,7 +560,7 @@ class Legacy_ModuleInstallUtils
         } else {
             $log->addReport(XCube_Utils::formatString(_AD_LEGACY_MESSAGE_BLOCK_INSTALLED, $blockObj->getVar('name')));
 
-            $tplHandler =& xoops_gethandler('tplfile');
+            $tplHandler =& xoops_getHandler('tplfile');
 
             Legacy_ModuleInstallUtils::installBlockTemplate($blockObj, $module, $log);
             
@@ -574,14 +574,14 @@ class Legacy_ModuleInstallUtils
                         $log->addWarning(XCube_Utils::formatString(_AD_LEGACY_ERROR_COULD_NOT_SET_LINK, $blockObj->getVar('name')));
                     }
                 }
-                $gpermHandler =& xoops_gethandler('groupperm');
+                $gpermHandler =& xoops_getHandler('groupperm');
                 $bperm =& $gpermHandler->create();
                 $bperm->setVar('gperm_itemid', $blockObj->getVar('bid'));
                 $bperm->setVar('gperm_name', 'block_read');
                 $bperm->setVar('gperm_modid', 1);
                 
                 if (!empty($block['visible_any'])) {
-                    $memberHandler =& xoops_gethandler('member');
+                    $memberHandler =& xoops_getHandler('member');
                     $groupObjects =& $memberHandler->getGroups();
                     foreach ($groupObjects as $group) {
                         $bperm->setVar('gperm_groupid', $group->getVar('groupid'));
@@ -619,14 +619,14 @@ class Legacy_ModuleInstallUtils
      */
     public static function uninstallBlock(&$block, $log)
     {
-        $blockHandler =& xoops_gethandler('block');
+        $blockHandler =& xoops_getHandler('block');
         $blockHandler->delete($block);
         $log->addReport(XCube_Utils::formatString(_AD_LEGACY_MESSAGE_UNINSTALLATION_BLOCK_SUCCESSFUL, $block->get('name')));
         
         //
         // Deletes permissions
         //
-        $gpermHandler =& xoops_gethandler('groupperm');
+        $gpermHandler =& xoops_getHandler('groupperm');
         $criteria =new CriteriaCompo();
         $criteria->add(new Criteria('gperm_name', 'block_read'));
         $criteria->add(new Criteria('gperm_itemid', $block->get('bid')));
@@ -648,7 +648,7 @@ class Legacy_ModuleInstallUtils
             return true;
         }
         
-        $tplHandler =& xoops_gethandler('tplfile');
+        $tplHandler =& xoops_getHandler('tplfile');
 
         $criteria =new CriteriaCompo();
         $criteria->add(new Criteria('tpl_type', 'block'));
@@ -754,7 +754,7 @@ class Legacy_ModuleInstallUtils
     
     public static function installPreferenceByInfo($info, $module, $log)
     {
-        $handler =& xoops_gethandler('config');
+        $handler =& xoops_getHandler('config');
         $config =& $handler->createConfig();
         $config->set('conf_modid', $module->get('mid'));
         $config->set('conf_catid', 0);
@@ -887,7 +887,7 @@ class Legacy_ModuleInstallUtils
             return;
         }
 
-        $configHandler =& xoops_gethandler('config');
+        $configHandler =& xoops_getHandler('config');
         $configs =& $configHandler->getConfigs(new Criteria('conf_modid', $module->get('mid')));
 
         if (0 == count($configs)) {
@@ -1016,7 +1016,7 @@ class Legacy_ModuleInstallUtils
     
     public static function updateBlockTemplateByInfo($info, $module, &$log)
     {
-        $handler =& xoops_getmodulehandler('newblocks', 'legacy');
+        $handler =& xoops_getModuleHandler('newblocks', 'legacy');
         
         $criteria =new CriteriaCompo();
         $criteria->add(new Criteria('dirname', $module->get('dirname')));
@@ -1031,7 +1031,7 @@ class Legacy_ModuleInstallUtils
     
     public static function updateBlockByInfo($info, $module, &$log)
     {
-        $handler =& xoops_getmodulehandler('newblocks', 'legacy');
+        $handler =& xoops_getModuleHandler('newblocks', 'legacy');
         
         $criteria =new CriteriaCompo();
         $criteria->add(new Criteria('dirname', $module->get('dirname')));
@@ -1059,7 +1059,7 @@ class Legacy_ModuleInstallUtils
     
     public static function updatePreferenceByInfo($info, $module, $log)
     {
-        $handler =& xoops_gethandler('config');
+        $handler =& xoops_getHandler('config');
 
         $criteria =new CriteriaCompo();
         $criteria->add(new Criteria('conf_modid', $module->get('mid')));
@@ -1131,7 +1131,7 @@ class Legacy_ModuleInstallUtils
 
     public static function updatePreferenceOrderByInfo($info, $module, $log)
     {
-        $handler =& xoops_gethandler('config');
+        $handler =& xoops_getHandler('config');
 
         $criteria =new CriteriaCompo();
         $criteria->add(new Criteria('conf_modid', $module->get('mid')));
@@ -1156,7 +1156,7 @@ class Legacy_ModuleInstallUtils
     
     public static function installBlockByInfo($info, $module, $log)
     {
-        $handler =& xoops_gethandler('block');
+        $handler =& xoops_getHandler('block');
         $block =& $handler->create();
 
         $block->set('mid', $module->get('mid'));
@@ -1192,7 +1192,7 @@ class Legacy_ModuleInstallUtils
      */
     public static function uninstallBlockByFuncNum($func_num, $module, &$log)
     {
-        $handler =& xoops_getmodulehandler('newblocks', 'legacy');
+        $handler =& xoops_getModuleHandler('newblocks', 'legacy');
         
         $criteria =new CriteriaCompo();
         $criteria->add(new Criteria('dirname', $module->get('dirname')));
@@ -1224,7 +1224,7 @@ class Legacy_ModuleInstallUtils
      */
     public static function _uninstallBlockTemplate($block, $module, $tplset, &$log)
     {
-        $handler =& xoops_gethandler('tplfile');
+        $handler =& xoops_getHandler('tplfile');
         $criteria =new CriteriaCompo();
         $criteria->add(new Criteria('tpl_refid', $block->get('bid')));
         $criteria->add(new Criteria('tpl_file', $block->get('template')));
@@ -1258,7 +1258,7 @@ class Legacy_ModuleInstallUtils
 
     public static function uninstallPreferenceByOrder($order, $module, $log)
     {
-        $handler =& xoops_gethandler('config');
+        $handler =& xoops_getHandler('config');
 
         $criteria =new CriteriaCompo();
         $criteria->add(new Criteria('conf_modid', $module->get('mid')));
@@ -1313,14 +1313,14 @@ class Legacy_ModuleInstallUtils
     
     public static function deleteAllOfNotifications($module, &$log)
     {
-        $handler =& xoops_gethandler('notification');
+        $handler =& xoops_getHandler('notification');
         $criteria =new Criteria('not_modid', $module->get('mid'));
         $handler->deleteAll($criteria);
     }
 
     public static function deleteAllOfComments($module, &$log)
     {
-        $handler =& xoops_gethandler('comment');
+        $handler =& xoops_getHandler('comment');
         $criteria =new Criteria('com_modid', $module->get('mid'));
         $handler->deleteAll($criteria);
     }

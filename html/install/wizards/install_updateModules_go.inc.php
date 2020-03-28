@@ -11,7 +11,7 @@
     include_once '../mainfile.php';
     error_reporting(E_ERROR);
     ob_start();
-    $module_handler =& xoops_gethandler('module');
+    $module_handler =& xoops_getHandler('module');
     $modules =& $module_handler->getObjects(null, true);
     foreach (array_keys($modules) as $mid) {
         echo '<h5>'.$modules[$mid]->getVar('name').'</h5>';
@@ -24,7 +24,7 @@
                 $newmid = $modules[$mid]->getVar('mid');
                 $msgs = [];
                 $msgs[] = 'Module data updated.';
-                $tplfile_handler =& xoops_gethandler('tplfile');
+                $tplfile_handler =& xoops_getHandler('tplfile');
                 $templates = $modules[$mid]->getInfo('templates');
                 if (false != $templates) {
                     $msgs[] = 'Generating templates...';
@@ -197,7 +197,7 @@
 
                 if (false != $configs) {
                     $msgs[] = 'Adding module config data...';
-                    $config_handler =& xoops_gethandler('config');
+                    $config_handler =& xoops_getHandler('config');
                     $order = 0;
                     foreach ($configs as $config) {
                         $confobj =& $config_handler->createConfig();

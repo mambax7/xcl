@@ -21,7 +21,7 @@ if (!function_exists('pico_notify_base')) {
 
 		$db = XoopsDatabaseFactory::getDatabaseConnection();
 
-		$module_handler = &xoops_gethandler('module');
+		$module_handler = &xoops_getHandler('module');
 		$module = &$module_handler->getByDirname($mydirname);
 
 		$picoPermission = &PicoPermission::getInstance();

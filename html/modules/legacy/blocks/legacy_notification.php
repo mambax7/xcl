@@ -31,7 +31,7 @@ function b_legacy_notification_show()
     if (empty($xoopsUser) || !notificationEnabled('block')) {
         return false; // do not display block
     }
-    $notification_handler =& xoops_gethandler('notification');
+    $notification_handler =& xoops_getHandler('notification');
     // Now build the a nested associative array of info to pass
     // to the block template.
     $block = [];

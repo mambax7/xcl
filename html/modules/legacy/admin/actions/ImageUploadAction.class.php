@@ -68,7 +68,7 @@ class Legacy_ImageUploadAction extends Legacy_Action
         else {
             require_once XOOPS_ROOT_PATH . '/class/class.tar.php';
             $tar =new tar();
-            $tar->openTar($formFile->_mTmpFileName);
+            $tar->openTAR($formFile->_mTmpFileName);
             if (!is_array(@$tar->files)) {
                 return LEGACY_FRAME_VIEW_ERROR;
             }
@@ -119,10 +119,10 @@ class Legacy_ImageUploadAction extends Legacy_Action
             return true;
         }
         
-        $imgcathandler =& xoops_getmodulehandler('imagecategory', 'legacy');
+        $imgcathandler =& xoops_getModuleHandler('imagecategory', 'legacy');
         $t_category = & $imgcathandler->get($t_imgcat_id);
         $t_category_type = $t_category->get('imgcat_storetype');
-        $imagehandler =& xoops_getmodulehandler('image');
+        $imagehandler =& xoops_getModuleHandler('image');
         
         if ('file' == strtolower($t_category_type)) {
             for ($i = 0; $i < count($targetimages); $i++) {
@@ -200,7 +200,7 @@ class Legacy_ImageUploadAction extends Legacy_Action
         $render->setTemplateName('image_upload.html');
         $render->setAttribute('actionForm', $this->mActionForm);
         //image category
-        $handler =& xoops_getmodulehandler('imagecategory', 'legacy');
+        $handler =& xoops_getModuleHandler('imagecategory', 'legacy');
         $cat_id = $controller->mRoot->mContext->mRequest->getRequest('imgcat_id');
         if (isset($cat_id)) {
             $this->mCategory =& $handler->get($cat_id);

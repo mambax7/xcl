@@ -38,7 +38,7 @@ class LegacyRenderTplfileObject extends XoopsSimpleObject
     public function loadSource()
     {
         if (!is_object($this->Source)) {
-            $handler =& xoops_getmodulehandler('tplsource', 'legacyRender');
+            $handler =& xoops_getModuleHandler('tplsource', 'legacyRender');
             $this->Source =& $handler->get($this->get('tpl_id'));
             if (!is_object($this->Source)) {
                 $this->Source =& $handler->create();
@@ -69,7 +69,7 @@ class LegacyRenderTplfileObject extends XoopsSimpleObject
         $obj->set('tpl_lastimported', $this->get('tpl_lastimported'));
         $obj->set('tpl_type', $this->get('tpl_type'));
         
-        $handler =& xoops_getmodulehandler('tplsource', 'legacyRender');
+        $handler =& xoops_getModuleHandler('tplsource', 'legacyRender');
         $obj->Source =& $handler->create();
         
         $obj->Source->set('tpl_source', $this->Source->get('tpl_source'));
@@ -88,7 +88,7 @@ class LegacyRenderTplfileObject extends XoopsSimpleObject
             return;
         }
         
-        $handler =& xoops_getmodulehandler('tplfile', 'legacyRender');
+        $handler =& xoops_getModuleHandler('tplfile', 'legacyRender');
         
         $criteria =new CriteriaCompo();
         $criteria->add(new Criteria('tpl_tplset', $tplset));
@@ -118,7 +118,7 @@ class LegacyRenderTplfileHandler extends XoopsObjectGenericHandler
         if (!is_object($obj->Source)) {
             return true;
         } else {
-            $handler =& xoops_getmodulehandler('tplsource', 'legacyRender');
+            $handler =& xoops_getModuleHandler('tplsource', 'legacyRender');
 
             if ($obj->Source->isNew()) {
                 $obj->Source->set('tpl_id', $obj->get('tpl_id'));
@@ -164,7 +164,7 @@ class LegacyRenderTplfileHandler extends XoopsObjectGenericHandler
         $obj->loadSource();
         
         if (is_object($obj->Source)) {
-            $handler =& xoops_getmodulehandler('tplsource', 'legacyRender');
+            $handler =& xoops_getModuleHandler('tplsource', 'legacyRender');
             if (!$handler->delete($obj->Source, $force)) {
                 return false;
             }

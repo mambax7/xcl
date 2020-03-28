@@ -38,8 +38,8 @@ $header .= '
 ';
 
 if ('dologin' == $op) {
-    $member_handler =& xoops_gethandler('member');
-    $myts = new MyTextsanitizer();
+    $member_handler =& xoops_getHandler('member');
+    $myts = new MyTextSanitizer();
     $myts->getInstance();
     $user =& $member_handler->loginUser(addslashes($myts->stripSlashesGPC($username)), $myts->stripSlashesGPC($password));
     if (is_object($user)) {
@@ -70,7 +70,7 @@ if ('dologin' == $op) {
         $_SESSION['xoopsUserId'] = $user->getVar('uid');
         $_SESSION['xoopsUserGroups'] = $user->getGroups();
 
-        $config_handler =& xoops_gethandler('config');
+        $config_handler =& xoops_getHandler('config');
         $moduleConfigUser =& $config_handler->getConfigsByDirname('user');
 
         if (!empty($moduleConfigUser['use_ssl'])) {

@@ -26,7 +26,7 @@ class User_MailjobEditAction extends User_AbstractEditAction
 
     public function &_getHandler()
     {
-        $handler =& xoops_getmodulehandler('mailjob');
+        $handler =& xoops_getModuleHandler('mailjob');
         return $handler;
     }
 
@@ -36,7 +36,7 @@ class User_MailjobEditAction extends User_AbstractEditAction
         $this->mActionForm->prepare();
 
         $this->mPageNavi =new XCube_PageNavigator('./index?action=MailjobEdit', XCUBE_PAGENAVI_START | XCUBE_PAGENAVI_PERPAGE);
-        $this->mFilter =new User_UserSearchFilterForm($this->mPageNavi, xoops_getmodulehandler('users_search', 'user'));
+        $this->mFilter =new User_UserSearchFilterForm($this->mPageNavi, xoops_getModuleHandler('users_search', 'user'));
         
         $this->mFilter->fetch();
 
@@ -55,10 +55,10 @@ class User_MailjobEditAction extends User_AbstractEditAction
         $ret = parent::execute($controller, $xoopsUser);
         
         if (USER_FRAME_VIEW_SUCCESS == $ret && $isNew) {
-            $handler =& xoops_getmodulehandler('users_search');
+            $handler =& xoops_getModuleHandler('users_search');
             $uidArr = $handler->getUids($this->mFilter->getCriteria(0, 0));
             
-            $handler =& xoops_getmodulehandler('mailjob_link');
+            $handler =& xoops_getModuleHandler('mailjob_link');
             foreach ($uidArr as $uid) {
                 $obj =& $handler->create();
                 $obj->set('mailjob_id', $this->mObject->get('mailjob_id'));

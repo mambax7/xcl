@@ -52,7 +52,7 @@ class LegacyRender_TplsetDownloadAction extends LegacyRender_Action
         
         $id = xoops_getrequest('tplset_id');
         
-        $handler =& xoops_getmodulehandler('tplset');
+        $handler =& xoops_getModuleHandler('tplset');
         $this->mTplset =& $handler->get($id);
         
         if (null == $this->mTplset) {
@@ -71,7 +71,7 @@ class LegacyRender_TplsetDownloadAction extends LegacyRender_Action
                . XOOPS_VERSION . '</generator>'
                . "\n";
 
-        $handler =& xoops_getmodulehandler('tplfile');
+        $handler =& xoops_getModuleHandler('tplfile');
         $files =& $handler->getObjects(new Criteria('tpl_tplset', $this->mTplset->get('tplset_name')));
         
         $count = count($files);

@@ -38,7 +38,7 @@ class Message_myInstaller extends Legacy_ModuleInstaller
   
     public function check_pm()
     {
-        $hand = xoops_gethandler('module');
+        $hand = xoops_getHandler('module');
         $obj = $hand->getByDirname('pm');
         if (is_object($obj)) {
             $this->mLog->addError(_MI_MESSAGE_INSTALL_ERROR2);

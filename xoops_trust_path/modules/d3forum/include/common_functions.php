@@ -79,10 +79,10 @@ function d3forum_get_submenu( $mydirname )
 
 	if( ! empty( $submenus_cache[$mydirname] ) ) return $submenus_cache[$mydirname] ;
 
-	$module_handler =& xoops_gethandler('module') ;
+	$module_handler =& xoops_getHandler('module') ;
 	$module =& $module_handler->getByDirname( $mydirname ) ;
 	if( ! is_object( $module ) ) return [];
-	$config_handler =& xoops_gethandler('config') ;
+	$config_handler =& xoops_getHandler('config') ;
 	$mod_config =& $config_handler->getConfigsByCat( 0 , $module->getVar('mid') ) ;
 
 	$db =& Database::getInstance() ;

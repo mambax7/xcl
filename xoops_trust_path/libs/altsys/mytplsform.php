@@ -15,9 +15,9 @@ include_once __DIR__ . '/include/Text_Diff_Renderer_unified.php' ;
 
 
 // only groups have 'module_admin' of 'altsys' can do that.
-$module_handler =& xoops_gethandler('module') ;
+$module_handler =& xoops_getHandler('module') ;
 $module =& $module_handler->getByDirname('altsys') ;
-$moduleperm_handler =& xoops_gethandler('groupperm') ;
+$moduleperm_handler =& xoops_getHandler('groupperm') ;
 if (! is_object(@$xoopsUser) || ! $moduleperm_handler->checkRight('module_admin', $module->getVar('mid'), $xoopsUser->getGroups())) {
     die('only admin of altsys can access this area') ;
 }
@@ -38,7 +38,7 @@ if (! is_object($xoopsModule)) {
 }
 
 // check access right (needs system_admin of tplset)
-//$sysperm_handler =& xoops_gethandler('groupperm');
+//$sysperm_handler =& xoops_getHandler('groupperm');
 //if (!$sysperm_handler->checkRight('system_admin', XOOPS_SYSTEM_TPLSET, $xoopsUser->getGroups())) redirect_header( XOOPS_URL.'/user.php' , 1 , _NOPERM ) ;
 
 // tpl_file from $_GET
@@ -86,7 +86,7 @@ if (empty($_GET['tpl_file']) || '_custom' == $_GET['tpl_file']) {
         $target_module = null ;
         $target_mname = _MYTPLSADMIN_CUSTOMTEMPLATE ;
     } else {
-        $module_handler =& xoops_gethandler('module') ;
+        $module_handler =& xoops_getHandler('module') ;
         $target_module =& $module_handler->getByDirname($tpl['tpl_module']) ;
         $target_mname = is_object($target_module) ? $target_module->getVar('name') : '' ;
     }

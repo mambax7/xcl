@@ -34,7 +34,7 @@ class newAction extends AbstractAction
                     $this->errMsg = _MD_MESSAGE_SETTINGS_MSG6;
                 } elseif ('' != $this->mActionForm->get('Legacy_Event_User_Submit')) {
                     $this->isError = true;
-                    $modHand = xoops_getmodulehandler('inbox', _MY_DIRNAME);
+                    $modHand = xoops_getModuleHandler('inbox', _MY_DIRNAME);
                     $modObj = $modHand->create();
                     $this->mActionForm->update($modObj);
                     if (!$modHand->insert($modObj)) {
@@ -50,7 +50,7 @@ class newAction extends AbstractAction
                     }
                 }
             } elseif ($inboxid > 0) {
-                $modHand = xoops_getmodulehandler('inbox', _MY_DIRNAME);
+                $modHand = xoops_getModuleHandler('inbox', _MY_DIRNAME);
                 $modObj = $modHand->get($inboxid);
                 if (is_object($modObj) && $modObj->get('from_uid') > 0 && $modObj->get('uid') == $this->root->mContext->mXoopsUser->get('uid')) {
                     if (!$this->mActionForm->setRes($modObj)) {
@@ -58,7 +58,7 @@ class newAction extends AbstractAction
                     }
                 }
             } elseif ($to_userid > 0) {
-                $userhand = xoops_gethandler('user');
+                $userhand = xoops_getHandler('user');
                 $user = $userhand->get($to_userid);
                 $this->mActionForm->setUser($user);
             }
@@ -88,7 +88,7 @@ class newAction extends AbstractAction
   {
     $setting = $this->getSettings($this->mActionForm->fuid);
     if ( $setting->get('tomail') == 1 ) {
-      $userhand = xoops_gethandler('user');
+      $userhand = xoops_getHandler('user');
       $user = $userhand->get($this->mActionForm->fuid);
       require_once XOOPS_ROOT_PATH.'/class/mail/phpmailer/class.phpmailer.php';
       require_once _MY_MODULE_PATH.'class/MyMailer.class.php';
@@ -110,7 +110,7 @@ class newAction extends AbstractAction
   {
       $setting = $this->getSettings($this->mActionForm->fuid);
       if (1 == $setting->get('tomail')) {
-          $userhand = xoops_gethandler('user');
+          $userhand = xoops_getHandler('user');
           $user = $userhand->get($this->mActionForm->fuid);
       
           $mailer = $this->getMailer();
@@ -145,7 +145,7 @@ class newAction extends AbstractAction
   
     private function update_outbox($obj)
     {
-        $outHand = xoops_getmodulehandler('outbox');
+        $outHand = xoops_getModuleHandler('outbox');
         $outHand->deleteDays($this->root->mContext->mModuleConfig['savedays']);
         $outObj = $outHand->create();
         $outObj->set('uid', $obj->get('from_uid'));

@@ -15,7 +15,7 @@ class User_MailjobListAction extends User_AbstractListAction
 {
     public function &_getHandler()
     {
-        $handler =& xoops_getmodulehandler('mailjob');
+        $handler =& xoops_getModuleHandler('mailjob');
         return $handler;
     }
 

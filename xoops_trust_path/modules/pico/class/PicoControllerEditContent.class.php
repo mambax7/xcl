@@ -69,7 +69,7 @@ class PicoControllerEditContent extends PicoControllerAbstract
             $breadcrumbsObj->appendPath('', _MD_PICO_CONTENTMANAGER);
             $this->assign['xoops_pagetitle'] = _MD_PICO_CONTENTMANAGER;
         }
-        $this->assign['xoops_breadcrumbs'] = $breadcrumbsObj->getXoopsbreadcrumbs();
+        $this->assign['xoops_breadcrumbs'] = $breadcrumbsObj->getXoopsBreadcrumbs();
 
         // misc assigns
         $this->assign['content_histories'] = pico_get_content_histories4assign($this->mydirname, $content_data['id']);

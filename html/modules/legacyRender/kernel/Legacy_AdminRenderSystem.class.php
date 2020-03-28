@@ -339,7 +339,7 @@ function Legacy_get_override_file($file, $prefix = null, $isSpDirname = false)
     if ($isSpDirname && is_object($moduleObject) && 'legacy' == $moduleObject->get('dirname') && isset($_REQUEST['dirname'])) {
         $dirname = xoops_getrequest('dirname');
         if (preg_match('/^[a-z0-9_]+$/i', $dirname)) {
-            $handler = xoops_gethandler('module');
+            $handler = xoops_getHandler('module');
             $moduleObject =& $handler->getByDirname($dirname);
         }
     }

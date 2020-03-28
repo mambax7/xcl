@@ -83,7 +83,7 @@ class Legacy_ModuleUninstaller
      */
     public function _uninstallModule()
     {
-        $moduleHandler =& xoops_gethandler('module');
+        $moduleHandler =& xoops_getHandler('module');
         if (!$moduleHandler->delete($this->_mXoopsModule)) {
             $this->mLog->addError(_AD_LEGACY_ERROR_DELETE_MODULEINFO_FROM_DB);
         } else {
@@ -151,7 +151,7 @@ class Legacy_ModuleUninstaller
         //
         // Additional
         //
-        $tplHandler =& xoops_gethandler('tplfile');
+        $tplHandler =& xoops_getHandler('tplfile');
         $criteria =new Criteria('tpl_module', $this->_mXoopsModule->get('dirname'));
         if (!$tplHandler->deleteAll($criteria)) {
             $this->mLog->addError(XCube_Utils::formatString(_AD_LEGACY_ERROR_COULD_NOT_DELETE_BLOCK_TEMPLATES, $tplHandler->db->error()));

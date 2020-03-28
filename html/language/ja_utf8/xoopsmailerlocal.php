@@ -139,7 +139,7 @@ class XoopsMultiMailerLocal extends XoopsMultiMailer
         if (empty($addr[1])) {
             $formatted = $this->secureHeader($addr[0]);
         } else {
-            $formatted = $this->EncodeHeader($this->secureHeader($addr[1]), 'text') . ' <' . $this->secureHeader(
+            $formatted = $this->encodeHeader($this->secureHeader($addr[1]), 'text') . ' <' . $this->secureHeader(
                 $addr[0]
             ) . '>';
         }
@@ -160,7 +160,7 @@ class XoopsMultiMailerLocal extends XoopsMultiMailer
                     $encoded = $str;
                 }
             } else {
-                $encoded = parent::EncodeHeader($str, $position);
+                $encoded = parent::encodeHeader($str, $position);
             }
             return $encoded;
         } else {
@@ -205,7 +205,7 @@ class XoopsMultiMailerLocal extends XoopsMultiMailer
                     $encoded = $str;
                 }
             } else {
-                $encoded = parent::EncodeHeader($str, $position);
+                $encoded = parent::encodeHeader($str, $position);
             }
             return $encoded;
         }

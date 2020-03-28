@@ -20,7 +20,7 @@ class LegacyRender_TplsetDeleteAction extends LegacyRender_AbstractDeleteAction
 
     public function &_getHandler()
     {
-        $handler = xoops_getmodulehandler('tplset');
+        $handler = xoops_getModuleHandler('tplset');
         return $handler;
     }
 

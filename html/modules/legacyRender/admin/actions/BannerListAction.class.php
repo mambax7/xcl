@@ -11,7 +11,7 @@ class LegacyRender_BannerListAction extends LegacyRender_AbstractListAction
 {
     public function &_getHandler()
     {
-        $handler =& xoops_getmodulehandler('banner');
+        $handler =& xoops_getModuleHandler('banner');
         return $handler;
     }
 
@@ -40,7 +40,7 @@ class LegacyRender_BannerListAction extends LegacyRender_AbstractListAction
         //
         $cid = xoops_getrequest('cid');
         if ($cid > 0) {
-            $handler =& xoops_getmodulehandler('bannerclient');
+            $handler =& xoops_getModuleHandler('bannerclient');
             $client =& $handler->get($cid);
             if (is_object($client)) {
                 $render->setAttribute('currentClient', $client);

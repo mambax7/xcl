@@ -14,7 +14,7 @@ class User_UserDataUploadAction extends User_Action
 {
     public function &_getHandler()
     {
-        $handler =& xoops_getmodulehandler('users');
+        $handler =& xoops_getModuleHandler('users');
         return $handler;
     }
 

@@ -23,7 +23,7 @@ class Legacy_InstallListAction extends Legacy_Action
     
     public function getDefaultView(&$controller, &$xoopsUser)
     {
-        $handler =& xoops_getmodulehandler('non_installation_module');
+        $handler =& xoops_getModuleHandler('non_installation_module');
 
         $this->mModuleObjects =& $handler->getObjects();
         

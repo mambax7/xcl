@@ -196,7 +196,7 @@ class XCube_FormFile
      * @param string $prefix Prefix for random string.
      * @param string $salt   Salt for generating token.
      */
-    public function setRandomToFilename($prefix, $salt='')
+    public function setRandomToFileName($prefix, $salt='')
     {
         $filename = $prefix . $this->_getRandomString($salt);
         $this->setFileName($filename);

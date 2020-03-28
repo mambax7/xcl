@@ -28,8 +28,8 @@ function smarty_function_pico_category_search($params, $smarty)
 
 	$db = XoopsDatabaseFactory::getDatabaseConnection();
 	(method_exists('MyTextSanitizer', 'sGetInstance') and $myts = &MyTextSanitizer::sGetInstance()) || $myts = &MyTextSanitizer::getInstance();
-	$module_handler = &xoops_gethandler('module');
-	$config_handler = &xoops_gethandler('config');
+	$module_handler = &xoops_getHandler('module');
+	$config_handler = &xoops_getHandler('config');
 
 	$categories4assign = [];
 	foreach ($mydirnames as $mydirname) {

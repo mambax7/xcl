@@ -119,7 +119,7 @@ class XoopsNotification extends XoopsObject
 
         // Check the user's notification preference.
 
-        $member_handler = xoops_gethandler('member');
+        $member_handler = xoops_getHandler('member');
         $user =& $member_handler->getUser($this->getVar('not_uid'));
         if (!is_object($user)) {
             return true;
@@ -131,7 +131,7 @@ class XoopsNotification extends XoopsObject
         switch ($method) {
         case XOOPS_NOTIFICATION_METHOD_PM:
             $xoopsMailer->usePM();
-            $config_handler = xoops_gethandler('config');
+            $config_handler = xoops_getHandler('config');
             $xoopsMailerConfig =& $config_handler->getConfigsByCat(XOOPS_CONF_MAILER);
             $xoopsMailer->setFromUser($member_handler->getUser($xoopsMailerConfig['fromuid']));
             foreach ($tags as $k=>$v) {
@@ -169,7 +169,7 @@ class XoopsNotification extends XoopsObject
         // If send-once-then-wait, disable notification
 
         include_once XOOPS_ROOT_PATH . '/include/notification_constants.php';
-        $notification_handler = xoops_gethandler('notification');
+        $notification_handler = xoops_getHandler('notification');
 
         if (XOOPS_NOTIFICATION_MODE_SENDONCETHENDELETE == $this->getVar('not_mode')) {
             $notification_handler->delete($this);
@@ -356,7 +356,7 @@ class XoopsNotificationHandler extends XoopsObjectHandler
         $ret = [];
         $limit = $start = 0;
         $sql = 'SELECT * FROM '.$this->db->prefix('xoopsnotifications');
-        if (isset($criteria) && $criteria instanceof \criteriaelement) {
+        if (isset($criteria) && $criteria instanceof \CriteriaElement) {
             $sql .= ' '.$criteria->renderWhere();
             $sort = ('' != $criteria->getSort()) ? $criteria->getSort() : 'not_id';
             $sql .= ' ORDER BY '.$sort.' '.$criteria->getOrder();
@@ -391,7 +391,7 @@ class XoopsNotificationHandler extends XoopsObjectHandler
     public function getCount($criteria = null)
     {
         $sql = 'SELECT COUNT(*) FROM '.$this->db->prefix('xoopsnotifications');
-        if (isset($criteria) && $criteria instanceof \criteriaelement) {
+        if (isset($criteria) && $criteria instanceof \CriteriaElement) {
             $sql .= ' '.$criteria->renderWhere();
         }
         if (!$result =& $this->db->query($sql)) {
@@ -411,7 +411,7 @@ class XoopsNotificationHandler extends XoopsObjectHandler
     public function deleteAll($criteria = null)
     {
         $sql = 'DELETE FROM '.$this->db->prefix('xoopsnotifications');
-        if (isset($criteria) && $criteria instanceof \criteriaelement) {
+        if (isset($criteria) && $criteria instanceof \CriteriaElement) {
             $sql .= ' '.$criteria->renderWhere();
         }
         if (!$result = $this->db->query($sql)) {
@@ -436,7 +436,7 @@ class XoopsNotificationHandler extends XoopsObjectHandler
     {
         $set_clause = is_numeric($fieldvalue) ? $filedname.' = '.$fieldvalue : $filedname." = '".$fieldvalue."'";
         $sql = 'UPDATE '.$this->db->prefix('xoopsnotifications').' SET '.$set_clause;
-        if (isset($criteria) && is_subclass_of($criteria, 'criteriaelement')) {
+        if (isset($criteria) && is_subclass_of($criteria, 'CriteriaElement')) {
             $sql .= ' '.$criteria->renderWhere();
         }
         if (!$result = $this->db->query($sql)) {
@@ -658,7 +658,7 @@ class XoopsNotificationHandler extends XoopsObjectHandler
             $module =& $xoopsModule;
             $module_id = !empty($xoopsModule) ? $xoopsModule->getVar('mid') : 0;
         } else {
-            $module_handler = xoops_gethandler('module');
+            $module_handler = xoops_getHandler('module');
             $module =& $module_handler->get($module_id);
         }
         // Get Config Array form xoops_version.php
@@ -711,7 +711,7 @@ class XoopsNotificationHandler extends XoopsObjectHandler
         }
 
         // Check if event is enabled
-        $config_handler = xoops_gethandler('config');
+        $config_handler = xoops_getHandler('config');
         $mod_config =& $config_handler->getConfigsByCat(0, $module->getVar('mid'));
         if (empty($mod_config['notification_enabled'])) {
             return false;

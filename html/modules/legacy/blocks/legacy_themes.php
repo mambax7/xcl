@@ -37,7 +37,7 @@ function b_legacy_themes_show($options)
     $block['isEnableChanger'] = 1;
     
     $theme_options = [];
-    $handler =& xoops_getmodulehandler('theme', 'legacy');
+    $handler =& xoops_getModuleHandler('theme', 'legacy');
     foreach ($xoopsConfig['theme_set_allowed'] as $name) {
         $theme =& $handler->get($name);
         if (null != $theme) {

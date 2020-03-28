@@ -26,7 +26,7 @@ altsys_include_language_file('mypreferences') ;
 $op = empty($_GET['op']) ? 'showmod' : preg_replace('/[^a-zA-Z0-9_-]/', '', $_GET['op']) ;
 
 if ('showmod' == $op) {
-    $config_handler =& xoops_gethandler('config');
+    $config_handler =& xoops_getHandler('config');
     $mod = $xoopsModule->mid() ;
     $config =& $config_handler->getConfigs(new Criteria('conf_modid', $mod));
     $count = count($config);
@@ -35,7 +35,7 @@ if ('showmod' == $op) {
     }
     include_once XOOPS_ROOT_PATH.'/class/xoopsformloader.php';
     $form = new XoopsThemeForm(_MD_A_MYPREFERENCES_FORMTITLE, 'pref_form', 'index.php?mode=admin&lib=altsys&page=mypreferences&op=save');
-    $module_handler =& xoops_gethandler('module');
+    $module_handler =& xoops_getHandler('module');
     $module =& $module_handler->get($mod);
 
     // language
@@ -229,7 +229,7 @@ if ('save' == $op) {
 
                 // if default theme has been changed
                 if (!$theme_updated && XOOPS_CONF == $config->getVar('conf_catid') && 'theme_set' == $config->getVar('conf_name')) {
-                    $member_handler =& xoops_gethandler('member');
+                    $member_handler =& xoops_getHandler('member');
                     $member_handler->updateUsersByField('theme', $_POST[$config->getVar('conf_name')]);
                     $theme_updated = true;
                 }
@@ -245,7 +245,7 @@ if ('save' == $op) {
 
                         // generate compiled files for the new theme
                         // block files only for now..
-                        $tplfile_handler =& xoops_gethandler('tplfile');
+                        $tplfile_handler =& xoops_getHandler('tplfile');
                         $dtemplates =& $tplfile_handler->find('default', 'block');
                         $dcount = count($dtemplates);
 
@@ -266,7 +266,7 @@ if ('save' == $op) {
                             }*/
 
                         // generate image cache files from image binary data, save them under cache/
-                        $image_handler =& xoops_gethandler('imagesetimg');
+                        $image_handler =& xoops_getHandler('imagesetimg');
                         $imagefiles =& $image_handler->getObjects(new Criteria('tplset_name', $newtplset), true);
                         foreach (array_keys($imagefiles) as $i) {
                             if (!$fp = fopen(XOOPS_CACHE_PATH.'/'.$newtplset.'_'.$imagefiles[$i]->getVar('imgsetimg_file'), 'wb')) {
@@ -281,10 +281,10 @@ if ('save' == $op) {
 
                 // add read permission for the start module to all groups
                 if (!$startmod_updated    && '--' != $new_value && XOOPS_CONF == $config->getVar('conf_catid') && 'startpage' == $config->getVar('conf_name')) {
-                    $member_handler =& xoops_gethandler('member');
+                    $member_handler =& xoops_getHandler('member');
                     $groups =& $member_handler->getGroupList();
-                    $moduleperm_handler =& xoops_gethandler('groupperm');
-                    $module_handler =& xoops_gethandler('module');
+                    $moduleperm_handler =& xoops_getHandler('groupperm');
+                    $module_handler =& xoops_getHandler('module');
                     $module =& $module_handler->getByDirname($new_value);
                     foreach ($groups as $groupid => $groupname) {
                         if (!$moduleperm_handler->checkRight('module_read', $module->getVar('mid'), $groupid)) {

@@ -18,7 +18,7 @@ class LegacyRender_TplfileSetFilterForm extends LegacyRender_TplfileFilterForm
             $this->mNavi->addExtra('tpl_module', xoops_getrequest('tpl_module'));
             $this->_mCriteria->add(new Criteria('tpl_module', [XOBJ_DTYPE_STRING, xoops_getrequest('tpl_module')]));
             
-            $handler =& xoops_gethandler('module');
+            $handler =& xoops_getHandler('module');
             $this->mModule =& $handler->getByDirname(xoops_getrequest('tpl_module'));
         }
     
@@ -33,7 +33,7 @@ class LegacyRender_TplfileSetFilterForm extends LegacyRender_TplfileFilterForm
             $subCriteria =new CriteriaCompo();
             $subCriteria->add(new Criteria('tpl_tplset', 'default'), 'OR');
             
-            $handler =& xoops_getmodulehandler('tplset');
+            $handler =& xoops_getModuleHandler('tplset');
             $tplsets =& $handler->getObjects(new Criteria('tplset_name', xoops_getrequest('tpl_tplset')));
             if (count($tplsets) > 0) {
                 $subCriteria->add(new Criteria('tpl_tplset', xoops_getrequest('tpl_tplset')));

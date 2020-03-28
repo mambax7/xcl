@@ -67,7 +67,7 @@ require_once(XOOPS_ROOT_PATH.'/class/mail/phpmailer/class.phpmailer.php');
  * @copyright (c) 2000-2003 The Xoops Project - www.xoops.org
  * @version   $Revision: 1.4 $ - changed by $Author: minahito $ on $Date: 2008/09/21 06:45:39 $
  */
-class xoopsmultimailer extends PHPMailer
+class XoopsMultiMailer extends PHPMailer
 {
 
     /**
@@ -156,8 +156,8 @@ class xoopsmultimailer extends PHPMailer
   public function __construct ()
   {
       global $xoopsConfig;
-      $this->ClearAllRecipients();
-      $config_handler =& xoops_gethandler('config');
+      $this->clearAllRecipients();
+      $config_handler =& xoops_getHandler('config');
       $xoopsMailerConfig =& $config_handler->getConfigsByCat(XOOPS_CONF_MAILER);
       $this->From = $xoopsMailerConfig['from'];
       if ('' == $this->From) {
@@ -207,7 +207,7 @@ class xoopsmultimailer extends PHPMailer
     {
         if (empty($this->Sender)
             || preg_match("/^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+([\.][a-z0-9-]+)+$/i", $this->Sender)) {
-            return parent::Send();
+            return parent::send();
         }
         return false;
     }
@@ -231,6 +231,6 @@ class xoopsmultimailer extends PHPMailer
             return true;
         }
         
-        return parent::SetLanguage($lang_type, $lang_path);
+        return parent::setLanguage($lang_type, $lang_path);
     }
 }

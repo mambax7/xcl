@@ -20,7 +20,7 @@ class LegacyRender_TplsetEditAction extends LegacyRender_AbstractEditAction
 
     public function &_getHandler()
     {
-        $handler =& xoops_getmodulehandler('tplset');
+        $handler =& xoops_getModuleHandler('tplset');
         return $handler;
     }
 

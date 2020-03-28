@@ -30,7 +30,7 @@ class LegacyRender_TplfileListAction extends LegacyRender_AbstractListAction
     
     public function &_getHandler()
     {
-        $handler =& xoops_getmodulehandler('tplfile');
+        $handler =& xoops_getModuleHandler('tplfile');
         return $handler;
     }
 
@@ -89,7 +89,7 @@ class LegacyRender_TplfileListAction extends LegacyRender_AbstractListAction
         $last_tplset = null;
         $last_module = null;
         
-        $handler =& xoops_getmodulehandler('tplfile');
+        $handler =& xoops_getModuleHandler('tplfile');
         
         $successFlag = true;
         
@@ -173,11 +173,11 @@ class LegacyRender_TplfileListAction extends LegacyRender_AbstractListAction
         // 
         // fetch module objects, assign to template for pull-down menu.
         //
-        $moduleHandler =& xoops_gethandler('module');
+        $moduleHandler =& xoops_getHandler('module');
         $modules =& $moduleHandler->getObjects();
         $render->setAttribute('modules', $modules);
 
-        $handler =& xoops_getmodulehandler('tplset');
+        $handler =& xoops_getModuleHandler('tplset');
         $tplsets =& $handler->getObjects();
         $render->setAttribute('tplsets', $tplsets);
     }

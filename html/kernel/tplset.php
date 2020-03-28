@@ -161,7 +161,7 @@ class XoopsTplsetHandler extends XoopsObjectHandler
         $ret = [];
         $limit = $start = 0;
         $sql = 'SELECT * FROM '.$this->db->prefix('tplset');
-        if (isset($criteria) && $criteria instanceof \criteriaelement) {
+        if (isset($criteria) && $criteria instanceof \CriteriaElement) {
             $sql .= ' '.$criteria->renderWhere().' ORDER BY tplset_id';
             $limit = $criteria->getLimit();
             $start = $criteria->getStart();
@@ -187,7 +187,7 @@ class XoopsTplsetHandler extends XoopsObjectHandler
     public function getCount($criteria = null)
     {
         $sql = 'SELECT COUNT(*) FROM '.$this->db->prefix('tplset');
-        if (isset($criteria) && $criteria instanceof \criteriaelement) {
+        if (isset($criteria) && $criteria instanceof \CriteriaElement) {
             $sql .= ' '.$criteria->renderWhere();
         }
         if (!$result =& $this->db->query($sql)) {

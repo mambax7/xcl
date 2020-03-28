@@ -20,7 +20,7 @@ class User_MiscOnlineAction extends User_AbstractListAction
     
     public function &_getHandler()
     {
-        $handler =& xoops_getmodulehandler('online', 'user');
+        $handler =& xoops_getModuleHandler('online', 'user');
         return $handler;
     }
 

@@ -48,7 +48,7 @@ class Legacy_PublicControllerStrategy extends Legacy_AbstractControllerStrategy
             $mid = preg_match("#(/index\.php|/)$#i", @$pathArray['path']) ? -1 : 0;
         }
 
-        $blockHandler =& xoops_gethandler('block');
+        $blockHandler =& xoops_getHandler('block');
         $showCenterFlag = (SHOW_CENTERBLOCK_LEFT | SHOW_CENTERBLOCK_CENTER | SHOW_CENTERBLOCK_RIGHT);
         $showRightFlag = SHOW_SIDEBLOCK_RIGHT;
         $showFlag = SHOW_SIDEBLOCK_LEFT | $showRightFlag | $showCenterFlag;
@@ -72,7 +72,7 @@ class Legacy_PublicControllerStrategy extends Legacy_AbstractControllerStrategy
         // Because get() of the virtual handler is heavy, we have to consider
         // the new solution about this process.
         //
-        $handler =& xoops_getmodulehandler('theme', 'legacy');
+        $handler =& xoops_getModuleHandler('theme', 'legacy');
         $theme =& $handler->get($this->mController->mRoot->mContext->getThemeName());
         if (is_object($theme)) {
             return $theme;

@@ -19,7 +19,7 @@ if( ! $isadminormod ) die( _MD_D3FORUM_ERR_MODERATEFORUM ) ;
 
 
 // get all of d3forum module instances
-$module_handler =& xoops_gethandler( 'module' ) ;
+$module_handler =& xoops_getHandler( 'module' ) ;
 $modules =& $module_handler->getObjects() ;
 $exportable_modules = [0 => '----'];
 foreach( $modules as $module ) {

@@ -24,7 +24,7 @@ class Legacy_BlockUninstallAction extends Legacy_AbstractEditAction
 
     public function &_getHandler()
     {
-        $handler =& xoops_getmodulehandler('newblocks');
+        $handler =& xoops_getModuleHandler('newblocks');
         return $handler;
     }
 

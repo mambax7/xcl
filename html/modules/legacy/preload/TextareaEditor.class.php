@@ -28,7 +28,7 @@ class Legacy_TextareaEditor extends XCube_ActionFilter
      */
     public static function renderBBCode(&$html, $params)
     {
-        if (!XC_CLASS_EXISTS('xoopsformelement')) {
+        if (!XC_CLASS_EXISTS('XoopsFormElement')) {
             require_once XOOPS_ROOT_PATH . '/class/xoopsformloader.php';
         }
     
@@ -58,7 +58,7 @@ class Legacy_TextareaEditor extends XCube_ActionFilter
      */
     public static function renderNone(&$html, $params)
     {
-        if (!XC_CLASS_EXISTS('xoopsformelement')) {
+        if (!XC_CLASS_EXISTS('XoopsFormElement')) {
             require_once XOOPS_ROOT_PATH . '/class/xoopsformloader.php';
         }
     

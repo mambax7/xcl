@@ -11,7 +11,7 @@ class User_GroupListAction extends User_AbstractListAction
 {
     public function &_getHandler()
     {
-        $handler =& xoops_getmodulehandler('groups');
+        $handler =& xoops_getModuleHandler('groups');
         return $handler;
     }
 

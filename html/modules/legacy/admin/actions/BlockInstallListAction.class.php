@@ -22,7 +22,7 @@ class Legacy_BlockInstallListAction extends Legacy_AbstractListAction
 
     public function &_getHandler()
     {
-        $handler =& xoops_getmodulehandler('newblocks');
+        $handler =& xoops_getModuleHandler('newblocks');
         return $handler;
     }
 
@@ -78,7 +78,7 @@ class Legacy_BlockInstallListAction extends Legacy_AbstractListAction
         }
         $render->setAttribute('objects', $this->mObjects);
         $render->setAttribute('pageNavi', $this->mFilter->mNavi);
-        $moduleHandler =& xoops_gethandler('module');
+        $moduleHandler =& xoops_getHandler('module');
         $modules =& $moduleHandler->getObjects(new Criteria('isactive', 1));
         $render->setAttribute('modules', $modules);
         $render->setAttribute('filterForm', $this->mFilter);

@@ -73,7 +73,7 @@ class Legacy_ImageAdminEditForm extends Legacy_ImageAdminCreateForm
     {
         parent::validateImgcat_id();
         
-        $handler =& xoops_getmodulehandler('imagecategory', 'legacy');
+        $handler =& xoops_getModuleHandler('imagecategory', 'legacy');
         $currentCategory =& $handler->get($this->_mImgcatId);
         
         $specificCategory =& $handler->get($this->get('imgcat_id'));

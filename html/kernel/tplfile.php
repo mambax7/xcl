@@ -253,7 +253,7 @@ class XoopsTplfileHandler extends XoopsObjectHandler
         } else {
             $sql = 'SELECT * FROM '.$this->db->prefix('tplfile');
         }
-        if (isset($criteria) && $criteria instanceof \criteriaelement) {
+        if (isset($criteria) && $criteria instanceof \CriteriaElement) {
             $sql .= ' '.$criteria->renderWhere().' ORDER BY tpl_refid';
             $limit = $criteria->getLimit();
             $start = $criteria->getStart();
@@ -278,7 +278,7 @@ class XoopsTplfileHandler extends XoopsObjectHandler
     public function getCount($criteria = null)
     {
         $sql = 'SELECT COUNT(*) FROM '.$this->db->prefix('tplfile');
-        if (isset($criteria) && $criteria instanceof \criteriaelement) {
+        if (isset($criteria) && $criteria instanceof \CriteriaElement) {
             $sql .= ' '.$criteria->renderWhere();
         }
         if (!$result =& $this->db->query($sql)) {

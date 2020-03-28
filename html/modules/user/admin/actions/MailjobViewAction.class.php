@@ -18,7 +18,7 @@ class User_MailjobViewAction extends User_AbstractViewAction
 
     public function &_getHandler()
     {
-        $handler =& xoops_getmodulehandler('mailjob');
+        $handler =& xoops_getModuleHandler('mailjob');
         return $handler;
     }
     

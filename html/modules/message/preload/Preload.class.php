@@ -7,7 +7,7 @@ class Message_Preload extends XCube_ActionFilter
 {
     public function postFilter()
     {
-        $confhand = xoops_gethandler('config');
+        $confhand = xoops_getHandler('config');
         $conf = $confhand->getConfigsByDirname('message');
         if ($this->mRoot->mContext->mUser->isInRole('Site.RegisteredUser')) {
             require_once XOOPS_MODULE_PATH.'/message/service/Service.class.php';
@@ -41,7 +41,7 @@ class Message_Preload extends XCube_ActionFilter
         $root = XCube_Root::getSingleton();
         if ($root->mContext->mUser->isInRole('Site.RegisteredUser')) {
             $uid = $root->mContext->mXoopsUser->get('uid');
-            $modHand = xoops_getmodulehandler('inbox', 'message');
+            $modHand = xoops_getModuleHandler('inbox', 'message');
             $num = $modHand->getCountUnreadByFromUid($uid);
             if ($num > 0) {
                 $root->mLanguageManager->loadModuleMessageCatalog('message');
@@ -76,7 +76,7 @@ class Message_Preload extends XCube_ActionFilter
     public static function makeHandler(&$handler, $name, $optional)
     {
         if ('privmessage' == $name) {
-            $handler = xoops_getmodulehandler('inbox', 'message', $optional);
+            $handler = xoops_getModuleHandler('inbox', 'message', $optional);
         }
     }
 }

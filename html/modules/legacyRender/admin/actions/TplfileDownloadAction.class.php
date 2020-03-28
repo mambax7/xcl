@@ -18,7 +18,7 @@ class LegacyRender_TplfileDownloadAction extends LegacyRender_Action
     {
         $id = xoops_getrequest('tpl_id');
         
-        $handler =& xoops_getmodulehandler('tplfile');
+        $handler =& xoops_getModuleHandler('tplfile');
         $this->mObject =& $handler->get($id);
         
         return null != $this->mObject ? LEGACYRENDER_FRAME_VIEW_SUCCESS : LEGACYRENDER_FRAME_VIEW_ERROR;

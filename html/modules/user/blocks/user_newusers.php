@@ -7,7 +7,7 @@ function b_user_newusers_show($options)
     $criteria->setOrder('DESC');
     $criteria->setSort('user_regdate');
     $criteria->setLimit($limit);
-    $member_handler =& xoops_gethandler('member');
+    $member_handler =& xoops_getHandler('member');
     $newmembers =& $member_handler->getUsers($criteria);
     $count = count($newmembers);
     for ($i = 0; $i < $count; $i++) {

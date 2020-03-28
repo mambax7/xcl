@@ -48,7 +48,7 @@ class Message_Service extends XCube_Service
         $uid = $root->mContext->mRequest->getRequest('uid');
     
         if ($uid > 0) {
-            $modHand = xoops_getmodulehandler('inbox', 'message');
+            $modHand = xoops_getModuleHandler('inbox', 'message');
             return $modHand->getCountUnreadByFromUid($uid);
         }
     

@@ -3368,7 +3368,7 @@ class File_X509
             //$ips = count($subject->domains) ? $subject->ipAddresses : array_slice($subject->ipAddresses, 1);
             $ipAddresses = [];
             foreach ($subject->ipAddresses as $ipAddress) {
-                $encoded = $subject->_ipAddress($ipAddress);
+                $encoded = $subject->_iPAddress($ipAddress);
                 if (false !== $encoded) {
                     $ipAddresses[] = $encoded;
                 }

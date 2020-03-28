@@ -37,7 +37,7 @@ class Legacy_PreferenceEditAction extends Legacy_Action
         $this->mState->prepare($controller, $xoopsUser);
         
         if ($this->mPreparedFlag) {
-            $handler =& xoops_gethandler('config');
+            $handler =& xoops_getHandler('config');
             
             $criteria =new CriteriaCompo();
             $criteria->add(new Criteria('conf_modid', $this->mActionForm->getModuleId()));
@@ -80,7 +80,7 @@ class Legacy_PreferenceEditAction extends Legacy_Action
         }
         
         $this->mActionForm->update($this->mObjects);
-        $handler =& xoops_gethandler('config');
+        $handler =& xoops_getHandler('config');
         
         foreach (array_keys($this->mObjects) as $key) {
             if (!$handler->insertConfig($this->mObjects[$key])) {
@@ -114,7 +114,7 @@ class Legacy_PreferenceEditAction extends Legacy_Action
         // Make the array of timezone object
         //
         if (in_array('timezone', $formtypeArr)) {
-            $handler =& xoops_gethandler('timezone');
+            $handler =& xoops_getHandler('timezone');
             $timezoneArr =& $handler->getObjects();
             $render->setAttribute('timezoneArr', $timezoneArr);
         }
@@ -123,7 +123,7 @@ class Legacy_PreferenceEditAction extends Legacy_Action
         // Make the array of group object
         //
         if (in_array('group', $formtypeArr)||in_array('group_multi', $formtypeArr)||in_array('group_checkbox', $formtypeArr)) {
-            $handler =& xoops_gethandler('group');
+            $handler =& xoops_getHandler('group');
             $groupArr =& $handler->getObjects();
             $render->setAttribute('groupArr', $groupArr);
         }
@@ -132,7 +132,7 @@ class Legacy_PreferenceEditAction extends Legacy_Action
         // Make the array of tplset object
         //
         if (in_array('tplset', $formtypeArr)) {
-            $handler =& xoops_gethandler('tplset');
+            $handler =& xoops_getHandler('tplset');
             $tplsetArr =& $handler->getObjects();
             $render->setAttribute('tplsetArr', $tplsetArr);
         }
@@ -156,7 +156,7 @@ class Legacy_PreferenceEditAction extends Legacy_Action
         // Make the array of module object for selecting startpage.
         //
         if (in_array('startpage', $formtypeArr)||in_array('module_cache', $formtypeArr)) {
-            $handler =& xoops_gethandler('module');
+            $handler =& xoops_getHandler('module');
             $criteria =new CriteriaCompo();
             $criteria->add(new Criteria('hasmain', 1));
             $criteria->add(new Criteria('isactive', 1));
@@ -168,7 +168,7 @@ class Legacy_PreferenceEditAction extends Legacy_Action
         // Make the list of theme.
         //
         if (in_array('theme', $formtypeArr)||in_array('theme_multi', $formtypeArr)) {
-            $handler =& xoops_getmodulehandler('theme');
+            $handler =& xoops_getModuleHandler('theme');
             $themeArr =& $handler->getObjects();
             $render->setAttribute('themeArr', $themeArr);
         }
@@ -177,7 +177,7 @@ class Legacy_PreferenceEditAction extends Legacy_Action
         // Make the array of cachetime.
         //
         if (in_array('module_cache', $formtypeArr)) {
-            $handler =& xoops_gethandler('cachetime');
+            $handler =& xoops_getHandler('cachetime');
             $cachetimeArr = $handler->getObjects();
             $render->setAttribute('cachetimeArr', $cachetimeArr);
         }
@@ -186,7 +186,7 @@ class Legacy_PreferenceEditAction extends Legacy_Action
         // Make the list of user
         //
         if (in_array('user', $formtypeArr)||in_array('user_multi', $formtypeArr)) {
-            $handler =& xoops_gethandler('member');
+            $handler =& xoops_getHandler('member');
             $userArr = $handler->getUserList();
             $render->setAttribute('userArr', $userArr);
         }
@@ -249,7 +249,7 @@ class Legacy_PreferenceEditState extends Legacy_AbstractPreferenceEditState
     {
         parent::prepare($controller, $xoopsUser);
         
-        $handler =& xoops_gethandler('configcategory');
+        $handler =& xoops_getHandler('configcategory');
         $this->_mMaster->mCategory =& $handler->get((int)xoops_getrequest('confcat_id'));
         
         if (!is_object($this->_mMaster->mCategory)) {
@@ -263,10 +263,10 @@ class Legacy_PreferenceEditState extends Legacy_AbstractPreferenceEditState
     
     public function hasPermission(&$controller, $xoopsUser)
     {
-        $moduleHandler =& xoops_gethandler('module');
+        $moduleHandler =& xoops_getHandler('module');
         $module =& $moduleHandler->getByDirname('legacy');
         
-        $permHandler =& xoops_gethandler('groupperm');
+        $permHandler =& xoops_getHandler('groupperm');
         return $permHandler->checkRight('module_admin', $module->get('mid'), $xoopsUser->getGroups());
     }
     
@@ -321,7 +321,7 @@ class Legacy_ModulePreferenceEditState extends Legacy_AbstractPreferenceEditStat
     {
         parent::prepare($controller, $xoopsUser);
         
-        $handler =& xoops_gethandler('module');
+        $handler =& xoops_getHandler('module');
         $this->_mMaster->mModule =& $handler->get((int)xoops_getrequest('confmod_id'));
 
         if (!(is_object($this->_mMaster->mModule) && $this->_mMaster->mModule->get('isactive') &&

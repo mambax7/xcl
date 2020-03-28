@@ -182,7 +182,7 @@ class User_UserAdminEditForm extends XCube_ActionForm
     public function validateUname()
     {
         if (null != $this->get('uname')) {
-            $handler =& xoops_gethandler('user');
+            $handler =& xoops_getHandler('user');
             $criteria =new CriteriaCompo(new Criteria('uname', $this->get('uname')));
             if ($this->get('uid')) {
                 $criteria->add(new Criteria('uid', $this->get('uid'), '<>'));
@@ -199,7 +199,7 @@ class User_UserAdminEditForm extends XCube_ActionForm
             //
             // email unique check
             //
-            $userHandler=&xoops_gethandler('user');
+            $userHandler=&xoops_getHandler('user');
             $criteria =new CriteriaCompo(new Criteria('email', $this->get('email')));
             if ($this->get('uid') > 0) {
                 $criteria->add(new Criteria('uid', $this->get('uid'), '<>'));
@@ -222,7 +222,7 @@ class User_UserAdminEditForm extends XCube_ActionForm
     
     public function validateGroups()
     {
-        $groupHandler =& xoops_gethandler('group');
+        $groupHandler =& xoops_getHandler('group');
         foreach ($this->get('groups') as $gid) {
             $group =& $groupHandler->get($gid);
             if (!is_object($group)) {
@@ -254,7 +254,7 @@ class User_UserAdminEditForm extends XCube_ActionForm
         $t_rank = $this->get('rank');
         
         if ($t_rank > 0) {
-            $handler =& xoops_getmodulehandler('ranks', 'user');
+            $handler =& xoops_getModuleHandler('ranks', 'user');
             $rank =& $handler->get($t_rank);
             
             if (!is_object($rank)) {

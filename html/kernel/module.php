@@ -333,7 +333,7 @@ class XoopsModule extends XoopsObject
     }
     public function &getByDirName($dirname)
     {
-        $modhandler = xoops_gethandler('module');
+        $modhandler = xoops_getHandler('module');
         $ret =& $modhandler->getByDirname($dirname);
         return $ret;
     }
@@ -587,7 +587,7 @@ class XoopsModuleHandler extends XoopsObjectHandler
         $limit = $start = 0;
         $db = &$this->db;
         $sql = 'SELECT * FROM '.$db->prefix('modules');
-        if (isset($criteria) && $criteria instanceof \criteriaelement) {
+        if (isset($criteria) && $criteria instanceof \CriteriaElement) {
             $sql .= ' '.$criteria->renderWhere();
 
             if (null != $criteria->getSort()) {
@@ -632,7 +632,7 @@ class XoopsModuleHandler extends XoopsObjectHandler
     public function getCount($criteria = null)
     {
         $sql = 'SELECT COUNT(*) FROM '.$this->db->prefix('modules');
-        if (isset($criteria) && $criteria instanceof \criteriaelement) {
+        if (isset($criteria) && $criteria instanceof \CriteriaElement) {
             $sql .= ' '.$criteria->renderWhere();
         }
         if (!$result =& $this->db->query($sql)) {

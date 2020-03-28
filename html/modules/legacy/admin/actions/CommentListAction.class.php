@@ -31,7 +31,7 @@ class Legacy_CommentListAction extends Legacy_AbstractListAction
 
     public function &_getHandler()
     {
-        $handler =& xoops_getmodulehandler('comment');
+        $handler =& xoops_getModuleHandler('comment');
         return $handler;
     }
 
@@ -67,10 +67,10 @@ class Legacy_CommentListAction extends Legacy_AbstractListAction
         }
         
         $moduleArr = [];
-        $handler =& xoops_getmodulehandler('comment');
+        $handler =& xoops_getModuleHandler('comment');
         $modIds = $handler->getModuleIds();
         
-        $moduleHandler =& xoops_gethandler('module');
+        $moduleHandler =& xoops_getHandler('module');
         foreach ($modIds as $mid) {
             $module =& $moduleHandler->get($mid);
             if (is_object($module)) {
@@ -80,7 +80,7 @@ class Legacy_CommentListAction extends Legacy_AbstractListAction
         }
         
         $statusArr = [];
-        $statusHandler =& xoops_getmodulehandler('commentstatus');
+        $statusHandler =& xoops_getModuleHandler('commentstatus');
         $statusArr =& $statusHandler->getObjects();
         
         $render->setTemplateName('comment_list.html');
@@ -121,7 +121,7 @@ class Legacy_CommentListAction extends Legacy_AbstractListAction
     public function _processConfirm(&$controller, &$xoopsUser)
     {
         $statusArr = $this->mActionForm->get('status');
-        $commentHandler =& xoops_getmodulehandler('comment');
+        $commentHandler =& xoops_getModuleHandler('comment');
         //
         // Do mapping.
         //
@@ -140,7 +140,7 @@ class Legacy_CommentListAction extends Legacy_AbstractListAction
     {
         $statusArr = $this->mActionForm->get('status');
 
-        $comment_handler = xoops_gethandler('comment');
+        $comment_handler = xoops_getHandler('comment');
 
         foreach (array_keys($statusArr) as $cid) {
             $comment =& $comment_handler->get($cid);
@@ -195,7 +195,7 @@ class Legacy_CommentListAction extends Legacy_AbstractListAction
 
                     $uid = $comment->getVar('com_uid');
                     if ($uid > 0 && false != $add_userpost) {
-                        $member_handler =& xoops_gethandler('member');
+                        $member_handler =& xoops_getHandler('member');
                         $poster =& $member_handler->getUser($uid);
                         if (is_object($poster)) {
                             $member_handler->updateUserByField($poster, 'posts', $poster->getVar('posts') + 1);
@@ -213,7 +213,7 @@ class Legacy_CommentListAction extends Legacy_AbstractListAction
                             $not_itemid = $comment->getVar('com_itemid');
                             $not_event = $notify_event;
                             $comment_tags = [];
-                            $module_handler =& xoops_gethandler('module');
+                            $module_handler =& xoops_getHandler('module');
                             $not_module =& $module_handler->get($not_modid);
                             $com_config =& $not_module->getInfo('comments');
                             $comment_url = $com_config['pageName'] . '?';
@@ -222,7 +222,7 @@ class Legacy_CommentListAction extends Legacy_AbstractListAction
                            //$comment_url .= $extra_params;
                           $comment_url .= $com_config['itemName'];
                             $comment_tags['X_COMMENT_URL'] = XOOPS_URL . '/modules/' . $not_module->getVar('dirname') . '/' .$comment_url . '=' . $comment->getVar('com_itemid').'&amp;com_id='.$comment->getVar('com_id').'&amp;com_rootid='.$comment->getVar('com_rootid').'#comment'.$comment->getVar('com_id');
-                            $notification_handler =& xoops_gethandler('notification');
+                            $notification_handler =& xoops_getHandler('notification');
                             $notification_handler->triggerEvent($not_category, $not_itemid, $not_event, $comment_tags, false, $not_modid);
                         }//notify if
                 }//count if
@@ -238,7 +238,7 @@ class Legacy_CommentListAction extends Legacy_AbstractListAction
                             }
 
                             if (1 != $comment->get('com_status') && $comment->get('com_uid') > 0) {
-                                $memberhandler =& xoops_gethandler('member');
+                                $memberhandler =& xoops_getHandler('member');
                                 $user =& $memberhandler->getUser($comment->get('com_uid'));
                                 if (is_object($user)) {
                                     $count = $user->get('posts');

@@ -11,7 +11,7 @@ function b_user_topusers_show($options)
     $criteria->setOrder('DESC');
     $criteria->setSort('posts');
     $criteria->setLimit($limit);
-    $member_handler =& xoops_gethandler('member');
+    $member_handler =& xoops_getHandler('member');
     $topposters =& $member_handler->getUsers($criteria);
     $count = count($topposters);
     for ($i = 0; $i < $count; $i++) {

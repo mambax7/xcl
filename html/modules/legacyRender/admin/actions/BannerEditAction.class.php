@@ -20,7 +20,7 @@ class LegacyRender_BannerEditAction extends LegacyRender_AbstractEditAction
 
     public function &_getHandler()
     {
-        $handler =& xoops_getmodulehandler('banner');
+        $handler =& xoops_getModuleHandler('banner');
         return $handler;
     }
 
@@ -45,7 +45,7 @@ class LegacyRender_BannerEditAction extends LegacyRender_AbstractEditAction
         $this->mObject->loadBannerclient();
         $render->setAttribute('object', $this->mObject);
         
-        $bannerclientHandler =& xoops_getmodulehandler('bannerclient');
+        $bannerclientHandler =& xoops_getModuleHandler('bannerclient');
         $bannerclientArr =& $bannerclientHandler->getObjects();
         foreach (array_keys($bannerclientArr) as $key) {
             $bannerclientArr[$key]->loadBanner();

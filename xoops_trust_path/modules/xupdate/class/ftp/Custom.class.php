@@ -224,7 +224,7 @@ class Xupdate_Ftp_CustomBase extends Xupdate_Ftp_Abstract
         if ($this->_ready) {
             return true;
         }
-        $this->SendMsg('Local OS : '.$this->OS_FullName[$this->OS_local]);
+        $this->SendMSG('Local OS : '.$this->OS_FullName[$this->OS_local]);
         if (!($this->_ftp_control_sock = $this->_connect($this->_host, $this->_port))) {
             $this->SendMSG('Error : Cannot connect to remote host "' . $this->_fullhost . ' :' . $this->_port . '"');
             return false;

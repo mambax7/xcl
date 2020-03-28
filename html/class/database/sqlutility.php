@@ -18,7 +18,7 @@
  * @package kernel
  * @subpackage  database
  */
-class sqlutility
+class SqlUtility
 {
     /**
     * Function from phpMyAdmin (https://phpwizard.net/projects/phpMyAdmin/)

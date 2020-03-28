@@ -72,7 +72,7 @@ class XoopsFormSelectUser extends XoopsFormSelect
     public function __construct($caption, $name, $include_anon=false, $value=null, $size=1, $multiple=false)
     {
         $this->XoopsFormSelect($caption, $name, $value, $size, $multiple);
-        $member_handler =& xoops_gethandler('member');
+        $member_handler =& xoops_getHandler('member');
         if ($include_anon) {
             global $xoopsConfig;
             $this->addOption(0, $xoopsConfig['anonymous']);

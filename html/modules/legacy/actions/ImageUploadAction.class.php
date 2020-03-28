@@ -33,7 +33,7 @@ class Legacy_ImageUploadAction extends Legacy_ImageEditAction
     
     public function &_getHandler()
     {
-        $handler =& xoops_getmodulehandler('image', 'legacy');
+        $handler =& xoops_getModuleHandler('image', 'legacy');
         return $handler;
     }
 
@@ -59,7 +59,7 @@ class Legacy_ImageUploadAction extends Legacy_ImageEditAction
             $groups = [XOOPS_GROUP_ANONYMOUS];
         }
             
-        $handler =& xoops_getmodulehandler('imagecategory', 'legacy');
+        $handler =& xoops_getModuleHandler('imagecategory', 'legacy');
         $this->mCategory =& $handler->get(xoops_getrequest('imgcat_id'));
         if (!is_object($this->mCategory) || (is_object($this->mCategory) && !$this->mCategory->hasUploadPerm($groups))) {
             return false;

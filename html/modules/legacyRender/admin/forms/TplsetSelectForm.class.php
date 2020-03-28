@@ -27,7 +27,7 @@ class LegacyRender_TplsetSelectForm extends XCube_ActionForm
 
     public function validateTplset_name()
     {
-        $handler =& xoops_getmodulehandler('tplset');
+        $handler =& xoops_getModuleHandler('tplset');
         if (0 == $handler->getCount(new Criteria('tplset_name', $this->get('tplset_name')))) {
             $this->addErrorMessage(_AD_LEGACYRENDER_ERROR_TPLSET_NO_EXIST);
         }

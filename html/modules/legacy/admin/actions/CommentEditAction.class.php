@@ -36,7 +36,7 @@ class Legacy_CommentEditAction extends Legacy_AbstractEditAction
 
     public function &_getHandler()
     {
-        $handler =& xoops_getmodulehandler('comment');
+        $handler =& xoops_getModuleHandler('comment');
         return $handler;
     }
     
@@ -71,12 +71,12 @@ class Legacy_CommentEditAction extends Legacy_AbstractEditAction
         $render->setAttribute('actionForm', $this->mActionForm);
         $render->setAttribute('object', $this->mObject);
         
-        $subjectHandler =& xoops_gethandler('subjecticon');
+        $subjectHandler =& xoops_getHandler('subjecticon');
         $subjectIconArr =& $subjectHandler->getObjects();
         
         $render->setAttribute('subjectIconArr', $subjectIconArr);
 
-        $statusHandler =& xoops_getmodulehandler('commentstatus');
+        $statusHandler =& xoops_getModuleHandler('commentstatus');
         if (XOOPS_COMMENT_PENDING == $this->mObject->get('com_status')) {
             $statusArr =& $statusHandler->getObjects();
         } else {
@@ -110,7 +110,7 @@ class Legacy_CommentEditAction extends Legacy_AbstractEditAction
      */
     public function loadCallbackFile($comment)
     {
-        $handler =& xoops_gethandler('module');
+        $handler =& xoops_getHandler('module');
         $module =& $handler->get($comment->get('com_modid'));
         
         if (!is_object($module)) {
@@ -150,7 +150,7 @@ class Legacy_CommentEditAction extends Legacy_AbstractEditAction
             call_user_func($function, $comment);
         }
         
-        $handler =& xoops_gethandler('member');
+        $handler =& xoops_getHandler('member');
 
         //
         // TODO We should adjust the following lines and handler's design.
@@ -180,7 +180,7 @@ class Legacy_CommentEditAction extends Legacy_AbstractEditAction
             $criteria->add(new Criteria('com_itemid', $comment->get('com_itemid')));
             $criteria->add(new Criteria('com_status', XOOPS_COMMENT_ACTIVE));
             
-            $handler =& xoops_gethandler('comment');
+            $handler =& xoops_getHandler('comment');
             $commentCount = $handler->getCount($criteria);
             
             call_user_func_array($function, [$comment->get('com_itemid'), $commentCount, $comment->get('com_id')]);

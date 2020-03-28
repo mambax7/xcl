@@ -258,7 +258,7 @@ class XoopsConfigHandler
     {
         $ret = null;
         ;
-        $handler = xoops_gethandler('module');
+        $handler = xoops_getHandler('module');
         ;
         $module =& $handler->getByDirname($dirname);
         if (!is_object($module)) {

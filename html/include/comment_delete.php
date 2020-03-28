@@ -46,9 +46,9 @@ if (!empty($_POST)) {
 }
 
 if ('system' == $xoopsModule->getVar('dirname')) {
-    $comment_handler =& xoops_gethandler('comment');
+    $comment_handler =& xoops_getHandler('comment');
     $comment =& $comment_handler->get($com_id);
-    $module_handler =& xoops_gethandler('module');
+    $module_handler =& xoops_getHandler('module');
     $module =& $module_handler->get($comment->getVar('com_modid'));
     $comment_config = $module->getInfo('comments');
     $com_modid = $module->getVar('mid');
@@ -87,7 +87,7 @@ if (!is_object($xoopsUser)) {
     $accesserror = true;
 } else {
     if (!$xoopsUser->isAdmin($com_modid)) {
-        $sysperm_handler =& xoops_gethandler('groupperm');
+        $sysperm_handler =& xoops_getHandler('groupperm');
         if (!$sysperm_handler->checkRight('system_admin', LEGACY_SYSTEM_COMMENT, $xoopsUser->getGroups())) {
             $accesserror = true;
         }
@@ -109,7 +109,7 @@ $t_root->mLanguageManager->loadPageTypeMessageCatalog('comment');    ///< Is thi
 
 switch ($op) {
 case 'delete_one':
-    $comment_handler = xoops_gethandler('comment');
+    $comment_handler = xoops_getHandler('comment');
     $comment =& $comment_handler->get($com_id);
     if (!$comment_handler->delete($comment)) {
         include XOOPS_ROOT_PATH.'/header.php';
@@ -147,7 +147,7 @@ case 'delete_one':
 
     // update user posts if its not an anonymous post
     if (0 != $comment->getVar('com_uid')) {
-        $member_handler =& xoops_gethandler('member');
+        $member_handler =& xoops_getHandler('member');
         $com_poster =& $member_handler->getUser($comment->getVar('com_uid'));
         if (is_object($com_poster)) {
             $member_handler->updateUserByField($com_poster, 'posts', $com_poster->getVar('posts') - 1);
@@ -200,7 +200,7 @@ case 'delete_one':
     break;
 
 case 'delete_all':
-    $comment_handler = xoops_gethandler('comment');
+    $comment_handler = xoops_getHandler('comment');
     $comment =& $comment_handler->get($com_id);
     $com_rootid = $comment->getVar('com_rootid');
 
@@ -215,7 +215,7 @@ case 'delete_all':
     $child_comments[$com_id] =& $comment;
     $msgs = [];
     $deleted_num = [];
-    $member_handler =& xoops_gethandler('member');
+    $member_handler =& xoops_getHandler('member');
     foreach (array_keys($child_comments) as $i) {
         if (!$comment_handler->delete($child_comments[$i])) {
             $msgs[] = _CM_COMDELETENG.' (ID: '.$child_comments[$i]->getVar('com_id').')';

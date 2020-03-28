@@ -14,7 +14,7 @@ class Profile_Admin_DataDownloadAction extends Profile_AbstractListAction
 {
     public function &_getHandler()
     {
-        $handler =& xoops_getmodulehandler('data');
+        $handler =& xoops_getModuleHandler('data');
         return $handler;
     }
     
@@ -60,7 +60,7 @@ class Profile_Admin_DataDownloadAction extends Profile_AbstractListAction
         $limit = 20;
         $fp = fopen('php://output', 'w');
 
-        $defHandler =& xoops_getmodulehandler('definitions');
+        $defHandler =& xoops_getModuleHandler('definitions');
         $defArr =& $defHandler->getDefinitions(false);
         $label = ['uid'];
         $columns = ['uid'];

@@ -59,7 +59,7 @@ abstract class AbstractAction
             $uid = $this->root->mContext->mXoopsUser->get('uid');
         }
     
-        $modHand = xoops_getmodulehandler('settings', _MY_DIRNAME);
+        $modHand = xoops_getModuleHandler('settings', _MY_DIRNAME);
         $modObj = $modHand->get($uid);
         if (!is_object($modObj)) {
             $modObj = $modHand->create();
@@ -76,7 +76,7 @@ abstract class AbstractAction
             if (isset($this->unamelink[$uid])) {
                 return $this->unamelink[$uid];
             }
-            $mhandler = xoops_gethandler('member');
+            $mhandler = xoops_getHandler('member');
             $user = $mhandler->getUser($uid);
             if (is_object($user)) {
                 $this->unamelink[$uid] = '<a href="'.XOOPS_URL.'/userinfo.php?uid='.$uid.'">'. $user->getVar('uname').'</a>';

@@ -118,7 +118,7 @@ class Profile_AssetManager
      */
     public function &_createHandler($name)
     {
-        return xoops_getmodulehandler($name, $this->mDirname);
+        return xoops_getModuleHandler($name, $this->mDirname);
     }
 
     /**

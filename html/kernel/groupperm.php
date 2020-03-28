@@ -93,13 +93,13 @@ class XoopsGroupPerm extends XoopsObject
         // because the validation code accesses handlers.
         // But, this follows traditional architecture of XOOPS2.
 
-        $gHandler = xoops_gethandler('group');
+        $gHandler = xoops_getHandler('group');
         $group =& $gHandler->get($this->get('gperm_groupid'));
         if (!is_object($group)) {
             return false;
         }
 
-        $mHandler = xoops_gethandler('module');
+        $mHandler = xoops_getHandler('module');
         
         if (1 != $this->get('gperm_modid')) {
             $module =& $mHandler->get($this->get('gperm_modid'));
@@ -110,13 +110,13 @@ class XoopsGroupPerm extends XoopsObject
         
         if (GROUPPERM_VAL_MODREAD == $this->get('gperm_name')
             || GROUPPERM_VAL_MODADMIN == $this->get('gperm_name')) {
-            $mHandler = xoops_gethandler('module');
+            $mHandler = xoops_getHandler('module');
             $module =& $mHandler->get($this->get('gperm_itemid'));
             if (!is_object($module)) {
                 return false;
             }
         } elseif (GROUPPERM_VAL_BLOCKREAD == $this->get('gperm_name')) {
-            $bHandler = xoops_gethandler('block');
+            $bHandler = xoops_getHandler('block');
             $block =& $bHandler->get($this->get('gperm_itemid'));
             if (!is_object($block)) {
                 return false;
@@ -254,7 +254,7 @@ class XoopsGroupPermHandler extends XoopsObjectHandler
         $limit = $start = 0;
         $db = &$this->db;
         $sql = 'SELECT * FROM '.$db->prefix('group_permission');
-        if (isset($criteria) && $criteria instanceof \criteriaelement) {
+        if (isset($criteria) && $criteria instanceof \CriteriaElement) {
             $sql .= ' '.$criteria->renderWhere();
             $limit = $criteria->getLimit();
             $start = $criteria->getStart();
@@ -287,7 +287,7 @@ class XoopsGroupPermHandler extends XoopsObjectHandler
     {
         $db = &$this->db;
         $sql = 'SELECT COUNT(*) FROM '.$db->prefix('group_permission');
-        if (isset($criteria) && $criteria instanceof \criteriaelement) {
+        if (isset($criteria) && $criteria instanceof \CriteriaElement) {
             $sql .= ' '.$criteria->renderWhere();
         }
         $result = $db->query($sql);
@@ -308,7 +308,7 @@ class XoopsGroupPermHandler extends XoopsObjectHandler
     public function deleteAll($criteria = null)
     {
         $sql = sprintf('DELETE FROM %s', $this->db->prefix('group_permission'));
-        if (isset($criteria) && $criteria instanceof \criteriaelement) {
+        if (isset($criteria) && $criteria instanceof \CriteriaElement) {
             $sql .= ' '.$criteria->renderWhere();
         }
         if (!$result = $this->db->query($sql)) {

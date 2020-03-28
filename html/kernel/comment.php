@@ -252,7 +252,7 @@ class XoopsCommentHandler extends XoopsObjectHandler
         $ret = [];
         $limit = $start = 0;
         $sql = 'SELECT * FROM '.$this->db->prefix('xoopscomments');
-        if (isset($criteria) && $criteria instanceof \criteriaelement) {
+        if (isset($criteria) && $criteria instanceof \CriteriaElement) {
             $sql .= ' '.$criteria->renderWhere();
             $sort = ('' != $criteria->getSort()) ? $criteria->getSort() : 'com_id';
             $sql .= ' ORDER BY '.$sort.' '.$criteria->getOrder();
@@ -286,7 +286,7 @@ class XoopsCommentHandler extends XoopsObjectHandler
     public function getCount($criteria = null)
     {
         $sql = 'SELECT COUNT(*) FROM '.$this->db->prefix('xoopscomments');
-        if (isset($criteria) && $criteria instanceof \criteriaelement) {
+        if (isset($criteria) && $criteria instanceof \CriteriaElement) {
             $sql .= ' '.$criteria->renderWhere();
         }
         if (!$result =& $this->db->query($sql)) {
@@ -306,7 +306,7 @@ class XoopsCommentHandler extends XoopsObjectHandler
     public function deleteAll($criteria = null)
     {
         $sql = 'DELETE FROM '.$this->db->prefix('xoopscomments');
-        if (isset($criteria) && $criteria instanceof \criteriaelement) {
+        if (isset($criteria) && $criteria instanceof \CriteriaElement) {
             $sql .= ' '.$criteria->renderWhere();
         }
         if (!$result = $this->db->query($sql)) {
@@ -461,7 +461,7 @@ class XoopsCommentHandler extends XoopsObjectHandler
     {
         $set_clause = is_numeric($fieldvalue) ? $filedname.' = '.$fieldvalue : $filedname.' = '.$this->db->quoteString($fieldvalue);
         $sql = 'UPDATE '.$this->db->prefix('xoopscomments').' SET '.$set_clause;
-        if (isset($criteria) && is_subclass_of($criteria, 'criteriaelement')) {
+        if (isset($criteria) && is_subclass_of($criteria, 'CriteriaElement')) {
             $sql .= ' '.$criteria->renderWhere();
         }
         if (!$result = $this->db->query($sql)) {

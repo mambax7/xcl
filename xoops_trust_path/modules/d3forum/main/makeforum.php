@@ -32,7 +32,7 @@ if( isset( $_POST['forumman_post'] ) ) {
 		'CAT_URL' => XOOPS_URL."/modules/$mydirname/index.php?cat_id=$cat_id" ,
     ];
 	// Notify for newforum
-	$notification_handler =& xoops_gethandler('notification') ;
+	$notification_handler =& xoops_getHandler('notification') ;
 	$users2notify = d3forum_get_users_can_read_forum( $mydirname , $forum_id , $cat_id ) ;
 	if( empty( $users2notify ) ) $users2notify = [0];
 	d3forum_trigger_event(  $mydirname , 'global' , 0 , 'newforum' , $tags , $users2notify ) ;

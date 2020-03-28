@@ -52,7 +52,7 @@ class PicoControllerGetHistory extends PicoControllerAbstract
 
         // breadcrumbs
         $breadcrumbsObj->appendPath('', _MD_PICO_HISTORY);
-        $this->assign['xoops_breadcrumbs'] = $breadcrumbsObj->getXoopsbreadcrumbs();
+        $this->assign['xoops_breadcrumbs'] = $breadcrumbsObj->getXoopsBreadcrumbs();
         $this->assign['xoops_pagetitle']   = _MD_PICO_HISTORY;
 
         // view

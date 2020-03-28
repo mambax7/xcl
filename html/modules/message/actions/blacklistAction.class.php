@@ -23,7 +23,7 @@ class blacklistAction extends AbstractAction
         } else {
             switch ($this->root->mContext->mRequest->getRequest('cmd')) {
         case 'add':
-          $modHand = xoops_getmodulehandler('settings', _MY_DIRNAME);
+          $modHand = xoops_getModuleHandler('settings', _MY_DIRNAME);
           $uid = $modHand->getuidTouname($this->root->mContext->mRequest->getRequest('uname'));
           if ($uid > 0) {
               $this->addblklist($modobj, $uid);
@@ -55,7 +55,7 @@ class blacklistAction extends AbstractAction
     
         $adduid = false;
         if (!empty($deluid) && is_array($deluid)) {
-            $modHand = xoops_getmodulehandler('settings', _MY_DIRNAME);
+            $modHand = xoops_getModuleHandler('settings', _MY_DIRNAME);
             $lists = explode(',', $modobj->get('blacklist'));
             foreach ($lists as $auid) {
                 if (!in_array($auid, $deluid)) {
@@ -79,7 +79,7 @@ class blacklistAction extends AbstractAction
   
     private function addblklist($modobj, $uid)
     {
-        $modHand = xoops_getmodulehandler('settings', _MY_DIRNAME);
+        $modHand = xoops_getModuleHandler('settings', _MY_DIRNAME);
         $blackuser = $this->getLinkUnameFromId($uid);
         $lists = explode(',', $modobj->get('blacklist'));
         if (in_array($uid, $lists)) {

@@ -25,7 +25,7 @@ class Legacy_ModuleEditAction extends Legacy_AbstractEditAction
     
     public function &_getHandler()
     {
-        $handler =& xoops_gethandler('module');
+        $handler =& xoops_getHandler('module');
         return $handler;
     }
 
@@ -66,8 +66,8 @@ class Legacy_ModuleEditAction extends Legacy_AbstractEditAction
         $ret = parent::execute($controller, $xoopsUser);
         
         if (LEGACY_FRAME_VIEW_SUCCESS == $ret) {
-            $handler =& xoops_gethandler('group');
-            $permHandler =& xoops_gethandler('groupperm');
+            $handler =& xoops_getHandler('group');
+            $permHandler =& xoops_getHandler('groupperm');
 
             foreach ($this->mActionForm->get('read_groupid') as $readgroupid) {
                 $this->mReadGroups[] =& $handler->get($readgroupid);
@@ -157,7 +157,7 @@ class Legacy_ModuleEditAction extends Legacy_AbstractEditAction
             }
 
             //module_cache
-            $confighandler =& xoops_gethandler('config');
+            $confighandler =& xoops_getHandler('config');
             $criteria =new CriteriaCompo();
             $criteria->add(new Criteria('conf_name', 'module_cache'));
             $criteria->add(new Criteria('conf_catid', XOOPS_CONF));
@@ -191,8 +191,8 @@ class Legacy_ModuleEditAction extends Legacy_AbstractEditAction
         $render->setAttribute('actionForm', $this->mActionForm);
         $render->setAttribute('object', $this->mObject);
         
-        $handler =& xoops_gethandler('groupperm');
-        $grouphandler =& xoops_gethandler('group');
+        $handler =& xoops_getHandler('groupperm');
+        $grouphandler =& xoops_getHandler('group');
         $groupArr =& $grouphandler->getObjects();
         $render->setAttribute('groupArr', $groupArr);
         
@@ -218,7 +218,7 @@ class Legacy_ModuleEditAction extends Legacy_AbstractEditAction
         }
         $render->setAttribute('admingroupidArr', $admingroupid);
         //for modulecache
-        $cachehandler =& xoops_gethandler('cachetime');
+        $cachehandler =& xoops_getHandler('cachetime');
         $cachetimeArr =& $cachehandler->getObjects();
         $render->setAttribute('cachetimeArr', $cachetimeArr);
     }

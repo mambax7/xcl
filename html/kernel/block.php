@@ -279,7 +279,7 @@ class XoopsBlock extends XoopsObject
 
     public function load($id)
     {
-        $handler = xoops_gethandler('block');
+        $handler = xoops_getHandler('block');
         if ($obj =& $handler->get($id)) {
             foreach ($obj->vars as $k => $v) {
                 $this->assignVar($k, $v['value']);
@@ -289,7 +289,7 @@ class XoopsBlock extends XoopsObject
 
     public function store()
     {
-        $handler = xoops_gethandler('block');
+        $handler = xoops_getHandler('block');
         if ($handler->insert($this)) {
             return $this->getVar('bid', 'N');
         } else {
@@ -299,23 +299,23 @@ class XoopsBlock extends XoopsObject
 
     public function delete()
     {
-        $handler = xoops_gethandler('block');
+        $handler = xoops_getHandler('block');
         return $handler->delete($this);
     }
     public function &getAllBlocksByGroup($groupid, $asobject=true, $side=null, $visible=null, $orderby='b.weight,b.bid', $isactive=1)
     {
-        $handler = xoops_gethandler('block');
+        $handler = xoops_getHandler('block');
         $ret =& $handler->getAllBlocksByGroup($groupid, $asobject, $side, $visible, $orderby, $isactive);
         return $ret;
     }
     public function &getAllBlocks($rettype='object', $side=null, $visible=null, $orderby='side,weight,bid', $isactive=1)
     {
-        $handler = xoops_gethandler('block');
+        $handler = xoops_getHandler('block');
         $ret =& $handler->getAllBlocks($rettype, $side, $visible, $orderby, $isactive);
         return $ret;
     }
     public static function &sGetByModule($moduleid, $asobject=true) {
-        $handler = xoops_gethandler('block');
+        $handler = xoops_getHandler('block');
         $ret =& $handler->getByModule($moduleid, $asobject);
         return $ret;
     }
@@ -325,25 +325,25 @@ class XoopsBlock extends XoopsObject
     }
     public function &getAllByGroupModule($groupid, $module_id=0, $toponlyblock=false, $visible=null, $orderby='b.weight,b.bid', $isactive=1)
     {
-        $handler = xoops_gethandler('block');
+        $handler = xoops_getHandler('block');
         $ret =& $handler->getAllByGroupModule($groupid, $module_id, $toponlyblock, $visible, $orderby, $isactive);
         return $ret;
     }
     public function &getBlocks($groupid, $mid=false, $blockFlag=SHOW_BLOCK_ALL, $orderby='b.weight,b.bid')
     {
-        $handler = xoops_gethandler('block');
+        $handler = xoops_getHandler('block');
         $ret =& $handler->getBlocks($groupid, $mid, $blockFlag, $orderby);
         return $ret;
     }
     public function &getNonGroupedBlocks($module_id=0, $toponlyblock=false, $visible=null, $orderby='b.weight,b.bid', $isactive=1)
     {
-        $handler = xoops_gethandler('block');
+        $handler = xoops_getHandler('block');
         $ret =& $handler->getNonGroupedBlocks($module_id, $toponlyblock, $visible, $orderby, $isactive);
         return $ret;
     }
     public function countSimilarBlocks($moduleId, $funcNum, $showFunc = null)
     {
-        $handler = xoops_gethandler('block');
+        $handler = xoops_getHandler('block');
         $ret =& $handler->countSimilarBlocks($moduleId, $funcNum, $showFunc);
         return $ret;
     }
@@ -522,7 +522,7 @@ class XoopsBlockHandler extends XoopsObjectHandler
         $ret = [];
         $limit = $start = 0;
         $sql = 'SELECT DISTINCT(b.*) FROM '.$this->db->prefix('newblocks').' b LEFT JOIN '.$this->db->prefix('block_module_link').' l ON b.bid=l.block_id';
-        if (isset($criteria) && $criteria instanceof \criteriaelement) {
+        if (isset($criteria) && $criteria instanceof \CriteriaElement) {
             $sql .= ' '.$criteria->renderWhere();
             $limit = $criteria->getLimit();
             $start = $criteria->getStart();

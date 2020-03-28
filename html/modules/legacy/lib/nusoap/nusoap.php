@@ -1696,7 +1696,7 @@ class nusoap_xmlschema extends nusoap_base
                     if (isset($eParts['ref'])) {
                         $contentStr .= "   <$schemaPrefix:element ref=\"$element\"/>\n";
                     } else {
-                        $contentStr .= "   <$schemaPrefix:element name=\"$element\" type=\"" . $this->contractQName($eParts['type']) . '"';
+                        $contentStr .= "   <$schemaPrefix:element name=\"$element\" type=\"" . $this->contractQname($eParts['type']) . '"';
                         foreach ($eParts as $aName => $aValue) {
                             // handle, e.g., abstract, default, form, minOccurs, maxOccurs, nillable
                             if ('name' != $aName && 'type' != $aName) {
@@ -1717,10 +1717,10 @@ class nusoap_xmlschema extends nusoap_base
                     $contentStr .= "    <$schemaPrefix:attribute";
                     foreach ($aParts as $a => $v) {
                         if ('ref' == $a || 'type' == $a) {
-                            $contentStr .= " $a=\"".$this->contractQName($v).'"';
+                            $contentStr .= " $a=\"".$this->contractQname($v).'"';
                         } elseif ('https://schemas.xmlsoap.org/wsdl/:arrayType' == $a) {
                             $this->usedNamespaces['wsdl'] = $this->namespaces['wsdl'];
-                            $contentStr .= ' wsdl:arrayType="'.$this->contractQName($v).'"';
+                            $contentStr .= ' wsdl:arrayType="'.$this->contractQname($v).'"';
                         } else {
                             $contentStr .= " $a=\"$v\"";
                         }
@@ -1730,7 +1730,7 @@ class nusoap_xmlschema extends nusoap_base
             }
             // if restriction
             if (isset($attrs['restrictionBase']) && '' != $attrs['restrictionBase']) {
-                $contentStr = "   <$schemaPrefix:restriction base=\"".$this->contractQName($attrs['restrictionBase'])."\">\n".$contentStr."   </$schemaPrefix:restriction>\n";
+                $contentStr = "   <$schemaPrefix:restriction base=\"".$this->contractQname($attrs['restrictionBase'])."\">\n".$contentStr."   </$schemaPrefix:restriction>\n";
                 // complex or simple content
                 if ((isset($attrs['elements']) && count($attrs['elements']) > 0) || (isset($attrs['attrs']) && count($attrs['attrs']) > 0)) {
                     $contentStr = "  <$schemaPrefix:complexContent>\n".$contentStr."  </$schemaPrefix:complexContent>\n";
@@ -1747,7 +1747,7 @@ class nusoap_xmlschema extends nusoap_base
         // simple types
         if (isset($this->simpleTypes) && count($this->simpleTypes) > 0) {
             foreach ($this->simpleTypes as $typeName => $eParts) {
-                $xml .= " <$schemaPrefix:simpleType name=\"$typeName\">\n  <$schemaPrefix:restriction base=\"".$this->contractQName($eParts['type'])."\">\n";
+                $xml .= " <$schemaPrefix:simpleType name=\"$typeName\">\n  <$schemaPrefix:restriction base=\"".$this->contractQname($eParts['type'])."\">\n";
                 if (isset($eParts['enumeration'])) {
                     foreach ($eParts['enumeration'] as $e) {
                         $xml .= "  <$schemaPrefix:enumeration value=\"$e\"/>\n";
@@ -1759,13 +1759,13 @@ class nusoap_xmlschema extends nusoap_base
         // elements
         if (isset($this->elements) && count($this->elements) > 0) {
             foreach ($this->elements as $element => $eParts) {
-                $xml .= " <$schemaPrefix:element name=\"$element\" type=\"".$this->contractQName($eParts['type'])."\"/>\n";
+                $xml .= " <$schemaPrefix:element name=\"$element\" type=\"".$this->contractQname($eParts['type'])."\"/>\n";
             }
         }
         // attributes
         if (isset($this->attributes) && count($this->attributes) > 0) {
             foreach ($this->attributes as $attr => $aParts) {
-                $xml .= " <$schemaPrefix:attribute name=\"$attr\" type=\"".$this->contractQName($aParts['type'])."\"\n/>";
+                $xml .= " <$schemaPrefix:attribute name=\"$attr\" type=\"".$this->contractQname($aParts['type'])."\"\n/>";
             }
         }
         // finish 'er up

@@ -120,7 +120,7 @@ class User_ActionFrame
         }
 
         $render = $controller->mRoot->mContext->mModule->getRenderTarget();
-        $render->setAttribute('xoops_pagetitle', $this->mAction->getPagetitle());
+        $render->setAttribute('xoops_pagetitle', $this->mAction->getPageTitle());
 
         switch ($viewStatus) {
             case USER_FRAME_VIEW_SUCCESS:

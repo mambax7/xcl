@@ -48,10 +48,10 @@ class LegacyRenderTplsetObject extends XoopsSimpleObject
         //
         // get module list
         //
-        $moduleHandler =& xoops_gethandler('module');
+        $moduleHandler =& xoops_getHandler('module');
         $modules =& $moduleHandler->getObjects();
         
-        $tplfileHandler =& xoops_getmodulehandler('tplfile', 'legacyRender');
+        $tplfileHandler =& xoops_getModuleHandler('tplfile', 'legacyRender');
         
         foreach ($modules as $module) {
             $modtpl =new LegacyRenderModuletplObject();
@@ -88,7 +88,7 @@ class LegacyRenderTplsetHandler extends XoopsObjectGenericHandler
         //
         // fetch all tplfile object and do cloning.
         //
-        $handler =& xoops_getmodulehandler('tplfile', 'legacyRender');
+        $handler =& xoops_getModuleHandler('tplfile', 'legacyRender');
         
         $files =& $handler->getObjects(new Criteria('tpl_tplset', $original->get('tplset_name')));
         foreach ($files as $file) {
@@ -102,7 +102,7 @@ class LegacyRenderTplsetHandler extends XoopsObjectGenericHandler
     public function delete(&$obj, $force = false)
     // public function delete(&$obj, $force)
     {
-        $handler =& xoops_getmodulehandler('tplfile', 'legacyRender');
+        $handler =& xoops_getModuleHandler('tplfile', 'legacyRender');
         $handler->deleteAll(new Criteria('tpl_tplset', $obj->get('tplset_name')));
 
         return parent::delete($obj, $force);

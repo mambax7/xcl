@@ -30,7 +30,7 @@ class User_AvatarListAction extends User_AbstractListAction
 
     public function &_getHandler()
     {
-        $handler =& xoops_getmodulehandler('avatar');
+        $handler =& xoops_getModuleHandler('avatar');
         return $handler;
     }
 
@@ -95,7 +95,7 @@ class User_AvatarListAction extends User_AbstractListAction
     public function _processConfirm(&$controller, &$xoopsUser)
     {
         $nameArr = $this->mActionForm->get('name');
-        $avatarHandler =& xoops_getmodulehandler('avatar');
+        $avatarHandler =& xoops_getModuleHandler('avatar');
         //
         // Do mapping.
         //
@@ -113,7 +113,7 @@ class User_AvatarListAction extends User_AbstractListAction
     public function _processSave(&$controller, &$xoopsUser)
     {
         $nameArr = $this->mActionForm->get('name');
-        $avatarHandler =& xoops_getmodulehandler('avatar');
+        $avatarHandler =& xoops_getModuleHandler('avatar');
 
         foreach (array_keys($nameArr) as $aid) {
             $avatar =& $avatarHandler->get($aid);
@@ -135,7 +135,7 @@ class User_AvatarListAction extends User_AbstractListAction
             }//object if
         }//foreach
 
-        $linkHandler =& xoops_getmodulehandler('avatar_user_link');
+        $linkHandler =& xoops_getModuleHandler('avatar_user_link');
 
         foreach (array_keys($nameArr) as $aid) {
             if (1 == $this->mActionForm->get('delete', $aid)) {
@@ -146,7 +146,7 @@ class User_AvatarListAction extends User_AbstractListAction
         
                     if ($avatarHandler->delete($avatar)) {
                         if (count($linkArr) > 0) {
-                            $userHandler =& xoops_gethandler('user');
+                            $userHandler =& xoops_getHandler('user');
                             foreach ($linkArr as $link) {
                                 $user =& $userHandler->get($link->get('user_id'));
                                 if (is_object($user)) {

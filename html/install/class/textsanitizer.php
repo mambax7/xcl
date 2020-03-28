@@ -30,7 +30,7 @@
 // ------------------------------------------------------------------------- //
 // This is subset and modified version of module.textsanitizer.php
 
-class textsanitizer
+class TextSanitizer
 {
 
     /*
@@ -204,7 +204,7 @@ class textsanitizer
 
     public function makeTareaData4Edit($text)
     {
-        return htmlSpecialChars($text, ENT_QUOTES);
+        return htmlspecialchars($text, ENT_QUOTES);
     }
 
     public function &makeTareaData4Preview(&$text, $html=1, $smiley=1, $xcode=1)
@@ -214,7 +214,7 @@ class textsanitizer
 
     public function makeTareaData4PreviewInForm($text)
     {
-        return htmlSpecialChars($text, ENT_QUOTES);
+        return htmlspecialchars($text, ENT_QUOTES);
     }
 
     public function makeTareaData4InsideQuotes($text)
@@ -245,6 +245,6 @@ class textsanitizer
 
     public function &oopsNl2Br($text)
     {
-        return $this->nl2br($text);
+        return $this->nl2Br($text);
     }
 }

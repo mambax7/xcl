@@ -46,7 +46,7 @@ class User_GroupPropertyAction extends User_Action
         //
         // Get member list
         //
-        $memberHandler =& xoops_gethandler('member');
+        $memberHandler =& xoops_getHandler('member');
 
         $total = $memberHandler->getUserCountByGroup($this->mGroup->getVar('groupid'));
         $this->mPageNavi =new XCube_PageNavigator('./index.php?action=GroupProperty', XCUBE_PAGENAVI_START | XCUBE_PAGENAVI_PERPAGE);    // TODO get controller->getUrl() ?
@@ -57,7 +57,7 @@ class User_GroupPropertyAction extends User_Action
         
         $this->mUsers =& $memberHandler->getUsersByGroup($this->mGroup->getVar('groupid'), true, $this->mPageNavi->getPerPage(), $this->mPageNavi->getStart());
 
-        $moduleHandler =& xoops_gethandler('module');
+        $moduleHandler =& xoops_getHandler('module');
         //
         // Get...
         //
@@ -100,7 +100,7 @@ class User_GroupPropertyAction extends User_Action
         //
         // Get block list
         //
-        $blockHandler = xoops_gethandler('block');
+        $blockHandler = xoops_getHandler('block');
         $this->_loadActiveBlocks();
         $idx = 0;
         foreach ([0, 1, 3, 4, 5] as $side) {
@@ -125,7 +125,7 @@ class User_GroupPropertyAction extends User_Action
             return;
         }
         
-        $moduleHandler =& xoops_gethandler('module');
+        $moduleHandler =& xoops_getHandler('module');
         $this->_mActiveModules =& $moduleHandler->getObjects(new Criteria('isactive', 1));
         
         $this->_mActiveModulesLoadedFlag = true;
@@ -145,7 +145,7 @@ class User_GroupPropertyAction extends User_Action
         }
         $t_activeModuleIDs[] = 0;
 
-        $blockHandler = xoops_gethandler('block');
+        $blockHandler = xoops_getHandler('block');
         foreach ([0, 1, 3, 4, 5] as $side) {
             $this->_mActiveBlocks[$side] = [];
             $blockArr =& $blockHandler->getAllBlocks('object', $side, null);
@@ -167,7 +167,7 @@ class User_GroupPropertyAction extends User_Action
     {
         $id = xoops_getrequest('groupid');
 
-        $handler =& xoops_getmodulehandler('groups');
+        $handler =& xoops_getModuleHandler('groups');
         $this->mGroup =& $handler->get($id);
     }
 

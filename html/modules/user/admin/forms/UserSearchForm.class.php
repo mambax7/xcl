@@ -158,7 +158,7 @@ class User_UserSearchForm extends XCube_ActionForm
      */
     public function validateGroups()
     {
-        $groupHandler =& xoops_gethandler('group');
+        $groupHandler =& xoops_getHandler('group');
         foreach ($this->get('groups') as $gid) {
             $group =& $groupHandler->get($gid);
             if (!is_object($group)) {

@@ -20,7 +20,7 @@ class User_RanksDeleteAction extends User_AbstractDeleteAction
 
     public function &_getHandler()
     {
-        $handler =& xoops_getmodulehandler('ranks');
+        $handler =& xoops_getModuleHandler('ranks');
         return $handler;
     }
 

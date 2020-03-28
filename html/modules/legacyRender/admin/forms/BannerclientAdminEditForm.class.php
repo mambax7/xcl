@@ -69,7 +69,7 @@ class LegacyRender_BannerclientAdminEditForm extends XCube_ActionForm
     public function validateLogin()
     {
         if (strlen($this->get('login')) > 0) {
-            $handler =& xoops_getmodulehandler('bannerclient', 'legacyRender');
+            $handler =& xoops_getModuleHandler('bannerclient', 'legacyRender');
             $criteria =new CriteriaCompo();
             $criteria->add(new Criteria('login', $this->get('login')));
             $criteria->add(new Criteria('cid', $this->get('cid'), '<>'));

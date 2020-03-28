@@ -9,11 +9,11 @@ class PicoD3commentContent extends D3commentAbstract
 
     public function fetchSummary($external_link_id)
     {
-        (method_exists('MyTextSanitizer', 'sGetInstance') and $myts = &MyTextSanitizer::sGetInstance()) || $myts = &MyTextsanitizer::getInstance();
+        (method_exists('MyTextSanitizer', 'sGetInstance') and $myts = &MyTextSanitizer::sGetInstance()) || $myts = &MyTextSanitizer::getInstance();
 
-        $module_handler = &xoops_gethandler('module');
+        $module_handler = &xoops_getHandler('module');
         $module         = &$module_handler->getByDirname($this->mydirname);
-        $config_handler = &xoops_gethandler('config');
+        $config_handler = &xoops_getHandler('config');
         $configs        = $config_handler->getConfigList($module->mid());
 
         // external_link_id means $content_id

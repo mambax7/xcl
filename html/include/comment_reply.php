@@ -68,7 +68,7 @@ if (!isset($_GET['com_order'])) {
 } else {
     $com_order = (int)$_GET['com_order'];
 }
-$comment_handler =& xoops_gethandler('comment');
+$comment_handler =& xoops_getHandler('comment');
 $comment =& $comment_handler->get($com_id);
 
 $r_name = XoopsUser::getUnameFromId($comment->getVar('com_uid'));
@@ -116,7 +116,7 @@ $actionForm->load($res_comment);
 //
 // Get the icons of subject.
 //
-$handler =& xoops_gethandler('subjecticon');
+$handler =& xoops_getHandler('subjecticon');
 $subjectIcons =& $handler->getObjects();
 
 themecenterposts($comment->getVar('com_title'), $r_text);

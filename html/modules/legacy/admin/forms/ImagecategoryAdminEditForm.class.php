@@ -124,7 +124,7 @@ class Legacy_ImagecategoryAdminEditForm extends XCube_ActionForm
         $obj->set('imgcat_display', $this->get('imgcat_display'));
         $obj->set('imgcat_weight', $this->get('imgcat_weight'));
         
-        $handler =& xoops_gethandler('group');
+        $handler =& xoops_getHandler('group');
 
         unset($obj->mReadGroups);
         foreach ($this->get('readgroups') as $groupid) {

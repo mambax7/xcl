@@ -53,7 +53,7 @@ class LegacyImagecategoryObject extends XoopsSimpleObject
     public function loadImage()
     {
         if (false == $this->_mImageLoadedFlag) {
-            $handler =& xoops_getmodulehandler('image', 'legacy');
+            $handler =& xoops_getModuleHandler('image', 'legacy');
             $this->mImage =& $handler->getObjects(new Criteria('imagecat_id', $this->get('imagecat_id')));
             $this->_mImageLoadedFlag = true;
         }
@@ -61,7 +61,7 @@ class LegacyImagecategoryObject extends XoopsSimpleObject
 
     public function &createImage()
     {
-        $handler =& xoops_getmodulehandler('image', 'legacy');
+        $handler =& xoops_getModuleHandler('image', 'legacy');
         $obj =& $handler->create();
         $obj->set('imagecat_id', $this->get('imagecat_id'));
         return $obj;
@@ -69,7 +69,7 @@ class LegacyImagecategoryObject extends XoopsSimpleObject
     
     public function getImageCount()
     {
-        $handler =& xoops_getmodulehandler('image', 'legacy');
+        $handler =& xoops_getModuleHandler('image', 'legacy');
         return $handler->getCount(new Criteria('imgcat_id', $this->get('imgcat_id')));
     }
     
@@ -79,10 +79,10 @@ class LegacyImagecategoryObject extends XoopsSimpleObject
             return;
         }
         
-        $handler =& xoops_gethandler('groupperm');
+        $handler =& xoops_getHandler('groupperm');
         $gidArr = $handler->getGroupIds('imgcat_read', $this->get('imgcat_id'));
         
-        $handler =& xoops_gethandler('group');
+        $handler =& xoops_getHandler('group');
         foreach ($gidArr as $gid) {
             $object =& $handler->get($gid);
             
@@ -126,10 +126,10 @@ class LegacyImagecategoryObject extends XoopsSimpleObject
             return;
         }
         
-        $handler =& xoops_gethandler('groupperm');
+        $handler =& xoops_getHandler('groupperm');
         $gidArr = $handler->getGroupIds('imgcat_write', $this->get('imgcat_id'));
         
-        $handler =& xoops_gethandler('group');
+        $handler =& xoops_getHandler('group');
         foreach ($gidArr as $gid) {
             $object =& $handler->get($gid);
             
@@ -173,7 +173,7 @@ class LegacyImagecategoryHandler extends XoopsObjectGenericHandler
     {
         $returnFlag = parent::insert($obj, $force);
         
-        $handler =& xoops_getmodulehandler('group_permission', 'legacy');
+        $handler =& xoops_getModuleHandler('group_permission', 'legacy');
         
         //
         // If the object has groups which are allowed to read.
@@ -242,11 +242,11 @@ class LegacyImagecategoryHandler extends XoopsObjectGenericHandler
 
     public function delete(&$obj, $force = false)
     {
-        $handler =& xoops_getmodulehandler('image', 'legacy');
+        $handler =& xoops_getModuleHandler('image', 'legacy');
         $handler->deleteAll(new Criteria('imgcat_id', $obj->get('imgcat_id')));
         unset($handler);
     
-        $handler =& xoops_getmodulehandler('group_permission', 'legacy');
+        $handler =& xoops_getModuleHandler('group_permission', 'legacy');
         $criteria =new CriteriaCompo();
         $criteria->add(new Criteria('gperm_itemid', $obj->get('imgcat_id')));
         $criteria->add(new Criteria('gperm_modid', 1));

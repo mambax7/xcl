@@ -72,7 +72,7 @@ class User_UserDeleteAction extends User_Action
         }
         
         if (is_object($xoopsUser)) {
-            $handler =& xoops_getmodulehandler('users', 'user');
+            $handler =& xoops_getModuleHandler('users', 'user');
             $this->mObject =& $handler->get($xoopsUser->get('uid'));
         }
     }
@@ -133,9 +133,9 @@ class User_UserDeleteAction extends User_Action
      */
     public function _doDelete(&$flag, $controller, $xoopsUser)
     {
-        $handler =& xoops_gethandler('member');
+        $handler =& xoops_getHandler('member');
         if ($handler->deleteUser($xoopsUser)) {
-            $handler =& xoops_gethandler('online');
+            $handler =& xoops_getHandler('online');
             $handler->destroy($this->mObject->get('uid'));
             xoops_notification_deletebyuser($this->mObject->get('uid'));
             

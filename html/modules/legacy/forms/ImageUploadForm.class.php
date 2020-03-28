@@ -80,7 +80,7 @@ class Legacy_ImageUploadForm extends XCube_ActionForm
                 $groups = [XOOPS_GROUP_ANONYMOUS];
             }
             
-            $handler =& xoops_getmodulehandler('imagecategory', 'legacy');
+            $handler =& xoops_getModuleHandler('imagecategory', 'legacy');
             $imgcat =& $handler->get($imgcat_id);
             if (is_object($imgcat) && !$imgcat->hasUploadPerm($groups)) {
                 $this->addErrorMessage(_MD_LEGACY_ERROR_PERMISSION);
@@ -101,7 +101,7 @@ class Legacy_ImageUploadForm extends XCube_ActionForm
     {
         parent::validate();
         
-        $handler =& xoops_getmodulehandler('imagecategory', 'legacy');
+        $handler =& xoops_getModuleHandler('imagecategory', 'legacy');
         $category =& $handler->get($this->get('imgcat_id'));
         
         $formFile = $this->get('image_name');
@@ -138,7 +138,7 @@ class Legacy_ImageUploadForm extends XCube_ActionForm
         $obj->set('image_display', true);
         $obj->set('imgcat_id', $this->get('imgcat_id'));
         
-        $handler =& xoops_getmodulehandler('imagecategory', 'legacy');
+        $handler =& xoops_getModuleHandler('imagecategory', 'legacy');
         $category =& $handler->get($this->get('imgcat_id'));
 
         $this->mFormFile = $this->get('image_name');

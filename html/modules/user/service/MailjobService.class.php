@@ -40,7 +40,7 @@ class User_MailjobService extends XCube_Service
         $uidArr = $root->mContext->mRequest->getRequest('uidArr');
     
         //prepare mailjob object
-        $handler =& xoops_getmodulehandler('mailjob', 'user');
+        $handler =& xoops_getModuleHandler('mailjob', 'user');
         $obj = $handler->create();
         $obj->set('title', $root->mContext->mRequest->getRequest('title'));
         $obj->set('body', $root->mContext->mRequest->getRequest('body'));
@@ -64,7 +64,7 @@ class User_MailjobService extends XCube_Service
         }
     
         //insert mailjob_link
-        $linkHandler =& xoops_getmodulehandler('mailjob_link', 'user');
+        $linkHandler =& xoops_getModuleHandler('mailjob_link', 'user');
         foreach ($uidArr as $uid) {
             $linkObj =& $linkHandler->create();
             $linkObj->set('mailjob_id', $obj->get('mailjob_id'));
@@ -81,10 +81,10 @@ class User_MailjobService extends XCube_Service
         $mailjob_id = intval($root->mContext->mRequest->getRequest('mailjob_id'));
         $uid = intval($root->mContext->mRequest->getRequest('mailjob_id'));
     
-        $handler =& xoops_getmodulehandler('mailjob', 'user');
+        $handler =& xoops_getModuleHandler('mailjob', 'user');
         $mailjobObj =& $handler->get($mailjjob_id);
     
-        $userHandler =& xoops_gethandler('user');
+        $userHandler =& xoops_getHandler('user');
         $userObj =& $userHandler->get($uid);
     
         if ($mailjobObj->get('is_pm')) {

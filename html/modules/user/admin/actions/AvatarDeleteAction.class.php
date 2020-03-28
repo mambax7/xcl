@@ -20,7 +20,7 @@ class User_AvatarDeleteAction extends User_AbstractDeleteAction
 
     public function &_getHandler()
     {
-        $handler =& xoops_getmodulehandler('avatar');
+        $handler =& xoops_getModuleHandler('avatar');
         return $handler;
     }
 
@@ -32,7 +32,7 @@ class User_AvatarDeleteAction extends User_AbstractDeleteAction
     
     public function _doExecute()
     {
-        $linkHandler =& xoops_getmodulehandler('avatar_user_link');
+        $linkHandler =& xoops_getModuleHandler('avatar_user_link');
         $criteria =new Criteria('avatar_id', $this->mObject->get('avatar_id'));
         $linkArr =& $linkHandler->getObjects($criteria);
         
@@ -41,7 +41,7 @@ class User_AvatarDeleteAction extends User_AbstractDeleteAction
             // Clear all user who set the avatar deleted with blank.gif
             //
             if (count($linkArr) > 0) {
-                $userHandler =& xoops_gethandler('user');
+                $userHandler =& xoops_getHandler('user');
                 foreach ($linkArr as $link) {
                     $user =& $userHandler->get($link->get('user_id'));
 

@@ -76,7 +76,7 @@ class PicoControllerEditCategory extends PicoControllerAbstract
             $breadcrumbsObj->appendPath('', _MD_PICO_CATEGORYMANAGER);
             $this->assign['xoops_pagetitle'] = _MD_PICO_CATEGORYMANAGER;
         }
-        $this->assign['xoops_breadcrumbs'] = $breadcrumbsObj->getXoopsbreadcrumbs();
+        $this->assign['xoops_breadcrumbs'] = $breadcrumbsObj->getXoopsBreadcrumbs();
 
         // misc assigns
         $this->assign['page']                          = $page;

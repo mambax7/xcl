@@ -13,7 +13,7 @@ function smarty_function_message_newmessage($params, $smarty)
     $new_messages = false;
     $root = XCube_Root::getSingleton();
     if ($root->mContext->mUser->isInRole('Site.RegisteredUser')) {
-        $modHand = xoops_getmodulehandler('inbox', 'message');
+        $modHand = xoops_getModuleHandler('inbox', 'message');
         $new_messages = $modHand->getCountUnreadByFromUid($root->mContext->mXoopsUser->get('uid'));
         if (empty($_SESSION[$name])) {
             $_SESSION[$name] = 0;

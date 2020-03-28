@@ -30,7 +30,7 @@ class Profile_DataEditForm extends XCube_ActionForm
      */
     public function prepare()
     {
-        $handler =& xoops_getmodulehandler('definitions');
+        $handler =& xoops_getModuleHandler('definitions');
         $this->mDef = $handler->getFields4DataEdit();
     
         //

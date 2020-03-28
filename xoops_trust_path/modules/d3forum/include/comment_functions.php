@@ -26,14 +26,14 @@ function d3forum_display_comment_topicscount( $mydirname , $forum_id , $params ,
 	if( empty( $external_link_id ) ) return ;
 
 	// check the d3forum exists and is active
-	$module_hanlder =& xoops_gethandler( 'module' ) ;
+	$module_hanlder =& xoops_getHandler( 'module' ) ;
 	$module =& $module_hanlder->getByDirname( $mydirname ) ;
 	if( ! is_object( $module ) || ! $module->getVar('isactive') ) {
 		return ;
 	}
 
 	// check permission of "module_read"
-	$moduleperm_handler =& xoops_gethandler( 'groupperm' ) ;
+	$moduleperm_handler =& xoops_getHandler( 'groupperm' ) ;
 	$groups = is_object( $xoopsUser ) ? $xoopsUser->getGroups() : [XOOPS_GROUP_ANONYMOUS];
 	if( ! $moduleperm_handler->checkRight( 'module_read' , $module->getVar( 'mid' ) , $groups ) ) {
 		return ;
@@ -61,14 +61,14 @@ function d3forum_display_comment( $mydirname , $forum_id , $params )
 	global $xoopsUser , $xoopsConfig , $xoopsModule ;
 
 	// check the d3forum exists and is active
-	$module_hanlder =& xoops_gethandler( 'module' ) ;
+	$module_hanlder =& xoops_getHandler( 'module' ) ;
 	$module =& $module_hanlder->getByDirname( $mydirname ) ;
 	if( ! is_object( $module ) || ! $module->getVar('isactive') ) {
 		return ;
 	}
 
 	// check permission of "module_read"
-	$moduleperm_handler =& xoops_gethandler( 'groupperm' ) ;
+	$moduleperm_handler =& xoops_getHandler( 'groupperm' ) ;
 	$groups = is_object( $xoopsUser ) ? $xoopsUser->getGroups() : [XOOPS_GROUP_ANONYMOUS];
 	if( ! $moduleperm_handler->checkRight( 'module_read' , $module->getVar( 'mid' ) , $groups ) ) {
 		return ;
@@ -158,9 +158,9 @@ function d3forum_render_comments( $mydirname , $forum_id , $params , &$smarty )
 	$langman->read( 'main.php' , $mydirname , $mytrustdirname ) ;
 
 	// local $xoopsModuleConfig
-	$module_hanlder =& xoops_gethandler( 'module' ) ;
+	$module_hanlder =& xoops_getHandler( 'module' ) ;
 	$module =& $module_hanlder->getByDirname( $mydirname ) ;
-	$config_handler =& xoops_gethandler( 'config' ) ;
+	$config_handler =& xoops_getHandler( 'config' ) ;
 	$xoopsModuleConfig =& $config_handler->getConfigsByCat( 0 , $module->getVar( 'mid' ) ) ;
 
 	include __DIR__ . '/common_prepend.php' ;
@@ -224,7 +224,7 @@ function d3forum_render_comments( $mydirname , $forum_id , $params , &$smarty )
 			$topic_id = (int)$topic_row['topic_id'];
 		
 			// get last poster's object
-			$user_handler =& xoops_gethandler( 'user' ) ;
+			$user_handler =& xoops_getHandler( 'user' ) ;
 			$last_poster_obj =& $user_handler->get((int)$topic_row['topic_last_uid']) ;
 			$last_post_uname4html = is_object( $last_poster_obj ) ? $last_poster_obj->getVar( 'uname' ) : $xoopsConfig['anonymous'] ;
 			$first_poster_obj =& $user_handler->get((int)$topic_row['topic_first_uid']) ;

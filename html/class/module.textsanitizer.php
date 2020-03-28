@@ -345,7 +345,7 @@ class MyTextSanitizer
     public function &censorString($text)
     {
         if (!isset($this->censorConf)) {
-            $config_handler =& xoops_gethandler('config');
+            $config_handler =& xoops_getHandler('config');
             $this->censorConf =& $config_handler->getConfigsByCat(XOOPS_CONF_CENSOR);
         }
         if (1 == $this->censorConf['censor_enable']) {
@@ -504,7 +504,7 @@ class MyTextSanitizer
 
     public function &oopsNl2Br($text)
     {
-        $ret = $this->nl2br($text);
+        $ret = $this->nl2Br($text);
         return $ret;
     }
 

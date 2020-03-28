@@ -129,7 +129,7 @@ class User_RegistUserAdminActivateMailBuilder extends User_RegistUserActivateMai
 
     public function setToUsers($user, $userConfig)
     {
-        $memberHandler = &xoops_gethandler('member');
+        $memberHandler = &xoops_getHandler('member');
         $this->mMailer->setToGroups($memberHandler->getGroup($userConfig['activation_group']));
     }
 
@@ -167,7 +167,7 @@ class User_RegistUserNotifyMailBuilder extends User_RegistUserActivateMailBuilde
 
     public function setToUsers($user, $userConfig)
     {
-        $memberHandler = &xoops_gethandler('member');
+        $memberHandler = &xoops_getHandler('member');
         $this->mMailer->setToGroups($memberHandler->getGroup($userConfig['new_user_notify_group']));
     }
 

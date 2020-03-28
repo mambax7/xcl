@@ -39,7 +39,7 @@ class Xupdate_Utils
     public static function &getXoopsHandler(/*** string ***/ $name, /*** bool ***/ $optional = false)
     {
         // TODO will be emulated xoops_gethandler
-        return xoops_gethandler($name, $optional);
+        return xoops_getHandler($name, $optional);
     }
 
     /**
@@ -52,8 +52,8 @@ class Xupdate_Utils
     **/
     public static function &getModuleHandler(/*** string ***/ $name, /*** string ***/ $dirname)
     {
-        // TODO will be emulated xoops_getmodulehandler
-        return xoops_getmodulehandler($name, $dirname);
+        // TODO will be emulated xoops_getModuleHandler
+        return xoops_getModuleHandler($name, $dirname);
     }
 
     /**

@@ -81,7 +81,7 @@ class Legacy_BlockEditForm extends XCube_ActionForm
         if (!(count($bmodule))) {
             $this->addErrorMessage(_AD_LEGACY_ERROR_BMODULE);
         } else {
-            $handler =& xoops_gethandler('module');
+            $handler =& xoops_getHandler('module');
             foreach ($this->get('bmodule') as $mid) {
                 $module =& $handler->get($mid);
                 if (-1 != $mid && 0 != $mid && !is_object($module)) {
@@ -145,7 +145,7 @@ class Legacy_BlockEditForm extends XCube_ActionForm
         $obj->set('options', implode('|', $optionArr));
         
         $obj->mBmodule = [];
-        $handler =& xoops_getmodulehandler('block_module_link', 'legacy');
+        $handler =& xoops_getModuleHandler('block_module_link', 'legacy');
         foreach ($this->get('bmodule') as $mid) {
             $t_obj =& $handler->create();
             $t_obj->set('block_id', $this->get('bid'));
@@ -155,7 +155,7 @@ class Legacy_BlockEditForm extends XCube_ActionForm
         }
 
         $obj->mGroup = [];
-        $handler =& xoops_gethandler('group');
+        $handler =& xoops_getHandler('group');
         foreach ($this->get('groupid') as $groupid) {
             $obj->mGroup[] =& $handler->get($groupid);
         }

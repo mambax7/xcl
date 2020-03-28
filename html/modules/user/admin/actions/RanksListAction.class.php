@@ -24,7 +24,7 @@ class User_RanksListAction extends User_AbstractListAction
 
     public function &_getHandler()
     {
-        $handler =& xoops_getmodulehandler('ranks');
+        $handler =& xoops_getModuleHandler('ranks');
         return $handler;
     }
 
@@ -87,7 +87,7 @@ class User_RanksListAction extends User_AbstractListAction
     public function _processConfirm(&$controller, &$xoopsUser)
     {
         $titleArr = $this->mActionForm->get('title');
-        $ranksHandler =& xoops_getmodulehandler('ranks');
+        $ranksHandler =& xoops_getModuleHandler('ranks');
         //
         // Do mapping.
         //
@@ -105,7 +105,7 @@ class User_RanksListAction extends User_AbstractListAction
     public function _processSave(&$controller, &$xoopsUser)
     {
         $titleArr = $this->mActionForm->get('title');
-        $ranksHandler =& xoops_getmodulehandler('ranks');
+        $ranksHandler =& xoops_getModuleHandler('ranks');
 
         foreach (array_keys($titleArr) as $rid) {
             $ranks =& $ranksHandler->get($rid);

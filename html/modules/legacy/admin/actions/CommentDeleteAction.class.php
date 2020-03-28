@@ -25,7 +25,7 @@ class Legacy_CommentDeleteAction extends Legacy_AbstractDeleteAction
 
     public function &_getHandler()
     {
-        $handler =& xoops_getmodulehandler('comment');
+        $handler =& xoops_getModuleHandler('comment');
         $handler->mDeleteSuccess->add([&$this, 'doDelete']);
         return $handler;
     }
@@ -48,7 +48,7 @@ class Legacy_CommentDeleteAction extends Legacy_AbstractDeleteAction
         //
         // Load children and load their module and commentater.
         //
-        $handler =& xoops_getmodulehandler('comment');
+        $handler =& xoops_getModuleHandler('comment');
         $criteria =new Criteria('com_pid', $this->mObject->get('com_id'));
         $children =& $handler->getObjects($criteria);
 
@@ -86,7 +86,7 @@ class Legacy_CommentDeleteAction extends Legacy_AbstractDeleteAction
         // Adjust user's post count.
         //
         if (1 != $comment->get('com_status') && $comment->get('com_uid') > 0) {
-            $handler =& xoops_gethandler('member');
+            $handler =& xoops_getHandler('member');
 
             //
             // TODO We should adjust the following lines and handler's design.
@@ -118,7 +118,7 @@ class Legacy_CommentDeleteAction extends Legacy_AbstractDeleteAction
             $criteria->add(new Criteria('com_itemid', $comment->get('com_itemid')));
             $criteria->add(new Criteria('com_status', XOOPS_COMMENT_ACTIVE));
             
-            $handler =& xoops_gethandler('comment');
+            $handler =& xoops_getHandler('comment');
             $commentCount = $handler->getCount($criteria);
             
             call_user_func($function, $comment->get('com_id'), $commentCount);

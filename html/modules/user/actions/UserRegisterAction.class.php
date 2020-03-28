@@ -89,7 +89,7 @@ class User_UserRegisterAction extends User_Action
         //
         // Get some objects for input form.
         //
-        $tzoneHandler =& xoops_gethandler('timezone');
+        $tzoneHandler =& xoops_getHandler('timezone');
         $timezones =& $tzoneHandler->getObjects();
         $renderSystem->setAttribute('timezones', $timezones);
         $renderSystem->setAttribute('actionForm', $this->mActionForm);

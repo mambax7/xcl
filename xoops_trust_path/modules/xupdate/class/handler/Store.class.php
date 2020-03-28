@@ -57,7 +57,7 @@ class Xupdate_StoreHandler extends XoopsObjectGenericHandler
     {
         $this->mTable = strtr($this->mTable, ['{dirname}' => $dirname]);
         parent::__construct($db);
-        $configHandler = & xoops_gethandler('config');
+        $configHandler = & xoops_getHandler('config');
         $module_config = $configHandler->getConfigsByDirname($dirname);
         $this->cacheCheckFile = XOOPS_TRUST_PATH . '/' . trim($module_config['temp_path'], '/') . '/' . rawurlencode(substr(XOOPS_URL, 7)).'_cacheCheck.ini.php';
     }

@@ -31,7 +31,7 @@ class Legacy_ImageListAction extends Legacy_AbstractListAction
 
     public function &_getHandler()
     {
-        $handler =& xoops_getmodulehandler('image');
+        $handler =& xoops_getModuleHandler('image');
         return $handler;
     }
 
@@ -63,7 +63,7 @@ class Legacy_ImageListAction extends Legacy_AbstractListAction
         $result = parent::getDefaultView($controller, $xoopsUser);
         if (LEGACY_FRAME_VIEW_INDEX == $result) {
             $cat_id = xoops_getrequest('imgcat_id');
-            $handler =& xoops_getmodulehandler('imagecategory');
+            $handler =& xoops_getModuleHandler('imagecategory');
             $this->mCategory =& $handler->get($cat_id);
             
             if (null == $this->mCategory) {

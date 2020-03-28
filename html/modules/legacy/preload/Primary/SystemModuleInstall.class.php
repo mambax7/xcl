@@ -61,7 +61,7 @@ class Legacy_SystemModuleInstall extends XCube_ActionFilter
                         if (in_array($module, $retArray['uninstalled'])) {
                             $controller->mRoot->mLanguageManager->loadModuleAdminMessageCatalog('legacy');
                             
-                            $handler =& xoops_gethandler('module');
+                            $handler =& xoops_getHandler('module');
                             $xoopsModule =& $handler->create();
                             $xoopsModule->set('weight', 1);
                             $xoopsModule->loadInfoAsVar($module);
@@ -74,7 +74,7 @@ class Legacy_SystemModuleInstall extends XCube_ActionFilter
                     }
                 }
                 if (isset($_POST['disabled_modules']) && is_array($_POST['disabled_modules'])) {
-                    $moduleHandler =& xoops_gethandler('module');
+                    $moduleHandler =& xoops_getHandler('module');
                     foreach ($_POST['disabled_modules'] as $module) {
                         $module = basename($module);
                         if (in_array($module, $retArray['disabled'])) {
@@ -82,14 +82,14 @@ class Legacy_SystemModuleInstall extends XCube_ActionFilter
                                 $moduleObject->setVar('isactive', 1);
                                 $moduleHandler->insert($moduleObject);
                                 
-                                $blockHandler =& xoops_gethandler('block');
+                                $blockHandler =& xoops_getHandler('block');
                                 $blockHandler->syncIsActive($moduleObject->get('mid'), $moduleObject->get('isactive'));
                             }
                         }
                     }
                 }
                 if (isset($_POST['option_modules']) && is_array($_POST['option_modules'])) {
-                    $handler =& xoops_getmodulehandler('non_installation_module', 'legacy');
+                    $handler =& xoops_getModuleHandler('non_installation_module', 'legacy');
                     $objects = $handler->getObjects();
                     $optionModules = [];
                     foreach ($objects as $module) {
@@ -102,7 +102,7 @@ class Legacy_SystemModuleInstall extends XCube_ActionFilter
                         if (in_array($module, $optionModules)) {
                             $controller->mRoot->mLanguageManager->loadModuleAdminMessageCatalog('legacy');
                             
-                            $handler =& xoops_gethandler('module');
+                            $handler =& xoops_getHandler('module');
                             $xoopsModule =& $handler->create();
                             $xoopsModule->set('weight', 1);
                             $xoopsModule->loadInfoAsVar($module);
@@ -137,7 +137,7 @@ class Legacy_SystemModuleInstall extends XCube_ActionFilter
                 if (in_array($module, $retArray['disabled'])) {
                     $controller->mRoot->mLanguageManager->loadModuleAdminMessageCatalog('legacy');
                             
-                    $handler =& xoops_gethandler('module');
+                    $handler =& xoops_getHandler('module');
                     $xoopsModule =& $handler->getByDirname($module);
                     
                     $uninstaller =& Legacy_ModuleInstallUtils::createUninstaller($xoopsModule->get('dirname'));
@@ -147,7 +147,7 @@ class Legacy_SystemModuleInstall extends XCube_ActionFilter
                 }
                 $controller->executeRedirect(XOOPS_URL . '/', 1);
             } else {
-                $handler =& xoops_getmodulehandler('non_installation_module', 'legacy');
+                $handler =& xoops_getModuleHandler('non_installation_module', 'legacy');
                 $objects = $handler->getObjectsFor2ndInstaller();
                 $optionModules = [];
                 foreach ($objects as $module) {

@@ -30,7 +30,7 @@ class Legacy_SmilesListAction extends Legacy_AbstractListAction
 
     public function &_getHandler()
     {
-        $handler =& xoops_getmodulehandler('smiles');
+        $handler =& xoops_getModuleHandler('smiles');
         return $handler;
     }
 
@@ -95,7 +95,7 @@ class Legacy_SmilesListAction extends Legacy_AbstractListAction
     public function _processConfirm(&$controller, &$xoopsUser)
     {
         $codeArr = $this->mActionForm->get('code');
-        $smilesHandler =& xoops_getmodulehandler('smiles');
+        $smilesHandler =& xoops_getModuleHandler('smiles');
         //
         // Do mapping.
         //
@@ -113,7 +113,7 @@ class Legacy_SmilesListAction extends Legacy_AbstractListAction
     public function _processSave(&$controller, &$xoopsUser)
     {
         $codeArr = $this->mActionForm->get('code');
-        $smilesHandler =& xoops_getmodulehandler('smiles');
+        $smilesHandler =& xoops_getModuleHandler('smiles');
 
         foreach (array_keys($codeArr) as $sid) {
             $smiles =& $smilesHandler->get($sid);

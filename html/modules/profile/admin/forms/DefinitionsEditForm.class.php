@@ -129,7 +129,7 @@ class Profile_Admin_DefinitionsEditForm extends XCube_ActionForm
         if ($this->get('field_id')>0) {
             return;
         }
-        $objs = xoops_getmodulehandler('definitions', 'profile')->getObjects(new Criteria('field_name', $this->get('field_name')));
+        $objs = xoops_getModuleHandler('definitions', 'profile')->getObjects(new Criteria('field_name', $this->get('field_name')));
         if (count($objs)>0) {
             $this->addErrorMessage(_MD_PROFILE_ERROR_DUPLICATED_FIELD_NAME);
         }

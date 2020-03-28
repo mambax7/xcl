@@ -112,7 +112,7 @@ class XoopsConfigItem extends XoopsObject
      */
     public function &getOptionItems()
     {
-        $handler = xoops_gethandler('config');
+        $handler = xoops_getHandler('config');
         $optionArr =& $handler->getConfigOptions(new Criteria('conf_id', $this->get('conf_id')));
         
         return $optionArr;
@@ -123,7 +123,7 @@ class XoopsConfigItem extends XoopsObject
      */
     public function getRoledModuleList()
     {
-        $handler = xoops_gethandler('config');
+        $handler = xoops_getHandler('config');
         $optionArr =& $handler->getConfigOptions(new Criteria('conf_id', $this->get('conf_id')));
         $list = [];
         foreach ($optionArr as $opt) {
@@ -287,7 +287,7 @@ class XoopsConfigItem extends XoopsObject
         }
         
         if (isset($configInfo['options']) && is_array($configInfo['options'])) {
-            $configHandler = xoops_gethandler('config');
+            $configHandler = xoops_getHandler('config');
             foreach ($configInfo['options'] as $key => $value) {
                 $configOption =& $configHandler->createConfigOption();
                 $configOption->setVar('confop_name', $key, true);
@@ -422,7 +422,7 @@ class XoopsConfigItemHandler extends XoopsObjectHandler
         $limit = $start = 0;
         $db = $this->db;
         $sql = 'SELECT * FROM '.$db->prefix('config');
-        if (isset($criteria) && $criteria instanceof \criteriaelement) {
+        if (isset($criteria) && $criteria instanceof \CriteriaElement) {
             $sql .= ' '.$criteria->renderWhere();
             $sql .= ' ORDER BY conf_order ASC';
             $limit = $criteria->getLimit();
@@ -456,7 +456,7 @@ class XoopsConfigItemHandler extends XoopsObjectHandler
         $limit = $start = 0;
         $db = &$this->db;
         $sql = 'SELECT * FROM '.$db->prefix('config');
-        if (isset($criteria) && $criteria instanceof \criteriaelement) {
+        if (isset($criteria) && $criteria instanceof \CriteriaElement) {
             $sql .= ' '.$criteria->renderWhere();
         }
         $result = $db->query($sql);

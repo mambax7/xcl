@@ -11,7 +11,7 @@ class Profile_DataObj extends XCube_Object
      */
     public function getPropertyDefinition()
     {
-        $handler =& xoops_getmodulehandler('definitions', 'profile');
+        $handler =& xoops_getModuleHandler('definitions', 'profile');
         $defArr =& $handler->getObjects();
         $ret = [
             S_PUBLIC_VAR('int uid')
@@ -121,7 +121,7 @@ class Profile_Service extends XCube_Service
         $this->addFunction(S_PUBLIC_FUNC('Profile_DataObjArr getProfileArr(string field_name, string value)'));
         $this->addFunction(S_PUBLIC_FUNC('bool setProfile(string field_name, string value, int uid)'));
     
-        $handler =& xoops_getmodulehandler('definitions', 'profile');
+        $handler =& xoops_getModuleHandler('definitions', 'profile');
         $defArr =& $handler->getObjects();
         $fieldDef = '';
         foreach (array_keys($defArr) as $key) {
@@ -149,7 +149,7 @@ class Profile_Service extends XCube_Service
         //access limit by uid
         $request_uid = $root->mContext->mRequest->getRequest('uid');
         if ($request_uid>0) {
-            $gHandler =& xoops_gethandler('member');
+            $gHandler =& xoops_getHandler('member');
             $groupArr =& $gHandler->getGroupsByUser($request_uid);
         }
         //access limit by group id
@@ -161,7 +161,7 @@ class Profile_Service extends XCube_Service
         if (true == $show_form) {
             $criteria->add(new Criteria('show_form', '1'));
         }
-        $handler =& xoops_getmodulehandler('definitions', 'profile');
+        $handler =& xoops_getModuleHandler('definitions', 'profile');
         $definitions =& $handler->getObjects($criteria);
         foreach (array_keys($definitions) as $key) {
             if ($uid>0 && $request_uid==$uid) {
@@ -199,7 +199,7 @@ class Profile_Service extends XCube_Service
     {
         $root =& XCube_Root::getSingleton();
         $uid = $root->mContext->mRequest->getRequest('uid');
-        $handler =& xoops_getmodulehandler('data', 'profile');
+        $handler =& xoops_getModuleHandler('data', 'profile');
 
         $dataObj =& $handler->get($uid);
         if (! $dataObj) {
@@ -221,7 +221,7 @@ class Profile_Service extends XCube_Service
         $field_name = $root->mContext->mRequest->getRequest('field_name');
         $value = $root->mContext->mRequest->getRequest('value');
     
-        $handler =& xoops_getmodulehandler('data', 'profile');
+        $handler =& xoops_getModuleHandler('data', 'profile');
         $criteria = new CriteriaCompo();
         $criteria->add(new Criteria($field_name, $value));
         $dataArr =& $handler->getObjects($criteria);
@@ -242,7 +242,7 @@ class Profile_Service extends XCube_Service
         $value = $root->mContext->mRequest->getRequest('value');
         $uid = $root->mContext->mRequest->getRequest('uid');
     
-        $handler =& xoops_getmodulehandler('data', 'profile');
+        $handler =& xoops_getModuleHandler('data', 'profile');
         $obj =& $handler->get($uid);
         
         if (! $obj) {
@@ -266,10 +266,10 @@ class Profile_Service extends XCube_Service
         $root =& XCube_Root::getSingleton();
         $uid = $root->mContext->mRequest->getRequest('uid');
     
-        $defHandler =& xoops_getmodulehandler('definitions', 'profile');
+        $defHandler =& xoops_getModuleHandler('definitions', 'profile');
         $defArr =& $defHandler->getObjects();
     
-        $dataHandler =& xoops_getmodulehandler('data', 'profile');
+        $dataHandler =& xoops_getModuleHandler('data', 'profile');
         $dataObj =& $dataHandler->get($uid);
 
         if (! $dataObj) {

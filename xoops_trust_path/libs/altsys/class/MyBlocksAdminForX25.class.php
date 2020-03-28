@@ -199,7 +199,7 @@ public function renderCell4BlockPosition($block_data)
 
         if (! $is_custom && $block_template) {
             // find template of the block
-        $tplfile_handler =& xoops_gethandler('tplfile');
+        $tplfile_handler =& xoops_getHandler('tplfile');
             $found_templates = $tplfile_handler->find($GLOBALS['xoopsConfig']['template_set'], 'block', null, null, $block_template) ;
             $block_template_tplset = count($found_templates) > 0 ? $GLOBALS['xoopsConfig']['template_set'] : 'default' ;
         }

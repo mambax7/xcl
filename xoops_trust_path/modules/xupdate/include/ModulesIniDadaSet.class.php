@@ -901,7 +901,7 @@ class Xupdate_ModulesIniDadaSet
         $cri = new CriteriaCompo();
         $cri->add(new Criteria('trust_dirname', $trustDirname));
         $cri->addSort('dirname', 'ASC');
-        foreach (xoops_gethandler('module')->getObjects($cri) as $module) {
+        foreach (xoops_getHandler('module')->getObjects($cri) as $module) {
             $list[] = $module->get('dirname');
         }
         return $list;

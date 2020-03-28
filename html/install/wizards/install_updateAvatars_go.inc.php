@@ -13,7 +13,7 @@
     $title = _INSTALL_L156;
     $avatars = getImageFileList(XOOPS_ROOT_PATH.'/images/avatar/users/');
     $xoopsDB->query('UPDATE ' . $xoopsDB->prefix('users') . " SET user_avatar='blank.gif'");
-    $avt_handler =& xoops_gethandler('avatar');
+    $avt_handler =& xoops_getHandler('avatar');
     if (!defined('XOOPS_UPLOAD_PATH')) {
         define('XOOPS_UPLOAD_PATH', '../uploads');
     }

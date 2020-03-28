@@ -110,12 +110,12 @@ class Legacy_AdminControllerStrategy extends Legacy_AbstractControllerStrategy
             
             if ('legacy' == $module->get('dirname') && isset($_REQUEST['dirname'])) {
                 if (in_array(xoops_getrequest('action'), $this->_mSpecialActions)) {
-                    $handler =& xoops_gethandler('module');
+                    $handler =& xoops_getHandler('module');
                     $t_xoopsModule =& $handler->getByDirname(xoops_getrequest('dirname'));
                     $ret_module =& Legacy_Utils::createModule($t_xoopsModule);
                 }
             } elseif ('legacy' == $module->get('dirname') && 'PreferenceEdit' == xoops_getrequest('action') && isset($_REQUEST['confmod_id'])) {
-                $handler =& xoops_gethandler('module');
+                $handler =& xoops_getHandler('module');
                 $t_xoopsModule =& $handler->get((int)xoops_getrequest('confmod_id'));
                 $ret_module =& Legacy_Utils::createModule($t_xoopsModule);
             }
@@ -130,7 +130,7 @@ class Legacy_AdminControllerStrategy extends Legacy_AbstractControllerStrategy
 
     public function &getMainThemeObject()
     {
-        $handler =& xoops_getmodulehandler('theme', 'legacy');
+        $handler =& xoops_getModuleHandler('theme', 'legacy');
         $theme =& $handler->create();
         
         //

@@ -195,11 +195,11 @@ class Legacy_RenderSystem extends XCube_RenderSystem
         // --------------------------------------
         // Meta tags
         // --------------------------------------
-        $moduleHandler = xoops_gethandler('module');
+        $moduleHandler = xoops_getHandler('module');
         $legacyRender =& $moduleHandler->getByDirname('legacyRender');
         
         if (is_object($legacyRender)) {
-            $configHandler = xoops_gethandler('config');
+            $configHandler = xoops_getHandler('config');
             $configs =& $configHandler->getConfigsByCat(0, $legacyRender->get('mid'));
             
             //
@@ -391,9 +391,9 @@ class Legacy_RenderSystem extends XCube_RenderSystem
         $vars = $target->getAttributes();
         $vars['xoops_module_header'] = $moduleHeader;
         
-        $moduleHandler = xoops_gethandler('module');
+        $moduleHandler = xoops_getHandler('module');
         $legacyRender =& $moduleHandler->getByDirname('legacyRender');
-        $configHandler = xoops_gethandler('config');
+        $configHandler = xoops_getHandler('config');
         $configs =& $configHandler->getConfigsByCat(0, $legacyRender->get('mid'));
     
         $textFilter =& $mRoot->getTextFilter();

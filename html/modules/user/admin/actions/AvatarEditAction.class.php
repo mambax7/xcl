@@ -20,7 +20,7 @@ class User_AvatarEditAction extends User_AbstractEditAction
 
     public function &_getHandler()
     {
-        $handler =& xoops_getmodulehandler('avatar');
+        $handler =& xoops_getModuleHandler('avatar');
         return $handler;
     }
 
@@ -44,11 +44,11 @@ class User_AvatarEditAction extends User_AbstractEditAction
                 // Change user_avatar of all users who are setting this avatar.
                 //
                 if (!$this->mObject->isNew()) {
-                    $linkHandler =& xoops_getmodulehandler('avatar_user_link');
+                    $linkHandler =& xoops_getModuleHandler('avatar_user_link');
                     $criteria =new Criteria('avatar_id', $this->mObject->get('avatar_id'));
                     $linkArr =& $linkHandler->getObjects($criteria);
 
-                    $userHandler =& xoops_gethandler('user');
+                    $userHandler =& xoops_getHandler('user');
                     foreach ($linkArr as $link) {
                         $user =& $userHandler->get($link->get('user_id'));
 

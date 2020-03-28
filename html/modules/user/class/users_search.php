@@ -168,7 +168,7 @@ class UserUsers_searchHandler extends UserUsersHandler
 
             $user->_loadGroups();
 
-            $handler = &xoops_getmodulehandler('groups_users_link', 'user');
+            $handler = &xoops_getModuleHandler('groups_users_link', 'user');
             $oldLinkArr = &$handler->getObjects(new Criteria('uid', $user->get('uid')), $force);
 
             //

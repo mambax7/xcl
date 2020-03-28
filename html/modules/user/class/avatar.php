@@ -28,7 +28,7 @@ class UserAvatarObject extends XoopsSimpleObject
 
     public function getUsingCount()
     {
-        $handler = &xoops_getmodulehandler('avatar_user_link', 'user');
+        $handler = &xoops_getModuleHandler('avatar_user_link', 'user');
         $criteria = new Criteria('avatar_id', $this->get('avatar_id'));
         return $handler->getCount($criteria);
     }
@@ -55,7 +55,7 @@ class UserAvatarHandler extends XoopsObjectGenericHandler
     {
         @unlink(XOOPS_UPLOAD_PATH . '/' . $obj->get('avatar_file'));
         if (parent::delete($obj)) {
-            $linkHandler = &xoops_getmodulehandler('avatar_user_link', 'user');
+            $linkHandler = &xoops_getModuleHandler('avatar_user_link', 'user');
             $criteria = new Criteria('avatar_id', $obj->get('avatar_id'));
             $linkHandler->deleteAll($criteria);
 

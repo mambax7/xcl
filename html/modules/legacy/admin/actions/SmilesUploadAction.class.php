@@ -65,7 +65,7 @@ class Legacy_SmilesUploadAction extends Legacy_Action
         else {
             require_once XOOPS_ROOT_PATH . '/class/class.tar.php';
             $tar =new tar();
-            $tar->openTar($formFile->_mTmpFileName);
+            $tar->openTAR($formFile->_mTmpFileName);
             if (!is_array(@$tar->files)) {
                 return LEGACY_FRAME_VIEW_ERROR;
             }
@@ -116,7 +116,7 @@ class Legacy_SmilesUploadAction extends Legacy_Action
             return true;
         }
         
-        $smileshandler =& xoops_getmodulehandler('smiles');
+        $smileshandler =& xoops_getModuleHandler('smiles');
 
         for ($i = 0; $i < count($smilesimages); $i++) {
             $ext_pos = strrpos($smilesimages[$i]['name'], '.') ;

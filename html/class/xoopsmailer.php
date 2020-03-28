@@ -59,7 +59,7 @@ include_once(XOOPS_ROOT_PATH . '/class/mail/xoopsmultimailer.php');
  * @author		Kazumi Ono	<onokazu@xoops.org>
  * @copyright	(c) 2000-2003 The Xoops Project - www.xoops.org
  */
-class xoopsmailer
+class XoopsMailer
 {
     /**
      * reference to a {@link XoopsMultiMailer}
@@ -365,7 +365,7 @@ class xoopsmailer
     public function sendPM($uid, $subject, $body)
     {
         global $xoopsUser;
-        $pm_handler =& xoops_gethandler('privmessage');
+        $pm_handler =& xoops_getHandler('privmessage');
         $pm =& $pm_handler->create();
         $pm->setVar('subject', $subject);
         // RMV-NOTIFY
@@ -394,8 +394,8 @@ class xoopsmailer
     {
         $subject = $this->encodeSubject($subject);
         $this->encodeBody($body);
-        $this->multimailer->ClearAllRecipients();
-        $this->multimailer->AddAddress($email);
+        $this->multimailer->clearAllRecipients();
+        $this->multimailer->addAddress($email);
         $this->multimailer->Subject = $subject;
         $this->multimailer->Body = $body;
         $this->multimailer->CharSet = $this->charSet;
@@ -406,9 +406,9 @@ class xoopsmailer
         if (!empty($this->fromEmail)) {
             $this->multimailer->From = $this->fromEmail;
         }
-        $this->multimailer->ClearCustomHeaders();
+        $this->multimailer->clearCustomHeaders();
         foreach ($this->headers as $header) {
-            $this->multimailer->AddCustomHeader($header);
+            $this->multimailer->addCustomHeader($header);
         }
         if (!$this->multimailer->Send()) {
             $this->errors[] = $this->multimailer->ErrorInfo;
@@ -510,7 +510,7 @@ class xoopsmailer
     {
         if (!is_array($group)) {
             if ('xoopsgroup' == strtolower(get_class($group))) {
-                $member_handler =& xoops_gethandler('member');
+                $member_handler =& xoops_getHandler('member');
                 $groups=&$member_handler->getUsersByGroup($group->getVar('groupid'), true);
                 $this->setToUsers($groups, true);
             }

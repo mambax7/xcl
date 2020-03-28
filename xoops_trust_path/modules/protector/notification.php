@@ -23,7 +23,7 @@ if (!function_exists('protector_notify_base')) {
 
         $db =& Database::getInstance() ;
 
-        $module_handler =& xoops_gethandler('module') ;
+        $module_handler =& xoops_getHandler('module') ;
         $module =& $module_handler->getByDirname($mydirname) ;
 
         if ('global' == $category) {

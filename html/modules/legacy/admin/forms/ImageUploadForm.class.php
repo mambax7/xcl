@@ -40,7 +40,7 @@ class Legacy_ImageUploadForm extends XCube_ActionForm
     
     public function validateImgcat_id()
     {
-        $handler =& xoops_getmodulehandler('imagecategory', 'legacy');
+        $handler =& xoops_getModuleHandler('imagecategory', 'legacy');
         $imgcat_id = $this->get('imgcat_id');
         if (!$imgcat_id || !$handler->get($imgcat_id)) {
             $this->addErrorMessage(_AD_LEGACY_LANG_IMGCAT_WRONG);

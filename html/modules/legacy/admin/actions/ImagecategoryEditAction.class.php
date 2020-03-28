@@ -25,7 +25,7 @@ class Legacy_ImagecategoryEditAction extends Legacy_AbstractEditAction
 
     public function &_getHandler()
     {
-        $handler =& xoops_getmodulehandler('imagecategory');
+        $handler =& xoops_getModuleHandler('imagecategory');
         return $handler;
     }
 
@@ -50,7 +50,7 @@ class Legacy_ImagecategoryEditAction extends Legacy_AbstractEditAction
         $render->setAttribute('actionForm', $this->mActionForm);
         $render->setAttribute('object', $this->mObject);
         
-        $handler =& xoops_gethandler('group');
+        $handler =& xoops_getHandler('group');
         $groupArr =& $handler->getObjects();
         $render->setAttribute('groupArr', $groupArr);
     }

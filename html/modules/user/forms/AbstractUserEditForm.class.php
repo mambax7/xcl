@@ -27,7 +27,7 @@ class User_AbstractUserEditForm extends XCube_ActionForm
             //
             // uname unique check
             //
-            $userHandler=&xoops_gethandler('user');
+            $userHandler=&xoops_getHandler('user');
             $criteria =new CriteriaCompo(new Criteria('uname', $this->get('uname')));
             if ($this->get('uid') > 0) {
                 $criteria->add(new Criteria('uid', $this->get('uid'), '<>'));
@@ -82,7 +82,7 @@ class User_AbstractUserEditForm extends XCube_ActionForm
             //
             // email unique check
             //
-            $userHandler=&xoops_gethandler('user');
+            $userHandler=&xoops_getHandler('user');
             $criteria =new CriteriaCompo(new Criteria('email', $this->get('email')));
             if ($this->get('uid') > 0) {
                 $criteria->add(new Criteria('uid', $this->get('uid'), '<>'));
@@ -95,7 +95,7 @@ class User_AbstractUserEditForm extends XCube_ActionForm
 
     public function validateTimezone_offset()
     {
-        $handler =& xoops_gethandler('timezone');
+        $handler =& xoops_getHandler('timezone');
         $obj =& $handler->get($this->get('timezone_offset'));
         if (!is_object($obj)) {
             $this->addErrorMessage(_MD_USER_ERROR_TIMEZONE);

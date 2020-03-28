@@ -72,7 +72,7 @@ $user_id = !empty($xoopsUser) ? $xoopsUser->getVar('uid') : 0;
 // FIXME: right now I just ignore database errors (e.g. if already
 //  subscribed)... deal with this more gracefully?
 
-$notification_handler =& xoops_gethandler('notification');
+$notification_handler =& xoops_getHandler('notification');
 
 foreach ($update_list as $update_item) {
     list($category, $item_id, $event) = explode(',', $update_item['params']);

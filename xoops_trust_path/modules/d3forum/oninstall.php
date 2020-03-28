@@ -62,7 +62,7 @@ function d3forum_oninstall_base( $module , $mydirname )
 	}
 
 	// TEMPLATES
-	$tplfile_handler =& xoops_gethandler( 'tplfile' ) ;
+	$tplfile_handler =& xoops_getHandler( 'tplfile' ) ;
 	$tpl_path = __DIR__ . '/templates' ;
 	if( $handler = @opendir( $tpl_path . '/' ) ) {
 		while(false !== ( $file = readdir($handler ) )) {

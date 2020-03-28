@@ -66,7 +66,7 @@ class Legacy_NotifyDeleteAction extends Legacy_Action
         // Execute deleting.
         //
         $successFlag = true;
-        $handler =& xoops_gethandler('notification');
+        $handler =& xoops_getHandler('notification');
         foreach ($this->mActionForm->mNotifiyIds as $t_idArr) {
             $t_notify =& $handler->get($t_idArr['id']);
             if (is_object($t_notify) && $t_notify->get('not_uid') == $xoopsUser->get('uid') && $t_notify->get('not_modid') == $t_idArr['modid']) {

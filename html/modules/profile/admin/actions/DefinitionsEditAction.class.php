@@ -85,7 +85,7 @@ $("#legacy_xoopsform_type").change(function(){
      */
     public function executeViewInput($render)
     {
-        $gHandler =& xoops_gethandler('group');
+        $gHandler =& xoops_getHandler('group');
     
         $render->setTemplateName('definitions_edit.html');
         $render->setAttribute('actionForm', $this->mActionForm);

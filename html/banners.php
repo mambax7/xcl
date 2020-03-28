@@ -300,16 +300,16 @@ case 'Ok':
     }
     $login = $pass = '';
     if (!empty($_GET['login'])) {
-        $login = $myts->stripslashesGPC(trim($_GET['login']));
+        $login = $myts->stripSlashesGPC(trim($_GET['login']));
     }
     if (!empty($_GET['pass'])) {
-        $pass = $myts->stripslashesGPC(trim($_GET['pass']));
+        $pass = $myts->stripSlashesGPC(trim($_GET['pass']));
     }
     if (!empty($_POST['login'])) {
-        $login = $myts->stripslashesGPC(trim($_POST['login']));
+        $login = $myts->stripSlashesGPC(trim($_POST['login']));
     }
     if (!empty($_POST['pass'])) {
-        $pass = $myts->stripslashesGPC(trim($_POST['pass']));
+        $pass = $myts->stripSlashesGPC(trim($_POST['pass']));
     }
     bannerstats($login, $pass);
     break;
@@ -321,13 +321,13 @@ case 'Change':
     $login = $pass = $url = '';
     $bid = $cid = 0;
     if (!empty($_POST['login'])) {
-        $login = $myts->stripslashesGPC(trim($_POST['login']));
+        $login = $myts->stripSlashesGPC(trim($_POST['login']));
     }
     if (!empty($_POST['pass'])) {
-        $pass = $myts->stripslashesGPC(trim($_POST['pass']));
+        $pass = $myts->stripSlashesGPC(trim($_POST['pass']));
     }
     if (!empty($_POST['url'])) {
-        $url = $myts->stripslashesGPC(trim($_POST['url']));
+        $url = $myts->stripSlashesGPC(trim($_POST['url']));
     }
     if (!empty($_POST['bid'])) {
         $bid = (int)$_POST['bid'];
@@ -345,10 +345,10 @@ case 'EmailStats':
     $login = $pass = '';
     $bid = $cid = 0;
     if (!empty($_GET['login'])) {
-        $login = $myts->stripslashesGPC(trim($_GET['login']));
+        $login = $myts->stripSlashesGPC(trim($_GET['login']));
     }
     if (!empty($_GET['pass'])) {
-        $pass = $myts->stripslashesGPC(trim($_GET['pass']));
+        $pass = $myts->stripSlashesGPC(trim($_GET['pass']));
     }
     if (!empty($_GET['bid'])) {
         $bid = (int)$_GET['bid'];

@@ -100,7 +100,7 @@ class User_AvatarEditAction extends User_AbstractEditAction
     
     public function &_getHandler()
     {
-        $handler =& xoops_getmodulehandler('users', 'user');
+        $handler =& xoops_getModuleHandler('users', 'user');
         return $handler;
     }
 
@@ -173,7 +173,7 @@ class User_AvatarEditAction extends User_AbstractEditAction
             return true;
         } elseif ($this->mObject->get('uid') == $xoopsUser->get('uid')) {
             // Check count of the system avatar.
-            $handler =& xoops_getmodulehandler('avatar', 'user');
+            $handler =& xoops_getModuleHandler('avatar', 'user');
             $criteria =new Criteria('avatar_type', 'S');
             if ($handler->getCount($criteria) > 0) {
                 return true;
@@ -195,7 +195,7 @@ class User_AvatarEditAction extends User_AbstractEditAction
     public function getDefaultView(&$controller, &$xoopsUser)
     {
         $navi =new XCube_PageNavigator(XOOPS_URL . '/edituser.php?op=avatarform&amp;uid=' . $xoopsUser->get('uid'), XCUBE_PAGENAVI_START);
-        $handler =& xoops_getmodulehandler('avatar', 'user');
+        $handler =& xoops_getModuleHandler('avatar', 'user');
         
         $this->mSystemAvatars[] =& $handler->createNoavatar();
         
@@ -257,7 +257,7 @@ class User_AvatarEditAction extends User_AbstractEditAction
         $this->_resize();
         
         if (null != $this->mActionForm->mOldAvatarFilename && 'blank.gif' != $this->mActionForm->mOldAvatarFilename and null != $this->mActionForm->mFormFile) {
-            $avatarHandler =& xoops_getmodulehandler('avatar', 'user');
+            $avatarHandler =& xoops_getModuleHandler('avatar', 'user');
             $criteria =new Criteria('avatar_file', $this->mActionForm->mOldAvatarFilename);
             $avatarArr =& $avatarHandler->getObjects($criteria);
             if (count($avatarArr) > 0 && is_object($avatarArr[0]) && 'C' == $avatarArr[0]->get('avatar_type')) {
@@ -269,10 +269,10 @@ class User_AvatarEditAction extends User_AbstractEditAction
             $avatar =& $this->mActionForm->createAvatar();
             if (null != $avatar) {
                 $avatar->set('avatar_name', $this->mObject->get('uname'));
-                $avatarHandler =& xoops_getmodulehandler('avatar', 'user');
+                $avatarHandler =& xoops_getModuleHandler('avatar', 'user');
                 $avatarHandler->insert($avatar);
                 
-                $linkHandler =& xoops_getmodulehandler('avatar_user_link', 'user');
+                $linkHandler =& xoops_getModuleHandler('avatar_user_link', 'user');
                 $linkHandler->deleteAllByUser($this->mObject);
                 
                 $link =& $linkHandler->create();

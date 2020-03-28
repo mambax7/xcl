@@ -20,7 +20,7 @@ class User_MailjobDeleteAction extends User_AbstractDeleteAction
 
     public function &_getHandler()
     {
-        $handler =& xoops_getmodulehandler('mailjob');
+        $handler =& xoops_getModuleHandler('mailjob');
         return $handler;
     }
 

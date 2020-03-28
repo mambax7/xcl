@@ -24,7 +24,7 @@ class Legacy_ImageCreateAction extends Legacy_AbstractEditAction
 
     public function &_getHandler()
     {
-        $handler =& xoops_getmodulehandler('image', 'legacy');
+        $handler =& xoops_getModuleHandler('image', 'legacy');
         return $handler;
     }
 
@@ -52,7 +52,7 @@ class Legacy_ImageCreateAction extends Legacy_AbstractEditAction
 
     public function _doExecute()
     {
-        $handler =& xoops_getmodulehandler('imagecategory', 'legacy');
+        $handler =& xoops_getModuleHandler('imagecategory', 'legacy');
         $category =& $handler->get($this->mActionForm->get('imgcat_id'));
         
         //
@@ -104,7 +104,7 @@ class Legacy_ImageCreateAction extends Legacy_AbstractEditAction
         $render->setAttribute('actionForm', $this->mActionForm);
         $render->setAttribute('object', $this->mObject);
         
-        $handler =& xoops_getmodulehandler('imagecategory', 'legacy');
+        $handler =& xoops_getModuleHandler('imagecategory', 'legacy');
         $categoryArr =& $handler->getObjects();
         $render->setAttribute('categoryArr', $categoryArr);
     }

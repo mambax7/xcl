@@ -17,13 +17,13 @@ class message_DeletePreload extends XCube_ActionFilter
   
     public static function deleteMessage()
     {
-        $confHand = xoops_gethandler('config');
+        $confHand = xoops_getHandler('config');
         $modconf = $confHand->getConfigsByDirname('message');
 
-        $inHand = xoops_getmodulehandler('inbox', 'message');
+        $inHand = xoops_getModuleHandler('inbox', 'message');
         $inHand->deleteDays($modconf['savedays'], $modconf['dletype']);
     
-        $outHand = xoops_getmodulehandler('outbox', 'message');
+        $outHand = xoops_getModuleHandler('outbox', 'message');
         $outHand->deleteDays($modconf['savedays']);
     }
 }

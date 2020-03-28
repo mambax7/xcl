@@ -115,7 +115,7 @@ class Profile_ActionFrame
         }
     
         $render = $controller->mRoot->mContext->mModule->getRenderTarget();
-        $render->setAttribute('xoops_pagetitle', $this->mAction->getPagetitle());
+        $render->setAttribute('xoops_pagetitle', $this->mAction->getPageTitle());
         echo($viewStatus);
         die;
         switch ($viewStatus) {

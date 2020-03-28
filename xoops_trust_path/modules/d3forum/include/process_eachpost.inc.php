@@ -16,7 +16,7 @@
 	}
 
 	// get this poster's object
-	$user_handler =& xoops_gethandler( 'user' ) ;
+	$user_handler =& xoops_getHandler( 'user' ) ;
 	$poster_obj =& $user_handler->get((int)$post_row['uid']) ;
 	if( is_object( $poster_obj ) ) {
 		// active user's post

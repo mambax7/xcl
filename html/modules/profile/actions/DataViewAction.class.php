@@ -35,7 +35,7 @@ class Profile_DataViewAction extends Profile_AbstractViewAction
     public function prepare()
     {
         parent::prepare();
-        $dHandler =& xoops_getmodulehandler('definitions');
+        $dHandler =& xoops_getModuleHandler('definitions');
         $this->mFieldArr = $dHandler->getFields4DataShow($this->_getId());
     }
 

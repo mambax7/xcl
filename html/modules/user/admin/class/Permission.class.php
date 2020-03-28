@@ -52,7 +52,7 @@ class User_Permission
      */
     public function save()
     {
-        $gpermHandler =& xoops_gethandler('groupperm');
+        $gpermHandler =& xoops_getHandler('groupperm');
         
         $name = $this->mItem->getReadPermName();
         if ($name) {
@@ -75,7 +75,7 @@ class User_Permission
 
     public function _createGperm($gperm_name = null)
     {
-        $gpermHandler =& xoops_gethandler('groupperm');
+        $gpermHandler =& xoops_getHandler('groupperm');
         $gperm =& $gpermHandler->create();
         
         $gperm->setVar('gperm_groupid', $this->mGroupId);
@@ -170,7 +170,7 @@ class User_PermissionModuleItem extends User_PermissionItem
     {
         $ret = USER_PERMISSION_NONE;
 
-        $gpermHandler =& xoops_gethandler('groupperm');
+        $gpermHandler =& xoops_getHandler('groupperm');
         if ($gpermHandler->checkRight('module_admin', $this->mModule->getVar('mid'), $groupId)) {
             $ret |= USER_PERMISSION_ADMIN;
         }
@@ -225,7 +225,7 @@ class User_PermissionBlockItem extends User_PermissionItem
     {
         $ret = USER_PERMISSION_NONE;
 
-        $gpermHandler =& xoops_gethandler('groupperm');
+        $gpermHandler =& xoops_getHandler('groupperm');
         if ($gpermHandler->checkRight('block_read', $this->mBlock->getVar('bid'), $groupId, 1, true)) {
             $ret |= USER_PERMISSION_READ;
         }
@@ -278,7 +278,7 @@ class User_PermissionSystemAdminItem extends User_PermissionItem
     {
         $ret = USER_PERMISSION_NONE;
         
-        $gpermHandler =& xoops_gethandler('groupperm');
+        $gpermHandler =& xoops_getHandler('groupperm');
         if ($gpermHandler->checkRight('system_admin', $this->mId, $groupId)) {
             $ret |= USER_PERMISSION_ADMIN;
         }

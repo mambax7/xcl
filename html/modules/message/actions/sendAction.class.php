@@ -25,7 +25,7 @@ class sendAction extends AbstractAction
         } else {
             $pagenum = $this->root->mContext->mModuleConfig['pagenum'];
         }
-        $modHand = xoops_getmodulehandler('outbox', _MY_DIRNAME);
+        $modHand = xoops_getModuleHandler('outbox', _MY_DIRNAME);
         $this->mPagenavi = new MyPageNavi($modHand);
         $this->mPagenavi->setUrl($this->url);
         $this->mPagenavi->setPagenum($pagenum);

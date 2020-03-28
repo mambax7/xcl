@@ -55,9 +55,9 @@ function b_pico_tags_show($options)
 	$tags4assign = array_values($tags);
 
 	// module config
-	$module_handler = &xoops_gethandler('module');
+	$module_handler = &xoops_getHandler('module');
 	$module = &$module_handler->getByDirname($mydirname);
-	$config_handler = &xoops_gethandler('config');
+	$config_handler = &xoops_getHandler('config');
 	$configs = $config_handler->getConfigList($module->mid());
 
 	// constpref

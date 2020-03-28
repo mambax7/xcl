@@ -20,7 +20,7 @@ class LegacyRender_BannerDeleteAction extends LegacyRender_AbstractDeleteAction
 
     public function &_getHandler()
     {
-        $handler =& xoops_getmodulehandler('banner');
+        $handler =& xoops_getModuleHandler('banner');
         return $handler;
     }
 

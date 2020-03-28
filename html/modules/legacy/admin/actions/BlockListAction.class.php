@@ -30,7 +30,7 @@ class Legacy_BlockListAction extends Legacy_AbstractListAction
 
     public function &_getHandler()
     {
-        $handler =& xoops_getmodulehandler('newblocks');
+        $handler =& xoops_getModuleHandler('newblocks');
         return $handler;
     }
 
@@ -87,7 +87,7 @@ class Legacy_BlockListAction extends Legacy_AbstractListAction
         // added query for view module pages
         $root =& XCube_Root::getSingleton();
         $render->setAttribute('selectedMid', $root->mContext->mRequest->getRequest('selmid'));
-        $handler =& xoops_gethandler('module');
+        $handler =& xoops_getHandler('module');
         $criteria = new CriteriaCompo(new Criteria('hasmain', 1));
         $criteria->add(new Criteria('isactive', 1));
         $criteria->add(new Criteria('weight', 0, '>'));
@@ -95,7 +95,7 @@ class Legacy_BlockListAction extends Legacy_AbstractListAction
         $render->setAttribute('view_modules', $view_modules);
 
         // added query for groups
-        $handler =& xoops_gethandler('group');
+        $handler =& xoops_getHandler('group');
         $groupArr =& $handler->getObjects();
         $render->setAttribute('groupArr', $groupArr);
         $render->setAttribute('selectedGid', $root->mContext->mRequest->getRequest('selgid'));
@@ -103,12 +103,12 @@ class Legacy_BlockListAction extends Legacy_AbstractListAction
         //
         // Load cache-time pattern objects and set.
         //
-        $handler =& xoops_gethandler('cachetime');
+        $handler =& xoops_getHandler('cachetime');
         $cachetimeArr =& $handler->getObjects();
         $render->setAttribute('cachetimeArr', $cachetimeArr);
         $render->setAttribute('actionForm', $this->mActionForm);
         //
-        $handler =& xoops_getmodulehandler('columnside');
+        $handler =& xoops_getModuleHandler('columnside');
         $columnSideArr =& $handler->getObjects();
         $render->setAttribute('columnSideArr', $columnSideArr);
 
@@ -154,7 +154,7 @@ class Legacy_BlockListAction extends Legacy_AbstractListAction
     public function _processConfirm(&$controller, &$xoopsUser)
     {
         $titleArr = $this->mActionForm->get('title');
-        $blockHandler =& xoops_getmodulehandler('newblocks');
+        $blockHandler =& xoops_getModuleHandler('newblocks');
         //
         // Do mapping.
         //
@@ -174,7 +174,7 @@ class Legacy_BlockListAction extends Legacy_AbstractListAction
     public function _processSave(&$controller, &$xoopsUser)
     {
         $titleArr = $this->mActionForm->get('title');
-        $blockHandler =& xoops_getmodulehandler('newblocks');
+        $blockHandler =& xoops_getModuleHandler('newblocks');
 
         foreach (array_keys($titleArr) as $bid) {
             $block =& $blockHandler->get($bid);
@@ -226,10 +226,10 @@ class Legacy_BlockListAction extends Legacy_AbstractListAction
         $t_arr = $this->mActionForm->get('title');
         $render->setAttribute('bids', array_keys($t_arr));
 
-        $handler =& xoops_getmodulehandler('columnside');
+        $handler =& xoops_getModuleHandler('columnside');
         $columnSideArr =& $handler->getObjects($criteria = null, $id_as_key = true);
         $render->setAttribute('columnSideArr', $columnSideArr);
-        $handler =& xoops_gethandler('cachetime');
+        $handler =& xoops_getHandler('cachetime');
         $cachetimeArr =& $handler->getObjects($criteria = null, $id_as_key = true);
         $render->setAttribute('cachetimeArr', $cachetimeArr);
     }

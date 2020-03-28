@@ -53,7 +53,7 @@ class LegacyRender_TplfileFilterForm extends LegacyRender_AbstractFilterForm
             $this->mNavi->addExtra('tpl_module', xoops_getrequest('tpl_module'));
             $this->_mCriteria->add(new Criteria('tpl_module', [XOBJ_DTYPE_STRING, xoops_getrequest('tpl_module')]));
             
-            $handler =& xoops_gethandler('module');
+            $handler =& xoops_getHandler('module');
             $this->mModule =& $handler->getByDirname(xoops_getrequest('tpl_module'));
         }
     

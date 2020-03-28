@@ -71,7 +71,7 @@ function d3forum_delete_topic( $mydirname , $topic_id , $delete_also_posts = tru
 	}
 
 	// delete notifications about this topic
-	$notification_handler =& xoops_gethandler( 'notification' ) ;
+	$notification_handler =& xoops_getHandler( 'notification' ) ;
 	$notification_handler->unsubscribeByItem( $xoopsModule->getVar( 'mid' ) , 'topic' , $topic_id ) ;
 
 	// delete topic
@@ -101,7 +101,7 @@ function d3forum_delete_forum( $mydirname , $forum_id , $delete_also_topics = tr
 	}
 
 	// delete notifications about this forum
-	$notification_handler =& xoops_gethandler( 'notification' ) ;
+	$notification_handler =& xoops_getHandler( 'notification' ) ;
 	$notification_handler->unsubscribeByItem( $xoopsModule->getVar( 'mid' ) , 'forum' , $forum_id ) ;
 
 	// delete forum
@@ -131,7 +131,7 @@ function d3forum_delete_category( $mydirname , $cat_id , $delete_also_forums = t
 	}
 
 	// delete notifications about this category
-	$notification_handler =& xoops_gethandler( 'notification' ) ;
+	$notification_handler =& xoops_getHandler( 'notification' ) ;
 	$notification_handler->unsubscribeByItem( $xoopsModule->getVar( 'mid' ) , 'category' , $cat_id ) ;
 
 	// delete category

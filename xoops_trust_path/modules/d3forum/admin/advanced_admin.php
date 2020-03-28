@@ -12,9 +12,9 @@ $db =& Database::getInstance() ;
 
 $importable_modules = d3forum_import_getimportablemodules( $mydirname ) ;
 
-$module_handler =& xoops_gethandler( 'module' ) ;
+$module_handler =& xoops_getHandler( 'module' ) ;
 $modules = $module_handler->getObjects( new Criteria('hascomments',1) ) ;
-$comment_handler =& xoops_gethandler( 'comment' ) ;
+$comment_handler =& xoops_getHandler( 'comment' ) ;
 $comimportable_modules = [];
 foreach( $modules as $module ) {
 	$mid = $module->getVar('mid') ;

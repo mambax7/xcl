@@ -79,7 +79,7 @@ class Legacy_AbstractModule
         $this->setXoopsModule($module);
         
         if ($loadConfig && (1 == $module->get('hasconfig') || 1 == $module->get('hascomments') || 1 == $module->get('hasnotification'))) {
-            $handler =& xoops_gethandler('config');
+            $handler =& xoops_getHandler('config');
             $this->setModuleConfig($handler->getConfigsByCat(0, $module->get('mid')));
         }
     }

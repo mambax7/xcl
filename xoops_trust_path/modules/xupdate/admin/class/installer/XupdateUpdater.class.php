@@ -346,7 +346,7 @@ class Xupdate_Updater
     {
         // remove modules.ini cache
         $root =& XCube_Root::getSingleton();
-        $ch =& xoops_gethandler('config');
+        $ch =& xoops_getHandler('config');
         $mconf = $ch->getConfigsByDirname($this->_mCurrentXoopsModule->get('dirname'));
         $cdir = XOOPS_TRUST_PATH . '/'.trim($mconf['temp_path'], '/');
         if (is_dir($cdir)) {

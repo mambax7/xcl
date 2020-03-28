@@ -89,7 +89,7 @@ if ($com_itemid > 0) {
     }
     $noname = 0;
 
-    $handler =& xoops_gethandler('comment');
+    $handler =& xoops_getHandler('comment');
     $comment =& $handler->create();
 
 //
@@ -119,7 +119,7 @@ if (is_object($xoopsUser) && $xoopsUser->isAdmin()) {
 //
 // Get the icons of subject.
 //
-$handler =& xoops_gethandler('subjecticon');
+$handler =& xoops_getHandler('subjecticon');
     $subjectIcons =& $handler->getObjects();
 
 //
