@@ -11,8 +11,8 @@ if (!defined('XOOPS_ROOT_PATH')) {
 
 abstract class Legacy_AbstractImageObject extends XoopsSimpleObject
 {
-    const IMAGE_TAG = '<img src="%s" width="%d" height="%d" alt="%s" />';
-    const SWF_TAG = '<object data="%s" type="application/x-shockwave-flash" width="%d" height="%d"><param name="movie" value="%s" /><param name=loop value=false>
+    public const IMAGE_TAG = '<img src="%s" width="%d" height="%d" alt="%s" />';
+    public const SWF_TAG = '<object data="%s" type="application/x-shockwave-flash" width="%d" height="%d"><param name="movie" value="%s" /><param name=loop value=false>
 </object>';
 
     protected $mDirArray = [];

@@ -125,7 +125,7 @@ class POP3
     /**
      * Line break constant
      */
-    const CRLF = "\r\n";
+    public const CRLF = "\r\n";
 
     /**
      * Simple static wrapper for all-in-one POP before SMTP

@@ -39,8 +39,8 @@ class Identity
      *
      * @access private
      */
-    const SSH_AGENT_RSA2_256 = 2;
-    const SSH_AGENT_RSA2_512 = 4;
+    public const SSH_AGENT_RSA2_256 = 2;
+    public const SSH_AGENT_RSA2_512 = 4;
     /**#@-*/
 
     /**

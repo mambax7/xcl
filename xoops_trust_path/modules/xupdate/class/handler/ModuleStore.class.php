@@ -10,8 +10,8 @@ if (!defined('XOOPS_ROOT_PATH')) {
 class Xupdate_ModuleStore extends Legacy_AbstractObject
 {
 
-    const PRIMARY = 'id';
-    const DATANAME = 'modulestore';
+    public const PRIMARY = 'id';
+    public const DATANAME = 'modulestore';
     
     public $mModule ;
     public $modinfo = [];
