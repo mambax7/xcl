@@ -241,7 +241,7 @@ namespace {
             }
 
             $status = 0;
-            for ($i = 0; $i < PasswordCompat\binary\_strlen($ret); $i++) {
+            for ($i = 0, $iMax = PasswordCompat\binary\_strlen($ret); $i < $iMax; $i++) {
                 $status |= (ord($ret[$i]) ^ ord($hash[$i]));
             }
 

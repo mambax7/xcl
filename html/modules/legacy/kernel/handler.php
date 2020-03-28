@@ -490,7 +490,7 @@ class XoopsObjectGenericHandler extends XoopsObjectHandler
         $arr = explode('_', $this->mTable);
         if (isset($arr[2])) {
             $tableName = $arr[2];
-            for ($i=3;$i<count($arr);$i++) {
+            for ($i=3, $iMax = count($arr); $i < $iMax; $i++) {
                 $tableName .= '_'.$arr[$i];
             }
             XCube_DelegateUtils::call(sprintf('Module.%s.Event.%s.%s', $this->getDirname(), $type, $tableName), new XCube_Ref($obj));

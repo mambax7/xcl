@@ -247,7 +247,7 @@ class File_ANSI
     public function appendString($source)
     {
         $this->tokenization = [''];
-        for ($i = 0; $i < strlen($source); $i++) {
+        for ($i = 0, $iMax = strlen($source); $i < $iMax; $i++) {
             if (strlen($this->ansi)) {
                 $this->ansi .= $source[$i];
                 $chr        = ord($source[$i]);
@@ -605,7 +605,7 @@ class File_ANSI
     {
         $scrollback = '';
         $last_attr  = $this->base_attr_cell;
-        for ($i = 0; $i < count($this->history); $i++) {
+        for ($i = 0, $iMax = count($this->history); $i < $iMax; $i++) {
             for ($j = 0; $j <= $this->max_x + 1; $j++) {
                 $cur_attr   = $this->history_attrs[$i][$j];
                 $scrollback .= $this->_processCoordinate($last_attr, $cur_attr, isset($this->history[$i][$j]) ? $this->history[$i][$j] : '');

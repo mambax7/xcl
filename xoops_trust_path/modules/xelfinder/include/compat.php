@@ -145,7 +145,7 @@ if (! function_exists('array_replace_recursive')) {
 		if (!is_array($array)) {
 			return $array;
 		}
-		for ($i = 1; $i < count($args); $i++) {
+		for ($i = 1, $iMax = count($args); $i < $iMax; $i++) {
 			if (is_array($args[$i])) {
 				$array = _array_replace_recursive_recurse($array, $args[$i]);
 			}

@@ -319,7 +319,7 @@ class snoopy
                 $URI = $this->lastredirectaddr;
             }
             if (is_array($this->results)) {
-                for ($x = 0; $x < count($this->results); $x++) {
+                for ($x = 0, $xMax = count($this->results); $x < $xMax; $x++) {
                     $this->results[$x] = $this->_striplinks($this->results[$x]);
                 }
             } else {
@@ -346,7 +346,7 @@ class snoopy
     {
         if (false !== $this->fetch($URI)) {
             if (is_array($this->results)) {
-                for ($x = 0; $x < count($this->results); $x++) {
+                for ($x = 0, $xMax = count($this->results); $x < $xMax; $x++) {
                     $this->results[$x] = $this->_stripform($this->results[$x]);
                 }
             } else {
@@ -371,7 +371,7 @@ class snoopy
     {
         if (false !== $this->fetch($URI)) {
             if (is_array($this->results)) {
-                for ($x = 0; $x < count($this->results); $x++) {
+                for ($x = 0, $xMax = count($this->results); $x < $xMax; $x++) {
                     $this->results[$x] = $this->_striptext($this->results[$x]);
                 }
             } else {
@@ -397,7 +397,7 @@ class snoopy
                 $URI = $this->lastredirectaddr;
             }
             if (is_array($this->results)) {
-                for ($x = 0; $x < count($this->results); $x++) {
+                for ($x = 0, $xMax = count($this->results); $x < $xMax; $x++) {
                     $this->results[$x] = $this->_striplinks($this->results[$x]);
                     if ($this->expandlinks) {
                         $this->results[$x] = $this->_expandlinks($this->results[$x], $URI);
@@ -429,7 +429,7 @@ class snoopy
                 $URI = $this->lastredirectaddr;
             }
             if (is_array($this->results)) {
-                for ($x = 0; $x < count($this->results); $x++) {
+                for ($x = 0, $xMax = count($this->results); $x < $xMax; $x++) {
                     $this->results[$x] = $this->_striptext($this->results[$x]);
                     if ($this->expandlinks) {
                         $this->results[$x] = $this->_expandlinks($this->results[$x], $URI);
@@ -825,7 +825,7 @@ class snoopy
         // have we hit our frame depth and is there frame src to fetch?
         if (($this->_framedepth < $this->maxframes) && preg_match_all("'<frame\s+.*src[\s]*=[\'\"]?([^\'\"\>]+)'i", $results, $match)) {
             $this->results[] = $results;
-            for ($x = 0; $x < count($match[1]); $x++) {
+            for ($x = 0, $xMax = count($match[1]); $x < $xMax; $x++) {
                 $this->_frameurls[] = $this->_expandlinks($match[1][$x], $URI_PARTS['scheme'] . '://' . $this->host);
             }
         } // have we already fetched framed content?
@@ -847,7 +847,7 @@ class snoopy
 
     public function setcookies()
     {
-        for ($x = 0; $x < count($this->headers); $x++) {
+        for ($x = 0, $xMax = count($this->headers); $x < $xMax; $x++) {
             if (preg_match('/^set-cookie:[\s]+([^=]+)=([^;]+)/i', $this->headers[$x], $match)) {
                 $this->cookies[$match[1]] = urldecode($match[2]);
             }

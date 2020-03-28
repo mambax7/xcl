@@ -2224,7 +2224,7 @@ class Net_SSH2
                 $this->_string_shift($response, $length); // language tag; may be empty
                 extract(unpack('Nnum_prompts', $this->_string_shift($response, 4)));
 
-                for ($i = 0; $i < count($responses); $i++) {
+                for ($i = 0, $iMax = count($responses); $i < $iMax; $i++) {
                     if (is_array($responses[$i])) {
                         foreach ($responses[$i] as $key => $value) {
                             $this->keyboard_requests_responses[$key] = $value;
@@ -2271,7 +2271,7 @@ class Net_SSH2
                 */
                 // see https://tools.ietf.org/html/rfc4256#section-3.4
                 $packet = $logged = pack('CN', NET_SSH2_MSG_USERAUTH_INFO_RESPONSE, count($responses));
-                for ($i = 0; $i < count($responses); $i++) {
+                for ($i = 0, $iMax = count($responses); $i < $iMax; $i++) {
                     $packet .= pack('Na*', strlen($responses[$i]), $responses[$i]);
                     $logged .= pack('Na*', strlen('dummy-answer'), 'dummy-answer');
                 }
@@ -2533,7 +2533,7 @@ class Net_SSH2
                 return false;
             }
 
-            list(, $type) = unpack('C', $this->_string_shift($response, 1));
+            [, $type] = unpack('C', $this->_string_shift($response, 1));
 
             switch ($type) {
                 case NET_SSH2_MSG_CHANNEL_SUCCESS:
@@ -2670,7 +2670,7 @@ class Net_SSH2
             return false;
         }
 
-        list(, $type) = unpack('C', $this->_string_shift($response, 1));
+        [, $type] = unpack('C', $this->_string_shift($response, 1));
 
         switch ($type) {
             case NET_SSH2_MSG_CHANNEL_SUCCESS:
@@ -3796,7 +3796,7 @@ class Net_SSH2
     public function _format_log($message_log, $message_number_log)
     {
         $output = '';
-        for ($i = 0; $i < count($message_log); $i++) {
+        for ($i = 0, $iMax = count($message_log); $i < $iMax; $i++) {
             $output      .= $message_number_log[$i] . "\r\n";
             $current_log = $message_log[$i];
             $j           = 0;
@@ -4120,17 +4120,17 @@ class Net_SSH2
                 $w = $s->modInverse($q);
 
                 $u1 = $w->multiply(new Math_BigInteger(sha1($this->exchange_hash), 16));
-                list(, $u1) = $u1->divide($q);
+                [, $u1] = $u1->divide($q);
 
                 $u2 = $w->multiply($r);
-                list(, $u2) = $u2->divide($q);
+                [, $u2] = $u2->divide($q);
 
                 $g = $g->modPow($u1, $p);
                 $y = $y->modPow($u2, $p);
 
                 $v = $g->multiply($y);
-                list(, $v) = $v->divide($p);
-                list(, $v) = $v->divide($q);
+                [, $v] = $v->divide($p);
+                [, $v] = $v->divide($q);
 
                 if (!$v->equals($r)) {
                     user_error('Bad server signature');

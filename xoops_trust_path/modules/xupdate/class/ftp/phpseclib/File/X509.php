@@ -1584,7 +1584,7 @@ class File_X509
         $extensions = &$this->_subArray($root, $path);
 
         if (is_array($extensions)) {
-            for ($i = 0; $i < count($extensions); $i++) {
+            for ($i = 0, $iMax = count($extensions); $i < $iMax; $i++) {
                 $id      = $extensions[$i]['extnId'];
                 $value   = &$extensions[$i]['extnValue'];
                 $value   = base64_decode($value);
@@ -1597,11 +1597,11 @@ class File_X509
                     $value  = false === $mapped ? $decoded[0] : $mapped;
 
                     if ('id-ce-certificatePolicies' == $id) {
-                        for ($j = 0; $j < count($value); $j++) {
+                        for ($j = 0, $jMax = count($value); $j < $jMax; $j++) {
                             if (!isset($value[$j]['policyQualifiers'])) {
                                 continue;
                             }
-                            for ($k = 0; $k < count($value[$j]['policyQualifiers']); $k++) {
+                            for ($k = 0, $kMax = count($value[$j]['policyQualifiers']); $k < $kMax; $k++) {
                                 $subid    = $value[$j]['policyQualifiers'][$k]['policyQualifierId'];
                                 $map      = $this->_getMapping($subid);
                                 $subvalue = &$value[$j]['policyQualifiers'][$k]['qualifier'];
@@ -1645,11 +1645,11 @@ class File_X509
 
                 switch ($id) {
                     case 'id-ce-certificatePolicies':
-                        for ($j = 0; $j < count($value); $j++) {
+                        for ($j = 0, $jMax = count($value); $j < $jMax; $j++) {
                             if (!isset($value[$j]['policyQualifiers'])) {
                                 continue;
                             }
-                            for ($k = 0; $k < count($value[$j]['policyQualifiers']); $k++) {
+                            for ($k = 0, $kMax = count($value[$j]['policyQualifiers']); $k < $kMax; $k++) {
                                 $subid    = $value[$j]['policyQualifiers'][$k]['policyQualifierId'];
                                 $map      = $this->_getMapping($subid);
                                 $subvalue = &$value[$j]['policyQualifiers'][$k]['qualifier'];
@@ -1700,14 +1700,14 @@ class File_X509
         $attributes = &$this->_subArray($root, $path);
 
         if (is_array($attributes)) {
-            for ($i = 0; $i < count($attributes); $i++) {
+            for ($i = 0, $iMax = count($attributes); $i < $iMax; $i++) {
                 $id = $attributes[$i]['type'];
                 /* $value contains the DER encoding of an ASN.1 value
                    corresponding to the attribute type identified by type */
                 $map = $this->_getMapping($id);
                 if (is_array($attributes[$i]['value'])) {
                     $values = &$attributes[$i]['value'];
-                    for ($j = 0; $j < count($values); $j++) {
+                    for ($j = 0, $jMax = count($values); $j < $jMax; $j++) {
                         $value   = $asn1->encodeDER($values[$j], $this->AttributeValue);
                         $decoded = $asn1->decodeBER($value);
                         if (!is_bool($map)) {
@@ -1752,7 +1752,7 @@ class File_X509
                     unset($attributes[$i]);
                 } elseif (is_array($attributes[$i]['value'])) {
                     $values = &$attributes[$i]['value'];
-                    for ($j = 0; $j < count($values); $j++) {
+                    for ($j = 0, $jMax = count($values); $j < $jMax; $j++) {
                         switch ($id) {
                             case 'pkcs-9-at-extensionRequest':
                                 $this->_mapOutExtensions($values, $j, $asn1);
@@ -2060,7 +2060,7 @@ class File_X509
                 }
 
                 if (!empty($this->CAs)) {
-                    for ($i = 0; $i < count($this->CAs); $i++) {
+                    for ($i = 0, $iMax = count($this->CAs); $i < $iMax; $i++) {
                         // even if the cert is a self-signed one we still want to see if it's a CA;
                         // if not, we'll conditionally return an error
                         $ca = $this->CAs[$i];
@@ -2106,7 +2106,7 @@ class File_X509
                 );
             case isset($this->currentCert['tbsCertList']):
                 if (!empty($this->CAs)) {
-                    for ($i = 0; $i < count($this->CAs); $i++) {
+                    for ($i = 0, $iMax = count($this->CAs); $i < $iMax; $i++) {
                         $ca = $this->CAs[$i];
                         if ($this->currentCert['tbsCertList']['issuer'] === $ca['tbsCertificate']['subject']) {
                             $authorityKey = $this->getExtension('id-ce-authorityKeyIdentifier');
@@ -2218,7 +2218,7 @@ class File_X509
     public function _decodeIP($ip)
     {
         $ip = base64_decode($ip);
-        list(, $ip) = unpack('N', $ip);
+        [, $ip] = unpack('N', $ip);
         return long2ip($ip);
     }
 
@@ -2412,7 +2412,7 @@ class File_X509
         $dn     = $dn['rdnSequence'];
         $result = [];
         $asn1   = new File_ASN1();
-        for ($i = 0; $i < count($dn); $i++) {
+        for ($i = 0, $iMax = count($dn); $i < $iMax; $i++) {
             if ($dn[$i][0]['type'] == $propName) {
                 $v = $dn[$i][0]['value'];
                 if (!$withType && is_array($v)) {
@@ -2469,7 +2469,7 @@ class File_X509
 
         // handles everything else
         $results = preg_split('#((?:^|, *|/)(?:C=|O=|OU=|CN=|L=|ST=|SN=|postalCode=|streetAddress=|emailAddress=|serialNumber=|organizationalUnitName=|title=|description=|role=|x500UniqueIdentifier=))#', $dn, -1, PREG_SPLIT_DELIM_CAPTURE);
-        for ($i = 1; $i < count($results); $i += 2) {
+        for ($i = 1, $iMax = count($results); $i < $iMax; $i += 2) {
             $prop  = trim($results[$i], ', =/');
             $value = $results[$i + 1];
             if (!$this->setDNProp($prop, $value, $type)) {
@@ -2511,7 +2511,7 @@ class File_X509
                 }
                 $attrs = preg_split('#((?:^|, *|/)[a-z][a-z0-9]*=)#i', $dn, -1, PREG_SPLIT_DELIM_CAPTURE);
                 $dn    = [];
-                for ($i = 1; $i < count($attrs); $i += 2) {
+                for ($i = 1, $iMax = count($attrs); $i < $iMax; $i += 2) {
                     $prop  = trim($attrs[$i], ', =/');
                     $value = $attrs[$i + 1];
                     if (!isset($dn[$prop])) {
@@ -2735,7 +2735,7 @@ class File_X509
         }
         while (true) {
             $currentCert = $chain[count($chain) - 1];
-            for ($i = 0; $i < count($this->CAs); $i++) {
+            for ($i = 0, $iMax = count($this->CAs); $i < $iMax; $i++) {
                 $ca = $this->CAs[$i];
                 if ($currentCert['tbsCertificate']['issuer'] === $ca['tbsCertificate']['subject']) {
                     $authorityKey = $this->getExtension('id-ce-authorityKeyIdentifier', $currentCert);

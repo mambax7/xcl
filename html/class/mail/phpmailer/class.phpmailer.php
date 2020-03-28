@@ -3781,7 +3781,7 @@ class PHPMailer
     public function DKIM_QP($txt)
     {
         $line = '';
-        for ($i = 0; $i < strlen($txt); $i++) {
+        for ($i = 0, $iMax = strlen($txt); $i < $iMax; $i++) {
             $ord = ord($txt[$i]);
             if (((0x21 <= $ord) && ($ord <= 0x3A)) || 0x3C == $ord || ((0x3E <= $ord) && ($ord <= 0x7E))) {
                 $line .= $txt[$i];

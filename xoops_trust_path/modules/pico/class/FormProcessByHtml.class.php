@@ -555,7 +555,7 @@ class FormProcessByHtml
 
         //3) loop through each and re-concatenate all to get two strings: the local part (before the mandatory '@') and the domain part
 
-        for ($i = 0; $i < count($local_array); $i++) {
+        for ($i = 0, $iMax = count($local_array); $i < $iMax; $i++) {
             if (!preg_match("^(([A-Za-z0-9!#$%&'*+/=?^_`{|}~-][A-Za-z0-9!#$%&'*+/=?^_`{|}~\.-]{0,63})|(\"[^(\\|\")]{0,62}\"))$", $local_array[$i])) {
                 return false;
             }
@@ -582,7 +582,7 @@ class FormProcessByHtml
             // If the second domain part is either encapsulated within square brackets ([]) or contains NO square brackets
             // (just use substr and substr_count, it is much faster than regex), and it matches the pattern:
             // preg_match("/^\[?[0-9A-Za-z\-\.]+\]?$/", $domain_array[$1]);
-            for ($i = 0; $i < count($domain_array); $i++) {
+            for ($i = 0, $iMax = count($domain_array); $i < $iMax; $i++) {
                 //if (!preg_match("^(([A-Za-z0-9][A-Za-z0-9-]{0,61}[A-Za-z0-9])|([A-Za-z0-9]+))$", $domain_array[$i])) {
                 if (!preg_match("/^\[?[0-9A-Za-z\-\.]+\]?$/", $domain_array[$i])) {
                     return false;

@@ -160,7 +160,7 @@ class LegacyRender_TplsetUploadAction extends LegacyRender_Action
         }
         
         $handler =& xoops_getHandler('imagesetimg');
-        for ($i = 0; $i < count($themeimages); $i++) {
+        for ($i = 0, $iMax = count($themeimages); $i < $iMax; $i++) {
             if (isset($themeimages[$i]['name']) && '' != $themeimages[$i]['name']) {
                 $image =& $handler->create();
                 $image->set('imgsetimg_file', $themeimages[$i]['name']);

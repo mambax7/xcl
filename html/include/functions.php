@@ -700,7 +700,7 @@ function xoops_substr($str, $start, $length, $trimmarker = '...')
     $DEP_CHAR=127;
     $pos_st=0;
     $action = false;
-    for ($pos_i = 0; $pos_i < strlen($str); $pos_i++) {
+    for ($pos_i = 0, $pos_iMax = strlen($str); $pos_i < $pos_iMax; $pos_i++) {
         if (ord(substr($str, $pos_i, 1)) > 127) {
             $pos_i++;
         }

@@ -521,7 +521,7 @@ class Crypt_RSA
 
                     $versions = [];
                     if (!empty($matches[1])) {
-                        for ($i = 0; $i < count($matches[1]); $i++) {
+                        for ($i = 0, $iMax = count($matches[1]); $i < $iMax; $i++) {
                             $fullVersion = trim(str_replace('=>', '', strip_tags($matches[2][$i])));
 
                             // Remove letter part in OpenSSL version
@@ -672,7 +672,7 @@ class Crypt_RSA
                 }
 
                 if ($i == $num_primes) {
-                    list($min, $temp) = $absoluteMin->divide($n);
+                    [$min, $temp] = $absoluteMin->divide($n);
                     if (!$temp->equals($this->zero)) {
                         $min = $min->add($this->one); // ie. ceil()
                     }
@@ -721,7 +721,7 @@ class Crypt_RSA
                 $exponents[$i] = $e->modInverse($temp);
             }
 
-            list($temp) = $lcm['top']->divide($lcm['bottom']);
+            [$temp] = $lcm['top']->divide($lcm['bottom']);
             $gcd = $temp->gcd($e);
             $i0  = 1;
         } while (!$gcd->equals($this->one));
@@ -1249,7 +1249,7 @@ class Crypt_RSA
                                 return false;
                             }
                             $this->_decodeLength($temp);
-                            list(, $iterationCount) = unpack('N', str_pad($temp, 4, chr(0), STR_PAD_LEFT));
+                            [, $iterationCount] = unpack('N', str_pad($temp, 4, chr(0), STR_PAD_LEFT));
                             $this->_string_shift($key); // assume it's an octet string
                             $length = $this->_decodeLength($key);
                             if (strlen($key) != $length) {
@@ -1986,7 +1986,7 @@ class Crypt_RSA
         if ($length & 0x80) { // definite length, long form
             $length &= 0x7F;
             $temp   = $this->_string_shift($string, $length);
-            list(, $length) = unpack('N', substr(str_pad($temp, 4, chr(0), STR_PAD_LEFT), -4));
+            [, $length] = unpack('N', substr(str_pad($temp, 4, chr(0), STR_PAD_LEFT), -4));
         }
         return $length;
     }
@@ -2182,7 +2182,7 @@ class Crypt_RSA
             ];
             $h   = $m_i[1]->subtract($m_i[2]);
             $h   = $h->multiply($this->coefficients[2]);
-            list(, $h) = $h->divide($this->primes[1]);
+            [, $h] = $h->divide($this->primes[1]);
             $m = $m_i[2]->add($h->multiply($this->primes[2]));
 
             $r = $this->primes[1];
@@ -2193,7 +2193,7 @@ class Crypt_RSA
 
                 $h = $m_i->subtract($m);
                 $h = $h->multiply($this->coefficients[$i]);
-                list(, $h) = $h->divide($this->primes[$i]);
+                [, $h] = $h->divide($this->primes[$i]);
 
                 $m = $m->add($r->multiply($h));
             }
@@ -2215,7 +2215,7 @@ class Crypt_RSA
             ];
             $h   = $m_i[1]->subtract($m_i[2]);
             $h   = $h->multiply($this->coefficients[2]);
-            list(, $h) = $h->divide($this->primes[1]);
+            [, $h] = $h->divide($this->primes[1]);
             $m = $m_i[2]->add($h->multiply($this->primes[2]));
 
             $r = $this->primes[1];
@@ -2226,7 +2226,7 @@ class Crypt_RSA
 
                 $h = $m_i->subtract($m);
                 $h = $h->multiply($this->coefficients[$i]);
-                list(, $h) = $h->divide($this->primes[$i]);
+                [, $h] = $h->divide($this->primes[$i]);
 
                 $m = $m->add($r->multiply($h));
             }
@@ -2254,7 +2254,7 @@ class Crypt_RSA
 
         $r = $r->modInverse($this->primes[$i]);
         $x = $x->multiply($r);
-        list(, $x) = $x->divide($this->primes[$i]);
+        [, $x] = $x->divide($this->primes[$i]);
 
         return $x;
     }
@@ -2280,7 +2280,7 @@ class Crypt_RSA
         }
 
         $result = 0;
-        for ($i = 0; $i < strlen($x); $i++) {
+        for ($i = 0,$iMax = strlen($x); $i < $iMax; $i++) {
             $result |= ord($x[$i]) ^ ord($y[$i]);
         }
 

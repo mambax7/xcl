@@ -136,7 +136,7 @@ class Legacy_BlockEditForm extends XCube_ActionForm
         // Update options (XOOPS2 compatible)
         //
         $optionArr = $this->get('options');
-        for ($i = 0; $i < count($optionArr); $i++) {
+        for ($i = 0, $iMax = count($optionArr); $i < $iMax; $i++) {
             if (is_array($optionArr[$i])) {
                 $optionArr[$i] = implode(',', $optionArr[$i]);
             }

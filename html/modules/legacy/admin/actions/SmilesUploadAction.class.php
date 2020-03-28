@@ -118,7 +118,7 @@ class Legacy_SmilesUploadAction extends Legacy_Action
         
         $smileshandler =& xoops_getModuleHandler('smiles');
 
-        for ($i = 0; $i < count($smilesimages); $i++) {
+        for ($i = 0, $iMax = count($smilesimages); $i < $iMax; $i++) {
             $ext_pos = strrpos($smilesimages[$i]['name'], '.') ;
             if (false === $ext_pos) {
                 continue ;

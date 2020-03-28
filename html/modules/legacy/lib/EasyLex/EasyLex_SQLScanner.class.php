@@ -78,7 +78,7 @@ class EasyLex_SQLScanner
     public function setBuffer($buffer)
     {
         $this->mBuffer = [];
-        for ($i = 0; $i < strlen($buffer); $i++) {
+        for ($i = 0, $iMax = strlen($buffer); $i < $iMax; $i++) {
             $this->mBuffer[$i] = $buffer{
                 $i};
         }

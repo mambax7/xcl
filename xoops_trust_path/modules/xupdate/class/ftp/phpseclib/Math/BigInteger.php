@@ -268,7 +268,7 @@ class Math_BigInteger
 
             $versions = [];
             if (!empty($matches[1])) {
-                for ($i = 0; $i < count($matches[1]); $i++) {
+                for ($i = 0, $iMax = count($matches[1]); $i < $iMax; $i++) {
                     $fullVersion = trim(str_replace('=>', '', strip_tags($matches[2][$i])));
 
                     // Remove letter part in OpenSSL version
@@ -699,7 +699,7 @@ class Math_BigInteger
         $divisor->value = [MATH_BIGINTEGER_MAX10];
         $result         = '';
         while (count($temp->value)) {
-            list($temp, $mod) = $temp->divide($divisor);
+            [$temp, $mod] = $temp->divide($divisor);
             $result = str_pad(isset($mod->value[0]) ? $mod->value[0] : '', MATH_BIGINTEGER_MAX10_LEN, '0', STR_PAD_LEFT) . $result;
         }
         $result = ltrim($result, '0');
@@ -1414,7 +1414,7 @@ class Math_BigInteger
                 $quotient  = new Math_BigInteger();
                 $remainder = new Math_BigInteger();
 
-                list($quotient->value, $remainder->value) = gmp_div_qr($this->value, $y->value);
+                [$quotient->value, $remainder->value] = gmp_div_qr($this->value, $y->value);
 
                 if (gmp_sign($remainder->value) < 0) {
                     $remainder->value = gmp_add($remainder->value, gmp_abs($y->value));
@@ -1436,7 +1436,7 @@ class Math_BigInteger
         }
 
         if (1 == count($y->value)) {
-            list($q, $r) = $this->_divide_digit($this->value, $y->value[0]);
+            [$q, $r] = $this->_divide_digit($this->value, $y->value[0]);
             $quotient              = new Math_BigInteger();
             $remainder             = new Math_BigInteger();
             $quotient->value       = $q;
@@ -1667,7 +1667,7 @@ class Math_BigInteger
         }
 
         if ($this->compare(new Math_BigInteger()) < 0 || $this->compare($n) > 0) {
-            list(, $temp) = $this->divide($n);
+            [, $temp] = $this->divide($n);
             return $temp->modPow($e, $n);
         }
 
@@ -1724,14 +1724,14 @@ class Math_BigInteger
         }
 
         if ($e->value == [1]) {
-            list(, $temp) = $this->divide($n);
+            [, $temp] = $this->divide($n);
             return $this->_normalize($temp);
         }
 
         if ($e->value == [2]) {
             $temp        = new Math_BigInteger();
             $temp->value = $this->_square($this->value);
-            list(, $temp) = $temp->divide($n);
+            [, $temp] = $temp->divide($n);
             return $this->_normalize($temp);
         }
 
@@ -1749,7 +1749,7 @@ class Math_BigInteger
         // if it's not, it's even
 
         // find the lowest set bit (eg. the max pow of 2 that divides $n)
-        for ($i = 0; $i < count($n->value); ++$i) {
+        for ($i = 0, $iMax = count($n->value); $i < $iMax; ++$i) {
             if ($n->value[$i]) {
                 $temp = decbin($n->value[$i]);
                 $j    = strlen($temp) - strrpos($temp, '1') - 1;
@@ -1778,7 +1778,7 @@ class Math_BigInteger
         $temp = $temp->multiply($y2);
 
         $result = $result->add($temp);
-        list(, $result) = $result->divide($n);
+        [, $result] = $result->divide($n);
 
         return $this->_normalize($result);
     }
@@ -1907,7 +1907,7 @@ class Math_BigInteger
                 $lhs->value = $x;
                 $rhs        = new Math_BigInteger();
                 $rhs->value = $n;
-                list(, $temp) = $lhs->divide($rhs);
+                [, $temp] = $lhs->divide($rhs);
                 return $temp->value;
             case MATH_BIGINTEGER_NONE:
                 return $x;
@@ -2029,7 +2029,7 @@ class Math_BigInteger
             $rhs        = new Math_BigInteger();
             $lhs->value = $n;
             $rhs->value = $m;
-            list(, $temp) = $lhs->divide($rhs);
+            [, $temp] = $lhs->divide($rhs);
             return $temp->value;
         }
 
@@ -2051,7 +2051,7 @@ class Math_BigInteger
             $rhs         = new Math_BigInteger();
             $rhs->value  = $m;
 
-            list($u, $m1) = $lhs->divide($rhs);
+            [$u, $m1] = $lhs->divide($rhs);
             $u  = $u->value;
             $m1 = $m1->value;
 
@@ -2125,7 +2125,7 @@ class Math_BigInteger
             $rhs        = new Math_BigInteger();
             $lhs->value = $x;
             $rhs->value = $n;
-            list(, $temp) = $lhs->divide($rhs);
+            [, $temp] = $lhs->divide($rhs);
             return $temp->value;
         }
 
@@ -2138,7 +2138,7 @@ class Math_BigInteger
             $lhs_value[]                       = 1;
             $rhs                               = new Math_BigInteger();
             $rhs->value                        = $n;
-            list($temp,) = $lhs->divide($rhs); // m.length
+            [$temp,] = $lhs->divide($rhs); // m.length
             $cache[MATH_BIGINTEGER_DATA][] = $temp->value;
         }
 
@@ -2370,7 +2370,7 @@ class Math_BigInteger
         $rhs        = new Math_BigInteger();
         $rhs->value = $n;
 
-        list(, $temp) = $lhs->divide($rhs);
+        [, $temp] = $lhs->divide($rhs);
         return $temp->value;
     }
 
@@ -3179,7 +3179,7 @@ class Math_BigInteger
         $random_max = new Math_BigInteger(chr(1) . str_repeat("\0", $size), 256);
         $random     = $this->_random_number_helper($size);
 
-        list($max_multiple) = $random_max->divide($max);
+        [$max_multiple] = $random_max->divide($max);
         $max_multiple = $max_multiple->multiply($max);
 
         while ($random->compare($max_multiple) >= 0) {
@@ -3188,10 +3188,10 @@ class Math_BigInteger
             $random     = $random->bitwise_leftShift(8);
             $random     = $random->add($this->_random_number_helper(1));
             $random_max = $random_max->bitwise_leftShift(8);
-            list($max_multiple) = $random_max->divide($max);
+            [$max_multiple] = $random_max->divide($max);
             $max_multiple = $max_multiple->multiply($max);
         }
-        list(, $random) = $random->divide($max);
+        [, $random] = $random->divide($max);
 
         return $this->_normalize($random->add($min));
     }
@@ -3581,7 +3581,7 @@ class Math_BigInteger
             ];
 
             if (MATH_BIGINTEGER_MODE != MATH_BIGINTEGER_MODE_INTERNAL) {
-                for ($i = 0; $i < count($primes); ++$i) {
+                for ($i = 0,$iMax = count($primes); $i < $iMax; ++$i) {
                     $primes[$i] = new Math_BigInteger($primes[$i]);
                 }
             }
@@ -3598,7 +3598,7 @@ class Math_BigInteger
         // see HAC 4.4.1 "Random search for probable primes"
         if (MATH_BIGINTEGER_MODE != MATH_BIGINTEGER_MODE_INTERNAL) {
             foreach ($primes as $prime) {
-                list(, $r) = $this->divide($prime);
+                [, $r] = $this->divide($prime);
                 if ($r->equals($zero)) {
                     return $this->equals($prime);
                 }
@@ -3606,7 +3606,7 @@ class Math_BigInteger
         } else {
             $value = $this->value;
             foreach ($primes as $prime) {
-                list(, $r) = $this->_divide_digit($value, $prime);
+                [, $r] = $this->_divide_digit($value, $prime);
                 if (!$r) {
                     return 1 == count($value) && $value[0] == $prime;
                 }
@@ -3680,7 +3680,7 @@ class Math_BigInteger
 
         $carry = 0;
 
-        for ($i = 0; $i < count($this->value); ++$i) {
+        for ($i = 0,$iMax = count($this->value); $i < $iMax; ++$i) {
             $temp            = $this->value[$i] * $shift + $carry;
             $carry           = MATH_BIGINTEGER_BASE === 26 ? (int)($temp / 0x4000000) : ($temp >> 31);
             $this->value[$i] = (int)($temp - $carry * MATH_BIGINTEGER_BASE_FULL);
@@ -3871,7 +3871,7 @@ class Math_BigInteger
 
         $carry       = 0;
         $carry_shift = 8 - $shift;
-        for ($i = 0; $i < strlen($x); ++$i) {
+        for ($i = 0,$iMax = strlen($x); $i < $iMax; ++$i) {
             $temp  = (ord($x[$i]) >> $shift) | $carry;
             $carry = (ord($x[$i]) << $carry_shift) & 0xFF;
             $x[$i] = chr($temp);

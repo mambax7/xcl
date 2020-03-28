@@ -9,7 +9,7 @@ function d3forum_make_treeinformations( $data )
 	$previous_depth = -1 ;
 	$path_to_i = [];
 
-	for($i = 0 ; $i < count($data ) ; $i ++ ) {
+	for($i = 0, $iMax = count($data); $i < $iMax; $i ++ ) {
 		$unique_path = $data[$i]['unique_path'] ;
 		$path_to_i[ $unique_path ] = $i ;
 		$parent_path = substr( $unique_path , 0 , strrpos( $unique_path , '.' ) ) ;

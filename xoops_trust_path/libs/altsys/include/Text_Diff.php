@@ -236,7 +236,7 @@ class Text_MappedDiff extends Text_Diff
         parent::Text_Diff($mapped_from_lines, $mapped_to_lines);
 
         $xi = $yi = 0;
-        for ($i = 0; $i < count($this->_edits); $i++) {
+        for ($i = 0, $iMax = count($this->_edits); $i < $iMax; $i++) {
             $orig = &$this->_edits[$i]->orig;
             if (is_array($orig)) {
                 $orig = array_slice($from_lines, $xi, count($orig));

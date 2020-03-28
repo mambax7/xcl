@@ -1634,7 +1634,7 @@ class Net_SSH1
     public function _format_log($message_log, $message_number_log)
     {
         $output = '';
-        for ($i = 0; $i < count($message_log); $i++) {
+        for ($i = 0, $iMax = count($message_log); $i < $iMax; $i++) {
             $output      .= $message_number_log[$i] . "\r\n";
             $current_log = $message_log[$i];
             $j           = 0;

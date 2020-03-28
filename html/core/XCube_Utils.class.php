@@ -88,7 +88,7 @@ class XCube_Utils
             array_shift($variables);
         }
         
-        for ($i = 0; $i < count($variables); $i++) {
+        for ($i = 0, $iMax = count($variables); $i < $iMax; $i++) {
             $message = str_replace('{' . ($i) . '}', $variables[$i], $message);
             
             // Temporary....

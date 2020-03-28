@@ -97,7 +97,7 @@ function b_d3forum_list_forums_edit( $options )
 
 	if( preg_match( '/[^0-9a-zA-Z_-]/' , $mydirname ) ) die( 'Invalid mydirname' ) ;
 
-	for( $i = 0 ; $i < count( $categories ) ; $i ++ ) {
+	for($i = 0, $iMax = count($categories); $i < $iMax; $i ++ ) {
 		$categories[ $i ] = (int)$categories[$i];
 	}
 

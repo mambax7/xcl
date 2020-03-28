@@ -125,7 +125,7 @@ class Legacy_ImageUploadAction extends Legacy_Action
         $imagehandler =& xoops_getModuleHandler('image');
         
         if ('file' == strtolower($t_category_type)) {
-            for ($i = 0; $i < count($targetimages); $i++) {
+            for ($i = 0, $iMax = count($targetimages); $i < $iMax; $i++) {
                 $ext_pos = strrpos($targetimages[$i]['name'], '.') ;
                 if (false === $ext_pos) {
                     continue ;
@@ -162,7 +162,7 @@ class Legacy_ImageUploadAction extends Legacy_Action
             } //end of for
         } //end of if
         elseif ('db' == strtolower($t_category_type)) {
-            for ($i = 0; $i < count($targetimages); $i++) {
+            for ($i = 0, $iMax = count($targetimages); $i < $iMax; $i++) {
                 $ext_pos = strrpos($targetimages[$i]['name'], '.') ;
                 if (false === $ext_pos) {
                     continue ;

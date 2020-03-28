@@ -118,7 +118,7 @@ class User_AvatarUploadAction extends User_Action
         
         $avatarhandler =& xoops_getModuleHandler('avatar');
 
-        for ($i = 0; $i < count($avatarimages); $i++) {
+        for ($i = 0, $iMax = count($avatarimages); $i < $iMax; $i++) {
             $ext_pos = strrpos($avatarimages[$i]['name'], '.') ;
             if (false === $ext_pos) {
                 continue ;

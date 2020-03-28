@@ -1704,7 +1704,7 @@ class Net_SFTP extends Net_SSH2
                 array_shift($dirs);
                 $dirs[0] = '/' . $dirs[0];
             }
-            for ($i = 0; $i < count($dirs); $i++) {
+            for ($i = 0, $iMax = count($dirs); $i < $iMax; $i++) {
                 $temp   = array_slice($dirs, 0, $i + 1);
                 $temp   = implode('/', $temp);
                 $result = $this->_mkdir_helper($temp, $attr);

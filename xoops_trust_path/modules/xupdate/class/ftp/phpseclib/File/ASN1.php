@@ -693,7 +693,7 @@ class File_ASN1
                     return $map;
                 }
 
-                for ($i = 0; $i < count($decoded['content']); $i++) {
+                for ($i = 0, $iMax = count($decoded['content']); $i < $iMax; $i++) {
                     $temp      = $decoded['content'][$i];
                     $tempClass = FILE_ASN1_CLASS_UNIVERSAL;
                     if (isset($temp['constant'])) {
@@ -1005,7 +1005,7 @@ class File_ASN1
                 if (isset($mapping['mapping'])) {
                     $bits = array_fill(0, count($mapping['mapping']), 0);
                     $size = 0;
-                    for ($i = 0; $i < count($mapping['mapping']); $i++) {
+                    for ($i = 0, $iMax = count($mapping['mapping']); $i < $iMax; $i++) {
                         if (in_array($mapping['mapping'][$i], $source)) {
                             $bits[$i] = 1;
                             $size     = $i;
@@ -1021,7 +1021,7 @@ class File_ASN1
 
                     $value = chr($offset);
 
-                    for ($i = $size + 1; $i < count($mapping['mapping']); $i++) {
+                    for ($i = $size + 1, $iMax = count($mapping['mapping']); $i < $iMax; $i++) {
                         unset($bits[$i]);
                     }
 
@@ -1048,7 +1048,7 @@ class File_ASN1
                 $value = '';
                 $parts = explode('.', $oid);
                 $value = chr(40 * $parts[0] + $parts[1]);
-                for ($i = 2; $i < count($parts); $i++) {
+                for ($i = 2, $iMax = count($parts); $i < $iMax; $i++) {
                     $temp = '';
                     if (!$parts[$i]) {
                         $temp = "\0";
@@ -1183,7 +1183,7 @@ class File_ASN1
 
         preg_match($pattern, $content, $matches);
 
-        list(, $year, $month, $day, $hour, $minute, $second, $timezone) = $matches;
+        [, $year, $month, $day, $hour, $minute, $second, $timezone] = $matches;
 
         if (FILE_ASN1_TYPE_UTC_TIME == $tag) {
             $year = $year >= 50 ? "19$year" : "20$year";

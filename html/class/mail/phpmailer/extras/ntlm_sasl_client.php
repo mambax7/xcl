@@ -35,7 +35,7 @@ class ntlm_sasl_client_class
 
     public function ASCIIToUnicode($ascii)
     {
-        for ($unicode = '', $a = 0; $a < strlen($ascii); $a++) {
+        for ($unicode = '', $a = 0, $aMax = strlen($ascii); $a < $aMax; $a++) {
             $unicode .= substr($ascii, $a, 1) . chr(0);
         }
         return ($unicode);
@@ -73,7 +73,7 @@ class ntlm_sasl_client_class
             for ($packed = '', $p = $third; $p < $third + 7; $p++) {
                 $packed .= str_pad(decbin(ord(substr($padded, $p, 1))), 8, '0', STR_PAD_LEFT);
             }
-            for ($key = '', $p = 0; $p < strlen($packed); $p += 7) {
+            for ($key = '', $p = 0, $pMax = strlen($packed); $p < $pMax; $p += 7) {
                 $s = substr($packed, $p, 7);
                 $b = $s . ((substr_count($s, '1') % 2) ? '0' : '1');
                 $key .= chr(bindec($b));

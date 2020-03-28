@@ -949,7 +949,7 @@ class Archive_Zip
       }
 
     // ----- Create the Central Dir files header
-    for ($i=0, $v_count=0; $i < count($v_header_list); $i++) {
+    for ($i=0, $v_count=0, $iMax = count($v_header_list); $i < $iMax; $i++) {
         // ----- Create the file header
       if ('ok' == $v_header_list[$i]['status']) {
           if (1 != ($v_result=$this->_writeCentralFileHeader($v_header_list[$i]))) {
@@ -1113,7 +1113,7 @@ class Archive_Zip
     $v_offset = @ftell($this->_zip_fd);
 
     // ----- Create the Central Dir files header
-    for ($i=0, $v_count=0; $i < count($v_header_list); $i++) {
+    for ($i=0, $v_count=0, $iMax = count($v_header_list); $i < $iMax; $i++) {
         // ----- Create the file header
       if ('ok' == $v_header_list[$i]['status']) {
           if (1 != ($v_result = $this->_writeCentralFileHeader($v_header_list[$i]))) {
@@ -2796,7 +2796,7 @@ class Archive_Zip
         }
 
         // ----- Look which file need to be kept
-        for ($i=0; $i < count($v_header_list); $i++) {
+        for ($i=0, $iMax = count($v_header_list); $i < $iMax; $i++) {
 
             // ----- Calculate the position of the header
             @rewind($this->_zip_fd);
@@ -2850,7 +2850,7 @@ class Archive_Zip
         $v_offset = @ftell($v_temp_zip->_zip_fd);
 
         // ----- Re-Create the Central Dir files header
-        for ($i=0; $i < count($v_header_list); $i++) {
+        for ($i=0, $iMax = count($v_header_list); $i < $iMax; $i++) {
             // ----- Create the file header
             $v_result=$v_temp_zip->_writeCentralFileHeader($v_header_list[$i]);
             if (1 != $v_result) {
@@ -3254,7 +3254,7 @@ class Archive_Zip
         'callback_pre_add', 'callback_post_add',
         'callback_pre_extract', 'callback_post_extract'
     ];
-      for ($i=0; $i < count($v_callback_list); $i++) {
+      for ($i=0, $iMax = count($v_callback_list); $i < $iMax; $i++) {
           $v_key=$v_callback_list[$i];
           if ((isset($p_params[$v_key])) && ('' != $p_params[$v_key])) {
               if (!function_exists($p_params[$v_key])) {

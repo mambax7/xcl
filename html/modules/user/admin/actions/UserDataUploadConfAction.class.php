@@ -82,7 +82,7 @@ class User_UserDataUploadConfAction extends User_UserDataUploadAction
                 if ($_data[0]) {
                     $user =& $user_h->get($_data[0]);
                     if ($user) {
-                        for ($i=0; $i<count($user_key); $i++) {
+                        for ($i=0, $iMax = count($user_key); $i < $iMax; $i++) {
                             $csv_value = $_data[$i];
                             $user_value = $user->get($user_key[$i]);
                             $update = $user_value != $csv_value;
@@ -110,7 +110,7 @@ class User_UserDataUploadConfAction extends User_UserDataUploadAction
                     }
                 }
                 if (true == $user_data['is_new']) {
-                    for ($i=0; $i<count($user_key); $i++) {
+                    for ($i=0, $iMax = count($user_key); $i < $iMax; $i++) {
                         $var = isset($_data[$i]) && '' !== $_data[$i] ? $_data[$i] : $user_tmp->get($user_key[$i]);
                         switch ($user_key[$i]) {
                           case 'user_regdate':
