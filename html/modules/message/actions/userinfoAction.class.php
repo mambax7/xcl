@@ -11,7 +11,7 @@ class UserinfoAction extends User_UserInfoAction
     protected $url = 'index.php';
     protected $mController = null;
     protected $mXoopsUser = null;
-  
+
     public function __construct($controller)
     {
         $this->mController = $controller;
@@ -22,28 +22,28 @@ class UserinfoAction extends User_UserInfoAction
     {
         $this->url = $url;
     }
-  
+
     public function getUrl()
     {
         return $this->url;
     }
-  
+
     protected function setErr($msg)
     {
         $this->isError = true;
         $this->errMsg = $msg;
     }
-  
+
     public function geterrMsg()
     {
         return $this->errMsg;
     }
-  
+
     public function getisError()
     {
         return $this->isError;
     }
-  
+
     public function execute(&$controller = null, &$xoopsUser = null)
     {
         if (!is_object($controller)) {
@@ -60,7 +60,7 @@ class UserinfoAction extends User_UserInfoAction
         require_once XOOPS_MODULE_PATH.'/user/language/'.$language . '/main.php';
     }
 
-    public function executeView(&$render)
+    public function executeView($render)
     {
         $render->setTemplateName('message_userinfo.html');
         $render->setAttribute('thisUser', $this->mObject);
@@ -68,20 +68,20 @@ class UserinfoAction extends User_UserInfoAction
         $render->setAttribute('pmliteUrl', $this->mPmliteURL);
 
         $userSignature = $this->mObject->getShow('user_sig');
-    
+
         $render->setAttribute('user_signature', $userSignature);
         $render->setAttribute('searchResults', $this->mSearchResults);
-    
+
         $user_ownpage = (is_object($this->mXoopsUser) && $this->mXoopsUser->get('uid') == $this->mObject->get('uid'));
         $render->setAttribute('user_ownpage', $user_ownpage);
-    
+
         $render->setAttribute('self_delete', $this->mSelfDelete);
         if ($user_ownpage && $this->mSelfDelete) {
             $render->setAttribute('enableSelfDelete', true);
         } else {
             $render->setAttribute('enableSelfDelete', false);
         }
-    
+
         $definitions = [];
         $profile = null;
         XCube_DelegateUtils::call('Legacy_Profile.GetDefinition', new XCube_Ref($definitions), 'view');

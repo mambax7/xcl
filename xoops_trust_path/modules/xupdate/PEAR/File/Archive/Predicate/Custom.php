@@ -68,7 +68,7 @@ class File_Archive_Predicate_Custom extends File_Archive_Predicate
     /**
      * @see File_Archive_Predicate::isTrue()
      */
-    public function isTrue(&$source)
+    public function isTrue($source)
     {
         if ($this->useName) {
             $name = $source->getFilename();

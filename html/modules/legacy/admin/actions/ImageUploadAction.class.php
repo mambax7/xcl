@@ -13,23 +13,23 @@ class Legacy_ImageUploadAction extends Legacy_Action
     public $mCategory = null;
     public $mErrorMessages = [];
     public $mAllowedExts = ['gif' =>'image/gif', 'jpg' =>'image/jpeg', 'jpeg' =>'image/jpeg', 'png' =>'image/png'];
-    
+
     public function prepare(&$controller, &$xoopsUser)
     {
         $this->mActionForm =new Legacy_ImageUploadForm();
         $this->mActionForm->prepare();
     }
-    
+
     public function getDefaultView(&$controller, &$xoopsUser)
     {
         return LEGACY_FRAME_VIEW_INPUT;
     }
-    
+
     public function _addErrorMessage($msg)
     {
         $this->mErrorMessages[] = $msg;
     }
-    
+
     public function execute(&$controller, &$xoopsUser)
     {
         $form_cancel = $controller->mRoot->mContext->mRequest->getRequest('_form_control_cancel');
@@ -39,7 +39,7 @@ class Legacy_ImageUploadAction extends Legacy_Action
 
         $this->mActionForm->fetch();
         $this->mActionForm->validate();
-        
+
         if ($this->mActionForm->hasError()) {
             return $this->getDefaultView($controller, $xoopsUser);
         }
@@ -82,8 +82,8 @@ class Legacy_ImageUploadAction extends Legacy_Action
         }
         return LEGACY_FRAME_VIEW_SUCCESS;
     }
-    
-    public function _fetchZipTargetImages(&$files, &$targetimages)
+
+    public function _fetchZipTargetImages($files, &$targetimages)
     {
         foreach ($files as $file) {
             $file_pos = strrpos($file['filename'], '/') ;
@@ -98,7 +98,7 @@ class Legacy_ImageUploadAction extends Legacy_Action
         return true;
     }
 
-    public function _fetchTarTargetImages(&$files, &$targetimages)
+    public function _fetchTarTargetImages($files, &$targetimages)
     {
         foreach ($files as $id => $info) {
             $file_pos = strrpos($info['name'], '/') ;
@@ -118,12 +118,12 @@ class Legacy_ImageUploadAction extends Legacy_Action
         if (0 === count($targetimages)) {
             return true;
         }
-        
+
         $imgcathandler =& xoops_getmodulehandler('imagecategory', 'legacy');
         $t_category = & $imgcathandler->get($t_imgcat_id);
         $t_category_type = $t_category->get('imgcat_storetype');
         $imagehandler =& xoops_getmodulehandler('image');
-        
+
         if ('file' === strtolower($t_category_type)) {
             for ($i = 0; $i < count($targetimages); $i++) {
                 $ext_pos = strrpos($targetimages[$i]['name'], '.') ;
@@ -191,11 +191,11 @@ class Legacy_ImageUploadAction extends Legacy_Action
                 }
                 unset($image);
             } //end of for
-        } //end of elseif 
+        } //end of elseif
         return true;
     }
-    
-    public function executeViewInput(&$controller, &$xoopsUser, &$render)
+
+    public function executeViewInput($controller, &$xoopsUser, $render)
     {
         $render->setTemplateName('image_upload.html');
         $render->setAttribute('actionForm', $this->mActionForm);
@@ -210,12 +210,12 @@ class Legacy_ImageUploadAction extends Legacy_Action
         $render->setAttribute('categoryArr', $categoryArr);
     }
 
-    public function executeViewSuccess(&$controller, &$xoopsUser, &$render)
+    public function executeViewSuccess($controller, &$xoopsUser, &$render)
     {
         $controller->executeForward('./index.php?action=ImageList&imgcat_id=' . $this->mActionForm->get('imgcat_id'));
     }
 
-    public function executeViewError(&$controller, &$xoopsUser, &$render)
+    public function executeViewError($controller, &$xoopsUser, $render)
     {
         if (0 == count($this->mErrorMessages)) {
             $controller->executeRedirect('./index.php?action=ImageList&imgcat_id=' . $this->mActionForm->get('imgcat_id'), 1, _AD_LEGACY_ERROR_DBUPDATE_FAILED);
@@ -224,8 +224,8 @@ class Legacy_ImageUploadAction extends Legacy_Action
             $render->setAttribute('errorMessages', $this->mErrorMessages);
         }
     }
-    
-    public function executeViewCancel(&$controller, &$xoopsUser, &$render)
+
+    public function executeViewCancel($controller, &$xoopsUser, &$render)
     {
         if ($this->mCategory) {
             $controller->executeForward('./index.php?action=ImageList&imgcat_id=' . $this->mCategory->get('imgcat_id'));

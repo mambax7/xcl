@@ -28,7 +28,7 @@ class Legacy_ImagecategoryAdminDeleteForm extends XCube_ActionForm
         // Set form properties
         //
         $this->mFormProperties['imgcat_id'] =new XCube_IntProperty('imgcat_id');
-    
+
         //
         // Set field properties
         //
@@ -37,12 +37,12 @@ class Legacy_ImagecategoryAdminDeleteForm extends XCube_ActionForm
         $this->mFieldProperties['imgcat_id']->addMessage('required', _MD_LEGACY_ERROR_REQUIRED, _AD_LEGACY_LANG_IMGCAT_ID);
     }
 
-    public function load(&$obj)
+    public function load($obj)
     {
         $this->set('imgcat_id', $obj->get('imgcat_id'));
     }
 
-    public function update(&$obj)
+    public function update($obj)
     {
         $obj->set('imgcat_id', $this->get('imgcat_id'));
     }

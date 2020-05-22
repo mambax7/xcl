@@ -80,7 +80,7 @@ class MessageForm extends XCube_ActionForm
         return '';
     }
 
-    public function update(&$obj)
+    public function update($obj)
     {
         $root = XCube_Root::getSingleton();
         $obj->set('uid', $this->fuid);
@@ -90,7 +90,7 @@ class MessageForm extends XCube_ActionForm
         $obj->set('utime', time());
     }
 
-    public function setRes(&$obj)
+    public function setRes($obj)
     {
         $title = $obj->get('title', 'n');
         if (!preg_match('/^Re:/i', $title)) {
@@ -108,7 +108,7 @@ class MessageForm extends XCube_ActionForm
         return false;
     }
 
-    public function setUser(&$user)
+    public function setUser($user)
     {
         $this->set('uname', $user->get('uname'));
     }

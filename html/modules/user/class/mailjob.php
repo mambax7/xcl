@@ -139,7 +139,7 @@ class UserMailjobObject extends XoopsSimpleObject
         return $this->get('title');
     }
 
-    public function getReplaceBody(&$to_user, &$from_user)
+    public function getReplaceBody($to_user, $from_user)
     {
         $t_body = $this->get('body');
 

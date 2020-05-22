@@ -3,7 +3,7 @@
 require_once XOOPS_TRUST_PATH.'/modules/pico/include/common_functions.php' ;
 require_once XOOPS_TRUST_PATH.'/modules/pico/blocks/list.php' ;
 
-function smarty_function_pico_ef_list($params, &$smarty)
+function smarty_function_pico_ef_list($params, $smarty)
 {
     $mydirname = @$params['dir'] . @$params['dirname'] ;
     $cat_ids = @$params['id'] . @$params['cat_id'] ;

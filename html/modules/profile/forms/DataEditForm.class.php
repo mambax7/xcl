@@ -32,7 +32,7 @@ class Profile_DataEditForm extends XCube_ActionForm
     {
         $handler =& xoops_getmodulehandler('definitions');
         $this->mDef = $handler->getFields4DataEdit();
-    
+
         //
         // Set form properties
         //
@@ -40,7 +40,7 @@ class Profile_DataEditForm extends XCube_ActionForm
         foreach (array_keys($this->mDef) as $key) {
             $className = $this->mDef[$key]->mFieldType->getFormPropertyClass();
             $this->mFormProperties[$this->mDef[$key]->get('field_name')] =new $className($this->mDef[$key]->get('field_name'));
-        
+
             //validation checks
             $validationArr = [];
             $this->mFieldProperties[$this->mDef[$key]->get('field_name')] =new XCube_FieldProperty($this);
@@ -58,7 +58,7 @@ class Profile_DataEditForm extends XCube_ActionForm
             }
             $this->mFieldProperties[$this->mDef[$key]->get('field_name')]->setDependsByArray($validationArr);
         }
-    
+
         //
         // Set field properties
         //
@@ -71,7 +71,7 @@ class Profile_DataEditForm extends XCube_ActionForm
      * @public
      * @param $obj
      */
-    public function load(&$obj)
+    public function load($obj)
     {
         $this->set('uid', $obj->get('uid'));
         foreach (array_keys($this->mDef) as $key) {
@@ -83,7 +83,7 @@ class Profile_DataEditForm extends XCube_ActionForm
      * @public
      * @param $obj
      */
-    public function update(&$obj)
+    public function update($obj)
     {
         $obj->set('uid', $this->get('uid'));
         foreach (array_keys($this->mDef) as $key) {

@@ -11,22 +11,22 @@ if (!defined('XOOPS_ROOT_PATH')) {
 class LegacyRender_TplfileViewAction extends LegacyRender_Action
 {
     public $mObject = null;
-    
+
     public function getDefaultView(&$controller, &$xoopsUser)
     {
         $id = xoops_getrequest('tpl_id');
-        
+
         $handler =& xoops_getmodulehandler('tplfile');
         $this->mObject =& $handler->get($id);
-        
+
         if (!is_object($this->mObject)) {
             return LEGACYRENDER_FRAME_VIEW_ERROR;
         }
-        
+
         return LEGACYRENDER_FRAME_VIEW_SUCCESS;
     }
 
-    public function executeViewSuccess(&$controller, &$xoopsUser, &$render)
+    public function executeViewSuccess(&$controller, &$xoopsUser, $render)
     {
         $this->mObject->loadSource();
 
@@ -34,7 +34,7 @@ class LegacyRender_TplfileViewAction extends LegacyRender_Action
         $render->setAttribute('object', $this->mObject);
     }
 
-    public function executeViewError(&$controller, &$xoopsUser, &$render)
+    public function executeViewError($controller, &$xoopsUser, &$render)
     {
         $controller->executeRedirect('./index.php?action=TplsetList', 1, _AD_LEGACYRENDER_ERROR_OBJECT_IS_NOT_EXIST);
     }

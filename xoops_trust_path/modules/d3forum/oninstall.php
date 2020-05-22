@@ -105,7 +105,7 @@ function d3forum_oninstall_base( $module , $mydirname )
 	return true ;
 }
 
-function d3forum_message_append_oninstall( &$module_obj , &$log )
+function d3forum_message_append_oninstall( &$module_obj , $log )
 {
 	if( is_array( @$GLOBALS['ret'] ) ) {
 		foreach( $GLOBALS['ret'] as $message ) {

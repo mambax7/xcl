@@ -33,8 +33,8 @@ class Legacy_SmilesEditAction extends Legacy_AbstractEditAction
         $this->mActionForm =new Legacy_SmilesAdminEditForm();
         $this->mActionForm->prepare();
     }
-    
-    
+
+
     public function _doExecute()
     {
         if (null !== $this->mActionForm->mFormFile) {
@@ -53,24 +53,24 @@ class Legacy_SmilesEditAction extends Legacy_AbstractEditAction
         return parent::_doExecute();
     }
 
-    public function executeViewInput(&$controller, &$xoopsUser, &$render)
+    public function executeViewInput(&$controller, &$xoopsUser, $render)
     {
         $render->setTemplateName('smiles_edit.html');
         $render->setAttribute('actionForm', $this->mActionForm);
         $render->setAttribute('object', $this->mObject);
     }
 
-    public function executeViewSuccess(&$controller, &$xoopsUser, &$render)
+    public function executeViewSuccess($controller, &$xoopsUser, &$render)
     {
         $controller->executeForward('./index.php?action=SmilesList');
     }
 
-    public function executeViewError(&$controller, &$xoopsUser, &$render)
+    public function executeViewError($controller, &$xoopsUser, &$render)
     {
         $controller->executeRedirect('./index.php?action=SmilesList', 1, _MD_LEGACY_ERROR_DBUPDATE_FAILED);
     }
-    
-    public function executeViewCancel(&$controller, &$xoopsUser, &$render)
+
+    public function executeViewCancel($controller, &$xoopsUser, &$render)
     {
         $controller->executeForward('./index.php?action=SmilesList');
     }

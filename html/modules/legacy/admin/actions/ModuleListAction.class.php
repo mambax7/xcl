@@ -27,7 +27,7 @@ class Legacy_ModuleListAction extends Legacy_Action
         $this->mActionForm =new Legacy_ModuleListForm();
         $this->mActionForm->prepare();
     }
-    
+
 
     public function getDefaultView(&$controller, &$xoopsUser)
     {
@@ -39,7 +39,7 @@ class Legacy_ModuleListAction extends Legacy_Action
 
         return LEGACY_FRAME_VIEW_INDEX;
     }
-    
+
     public function execute(&$controller, &$xoopsUser)
     {
         $form_cancel = $controller->mRoot->mContext->mRequest->getRequest('_form_control_cancel');
@@ -62,7 +62,7 @@ class Legacy_ModuleListAction extends Legacy_Action
             return $result;
         }
     }
-    
+
     public function _processConfirm(&$controller, &$xoopsUser)
     {
         $moduleHandler =& xoops_gethandler('module');
@@ -120,12 +120,12 @@ class Legacy_ModuleListAction extends Legacy_Action
      * @param $xoopsUser
      * @param $render
      */
-    public function executeViewInput(&$controller, &$xoopsUser, &$render)
+    public function executeViewInput(&$controller, &$xoopsUser, $render)
     {
         $render->setTemplateName('module_list_confirm.html');
         $render->setAttribute('moduleObjects', $this->mModuleObjects);
         $render->setAttribute('actionForm', $this->mActionForm);
-        
+
         //
         // To support a template writer, this send the list of mid that
         // actionForm kept.
@@ -134,18 +134,18 @@ class Legacy_ModuleListAction extends Legacy_Action
         $render->setAttribute('mids', array_keys($t_arr));
     }
 
-    public function executeViewIndex(&$controller, &$xoopsUser, &$render)
+    public function executeViewIndex(&$controller, &$xoopsUser, $render)
     {
         $render->setTemplateName('module_list.html');
         $render->setAttribute('actionForm', $this->mActionForm);
-        
+
         //
         // Load info before we assign these to template.
         //
         foreach (array_keys($this->mModuleObjects) as $key) {
             $this->mModuleObjects[$key]->loadInfo($this->mModuleObjects[$key]->get('dirname'));
         }
-        
+
         $render->setAttribute('moduleObjects', $this->mModuleObjects);
 
         $moduleHandler =& xoops_gethandler('module');
@@ -156,17 +156,17 @@ class Legacy_ModuleListAction extends Legacy_Action
         $render->setAttribute('inactiveModuleTotal', $module_total - $active_module_total);
     }
 
-    public function executeViewSuccess(&$controller, &$xoopsUser, &$renderer)
+    public function executeViewSuccess($controller, &$xoopsUser, &$renderer)
     {
         $controller->executeForward('./index.php?action=ModuleList');
     }
 
-    public function executeViewError(&$controller, &$xoopsUser, &$renderer)
+    public function executeViewError($controller, &$xoopsUser, &$renderer)
     {
         $controller->executeRedirect('./index.php?action=ModuleList', 1, _MD_LEGACY_ERROR_DBUPDATE_FAILED);
     }
 
-    public function executeViewCancel(&$controller, &$xoopsUser, &$renderer)
+    public function executeViewCancel($controller, &$xoopsUser, &$renderer)
     {
         $controller->executeForward('./index.php?action=ModuleList');
     }

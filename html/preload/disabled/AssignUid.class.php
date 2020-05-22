@@ -16,7 +16,7 @@ class AssignUid extends XCube_ActionFilter
         $this->mRoot->mDelegateManager->add('XoopsTpl.New', array(&$this, 'assign'));
     }
 
-    function assign(&$xoopsTpl)
+    function assign($xoopsTpl)
     {
         $root =& XCube_Root::getSingleton();
         if ($root->mContext->mUser->mIdentity->isAuthenticated()) {

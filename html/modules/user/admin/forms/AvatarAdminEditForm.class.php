@@ -11,7 +11,7 @@ class User_AvatarAdminEditForm extends XCube_ActionForm
     public $mOldFileName = null;
     public $_mIsNew = false;
     public $mFormFile = null;
-    
+
     public function getTokenName()
     {
         return 'module.user.AvatarAdminEditForm.TOKEN' . $this->get('avatar_id');
@@ -57,31 +57,31 @@ class User_AvatarAdminEditForm extends XCube_ActionForm
             $this->addErrorMessage(_AD_USER_ERROR_IMAGE_REQUIRED);
         }
     }
-    
-    public function load(&$obj)
+
+    public function load($obj)
     {
         $this->set('avatar_id', $obj->get('avatar_id'));
         $this->set('avatar_name', $obj->get('avatar_name'));
         $this->set('avatar_display', $obj->get('avatar_display'));
         $this->set('avatar_weight', $obj->get('avatar_weight'));
-        
+
         $this->_mIsNew = $obj->isNew();
         $this->mOldFileName = $obj->get('avatar_file');
     }
 
-    public function update(&$obj)
+    public function update($obj)
     {
         $obj->set('avatar_id', $this->get('avatar_id'));
         $obj->set('avatar_name', $this->get('avatar_name'));
         $obj->set('avatar_display', $this->get('avatar_display'));
         $obj->set('avatar_weight', $this->get('avatar_weight'));
-    
+
         $this->mFormFile = $this->get('avatar_file');
         if (null != $this->mFormFile) {
             $this->mFormFile->setRandomToBodyName('savt');
             $filename = $this->mFormFile->getBodyName();
             $this->mFormFile->setBodyName(substr($filename, 0, 24));
-            
+
             $obj->setVar('avatar_file', $this->mFormFile->getFileName());
             $obj->setVar('avatar_mimetype', $this->mFormFile->getContentType());
         }

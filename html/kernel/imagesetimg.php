@@ -46,8 +46,8 @@ class XoopsImagesetimg extends XoopsObject
 }
 
 /**
-* XOOPS imageset image handler class.  
-* This class is responsible for providing data access mechanisms to the data source 
+* XOOPS imageset image handler class.
+* This class is responsible for providing data access mechanisms to the data source
 * of XOOPS imageset image class objects.
 *
 *
@@ -84,7 +84,7 @@ class XoopsImagesetimgHandler extends XoopsObjectHandler
         return $ret;
     }
 
-    public function insert(&$imgsetimg)
+    public function insert($imgsetimg)
     {
         if ('xoopsimagesetimg' != strtolower(get_class($imgsetimg))) {
             return false;
@@ -114,7 +114,7 @@ class XoopsImagesetimgHandler extends XoopsObjectHandler
         return true;
     }
 
-    public function delete(&$imgsetimg)
+    public function delete($imgsetimg)
     {
         if ('xoopsimagesetimg' != strtolower(get_class($imgsetimg))) {
             return false;

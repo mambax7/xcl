@@ -76,7 +76,7 @@ class Xupdate_Admin_ThemeFinderInstallAction extends Xupdate_AbstractAction
      *
      * @return	void
     **/
-    public function executeViewIndex(&$render)
+    public function executeViewIndex($render)
     {
         $jQuery = $this->mRoot->mContext->getAttribute('headerScript');
         $jQuery->addScript($this->modalBoxJs(), false);
@@ -85,7 +85,7 @@ class Xupdate_Admin_ThemeFinderInstallAction extends Xupdate_AbstractAction
 
         $render->setAttribute('mod_config', $this->mod_config);
         $render->setAttribute('xupdate_writable', $this->Xupdate->params['is_writable']);
-        
+
         $target_key = (int)$this->Xupdate->get('target_key');
         $render->setAttribute('addon_url', $this->mod_config['Theme_download_Url_format']);
         $render->setAttribute('addon_url', $this->Func->_getDownloadUrl($target_key, $this->mod_config['Theme_download_Url_format']));
@@ -127,7 +127,7 @@ class Xupdate_Admin_ThemeFinderInstallAction extends Xupdate_AbstractAction
      *
      * @return	void
      **/
-    public function executeViewSuccess(&$render)
+    public function executeViewSuccess($render)
     {
         $render->setTemplateName('admin_themefinder_install.html');
 

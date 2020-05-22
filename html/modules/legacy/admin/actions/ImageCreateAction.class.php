@@ -33,18 +33,18 @@ class Legacy_ImageCreateAction extends Legacy_AbstractEditAction
         $this->mActionForm =new Legacy_ImageAdminCreateForm();
         $this->mActionForm->prepare();
     }
-    
+
     public function getDefaultView(&$controller, &$xoopsUser)
     {
         $flag = parent::getDefaultView($controller, $xoopsUser);
-        
+
         if (LEGACY_FRAME_VIEW_INPUT === $flag && $this->_enableCatchImgcat()) {
             $this->mActionForm->set('imgcat_id', xoops_getrequest('imgcat_id'));
         }
-        
+
         return $flag;
     }
-    
+
     public function _enableCatchImgcat()
     {
         return true;
@@ -54,7 +54,7 @@ class Legacy_ImageCreateAction extends Legacy_AbstractEditAction
     {
         $handler =& xoops_getmodulehandler('imagecategory', 'legacy');
         $category =& $handler->get($this->mActionForm->get('imgcat_id'));
-        
+
         //
         // [TODO]
         // Should the following procedure be after parent::_doExecute()?
@@ -64,10 +64,10 @@ class Legacy_ImageCreateAction extends Legacy_AbstractEditAction
         } else {
             $this->_storeDB();
         }
-    
+
         return parent::_doExecute();
     }
-    
+
     public function _storeFile()
     {
         if (null === $this->mActionForm->mFormFile) {
@@ -79,19 +79,19 @@ class Legacy_ImageCreateAction extends Legacy_AbstractEditAction
         //
         if (null !== $this->mActionForm->mOldFileName) {
             @unlink(XOOPS_UPLOAD_PATH . '/' . $this->mActionForm->mOldFileName);
-            
+
             // Get a body name of the old file.
             $match = [];
             if (preg_match("/(.+)\.\w+$/", $this->mActionForm->mOldFileName, $match)) {
                 $this->mActionForm->mFormFile->setBodyName($match[1]);
             }
         }
-        
+
         $this->mObject->set('image_name', $this->mActionForm->mFormFile->getFileName());
-        
+
         return $this->mActionForm->mFormFile->saveAs(XOOPS_UPLOAD_PATH);
     }
-    
+
     public function _storeDB()
     {
     }
@@ -103,7 +103,7 @@ class Legacy_ImageCreateAction extends Legacy_AbstractEditAction
         $render->setTemplateName('image_edit.html');
         $render->setAttribute('actionForm', $this->mActionForm);
         $render->setAttribute('object', $this->mObject);
-        
+
         $handler =& xoops_getmodulehandler('imagecategory', 'legacy');
         $categoryArr =& $handler->getObjects();
         $render->setAttribute('categoryArr', $categoryArr);
@@ -114,11 +114,11 @@ class Legacy_ImageCreateAction extends Legacy_AbstractEditAction
         $controller->executeForward('./index.php?action=ImageList&imgcat_id=' . $this->mActionForm->get('imgcat_id'));
     }
 
-    public function executeViewError(&$controller, &$xoopsUser, &$render)
+    public function executeViewError($controller, &$xoopsUser, &$render)
     {
         $controller->executeRedirect('./index.php?action=ImagecategoryList', 1, _MD_LEGACY_ERROR_DBUPDATE_FAILED);
     }
-    
+
     public function executeViewCancel(&$controller, &$xoopsUser, &$render)
     {
         $controller->executeForward('./index.php?action=ImagecategoryList');

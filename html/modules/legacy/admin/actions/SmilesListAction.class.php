@@ -58,7 +58,7 @@ class Legacy_SmilesListAction extends Legacy_AbstractListAction
         return './index.php?action=SmilesList';
     }
 
-    public function executeViewIndex(&$controller, &$xoopsUser, &$render)
+    public function executeViewIndex(&$controller, &$xoopsUser, $render)
     {
         $render->setTemplateName('smiles_list.html');
         $render->setAttribute('objects', $this->mObjects);
@@ -91,7 +91,7 @@ class Legacy_SmilesListAction extends Legacy_AbstractListAction
             return $this->_processSave($controller, $xoopsUser);
         }
     }
-    
+
     public function _processConfirm(&$controller, &$xoopsUser)
     {
         $codeArr = $this->mActionForm->get('code');
@@ -154,12 +154,12 @@ class Legacy_SmilesListAction extends Legacy_AbstractListAction
      * @param $xoopsUser
      * @param $render
      */
-    public function executeViewInput(&$controller, &$xoopsUser, &$render)
+    public function executeViewInput(&$controller, &$xoopsUser, $render)
     {
         $render->setTemplateName('smiles_list_confirm.html');
         $render->setAttribute('smilesObjects', $this->mSmilesObjects);
         $render->setAttribute('actionForm', $this->mActionForm);
-        
+
         //
         // To support a template writer, this send the list of mid that
         // actionForm kept.
@@ -169,17 +169,17 @@ class Legacy_SmilesListAction extends Legacy_AbstractListAction
     }
 
 
-    public function executeViewSuccess(&$controller, &$xoopsUser, &$renderer)
+    public function executeViewSuccess($controller, &$xoopsUser, &$renderer)
     {
         $controller->executeForward('./index.php?action=SmilesList');
     }
 
-    public function executeViewError(&$controller, &$xoopsUser, &$renderer)
+    public function executeViewError($controller, &$xoopsUser, &$renderer)
     {
         $controller->executeRedirect('./index.php?action=SmilesList', 1, _MD_LEGACY_ERROR_DBUPDATE_FAILED);
     }
 
-    public function executeViewCancel(&$controller, &$xoopsUser, &$renderer)
+    public function executeViewCancel($controller, &$xoopsUser, &$renderer)
     {
         $controller->executeForward('./index.php?action=SmilesList');
     }

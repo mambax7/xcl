@@ -19,9 +19,9 @@ class Xupdate_StoreDeleteForm extends XCube_ActionForm
 {
     /**
      * getTokenName
-     * 
+     *
      * @param   void
-     * 
+     *
      * @return  string
     **/
     public function getTokenName()
@@ -31,9 +31,9 @@ class Xupdate_StoreDeleteForm extends XCube_ActionForm
 
     /**
      * prepare
-     * 
+     *
      * @param   void
-     * 
+     *
      * @return  void
     **/
     public function prepare()
@@ -42,7 +42,7 @@ class Xupdate_StoreDeleteForm extends XCube_ActionForm
         // Set form properties
         //
         $this->mFormProperties['sid'] = new XCube_IntProperty('sid');
-    
+
         //
         // Set field properties
         //
@@ -53,24 +53,24 @@ class Xupdate_StoreDeleteForm extends XCube_ActionForm
 
     /**
      * load
-     * 
+     *
      * @param   XoopsSimpleObject  &$obj
-     * 
+     *
      * @return  void
     **/
-    public function load(/*** XoopsSimpleObject ***/ &$obj)
+    public function load(/*** XoopsSimpleObject ***/ $obj)
     {
         $this->set('sid', $obj->get('sid'));
     }
 
     /**
      * update
-     * 
+     *
      * @param   XoopsSimpleObject  &$obj
-     * 
+     *
      * @return  void
     **/
-    public function update(/*** XoopsSimpleObject ***/ &$obj)
+    public function update(/*** XoopsSimpleObject ***/ $obj)
     {
         $obj->set('sid', $this->get('sid'));
     }

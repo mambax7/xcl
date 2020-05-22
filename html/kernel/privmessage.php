@@ -63,14 +63,14 @@ class XoopsPrivmessage extends XoopsObject
     {
         return self::__construct();
     }
-    
+
     public function &getFromUser()
     {
         $userHandler=xoops_gethandler('user');
         $user=&$userHandler->get($this->getVar('from_userid'));
         return $user;
     }
-    
+
     public function isRead()
     {
         return 1 == $this->getVar('read_msg') ? true : false;
@@ -79,7 +79,7 @@ class XoopsPrivmessage extends XoopsObject
 
 /**
  * XOOPS private message handler class.
- * 
+ *
  * This class is responsible for providing data access mechanisms to the data source
  * of XOOPS private message class objects.
  *
@@ -136,7 +136,7 @@ class XoopsPrivmessageHandler extends XoopsObjectHandler
      * @param bool   $force
      * @return    bool
      */
-    public function insert(&$pm, $force=false)
+    public function insert($pm, $force=false)
     {
         if ('xoopsprivmessage' != strtolower(get_class($pm))) {
             return false;
@@ -156,9 +156,9 @@ class XoopsPrivmessageHandler extends XoopsObjectHandler
         } else {
             $sql = sprintf('UPDATE %s SET msg_image = %s, subject = %s, from_userid = %u, to_userid = %u, msg_text = %s, read_msg = %u WHERE msg_id = %u', $this->db->prefix('priv_msgs'), $this->db->quoteString($msg_image), $this->db->quoteString($subject), $from_userid, $to_userid, $this->db->quoteString($msg_text), $read_msg, $msg_id);
         }
-        
+
         $result = $force ? $this->db->queryF($sql) : $this->db->query($sql);
-        
+
         if (!$result) {
             return false;
         }
@@ -166,7 +166,7 @@ class XoopsPrivmessageHandler extends XoopsObjectHandler
             $msg_id = $this->db->getInsertId();
         }
         $pm->assignVar('msg_id', $msg_id);
-        
+
         return true;
     }
 
@@ -175,7 +175,7 @@ class XoopsPrivmessageHandler extends XoopsObjectHandler
  * @param 	object 	$pm 	{@link XoopsPrivmessage} object
  * @return 	bool
  **/
-    public function delete(&$pm)
+    public function delete($pm)
     {
         if ('xoopsprivmessage' != strtolower(get_class($pm))) {
             return false;
@@ -236,15 +236,15 @@ class XoopsPrivmessageHandler extends XoopsObjectHandler
         $criteria->setStart($start);
         $criteria->setLimit($limit);
         $ret =& $this->getObjects($criteria);
-        
+
         return $ret;
     }
-    
+
     public function getCountByFromUid($uid)
     {
         return $this->getCount(new Criteria('to_userid', $uid));
     }
-    
+
     public function getCountUnreadByFromUid($uid)
     {
         $criteria = new CriteriaCompo(new Criteria('read_msg', 0));
@@ -275,7 +275,7 @@ class XoopsPrivmessageHandler extends XoopsObjectHandler
  * @param 	object 	$pm 	{@link XoopsPrivmessage} object
  * @return 	bool
  **/
-    public function setRead(&$pm)
+    public function setRead($pm)
     {
         if ('xoopsprivmessage' != strtolower(get_class($pm))) {
             return false;

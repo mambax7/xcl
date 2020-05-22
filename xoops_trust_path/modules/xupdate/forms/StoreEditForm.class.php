@@ -104,7 +104,7 @@ class Xupdate_StoreEditForm extends XCube_ActionForm
      *
      * @return  void
     **/
-    public function load(/*** XoopsSimpleObject ***/ &$obj)
+    public function load(/*** XoopsSimpleObject ***/ $obj)
     {
         $this->set('sid', $obj->get('sid'));
 // 	   $this->set('uid', $obj->get('uid'));
@@ -123,7 +123,7 @@ class Xupdate_StoreEditForm extends XCube_ActionForm
      *
      * @return  void
     **/
-    public function update(/*** XoopsSimpleObject ***/ &$obj)
+    public function update(/*** XoopsSimpleObject ***/ $obj)
     {
         $obj->set('sid', $this->get('sid'));
 //		 $obj->set('uid', $this->get('uid'));

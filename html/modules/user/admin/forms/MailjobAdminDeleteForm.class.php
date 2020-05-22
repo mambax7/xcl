@@ -24,7 +24,7 @@ class User_MailjobAdminDeleteForm extends XCube_ActionForm
         // Set form properties
         //
         $this->mFormProperties['mailjob_id'] =new XCube_IntProperty('mailjob_id');
-    
+
         //
         // Set field properties
         //
@@ -33,12 +33,12 @@ class User_MailjobAdminDeleteForm extends XCube_ActionForm
         $this->mFieldProperties['mailjob_id']->addMessage('required', _MD_USER_ERROR_REQUIRED, _AD_USER_LANG_MAILJOB_ID);
     }
 
-    public function load(&$obj)
+    public function load($obj)
     {
         $this->set('mailjob_id', $obj->get('mailjob_id'));
     }
 
-    public function update(&$obj)
+    public function update($obj)
     {
         $obj->set('mailjob_id', $this->get('mailjob_id'));
     }

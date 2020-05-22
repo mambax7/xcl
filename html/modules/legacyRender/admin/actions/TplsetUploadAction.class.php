@@ -15,23 +15,23 @@ class LegacyRender_TplsetUploadAction extends LegacyRender_Action
 {
     public $mActionForm = null;
     public $mErrorMessages = [];
-    
+
     public function prepare(&$controller, &$xoopsUser)
     {
         $this->mActionForm =new LegacyRender_TplsetUploadForm();
         $this->mActionForm->prepare();
     }
-    
+
     public function getDefaultView(&$controller, &$xoopsUser)
     {
         return LEGACYRENDER_FRAME_VIEW_INPUT;
     }
-    
+
     public function _addErrorMessage($msg)
     {
         $this->mErrorMessages[] = $msg;
     }
-    
+
     public function execute(&$controller, &$xoopsUser)
     {
         if (null != xoops_getrequest('_form_control_cancel')) {
@@ -40,19 +40,19 @@ class LegacyRender_TplsetUploadAction extends LegacyRender_Action
 
         $this->mActionForm->fetch();
         $this->mActionForm->validate();
-        
+
         if ($this->mActionForm->hasError()) {
             return $this->getDefaultView($controller, $xoopsUser);
         }
-        
+
         require_once XOOPS_ROOT_PATH . '/class/class.tar.php';
         $tar =new tar();
 
         $formFile = $this->mActionForm->get('upload');
-        
+
         //
         // [Warn] access private member directly
-        // TODO We should define the access method because we oftern 
+        // TODO We should define the access method because we oftern
         //      access private member of XCube_FormFile.
         //
         $tar->openTar($formFile->_mTmpFileName);
@@ -60,7 +60,7 @@ class LegacyRender_TplsetUploadAction extends LegacyRender_Action
         if (!is_array($tar->files)) {
             return LEGACYRENDER_FRAME_VIEW_ERROR;
         }
-        
+
         $tplsetName = null;
         foreach ($tar->files as $id => $info) {
             $infoArr = explode('/', str_replace("\\", '/', $info['name']));
@@ -68,12 +68,12 @@ class LegacyRender_TplsetUploadAction extends LegacyRender_Action
             if (null == $tplsetName) {
                 $tplsetName = trim($infoArr[0]);
             }
-            
+
             if (null != $tplsetName) {
                 break;
             }
         }
-        
+
         //
         // Check tplset name.
         //
@@ -81,33 +81,33 @@ class LegacyRender_TplsetUploadAction extends LegacyRender_Action
             $this->_addErrorMessage(_AD_LEGACYRENDER_ERROR_TPLSET_NAME_WRONG);
             return LEGACYRENDER_FRAME_VIEW_ERROR;
         }
-        
+
         $handler =& xoops_getmodulehandler('tplset');
         if (0 != $handler->getCount(new Criteria('tplset_name', $tplsetName))) {
             $this->_addErrorMessage(XCube_Utils::formatString(_AD_LEGACYRENDER_ERROR_TPLSET_ALREADY_EXISTS, $tplsetName));
             return LEGACYRENDER_FRAME_VIEW_ERROR;
         }
-        
+
         $tplset =& $handler->create();
         $tplset->set('tplset_name', $tplsetName);
         if (!$handler->insert($tplset)) {
             $this->_addErrorMessage(_AD_LEGACYRENDER_ERROR_COULD_NOT_SAVE_TPLSET);
             return LEGACYRENDER_FRAME_VIEW_ERROR;
         }
-        
+
         $themeimages = [];
         if (!$this->_fetchTemplateFiles($tar, $tplset, $themeimages)) {
             return LEGACYRENDER_FRAME_VIEW_ERROR;
         }
-        
+
         if (!$this->_fetchImageset($tar, $tplset, $themeimages)) {
             return LEGACYRENDER_FRAME_VIEW_ERROR;
         }
-        
+
         return LEGACYRENDER_FRAME_VIEW_SUCCESS;
     }
-    
-    public function _fetchTemplateFiles(&$tar, &$tplset, &$themeimages)
+
+    public function _fetchTemplateFiles($tar, $tplset, &$themeimages)
     {
         $handler =& xoops_getmodulehandler('tplfile');
         foreach ($tar->files as $id => $info) {
@@ -126,7 +126,7 @@ class LegacyRender_TplsetUploadAction extends LegacyRender_Action
                 $tplfile =& $default[0]->createClone($tplset->get('tplset_name'));
                 $tplfile->Source->set('tpl_source', $info['file']);
                 $tplfile->set('tpl_lastimported', time());
-                
+
                 if (!$handler->insert($tplfile)) {
                     $this->_addErrorMessage(XCube_Utils::formatString(_AD_LEGACYRENDER_ERROR_COULD_NOT_SAVE_TPLFILE, $tplfile->get('tpl_file')));
                 }
@@ -134,31 +134,31 @@ class LegacyRender_TplsetUploadAction extends LegacyRender_Action
             }
             unset($info);
         }
-        
+
         return true;
     }
 
-    public function _fetchImageset(&$tar, &$tplset, &$themeimages)
+    public function _fetchImageset(&$tar, $tplset, &$themeimages)
     {
         if (0 == count($themeimages)) {
             return true;
         }
-        
+
         $handler =& xoops_gethandler('imageset');
         $imgset =& $handler->create();
         $imgset->set('imgset_name', $tplset->get('tplset_name'));
         $imgset->set('imgset_refid', 0);
-        
+
         if (!$handler->insert($imgset)) {
             $this->_addErrorMessage(XCube_Utils::formatString(_AD_LEGACYRENDER_ERROR_COULD_NOT_SAVE_IMAGESET, $tplset->get('tplset_name')));
             return false;
         }
-        
+
         if (!$handler->linktplset($imgset->get('imgset_id'), $tplset->get('tplset_name'))) {
             $this->_addErrorMessage(_AD_LEGACYRENDER_ERROR_COULD_NOT_SAVE_LINKTPLSET);
             return false;
         }
-        
+
         $handler =& xoops_gethandler('imagesetimg');
         for ($i = 0; $i < count($themeimages); $i++) {
             if (isset($themeimages[$i]['name']) && '' != $themeimages[$i]['name']) {
@@ -172,22 +172,22 @@ class LegacyRender_TplsetUploadAction extends LegacyRender_Action
                 unset($image);
             }
         }
-        
+
         return true;
     }
-    
-    public function executeViewInput(&$controller, &$xoopsUser, &$render)
+
+    public function executeViewInput(&$controller, &$xoopsUser, $render)
     {
         $render->setTemplateName('tplset_upload.html');
         $render->setAttribute('actionForm', $this->mActionForm);
     }
 
-    public function executeViewSuccess(&$controller, &$xoopsUser, &$render)
+    public function executeViewSuccess($controller, &$xoopsUser, &$render)
     {
         $controller->executeForward('./index.php?action=TplsetList');
     }
 
-    public function executeViewError(&$controller, &$xoopsUser, &$render)
+    public function executeViewError($controller, &$xoopsUser, $render)
     {
         if (0 == count($this->mErrorMessages)) {
             $controller->executeRedirect('./index.php?action=TplsetList', 1, _AD_LEGACYRENDER_ERROR_DBUPDATE_FAILED);
@@ -196,8 +196,8 @@ class LegacyRender_TplsetUploadAction extends LegacyRender_Action
             $render->setAttribute('errorMessages', $this->mErrorMessages);
         }
     }
-    
-    public function executeViewCancel(&$controller, &$xoopsUser, &$render)
+
+    public function executeViewCancel($controller, &$xoopsUser, &$render)
     {
         $controller->executeForward('./index.php?action=TplsetList');
     }

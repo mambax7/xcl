@@ -11,12 +11,12 @@ class indexAction extends AbstractAction
     private $select;
     private $subject = '';
     private $status = '';
-  
+
     public function __construct()
     {
         parent::__construct();
     }
-  
+
     private function _view()
     {
         $fromuid = 0;
@@ -60,7 +60,7 @@ class indexAction extends AbstractAction
             unset($item_ary);
         }
     }
-  
+
     public function execute()
     {
         if ($this->chk_use()) {
@@ -70,8 +70,8 @@ class indexAction extends AbstractAction
             $this->setErr(_MD_MESSAGE_SETTINGS_MSG5);
         }
     }
-  
-    public function executeView(&$render)
+
+    public function executeView($render)
     {
         $render->setTemplateName('message_inboxlist.html');
         $render->setAttribute('ListData', $this->listdata);

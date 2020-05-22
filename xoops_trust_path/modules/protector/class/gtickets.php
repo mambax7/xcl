@@ -48,7 +48,7 @@ if (! class_exists('XoopsGTicket')) {
     }
 
     // add a ticket as Hidden Element into XoopsForm
-    public function addTicketXoopsFormElement(&$form, $salt = '', $timeout = 1800, $area = '')
+    public function addTicketXoopsFormElement($form, $salt = '', $timeout = 1800, $area = '')
     {
         $form->addElement(new XoopsFormHidden('XOOPS_G_TICKET', $this->issue($salt, $timeout, $area))) ;
     }

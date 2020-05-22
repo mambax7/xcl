@@ -25,20 +25,20 @@ class User_LostPassAction extends User_Action
      * @var User_LostPassEditForm
      */
     public $mActionForm = null;
-    
+
     public function prepare(&$controller, &$xoopsUser, $moduleConfig)
     {
         $this->mActionForm =new User_LostPassEditForm();
         $this->mActionForm->prepare();
     }
-    
+
     public function isSecure()
     {
         return false;
     }
-    
+
     //// Allow anonymous users only.
-    public function hasPermission(&$controller, &$xoopsUser, $moduleConfig)
+    public function hasPermission($controller, &$xoopsUser, $moduleConfig)
     {
         return !$controller->mRoot->mContext->mUser->mIdentity->isAuthenticated();
     }
@@ -55,7 +55,7 @@ class User_LostPassAction extends User_Action
         }
     }
 
-    public function _updatePassword(&$controller)
+    public function _updatePassword($controller)
     {
         $this->mActionForm->fetch();
 
@@ -63,7 +63,7 @@ class User_LostPassAction extends User_Action
         $criteria =new CriteriaCompo(new Criteria('email', $this->mActionForm->get('email')));
         $criteria->add(new Criteria('pass', $this->mActionForm->get('code'), '=', '', 'LEFT(%s, 5)'));
         $lostUserArr =& $userHandler->getObjects($criteria);
-        
+
         if (is_array($lostUserArr) && count($lostUserArr) > 0) {
             $lostUser =& $lostUserArr[0];
         } else {
@@ -92,15 +92,15 @@ class User_LostPassAction extends User_Action
         return USER_FRAME_VIEW_SUCCESS;
     }
 
-    public function execute(&$controller, &$xoopsUser)
+    public function execute($controller, &$xoopsUser)
     {
         $this->mActionForm->fetch();
         $this->mActionForm->validate();
-        
+
         if ($this->mActionForm->hasError()) {
             return USER_FRAME_VIEW_INPUT;
         }
-        
+
         $userHandler =& xoops_gethandler('user');
         $lostUserArr =& $userHandler->getObjects(new Criteria('email', $this->mActionForm->get('email')));
 
@@ -124,19 +124,19 @@ class User_LostPassAction extends User_Action
 
         return USER_FRAME_VIEW_SUCCESS;
     }
-    
-    public function executeViewInput(&$controller, &$xoopsUser, &$render)
+
+    public function executeViewInput(&$controller, &$xoopsUser, $render)
     {
         $render->setTemplateName('user_lostpass.html');
         $render->setAttribute('actionForm', $this->mActionForm);
     }
 
-    public function executeViewSuccess(&$controller, &$xoopsUser, &$render)
+    public function executeViewSuccess($controller, &$xoopsUser, &$render)
     {
         $controller->executeRedirect(XOOPS_URL . '/', 3, _MD_USER_MESSAGE_SEND_PASSWORD);
     }
 
-    public function executeViewError(&$controller, &$xoopsUser, &$render)
+    public function executeViewError($controller, &$xoopsUser, &$render)
     {
         $controller->executeRedirect(XOOPS_URL . '/', 3, _MD_USER_ERROR_SEND_MAIL);
     }

@@ -34,20 +34,20 @@ if (!defined('XOOPS_ROOT_PATH')) {
 }
 
 /**
- * 
- * 
+ *
+ *
  * @package     kernel
- * 
+ *
  * @author	    Kazumi Ono	<onokazu@xoops.org>
  * @copyright	copyright (c) 2000-2003 XOOPS.org
  */
 
 /**
  * A Config-Option
- * 
+ *
  * @author	Kazumi Ono	<onokazu@xoops.org>
  * @copyright	copyright (c) 2000-2003 XOOPS.org
- * 
+ *
  * @package     kernel
  */
 class XoopsConfigOption extends XoopsObject
@@ -77,7 +77,7 @@ class XoopsConfigOption extends XoopsObject
     {
         return defined($this->get('confop_value')) ? constant($this->get('confop_value')) : $this->get('confop_value');
     }
-    
+
     /**
      * Get a constract of confop_name
      */
@@ -93,25 +93,25 @@ class XoopsConfigOption extends XoopsObject
      * @param $option
      * @return bool
      */
-    public function isEqual(&$option)
+    public function isEqual($option)
     {
         $flag = true;
-        
+
         $flag &= ($this->get('confop_name') == $option->get('confop_name'));
         $flag &= ($this->get('confop_value') == $option->get('confop_value'));
-        
+
         return $flag;
     }
 }
 
 /**
- * XOOPS configuration option handler class.  
- * This class is responsible for providing data access mechanisms to the data source 
+ * XOOPS configuration option handler class.
+ * This class is responsible for providing data access mechanisms to the data source
  * of XOOPS configuration option class objects.
  *
  * @copyright	copyright (c) 2000-2003 XOOPS.org
  * @author  Kazumi Ono <onokazu@xoops.org>
- * 
+ *
  * @package     kernel
  * @subpackage  config
 */
@@ -120,10 +120,10 @@ class XoopsConfigOptionHandler extends XoopsObjectHandler
 
     /**
      * Create a new option
-     * 
+     *
      * @param	bool    $isNew  Flag the option as "new"?
-     * 
-     * @return	object  {@link XoopsConfigOption} 
+     *
+     * @return	object  {@link XoopsConfigOption}
      */
     public function &create($isNew = true)
     {
@@ -136,9 +136,9 @@ class XoopsConfigOptionHandler extends XoopsObjectHandler
 
     /**
      * Get an option from the database
-     * 
+     *
      * @param	int $id ID of the option
-     * 
+     *
      * @return	object  reference to the {@link XoopsConfigOption}, FALSE on fail
      */
     public function &get($id)
@@ -161,11 +161,11 @@ class XoopsConfigOptionHandler extends XoopsObjectHandler
 
     /**
      * Insert a new option in the database
-     * 
-     * @param	object  &$confoption    reference to a {@link XoopsConfigOption} 
+     *
+     * @param	object  &$confoption    reference to a {@link XoopsConfigOption}
      * @return	bool    TRUE if successfull.
      */
-    public function insert(&$confoption)
+    public function insert($confoption)
     {
         if ('xoopsconfigoption' != strtolower(get_class($confoption))) {
             return false;
@@ -197,11 +197,11 @@ class XoopsConfigOptionHandler extends XoopsObjectHandler
 
     /**
      * Delete an option
-     * 
-     * @param	object  &$confoption    reference to a {@link XoopsConfigOption} 
+     *
+     * @param	object  &$confoption    reference to a {@link XoopsConfigOption}
      * @return	bool    TRUE if successful
      */
-    public function delete(&$confoption)
+    public function delete($confoption)
     {
         if ('xoopsconfigoption' != strtolower(get_class($confoption))) {
             return false;
@@ -214,12 +214,12 @@ class XoopsConfigOptionHandler extends XoopsObjectHandler
     }
 
     /**
-     * Get some {@link XoopsConfigOption}s 
-     * 
-     * @param	object  $criteria   {@link CriteriaElement} 
+     * Get some {@link XoopsConfigOption}s
+     *
+     * @param	object  $criteria   {@link CriteriaElement}
      * @param	bool    $id_as_key  Use the IDs as array-keys?
-     * 
-     * @return	array   Array of {@link XoopsConfigOption}s 
+     *
+     * @return	array   Array of {@link XoopsConfigOption}s
      */
     public function &getObjects($criteria = null, $id_as_key = false)
     {

@@ -31,20 +31,20 @@ class LegacyRender_BannerEditAction extends LegacyRender_AbstractEditAction
             $this->mObject->set('cid', xoops_getrequest('cid'));
         }
     }
-    
+
     public function _setupActionForm()
     {
         $this->mActionForm =new LegacyRender_BannerAdminEditForm();
         $this->mActionForm->prepare();
     }
 
-    public function executeViewInput(&$controller, &$xoopsUser, &$render)
+    public function executeViewInput(&$controller, &$xoopsUser, $render)
     {
         $render->setTemplateName('banner_edit.html');
         $render->setAttribute('actionForm', $this->mActionForm);
         $this->mObject->loadBannerclient();
         $render->setAttribute('object', $this->mObject);
-        
+
         $bannerclientHandler =& xoops_getmodulehandler('bannerclient');
         $bannerclientArr =& $bannerclientHandler->getObjects();
         foreach (array_keys($bannerclientArr) as $key) {
@@ -53,17 +53,17 @@ class LegacyRender_BannerEditAction extends LegacyRender_AbstractEditAction
         $render->setAttribute('bannerclientArr', $bannerclientArr);
     }
 
-    public function executeViewSuccess(&$controller, &$xoopsUser, &$render)
+    public function executeViewSuccess($controller, &$xoopsUser, &$render)
     {
         $controller->executeForward('./index.php?action=BannerList');
     }
 
-    public function executeViewError(&$controller, &$xoopsUser, &$render)
+    public function executeViewError($controller, &$xoopsUser, &$render)
     {
         $controller->executeRedirect('./index.php?action=BannerList', 1, _AD_LEGACYRENDER_ERROR_DBUPDATE_FAILED);
     }
-    
-    public function executeViewCancel(&$controller, &$xoopsUser, &$render)
+
+    public function executeViewCancel($controller, &$xoopsUser, &$render)
     {
         $controller->executeForward('./index.php?action=BannerList');
     }

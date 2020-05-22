@@ -23,9 +23,9 @@ class User_UserRegister_confirmAction extends User_Action
     public $mActionForm = null;
     public $mRegistForm = null;
     public $mConfig = null;
-    
+
     public $mNewUser = null;
-    
+
     public $mRedirectMessage = null;
 
     /***
@@ -71,12 +71,12 @@ class User_UserRegister_confirmAction extends User_Action
 
         $this->_processMail($controller);
         $this->_eventNotifyMail($controller);
-        
+
         XCube_DelegateUtils::call('Legacy.Event.RegistUser.Success', new XCube_Ref($this->mNewUser));
-        
+
         return USER_FRAME_VIEW_SUCCESS;
     }
-    
+
     public function getDefaultView(&$controller, &$xoopsUser)
     {
         return USER_FRAME_VIEW_INPUT;
@@ -87,7 +87,7 @@ class User_UserRegister_confirmAction extends User_Action
      * @access private
      * @param $controller
      */
-    public function _getRegistForm(&$controller)
+    public function _getRegistForm($controller)
     {
         $this->mRegistForm = unserialize($_SESSION['user_register_actionform']);
         if (!is_object($this->mRegistForm)) {
@@ -104,11 +104,11 @@ class User_UserRegister_confirmAction extends User_Action
     {
         unset($_SESSION['user_register_actionform']);
     }
-    
-    public function _processMail(&$controller)
+
+    public function _processMail($controller)
     {
         $activationType = $this->mConfig['activation_type'];
-        
+
         if (1 == $activationType) {
             return;
         }
@@ -121,12 +121,12 @@ class User_UserRegister_confirmAction extends User_Action
         $director->contruct();
         $mailer =& $builder->getResult();
         XCube_DelegateUtils::call('Legacy.Event.RegistUser.SendMail', new XCube_Ref($mailer), (0 == $activationType)? 'Register' : 'AdminActivate');
-        
+
         if (!$mailer->send()) {
         }    // TODO CHECKS and use '_MD_USER_ERROR_YOURREGMAILNG'
     }
-    
-    public function _eventNotifyMail(&$controller)
+
+    public function _eventNotifyMail($controller)
     {
         if (1 == $this->mConfig['new_user_notify'] && !empty($this->mConfig['new_user_notify_group'])) {
             $builder =new User_RegistUserNotifyMailBuilder();
@@ -144,7 +144,7 @@ class User_UserRegister_confirmAction extends User_Action
         $this->mActionForm->prepare();
     }
 
-    public function executeViewError(&$controller, &$xoopsUser, &$render)
+    public function executeViewError($controller, &$xoopsUser, &$render)
     {
         $controller->executeRedirect(XOOPS_URL . '/', 1, $this->mRedirectMessage);
     }
@@ -158,19 +158,19 @@ class User_UserRegister_confirmAction extends User_Action
      *
      * @return    void
      */
-    public function executeViewCancel(&$controller, &$xoopsUser, &$render)
+    public function executeViewCancel($controller, &$xoopsUser, &$render)
     {
         $controller->executeForward(XOOPS_URL.'/register.php');
     }
 
-    public function executeViewInput(&$controller, &$xoopsUser, &$render)
+    public function executeViewInput(&$controller, &$xoopsUser, $render)
     {
         $render->setTemplateName('user_register_confirm.html');
         $render->setAttribute('actionForm', $this->mActionForm);
         $render->setAttribute('registForm', $this->mRegistForm);
     }
-    
-    public function executeViewSuccess(&$controller, &$xoopsUser, &$render)
+
+    public function executeViewSuccess($controller, &$xoopsUser, $render)
     {
         $activationType = $this->mConfig['activation_type'];
 

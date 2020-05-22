@@ -26,7 +26,7 @@ class Profile_ActionFrame
      * @var XCube_Delegate
      */
     public $mCreateAction = null;
-    
+
     public function __construct($admin)
     {
         $this->mAdminFlag = $admin;
@@ -38,7 +38,7 @@ class Profile_ActionFrame
     public function setActionName($name)
     {
         $this->mActionName = $name;
-        
+
         //
         // Temp FIXME!
         //
@@ -47,12 +47,12 @@ class Profile_ActionFrame
         $root->mContext->mModule->setAttribute('actionName', $name);
     }
 
-    public function _createAction(&$actionFrame)
+    public function _createAction($actionFrame)
     {
         if (is_object($this->mAction)) {
             return;
         }
-        
+
         //
         // Create action object by mActionName
         //
@@ -63,33 +63,33 @@ class Profile_ActionFrame
         } else {
             $fileName = XOOPS_MODULE_PATH . "/profile/actions/${fileName}.class.php";
         }
-    
+
         if (!file_exists($fileName)) {
             die('file_exists on _createAction');
         }
-        
+
         require_once $fileName;
-    
+
         if (XC_CLASS_EXISTS($className)) {
             $actionFrame->mAction =new $className($actionFrame->mAdminFlag);
         }
     }
-    
+
     public function execute(&$controller)
     {
         if (!preg_match("/^\w+$/", $this->mActionName)) {
             die();
         }
-        
+
         //
         // Create action object by mActionName
         //
         $this->mCreateAction->call(new XCube_Ref($this));
-        
+
         if (!(is_object($this->mAction) && $this->mAction instanceof \Profile_Action)) {
             die();    //< TODO
         }
-    
+
         if ($this->mAction->isSecure() && !is_object($controller->mRoot->mContext->mXoopsUser)) {
             //
             // error
@@ -97,9 +97,9 @@ class Profile_ActionFrame
 
             $controller->executeForward(XOOPS_URL . '/');
         }
-        
+
         $this->mAction->prepare($controller, $controller->mRoot->mContext->mXoopsUser, $controller->mRoot->mContext->mModuleConfig);
-    
+
         if (!$this->mAction->hasPermission($controller, $controller->mRoot->mContext->mXoopsUser, $controller->mRoot->mContext->mModuleConfig)) {
             //
             // error
@@ -107,13 +107,13 @@ class Profile_ActionFrame
 
             $controller->executeForward(XOOPS_URL . '/');
         }
-    
+
         if ('POST' == xoops_getenv('REQUEST_METHOD')) {
             $viewStatus = $this->mAction->execute($controller, $controller->mRoot->mContext->mXoopsUser);
         } else {
             $viewStatus = $this->mAction->getDefaultView($controller, $controller->mRoot->mContext->mXoopsUser);
         }
-    
+
         $render = $controller->mRoot->mContext->mModule->getRenderTarget();
         $render->setAttribute('xoops_pagetitle', $this->mAction->getPagetitle());
         echo($viewStatus);
@@ -122,23 +122,23 @@ class Profile_ActionFrame
             case PROFILE_FRAME_VIEW_SUCCESS:
                 $this->mAction->executeViewSuccess($render);
                 break;
-        
+
             case PROFILE_FRAME_VIEW_ERROR:
                 $this->mAction->executeViewError($controller, $controller->mRoot->mContext->mXoopsUser, $render);
                 break;
-        
+
             case PROFILE_FRAME_VIEW_INDEX:
                 $this->mAction->executeViewIndex($controller, $controller->mRoot->mContext->mXoopsUser, $render);
                 break;
-        
+
             case PROFILE_FRAME_VIEW_INPUT:
                 $this->mAction->executeViewInput($controller, $controller->mRoot->mContext->mXoopsUser, $render);
                 break;
-                
+
             case PROFILE_FRAME_VIEW_PREVIEW:
                 $this->mAction->executeViewPreview($controller, $controller->mRoot->mContext->mXoopsUser, $render);
                 break;
-                
+
             case PROFILE_FRAME_VIEW_CANCEL:
                 $this->mAction->executeViewCancel($controller, $controller->mRoot->mContext->mXoopsUser, $render);
                 break;
@@ -151,7 +151,7 @@ class Profile_Action
     public function __construct()
     {
     }
-    
+
     public function isSecure()
     {
         return false;
@@ -159,9 +159,9 @@ class Profile_Action
 
     /**
      * _getPageAction
-     * 
+     *
      * @param	void
-     * 
+     *
      * @return	string
     **/
     protected function _getPageAction()
@@ -171,9 +171,9 @@ class Profile_Action
 
     /**
      * _getPageTitle
-     * 
+     *
      * @param	void
-     * 
+     *
      * @return	string
     **/
     protected function _getPagetitle()

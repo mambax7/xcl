@@ -14,7 +14,7 @@ class D3forumCommonCss extends XCube_ActionFilter
         $this->mRoot->mDelegateManager->add('XoopsTpl.New', [&$this, 'D3forumCommonCssfile']);
     }
 
-    public function D3forumCommonCssfile(&$xoopsTpl)
+    public function D3forumCommonCssfile($xoopsTpl)
     {
         $filename = XOOPS_URL . '/common/css/d3forum_common.css';
         $filepath = XOOPS_ROOT_PATH . '/common/css/d3forum_common.css';

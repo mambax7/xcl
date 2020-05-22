@@ -33,7 +33,7 @@ class HTMLPurifier_URIScheme_data extends HTMLPurifier_URIScheme
      * @param HTMLPurifier_Context $context
      * @return bool
      */
-    public function doValidate(&$uri, $config, $context)
+    public function doValidate($uri, $config, $context)
     {
         $result = explode(',', $uri->path, 2);
         $is_base64 = false;

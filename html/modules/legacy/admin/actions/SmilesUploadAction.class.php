@@ -12,23 +12,23 @@ class Legacy_SmilesUploadAction extends Legacy_Action
     public $mActionForm = null;
     public $mErrorMessages = [];
     public $mAllowedExts = ['gif' =>'image/gif', 'jpg' =>'image/jpeg', 'jpeg' =>'image/jpeg', 'png' =>'image/png'];
-    
+
     public function prepare(&$controller, &$xoopsUser)
     {
         $this->mActionForm =new Legacy_SmilesUploadForm();
         $this->mActionForm->prepare();
     }
-    
+
     public function getDefaultView(&$controller, &$xoopsUser)
     {
         return LEGACY_FRAME_VIEW_INPUT;
     }
-    
+
     public function _addErrorMessage($msg)
     {
         $this->mErrorMessages[] = $msg;
     }
-    
+
     public function execute(&$controller, &$xoopsUser)
     {
         $form_cancel = $controller->mRoot->mContext->mRequest->getRequest('_form_control_cancel');
@@ -38,7 +38,7 @@ class Legacy_SmilesUploadAction extends Legacy_Action
 
         $this->mActionForm->fetch();
         $this->mActionForm->validate();
-        
+
         if ($this->mActionForm->hasError()) {
             return $this->getDefaultView($controller, $xoopsUser);
         }
@@ -80,7 +80,7 @@ class Legacy_SmilesUploadAction extends Legacy_Action
         return LEGACY_FRAME_VIEW_SUCCESS;
     }
 
-    public function _fetchZipSmilesImages(&$files, &$smilesimages)
+    public function _fetchZipSmilesImages($files, &$smilesimages)
     {
         foreach ($files as $file) {
             $file_pos = strrpos($file['filename'], '/') ;
@@ -94,8 +94,8 @@ class Legacy_SmilesUploadAction extends Legacy_Action
         }
         return true;
     }
-    
-    public function _fetchTarSmilesImages(&$files, &$smilesimages)
+
+    public function _fetchTarSmilesImages($files, &$smilesimages)
     {
         foreach ($files as $id => $info) {
             $file_pos = strrpos($info['name'], '/') ;
@@ -110,12 +110,12 @@ class Legacy_SmilesUploadAction extends Legacy_Action
         return true;
     }
 
-    public function _saveSmilesImages(&$smilesimages)
+    public function _saveSmilesImages($smilesimages)
     {
         if (0 === count($smilesimages)) {
             return true;
         }
-        
+
         $smileshandler =& xoops_getmodulehandler('smiles');
 
         for ($i = 0; $i < count($smilesimages); $i++) {
@@ -152,22 +152,22 @@ class Legacy_SmilesUploadAction extends Legacy_Action
             }
             unset($smiles);
         }
-        
+
         return true;
     }
-    
-    public function executeViewInput(&$controller, &$xoopsUser, &$render)
+
+    public function executeViewInput(&$controller, &$xoopsUser, $render)
     {
         $render->setTemplateName('smiles_upload.html');
         $render->setAttribute('actionForm', $this->mActionForm);
     }
 
-    public function executeViewSuccess(&$controller, &$xoopsUser, &$render)
+    public function executeViewSuccess($controller, &$xoopsUser, &$render)
     {
         $controller->executeForward('./index.php?action=SmilesList');
     }
 
-    public function executeViewError(&$controller, &$xoopsUser, &$render)
+    public function executeViewError($controller, &$xoopsUser, $render)
     {
         if (0 == count($this->mErrorMessages)) {
             $controller->executeRedirect('./index.php?action=SmilesList', 1, _AD_LEGACY_ERROR_DBUPDATE_FAILED);
@@ -176,8 +176,8 @@ class Legacy_SmilesUploadAction extends Legacy_Action
             $render->setAttribute('errorMessages', $this->mErrorMessages);
         }
     }
-    
-    public function executeViewCancel(&$controller, &$xoopsUser, &$render)
+
+    public function executeViewCancel($controller, &$xoopsUser, &$render)
     {
         $controller->executeForward('./index.php?action=SmilesList');
     }

@@ -17,25 +17,25 @@ require_once XOOPS_MODULE_PATH . '/legacy/admin/forms/PreferenceEditForm.class.p
 class Legacy_PreferenceListAction extends Legacy_Action
 {
     public $mObjects = [];
-    
+
     public function prepare(&$controller, &$xoopsUser)
     {
     }
-    
+
     public function getDefaultView(&$controller, &$xoopsUser)
     {
         $handler =& xoops_gethandler('configcategory');
         $this->mObjects =& $handler->getObjects();
-        
+
         return LEGACY_FRAME_VIEW_INDEX;
     }
-    
+
     public function execute(&$controller, &$xoopsUser)
     {
         return $this->getDefaultView($controller, $xoopsUser);
     }
 
-    public function executeViewIndex(&$controller, &$xoopsUser, &$render)
+    public function executeViewIndex(&$controller, &$xoopsUser, $render)
     {
         $render->setTemplateName('preference_list.html');
         $render->setAttribute('objects', $this->mObjects);

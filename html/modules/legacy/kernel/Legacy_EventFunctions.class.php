@@ -17,16 +17,16 @@ class Legacy_EventFunction
     public static function imageManager()
     {
         require_once XOOPS_MODULE_PATH . '/legacy/class/ActionFrame.class.php';
-        
+
         $root =& XCube_Root::getSingleton();
         $root->mController->setupModuleContext('legacy');
-    
+
         $moduleRunner =new Legacy_ActionFrame(false);
-        
+
         $action = isset($_REQUEST['op']) ? ucfirst(xoops_getrequest('op')) : 'List';
         $moduleRunner->setMode(LEGACY_FRAME_MODE_IMAGE);
         $moduleRunner->setActionName($action);
-        
+
         $root->mController->mExecute->add([&$moduleRunner, 'execute']);
 
         $root->mController->execute();
@@ -37,10 +37,10 @@ class Legacy_EventFunction
     public static function backend()
     {
         require_once XOOPS_MODULE_PATH . '/legacy/class/ActionFrame.class.php';
-        
+
         $root =& XCube_Root::getSingleton();
         $root->mController->setupModuleContext('legacy');
-        
+
         $moduleRunner =new Legacy_ActionFrame(false);
         $moduleRunner->setActionName('Backend');
 
@@ -54,10 +54,10 @@ class Legacy_EventFunction
     public static function search()
     {
         require_once XOOPS_MODULE_PATH . '/legacy/class/ActionFrame.class.php';
-        
+
         $root =& XCube_Root::getSingleton();
         $root->mController->setupModuleContext('legacy');
-        
+
         $moduleRunner =new Legacy_ActionFrame(false);
         $moduleRunner->setMode(LEGACY_FRAME_MODE_SEARCH);
         $moduleRunner->setActionName(ucfirst(xoops_getrequest('action')));
@@ -68,14 +68,14 @@ class Legacy_EventFunction
 
         $root->mController->executeView();
     }
-    
+
     public static function misc()
     {
         require_once XOOPS_LEGACY_PATH . '/class/ActionFrame.class.php';
 
         $root =& XCube_Root::getSingleton();
         $root->mController->setupModuleContext('legacy');
-        
+
         $actionName = isset($_REQUEST['type']) ? ucfirst(xoops_getrequest('type')) : 'Smilies';
 
         $moduleRunner = new Legacy_ActionFrame(false);
@@ -94,10 +94,10 @@ class Legacy_EventFunction
     public static function notifications()
     {
         require_once XOOPS_LEGACY_PATH . '/class/ActionFrame.class.php';
-        
+
         $root =& XCube_Root::getSingleton();
         $root->mController->setupModuleContext('legacy');
-        
+
         //
         // 'Notify' is prefix to guard accessing from misc.php.
         //
@@ -121,13 +121,13 @@ class Legacy_EventFunction
 
         $root->mController->executeView();
     }
-    
+
     /**
      * This functions is add to 'Legacyfunction.Notifications.Select'.
-     * 
+     *
      * @param XCube_RenderBuffer $render
      */
-    public static function notifications_select(&$render)
+    public static function notifications_select($render)
     {
         require_once XOOPS_ROOT_PATH . '/include/notification_constants.php';
         require_once XOOPS_ROOT_PATH . '/include/notification_functions.php';
@@ -139,7 +139,7 @@ class Legacy_EventFunction
 
         $xoops_notification = [];
         $xoops_notification['show'] = is_object($xoopsModule) && is_object($xoopsUser) && notificationEnabled('inline') ? 1 : 0;
-        
+
         if ($xoops_notification['show']) {
             $root->mLanguageManager->loadPageTypeMessageCatalog('notification');
             $categories =& notificationSubscribableCategoryInfo();
@@ -168,7 +168,7 @@ class Legacy_EventFunction
                 }
                 $xoops_notification['target_page'] = 'notification_update.php';
                 $xoops_notification['redirect_script'] = xoops_getenv('PHP_SELF');
-                
+
                 $render->setAttribute('editprofile_url', XOOPS_URL . '/edituser.php?uid=' . $xoopsUser->getShow('uid'));
 
                 switch ($xoopsUser->getVar('notify_method')) {
@@ -189,7 +189,7 @@ class Legacy_EventFunction
                 $xoops_notification['show'] = 0;
             }
         }
-        
+
         $render->setAttribute('xoops_notification', $xoops_notification);
     }
 

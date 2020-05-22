@@ -31,7 +31,7 @@ class User_GroupAdminDeleteForm extends XCube_ActionForm
         $this->mFieldProperties['groupid']->setDependsByArray(['required']);
         $this->mFieldProperties['groupid']->addMessage('required', _MD_USER_ERROR_REQUIRED, _MD_USER_LANG_GROUPID);
     }
-    
+
     public function validateGroupid()
     {
         $groupid = $this->get('groupid');
@@ -40,12 +40,12 @@ class User_GroupAdminDeleteForm extends XCube_ActionForm
         }
     }
 
-    public function load(&$obj)
+    public function load($obj)
     {
         $this->set('groupid', $obj->get('groupid'));
     }
 
-    public function update(&$obj)
+    public function update($obj)
     {
         $obj->setVar('groupid', $this->get('groupid'));
     }

@@ -13,15 +13,15 @@ require_once XOOPS_MODULE_PATH . '/legacyRender/admin/forms/TplfileEditForm.clas
 class LegacyRender_TplsetDownloadAction extends LegacyRender_Action
 {
     public $mPreparedFlag = false;
-    
+
     public $mTplset = null;
-    
+
     public $mDownloader = null;
-    
+
     public function &_createDownloader($method)
     {
         $ret = null;
-        
+
         switch ($method) {
             case 'tar':
                 if (@function_exists('gzencode')) {
@@ -36,25 +36,25 @@ class LegacyRender_TplsetDownloadAction extends LegacyRender_Action
                 }
                 break;
         }
-        
+
         return $ret;
     }
 
-    
+
     public function getDefaultView(&$controller, &$xoopsUser)
     {
         $method = 'tar' == xoops_getrequest('method') ? 'tar' : 'zip';
         $this->mDownloader =& $this->_createDownloader($method);
-        
+
         if (null == $this->mDownloader) {
             return LEGACYRENDER_FRAME_VIEW_ERROR;
         }
-        
+
         $id = xoops_getrequest('tplset_id');
-        
+
         $handler =& xoops_getmodulehandler('tplset');
         $this->mTplset =& $handler->get($id);
-        
+
         if (null == $this->mTplset) {
             return LEGACYRENDER_FRAME_VIEW_ERROR;
         }
@@ -73,9 +73,9 @@ class LegacyRender_TplsetDownloadAction extends LegacyRender_Action
 
         $handler =& xoops_getmodulehandler('tplfile');
         $files =& $handler->getObjects(new Criteria('tpl_tplset', $this->mTplset->get('tplset_name')));
-        
+
         $count = count($files);
-        
+
         if ($count > 0) {
             $xml .= '  <templates>' . "\n";
             for ($i = 0; $i < $count; $i++) {
@@ -96,18 +96,18 @@ class LegacyRender_TplsetDownloadAction extends LegacyRender_Action
                             . $files[$i]->getShow('tpl_lastmodified') . '</lastModified>'
                             . "\n" . '    </template>'
                             . "\n";
-                    
+
                     $this->mDownloader->addFileData($files[$i]->Source->get('tpl_source'), $path, $files[$i]->getShow('tpl_lastmodified'));
                 }
             }
-            
+
             $xml .= '  </templates>' . "\n";
         }
-        
+
         $xml .= '</tplset>';
-        
+
         $this->mDownloader->addFileData($xml, $this->mTplset->getShow('tplset_name') . '/tplset.xml', time());
-        
+
         return LEGACYRENDER_FRAME_VIEW_SUCCESS;
     }
 
@@ -117,7 +117,7 @@ class LegacyRender_TplsetDownloadAction extends LegacyRender_Action
         exit(0);
     }
 
-    public function executeViewError(&$controller, &$xoopsUser, &$render)
+    public function executeViewError($controller, &$xoopsUser, &$render)
     {
         $controller->executeRedirect('./index.php?action=TplsetList', 1, _AD_LEGACYRENDER_ERROR_DBUPDATE_FAILED);
     }

@@ -54,7 +54,7 @@ class Profile_DataEditAction extends Profile_AbstractEditAction
     {
         parent::prepare();
         $this->mObject->set('uid', $this->_getId());
-    
+
         $defHandler =& xoops_getmodulehandler('definitions');
         $this->mFields =& $defHandler->getFields4DataEdit();
     }
@@ -63,7 +63,7 @@ class Profile_DataEditAction extends Profile_AbstractEditAction
      * @public
      * @param $render
      */
-    public function executeViewInput(&$render)
+    public function executeViewInput($render)
     {
         $render->setTemplateName('profile_data_edit.html');
         $render->setAttribute('actionForm', $this->mActionForm);

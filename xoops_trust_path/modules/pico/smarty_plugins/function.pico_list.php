@@ -8,7 +8,7 @@ require_once XOOPS_TRUST_PATH . '/modules/pico/class/PicoModelCategory.class.php
 require_once XOOPS_TRUST_PATH . '/modules/pico/class/PicoModelContent.class.php';
 require_once XOOPS_TRUST_PATH . '/modules/pico/blocks/list.php';
 
-function smarty_function_pico_list($params, &$smarty)
+function smarty_function_pico_list($params, $smarty)
 {
 	$mydirname = @$params['dir'] . @$params['dirname'];
 	$cat_ids = @$params['id'] . @$params['cat_id'];

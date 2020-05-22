@@ -42,24 +42,24 @@ class Legacy_ThemeSelectForm extends XCube_ActionForm
         foreach ($this->get('choose') as $dirname => $dmy) {
             return $dirname;
         }
-        
+
         return null;
     }
-    
+
     public function getSelectableTheme()
     {
         $ret = [];
-        
+
         foreach ($this->get('select') as $themeName => $isSelect) {
             if (1 === $isSelect) {
                 $ret[] = $themeName;
             }
         }
-        
+
         return $ret;
     }
-    
-    public function load(&$themeArr)
+
+    public function load($themeArr)
     {
         foreach ($themeArr as $themeName) {
             $this->set('select', $themeName, 1);

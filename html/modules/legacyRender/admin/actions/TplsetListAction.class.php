@@ -12,14 +12,14 @@ class LegacyRender_TplsetListAction extends LegacyRender_AbstractListAction
 {
     public $mActionForm = null;
     public $mActiveTemplateSet = null;
-    
+
     public function prepare(&$controller, &$xoopsUser, $moduleConfig)
     {
         LegacyRender_AbstractListAction::prepare($controller, $xoopsUser, $moduleConfig);
         $this->mActionForm =new LegacyRender_TplsetSelectForm();
         $this->mActionForm->prepare();
     }
-    
+
     public function &_getHandler()
     {
         $handler =& xoops_getmodulehandler('tplset');
@@ -31,12 +31,12 @@ class LegacyRender_TplsetListAction extends LegacyRender_AbstractListAction
         $filter =new LegacyRender_TplsetFilterForm($this->_getPageNavi(), $this->_getHandler());
         return $filter;
     }
-    
+
     public function _getBaseUrl()
     {
         return './index.php?action=TplsetList';
     }
-    
+
     public function execute(&$controller, &$xoopsUser)
     {
         $this->mActionForm->fetch();
@@ -47,7 +47,7 @@ class LegacyRender_TplsetListAction extends LegacyRender_AbstractListAction
             $criteria =new CriteriaCompo();
             $criteria->add(new Criteria('conf_name', 'template_set'));
             $criteria->add(new Criteria('conf_catid', XOOPS_CONF));
-            
+
             $configs =& $configHandler->getConfigs($criteria);
             if (count($configs) > 0) {
                 $configs[0]->set('conf_value', $this->mActionForm->get('tplset_name'));
@@ -59,7 +59,7 @@ class LegacyRender_TplsetListAction extends LegacyRender_AbstractListAction
         return $this->getDefaultView($controller, $xoopsUser);
     }
 
-    public function executeViewIndex(&$controller, &$xoopsUser, &$render)
+    public function executeViewIndex($controller, &$xoopsUser, $render)
     {
         //
         // Load the list of module templates.
@@ -77,13 +77,13 @@ class LegacyRender_TplsetListAction extends LegacyRender_AbstractListAction
         $render->setAttribute('pageNavi', $this->mFilter->mNavi);
         $render->setAttribute('activeTemplateSet', $this->mActiveTemplateSet);
         $render->setAttribute('actionForm', $this->mActionForm);
-        
+
         //
         // Assign recent modified tplfile objects
         //
         $handler =& xoops_getmodulehandler('tplfile');
         $recentObjects =& $handler->getRecentModifyFile();
-        
+
         $render->setAttribute('recentObjects', $recentObjects);
     }
 }

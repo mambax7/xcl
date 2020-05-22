@@ -61,9 +61,9 @@ class XoopsImage extends XoopsObject
 }
 
 /**
- * XOOPS image handler class.  
- * 
- * This class is responsible for providing data access mechanisms to the data source 
+ * XOOPS image handler class.
+ *
+ * This class is responsible for providing data access mechanisms to the data source
  * of XOOPS image class objects.
  *
  * @package		kernel
@@ -75,8 +75,8 @@ class XoopsImageHandler extends XoopsObjectHandler
 {
 
     /**
-     * Create a new {@link XoopsImage} 
-     * 
+     * Create a new {@link XoopsImage}
+     *
      * @param bool $isNew Flag the object as "new"
      * @return  object
      **/
@@ -91,7 +91,7 @@ class XoopsImageHandler extends XoopsObjectHandler
 
     /**
      * Load a {@link XoopsImage} object from the database
-     * 
+     *
      * @param   int $id     ID
      * @param bool  $getbinary
      * @return  object  {@link XoopsImage}, FALSE on fail
@@ -116,11 +116,11 @@ class XoopsImageHandler extends XoopsObjectHandler
 
     /**
      * Write a {@link XoopsImage} object to the database
-     * 
-     * @param   object  &$image {@link XoopsImage} 
+     *
+     * @param   object  &$image {@link XoopsImage}
      * @return  bool
      **/
-    public function insert(&$image)
+    public function insert($image)
     {
         if ('xoopsimage' != strtolower(get_class($image))) {
             return false;
@@ -170,11 +170,11 @@ class XoopsImageHandler extends XoopsObjectHandler
 
     /**
      * Delete an image from the database
-     * 
-     * @param   object  &$image {@link XoopsImage} 
+     *
+     * @param   object  &$image {@link XoopsImage}
      * @return  bool
      **/
-    public function delete(&$image)
+    public function delete($image)
     {
         if ('xoopsimage' != strtolower(get_class($image))) {
             return false;
@@ -191,7 +191,7 @@ class XoopsImageHandler extends XoopsObjectHandler
 
     /**
      * Load {@link XoopsImage}s from the database
-     * 
+     *
      * @param   object $criteria  {@link CriteriaElement}
      * @param bool     $id_as_key Use the ID as key into the array
      * @param bool     $getbinary
@@ -232,8 +232,8 @@ class XoopsImageHandler extends XoopsObjectHandler
 
     /**
      * Count some images
-     * 
-     * @param   object  $criteria   {@link CriteriaElement} 
+     *
+     * @param   object  $criteria   {@link CriteriaElement}
      * @return  int
      **/
     public function getCount($criteria = null)
@@ -251,7 +251,7 @@ class XoopsImageHandler extends XoopsObjectHandler
 
     /**
      * Get a list of images
-     * 
+     *
      * @param   int     $imgcat_id
      * @param   bool    $image_display
      * @return  array   Array of {@link XoopsImage} objects

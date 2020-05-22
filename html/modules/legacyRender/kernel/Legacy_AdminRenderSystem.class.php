@@ -33,7 +33,7 @@ class Legacy_AdminSmarty extends Smarty
     // If you don't intend to override the theme, set false.
     //
     public $overrideMode = true;
-    
+
     public function Legacy_AdminSmarty()
     {
         self::__construct();
@@ -59,12 +59,12 @@ class Legacy_AdminSmarty extends Smarty
         //
         $this->force_compile = false;
     }
-    
+
     public function setModulePrefix($prefix)
     {
         $this->mModulePrefix = $prefix;
     }
-    
+
     public function _get_auto_filename($autoBase, $autoSource = null, $auotId = null)
     {
         $autoSource = $this->mModulePrefix . '_admin_' . $autoSource;
@@ -78,21 +78,21 @@ class Legacy_AdminSmarty extends Smarty
         $root =& XCube_Root::getSingleton();
         $theme = $root->mSiteConfig['Legacy']['Theme'];
         $dirname = $this->mModulePrefix;
-        
+
         if (null != $dirname) {
             $params['resource_base_path'] = XOOPS_THEME_PATH . '/' . $theme . '/modules/' . $dirname;
             $params['quiet'] = true;
-            
+
             $_return = parent::_fetch_resource_info($params);
         }
 
         if (!$_return) {
             unset($params['resource_base_path']);
             $params['quiet'] = false;
-            
+
             $_return = parent::_fetch_resource_info($params);
         }
-        
+
         return $_return;
     }
 }
@@ -105,20 +105,20 @@ class Legacy_AdminRenderSystem extends Legacy_RenderSystem
 {
     public $mController;
     public $mSmarty;
-    
+
     /**
      * This is the buffer which stores standard output when the render-target
      * in renderMain() doesn't use a template.
-     * 
+     *
      * @access private
      * @var string
      */
     public $_mStdoutBuffer = null;
-    
+
     public function prepare(&$controller)
     {
         $this->mController =& $controller;
-        
+
         $this->mSmarty =new Legacy_AdminSmarty();
         $this->mSmarty->register_modifier('theme', 'Legacy_modifier_theme');
         $this->mSmarty->register_function('stylesheet', 'Legacy_function_stylesheet');
@@ -148,7 +148,7 @@ class Legacy_AdminRenderSystem extends Legacy_RenderSystem
             $this->mSmarty->force_compile = true;
         }
     }
-    
+
     public function renderBlock(&$target)
     {
         $this->mSmarty->template_dir = XOOPS_ROOT_PATH . '/modules/legacy/admin/templates';
@@ -156,7 +156,7 @@ class Legacy_AdminRenderSystem extends Legacy_RenderSystem
         foreach ($target->getAttributes() as $key => $value) {
             $this->mSmarty->assign($key, $value);
         }
-        
+
         $this->mSmarty->setModulePrefix($target->getAttribute('legacy_module'));
         $result = $this->mSmarty->fetch('blocks/' . $target->getTemplateName());
         $target->setResult($result);
@@ -168,7 +168,7 @@ class Legacy_AdminRenderSystem extends Legacy_RenderSystem
             $this->mSmarty->clear_assign($key);
         }
     }
-    
+
     public function renderTheme(&$target)
     {
         //
@@ -186,7 +186,7 @@ class Legacy_AdminRenderSystem extends Legacy_RenderSystem
         $headerScript = $context->getAttribute('headerScript');
         $moduleHeader =  $headerScript->createLibraryTag() . $headerScript->createOnloadFunctionTag();
         $vars['xoops_module_header'] = $moduleHeader;
-    
+
         //
         // Get a virtual current module object from the controller and assign it.
         //
@@ -199,7 +199,7 @@ class Legacy_AdminRenderSystem extends Legacy_RenderSystem
         $vars['legacy_sitename'] = $context->getAttribute('legacy_sitename');
         $vars['legacy_pagetitle'] = $context->getAttribute('legacy_pagetitle');
         $vars['legacy_slogan'] = $context->getAttribute('legacy_slogan');
-        
+
         //
         // Theme rendering
         //
@@ -211,13 +211,13 @@ class Legacy_AdminRenderSystem extends Legacy_RenderSystem
         $vars['xoops_lblocks'] = $blocks;
 
         $smarty->assign($vars);
-        
+
         //
         // Check Theme or Fallback
         //
         $root =& XCube_Root::getSingleton();
         $theme = $root->mSiteConfig['Legacy']['Theme'];
-        
+
         if (file_exists(XOOPS_ROOT_PATH.'/themes/'.$theme.'/admin_theme.html')) {
             $smarty->template_dir=XOOPS_THEME_PATH.'/'.$theme;
         } else {
@@ -238,23 +238,23 @@ class Legacy_AdminRenderSystem extends Legacy_RenderSystem
         foreach ($target->getAttributes() as $key=>$value) {
             $this->mSmarty->assign($key, $value);
         }
-       
+
         $result = null;
-        
+
         if ($target->getTemplateName()) {
             if (null != $target->getAttribute('legacy_module')) {
                 $this->mSmarty->setModulePrefix($target->getAttribute('legacy_module'));
                 $this->mSmarty->template_dir = XOOPS_MODULE_PATH . '/' . $target->getAttribute('legacy_module') . '/admin/'. LEGACY_ADMIN_RENDER_TEMPLATE_DIRNAME;
             }
-            
+
             $result=$this->mSmarty->fetch('file:'.$target->getTemplateName());
             $buffer = $target->getAttribute('stdout_buffer');
-            
+
             $this->_mStdoutBuffer .= $buffer;
         } else {
             $result=$target->getAttribute('stdout_buffer');
         }
-        
+
         $target->setResult($result);
 
         //
@@ -279,7 +279,7 @@ class Legacy_AdminRenderSystem extends Legacy_RenderSystem
 function Legacy_modifier_theme($string)
 {
     $infoArr = Legacy_get_override_file($string);
-    
+
     if (null != $infoArr['theme'] && null != $infoArr['dirname']) {
         return XOOPS_THEME_URL . '/' . $infoArr['theme'] . '/modules/' . $infoArr['dirname'] . '/' . $string;
     } elseif (null != $infoArr['theme']) {
@@ -287,24 +287,24 @@ function Legacy_modifier_theme($string)
     } elseif (null != $infoArr['dirname']) {
         return XOOPS_MODULE_URL . '/' . $infoArr['dirname'] . '/admin/templates/' . $string;
     }
-   
+
     return LEGACY_ADMIN_RENDER_FALLBACK_URL . '/' . $string;
 }
 
-function Legacy_function_stylesheet($params, &$smarty)
+function Legacy_function_stylesheet($params, $smarty)
 {
     if (!isset($params['file'])) {
         $smarty->trigger_error('stylesheet: missing file parameter.');
         return;
     }
-    
+
     $file = $params['file'];
-    
+
     if (false !== strstr($file, '..')) {
         $smarty->trigger_error('stylesheet: missing file parameter.');
         return;
     }
-    
+
     $media = (isset($params['media'])) ? $params['media'] : 'all';
 
     $infoArr = Legacy_get_override_file($file, 'stylesheets/');
@@ -359,20 +359,20 @@ function Legacy_get_override_file($file, $prefix = null, $isSpDirname = false)
     $ret = [];
     $ret['theme'] = $theme;
     $ret['file'] = $file;
-    
+
     $file = $prefix . $file;
 
     static $checkCache = [];
     if (isset($checkCache[$file])) {
         return $checkCache[$file];
     }
-        
+
     $themePath = XOOPS_THEME_PATH . '/' . $theme . '/';
     if (!is_object($moduleObject)) {
         if (file_exists($themePath. $file)) {
             return $checkCache[$file] = &$ret;
         }
-        
+
         $ret['theme'] = null;
         return $checkCache[$file] = &$ret;
     } else {
@@ -385,25 +385,25 @@ function Legacy_get_override_file($file, $prefix = null, $isSpDirname = false)
         if (file_exists($themePath.'modules/'.$mfile)) {
             return $checkCache[$mfile] = &$ret;
         }
-        
+
         if (file_exists($themePath. $file)) {
             $ret['dirname'] = null;
             return $checkCache[$mfile] = &$ret;
         }
-        
+
         $ret['theme'] = null;
 
         if (file_exists(XOOPS_MODULE_PATH . '/' . $dirname . '/admin/templates/' . $file)) {
             return $checkCache[$mfile] = &$ret;
         }
-        
+
         $ret['dirname'] = null;
 
         if (file_exists(LEGACY_ADMIN_RENDER_FALLBACK_PATH . '/' . $file)) {
-            
+
             return $checkCache[$mfile] = &$ret;
         }
-        
+
         $ret['file'] =null;
         return $checkCache[$mfile] = &$ret;
     }

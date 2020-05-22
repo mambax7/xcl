@@ -15,10 +15,10 @@ class LegacyRender_HtaccessViewAction extends LegacyRender_Action
         return LEGACYRENDER_FRAME_VIEW_SUCCESS;
     }
 
-    public function executeViewSuccess(&$controller, &$xoopsUser, &$render)
+    public function executeViewSuccess(&$controller, &$xoopsUser, $render)
     {
         XCube_Root::getSingleton()->mLanguageManager->loadGlobalMessageCatalog();
-    
+
         $render->setAttribute('rewrite_base', parse_url(XOOPS_URL . '/', PHP_URL_PATH));
         $render->setAttribute('xoops_module_path', XOOPS_MODULE_PATH);
         $render->setAttribute('data_name', _REQUESTED_DATA_NAME);

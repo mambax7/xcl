@@ -43,7 +43,7 @@ class Profile_DataViewAction extends Profile_AbstractViewAction
      * @public
      * @param $render
      */
-    public function executeViewSuccess(&$render)
+    public function executeViewSuccess($render)
     {
         $render->setTemplateName('profile_data_view.html');
         $render->setAttribute('object', $this->mObject);

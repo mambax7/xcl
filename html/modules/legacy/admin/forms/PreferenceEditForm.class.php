@@ -125,7 +125,7 @@ class Legacy_PreferenceEditForm extends XCube_ActionForm
         return is_array($value) ? implode('|', $value) : $value;
     }
 
-    public function update(&$configArr)
+    public function update($configArr)
     {
         foreach (array_keys($configArr) as $key) {
             $value = $this->get($configArr[$key]->get('conf_name'));
@@ -156,7 +156,7 @@ class Legacy_ModulePreferenceEditForm extends Legacy_PreferenceEditForm
         self::__construct($module);
     }
 
-    public function __construct(&$module)
+    public function __construct($module)
     {
         parent::__construct($module);
         $this->mKeyValue = $module->get('mid');

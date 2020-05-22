@@ -18,9 +18,9 @@ class Xupdate_Admin_IndexAction extends Xupdate_AbstractAction
 {
     /**
      * getDefaultView
-     * 
+     *
      * @param	void
-     * 
+     *
      * @return	Enum
     **/
     public function getDefaultView()
@@ -30,12 +30,12 @@ class Xupdate_Admin_IndexAction extends Xupdate_AbstractAction
 
     /**
      * executeViewSuccess
-     * 
+     *
      * @param	XCube_RenderTarget	&$render
-     * 
+     *
      * @return	void
     **/
-    public function executeViewSuccess(&$render)
+    public function executeViewSuccess($render)
     {
         $render->setTemplateName('admin.html');
         $render->setAttribute('adminMenu', $this->mModule->getAdminMenu());

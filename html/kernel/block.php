@@ -96,7 +96,7 @@ class XoopsBlock extends XoopsObject
                 SHOW_CENTERBLOCK_CENTER => 5
             ];
         }
-    
+
         // for backward compatibility
         if (isset($id)) {
             if (is_array($id)) {
@@ -134,7 +134,7 @@ class XoopsBlock extends XoopsObject
 
         switch ($format) {
         case 'S':
-        
+
             // check the type of content
             // H : custom HTML block
             // P : custom PHP block
@@ -163,7 +163,7 @@ class XoopsBlock extends XoopsObject
             $ret = $this->get('content');
             break;
         }
-        
+
         return $ret;
     }
 
@@ -258,7 +258,7 @@ class XoopsBlock extends XoopsObject
             if (file_exists($path = XOOPS_ROOT_PATH.'/modules/'.($dirname=$this->getVar('dirname', 'N')).'/blocks/'.$this->getVar('func_file', 'N'))) {
                 $root =& XCube_Root::getSingleton();
                 $root->mLanguageManager->loadBlockMessageCatalog($dirname);
-                
+
                 include_once $path;
                 $options = explode('|', $this->getVar('options', 'N'));
                 $edit_form = $edit_func($options);
@@ -381,7 +381,7 @@ class XoopsBlockHandler extends XoopsObjectHandler
     }
 
     /**
-     * Create a new block by array that is defined in xoops_version. You must 
+     * Create a new block by array that is defined in xoops_version. You must
      * be careful that the value that it is returned doesn't have $mid, $func_num
      * and $dirname.
      *
@@ -433,7 +433,7 @@ class XoopsBlockHandler extends XoopsObjectHandler
                 return $block;
             }
         }
-        
+
         $ret = false;    //< You may think this should be null. But this is the compatibility with X2.
         return $ret;
     }
@@ -445,7 +445,7 @@ class XoopsBlockHandler extends XoopsObjectHandler
      * @param bool $autolink
      * @return bool TRUE if succesful
      */
-    public function insert(&$block, $autolink=false)
+    public function insert($block, $autolink=false)
     {
         if ('xoopsblock' != strtolower(get_class($block))) {
             return false;
@@ -461,7 +461,7 @@ class XoopsBlockHandler extends XoopsObjectHandler
         }
 
         $isNew = false;
-        
+
         $db = $this->db;
         if ($block->isNew()) {
             $isNew = true;
@@ -495,7 +495,7 @@ class XoopsBlockHandler extends XoopsObjectHandler
      * @param object XoopsBlock $block reference to the block to delete
      * @return bool TRUE if succesful
      **/
-    public function delete(&$block)
+    public function delete($block)
     {
         if ('xoopsblock' != strtolower(get_class($block))) {
             return false;
@@ -543,7 +543,7 @@ class XoopsBlockHandler extends XoopsObjectHandler
         }
         return $ret;
     }
-    
+
     public function &getObjectsDirectly($criteria = null)
     {
         $ret = [];
@@ -554,7 +554,7 @@ class XoopsBlockHandler extends XoopsObjectHandler
         if ($criteria) {
             $sql .= ' ' . $criteria->renderWhere();
         }
-        
+
         $result = $this->db->query($sql);
         if (!$result) {
             return $ret;
@@ -563,12 +563,12 @@ class XoopsBlockHandler extends XoopsObjectHandler
         while ($row = $this->db->fetchArray($result)) {
             $block =& $this->create(false);
             $block->assignVars($row);
-            
+
             $ret[] =& $block;
-            
+
             unset($block);
         }
-        
+
         return $ret;
     }
 
@@ -835,7 +835,7 @@ class XoopsBlockHandler extends XoopsObjectHandler
             } else {
                 $sql .= ' AND m.module_id=0';
             }
-            
+
             //
             // SIDE
             //
@@ -856,7 +856,7 @@ class XoopsBlockHandler extends XoopsObjectHandler
                 if ($blockFlag & SHOW_CENTERBLOCK_RIGHT) {
                     $arr[] = 'b.side=' . $this->mBlockFlagMapping[SHOW_CENTERBLOCK_RIGHT];
                 }
-                
+
                 $sql .= ' AND (' . implode(' OR ', $arr) . ')';
             }
 
@@ -963,7 +963,7 @@ class XoopsBlockHandler extends XoopsObjectHandler
         $db = $this->db;
         $db->prepare('UPDATE ' . $db->prefix('newblocks') . ' SET isactive=? WHERE mid=?');
         $db->bind_param('ii', $isActive, $moduleId);
-        
+
         if ($force) {
             $db->executeF();
         } else {

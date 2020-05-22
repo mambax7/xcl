@@ -25,48 +25,48 @@ class Legacy_NotifyListAction extends Legacy_Action
 {
     public $mModules = [];
     public $mActionForm = null;
-    
-    public function prepare(&$controller, &$xoopsUser)
+
+    public function prepare($controller, &$xoopsUser)
     {
         $root =& $controller->mRoot;
         $root->mLanguageManager->loadPageTypeMessageCatalog('notification');
         $root->mLanguageManager->loadModuleMessageCatalog('legacy');
-        
+
         $this->mActionForm =new Legacy_NotifyDeleteForm();
         $this->mActionForm->prepare();
     }
-    
-    public function hasPermission(&$controller, &$xoopsUser)
+
+    public function hasPermission(&$controller, $xoopsUser)
     {
         return is_object($xoopsUser);
     }
 
-    public function getDefaultView(&$contoller, &$xoopsUser)
+    public function getDefaultView(&$contoller, $xoopsUser)
     {
         $criteria =new Criteria('not_uid', $xoopsUser->get('uid'));
         $criteria->setSort('not_modid, not_category, not_itemid');
-        
+
         $handler =& xoops_gethandler('notification');
         $notificationArr =& $handler->getObjects($criteria);
 
         $moduleHandler =& xoops_gethandler('module');
-        
+
         $prev_modid = -1;
         $prev_category = -1;
         $prev_item = -1;
         foreach ($notificationArr as $notify) {
             $t_modid = $notify->get('not_modid');
-            
+
             $module =& $moduleHandler->get($t_modid);
             if (!is_object($module)) {
                 continue;
             }
-            
+
             if ($t_modid != $prev_modid) {
                 $prev_modid = $t_modid;
                 $prev_category = -1;
                 $prev_item = -1;
-                
+
                 $this->mModules[$t_modid] = [
                     'id' => $t_modid,
                     'name' => $module->getShow('name'),
@@ -100,14 +100,14 @@ class Legacy_NotifyListAction extends Legacy_Action
                     }
                 }
             }
-            
+
             $t_category = $notify->get('not_category');
             if ($t_category != $prev_category) {
                 $prev_category = $t_category;
                 $prev_item = -1;
                 $categoryInfo =& notificationCategoryInfo($t_category, $t_modid);
             }
-            
+
             $t_item = $notify->get('not_itemid');
             if ($t_item != $prev_item) {
                 $prev_item = $t_item;
@@ -123,7 +123,7 @@ class Legacy_NotifyListAction extends Legacy_Action
                     'notifications' => []
                 ];
             }
-            
+
             $eventInfo =& notificationEventInfo($t_category, $notify->get('not_event'), $notify->get('not_modid'));
             $this->mModules[$t_modid]['categories'][$t_category]['items'][$t_item]['notifications'][] = [
                 'id' => $notify->get('not_id'),
@@ -136,20 +136,20 @@ class Legacy_NotifyListAction extends Legacy_Action
                 'user_id' => $notify->get('not_uid')
             ];
         }
-        
+
         return LEGACY_FRAME_VIEW_INDEX;
     }
 
-    public function executeViewIndex(&$controller, &$xoopsUser, &$render)
+    public function executeViewIndex(&$controller, &$xoopsUser, $render)
     {
         $render->setTemplateName('legacy_notification_list.html');
-        
+
         $render->setAttribute('modules', $this->mModules);
         $render->setAttribute('currentUser', $xoopsUser);
         $render->setAttribute('actionForm', $this->mActionForm);
     }
 
-    public function executeViewError(&$controller, &$xoopsUser, &$render)
+    public function executeViewError($controller, &$xoopsUser, &$render)
     {
         $controller->executeForward('./index.php?action=NotifyList');
     }

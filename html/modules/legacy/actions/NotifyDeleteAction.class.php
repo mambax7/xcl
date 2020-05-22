@@ -25,19 +25,19 @@ class Legacy_NotifyDeleteAction extends Legacy_Action
 {
     public $mModules = [];
     public $mActionForm = null;
-    
+
     public $mErrorMessage = null;
-    
-    public function prepare(&$controller, &$xoopsUser)
+
+    public function prepare($controller, &$xoopsUser)
     {
         $controller->mRoot->mLanguageManager->loadPageTypeMessageCatalog('notification');
         $controller->mRoot->mLanguageManager->loadModuleMessageCatalog('legacy');
-        
+
         $this->mActionForm =new Legacy_NotifyDeleteForm();
         $this->mActionForm->prepare();
     }
 
-    public function hasPermission(&$controller, &$xoopsUser)
+    public function hasPermission(&$controller, $xoopsUser)
     {
         return is_object($xoopsUser);
     }
@@ -49,11 +49,11 @@ class Legacy_NotifyDeleteAction extends Legacy_Action
      * @param $xoopsUser
      * @return int
      */
-    public function execute(&$contoller, &$xoopsUser)
+    public function execute(&$contoller, $xoopsUser)
     {
         $this->mActionForm->fetch();
         $this->mActionForm->validate();
-        
+
         //
         // If input values are error, the action form returns fatal error flag.
         // If it's not fatal, display confirm form.
@@ -73,22 +73,22 @@ class Legacy_NotifyDeleteAction extends Legacy_Action
                 $successFlag = $successFlag & $handler->delete($t_notify);
             }
         }
-        
+
         return $successFlag ? LEGACY_FRAME_VIEW_SUCCESS : LEGACY_FRAME_VIEW_ERROR;
     }
-        
-    public function executeViewInput(&$controller, &$xoopsUser, &$render)
+
+    public function executeViewInput(&$controller, &$xoopsUser, $render)
     {
         $render->setTemplateName('legacy_notification_delete.html');
         $render->setAttribute('actionForm', $this->mActionForm);
     }
 
-    public function executeViewSuccess(&$controller, &$xoopsUser, &$render)
+    public function executeViewSuccess($controller, &$xoopsUser, &$render)
     {
         $controller->executeForward(XOOPS_URL . '/notifications.php');
     }
 
-    public function executeViewError(&$controller, &$xoopsUser, &$render)
+    public function executeViewError($controller, &$xoopsUser, &$render)
     {
         $controller->executeRedirect(XOOPS_URL . '/notifications.php', 2, _NOT_NOTHINGTODELETE);
     }

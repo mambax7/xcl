@@ -28,13 +28,13 @@ class XCube_PageNavigator
      * @var Array
      */
     public $mAttributes = [];
-    
+
     /**
      * Offset.
      * @var int
      */
     public $mStart = 0;
-    
+
     /**
      * The max number of items which this navigator handles.
      * @var int
@@ -46,20 +46,20 @@ class XCube_PageNavigator
      * @var int
      */
     public $mPerpage = XCUBE_PAGENAVI_DEFAULT_PERPAGE;
-    
+
     /**
      * Flag indicating whether this class receives the perpage value specified
      * by the request.
      * @var bool
      */
     public $mPerpageFreeze = false;
-    
+
     /**
      * Array for sort.
      * @var Array
      */
     public $mSort = [];
-    
+
     /**
      * The base url for this navigator.
      * @var string
@@ -76,7 +76,7 @@ class XCube_PageNavigator
      * Array of string for re-building the query strings.
      */
     public $mExtra = [];
-    
+
     /**
      * Options indicating what this navigator fetches automatically.
      */
@@ -86,24 +86,24 @@ class XCube_PageNavigator
      * @XCube_Delegate
      */
     public $mFetch = null;
-    
+
     /**
      * The value indicating whether the mTotal property already has been
      * specified.
      * @var bool
      */
     public $_mIsSpecifedTotalItems = false;
-    
+
     /**
      * This delegate is used in only case which mTotal isn't set yet.
-     * 
+     *
      * void getTotal(int &total, const XCube_Navigator);
-     * 
+     *
      * @var XCube_Delegate
      */
     public $mGetTotalItems = null;
-    
-    
+
+
     /**
      * Constructor.
      * @param string $url
@@ -113,17 +113,17 @@ class XCube_PageNavigator
     {
         $this->mUrl = $url;
         $this->mFlags = $flags;
-        
+
         $this->mFetch =new XCube_Delegate();
         $this->mFetch->add([&$this, 'fetchNaviControl']);
-        
+
         $this->mGetTotalItems =new XCube_Delegate();
     }
     public function XCube_PageNavigator($url, $flags = XCUBE_PAGENAVI_START)
     {
         return self::__construct($url, $flags);
     }
-    
+
     /**
      * Gets values which this navigator handles, from the request. And, sets
      * values to this object's properties.
@@ -132,14 +132,14 @@ class XCube_PageNavigator
     {
         $this->mFetch->call(new XCube_Ref($this));
     }
-    
-    public function fetchNaviControl(&$navi)
+
+    public function fetchNaviControl($navi)
     {
         $root =& XCube_Root::getSingleton();
-        
+
         $startKey = $navi->getStartKey();
         $perpageKey = $navi->getPerpageKey();
-        
+
         if ($navi->mFlags & XCUBE_PAGENAVI_START) {
             $t_start = $root->mContext->mRequest->getRequest($navi->getStartKey());
             if (null !== $t_start && (int)$t_start >= 0) {
@@ -159,14 +159,14 @@ class XCube_PageNavigator
     {
         $this->mExtra[$key] = $value;
     }
-    
+
     public function removeExtra($key)
     {
         if ($this->mExtra[$key]) {
             unset($this->mExtra[$key]);
         }
     }
-    
+
 
     protected function _renderExtra(/*** string ***/ $key, /*** mixed ***/ $extra, /*** string[] ***/ &$query)
     {
@@ -187,31 +187,31 @@ class XCube_PageNavigator
         if (!is_array($mask)) {
             $mask = [$mask];
         }
-        
+
         if (count($this->mExtra) > 0) {
             $tarr= [];
-            
+
             foreach ($this->mExtra as $key=>$value) {
                 if (is_array($mask) && !in_array($key, $mask)) {
                     //$tarr[]=$key."=".urlencode($value);
                     $this->_renderExtra($key, $value, $tarr);
                 }
             }
-            
+
             if (0 === count($tarr)) {
                 return $this->mUrl;
             }
-            
+
             if (false !== strpos($this->mUrl, '?')) {
                 return $this->mUrl . '&amp;' . implode('&amp;', $tarr);
             } else {
                 return $this->mUrl . '?' . implode('&amp;', $tarr);
             }
         }
-        
+
         return $this->mUrl;
     }
-    
+
     /**
      * Return url string for navigation. The return value is lose start value.
      * The user need to add start value. For example, It is "$navi->getRenderUrl().'20'".
@@ -223,65 +223,65 @@ class XCube_PageNavigator
         if (null !== $mask && !is_array($mask)) {
             $mask = [$mask];
         }
-        
+
         $demiliter = '?';
         $url = $this->getRenderBaseUrl($mask);
-        
+
         if (false !== strpos($url, '?')) {
             $demiliter = '&amp;';
         }
-        
+
         return $url . $demiliter . $this->getStartKey() . '=';
     }
-    
+
     public function renderUrlForSort()
     {
         if (count($this->mExtra) > 0) {
             $tarr= [];
-            
+
             foreach ($this->mExtra as $key=>$value) {
                 //$tarr[]=$key."=".urlencode($value);
                 $this->_renderExtra($key, $value, $tarr);
             }
-            
+
             $tarr[] = $this->getPerpageKey() . '=' . $this->mPerpage;
-            
+
             if (false !== strpos($this->mUrl, '?')) {
                 return $this->mUrl . '&amp;' . implode('&amp;', $tarr);
             } else {
                 return $this->mUrl . '?' . implode('&amp;', $tarr);
             }
         }
-        
+
         return $this->mUrl;
     }
-    
+
     public function renderUrlForPage($page = null)
     {
         $tarr= [];
-    
+
         foreach ($this->mExtra as $key=>$value) {
             //$tarr[]=$key."=".urlencode($value);
             $this->_renderExtra($key, $value, $tarr);
         }
-    
+
         foreach ($this->mSort as $key=>$value) {
             $tarr[]= $key . '=' . urlencode($value);
         }
-    
+
         $tarr[] = $this->getPerpageKey() . '=' . $this->getPerpage();
-    
+
         if (null !== $page) {
             $tarr[] = $this->getStartKey() . '=' . (int)$page;
         }
-    
+
         if (false !== strpos($this->mUrl, '?')) {
             return $this->mUrl . '&amp;' . implode('&amp;', $tarr);
         }
-    
+
         return $this->mUrl . '?' . implode('&amp;', $tarr);
     }
-    
+
     /**
      * Return url string for sort. The return value is complete style.
      * @param null $mask
@@ -297,34 +297,34 @@ class XCube_PageNavigator
     {
         $this->mStart = (int)$start;
     }
-    
+
     public function getStart()
     {
         return $this->mStart;
     }
-    
+
     public function setTotalItems($total)
     {
         $this->mTotal = (int)$total;
         $this->_mIsSpecifiedTotal = true;
     }
-    
+
     public function getTotalItems()
     {
         if (false === $this->_mIsSpecifedTotalItems) {
             $this->mGetTotalItems->call(new XCube_Ref($this->mTotal));
             $this->_mIsSpecifedTotalItems = true;
         }
-        
+
         return $this->mTotal;
     }
-    
+
     public function getTotalPages()
     {
         if ($this->getPerpage() > 0) {
             return ceil($this->getTotalItems() / $this->getPerpage());
         }
-        
+
         return 0;
     }
 
@@ -332,12 +332,12 @@ class XCube_PageNavigator
     {
         $this->mPerpage = (int)$perpage;
     }
-    
+
     public function freezePerpage()
     {
         $this->mPerpageFreeze = true;
     }
-    
+
     public function getPerpage()
     {
         return $this->mPerpage;
@@ -347,7 +347,7 @@ class XCube_PageNavigator
     {
         $this->mPrefix = $prefix;
     }
-    
+
     public function getPrefix()
     {
         return $this->mPrefix;
@@ -362,12 +362,12 @@ class XCube_PageNavigator
     {
         return $this->mPrefix . 'perpage';
     }
-    
+
     public function getCurrentPage()
     {
         return (int)floor(($this->getStart() + $this->getPerpage()) / $this->getPerpage());
     }
-    
+
     public function hasPrivPage()
     {
         return ($this->getStart() - $this->getPerpage()) >= 0;
@@ -376,7 +376,7 @@ class XCube_PageNavigator
     public function getPrivStart()
     {
         $prev = $this->getStart() - $this->getPerpage();
-        
+
         return ($prev > 0) ? $prev : 0;
     }
 
@@ -388,7 +388,7 @@ class XCube_PageNavigator
     public function getNextStart()
     {
         $next = $this->getStart() + $this->getPerpage();
-        
+
         return ($this->getTotalItems() > $next) ? $next : 0;
     }
 }

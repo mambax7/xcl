@@ -15,20 +15,20 @@ class User_EditUserForm extends User_AbstractUserEditForm
     {
         return 'Module.User.EditUserForm.Token.' . $this->get('uid');
     }
-    
+
     /**
      * TODO The argument of this member property may be moved to constructor.
      */
     public function prepare()
     {
         parent::prepare();
-        
+
         //
         // set properties
         //
         $this->mFormProperties['uid'] =new XCube_IntProperty('uid');
         $this->mFormProperties['name'] =new XCube_StringProperty('name');
-        
+
         if ($this->mConfig['allow_chgmail']) {
             $this->mFormProperties['email'] =new XCube_StringProperty('email');
         }
@@ -96,7 +96,7 @@ class User_EditUserForm extends User_AbstractUserEditForm
         $this->mFieldProperties['user_msnm']->setDependsByArray(['maxlength']);
         $this->mFieldProperties['user_msnm']->addMessage('maxlength', _MD_USER_ERROR_MAXLENGTH, _MD_USER_LANG_USER_MSNM, '100');
         $this->mFieldProperties['user_msnm']->addVar('maxlength', 100);
-        
+
         $this->mFieldProperties['pass'] =new XCube_FieldProperty($this);
         $this->mFieldProperties['pass']->setDependsByArray(['minlength', 'maxlength']);
         $this->mFieldProperties['pass']->addMessage('minlength', _MD_USER_ERROR_MINLENGTH, _MD_USER_LANG_PASS, $this->mConfig['minpass']);
@@ -108,7 +108,7 @@ class User_EditUserForm extends User_AbstractUserEditForm
         $this->mFieldProperties['vpass']->setDependsByArray(['maxlength']);
         $this->mFieldProperties['vpass']->addMessage('maxlength', _MD_USER_ERROR_MAXLENGTH, _MD_USER_LANG_VERIFYPASS, '32');
         $this->mFieldProperties['vpass']->addVar('maxlength', 32);
-        
+
         $this->mFieldProperties['timezone_offset'] =new XCube_FieldProperty($this);
         $this->mFieldProperties['timezone_offset']->setDependsByArray(['required']);
         $this->mFieldProperties['timezone_offset']->addMessage('required', _MD_USER_ERROR_REQUIRED, _MD_USER_LANG_TIMEZONE_OFFSET);
@@ -137,7 +137,7 @@ class User_EditUserForm extends User_AbstractUserEditForm
         $this->mFieldProperties['notify_mode']->addMessage('intRange', _MD_USER_ERROR_INJURY, _MD_USER_LANG_NOTIFY_MODE);
         $this->mFieldProperties['notify_mode']->addVar('min', 0);
         $this->mFieldProperties['notify_mode']->addVar('max', 2);
-        
+
         $this->mFieldProperties['user_occ'] =new XCube_FieldProperty($this);
         $this->mFieldProperties['user_occ']->setDependsByArray(['maxlength']);
         $this->mFieldProperties['user_occ']->addMessage('maxlength', _MD_USER_ERROR_MAXLENGTH, _MD_USER_LANG_USER_OCC, '100');
@@ -147,20 +147,20 @@ class User_EditUserForm extends User_AbstractUserEditForm
         $this->mFieldProperties['user_intrest']->setDependsByArray(['maxlength']);
         $this->mFieldProperties['user_intrest']->addMessage('maxlength', _MD_USER_ERROR_MAXLENGTH, _MD_USER_LANG_USER_INTREST, '150');
         $this->mFieldProperties['user_intrest']->addVar('maxlength', 150);
-        
+
         $this->mFieldProperties['bio'] =new XCube_FieldProperty($this);
         $this->mFieldProperties['bio']->setDependsByArray(['maxlength']);
         $this->mFieldProperties['bio']->addMessage('maxlength', _MD_USER_ERROR_MAXLENGTH, _MD_USER_LANG_BIO, '250');
         $this->mFieldProperties['bio']->addVar('maxlength', 250);
-    
+
         XCube_DelegateUtils::call('Legacy_Profile.SetupActionForm', $this);
     }
-    
-    public function load(&$obj)
+
+    public function load($obj)
     {
         $this->set('uid', $obj->get('uid'));
         $this->set('name', $obj->get('name'));
-        
+
         if ($this->mConfig['allow_chgmail']) {
             $this->set('email', $obj->get('email'));
         }
@@ -184,20 +184,20 @@ class User_EditUserForm extends User_AbstractUserEditForm
         $this->set('bio', $obj->get('bio'));
         $this->set('user_intrest', $obj->get('user_intrest'));
         $this->set('user_mailok', $obj->get('user_mailok'));
-        
+
         $this->set('pass', null);
         $this->set('vpass', null);
-        
+
         $root =& XCube_Root::getSingleton();
         $this->set('usercookie', empty($_COOKIE[$this->mConfig['usercookie']]) ? 0 : 1);
-    
+
         XCube_DelegateUtils::call('Legacy_Profile.LoadActionForm', $this);
     }
-    
-    public function update(&$obj)
+
+    public function update($obj)
     {
         $obj->set('name', $this->get('name'));
-        
+
         if ($this->mConfig['allow_chgmail']) {
             $obj->set('email', $this->get('email'));
         }

@@ -31,7 +31,7 @@ class Legacy_MiscFriendForm extends XCube_ActionForm
         $this->mFormProperties['ymail'] =new XCube_StringProperty('ymail');
         $this->mFormProperties['fname'] =new XCube_StringProperty('fname');
         $this->mFormProperties['fmail'] =new XCube_StringProperty('fmail');
-    
+
         //
         // Set field properties
         //
@@ -39,29 +39,29 @@ class Legacy_MiscFriendForm extends XCube_ActionForm
         $this->mFieldProperties['yname'] =new XCube_FieldProperty($this);
         $this->mFieldProperties['yname']->setDependsByArray(['required']);
         $this->mFieldProperties['yname']->addMessage('required', _MD_LEGACY_ERROR_REQUIRED, _MD_LEGACY_LANG_YNAME);
-    
+
         $this->mFieldProperties['ymail'] =new XCube_FieldProperty($this);
         $this->mFieldProperties['ymail']->setDependsByArray(['required', 'email']);
         $this->mFieldProperties['ymail']->addMessage('required', _MD_LEGACY_ERROR_REQUIRED, _MD_LEGACY_LANG_YMAIL);
         $this->mFieldProperties['ymail']->addMessage('required', _MD_LEGACY_ERROR_EMAIL, _MD_LEGACY_LANG_YMAIL);
-    
+
         $this->mFieldProperties['fname'] =new XCube_FieldProperty($this);
         $this->mFieldProperties['fname']->setDependsByArray(['required']);
         $this->mFieldProperties['fname']->addMessage('required', _MD_LEGACY_ERROR_REQUIRED, _MD_LEGACY_LANG_FNAME);
-    
+
         $this->mFieldProperties['fmail'] =new XCube_FieldProperty($this);
         $this->mFieldProperties['fmail']->setDependsByArray(['required', 'email']);
         $this->mFieldProperties['fmail']->addMessage('required', _MD_LEGACY_ERROR_REQUIRED, _MD_LEGACY_LANG_FMAIL);
         $this->mFieldProperties['fmail']->addMessage('email', _MD_LEGACY_ERROR_EMAIL, _MD_LEGACY_LANG_FMAIL);
     }
-    
-    public function load(&$user)
+
+    public function load($user)
     {
         $this->set('yname', $user->get('uname'));
         $this->set('ymail', $user->get('email'));
     }
-    
-    public function update(&$mailer)
+
+    public function update($mailer)
     {
         $mailer->assign('YOUR_NAME', $this->get('yname'));
         $mailer->assign('FRIEND_NAME', $this->get('fname'));

@@ -19,7 +19,7 @@
  * @param Smarty
  * @return string
  */
-function smarty_function_popup($params, &$smarty)
+function smarty_function_popup($params, $smarty)
 {
     $append = '';
     foreach ($params as $_key=>$_value) {

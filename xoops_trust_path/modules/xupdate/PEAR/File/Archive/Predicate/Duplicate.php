@@ -61,7 +61,7 @@ class File_Archive_Predicate_Duplicate extends File_Archive_Predicate
      *        The predicate should then be used on the same source to remove the
      *        old duplicate files
      */
-    public function __construct(&$source)
+    public function __construct($source)
     {
         //Ensure we are at the begining of the file
         $source->close();
@@ -95,7 +95,7 @@ class File_Archive_Predicate_Duplicate extends File_Archive_Predicate
     /**
      * @see File_Archive_Predicate::isTrue()
      */
-    public function isTrue(&$source)
+    public function isTrue($source)
     {
         $filename = $source->getFilename();
         $stat = $source->getStat();

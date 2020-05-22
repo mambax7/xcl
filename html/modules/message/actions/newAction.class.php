@@ -8,14 +8,14 @@ require _MY_MODULE_PATH.'forms/MessageForm.class.php';
 class newAction extends AbstractAction
 {
     private $mActionForm;
-  
+
     public function __construct()
     {
         parent::__construct();
         $this->mActionForm = new MessageForm();
         $this->mActionForm->prepare();
     }
-  
+
     public function execute()
     {
         if (!$this->chk_use()) {
@@ -24,7 +24,7 @@ class newAction extends AbstractAction
         } else {
             $inboxid = (int)$this->root->mContext->mRequest->getRequest('res');
             $to_userid = (int)$this->root->mContext->mRequest->getRequest('to_userid');
-      
+
             if ('POST' == $_SERVER['REQUEST_METHOD']) {
                 $this->mActionForm->fetch();
                 $this->mActionForm->validate();
@@ -64,7 +64,7 @@ class newAction extends AbstractAction
             }
         }
     }
-  
+
     private function chk_deny($uid)
     {
         $fromid = $this->root->mContext->mXoopsUser->get('uid');
@@ -82,7 +82,7 @@ class newAction extends AbstractAction
         }
         return false;
     }
-  
+
   /*
   private function usemail($orgi = false)
   {
@@ -97,22 +97,22 @@ class newAction extends AbstractAction
       $mailer->setFromname($this->root->mContext->mXoopsConfig['sitename']);
       $mailer->setFrom($this->root->mContext->mXoopsConfig['adminmail']);
       $mailer->setTo($user->get('email'), $user->get('uname'));
-      
+
       $mailer->setSubject(_MD_MESSAGE_MAILSUBJECT);
       $mailer->setBody($this->getMailBody($setting->get('viewmsm')));
-      
+
       $mailer->Send();
     }
   }
   */
-  
+
   private function usemail()
   {
       $setting = $this->getSettings($this->mActionForm->fuid);
       if (1 == $setting->get('tomail')) {
           $userhand = xoops_gethandler('user');
           $user = $userhand->get($this->mActionForm->fuid);
-      
+
           $mailer = $this->getMailer();
           $mailer->setFromName($this->root->mContext->mXoopsConfig['sitename']);
           $mailer->setFromEmail($this->root->mContext->mXoopsConfig['adminmail']);
@@ -131,7 +131,7 @@ class newAction extends AbstractAction
         $tpl->template_dir = _MY_MODULE_PATH.'language/'.$this->root->mLanguageManager->mLanguageName.'/';
         $tpl->cache_dir = XOOPS_CACHE_PATH;
         $tpl->compile_dir = XOOPS_COMPILE_PATH;
-    
+
         $tpl->assign('sitename', $this->root->mContext->mXoopsConfig['sitename']);
         $tpl->assign('uname', $this->root->mContext->mXoopsUser->get('uname'));
         if (1 == $body) {
@@ -142,8 +142,8 @@ class newAction extends AbstractAction
         $tpl->assign('siteurl', XOOPS_URL.'/');
         return $tpl->fetch(_MY_MODULE_PATH.'language/'.$this->root->mLanguageManager->mLanguageName.'/invitation.tpl');
     }
-  
-    private function update_outbox(&$obj)
+
+    private function update_outbox($obj)
     {
         $outHand = xoops_getmodulehandler('outbox');
         $outHand->deleteDays($this->root->mContext->mModuleConfig['savedays']);
@@ -155,8 +155,8 @@ class newAction extends AbstractAction
         $outObj->set('utime', $obj->get('utime'));
         return $outHand->insert($outObj);
     }
-  
-    public function executeView(&$render)
+
+    public function executeView($render)
     {
         $render->setTemplateName('message_new.html');
         $render->setAttribute('mActionForm', $this->mActionForm);

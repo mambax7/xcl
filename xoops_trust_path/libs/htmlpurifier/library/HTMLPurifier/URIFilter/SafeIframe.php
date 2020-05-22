@@ -42,7 +42,7 @@ class HTMLPurifier_URIFilter_SafeIframe extends HTMLPurifier_URIFilter
      * @param HTMLPurifier_Context $context
      * @return bool
      */
-    public function filter(&$uri, $config, $context)
+    public function filter($uri, $config, $context)
     {
         // check if filter not applicable
         if (!$config->get('HTML.SafeIframe')) {

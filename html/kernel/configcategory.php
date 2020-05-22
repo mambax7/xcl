@@ -34,10 +34,10 @@ if (!defined('XOOPS_ROOT_PATH')) {
 }
 
 /**
- * 
- * 
+ *
+ *
  * @package     kernel
- * 
+ *
  * @author	    Kazumi Ono	<onokazu@xoops.org>
  * @copyright	copyright (c) 2000-2003 XOOPS.org
  */
@@ -45,17 +45,17 @@ if (!defined('XOOPS_ROOT_PATH')) {
 
 /**
  * A category of configs
- * 
+ *
  * @author	Kazumi Ono	<onokazu@xoops.org>
  * @copyright	copyright (c) 2000-2003 XOOPS.org
- * 
+ *
  * @package     kernel
  */
 class XoopsConfigCategory extends XoopsObject
 {
     /**
      * Constructor
-     * 
+     *
      */
     public function __construct()
     {
@@ -80,14 +80,14 @@ class XoopsConfigCategory extends XoopsObject
 
 
 /**
- * XOOPS configuration category handler class.  
- * 
- * This class is responsible for providing data access mechanisms to the data source 
+ * XOOPS configuration category handler class.
+ *
+ * This class is responsible for providing data access mechanisms to the data source
  * of XOOPS configuration category class objects.
  *
  * @author  Kazumi Ono <onokazu@xoops.org>
  * @copyright	copyright (c) 2000-2003 XOOPS.org
- * 
+ *
  * @package     kernel
  * @subpackage  config
  */
@@ -96,10 +96,10 @@ class XoopsConfigCategoryHandler extends XoopsObjectHandler
 
     /**
      * Create a new category
-     * 
+     *
      * @param	bool    $isNew  Flag the new object as "new"?
-     * 
-     * @return	object  New {@link XoopsConfigCategory} 
+     *
+     * @return	object  New {@link XoopsConfigCategory}
      */
     public function &create($isNew = true)
     {
@@ -111,10 +111,10 @@ class XoopsConfigCategoryHandler extends XoopsObjectHandler
     }
 
     /**
-     * Retrieve a {@link XoopsConfigCategory} 
-     * 
+     * Retrieve a {@link XoopsConfigCategory}
+     *
      * @param	int $id ID
-     * 
+     *
      * @return	object  {@link XoopsConfigCategory}, FALSE on fail
      */
     public function &get($id)
@@ -137,12 +137,12 @@ class XoopsConfigCategoryHandler extends XoopsObjectHandler
 
     /**
      * Store a {@link XoopsConfigCategory}
-     * 
+     *
      * @param	object   &$confcat  {@link XoopsConfigCategory}
-     * 
+     *
      * @return	bool    TRUE on success
      */
-    public function insert(&$confcat)
+    public function insert($confcat)
     {
         if ('xoopsconfigcategory' != strtolower(get_class($confcat))) {
             return false;
@@ -174,12 +174,12 @@ class XoopsConfigCategoryHandler extends XoopsObjectHandler
 
     /**
      * Delelete a {@link XoopsConfigCategory}
-     * 
+     *
      * @param	object  &$confcat   {@link XoopsConfigCategory}
-     * 
+     *
      * @return	bool    TRUE on success
      */
-    public function delete(&$confcat)
+    public function delete($confcat)
     {
         if ('xoopsconfigcategory' != strtolower(get_class($confcat))) {
             return false;
@@ -193,10 +193,10 @@ class XoopsConfigCategoryHandler extends XoopsObjectHandler
 
     /**
      * Get some {@link XoopsConfigCategory}s
-     * 
-     * @param	object  $criteria   {@link CriteriaElement} 
+     *
+     * @param	object  $criteria   {@link CriteriaElement}
      * @param	bool    $id_as_key  Use the IDs as keys to the array?
-     * 
+     *
      * @return	array   Array of {@link XoopsConfigCategory}s
      */
     public function &getObjects($criteria = null, $id_as_key = false)

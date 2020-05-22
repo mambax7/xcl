@@ -57,7 +57,7 @@ class Legacy_ImageListAction extends Legacy_AbstractListAction
     {
         return './index.php?action=ImageList';
     }
-    
+
     public function getDefaultView(&$controller, &$xoopsUser)
     {
         $result = parent::getDefaultView($controller, $xoopsUser);
@@ -65,26 +65,26 @@ class Legacy_ImageListAction extends Legacy_AbstractListAction
             $cat_id = xoops_getrequest('imgcat_id');
             $handler =& xoops_getmodulehandler('imagecategory');
             $this->mCategory =& $handler->get($cat_id);
-            
+
             if (null === $this->mCategory) {
                 $result = LEGACY_FRAME_VIEW_ERROR;
             }
         }
-        
+
         return $result;
     }
 
-    public function executeViewIndex(&$controller, &$xoopsUser, &$render)
+    public function executeViewIndex($controller, &$xoopsUser, $render)
     {
         $render->setTemplateName('image_list.html');
-        
+
         foreach (array_keys($this->mObjects) as $key) {
             $this->mObjects[$key]->loadImagecategory();
         }
-        
+
         $render->setAttribute('objects', $this->mObjects);
         $render->setAttribute('pageNavi', $this->mFilter->mNavi);
-        
+
         $render->setAttribute('category', $this->mCategory);
         $render->setAttribute('actionForm', $this->mActionForm);
         $render->setAttribute('pageArr', $this->mpageArr);
@@ -102,7 +102,7 @@ class Legacy_ImageListAction extends Legacy_AbstractListAction
         $render->setAttribute('notdisplayImageTotal', $image_total - $display_image_total);
     }
 
-    public function executeViewError(&$controller, &$xoopsUser, &$render)
+    public function executeViewError($controller, &$xoopsUser, &$render)
     {
         $controller->executeForward('./index.php?action=ImagecategoryList');
     }

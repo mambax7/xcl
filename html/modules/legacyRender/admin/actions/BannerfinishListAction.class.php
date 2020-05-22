@@ -26,7 +26,7 @@ class LegacyRender_BannerfinishListAction extends LegacyRender_AbstractListActio
         return './index.php?action=BannerfinishList';
     }
 
-    public function executeViewIndex(&$controller, &$xoopsUser, &$render)
+    public function executeViewIndex(&$controller, &$xoopsUser, $render)
     {
         $render->setTemplateName('bannerfinish_list.html');
         foreach (array_keys($this->mObjects) as $key) {
@@ -34,7 +34,7 @@ class LegacyRender_BannerfinishListAction extends LegacyRender_AbstractListActio
         }
         $render->setAttribute('objects', $this->mObjects);
         $render->setAttribute('pageNavi', $this->mFilter->mNavi);
-        
+
         //
         // If cid is specified, load client object and assign it.
         //

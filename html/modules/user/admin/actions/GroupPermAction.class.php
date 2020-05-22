@@ -19,33 +19,33 @@ require_once XOOPS_MODULE_PATH . '/user/admin/forms/GroupPermEditForm.class.php'
 class User_GroupPermAction extends User_GroupPropertyAction
 {
     public $mActionForm = null;
-    
+
     public function prepare(&$controller, &$xoopsUser, $moduleConfig)
     {
         $this->mActionForm =new User_GroupPermEditForm();
         $this->mActionForm->prepare();
     }
-    
+
     public function execute(&$controller, &$xoopsUser)
     {
         $this->_loadGroup();
-        
+
         if (!is_object($this->mGroup)) {
             return USER_FRAME_VIEW_ERROR;
         }
-        
+
         $this->mActionForm->fetch();
         $this->mActionForm->validate();
-        
+
         if ($this->mActionForm->hasError()) {
             return $this->getDefaultView($controller, $xoopsUser);
         }
-        
+
         //
         // Reset group permission
         //
         $gpermHandler =& xoops_gethandler('groupperm');
-        
+
         $criteria =new CriteriaCompo();
         $criteria->add(new Criteria('gperm_groupid', $this->mGroup->get('groupid')));
         $criteria->add(new Criteria('gperm_modid', 1));
@@ -55,13 +55,13 @@ class User_GroupPermAction extends User_GroupPropertyAction
         foreach ($this->mActionForm->get('system') as $sid => $value) {
             $item =new User_PermissionSystemAdminItem($sid, null);
             $perm =new User_Permission($this->mGroup->get('groupid'), $item);
-            
+
             $perm->save();
 
             unset($item);
             unset($perm);
         }
-        
+
         $moduleHandler =& xoops_gethandler('module');
         $modPerms = [];
 
@@ -100,10 +100,10 @@ class User_GroupPermAction extends User_GroupPropertyAction
                 }
             }
         }
-        
+
         return USER_FRAME_VIEW_SUCCESS;
     }
-    
+
     public function executeViewIndex(&$controller, &$xoopsUser, &$render)
     {
         $render->setTemplateName('group_perm.html');
@@ -114,7 +114,7 @@ class User_GroupPermAction extends User_GroupPropertyAction
         $render->setAttribute('systemPermissions', $this->mSystemPermissions);
     }
 
-    public function executeViewSuccess(&$controller, &$xoopsUser, &$render)
+    public function executeViewSuccess($controller, &$xoopsUser, &$render)
     {
         $controller->executeForward('index.php?action=GroupPerm&groupid=' . $this->mGroup->getVar('groupid'));
     }

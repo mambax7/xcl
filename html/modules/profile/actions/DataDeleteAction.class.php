@@ -44,7 +44,7 @@ class Profile_DataDeleteAction extends Profile_AbstractDeleteAction
      * @public
      * @param $render
      */
-    public function executeViewInput(&$render)
+    public function executeViewInput($render)
     {
         $render->setTemplateName('profile_data_delete.html');
         $render->setAttribute('actionForm', $this->mActionForm);

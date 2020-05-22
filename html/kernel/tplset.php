@@ -112,7 +112,7 @@ class XoopsTplsetHandler extends XoopsObjectHandler
         return $ret;
     }
 
-    public function insert(&$tplset)
+    public function insert($tplset)
     {
         if ('xoopstplset' != strtolower(get_class($tplset))) {
             return false;
@@ -142,7 +142,7 @@ class XoopsTplsetHandler extends XoopsObjectHandler
         return true;
     }
 
-    public function delete(&$tplset)
+    public function delete($tplset)
     {
         if ('xoopstplset' != strtolower(get_class($tplset))) {
             return false;

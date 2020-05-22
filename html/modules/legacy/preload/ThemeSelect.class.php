@@ -24,7 +24,7 @@ class Legacy_ThemeSelect extends XCube_ActionFilter
      * @var XCube_Delegate
      */
     public $mIsSelectableTheme = null;
-    
+
     public function Legacy_ThemeSelect(&$controller)
     {
         self::__construct($controller);
@@ -38,10 +38,10 @@ class Legacy_ThemeSelect extends XCube_ActionFilter
         parent::__construct($controller);
         $this->mIsSelectableTheme =new XCube_Delegate();
         $this->mIsSelectableTheme->register('Legacy_ThemeSelect.IsSelectableTheme');
-        
+
         $controller->mSetupUser->add([&$this, 'doChangeTheme']);
     }
-    
+
     public function preBlockFilter()
     {
         $this->mController->mRoot->mDelegateManager->add('Site.CheckLogin.Success', [&$this, 'callbackCheckLoginSuccess']);
@@ -55,7 +55,7 @@ class Legacy_ThemeSelect extends XCube_ActionFilter
      * @param $controller
      * @param $context
      */
-    public function doChangeTheme(&$principal, &$controller, &$context)
+    public function doChangeTheme(&$principal, $controller, &$context)
     {
         if (!empty($_POST['xoops_theme_select'])) {
             $xoops_theme_select = explode('!-!', $_POST['xoops_theme_select']);
@@ -69,7 +69,7 @@ class Legacy_ThemeSelect extends XCube_ActionFilter
         }
     }
 
-    public function callbackCheckLoginSuccess(&$xoopsUser)
+    public function callbackCheckLoginSuccess($xoopsUser)
     {
         //
         // Check Theme and set it to session.
@@ -80,7 +80,7 @@ class Legacy_ThemeSelect extends XCube_ActionFilter
             $this->mRoot->mContext->setThemeName($userTheme);
         }
     }
-    
+
     public function _isSelectableTheme($theme_name)
     {
         return in_array($theme_name, $this->mRoot->mContext->getXoopsConfig('theme_set_allowed'));

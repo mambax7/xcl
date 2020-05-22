@@ -25,27 +25,27 @@ class Legacy_ModuleEditForm extends XCube_ActionForm
         $this->mFormProperties['read_groupid'] =new XCube_IntArrayProperty('read_groupid');
         $this->mFormProperties['admin_groupid'] =new XCube_IntArrayProperty('admin_groupid');
         $this->mFormProperties['module_cache'] =new XCube_StringProperty('module_cache');
-    
+
         //
         // Set field properties
         //
         $this->mFieldProperties['mid'] =new XCube_FieldProperty($this);
         $this->mFieldProperties['mid']->setDependsByArray(['required']);
         $this->mFieldProperties['mid']->addMessage('required', _MD_LEGACY_ERROR_REQUIRED, _AD_LEGACY_LANG_MOD_MID);
-    
+
         $this->mFieldProperties['name'] =new XCube_FieldProperty($this);
         $this->mFieldProperties['name']->setDependsByArray(['required', 'maxlength']);
         $this->mFieldProperties['name']->addMessage('required', _MD_LEGACY_ERROR_REQUIRED, _AD_LEGACY_LANG_NAME, '255');
         $this->mFieldProperties['name']->addMessage('maxlength', _MD_LEGACY_ERROR_MAXLENGTH, _AD_LEGACY_LANG_NAME, '255');
         $this->mFieldProperties['name']->addVar('maxlength', '255');
-    
+
         $this->mFieldProperties['weight'] =new XCube_FieldProperty($this);
         $this->mFieldProperties['weight']->setDependsByArray(['required', 'intRange']);
         $this->mFieldProperties['weight']->addMessage('required', _MD_LEGACY_ERROR_REQUIRED, _AD_LEGACY_LANG_WEIGHT);
         $this->mFieldProperties['weight']->addMessage('intRange', _AD_LEGACY_ERROR_INTRANGE, _AD_LEGACY_LANG_WEIGHT);
         $this->mFieldProperties['weight']->addVar('min', '0');
         $this->mFieldProperties['weight']->addVar('max', '255');
-    
+
         $this->mFieldProperties['read_groupid'] =new XCube_FieldProperty($this);
         $this->mFieldProperties['read_groupid']->setDependsByArray(['objectExist']);
         $this->mFieldProperties['read_groupid']->addMessage('objectExist', _AD_LEGACY_ERROR_OBJECTEXIST, _AD_LEGACY_LANG_GROUPID);
@@ -64,7 +64,7 @@ class Legacy_ModuleEditForm extends XCube_ActionForm
     }
 
 /*
-//Umm...some modules have no readgroup or no admingroup	
+//Umm...some modules have no readgroup or no admingroup
     function validateRead_groupid()
     {
         $groupid = $this->get('read_groupid');
@@ -72,7 +72,7 @@ class Legacy_ModuleEditForm extends XCube_ActionForm
             $this->addErrorMessage(_AD_LEGACY_ERROR_GROUPID);
         }
     }
-    
+
     function validateAdmin_groupid()
     {
         $groupid = $this->get('admin_groupid');
@@ -81,7 +81,7 @@ class Legacy_ModuleEditForm extends XCube_ActionForm
         }
     }
 */
-    public function load(&$obj)
+    public function load($obj)
     {
         $this->set('mid', $obj->get('mid'));
         $this->set('name', $obj->get('name'));
@@ -92,7 +92,7 @@ class Legacy_ModuleEditForm extends XCube_ActionForm
         $this->set('module_cache', $module_cache);
     }
 
-    public function update(&$obj)
+    public function update($obj)
     {
         $obj->set('name', $this->get('name'));
         $obj->set('weight', $this->get('weight'));

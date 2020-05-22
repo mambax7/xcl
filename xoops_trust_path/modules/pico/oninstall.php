@@ -105,7 +105,7 @@ if (!function_exists('pico_oninstall_base')) {
 		return true;
 	}
 
-	function pico_message_append_oninstall(&$module_obj, &$log)
+	function pico_message_append_oninstall(&$module_obj, $log)
 	{
 		if (is_array(@$GLOBALS['ret'])) {
 			foreach ($GLOBALS['ret'] as $message) {

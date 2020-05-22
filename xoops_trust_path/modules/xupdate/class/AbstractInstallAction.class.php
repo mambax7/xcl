@@ -43,7 +43,7 @@ class Xupdate_AbstractInstallAction extends Xupdate_AbstractAction
     protected $contents;
     protected $action;
     protected $currentMenu;
-    
+
     public function __construct()
     {
         parent::__construct();
@@ -128,19 +128,19 @@ class Xupdate_AbstractInstallAction extends Xupdate_AbstractAction
      *
      * @return	void
     **/
-    public function executeViewIndex(&$render)
+    public function executeViewIndex($render)
     {
         $jQuery = $this->mRoot->mContext->getAttribute('headerScript');
         $jQuery->addScript($this->modalBoxJs(), false);
-        
+
         $this->id = (int)$this->Xupdate->get('id');
         $this->sid = (int)$this->Xupdate->get('sid');
 
         $modHand =& $this->_getModuleStoreHandler();
         $storeHand =  & $this->_getStoreHandler();
-        
+
         $action = $this->action;
-        
+
         $mobj =& $modHand->get($this->id);
         if (is_object($mobj)) {
             $this->id = $mobj->get('id');
@@ -169,11 +169,11 @@ class Xupdate_AbstractInstallAction extends Xupdate_AbstractAction
             }
             $this->description = $mobj->get('description');
             $this->screen_shot = $mobj->options['screen_shot'];
-            
+
             $this->options = $mobj->options;
-            
+
             $action = ucfirst($mobj->get('contents')).'Store';
-            
+
             foreach ($this->options['writable_dir'] as $_key => $_chk) {
                 if (!$this->mod_config['Show_debug'] && Xupdate_Utils::checkDirWritable($_chk)) {
                     unset($this->options['writable_dir'][$_key]);
@@ -230,7 +230,7 @@ class Xupdate_AbstractInstallAction extends Xupdate_AbstractAction
 
         $render->setAttribute('currentMenu', $this->currentMenu);
         $render->setAttribute('currentItem', $this->target_key);
-        
+
         $render->setAttribute('my_dir_path', $this->my_dir_path . '/' . $this->dirname);
         $render->setAttribute('my_trust_path', $this->trust_dirname? XOOPS_TRUST_PATH . '/modules/' . $this->trust_dirname : '');
     }
@@ -242,7 +242,7 @@ class Xupdate_AbstractInstallAction extends Xupdate_AbstractAction
      *
      * @return	void
      **/
-    public function executeViewSuccess(&$render)
+    public function executeViewSuccess($render)
     {
         $xupdateFtpModuleInstall = new Xupdate_FtpModuleInstall();// Xupdate instance
         //setup
@@ -317,10 +317,10 @@ class Xupdate_AbstractInstallAction extends Xupdate_AbstractAction
             $xupdateFtpModuleInstall->options = array_merge($this->options, $xupdateFtpModuleInstall->options);
             //adump($_arr, $this->options['install_only'], $xupdateFtpModuleInstall->options);
         }
-        
+
         // for re-post on time out error
         $this->mActionForm->getToken();
-        
+
         // need module update
         if ('module' === $this->contents) {
             if ($is_install) {
@@ -331,13 +331,13 @@ class Xupdate_AbstractInstallAction extends Xupdate_AbstractAction
                 $_needModuleUpdate = '';
             }
         }
-        
+
         //execute
         if ($result = $xupdateFtpModuleInstall->execute($this->contents)) {
             $store_handler =& $this->_getStoreHandler();
             $store_handler->setNeedCacheRemake(true);
         }
-        
+
         //--------------------------------//
         $render->setTemplateName('admin_' . $this->contents . '_install.html');
 
@@ -367,10 +367,10 @@ class Xupdate_AbstractInstallAction extends Xupdate_AbstractAction
     {
         $this->mRoot->mController->executeForward('./index.php?action='.$this->action);
     }
-    
+
     /**
      * Is need update checking, compare version with xoops_version.php
-     * 
+     *
      * @param object $mobj
      * @return bool
      */

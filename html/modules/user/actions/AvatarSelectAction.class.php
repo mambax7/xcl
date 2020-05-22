@@ -15,13 +15,13 @@ require_once XOOPS_MODULE_PATH . '/user/forms/AvatarSelectForm.class.php';
  * @internal
  *  When the request is POST, this class fetches avatar_id and set it to user
  * object. This class always kicks out GET request.
- * 
+ *
  * @see User_AvatarSelectForm
  */
 class User_AvatarSelectAction extends User_AbstractEditAction
 {
     public $mOldAvatar = null;
-    
+
     public function prepare(&$controller, &$xoopsUser, $moduleConfig)
     {
         parent::prepare($controller, $xoopsUser, $moduleConfig);
@@ -33,12 +33,12 @@ class User_AvatarSelectAction extends User_AbstractEditAction
             $this->mOldAvatar =& $avatarArr[0];
         }
     }
-    
+
     public function _getId()
     {
         return isset($_REQUEST['uid']) ? (int)xoops_getrequest('uid') : 0;
     }
-    
+
     public function &_getHandler()
     {
         $handler =& xoops_getmodulehandler('users', 'user');
@@ -50,7 +50,7 @@ class User_AvatarSelectAction extends User_AbstractEditAction
         $this->mActionForm =new User_AvatarSelectForm();
         $this->mActionForm->prepare();
     }
-    
+
     /***
      *  Return false.
      *  If a user requests dummy uid, kick out him!
@@ -79,7 +79,7 @@ class User_AvatarSelectAction extends User_AbstractEditAction
      * @param $moduleConfig
      * @return bool
      */
-    public function hasPermission(&$controller, &$xoopsUser, $moduleConfig)
+    public function hasPermission($controller, $xoopsUser, $moduleConfig)
     {
         if (!is_object($this->mObject)) {
             return false;
@@ -90,7 +90,7 @@ class User_AvatarSelectAction extends User_AbstractEditAction
         } elseif ($this->mObject->get('uid') == $xoopsUser->get('uid')) {
             return ($this->mObject->get('posts') >= $this->_mMinPost);
         }
-        
+
         return false;
     }
 
@@ -105,13 +105,13 @@ class User_AvatarSelectAction extends User_AbstractEditAction
             if (null != $this->mOldAvatar && 'C' == $this->mOldAvatar->get('avatar_type')) {
                 $avatarHandler->delete($this->mOldAvatar);
             }
-            
+
             //
             // Delete all of links about this user from avatar_user_link.
             //
             $linkHandler =& xoops_getmodulehandler('avatar_user_link', 'user');
             $linkHandler->deleteAllByUser($this->mObject);
-            
+
             //
             // Insert new link.
             //
@@ -123,7 +123,7 @@ class User_AvatarSelectAction extends User_AbstractEditAction
                 $link->set('user_id', $this->mObject->get('uid'));
                 $linkHandler->insert($link);
             }
-            
+
             return true;
         }
     }
@@ -133,17 +133,17 @@ class User_AvatarSelectAction extends User_AbstractEditAction
      * @param $controller
      * @param $xoopsUser
      */
-    public function getDefaultView(&$controller, &$xoopsUser)
+    public function getDefaultView($controller, &$xoopsUser)
     {
         $controller->executeForward(XOOPS_URL . '/edituser.php?op=avatarform&uid=' . $this->mObject->get('uid'));
     }
-    
-    public function executeViewSuccess(&$controller, &$xoopsUser, &$renderSystem)
+
+    public function executeViewSuccess($controller, &$xoopsUser, &$renderSystem)
     {
         $controller->executeForward(XOOPS_URL . '/userinfo.php?op=avatarform&uid=' . $this->mActionForm->get('uid'));
     }
 
-    public function executeViewError(&$controller, &$xoopsUser, &$renderSystem)
+    public function executeViewError($controller, &$xoopsUser, &$renderSystem)
     {
         $controller->executeRedirect(XOOPS_URL . '/userinfo.php?op=avatarform&uid=' . $this->mActionForm->get('uid'), 1, _MD_USER_ERROR_DBUPDATE_FAILED);
     }

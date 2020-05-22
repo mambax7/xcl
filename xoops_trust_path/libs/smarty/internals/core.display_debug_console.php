@@ -14,7 +14,7 @@
  * @param array Format: null
  * @param Smarty
  */
-function smarty_core_display_debug_console($params, &$smarty)
+function smarty_core_display_debug_console($params, $smarty)
 {
     // we must force compile the debug template in case the environment
     // changed between separate applications.

@@ -20,7 +20,7 @@ class Legacy_SiteClose extends XCube_ActionFilter
     public function preBlockFilter()
     {
         if (1 == $this->mRoot->mContext->getXoopsConfig('closesite')) {
-            
+
             $this->mController->mSetupUser->add('Legacy_SiteClose::callbackSetupUser', XCUBE_DELEGATE_PRIORITY_FINAL);
             $this->mRoot->mDelegateManager->add('Site.CheckLogin.Success', [&$this, 'callbackCheckLoginSuccess']);
         }
@@ -34,11 +34,11 @@ class Legacy_SiteClose extends XCube_ActionFilter
      * @param $context
      * @see preBlockFilter()
      */
-    public static function callbackSetupUser(&$principal, &$controller, &$context)
+    public static function callbackSetupUser(&$principal, $controller, $context)
     {
         $accessAllowFlag = false;
         $xoopsConfig = $controller->mRoot->mContext->getXoopsConfig();
-        
+
         if (!empty($_POST['xoops_login'])) {
             $controller->checkLogin();
             return;
@@ -69,15 +69,15 @@ class Legacy_SiteClose extends XCube_ActionFilter
                     'lang_siteclosemsg' => $xoopsConfig['closesite_text']
                 ]
             );
-                                       
+
             $xoopsTpl->compile_check = true;
-            
+
             // @todo filebase template with absolute file path
             $xoopsTpl->display(XOOPS_ROOT_PATH . '/modules/legacy/templates/legacy_site_closed.html');
             exit();
         }
     }
-    
+
     /**
      * When the user logs in successfully, checks whether the user belongs to
      * the special group which is allowed to login. This function is called
@@ -85,7 +85,7 @@ class Legacy_SiteClose extends XCube_ActionFilter
      * @var XoopsUser &$xoopsUser
      * @see preBlockFilter
      */
-    public function callbackCheckLoginSuccess(&$xoopsUser)
+    public function callbackCheckLoginSuccess($xoopsUser)
     {
         //
         // This check is not needed. :)

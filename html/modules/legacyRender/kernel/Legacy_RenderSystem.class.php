@@ -303,7 +303,7 @@ class Legacy_RenderSystem extends XCube_RenderSystem
         $mTpl->clear_assign(array_keys($vars));
     }
 
-    public function _render(&$target)
+    public function _render($target)
     {
         foreach ($target->getAttributes() as $key=>$value) {
             $this->mXoopsTpl->assign($key, $value);

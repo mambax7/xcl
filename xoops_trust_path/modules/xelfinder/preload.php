@@ -69,7 +69,7 @@ if( ! class_exists( 'xelfinderPreloadBase' ) ) {
             $replacements[1][] = $rep;
         }
 
-        public function overRideImagecategoryList(&$actionFrame)
+        public function overRideImagecategoryList($actionFrame)
         {
             if ('ImagecategoryList' === $actionFrame->mActionName) {
                 $image_handler = xoops_getModuleHandler('image');

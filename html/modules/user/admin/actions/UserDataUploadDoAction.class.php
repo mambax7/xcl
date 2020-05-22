@@ -26,16 +26,16 @@ class User_UserDataUploadDoAction extends User_UserDataUploadAction
         }
         return $this->getDefaultView($controller, $xoopsUser);
     }
-    
-    
+
+
     /// 実行
-    public function executeViewSuccess(&$controller, &$xoopsUser, &$render)
+    public function executeViewSuccess($controller, &$xoopsUser, &$render)
     {
         $csv_data = $_SESSION['user_csv_upload_data'];
         $user_handler =& $this->_getHandler();
         $user_tmp = $user_handler->create();
         $user_key = array_keys($user_tmp->gets());
-        
+
         foreach ($csv_data as $data) {
             if ($data['is_new'] || $data['update']) {
                 if ($data['update']) {
@@ -57,9 +57,9 @@ class User_UserDataUploadDoAction extends User_UserDataUploadAction
                 $user_handler->insert($user);
             }
         }
-        
+
         unset($_SESSION['user_csv_upload_data']);
-        
+
         $controller->executeRedirect('index.php', 1, _AD_USER_DATA_UPLOAD_DONE);
     }
 }

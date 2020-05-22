@@ -27,7 +27,7 @@ class Legacy_SmilesAdminDeleteForm extends XCube_ActionForm
         // Set form properties
         //
         $this->mFormProperties['id'] =new XCube_IntProperty('id');
-    
+
         //
         // Set field properties
         //
@@ -36,12 +36,12 @@ class Legacy_SmilesAdminDeleteForm extends XCube_ActionForm
         $this->mFieldProperties['id']->addMessage('required', _MD_LEGACY_ERROR_REQUIRED, _AD_LEGACY_LANG_ID);
     }
 
-    public function load(&$obj)
+    public function load($obj)
     {
         $this->set('id', $obj->get('id'));
     }
 
-    public function update(&$obj)
+    public function update($obj)
     {
         $obj->set('id', $this->get('id'));
     }

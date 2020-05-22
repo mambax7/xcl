@@ -923,7 +923,7 @@ class Legacy_Controller extends XCube_Controller
      * $resultRenderTarget object The render target of content's result.
      * @param $resultRenderTarget
      */
-    public function _executeViewTheme(&$resultRenderTarget)
+    public function _executeViewTheme($resultRenderTarget)
     {
         //
         // Get the render-system through theme object.
@@ -1333,7 +1333,7 @@ class Legacy_Controller extends XCube_Controller
      * @param        $renderTarget
      * @return bool success or failure.
      */
-    public function cacheRenderTarget($filepath, &$renderTarget)
+    public function cacheRenderTarget($filepath, $renderTarget)
     {
         $fp = fopen($filepath, 'wb');
         if ($fp) {
@@ -1376,7 +1376,7 @@ class Legacy_Controller extends XCube_Controller
      * @param XoopsModule $module
      * @return string absolute URL
      */
-    public function getPreferenceEditUrl(&$module)
+    public function getPreferenceEditUrl($module)
     {
         if (is_object($module)) {
             return XOOPS_MODULE_URL . '/legacy/admin/index.php?action=PreferenceEdit&confmod_id=' . $module->get('mid');
@@ -1391,7 +1391,7 @@ class Legacy_Controller extends XCube_Controller
      * @param XoopsModule $module
      * @return string absolute URL
      */
-    public function getHelpViewUrl(&$module)
+    public function getHelpViewUrl($module)
     {
         if (is_object($module)) {
             return XOOPS_MODULE_URL . '/legacy/admin/index.php?action=Help&dirname=' . $module->get('dirname');

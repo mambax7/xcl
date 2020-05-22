@@ -10,12 +10,12 @@ class sendAction extends AbstractAction
     private $mPagenavi = null;
     private $select;
     private $subject = '';
-  
+
     public function __construct()
     {
         parent::__construct();
     }
-  
+
     private function _view()
     {
         $fromuid = 0;
@@ -41,12 +41,12 @@ class sendAction extends AbstractAction
                 $this->mPagenavi->addCriteria(new Criteria('title', '%'.$this->subject.'%', 'LIKE'));
             }
         }
-    
+
         $this->mPagenavi->fetch();
         $this->mPagenavi->mNavi->addExtra('action', 'send');
-    
+
         $this->select = $modHand->getReceiveUserList($this->root->mContext->mXoopsUser->get('uid'), $fromuid);
-    
+
         $modObj = $modHand->getObjects($this->mPagenavi->getCriteria());
 
         foreach ($modObj as $key => $val) {
@@ -58,7 +58,7 @@ class sendAction extends AbstractAction
             unset($item_ary);
         }
     }
-  
+
     public function execute()
     {
         if (!$this->chk_use()) {
@@ -68,14 +68,14 @@ class sendAction extends AbstractAction
             $this->_view();
         }
     }
-  
-    public function executeView(&$render)
+
+    public function executeView($render)
     {
         $root = XCube_Root::getSingleton();
         $render->setTemplateName('message_outboxlist.html');
         $render->setAttribute('ListData', $this->listdata);
         $render->setAttribute('pageNavi', $this->mPagenavi->mNavi);
-    
+
         $render->setAttribute('select', $this->select);
         $render->setAttribute('subject', $this->subject);
     }

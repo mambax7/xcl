@@ -85,7 +85,7 @@ class User_UserViewAction extends User_AbstractViewAction
                                                 : USER_FRAME_VIEW_ERROR;
     }
 
-    public function executeViewIndex(&$controller, &$xoopsUser, &$render)
+    public function executeViewIndex($controller, &$xoopsUser, $render)
     {
         $render->setTemplateName('user_view.html');
         $render->setAttribute('actionForm', $this->mActionForm);
@@ -134,12 +134,12 @@ class User_UserViewAction extends User_AbstractViewAction
         $render->setAttribute('data', $profile);
     }
 
-    public function executeViewSuccess(&$controller, &$xoopsUser, &$render)
+    public function executeViewSuccess($controller, &$xoopsUser, &$render)
     {
         $controller->executeRedirect('./index.php?action=UserView&uid=' . $this->mObject->get('uid'), 1, _AD_USER_MESSAGE_RECOUNT_SUCCESS);
     }
 
-    public function executeViewError(&$controller, &$xoopsUser, &$render)
+    public function executeViewError($controller, &$xoopsUser, &$render)
     {
         $controller->executeRedirect('./index.php?action=UserList', 1, _AD_USER_ERROR_CONTENT_IS_NOT_FOUND);
     }

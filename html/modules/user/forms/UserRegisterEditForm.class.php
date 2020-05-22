@@ -75,7 +75,7 @@ class User_RegisterEditForm extends User_AbstractUserEditForm
     {
     }
 
-    public function update(&$obj)
+    public function update($obj)
     {
         $obj->set('uname', $this->get('uname'));
         $obj->set('email', $this->get('email'));
@@ -98,7 +98,7 @@ class User_RegisterAgreeEditForm extends User_RegisterEditForm
     public function prepare()
     {
         parent::prepare();
-        
+
         // set properties
         $this->mFormProperties['agree']=new XCube_IntProperty('agree');
 

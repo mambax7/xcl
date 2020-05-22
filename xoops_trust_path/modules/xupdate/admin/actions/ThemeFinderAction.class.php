@@ -84,7 +84,7 @@ HTML;
      *
      * @return	void
      **/
-    public function executeViewIndex(&$render)
+    public function executeViewIndex($render)
     {
         $render->setTemplateName('admin_themefinder.html');
 

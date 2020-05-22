@@ -106,7 +106,7 @@ class File_Archive_Reader
         $std = str_replace("/./", "", $std);
         if (strncmp($std, "./", 2) == 0) {
             /**
-             * If return value is going to be / (root on POSIX) 
+             * If return value is going to be / (root on POSIX)
              */
             if (substr($std, 2) === '/') {
                 return $std;
@@ -252,7 +252,7 @@ class File_Archive_Reader
      * The data will be sent by chunks of at most $bufferSize bytes
      * If $bufferSize <= 0 (default), the blockSize option is used
      */
-    public function sendData(&$writer, $bufferSize = 0)
+    public function sendData($writer, $bufferSize = 0)
     {
         if (PEAR::isError($writer)) {
             return $writer;
@@ -302,7 +302,7 @@ class File_Archive_Reader
             } else {
                 $mime = null;
             }
-           
+
             $error = $writer->newFile(
                 $this->getFilename(),
                 $this->getStat(),

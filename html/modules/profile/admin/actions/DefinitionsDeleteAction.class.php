@@ -44,7 +44,7 @@ class Profile_Admin_DefinitionsDeleteAction extends Profile_AbstractDeleteAction
      * @public
      * @param $render
      */
-    public function executeViewInput(&$render)
+    public function executeViewInput($render)
     {
         $render->setTemplateName('definitions_delete.html');
         $render->setAttribute('actionForm', $this->mActionForm);

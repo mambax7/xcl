@@ -22,7 +22,7 @@
  *
  * @return string|null
  */
-function smarty_function_math($params, &$smarty)
+function smarty_function_math($params, $smarty)
 {
     static $_allowed_funcs =
         array('int' => true, 'abs' => true, 'ceil' => true, 'cos' => true, 'exp' => true, 'floor' => true,

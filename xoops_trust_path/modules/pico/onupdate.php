@@ -147,7 +147,7 @@ if (!function_exists('pico_onupdate_base')) {
 		return true;
 	}
 
-	function pico_message_append_onupdate(&$module_obj, &$log)
+	function pico_message_append_onupdate(&$module_obj, $log)
 	{
 		if (is_array(@$GLOBALS['msgs'])) {
 			foreach ($GLOBALS['msgs'] as $message) {

@@ -92,12 +92,12 @@ function &notificationCategoryInfo($category_name = null, $module_id = null)
         $module_handler =& xoops_gethandler('module');
         $module =& $module_handler->get($module_id);
     }
-    
+
     if (!is_object($module)) {
         $ret = false;
         return $ret;
     }
-    
+
     $not_config =& $module->getInfo('notification');
     if (null == $category_name) {
         return $not_config['category'];
@@ -107,7 +107,7 @@ function &notificationCategoryInfo($category_name = null, $module_id = null)
             return $category;
         }
     }
-    
+
     $ret = false;
     return $ret;
 }
@@ -142,7 +142,7 @@ function &notificationCommentCategoryInfo($module_id=null)
             }
         }
     }
-    
+
     $ret = false;
     return $ret;
 }
@@ -168,12 +168,12 @@ function &notificationEvents($category_name, $enabled_only, $module_id=null)
         $module_handler =& xoops_gethandler('module');
         $module =& $module_handler->get($module_id);
     }
-    
+
     if (!is_object($module)) {
         $ret = false;
         return $ret;
     }
-    
+
     $not_config =& $module->getInfo('notification');
     $config_handler =& xoops_gethandler('config');
     $mod_config = $config_handler->getConfigsByCat(0, $module_id);
@@ -186,7 +186,7 @@ function &notificationEvents($category_name, $enabled_only, $module_id=null)
     $override_comment = false;
     $override_commentsubmit = false;
     $override_bookmark = false;
-    
+
     foreach ($not_config['event'] as $event) {
         if ($event['category'] == $category_name) {
             $event['mail_template_dir'] = XOOPS_ROOT_PATH . '/modules/' . $module->getVar('dirname') . '/language/' . $xoopsConfig['language'] . '/mail_template/';
@@ -204,7 +204,7 @@ function &notificationEvents($category_name, $enabled_only, $module_id=null)
             }
         }
     }
-    
+
 
     $root =& XCube_Root::getSingleton();
     $root->mLanguageManager->loadPageTypeMessageCatalog('notification');
@@ -287,11 +287,11 @@ function &notificationEvents($category_name, $enabled_only, $module_id=null)
  * @param  object $module    Module
  * @return bool
  **/
-function notificationEventEnabled(&$category, &$event, &$module)
+function notificationEventEnabled(&$category, &$event, $module)
 {
     $config_handler =& xoops_gethandler('config');
     $mod_config = $config_handler->getConfigsByCat(0, $module->getVar('mid'));
-    
+
     $option_name = notificationGenerateConfig($category, $event, 'option_name');
     if (is_array($mod_config['notification_events']) && in_array($option_name, $mod_config['notification_events'])) {
         return true;
@@ -321,7 +321,7 @@ function &notificationEventInfo($category_name, $event_name, $module_id=null)
             }
         }
     }
-    
+
     $ret = false;
     return $ret;
 }
@@ -394,7 +394,7 @@ function &notificationSubscribableCategoryInfo($module_id=null)
  *
  * @return bool|string
  */
-function notificationGenerateConfig(&$category, &$event, $type)
+function notificationGenerateConfig($category, $event, $type)
 {
     switch ($type) {
     case 'option_value':

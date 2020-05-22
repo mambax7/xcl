@@ -7,14 +7,14 @@ require _MY_MODULE_PATH.'forms/MessageSettingsForm.class.php';
 class settingsAction extends AbstractAction
 {
     private $mActionForm;
-  
+
     public function __construct()
     {
         parent::__construct();
         $this->mActionForm = new MessageSettingsForm();
         $this->mActionForm->prepare();
     }
-  
+
     public function execute()
     {
         $modHand = xoops_getmodulehandler('settings', _MY_DIRNAME);
@@ -39,8 +39,8 @@ class settingsAction extends AbstractAction
             }
         }
     }
-  
-    public function executeView(&$render)
+
+    public function executeView($render)
     {
         $render->setTemplateName('message_settings.html');
         $render->setAttribute('mActionForm', $this->mActionForm);

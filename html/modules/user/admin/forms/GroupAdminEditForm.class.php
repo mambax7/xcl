@@ -26,14 +26,14 @@ class User_GroupAdminEditForm extends XCube_ActionForm
         $this->mFormProperties['groupid'] =new XCube_IntProperty('groupid');
         $this->mFormProperties['name'] =new XCube_StringProperty('name');
         $this->mFormProperties['description'] =new XCube_TextProperty('description');
-    
+
         //
         // Set field properties
         //
         $this->mFieldProperties['groupid'] =new XCube_FieldProperty($this);
         $this->mFieldProperties['groupid']->setDependsByArray(['required']);
         $this->mFieldProperties['groupid']->addMessage('required', _MD_USER_ERROR_REQUIRED, _MD_USER_LANG_GROUPID);
-    
+
         $this->mFieldProperties['name'] =new XCube_FieldProperty($this);
         $this->mFieldProperties['name']->setDependsByArray(['required', 'maxlength']);
         $this->mFieldProperties['name']->addMessage('required', _MD_USER_ERROR_REQUIRED, _AD_USER_LANG_GROUP_NAME, '50');
@@ -41,14 +41,14 @@ class User_GroupAdminEditForm extends XCube_ActionForm
         $this->mFieldProperties['name']->addVar('maxlength', '50');
     }
 
-    public function load(&$obj)
+    public function load($obj)
     {
         $this->set('groupid', $obj->get('groupid'));
         $this->set('name', $obj->get('name'));
         $this->set('description', $obj->get('description'));
     }
 
-    public function update(&$obj)
+    public function update($obj)
     {
         $obj->set('groupid', $this->get('groupid'));
         $obj->set('name', $this->get('name'));

@@ -35,15 +35,15 @@ if (!defined('XOOPS_ROOT_PATH')) {
 
 /**
  * a group of users
- * 
+ *
  * @copyright copyright (c) 2000-2003 XOOPS.org
- * @author Kazumi Ono <onokazu@xoops.org> 
+ * @author Kazumi Ono <onokazu@xoops.org>
  * @package kernel
  */
 class XoopsGroup extends XoopsObject
 {
     /**
-     * constructor 
+     * constructor
      */
     public function __construct()
     {
@@ -81,10 +81,10 @@ class XoopsGroupHandler extends XoopsObjectHandler
 
     /**
      * create a new {@link XoopsGroup} object
-     * 
+     *
      * @param bool $isNew mark the new object as "new"?
      * @return object XoopsGroup reference to the new object
-     * 
+     *
      */
     public function &create($isNew = true)
     {
@@ -100,7 +100,7 @@ class XoopsGroupHandler extends XoopsObjectHandler
 
     /**
      * retrieve a specific group
-     * 
+     *
      * @param int $id ID of the group to get
      * @return object XoopsGroup reference to the group object, FALSE if failed
      */
@@ -124,11 +124,11 @@ class XoopsGroupHandler extends XoopsObjectHandler
 
     /**
      * insert a group into the database
-     * 
+     *
      * @param object reference to the group object
      * @return mixed ID of the group if inserted, FALSE if failed, TRUE if already present and unchanged.
      */
-    public function insert(&$group)
+    public function insert($group)
     {
         if ('xoopsgroup' != strtolower(get_class($group))) {
             return false;
@@ -161,11 +161,11 @@ class XoopsGroupHandler extends XoopsObjectHandler
 
     /**
      * remove a group from the database
-     * 
+     *
      * @param object $group reference to the group to be removed
      * @return bool FALSE if failed
      */
-    public function delete(&$group)
+    public function delete($group)
     {
         if ('xoopsgroup' != strtolower(get_class($group))) {
             return false;
@@ -179,7 +179,7 @@ class XoopsGroupHandler extends XoopsObjectHandler
 
     /**
      * retrieve groups from the database
-     * 
+     *
      * @param object $criteria {@link CriteriaElement} with conditions for the groups
      * @param bool $id_as_key should the groups' IDs be used as keys for the associative array?
      * @return mixed Array of groups
@@ -215,7 +215,7 @@ class XoopsGroupHandler extends XoopsObjectHandler
 
 /**
  * membership of a user in a group
- * 
+ *
  * @author Kazumi Ono <onokazu@xoops.org>
  * @copyright copyright (c) 2000-2003 XOOPS.org
  * @package kernel
@@ -223,12 +223,12 @@ class XoopsGroupHandler extends XoopsObjectHandler
 class XoopsMembership extends XoopsObject
 {
     /**
-     * constructor 
+     * constructor
      */
     public function __construct()
     {
         //parent::__construct();
-       
+
         $this->initVar('linkid', XOBJ_DTYPE_INT, null, false);
         $this->initVar('groupid', XOBJ_DTYPE_INT, null, false);
         $this->initVar('uid', XOBJ_DTYPE_INT, null, false);
@@ -237,8 +237,8 @@ class XoopsMembership extends XoopsObject
 
 /**
 * XOOPS membership handler class. (Singleton)
-* 
-* This class is responsible for providing data access mechanisms to the data source 
+*
+* This class is responsible for providing data access mechanisms to the data source
 * of XOOPS group membership class objects.
 *
 * @author Kazumi Ono <onokazu@xoops.org>
@@ -250,7 +250,7 @@ class XoopsMembershipHandler extends XoopsObjectHandler
 
     /**
      * create a new membership
-     * 
+     *
      * @param bool $isNew should the new object be set to "new"?
      * @return object XoopsMembership
      */
@@ -265,7 +265,7 @@ class XoopsMembershipHandler extends XoopsObjectHandler
 
     /**
      * retrieve a membership
-     * 
+     *
      * @param int $id ID of the membership to get
      * @return mixed reference to the object if successful, else FALSE
      */
@@ -289,11 +289,11 @@ class XoopsMembershipHandler extends XoopsObjectHandler
 
     /**
      * inserts a membership in the database
-     * 
+     *
      * @param object $mship reference to the membership object
      * @return bool TRUE if already in DB or successful, FALSE if failed
      */
-    public function insert(&$mship)
+    public function insert($mship)
     {
         if ('xoopsmembership' != strtolower(get_class($mship))) {
             return false;
@@ -326,11 +326,11 @@ class XoopsMembershipHandler extends XoopsObjectHandler
 
     /**
      * delete a membership from the database
-     * 
+     *
      * @param object $mship reference to the membership object
      * @return bool FALSE if failed
      */
-    public function delete(&$mship)
+    public function delete($mship)
     {
         if ('xoopsmembership' != strtolower(get_class($mship))) {
             return false;
@@ -344,7 +344,7 @@ class XoopsMembershipHandler extends XoopsObjectHandler
 
     /**
      * retrieve memberships from the database
-     * 
+     *
      * @param object $criteria {@link CriteriaElement} conditions to meet
      * @param bool $id_as_key should the ID be used as the array's key?
      * @return array array of references
@@ -379,7 +379,7 @@ class XoopsMembershipHandler extends XoopsObjectHandler
 
     /**
      * count how many memberships meet the conditions
-     * 
+     *
      * @param object $criteria {@link CriteriaElement} conditions to meet
      * @return int
      */
@@ -400,7 +400,7 @@ class XoopsMembershipHandler extends XoopsObjectHandler
 
     /**
      * delete all memberships meeting the conditions
-     * 
+     *
      * @param object $criteria {@link CriteriaElement} with conditions to meet
      * @return bool
      */

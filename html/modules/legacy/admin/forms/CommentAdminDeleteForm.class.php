@@ -40,12 +40,12 @@ class Legacy_CommentAdminDeleteForm extends XCube_ActionForm
         $this->mFieldProperties['com_id']->addMessage('required', _MD_LEGACY_ERROR_REQUIRED, _MD_LEGACY_LANG_COM_ID);
     }
 
-    public function load(&$obj)
+    public function load($obj)
     {
         $this->setVar('com_id', $obj->get('com_id'));
     }
 
-    public function update(&$obj)
+    public function update($obj)
     {
         $obj->setVar('com_id', $this->get('com_id'));
     }

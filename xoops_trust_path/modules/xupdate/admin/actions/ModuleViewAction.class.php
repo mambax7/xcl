@@ -22,7 +22,7 @@ class Xupdate_Admin_ModuleViewAction extends Xupdate_AbstractAction
     //	protected $stores ;
 //	protected $items ;
     private $fetchLog;
-    
+
     public function __construct()
     {
         parent::__construct();
@@ -79,7 +79,7 @@ class Xupdate_Admin_ModuleViewAction extends Xupdate_AbstractAction
      *
      * @return	void
     **/
-    public function executeViewSuccess(&$render)
+    public function executeViewSuccess($render)
     {
         if ($this->mRoot->mContext->mRequest->getRequest('checkonly')) {
             while (ob_get_level() && @ ob_end_clean()) {
@@ -92,7 +92,7 @@ class Xupdate_Admin_ModuleViewAction extends Xupdate_AbstractAction
             readfile(XOOPS_ROOT_PATH . '/images/blank.gif');
             exit();
         }
-        
+
         // Check install dirctory
         if (XUPDATE_INSTALLERCHECKER_ACTIVE && is_dir(XOOPS_ROOT_PATH . '/install')) {
             while (ob_get_level() && @ ob_end_clean()) {
@@ -100,7 +100,7 @@ class Xupdate_Admin_ModuleViewAction extends Xupdate_AbstractAction
             header('Location:' . XOOPS_MODULE_URL . '/xupdate/admin/index.php?action=InstallChecker');
             exit();
         }
-        
+
         $render->setTemplateName('admin_module_view.html');
 
         $render->setAttribute('mod_config', $this->mod_config);
@@ -113,7 +113,7 @@ class Xupdate_Admin_ModuleViewAction extends Xupdate_AbstractAction
 
         $render->setAttribute('adminMenu', $this->mModule->getAdminMenu());
         $render->setAttribute('currentMenu', _MI_XUPDATE_ADMENU_STORELIST);
-        
+
         $render->setAttribute('fetchLog', $this->fetchLog);
 
         $render->setAttribute('categoryList', Xupdate_Utils::getCategoryList($this->mAsset->mDirname));

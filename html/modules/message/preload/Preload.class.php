@@ -13,7 +13,7 @@ class Message_Preload extends XCube_ActionFilter
             require_once XOOPS_MODULE_PATH.'/message/service/Service.class.php';
             $service = new Message_Service();
             $service->prepare();
-      
+
             $this->mRoot->mServiceManager->addService('privateMessage', $service);
             if (1 == $conf['newalert']) {
                 $this->mRoot->mDelegateManager->add('Myfriend.NewAlert', 'Message_Preload::getNewMessage');
@@ -30,12 +30,12 @@ class Message_Preload extends XCube_ActionFilter
     $this->mRoot->mDelegateManager->add('Legacy.Event.GetHandler', 'Message_Preload::makeHandler');
         $this->mRoot->mDelegateManager->add('Legacy_RenderSystem.SetupXoopsTpl', 'Message_Preload::addFilter');
     }
-  
-    public static function addFilter(&$xoopsTpl)
+
+    public static function addFilter($xoopsTpl)
     {
         $xoopsTpl->plugins_dir[] = XOOPS_MODULE_PATH.'/message/smarty';
     }
-  
+
     public static function getNewMessage(&$arrays)
     {
         $root = XCube_Root::getSingleton();
@@ -52,8 +52,8 @@ class Message_Preload extends XCube_ActionFilter
             }
         }
     }
-  
-    public static function _createAction(&$actionFrame)
+
+    public static function _createAction($actionFrame)
     {
         if (is_object($actionFrame->mAction)) {
             return;
@@ -66,13 +66,13 @@ class Message_Preload extends XCube_ActionFilter
         break;
     }
     }
-  
+
     public static function accessToReadpmsg()
     {
         $root = XCube_Root::getSingleton();
         $root->mController->executeForward(XOOPS_MODULE_URL.'/message/');
     }
-  
+
     public static function makeHandler(&$handler, $name, $optional)
     {
         if ('privmessage' == $name) {

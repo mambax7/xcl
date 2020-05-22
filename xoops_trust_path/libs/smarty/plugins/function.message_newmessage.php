@@ -5,11 +5,11 @@
 if (!defined('XOOPS_ROOT_PATH')) {
     exit();
 }
-function smarty_function_message_newmessage($params, &$smarty)
+function smarty_function_message_newmessage($params, $smarty)
 {
     $name = isset($params['name']) ? trim($params['name']) : 'new_messages';
     $open = isset($params['open']) ? trim($params['open']) : 'open_message_alert';
-  
+
     $new_messages = false;
     $root = XCube_Root::getSingleton();
     if ($root->mContext->mUser->isInRole('Site.RegisteredUser')) {

@@ -49,7 +49,7 @@ class textsanitizer
         return $instance;
     }
 
-    public function &makeClickable(&$text)
+    public function &makeClickable($text)
     {
         $patterns = ["/([^]_a-z0-9-=\"'\/])([a-z]+?):\/\/([^, \r\n\"\(\)'<>]+)/i",
             "/([^]_a-z0-9-=\"'\/])www\.([a-z0-9\-]+)\.([^, \r\n\"\(\)'<>]+)/i",
@@ -94,7 +94,7 @@ class textsanitizer
         return $text;
     }
 
-    public function &undoHtmlSpecialChars(&$text)
+    public function &undoHtmlSpecialChars($text)
     {
         $ret = preg_replace(['/&gt;/i',
             '/&lt;/i',

@@ -301,7 +301,7 @@ class XoopsForm
         if (is_object($ele) && method_exists($ele, 'getValue')) {
             return $ele->getValue($value);
         }
-        
+
         $ret = null;
         return $ret;
     }
@@ -412,25 +412,25 @@ class XoopsForm
     {
         $root =& XCube_Root::getSingleton();
         $renderSystem =& $root->getRenderSystem(XOOPSFORM_DEPENDENCE_RENDER_SYSTEM);
-        
+
         $renderTarget =& $renderSystem->createRenderTarget();
-    
+
         $renderTarget->setAttribute('legacy_module', 'legacy');
         $renderTarget->setTemplateName('legacy_xoopsform_opt_validationjs.html');
         $renderTarget->setAttribute('form', $this);
         $renderTarget->setAttribute('withtags', $withtags);
-        
+
         $required =& $this->getRequired();
         $reqcount = count($required);
-        
+
         $renderTarget->setAttribute('required', $required);
         $renderTarget->setAttribute('required_count', $reqcount);
-        
+
         $renderSystem->render($renderTarget);
-    
+
         return $renderTarget->getResult();
-        
-        
+
+
         $js = '';
         if ($withtags) {
             $js .= "\n<!-- Start Form Vaidation JavaScript //-->\n<script type='text/javascript'>\n<!--//\n";
@@ -461,7 +461,7 @@ class XoopsForm
      * @param   object  &$tpl    reference to a {@link Smarty} object
      * @see     Smarty
      */
-    public function assign(&$tpl)
+    public function assign($tpl)
     {
         $i = 0;
         $elements = [];

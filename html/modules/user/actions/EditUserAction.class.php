@@ -22,21 +22,21 @@ class User_EditUserAction extends User_AbstractEditAction
      * @var string
      */
     public $mUserCookie = '';
-    
+
     public function prepare(&$controller, &$xoopsUser, $moduleConfig)
     {
         parent::prepare($controller, $xoopsUser, $moduleConfig);
         $this->mUserCookie = $moduleConfig['usercookie'];
     }
-    
+
     public function _getId()
     {
         $root =& XCube_Root::getSingleton();
         $uid = is_object($root->mContext->mXoopsUser) ? $root->mContext->mXoopsUser->get('uid') : 0;
-        
+
         return isset($_REQUEST['uid']) ? (int)xoops_getrequest('uid') : $uid;
     }
-    
+
     public function &_getHandler()
     {
         $handler =& xoops_getmodulehandler('users', 'user');
@@ -46,7 +46,7 @@ class User_EditUserAction extends User_AbstractEditAction
     /**
      * Because editable fields are decided by the module config, this member
      * function hands the config to the constructor of the action form.
-     * 
+     *
      * @see User_AbstractUserEditForm
      */
     public function _setupActionForm()
@@ -57,9 +57,9 @@ class User_EditUserAction extends User_AbstractEditAction
 
     /**
      * _getPageTitle
-     * 
+     *
      * @param	void
-     * 
+     *
      * @return	string
     **/
     protected function _getPagetitle()
@@ -87,7 +87,7 @@ class User_EditUserAction extends User_AbstractEditAction
      * @param $moduleConfig
      * @return bool
      */
-    public function hasPermission(&$controller, &$xoopsUser, $moduleConfig)
+    public function hasPermission($controller, $xoopsUser, $moduleConfig)
     {
         if (!is_object($this->mObject)) {
             return false;
@@ -96,7 +96,7 @@ class User_EditUserAction extends User_AbstractEditAction
         if ($controller->mRoot->mContext->mUser->isInRole('Module.user.Admin')) {
             return true;
         }
-        
+
         return ($this->mObject->get('uid') == $xoopsUser->get('uid'));
     }
 
@@ -116,25 +116,25 @@ class User_EditUserAction extends User_AbstractEditAction
         }
     }
 
-    public function executeViewInput(&$controller, &$xoopsUser, &$render)
+    public function executeViewInput(&$controller, &$xoopsUser, $render)
     {
         $render->setTemplateName('user_edituser.html');
         $render->setAttribute('actionForm', $this->mActionForm);
         $render->setAttribute('thisUser', $this->mObject);
         $render->setAttribute('currentUser', $xoopsUser);
         $render->setAttribute('allow_chgmail', $this->mConfig['allow_chgmail']);
-        
+
         $handler =& xoops_gethandler('timezone');
         $timezoneArr =& $handler->getObjects();
         $render->setAttribute('timezones', $timezoneArr);
-        
+
         //
         // umode option
         //
         $umodeOptions = ['nest' => _NESTED, 'flat' => _FLAT, 'thread' => _THREADED];
         $render->setAttribute('umodeOptions', $umodeOptions);
 
-        //		
+        //
         // uorder option
         //
         $uorderOptions = [0 => _OLDESTFIRST, 1 => _NEWESTFIRST];
@@ -163,7 +163,7 @@ class User_EditUserAction extends User_AbstractEditAction
         $methodOptions[XOOPS_NOTIFICATION_METHOD_EMAIL] = _NOT_METHOD_EMAIL;
 
         $render->setAttribute('notify_methodOptions', $methodOptions);
-        
+
         $modeOptions = [
             XOOPS_NOTIFICATION_MODE_SENDALWAYS => _NOT_MODE_SENDALWAYS,
             XOOPS_NOTIFICATION_MODE_SENDONCETHENDELETE => _NOT_MODE_SENDONCE,
@@ -180,13 +180,13 @@ class User_EditUserAction extends User_AbstractEditAction
         $headerScript->addScript('$(".datepicker").each(function(){$(this).datepicker({dateFormat: "'._JSDATEPICKSTRING.'"});});');
     }
 
-    public function executeViewSuccess(&$controller, &$xoopsUser, &$render)
+    public function executeViewSuccess($controller, &$xoopsUser, &$render)
     {
         $redirect = xoops_getrequest('xoops_redirect');
         $controller->executeForward(($redirect && '/' === $redirect[0])? $redirect : (XOOPS_URL . '/userinfo.php?uid=' . $this->mObject->getShow('uid')));
     }
 
-    public function executeViewError(&$controller, &$xoopsUser, &$render)
+    public function executeViewError($controller, &$xoopsUser, &$render)
     {
         $controller->executeRedirect(XOOPS_URL . '/', 1, _MD_USER_ERROR_DBUPDATE_FAILED);
     }

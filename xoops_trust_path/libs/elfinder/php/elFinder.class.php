@@ -4660,7 +4660,7 @@ var go = function() {
      * @author Naoki Sawada
      * @return bool|mixed
      */
-    public static function sessionDataDecode(&$var, $checkIs = null)
+    public static function sessionDataDecode($var, $checkIs = null)
     {
         if (self::$base64encodeSessionData) {
             $data = unserialize(base64_decode($var));

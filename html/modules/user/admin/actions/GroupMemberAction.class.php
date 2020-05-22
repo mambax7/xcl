@@ -24,11 +24,11 @@ class User_GroupMemberAction extends User_Action
 {
     /**
      * Target group object
-     * 
+     *
      * @var UserGroupsObject
      */
     public $mGroup = null;
-    
+
     /**
      * group member list.
      */
@@ -40,7 +40,7 @@ class User_GroupMemberAction extends User_Action
      */
     public $mNoUsers = [];
     public $mNoPageNavi = null;
-    
+
     public $mActionForm = null;
 
     public function prepare(&$controller, &$xoopsUser, $moduleConfig)
@@ -73,7 +73,7 @@ class User_GroupMemberAction extends User_Action
         $this->mPageNavi->setPerpage(USER_GROUPMEMBER_DEFAULT_PERPAGE);
 
         $this->mPageNavi->fetch();
-        
+
         $this->mUsers =& $memberHandler->getUsersByGroup($groupid, true, $this->mPageNavi->getPerpage(), $this->mPageNavi->getStart());
 
         //
@@ -88,7 +88,7 @@ class User_GroupMemberAction extends User_Action
         $this->mNoPageNavi->setPerpage(USER_GROUPMEMBER_DEFAULT_PERPAGE);
 
         $this->mNoPageNavi->fetch();
-        
+
         $this->mNoUsers =& $memberHandler->getUsersByNoGroup($groupid, true, $this->mNoPageNavi->getPerpage(), $this->mNoPageNavi->getStart());
 
         return USER_FRAME_VIEW_INDEX;
@@ -100,20 +100,20 @@ class User_GroupMemberAction extends User_Action
         if (!is_object($this->mGroup)) {
             return USER_FRAME_VIEW_ERROR;
         }
-        
+
         $this->mActionForm->fetch();
         $this->mActionForm->validate();
-        
+
         if ($this->mActionForm->hasError()) {
             return $this->getDefaultView($controller, $xoopsUser);
         }
 
         $memberHandler =& xoops_gethandler('member');
         $userHandler =& xoops_getmodulehandler('users');
-        
+
         foreach ($this->mActionForm->get('uid') as $uid => $value) {
             $user =& $userHandler->get($uid);
-            
+
             if (is_object($user)) {
                 if (1 == $value) {
                     $memberHandler->addUserToGroup($this->mGroup->get('groupid'), $uid);
@@ -122,7 +122,7 @@ class User_GroupMemberAction extends User_Action
                 }
             }
         }
-        
+
         return $this->getDefaultView($controller, $xoopsUser);
     }
 
@@ -136,7 +136,7 @@ class User_GroupMemberAction extends User_Action
         }
     }
 
-    public function executeViewIndex(&$controller, &$xoopsUser, &$render)
+    public function executeViewIndex(&$controller, &$xoopsUser, $render)
     {
         $render->setTemplateName('group_member.html');
         $render->setAttribute('group', $this->mGroup);
@@ -146,7 +146,7 @@ class User_GroupMemberAction extends User_Action
 
         $render->setAttribute('noUsers', $this->mNoUsers);
         $render->setAttribute('noPageNavi', $this->mNoPageNavi);
-        
+
         $render->setAttribute('actionForm', $this->mActionForm);
     }
 }

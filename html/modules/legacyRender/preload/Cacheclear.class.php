@@ -21,14 +21,14 @@ class LegacyRender_Cacheclear extends XCube_ActionFilter
         $this->mRoot->mDelegateManager->add('Legacy_ModuleUpdateAction.UpdateSuccess', [$this, 'cacheClear']);
         $this->mRoot->mDelegateManager->add('Legacy_ModuleUninstaller._fireNotifyUninstallTemplateBegun', [$this, 'cacheClear']);
     }
-    
-    public function cacheClear(&$module)
+
+    public function cacheClear($module)
     {
         $handler =& xoops_getmodulehandler('tplfile', 'legacyRender');
-        
+
         $criteria =new Criteria('tpl_module', $module->get('dirname'));
         $tplfileArr = $handler->getObjects($criteria);
-        
+
         $xoopsTpl =new XoopsTpl();
         foreach (array_keys($tplfileArr) as $key) {
             $xoopsTpl->clear_cache('db:' . $tplfileArr[$key]->get('tpl_file'));

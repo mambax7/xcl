@@ -142,7 +142,7 @@ class LegacyRender_TplfileListAction extends LegacyRender_AbstractListAction
         $controller->executeRedirect("index.php?action=TplfileList&tpl_tplset=${last_tplset}&tpl_module=${last_module}", 1, $errorMessage);
     }
 
-    public function executeViewIndex(&$controller, &$xoopsUser, &$render)
+    public function executeViewIndex($controller, &$xoopsUser, $render)
     {
         $controller->mRoot->mDelegateManager->add('Legacy.Event.Explaceholder.Get.LegacyRenderPagenaviHidden', 'LegacyRender_TplfileListAction::renderHiddenControl');
 

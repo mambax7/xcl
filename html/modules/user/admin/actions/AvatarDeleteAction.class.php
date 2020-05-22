@@ -29,13 +29,13 @@ class User_AvatarDeleteAction extends User_AbstractDeleteAction
         $this->mActionForm =new User_AvatarAdminDeleteForm();
         $this->mActionForm->prepare();
     }
-    
+
     public function _doExecute()
     {
         $linkHandler =& xoops_getmodulehandler('avatar_user_link');
         $criteria =new Criteria('avatar_id', $this->mObject->get('avatar_id'));
         $linkArr =& $linkHandler->getObjects($criteria);
-        
+
         if ($this->mObjectHandler->delete($this->mObject)) {
             //
             // Clear all user who set the avatar deleted with blank.gif
@@ -52,31 +52,31 @@ class User_AvatarDeleteAction extends User_AbstractDeleteAction
                     unset($user);
                 }
             }
-            
+
             return true;
         } else {
             return false;
         }
     }
 
-    public function executeViewInput(&$controller, &$xoopsUser, &$render)
+    public function executeViewInput(&$controller, &$xoopsUser, $render)
     {
         $render->setTemplateName('avatar_delete.html');
         $render->setAttribute('actionForm', $this->mActionForm);
         $render->setAttribute('object', $this->mObject);
     }
 
-    public function executeViewSuccess(&$controller, &$xoopsUser, &$render)
+    public function executeViewSuccess($controller, &$xoopsUser, &$render)
     {
         $controller->executeForward('./index.php?action=AvatarList');
     }
 
-    public function executeViewError(&$controller, &$xoopsUser, &$render)
+    public function executeViewError($controller, &$xoopsUser, &$render)
     {
         $controller->executeRedirect('./index.php?action=AvatarList', 1, _MD_USER_ERROR_DBUPDATE_FAILED);
     }
-    
-    public function executeViewCancel(&$controller, &$xoopsUser, &$render)
+
+    public function executeViewCancel($controller, &$xoopsUser, &$render)
     {
         $controller->executeForward('./index.php?action=AvatarList');
     }

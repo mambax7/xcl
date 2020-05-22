@@ -19,8 +19,8 @@ class Legacy_MiscFriendAction extends Legacy_Action
 {
     public $mActionForm = null;
     public $mMailer = null;
-    
-    public function hasPermission(&$controller, &$xoopsUser)
+
+    public function hasPermission(&$controller, $xoopsUser)
     {
         return is_object($xoopsUser);
     }
@@ -36,45 +36,45 @@ class Legacy_MiscFriendAction extends Legacy_Action
         $this->mActionForm->load($xoopsUser);
         return LEGACY_FRAME_VIEW_INPUT;
     }
-    
+
     public function execute(&$controller, &$xoopsUser)
     {
         $this->mActionForm->fetch();
         $this->mActionForm->validate();
-        
+
         if ($this->mActionForm->hasError()) {
             return LEGACY_FRAME_VIEW_INPUT;
         }
-        
+
         $root =& XCube_Root::getSingleton();
-        
+
         $this->mMailer =& getMailer();
         $this->mMailer->setTemplate('tellfriend.tpl');
         $this->mMailer->assign('SITENAME', $root->mContext->getXoopsConfig('sitename'));
         $this->mMailer->assign('ADMINMAIL', $root->mContext->getXoopsConfig('adminmail'));
         $this->mMailer->assign('SITEURL', XOOPS_URL . '/');
-        
+
         $this->mActionForm->update($this->mMailer);
-        
+
         $root->mLanguageManager->loadPageTypeMessageCatalog('misc');
-        
+
         $this->mMailer->setSubject(sprintf(_MSC_INTSITE, $root->mContext->getXoopsConfig('sitename')));
-        
+
         return $this->mMailer->send() ? LEGACY_FRAME_VIEW_SUCCESS : LEGACY_FRAME_VIEW_ERROR;
     }
-    
-    public function executeViewInput(&$controller, &$xoopsUser, &$render)
+
+    public function executeViewInput(&$controller, &$xoopsUser, $render)
     {
         $render->setTemplateName('legacy_misc_friend.html');
         $render->setAttribute('actionForm', $this->mActionForm);
     }
 
-    public function executeViewSuccess(&$controller, &$xoopsUser, &$render)
+    public function executeViewSuccess(&$controller, &$xoopsUser, $render)
     {
         $render->setTemplateName('legacy_misc_friend_success.html');
     }
 
-    public function executeViewError(&$controller, &$xoopsUser, &$render)
+    public function executeViewError(&$controller, &$xoopsUser, $render)
     {
         $render->setTemplateName('legacy_misc_friend_error.html');
         $render->setAttribute('xoopsMailer', $this->mMailer);

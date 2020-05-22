@@ -45,7 +45,7 @@ if (! function_exists('altsys_onuninstall_base')) {
     return true ;
     }
 
-    function altsys_message_append_onuninstall(&$module_obj, &$log)
+    function altsys_message_append_onuninstall(&$module_obj, $log)
     {
         if (is_array(@$GLOBALS['ret'])) {
             foreach ($GLOBALS['ret'] as $message) {

@@ -55,7 +55,7 @@ class File_Archive_Predicate_MIME extends File_Archive_Predicate
     /**
      * @see File_Archive_Predicate::isTrue()
      */
-    public function isTrue(&$source)
+    public function isTrue($source)
     {
         $sourceMIME = $source->getMIME();
         foreach ($this->mimes as $mime) {

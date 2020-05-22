@@ -52,7 +52,7 @@ class User_ActionFrame
         $root->mContext->mModule->setAttribute('actionName', $name);
     }
 
-    public function _createAction(&$actionFrame)
+    public function _createAction($actionFrame)
     {
         if (is_object($this->mAction)) {
             return;
@@ -167,9 +167,9 @@ class User_Action
 
     /**
      * _getPageAction
-     * 
+     *
      * @param	void
-     * 
+     *
      * @return	string
      **/
     protected function _getPageAction()
@@ -179,9 +179,9 @@ class User_Action
 
     /**
      * _getPageTitle
-     * 
+     *
      * @param	void
-     * 
+     *
      * @return	string
      **/
     protected function _getPagetitle()

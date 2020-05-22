@@ -23,7 +23,7 @@
  *         - tr_attr = table row attributes (arrays are cycled)
  *         - td_attr = table cell attributes (arrays are cycled)
  *         - trailpad = value to pad trailing cells with
- *         - caption = text for caption element 
+ *         - caption = text for caption element
  *         - vdir = vertical direction (default: "down", means top-to-bottom)
  *         - hdir = horizontal direction (default: "right", means left-to-right)
  *         - inner = inner loop (default "cols": print $loop line by line,
@@ -46,7 +46,7 @@
  * @param Smarty
  * @return string
  */
-function smarty_function_html_table($params, &$smarty)
+function smarty_function_html_table($params, $smarty)
 {
     $table_attr = 'border="1"';
     $tr_attr = '';
@@ -157,7 +157,7 @@ function smarty_function_html_table($params, &$smarty)
     }
     $output .= "</tbody>\n";
     $output .= "</table>\n";
-    
+
     return $output;
 }
 
@@ -167,7 +167,7 @@ function smarty_function_html_table_cycle($name, $var, $no) {
     } else {
         $ret = $var[$no % count($var)];
     }
-    
+
     return ($ret) ? ' '.$ret : '';
 }
 

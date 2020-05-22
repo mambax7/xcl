@@ -30,7 +30,7 @@ class User_MailjobDeleteAction extends User_AbstractDeleteAction
         $this->mActionForm->prepare();
     }
 
-    public function executeViewInput(&$controller, &$xoopsUser, &$render)
+    public function executeViewInput(&$controller, &$xoopsUser, $render)
     {
         $render->setTemplateName('mailjob_delete.html');
         $render->setAttribute('actionForm', $this->mActionForm);
@@ -38,17 +38,17 @@ class User_MailjobDeleteAction extends User_AbstractDeleteAction
         $render->setAttribute('object', $this->mObject);
     }
 
-    public function executeViewSuccess(&$controller, &$xoopsUser, &$render)
+    public function executeViewSuccess($controller, &$xoopsUser, &$render)
     {
         $controller->executeForward('./index.php?action=MailjobList');
     }
 
-    public function executeViewError(&$controller, &$xoopsUser, &$render)
+    public function executeViewError($controller, &$xoopsUser, &$render)
     {
         $controller->executeRedirect('./index.php?action=MailjobList', 1, _MD_USER_ERROR_DBUPDATE_FAILED);
     }
 
-    public function executeViewCancel(&$controller, &$xoopsUser, &$render)
+    public function executeViewCancel($controller, &$xoopsUser, &$render)
     {
         $controller->executeForward('./index.php?action=MailjobList');
     }

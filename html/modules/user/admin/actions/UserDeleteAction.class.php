@@ -29,7 +29,7 @@ class User_UserDeleteAction extends User_AbstractDeleteAction
         $this->mActionForm =new User_UserAdminDeleteForm();
         $this->mActionForm->prepare();
     }
-    
+
     public function _setupObject()
     {
         //
@@ -54,24 +54,24 @@ class User_UserDeleteAction extends User_AbstractDeleteAction
         }
     }
 
-    public function executeViewInput(&$controller, &$xoopsUser, &$render)
+    public function executeViewInput(&$controller, &$xoopsUser, $render)
     {
         $render->setTemplateName('user_delete.html');
         $render->setAttribute('actionForm', $this->mActionForm);
         $render->setAttribute('object', $this->mObject);
     }
 
-    public function executeViewSuccess(&$controller, &$xoopsUser, &$render)
+    public function executeViewSuccess($controller, &$xoopsUser, &$render)
     {
         $controller->executeForward('./index.php?action=UserList');
     }
 
-    public function executeViewError(&$controller, &$xoopsUser, &$render)
+    public function executeViewError($controller, &$xoopsUser, &$render)
     {
         $controller->executeRedirect('./index.php?action=UserList', 1, _MD_USER_ERROR_DBUPDATE_FAILED);
     }
-    
-    public function executeViewCancel(&$controller, &$xoopsUser, &$render)
+
+    public function executeViewCancel($controller, &$xoopsUser, &$render)
     {
         $controller->executeForward('./index.php?action=UserList');
     }

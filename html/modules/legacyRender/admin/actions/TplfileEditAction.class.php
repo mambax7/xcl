@@ -17,7 +17,7 @@ class LegacyRender_TplfileEditAction extends LegacyRender_AbstractEditAction
     {
         return xoops_getrequest('tpl_id');
     }
-    
+
     public function &_getHandler()
     {
         $handler =& xoops_getmodulehandler('tplfile');
@@ -27,12 +27,12 @@ class LegacyRender_TplfileEditAction extends LegacyRender_AbstractEditAction
     public function _setupObject()
     {
         parent::_setupObject();
-        
+
         if (is_object($this->mObject) && 'default' == $this->mObject->get('tpl_tplset')) {
             $this->mObject = null;
         }
     }
-    
+
     public function _setupActionForm()
     {
         $this->mActionForm =new LegacyRender_TplfileEditForm();
@@ -43,15 +43,15 @@ class LegacyRender_TplfileEditAction extends LegacyRender_AbstractEditAction
     {
         return false;
     }
-    
-    public function executeViewInput(&$controller, &$xoopsUser, &$render)
+
+    public function executeViewInput(&$controller, &$xoopsUser, $render)
     {
         $render->setTemplateName('tplfile_edit.html');
         $render->setAttribute('actionForm', $this->mActionForm);
         $render->setAttribute('object', $this->mObject);
     }
 
-    public function executeViewSuccess(&$controller, &$xoopsUser, &$render)
+    public function executeViewSuccess($controller, &$xoopsUser, &$render)
     {
         //
         // This class knows the db template mechanism, because this is in
@@ -68,12 +68,12 @@ class LegacyRender_TplfileEditAction extends LegacyRender_AbstractEditAction
         $controller->executeForward("./index.php?action=TplfileList&tpl_tplset=${tplset}&tpl_module=${module}");
     }
 
-    public function executeViewError(&$controller, &$xoopsUser, &$render)
+    public function executeViewError($controller, &$xoopsUser, &$render)
     {
         $controller->executeRedirect('./index.php?action=TplsetList', 1, _AD_LEGACYRENDER_ERROR_DBUPDATE_FAILED);
     }
 
-    public function executeViewCancel(&$controller, &$xoopsUser, &$render)
+    public function executeViewCancel($controller, &$xoopsUser, &$render)
     {
         $tplset = $this->mObject->get('tpl_tplset');
         $module = $this->mObject->get('tpl_module');

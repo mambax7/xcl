@@ -50,7 +50,7 @@ class Legacy_BlockInstallListAction extends Legacy_AbstractListAction
         return './index.php?action=BlockInstallList';
     }
 
-    public function executeViewIndex(&$controller, &$xoopsUser, &$render)
+    public function executeViewIndex(&$controller, $xoopsUser, $render)
     {
         $render->setTemplateName('blockinstall_list.html');
 

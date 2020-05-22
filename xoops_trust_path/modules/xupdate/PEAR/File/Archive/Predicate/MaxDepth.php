@@ -53,7 +53,7 @@ class File_Archive_Predicate_MaxDepth extends File_Archive_Predicate
     /**
      * @see File_Archive_Predicate::isTrue()
      */
-    public function isTrue(&$source)
+    public function isTrue($source)
     {
         $url = parse_url($source->getFilename());
         return substr_count($url['path'], '/') <= $this->maxDepth ;

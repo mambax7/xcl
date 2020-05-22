@@ -37,7 +37,7 @@ class Legacy_AbstractCommentAdminEditForm extends XCube_ActionForm
         $this->mFormProperties['doxcode'] =new XCube_BoolProperty('doxcode');
         $this->mFormProperties['doimage'] =new XCube_BoolProperty('doimage');
         $this->mFormProperties['dobr'] =new XCube_BoolProperty('dobr');
-    
+
         //
         // Set field properties
         //
@@ -45,24 +45,24 @@ class Legacy_AbstractCommentAdminEditForm extends XCube_ActionForm
         $this->mFieldProperties['com_id'] =new XCube_FieldProperty($this);
         $this->mFieldProperties['com_id']->setDependsByArray(['required']);
         $this->mFieldProperties['com_id']->addMessage('required', _MD_LEGACY_ERROR_REQUIRED, _MD_LEGACY_LANG_COM_ID);
-    
+
         $this->mFieldProperties['com_icon'] =new XCube_FieldProperty($this);
         $this->mFieldProperties['com_icon']->setDependsByArray(['maxlength']);
         $this->mFieldProperties['com_icon']->addMessage('maxlength', _MD_LEGACY_ERROR_MAXLENGTH, _MD_LEGACY_LANG_COM_ICON, '25');
         $this->mFieldProperties['com_icon']->addVar('maxlength', '25');
-    
+
         $this->mFieldProperties['com_title'] =new XCube_FieldProperty($this);
         $this->mFieldProperties['com_title']->setDependsByArray(['required', 'maxlength']);
         $this->mFieldProperties['com_title']->addMessage('required', _MD_LEGACY_ERROR_REQUIRED, _MD_LEGACY_LANG_COM_TITLE, '255');
         $this->mFieldProperties['com_title']->addMessage('maxlength', _MD_LEGACY_ERROR_MAXLENGTH, _MD_LEGACY_LANG_COM_TITLE, '255');
         $this->mFieldProperties['com_title']->addVar('maxlength', '255');
-    
+
         $this->mFieldProperties['com_text'] =new XCube_FieldProperty($this);
         $this->mFieldProperties['com_text']->setDependsByArray(['required']);
         $this->mFieldProperties['com_text']->addMessage('required', _MD_LEGACY_ERROR_REQUIRED, _MD_LEGACY_LANG_COM_TEXT);
     }
 
-    public function load(&$obj)
+    public function load($obj)
     {
         $this->set('com_id', $obj->get('com_id'));
         $this->set('com_icon', $obj->get('com_icon'));
@@ -77,7 +77,7 @@ class Legacy_AbstractCommentAdminEditForm extends XCube_ActionForm
         $this->set('dobr', $obj->get('dobr'));
     }
 
-    public function update(&$obj)
+    public function update($obj)
     {
         $obj->set('com_id', $this->get('com_id'));
         $obj->set('com_icon', $this->get('com_icon'));

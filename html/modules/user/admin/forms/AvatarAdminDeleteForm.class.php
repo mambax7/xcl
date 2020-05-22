@@ -32,12 +32,12 @@ class User_AvatarAdminDeleteForm extends XCube_ActionForm
         $this->mFieldProperties['avatar_id']->addMessage('required', _MD_USER_ERROR_REQUIRED, _MD_USER_LANG_AVATAR_ID);
     }
 
-    public function load(&$obj)
+    public function load($obj)
     {
         $this->set('avatar_id', $obj->get('avatar_id'));
     }
 
-    public function update(&$obj)
+    public function update($obj)
     {
         $obj->setVar('avatar_id', $this->get('avatar_id'));
     }

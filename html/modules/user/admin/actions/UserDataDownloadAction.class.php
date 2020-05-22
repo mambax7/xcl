@@ -23,27 +23,27 @@ class User_UserDataDownloadAction extends User_Action
         return './index.php?action=UserDataDownload';
     }
 
-    public function executeViewIndex(&$controller, &$xoopsUser, &$render)
+    public function executeViewIndex(&$controller, &$xoopsUser, $render)
     {
         $render->setTemplateName('user_data_download.html');
         $member_handler =& xoops_gethandler('member');
         $user_count = $member_handler->getUserCount();
         $render->setAttribute('user_count', $user_count);
     }
-    
+
     public function getDefaultView(&$controller, &$xoopsUser)
     {
         return USER_FRAME_VIEW_INDEX;
     }
-    
-    
+
+
     /// export CSV file
     public function execute(&$controller, &$xoopsUser)
     {
         $filename = sprintf('%s_User_data_List.csv', $GLOBALS['xoopsConfig']['sitename']);
         $text = '';
         $field_line = '';
-        
+
         $user_handler =& $this->_getHandler();
         $criteria = new CriteriaElement();
         $criteria->setSort('uid');
@@ -56,7 +56,7 @@ class User_UserDataDownloadAction extends User_Action
             $field_line .= (defined($_f) ? constant($_f) : $key) . ',';
         }
         $field_line .= "\n";
-        
+
         foreach ($users as $u) {
             $user_data = '';
             foreach ($u->gets() as $key=>$value) {
@@ -76,22 +76,22 @@ class User_UserDataDownloadAction extends User_Action
             $text .= trim($user_data, ',')."\n";
         }
         $text = $field_line.$text;
-        
-        /// japanese 
+
+        /// japanese
         if (0 === strncasecmp($GLOBALS['xoopsConfig']['language'], 'ja', 2)) {
             if (_CHARSET !== 'UTF-8') {
                 mb_convert_variables('UTF-8', _CHARSET, $text);
             }
             $text = pack('C*', 0xEF, 0xBB, 0xBF) . $text;
         }
-        
+
         if (preg_match('/firefox/i', xoops_getenv('HTTP_USER_AGENT'))) {
             header('Content-Type: application/x-csv');
         } else {
             header('Content-Type: application/vnd.ms-excel');
         }
-        
-        
+
+
         header("Content-Disposition: attachment ; filename=\"{$filename}\"") ;
         exit($text);
     }

@@ -19,12 +19,12 @@ class Xupdate_ModuleActionOverride extends XCube_ActionFilter
 
     // override Legacy_ActionFrame::_createAction()
     // if XCL supports delegate "Module(Install|Update|Uninstall).Success" can remove this function
-    public function _createAction(&$actionFrame)
+    public function _createAction($actionFrame)
     {
         if (is_object($actionFrame->mAction)) {
             return;
         }
-    
+
         $overrideActionNames = ['ModuleList', 'ModuleInstall', 'ModuleUpdate', 'ModuleUninstall'];
         $actionName = ucfirst($actionFrame->mActionName);
 
@@ -37,7 +37,7 @@ class Xupdate_ModuleActionOverride extends XCube_ActionFilter
         require_once XOOPS_TRUST_PATH . '/modules/xupdate/admin/class/Legacy_ModuleActions.class.php';
 
         $className = 'Xupdate_'.$actionName.'Action';
-        
+
         if (XC_CLASS_EXISTS($className)) {
             $actionFrame->mAction =new $className($actionFrame->mAdminFlag);
         }

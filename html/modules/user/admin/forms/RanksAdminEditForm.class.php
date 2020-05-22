@@ -15,7 +15,7 @@ class User_RanksAdminEditForm extends XCube_ActionForm
     public $mOldFileName = null;
     public $_mIsNew = false;
     public $mFormFile = null;
-    
+
     public function getTokenName()
     {
         return 'module.user.RanksAdminEditForm.TOKEN' . $this->get('rank_id');
@@ -58,7 +58,7 @@ class User_RanksAdminEditForm extends XCube_ActionForm
         $this->mFieldProperties['rank_max']->addMessage('min', _AD_USER_ERROR_MIN, _AD_USER_LANG_RANK_MAX, 0);
         $this->mFieldProperties['rank_max']->addVar('min', 0);
     }
-    
+
     public function validateRank_max()
     {
         if ($this->get('rank_max') < $this->get('rank_min')) {
@@ -72,8 +72,8 @@ class User_RanksAdminEditForm extends XCube_ActionForm
             $this->addErrorMessage(_AD_USER_ERROR_IMAGE_REQUIRED);
         }
     }
-    
-    public function load(&$obj)
+
+    public function load($obj)
     {
         $this->set('rank_id', $obj->get('rank_id'));
         $this->set('rank_title', $obj->get('rank_title'));
@@ -85,7 +85,7 @@ class User_RanksAdminEditForm extends XCube_ActionForm
         $this->mOldFileName = $obj->get('rank_image');
     }
 
-    public function update(&$obj)
+    public function update($obj)
     {
         $obj->set('rank_id', $this->get('rank_id'));
         $obj->set('rank_title', $this->get('rank_title'));

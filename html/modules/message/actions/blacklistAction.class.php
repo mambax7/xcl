@@ -12,7 +12,7 @@ class blacklistAction extends AbstractAction
     {
         parent::__construct();
     }
-  
+
     public function execute()
     {
         $this->setUrl('index.php?action=blacklist');
@@ -44,7 +44,7 @@ class blacklistAction extends AbstractAction
       }
         }
     }
-  
+
     private function delblklist($modobj)
     {
         $deluid = $this->root->mContext->mRequest->getRequest('deluid');
@@ -52,7 +52,7 @@ class blacklistAction extends AbstractAction
             $this->setErr(_MD_MESSAGE_DELETEMSG2);
             return;
         }
-    
+
         $adduid = false;
         if (!empty($deluid) && is_array($deluid)) {
             $modHand = xoops_getmodulehandler('settings', _MY_DIRNAME);
@@ -76,7 +76,7 @@ class blacklistAction extends AbstractAction
             }
         }
     }
-  
+
     private function addblklist($modobj, $uid)
     {
         $modHand = xoops_getmodulehandler('settings', _MY_DIRNAME);
@@ -98,8 +98,8 @@ class blacklistAction extends AbstractAction
             $this->setErr(XCube_Utils::formatString(_MD_MESSAGE_SETTINGS_MSG13, $blackuser));
         }
     }
-  
-    public function executeView(&$render)
+
+    public function executeView($render)
     {
         $render->setTemplateName('message_blaclist.html');
         $render->setAttribute('blackuser', $this->blackuser);

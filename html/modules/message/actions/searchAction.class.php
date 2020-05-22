@@ -9,19 +9,19 @@ class searchAction extends AbstractAction
     private $listdata;
     private $mPagenavi = null;
     private $mService;
-  
+
     public function __construct()
     {
         parent::__construct();
         $this->mService = $this->root->mServiceManager->getService('UserSearch');
     }
-  
+
     private function getData($request)
     {
         $client = $this->root->mServiceManager->createClient($this->mService);
         $this->listdata = $client->call('getUserList', $request);
     }
-  
+
     public function execute()
     {
         if (!$this->chk_use()) {
@@ -36,7 +36,7 @@ class searchAction extends AbstractAction
             require_once XOOPS_MODULE_PATH.'/usersearch/forms/UsersearchForm.class.php';
             $this->mActionform = new UsersearchForm();
             $this->mActionform->prepare();
-      
+
             $this->mActionform->fetch();
             if (1 == $this->mActionform->get('dosearch')) {
                 $this->mActionform->validate();
@@ -56,8 +56,8 @@ class searchAction extends AbstractAction
             }
         }
     }
-  
-    public function executeView(&$render)
+
+    public function executeView($render)
     {
         $render->setTemplateName('message_usersearch.html');
         $render->setAttribute('mActionform', $this->mActionform);

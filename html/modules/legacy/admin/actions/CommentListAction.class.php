@@ -55,7 +55,7 @@ class Legacy_CommentListAction extends Legacy_AbstractListAction
         return './index.php?action=CommentList';
     }
 
-    public function executeViewIndex(&$controller, &$xoopsUser, &$render)
+    public function executeViewIndex(&$controller, &$xoopsUser, $render)
     {
         //
         // Load the module and the comment user infomations.
@@ -65,11 +65,11 @@ class Legacy_CommentListAction extends Legacy_AbstractListAction
             $this->mObjects[$key]->loadUser();
             $this->mObjects[$key]->loadStatus();
         }
-        
+
         $moduleArr = [];
         $handler =& xoops_getmodulehandler('comment');
         $modIds = $handler->getModuleIds();
-        
+
         $moduleHandler =& xoops_gethandler('module');
         foreach ($modIds as $mid) {
             $module =& $moduleHandler->get($mid);
@@ -78,11 +78,11 @@ class Legacy_CommentListAction extends Legacy_AbstractListAction
             }
             unset($module);
         }
-        
+
         $statusArr = [];
         $statusHandler =& xoops_getmodulehandler('commentstatus');
         $statusArr =& $statusHandler->getObjects();
-        
+
         $render->setTemplateName('comment_list.html');
         $render->setAttribute('objects', $this->mObjects);
         $render->setAttribute('pageNavi', $this->mFilter->mNavi);
@@ -117,7 +117,7 @@ class Legacy_CommentListAction extends Legacy_AbstractListAction
             return $this->_processSave($controller, $xoopsUser);
         }
     }
-    
+
     public function _processConfirm(&$controller, &$xoopsUser)
     {
         $statusArr = $this->mActionForm->get('status');
@@ -217,7 +217,7 @@ class Legacy_CommentListAction extends Legacy_AbstractListAction
                             $not_module =& $module_handler->get($not_modid);
                             $com_config =& $not_module->getInfo('comments');
                             $comment_url = $com_config['pageName'] . '?';
-                //Umm....not use com_exparams(--;;Fix Me!)	
+                //Umm....not use com_exparams(--;;Fix Me!)
                           //$extra_params = $comment->getVar('com_exparams');
                            //$comment_url .= $extra_params;
                           $comment_url .= $com_config['itemName'];
@@ -288,7 +288,7 @@ class Legacy_CommentListAction extends Legacy_AbstractListAction
                 // callback
                 //
                 $comment_config = Legacy_CommentEditAction::loadCallbackFile($comment);
-        
+
                             if ($comment_config) {
                                 $function = $comment_config['callback']['update'];
                                 if (function_exists($function)) {
@@ -311,7 +311,7 @@ class Legacy_CommentListAction extends Legacy_AbstractListAction
      * @param $xoopsUser
      * @param $render
      */
-    public function executeViewInput(&$controller, &$xoopsUser, &$render)
+    public function executeViewInput(&$controller, &$xoopsUser, $render)
     {
         foreach (array_keys($this->mCommentObjects) as $key) {
             $this->mCommentObjects[$key]->loadModule();
@@ -330,17 +330,17 @@ class Legacy_CommentListAction extends Legacy_AbstractListAction
         $render->setAttribute('cids', array_keys($t_arr));
     }
 
-    public function executeViewSuccess(&$controller, &$xoopsUser, &$renderer)
+    public function executeViewSuccess($controller, &$xoopsUser, &$renderer)
     {
         $controller->executeForward('./index.php?action=CommentList');
     }
 
-    public function executeViewError(&$controller, &$xoopsUser, &$renderer)
+    public function executeViewError($controller, &$xoopsUser, &$renderer)
     {
         $controller->executeRedirect('./index.php?action=CommentList', 1, _MD_LEGACY_ERROR_DBUPDATE_FAILED);
     }
 
-    public function executeViewCancel(&$controller, &$xoopsUser, &$renderer)
+    public function executeViewCancel($controller, &$xoopsUser, &$renderer)
     {
         $controller->executeForward('./index.php?action=CommentList');
     }

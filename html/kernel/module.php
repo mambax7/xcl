@@ -207,17 +207,17 @@ class XoopsModule extends XoopsObject
     public function loadInfo($dirname, $verbose = true)
     {
         global $xoopsConfig;
-        
+
         //
         // Guard multiplex loading.
         //
         if (!empty($this->modinfo)) {
             return;
         }
-        
+
         $root =& XCube_Root::getSingleton();
         $root->mLanguageManager->loadModinfoMessageCatalog($dirname);
-        
+
         if (file_exists(XOOPS_ROOT_PATH.'/modules/'.$dirname.'/xoops_version.php')) {
             include XOOPS_ROOT_PATH.'/modules/'.$dirname.'/xoops_version.php';
         } else {
@@ -226,15 +226,15 @@ class XoopsModule extends XoopsObject
             }
             return;
         }
-        
+
         $this->modinfo =& $modversion;
-        
+
         if (isset($this->modinfo['version'])) {
             $this->modinfo['version'] = (float)$this->modinfo['version'];
         } else {
             $this->modinfo['version'] = 0;
         }
-        
+
         // set ['sqlfile']['mysqli']
         if (isset($this->modinfo['sqlfile']) && isset($this->modinfo['sqlfile']['mysql']) && ! isset($this->modinfo['sqlfile']['mysqli'])) {
             $this->modinfo['sqlfile']['mysqli'] = $this->modinfo['sqlfile']['mysql'];
@@ -290,7 +290,7 @@ class XoopsModule extends XoopsObject
         if (isset($info['cube_style']) && false != $info['cube_style'] && isset($info['help']) && strlen($info['help']) > 0) {
             return true;
         }
-        
+
         return false;
     }
 
@@ -305,7 +305,7 @@ class XoopsModule extends XoopsObject
 
         return null;
     }
-    
+
     /**
      * @return bool
      */
@@ -314,7 +314,7 @@ class XoopsModule extends XoopsObject
         $info =& $this->getInfo();
         return ($this->getVar('version') < Legacy_Utils::convertVersionFromModinfoToInt($info['version'])); // TODO semver
     }
-    
+
     /**#@+
      * For backward compatibility only!
      * @deprecated
@@ -355,7 +355,7 @@ class XoopsModule extends XoopsObject
 class XoopsModuleHandler extends XoopsObjectHandler
 {
     public $_tmp;
-    
+
     /**
      * holds an array of cached module references, indexed by module id/dirname
      *
@@ -457,16 +457,16 @@ class XoopsModuleHandler extends XoopsObjectHandler
      *
      * @remark This method unsets cache of the module, and re-contruct the cache.
      *		   But this mechanism may break the reference to the previous cache....
-     *		   Maybe that's no problem. But, we should notice it. 
+     *		   Maybe that's no problem. But, we should notice it.
      * @param	object	&$module reference to a {@link XoopsModule}
      * @return	bool
      **/
-    public function insert(&$module)
+    public function insert($module)
     {
         if ('xoopsmodule' != strtolower(get_class($module))) {
             return false;
         }
-        
+
         if (!$module->isDirty()) {
             return true;
         }
@@ -498,7 +498,7 @@ class XoopsModuleHandler extends XoopsObjectHandler
         if (!empty($this->_cachedModule_mid[$mid])) {
             unset($this->_cachedModule_mid[$mid]);
         }
-        
+
         $this->_cachedModule_dirname[$dirname] = $module;
         $this->_cachedModule_mid[$mid] =& $this->_cachedModule_dirname[$dirname];
 
@@ -515,7 +515,7 @@ class XoopsModuleHandler extends XoopsObjectHandler
      * @param	object	&$module
      * @return	bool
      **/
-    public function delete(&$module)
+    public function delete($module)
     {
         if ('xoopsmodule' != strtolower(get_class($module))) {
             return false;

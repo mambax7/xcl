@@ -21,7 +21,7 @@ class HTMLPurifier_URIScheme_news extends HTMLPurifier_URIScheme
      * @param HTMLPurifier_Context $context
      * @return bool
      */
-    public function doValidate(&$uri, $config, $context)
+    public function doValidate($uri, $config, $context)
     {
         $uri->userinfo = null;
         $uri->host = null;

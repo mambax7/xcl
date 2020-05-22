@@ -80,7 +80,7 @@ class HTMLPurifier_ContentSets
      * @param HTMLPurifier_ElementDef $def HTMLPurifier_ElementDef reference
      * @param HTMLPurifier_HTMLModule $module Module that defined the ElementDef
      */
-    public function generateChildDef(&$def, $module)
+    public function generateChildDef($def, $module)
     {
         if (!empty($def->child)) { // already done!
             return;

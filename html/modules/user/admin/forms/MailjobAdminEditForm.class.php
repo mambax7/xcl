@@ -30,53 +30,53 @@ class User_MailjobAdminEditForm extends XCube_ActionForm
         $this->mFormProperties['from_email'] =new XCube_StringProperty('from_email');
         $this->mFormProperties['is_pm'] =new XCube_BoolProperty('is_pm');
         $this->mFormProperties['is_mail'] =new XCube_BoolProperty('is_mail');
-    
+
         //
         // Set field properties
         //
         $this->mFieldProperties['mailjob_id'] =new XCube_FieldProperty($this);
         $this->mFieldProperties['mailjob_id']->setDependsByArray(['required']);
         $this->mFieldProperties['mailjob_id']->addMessage('required', _MD_USER_ERROR_REQUIRED, _AD_USER_LANG_MAILJOB_ID);
-    
+
         $this->mFieldProperties['title'] =new XCube_FieldProperty($this);
         $this->mFieldProperties['title']->setDependsByArray(['required', 'maxlength']);
         $this->mFieldProperties['title']->addMessage('required', _MD_USER_ERROR_REQUIRED, _AD_USER_LANG_TITLE, '255');
         $this->mFieldProperties['title']->addMessage('maxlength', _MD_USER_ERROR_MAXLENGTH, _AD_USER_LANG_TITLE, '255');
         $this->mFieldProperties['title']->addVar('maxlength', '255');
-    
+
         $this->mFieldProperties['body'] =new XCube_FieldProperty($this);
         $this->mFieldProperties['body']->setDependsByArray(['required']);
         $this->mFieldProperties['body']->addMessage('required', _MD_USER_ERROR_REQUIRED, _AD_USER_LANG_BODY);
-    
+
         $this->mFieldProperties['from_name'] =new XCube_FieldProperty($this);
         $this->mFieldProperties['from_name']->setDependsByArray(['maxlength']);
         $this->mFieldProperties['from_name']->addMessage('maxlength', _MD_USER_ERROR_MAXLENGTH, '255');
         $this->mFieldProperties['from_name']->addVar('maxlength', '255');
-    
+
         $this->mFieldProperties['from_email'] =new XCube_FieldProperty($this);
         $this->mFieldProperties['from_email']->setDependsByArray(['maxlength', 'email']);
         $this->mFieldProperties['from_email']->addMessage('maxlength', _MD_USER_ERROR_MAXLENGTH, '255');
         $this->mFieldProperties['from_email']->addVar('maxlength', '255');
         $this->mFieldProperties['from_email']->addMessage('email', _AD_USER_ERROR_EMAIL, _AD_USER_LANG_FROM_EMAIL);
     }
-    
+
     public function validateFrom_email()
     {
         if ($this->get('is_mail') && 0 == strlen($this->get('from_email'))) {
             $this->addErrorMessage(XCube_Utils::formatString(_MD_USER_ERROR_REQUIRED, _AD_USER_LANG_FROM_EMAIL));
         }
     }
-    
+
     public function validate()
     {
         parent::validate();
-        
+
         if (!$this->get('is_pm') && !$this->get('is_mail')) {
             $this->addErrorMessage(_AD_USER_ERROR_MAILJOB_SEND_MEANS);
         }
     }
 
-    public function load(&$obj)
+    public function load($obj)
     {
         $this->set('mailjob_id', $obj->get('mailjob_id'));
         $this->set('title', $obj->get('title'));
@@ -87,7 +87,7 @@ class User_MailjobAdminEditForm extends XCube_ActionForm
         $this->set('is_mail', $obj->get('is_mail'));
     }
 
-    public function update(&$obj)
+    public function update($obj)
     {
         $obj->set('mailjob_id', $this->get('mailjob_id'));
         $obj->set('title', $this->get('title'));

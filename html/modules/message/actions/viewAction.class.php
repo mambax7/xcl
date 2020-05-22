@@ -7,12 +7,12 @@ class viewAction extends AbstractAction
 {
     private $inout = 'inbox';
     private $msgdata = null;
-  
+
     public function __construct()
     {
         parent::__construct();
     }
-  
+
     public function execute()
     {
         if ('in' == $this->root->mContext->mRequest->getRequest('inout')) {
@@ -20,7 +20,7 @@ class viewAction extends AbstractAction
         } else {
             $this->inout = 'outbox';
         }
-    
+
         $boxid = (int)$this->root->mContext->mRequest->getRequest($this->inout);
         $modHand = xoops_getmodulehandler($this->inout);
         $modObj = $modHand->get($boxid);
@@ -28,12 +28,12 @@ class viewAction extends AbstractAction
             $this->setErr(_MD_MESSAGE_ACTIONMSG1);
             return;
         }
-    
+
         if ($modObj->get('uid') != $this->root->mContext->mXoopsUser->get('uid')) {
             $this->setErr(_MD_MESSAGE_ACTIONMSG8);
             return;
         }
-    
+
         if ('inbox' == $this->inout) {
             if ('POST' == $_SERVER['REQUEST_METHOD']) {
                 if ('lock' == $this->root->mContext->mRequest->getRequest('cmd')) {
@@ -51,7 +51,7 @@ class viewAction extends AbstractAction
                 $modHand->insert($modObj, true);
             }
         }
-    
+
         foreach (array_keys($modObj->gets()) as $var_name) {
             $this->msgdata[$var_name] = $modObj->getShow($var_name);
         }
@@ -61,8 +61,8 @@ class viewAction extends AbstractAction
             $this->msgdata['toname'] = $this->getLinkUnameFromId($this->msgdata['to_uid'], $this->root->mContext->mXoopsConfig['anonymous']);
         }
     }
-  
-    private function send_mail(&$obj)
+
+    private function send_mail($obj)
     {
         /*
     require_once XOOPS_ROOT_PATH.'/class/mail/phpmailer/class.phpmailer.php';
@@ -84,8 +84,8 @@ class viewAction extends AbstractAction
         $mailer->setBody($obj->get('message'));
         $mailer->send();
     }
-  
-    public function executeView(&$render)
+
+    public function executeView($render)
     {
         if ('inbox' == $this->inout) {
             $render->setTemplateName('message_inboxview.html');

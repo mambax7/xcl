@@ -14,12 +14,12 @@ if (!defined('XOOPS_ROOT_PATH')) {
 
 class Legacy_NotifyCancelAction extends Legacy_Action
 {
-    public function getDefaultView(&$contoller, &$xoopsUser)
+    public function getDefaultView($contoller, &$xoopsUser)
     {
         $contoller->executeForward(XOOPS_URL . '/');
     }
 
-    public function execute(&$contoller, &$xoopsUser)
+    public function execute($contoller, &$xoopsUser)
     {
         $contoller->executeForward(XOOPS_URL . '/');
     }

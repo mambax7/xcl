@@ -12,7 +12,7 @@ class User_Mailjob_linkListAction extends User_AbstractListAction
 {
     public $mMailjob = null;
     public $mActionForm = null;
-    
+
     public function prepare(&$controller, &$xoopsUser, $moduleConfig)
     {
         $this->mActionForm =new User_Mailjob_linkAdminDeletesForm();
@@ -20,7 +20,7 @@ class User_Mailjob_linkListAction extends User_AbstractListAction
 
         $this->mActionForm->fetch();
     }
-    
+
     public function &_getHandler()
     {
         $handler =& xoops_getmodulehandler('mailjob_link');
@@ -37,29 +37,29 @@ class User_Mailjob_linkListAction extends User_AbstractListAction
     {
         return './index.php?action=Mailjob_linkList';
     }
-    
+
     public function getDefaultView(&$controller, &$xoopsUser)
     {
         $handler =& xoops_getmodulehandler('mailjob', 'user');
         $this->mMailjob =& $handler->get($this->mActionForm->get('mailjob_id'));
-        
+
         if (null == $this->mMailjob) {
             return USER_FRAME_VIEW_ERROR;
         }
-        
+
         return parent::getDefaultView($controller, $xoopsUser);
     }
-    
+
     public function execute(&$controller, &$xoopsUser)
     {
         $this->mActionForm->validate();
         if ($this->mActionForm->hasError()) {
             return $this->getDefaultView($controller, $xoopsUser);
         }
-        
+
         $mailjob_id = $this->mActionForm->get('mailjob_id');
         $uidArr = $this->mActionForm->get('uid');
-        
+
         $handler =& xoops_getmodulehandler('mailjob_link', 'user');
         foreach (array_keys($uidArr) as $uid) {
             $mailjob_link =& $handler->get($mailjob_id, $uid);
@@ -67,11 +67,11 @@ class User_Mailjob_linkListAction extends User_AbstractListAction
                 $handler->delete($mailjob_link);
             }
         }
-        
+
         return $this->getDefaultView($controller, $xoopsUser);
     }
 
-    public function executeViewIndex(&$controller, &$xoopsUser, &$render)
+    public function executeViewIndex(&$controller, &$xoopsUser, $render)
     {
         $render->setTemplateName('mailjob_link_list.html');
         #cubson::lazy_load_array('mailjob_link', $this->mObjects);
@@ -81,7 +81,7 @@ class User_Mailjob_linkListAction extends User_AbstractListAction
         $render->setAttribute('actionForm', $this->mActionForm);
     }
 
-    public function executeViewError(&$controller, &$xoopsUser, &$render)
+    public function executeViewError($controller, &$xoopsUser, &$render)
     {
         $controller->executeForward('./index.php?action=MailjobList');
     }

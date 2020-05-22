@@ -47,8 +47,8 @@ class Legacy_MiscSmiliesAction extends Legacy_AbstractListAction
         }
         return parent::getDefaultView($controller, $xoopsUser);
     }
-    
-    public function executeViewIndex(&$controller, &$xoopsUser, &$render)
+
+    public function executeViewIndex($controller, &$xoopsUser, $render)
     {
         //
         // Because this action's template uses BASE message catalog, load it.
@@ -56,14 +56,14 @@ class Legacy_MiscSmiliesAction extends Legacy_AbstractListAction
         $root =& $controller->mRoot;
         $root->mLanguageManager->loadModuleMessageCatalog('legacy');
         $root->mContext->setAttribute('legacy_pagetitle', _MD_LEGACY_LANG_ALL_SMILEY_LIST);
-        
+
         $render->setTemplateName('legacy_misc_smilies.html');
         $render->setAttribute('objects', $this->mObjects);
         $render->setAttribute('pageNavi', $this->mFilter->mNavi);
         $render->setAttribute('targetName', $this->mTargetName);
     }
 
-    public function executeViewError(&$controller, &$xoopsUser, &$render)
+    public function executeViewError(&$controller, &$xoopsUser, $render)
     {
         $render->setTemplateName('legacy_dummy.html');
     }

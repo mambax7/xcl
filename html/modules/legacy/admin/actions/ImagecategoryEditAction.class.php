@@ -40,32 +40,32 @@ class Legacy_ImagecategoryEditAction extends Legacy_AbstractEditAction
     {
         $this->mActionForm = $this->mObject->isNew() ? new Legacy_ImagecategoryAdminNewForm()
                                                      : new Legacy_ImagecategoryAdminEditForm();
-        
+
         $this->mActionForm->prepare();
     }
 
-    public function executeViewInput(&$controller, &$xoopsUser, &$render)
+    public function executeViewInput(&$controller, &$xoopsUser, $render)
     {
         $render->setTemplateName('imagecategory_edit.html');
         $render->setAttribute('actionForm', $this->mActionForm);
         $render->setAttribute('object', $this->mObject);
-        
+
         $handler =& xoops_gethandler('group');
         $groupArr =& $handler->getObjects();
         $render->setAttribute('groupArr', $groupArr);
     }
 
-    public function executeViewSuccess(&$controller, &$xoopsUser, &$render)
+    public function executeViewSuccess($controller, &$xoopsUser, &$render)
     {
         $controller->executeForward('./index.php?action=ImagecategoryList');
     }
 
-    public function executeViewError(&$controller, &$xoopsUser, &$render)
+    public function executeViewError($controller, &$xoopsUser, &$render)
     {
         $controller->executeRedirect('./index.php?action=ImagecategoryList', 1, _MD_LEGACY_ERROR_DBUPDATE_FAILED);
     }
-    
-    public function executeViewCancel(&$controller, &$xoopsUser, &$render)
+
+    public function executeViewCancel($controller, &$xoopsUser, &$render)
     {
         $controller->executeForward('./index.php?action=ImagecategoryList');
     }

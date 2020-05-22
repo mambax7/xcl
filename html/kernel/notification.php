@@ -208,11 +208,11 @@ class XoopsNotificationHandler extends XoopsObjectHandler
      * @var XCube_Delegate
      */
     public $mTriggerPreAction = null;
-    
+
     public function __construct(&$db)
     {
         parent::__construct($db);
-        
+
         $this->mTrigger =new XCube_Delegate();
         $this->mTrigger->register('XoopsNotificationHandler.Trigger');
 
@@ -294,7 +294,7 @@ class XoopsNotificationHandler extends XoopsObjectHandler
      *
      * @return  bool
      **/
-    public function insert(&$notification)
+    public function insert($notification)
     {
         if ('xoopsnotification' != strtolower(get_class($notification))) {
             return false;
@@ -331,7 +331,7 @@ class XoopsNotificationHandler extends XoopsObjectHandler
      *
      * @return  bool
      **/
-    public function delete(&$notification)
+    public function delete($notification)
     {
         if ('xoopsnotification' != strtolower(get_class($notification))) {
             return false;
@@ -663,7 +663,7 @@ class XoopsNotificationHandler extends XoopsObjectHandler
         }
         // Get Config Array form xoops_version.php
         $not_config = $module->getInfo('notification');
-        // 
+        //
         $event_correct = false;
         foreach ($not_config['event'] as $event_config) {
             if (($event_config['name'] == $event)&&($event_config['category'] == $category)) {
@@ -696,14 +696,14 @@ class XoopsNotificationHandler extends XoopsObjectHandler
                             'eventConfig' => $not_config,
                             'force_return' => false,
                         );*/
-                        
+
             $force_return = false;
-            
+
             $this->mTriggerPreAction->call(new XCube_Ref($category), new XCube_Ref($event), new XCube_Ref($item_id),
                                            new XCube_Ref($extra_tags), new XCube_Ref($module), new XCube_Ref($user_list),
                                            new XCube_Ref($omit_user_id), new XCube_Ref($not_config),
                                            new XCube_Ref($force_return));
-                                                                                                                   
+
             $this->mTrigger->call($category, $event, $item_id, $extra_tags, new XCube_Ref($module), $user_list, $omit_user_id, $not_config, new XCube_Ref($force_return));
             if ($force_return) {
                 return;

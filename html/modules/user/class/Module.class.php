@@ -11,7 +11,7 @@ class User_Module extends Legacy_ModuleAdapter
         self::__construct($xoopsModule);
     }
 
-    public function __construct(&$xoopsModule)
+    public function __construct($xoopsModule)
     {
         parent::__construct($xoopsModule);
         $this->mGetAdminMenu = new XCube_Delegate();

@@ -19,12 +19,12 @@ class MessageInboxObject extends XoopsSimpleObject
         $this->initVar('is_read', XOBJ_DTYPE_INT, 0);
         $this->initVar('uname', XOBJ_DTYPE_STRING, '', true, 100);
     }
-  
+
     public function setVar($key, $value)
     {
         $this->set($key, $value);
     }
-  
+
     public function set($key, $value)
     {
         switch ($key) {
@@ -35,7 +35,7 @@ class MessageInboxObject extends XoopsSimpleObject
       case 'read_msg':    $key = 'is_read';  break;
       case 'msg_time':    $key = 'utime';    break;
     }
-    
+
         $this->assignVar($key, $value);
     }
 }
@@ -45,25 +45,25 @@ class MessageInboxHandler extends XoopsObjectGenericHandler
     public $mTable = 'message_inbox';
     public $mPrimary = 'inbox_id';
     public $mClass = 'MessageInboxObject';
-  
+
     public function __construct(&$db)
     {
         parent::__construct($db);
     }
-  
+
     public function getCountUnreadByFromUid($uid)
     {
         $criteria = new CriteriaCompo(new Criteria('is_read', 0));
         $criteria->add(new Criteria('uid', $uid));
         return $this->getCount($criteria);
     }
-  
+
     public function getInboxCount($uid)
     {
         $criteria = new CriteriaCompo(new Criteria('uid', $uid));
         return $this->getCount($criteria);
     }
-  
+
     public function getSendUserList($uid = 0, $fuid = 0)
     {
         $ret = [];
@@ -72,7 +72,7 @@ class MessageInboxHandler extends XoopsObjectGenericHandler
         $sql.= 'WHERE i.`from_uid` = u.`uid` ';
         $sql.= 'AND i.`uid` = ' . $uid . ' ';
         $sql.= 'GROUP BY u.`uname`, u.`uid`';
-    
+
         $result = $this->db->query($sql);
         while ($row = $this->db->fetchArray($result)) {
             if ($fuid == $row['uid']) {
@@ -84,7 +84,7 @@ class MessageInboxHandler extends XoopsObjectGenericHandler
         }
         return $ret;
     }
-  
+
     public function deleteDays($day, $type)
     {
         if ($day < 1) {
@@ -100,14 +100,14 @@ class MessageInboxHandler extends XoopsObjectGenericHandler
         }
         $this->db->queryF($sql);
     }
-  
+
     public function _makeCriteria4sql($criteria)
     {
         $this->_chane_old($criteria);
         return parent::_makeCriteria4sql($criteria);
     }
-  
-    private function _chane_old(&$criteria)
+
+    private function _chane_old($criteria)
     {
         if (is_a($criteria, 'CriteriaElement')) {
             if ($criteria->hasChildElements()) {

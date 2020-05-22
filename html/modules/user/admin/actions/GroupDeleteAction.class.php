@@ -29,44 +29,44 @@ class User_GroupDeleteAction extends User_AbstractDeleteAction
         $this->mActionForm =new User_GroupAdminDeleteForm();
         $this->mActionForm->prepare();
     }
-    
+
     public function _doExecute()
     {
         $handler =& xoops_gethandler('group');
         $group =& $handler->get($this->mObject->get('groupid'));
-        
+
         $handler =& xoops_gethandler('member');
-        
+
         if (!$handler->delete($group)) {
             return USER_FRAME_VIEW_ERROR;
         }
-        
+
         $handler =& xoops_gethandler('groupperm');
         if (!$handler->deleteByGroup($this->mObject->get('groupid'))) {
             return USER_FRAME_VIEW_ERROR;
         }
-        
+
         return USER_FRAME_VIEW_SUCCESS;
     }
 
-    public function executeViewInput(&$controller, &$xoopsUser, &$render)
+    public function executeViewInput(&$controller, &$xoopsUser, $render)
     {
         $render->setTemplateName('group_delete.html');
         $render->setAttribute('actionForm', $this->mActionForm);
         $render->setAttribute('object', $this->mObject);
     }
 
-    public function executeViewSuccess(&$controller, &$xoopsUser, &$render)
+    public function executeViewSuccess($controller, &$xoopsUser, &$render)
     {
         $controller->executeForward('./index.php?action=GroupList');
     }
 
-    public function executeViewError(&$controller, &$xoopsUser, &$render)
+    public function executeViewError($controller, &$xoopsUser, &$render)
     {
         $controller->executeRedirect('./index.php?action=GroupList', 1, _MD_USER_ERROR_DBUPDATE_FAILED);
     }
 
-    public function executeViewCancel(&$controller, &$xoopsUser, &$render)
+    public function executeViewCancel($controller, &$xoopsUser, &$render)
     {
         $controller->executeForward('./index.php?action=GroupList');
     }

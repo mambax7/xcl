@@ -17,13 +17,13 @@ class User_UserActivateAction extends User_AbstractEditAction
     {
         return isset($_REQUEST['uid']) ? (int)xoops_getrequest('uid') : 0;
     }
-    
+
     public function &_getHandler()
     {
         $handler =& xoops_getmodulehandler('users', 'user');
         return $handler;
     }
-    
+
     /**
      *  Return false.
      *  If a user requests dummy uid, kick out him!
@@ -41,8 +41,8 @@ class User_UserActivateAction extends User_AbstractEditAction
     {
         return false;
     }
-    
-    public function getDefaultView(&$controller, &$xoopsUser)
+
+    public function getDefaultView($controller, &$xoopsUser)
     {
         if ((!isset($_REQUEST['actkey'])) || (!$this->mObject)) {
             $controller->executeForward(XOOPS_URL . '/');
@@ -55,9 +55,9 @@ class User_UserActivateAction extends User_AbstractEditAction
         if ($this->mObject->get('level') > 0) {
             $controller->executeRedirect(XOOPS_URL . '/user.php', 3, _MD_USER_MESSAGE_ACONTACT);
         }
-        
+
         $this->mObject->set('level', '1');
-        
+
         //
         // Force update with GET request
         //

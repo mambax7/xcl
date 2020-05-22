@@ -54,7 +54,7 @@ class File_Archive_Predicate_Extension extends File_Archive_Predicate
     /**
      * @see File_Archive_Predicate::isTrue()
      */
-    public function isTrue(&$source)
+    public function isTrue($source)
     {
         $filename = $source->getFilename();
         $pos = strrpos($filename, '.');

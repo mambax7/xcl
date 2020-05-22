@@ -564,7 +564,7 @@ class File_Archive
      *
      * @access private
      */
-    public function &_convertToReader(&$source)
+    public function &_convertToReader($source)
     {
         if (is_string($source)) {
             $cacheCondition = File_Archive::getOption('cacheCondition');
@@ -1373,7 +1373,7 @@ class File_Archive
      *        (for which $pred->isTrue($source) is true) will be erased
      * @param File_Archive_Reader $source A reader that contains the files to remove
      */
-    public function removeFromSource(&$pred, &$toConvert, $URL = null)
+    public function removeFromSource($pred, &$toConvert, $URL = null)
     {
         $source =& File_Archive::_convertToReader($toConvert);
         if (PEAR::isError($source)) {

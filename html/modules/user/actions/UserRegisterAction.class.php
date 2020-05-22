@@ -13,7 +13,7 @@ require_once XOOPS_MODULE_PATH . '/user/forms/UserRegisterEditForm.class.php';
 /***
  * @internal
  * @public
- * This action uses the special technic to realize confirming. It set the 
+ * This action uses the special technic to realize confirming. It set the
  * register action form to Session through serialize(), then forward to the
  * confirm action. Because the confirm action can't work without the register
  * action form which it fetches from Session, the confim action doesn't need
@@ -25,10 +25,10 @@ class User_UserRegisterAction extends User_Action
     public $mConfig;
     public $mEnableAgreeFlag = false;
 
-    public function prepare(&$controller, &$xoopsUser, $moduleConfig)
+    public function prepare($controller, $xoopsUser, $moduleConfig)
     {
         $this->mConfig = $moduleConfig;
-        
+
         if (is_object($xoopsUser)) {
             //
             // If user is registered, kick to his information page.
@@ -40,14 +40,14 @@ class User_UserRegisterAction extends User_Action
         }
     }
 
-    public function execute(&$controller, &$xoopsUser)
+    public function execute($controller, &$xoopsUser)
     {
         $this->_processActionForm();
         $this->mActionForm->fetch();
         $this->mActionForm->validate();
-        
+
         XCube_DelegateUtils::call('Legacy.Event.RegistUser.Validate', new XCube_Ref($this->mActionForm));
-        
+
         if ($this->mActionForm->hasError()) {
             return USER_FRAME_VIEW_INPUT;
         } else {
@@ -61,7 +61,7 @@ class User_UserRegisterAction extends User_Action
         $this->_processActionForm();
         return USER_FRAME_VIEW_INPUT;
     }
-    
+
     public function _processActionForm()
     {
         if (isset($_SESSION['user_register_actionform'])) {
@@ -69,21 +69,21 @@ class User_UserRegisterAction extends User_Action
             unset($_SESSION['user_register_actionform']);
             return;
         }
-    
+
         if (0 != $this->mConfig['reg_dispdsclmr'] && null != $this->mConfig['reg_disclaimer']) {
             $this->mEnableAgreeFlag = true;
             $this->mActionForm =new User_RegisterAgreeEditForm($this->mConfig);
         } else {
             $this->mActionForm =new User_RegisterEditForm($this->mConfig);
         }
-        
+
         $this->mActionForm->prepare();
-        
+
         $root =& XCube_Root::getSingleton();
         $this->mActionForm->set('timezone_offset', $root->mContext->getXoopsConfig('default_TZ'));
     }
 
-    public function executeViewInput(&$controller, &$xoopsUser, &$renderSystem)
+    public function executeViewInput(&$controller, &$xoopsUser, $renderSystem)
     {
         $renderSystem->setTemplateName('user_register_form.html');
         //
@@ -97,7 +97,7 @@ class User_UserRegisterAction extends User_Action
         if ($this->mEnableAgreeFlag) {
             $renderSystem->setAttribute('disclaimer', $this->mConfig['reg_disclaimer']);
         }
-        
+
         $validators = [];
         //
         // set `$validators[] = array('caption' => 'Any Caption HTML', 'element' => 'Form element HTML');` in the preload function.

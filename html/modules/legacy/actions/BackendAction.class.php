@@ -18,23 +18,23 @@ if (!defined('XOOPS_ROOT_PATH')) {
 class Legacy_BackendAction extends Legacy_Action
 {
     public $mItems = [];
-    
+
     /**
      * The spec of getRSS():
      * append your RSS item to $eventArgs array. You don't need to sanitize your values. Use raw value.
-     * 
+     *
      *  $item['title']
      *  $item['link'] ... permanent link
      *  $item['guid'] ... permanent link
      *  $item['pubdate'] ... unixtime
-     *  $item['description'] ... not required. 
-     *  $item['category'] ... not required. 
-     *  $item['author'] ... not required. 
-     *  
+     *  $item['description'] ... not required.
+     *  $item['category'] ... not required.
+     *  $item['author'] ... not required.
+     *
      * @var XCube_Delegate
      */
     public $mGetRSSItems = null;
-    
+
     public function Legacy_BackendAction($flag)
     {
         self::__construct($flag);
@@ -43,11 +43,11 @@ class Legacy_BackendAction extends Legacy_Action
     public function __construct($flag)
     {
         parent::__construct($flag);
-        
+
         $this->mGetRSSItems =new XCube_Delegate();
         $this->mGetRSSItems->register('Legacy_BackendAction.GetRSSItems');
     }
-    
+
     public function getDefaultView(&$controll, &$xoopsUser)
     {
         $items = [];
@@ -57,27 +57,27 @@ class Legacy_BackendAction extends Legacy_Action
         foreach ($items as $item) {
             $i = (int)$item['pubdate'];
             for (; isset($sortArr[$i]) ; $i++);
-            
+
             $sortArr[$i] = $item;
         }
         krsort($sortArr);
         $this->mItems = $sortArr;
         return LEGACY_FRAME_VIEW_INDEX;
     }
-    
-    public function executeViewIndex(&$controller, &$xoopsUser, &$render)
+
+    public function executeViewIndex($controller, &$xoopsUser, &$render)
     {
         $xoopsConfig = $controller->mRoot->mContext->mXoopsConfig;
-        
+
         //
         // Set up the render buffer.
         //
         $renderSystem =& $controller->mRoot->getRenderSystem('Legacy_RenderSystem');
-        
+
         $renderTarget =& $renderSystem->createRenderTarget('main');
 
         $renderTarget->setTemplateName('legacy_rss.html');
-        
+
         $renderTarget->setAttribute('channel_title', $xoopsConfig['sitename']);
         $renderTarget->setAttribute('channel_link', XOOPS_URL . '/');
         $renderTarget->setAttribute('channel_desc', $xoopsConfig['slogan']);
@@ -87,7 +87,7 @@ class Legacy_BackendAction extends Legacy_Action
         $renderTarget->setAttribute('channel_category', 'News');
         $renderTarget->setAttribute('channel_generator', 'XOOPS Cube');
         $renderTarget->setAttribute('image_url', XOOPS_URL . '/images/logo.gif');
-        
+
         $dimention = getimagesize(XOOPS_ROOT_PATH . '/images/logo.gif');
 
         $width = 0;
@@ -96,14 +96,14 @@ class Legacy_BackendAction extends Legacy_Action
         } else {
             $width = ($dimention[0] > 144) ? 144 : $dimention[0];
         }
-        
+
         $height = 0;
         if (empty($dimention[1])) {
             $height = 31;
         } else {
             $height = ($dimention[1] > 400) ? 400 : $dimention[1];
         }
-        
+
         $renderTarget->setAttribute('image_width', $width);
         $renderTarget->setAttribute('image_height', $height);
         $renderTarget->setAttribute('items', $this->mItems);
@@ -112,15 +112,15 @@ class Legacy_BackendAction extends Legacy_Action
         // Rendering
         //
         $renderSystem->render($renderTarget);
-        
+
         if (function_exists('mb_http_output')) {
             mb_http_output('pass');
         }
         header('Content-Type:text/xml; charset=utf-8');
-        
-        
+
+
         print xoops_utf8_encode($renderTarget->getResult());
-        
+
         exit(0);
     }
 }

@@ -570,7 +570,7 @@ class XoopsUserHandler extends XoopsObjectHandler
      * @param bool $force
      * @return bool FALSE if failed, TRUE if already present and unchanged or successful
      */
-    public function insert(&$user, $force = false)
+    public function insert($user, $force = false)
     {
         if ('xoopsuser' != strtolower(get_class($user))) {
             return false;
@@ -625,7 +625,7 @@ class XoopsUserHandler extends XoopsObjectHandler
      * @param bool $force
      * @return bool FALSE if failed.
      */
-    public function delete(&$user, $force = false)
+    public function delete($user, $force = false)
     {
         if ('xoopsuser' != strtolower(get_class($user))) {
             return false;

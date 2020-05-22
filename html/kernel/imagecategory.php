@@ -63,8 +63,8 @@ class XoopsImagecategory extends XoopsObject
 }
 
 /**
-* XOOPS image caetgory handler class.  
-* This class is responsible for providing data access mechanisms to the data source 
+* XOOPS image caetgory handler class.
+* This class is responsible for providing data access mechanisms to the data source
 * of XOOPS image category class objects.
 *
 *
@@ -100,7 +100,7 @@ class XoopsImagecategoryHandler extends XoopsObjectHandler
         return $ret;
     }
 
-    public function insert(&$imgcat)
+    public function insert($imgcat)
     {
         if ('xoopsimagecategory' != strtolower(get_class($imgcat))) {
             return false;
@@ -130,7 +130,7 @@ class XoopsImagecategoryHandler extends XoopsObjectHandler
         return true;
     }
 
-    public function delete(&$imgcat)
+    public function delete($imgcat)
     {
         if ('xoopsimagecategory' != strtolower(get_class($imgcat))) {
             return false;

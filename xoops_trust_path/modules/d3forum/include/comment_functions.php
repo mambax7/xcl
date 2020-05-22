@@ -5,7 +5,7 @@ require_once dirname(__DIR__) . '/include/common_functions.php' ;
 
 
 // old interface
-function d3forum_display_comment_topicscount( $mydirname , $forum_id , $params , $mode = 'post' , &$smarty )
+function d3forum_display_comment_topicscount( $mydirname , $forum_id , $params , $mode = 'post' , $smarty )
 {
 	global $xoopsUser , $xoopsConfig ;
 
@@ -102,7 +102,7 @@ function d3forum_display_comment( $mydirname , $forum_id , $params )
 			$external_dirname = '' ;
 			$external_trustdirname = '' ;
 		}
-		
+
 		$m_params['forum_dirname'] = $mydirname ;
 		$m_params['external_dirname'] = $external_dirname ;
 		$m_params['classname'] = $class_name ;
@@ -198,7 +198,7 @@ function d3forum_render_comments( $mydirname , $forum_id , $params , &$smarty )
 		if( ! $trs = $db->query( $sql ) ) die( _MD_D3FORUM_ERR_SQL.__LINE__ ) ;
 		list( $topic_hits ) = $db->fetchRow( $trs ) ;
 		$post_hits = 0 ;
-		
+
 		// pagenav
 		/*
 		if( $topic_hits > $num ) {
@@ -216,20 +216,20 @@ function d3forum_render_comments( $mydirname , $forum_id , $params , &$smarty )
                . $db->prefix($mydirname . '_users2topics') . " u2t ON t.topic_id=u2t.topic_id AND u2t.uid=$uid LEFT JOIN " . $db->prefix($mydirname . '_posts') . ' lp ON lp.post_id=t.topic_last_post_id LEFT JOIN '
                . $db->prefix($mydirname . '_posts') . " fp ON fp.post_id=t.topic_first_post_id WHERE t.forum_id=$forum_id AND ($whr_invisible) AND topic_external_link_id='" . addslashes($external_link_id) . "' ORDER BY t.topic_last_post_time $sql_order" ;
 		if( ! $trs = $db->query( $sql ) ) die( _MD_D3FORUM_ERR_SQL.__LINE__ ) ;
-	
+
 		// topics loop
 		$topics = [];
 		while( $topic_row = $db->fetchArray( $trs ) ) {
-		
+
 			$topic_id = (int)$topic_row['topic_id'];
-		
+
 			// get last poster's object
 			$user_handler =& xoops_gethandler( 'user' ) ;
 			$last_poster_obj =& $user_handler->get((int)$topic_row['topic_last_uid']) ;
 			$last_post_uname4html = is_object( $last_poster_obj ) ? $last_poster_obj->getVar( 'uname' ) : $xoopsConfig['anonymous'] ;
 			$first_poster_obj =& $user_handler->get((int)$topic_row['topic_first_uid']) ;
 			$first_post_uname4html = is_object( $first_poster_obj ) ? $first_poster_obj->getVar( 'uname' ) : $xoopsConfig['anonymous'] ;
-		
+
 			// topics array
 			$topics[] = [
                 'id' => $topic_row['topic_id'],
@@ -317,11 +317,11 @@ function d3forum_render_comments( $mydirname , $forum_id , $params , &$smarty )
 		if( ! $prs = $db->query( $sql ) ) die( _MD_D3FORUM_ERR_SQL.__LINE__ ) ;
 
 		while( $post_row = $db->fetchArray( $prs ) ) {
-		
+
 			// get poster's information ($poster_*), $can_reply, $can_edit, $can_delete
 			$topic_row = ['topic_locked' => $post_row['topic_locked']];
 			include __DIR__ . '/process_eachpost.inc.php' ;
-		
+
 			// posts array
 			$posts[] = [
                 'id' => (int)$post_row['post_id'],
@@ -403,10 +403,10 @@ function d3forum_render_comments( $mydirname , $forum_id , $params , &$smarty )
 $tree = [];
 if( $external_link_id >0 ) {
 
-	$sql = 'SELECT p.*, t.topic_locked, t.topic_id, t.forum_id, t.topic_last_uid, t.topic_last_post_time 
-		FROM ' . $db->prefix($mydirname . '_topics') . ' t 
-		LEFT JOIN ' . $db->prefix($mydirname . '_posts') . " p ON p.topic_id=t.topic_id 
-		WHERE t.forum_id=$forum_id AND ($whr_invisible) AND p.depth_in_tree='0' 
+	$sql = 'SELECT p.*, t.topic_locked, t.topic_id, t.forum_id, t.topic_last_uid, t.topic_last_post_time
+		FROM ' . $db->prefix($mydirname . '_topics') . ' t
+		LEFT JOIN ' . $db->prefix($mydirname . '_posts') . " p ON p.topic_id=t.topic_id
+		WHERE t.forum_id=$forum_id AND ($whr_invisible) AND p.depth_in_tree='0'
 			AND (t.topic_external_link_id='" . addslashes($external_link_id) . "' ) " ;		//naao
 	if( ! $prs = $db->query( $sql ) ) die( _MD_D3FORUM_ERR_SQL.__LINE__ ) ;
 	while( $post_row = $db->fetchArray( $prs ) ) {

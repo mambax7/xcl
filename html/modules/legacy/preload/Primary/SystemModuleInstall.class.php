@@ -33,12 +33,12 @@ class Legacy_SystemModuleInstall extends XCube_ActionFilter
      * @param $context
      * @see preBlockFilter()
      */
-    public function callbackSetupUser(&$principal, &$controller, &$context)
+    public function callbackSetupUser(&$principal, $controller, $context)
     {
         $retArray = Legacy_Utils::checkSystemModules();
         $accessAllowFlag = false;
         $xoopsConfig = $controller->mRoot->mContext->getXoopsConfig();
-        
+
         if (!empty($_POST['xoops_login'])) {
             define('XOOPS_CPFUNC_LOADED', 1);
             $controller->checkLogin();
@@ -48,7 +48,7 @@ class Legacy_SystemModuleInstall extends XCube_ActionFilter
                 $accessAllowFlag = true;
             }
         }
-        
+
         // @todo Devide following lines to another preload file
         if ($accessAllowFlag) {
             $GLOBALS['xoopsUser'] = $context->mXoopsUser;
@@ -60,12 +60,12 @@ class Legacy_SystemModuleInstall extends XCube_ActionFilter
                         $module = basename($module);
                         if (in_array($module, $retArray['uninstalled'])) {
                             $controller->mRoot->mLanguageManager->loadModuleAdminMessageCatalog('legacy');
-                            
+
                             $handler =& xoops_gethandler('module');
                             $xoopsModule =& $handler->create();
                             $xoopsModule->set('weight', 1);
                             $xoopsModule->loadInfoAsVar($module);
-                            
+
                             $installer =& Legacy_ModuleInstallUtils::createInstaller($xoopsModule->get('dirname'));
                             $installer->setForceMode(true);
                             $installer->setCurrentXoopsModule($xoopsModule);
@@ -81,7 +81,7 @@ class Legacy_SystemModuleInstall extends XCube_ActionFilter
                             if ($moduleObject =& $moduleHandler->getByDirname($module)) {
                                 $moduleObject->setVar('isactive', 1);
                                 $moduleHandler->insert($moduleObject);
-                                
+
                                 $blockHandler =& xoops_gethandler('block');
                                 $blockHandler->syncIsActive($moduleObject->get('mid'), $moduleObject->get('isactive'));
                             }
@@ -101,12 +101,12 @@ class Legacy_SystemModuleInstall extends XCube_ActionFilter
                         $module = basename($module);
                         if (in_array($module, $optionModules)) {
                             $controller->mRoot->mLanguageManager->loadModuleAdminMessageCatalog('legacy');
-                            
+
                             $handler =& xoops_gethandler('module');
                             $xoopsModule =& $handler->create();
                             $xoopsModule->set('weight', 1);
                             $xoopsModule->loadInfoAsVar($module);
-                            
+
                             $installer =& Legacy_ModuleInstallUtils::createInstaller($xoopsModule->get('dirname'));
                             $installer->setForceMode(true);
                             $installer->setCurrentXoopsModule($xoopsModule);
@@ -136,10 +136,10 @@ class Legacy_SystemModuleInstall extends XCube_ActionFilter
                 $module = basename($_POST['cube_module_uninstallok']);
                 if (in_array($module, $retArray['disabled'])) {
                     $controller->mRoot->mLanguageManager->loadModuleAdminMessageCatalog('legacy');
-                            
+
                     $handler =& xoops_gethandler('module');
                     $xoopsModule =& $handler->getByDirname($module);
-                    
+
                     $uninstaller =& Legacy_ModuleInstallUtils::createUninstaller($xoopsModule->get('dirname'));
                     $uninstaller->setForceMode(true);
                     $uninstaller->setCurrentXoopsModule($xoopsModule);
@@ -200,15 +200,15 @@ class Legacy_SystemModuleInstall extends XCube_ActionFilter
                     'lang_siteclosemsg' => $xoopsConfig['closesite_text']
                 ]
             );
-                                       
+
             $xoopsTpl->compile_check = true;
-            
+
             // @todo filebase template with absolute file path
             $xoopsTpl->display(XOOPS_ROOT_PATH . '/modules/legacy/templates/legacy_site_closed.html');
             exit();
         }
     }
-    
+
     /**
      * When the user logs in successfully, checks whether the user belongs to
      * the special group which is allowed to login. This function is called
@@ -216,7 +216,7 @@ class Legacy_SystemModuleInstall extends XCube_ActionFilter
      * @var XoopsUser &$xoopsUser
      * @see preBlockFilter
      */
-    public function callbackCheckLoginSuccess(&$xoopsUser)
+    public function callbackCheckLoginSuccess($xoopsUser)
     {
         //
         // This check is not needed. :)

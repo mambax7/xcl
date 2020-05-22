@@ -54,7 +54,7 @@ class User_UserListAction extends User_AbstractListAction
         return './index.php?action=UserList';
     }
 
-    public function executeViewIndex(&$controller, &$xoopsUser, &$render)
+    public function executeViewIndex(&$controller, &$xoopsUser, $render)
     {
         $render->setTemplateName('user_list.html');
         $render->setAttribute('objects', $this->mObjects);
@@ -87,7 +87,7 @@ class User_UserListAction extends User_AbstractListAction
             return $this->_processSave($controller, $xoopsUser);
         }
     }
-    
+
     public function _processConfirm(&$controller, &$xoopsUser)
     {
         $levelArr = $this->mActionForm->get('level');
@@ -155,12 +155,12 @@ class User_UserListAction extends User_AbstractListAction
      * @param $xoopsUser
      * @param $render
      */
-    public function executeViewInput(&$controller, &$xoopsUser, &$render)
+    public function executeViewInput(&$controller, &$xoopsUser, $render)
     {
         $render->setTemplateName('user_list_confirm.html');
         $render->setAttribute('userObjects', $this->mUserObjects);
         $render->setAttribute('actionForm', $this->mActionForm);
-        
+
         //
         // To support a template writer, this send the list of mid that
         // actionForm kept.
@@ -170,17 +170,17 @@ class User_UserListAction extends User_AbstractListAction
     }
 
 
-    public function executeViewSuccess(&$controller, &$xoopsUser, &$renderer)
+    public function executeViewSuccess($controller, &$xoopsUser, &$renderer)
     {
         $controller->executeForward('./index.php?action=UserList');
     }
 
-    public function executeViewError(&$controller, &$xoopsUser, &$renderer)
+    public function executeViewError($controller, &$xoopsUser, &$renderer)
     {
         $controller->executeRedirect('./index.php?action=UserList', 1, _MD_USER_ERROR_DBUPDATE_FAILED);
     }
 
-    public function executeViewCancel(&$controller, &$xoopsUser, &$renderer)
+    public function executeViewCancel($controller, &$xoopsUser, &$renderer)
     {
         $controller->executeForward('./index.php?action=UserList');
     }

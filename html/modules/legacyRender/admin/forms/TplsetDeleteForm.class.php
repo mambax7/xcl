@@ -36,12 +36,12 @@ class LegacyRender_TplsetDeleteForm extends XCube_ActionForm
         $this->mFieldProperties['tplset_id']->addMessage('required', _AD_LEGACYRENDER_ERROR_REQUIRED, _AD_LEGACYRENDER_LANG_TPLSET_ID);
     }
 
-    public function load(&$obj)
+    public function load($obj)
     {
         $this->set('tplset_id', $obj->get('tplset_id'));
     }
 
-    public function update(&$obj)
+    public function update($obj)
     {
         $obj->set('tplset_id', $this->get('tplset_id'));
     }

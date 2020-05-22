@@ -18,20 +18,20 @@ require_once XOOPS_MODULE_PATH . '/legacy/admin/forms/CommentFilterForm.class.ph
 class Legacy_CommentViewAction extends Legacy_Action
 {
     public $mObject = null;
-    
+
     public function getDefaultView(&$controller, &$xoopsUser)
     {
         $handler =& xoops_getmodulehandler('comment');
         $this->mObject =& $handler->get(xoops_getrequest('com_id'));
-        
+
         if (null == $this->mObject) {
             return LEGACY_FRAME_VIEW_ERROR;
         }
 
         return LEGACY_FRAME_VIEW_SUCCESS;
     }
-        
-    public function executeViewSuccess(&$controller, &$xoopsUser, &$render)
+
+    public function executeViewSuccess(&$controller, &$xoopsUser, $render)
     {
         //
         // Lazy load
@@ -58,8 +58,8 @@ class Legacy_CommentViewAction extends Legacy_Action
         }
         $render->setAttribute('children', $children);
     }
-    
-    public function executeViewError(&$controller, &$xoopsUser, &$render)
+
+    public function executeViewError($controller, &$xoopsUser, &$render)
     {
         $controller->executeForward('./index.php');
     }

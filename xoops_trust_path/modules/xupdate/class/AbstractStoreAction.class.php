@@ -22,7 +22,7 @@ class Xupdate_AbstractStoreAction extends Xupdate_AbstractListAction
     public $mFilter = null;
 
     public $mActionForm = null;
-    
+
     protected $contents;
     protected $action ;
     protected $currentMenu;
@@ -35,7 +35,7 @@ class Xupdate_AbstractStoreAction extends Xupdate_AbstractListAction
 
         $this->sid = (int)$this->mRoot->mContext->mRequest->getRequest('sid');
         $this->sid = empty($this->sid)? 0 : (int)$this->sid;
-        
+
         if (! $this->template) {
             $this->template = $this->contents;
         }
@@ -138,7 +138,7 @@ class Xupdate_AbstractStoreAction extends Xupdate_AbstractListAction
                 array_unshift($criteria->sort, 'sid');
             }
         }
-        
+
         $filter = isset($_GET['filter'])? strtolower($_GET['filter']) : '';
         switch ($filter) {
             case 'installed':
@@ -161,14 +161,14 @@ class Xupdate_AbstractStoreAction extends Xupdate_AbstractListAction
                 $criteria->add(new Criteria('hasupdate', 1));
                 break;
         }
-        
+
         $this->mModuleObjects =& $modHand->getObjects($criteria);
-        
+
         if (!empty($this->sid)) {
             $storeHand =  & $this->_getStoreHandler();
             $this->storeObject =& $storeHand->get($this->sid);
         }
-        
+
         return XUPDATE_FRAME_VIEW_INDEX;
     }
 
@@ -179,15 +179,15 @@ class Xupdate_AbstractStoreAction extends Xupdate_AbstractListAction
      *
      * @return	void
     **/
-    public function executeViewIndex(&$render)
+    public function executeViewIndex($render)
     {
         $render->setTemplateName('admin_'.$this->template.'_store.html');
-        
+
         // check X-elfinder
         if (! is_dir(XOOPS_ROOT_PATH.'/modules/'.$this->mod_config['xelfinder_dirname'])) {
             $this->mod_config['xelfinder_dirname'] = '';
         }
-        
+
         $render->setAttribute('mod_config', $this->mod_config);
         $render->setAttribute('xupdate_writable', $this->Xupdate->params['is_writable']);
 
@@ -206,7 +206,7 @@ class Xupdate_AbstractStoreAction extends Xupdate_AbstractListAction
         $render->setAttribute('adminMenu', $this->mModule->getAdminMenu());
         $render->setAttribute('currentMenu', $this->currentMenu);
         $render->setAttribute('action', $this->action);
-        
+
         $tagCloud = [];
         if (! empty($this->mod_config['tag_dirname'])) {
             XCube_DelegateUtils::call('Legacy_Tag.'.$this->mod_config['tag_dirname'].'.GetTagCloudSrc', new XCube_Ref($tagCloud), $this->mod_config['tag_dirname'], 'xupdate', $this->contents . 'store');
@@ -255,7 +255,7 @@ class Xupdate_AbstractStoreAction extends Xupdate_AbstractListAction
      * To support a template writer, this send the list of mid that actionForm kept.
      * @param $render
      */
-    public function executeViewInput(&$render)
+    public function executeViewInput($render)
     {
         $render->setTemplateName('admin_'.$this->template.'_store_confirm.html');
 
@@ -488,7 +488,7 @@ jQuery(function($){
 	{
 		var form = $(html).find('#contentBody form');
 		var formdata = form.serialize();
-		
+
 		installationModule.td.html("{$message_Getting_files}{$message_Processing}");
 
 		if (typeof installationModule.installhref != 'undefined'){

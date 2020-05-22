@@ -34,7 +34,7 @@ class LegacyRender_TplfileDeleteAction extends LegacyRender_AbstractDeleteAction
         $this->mActionForm->prepare();
     }
 
-    public function executeViewInput(&$controller, &$xoopsUser, &$render)
+    public function executeViewInput(&$controller, &$xoopsUser, $render)
     {
         $render->setTemplateName('tplfile_delete.html');
         $render->setAttribute('actionForm', $this->mActionForm);
@@ -42,25 +42,25 @@ class LegacyRender_TplfileDeleteAction extends LegacyRender_AbstractDeleteAction
         $render->setAttribute('object', $this->mObject);
     }
 
-    public function executeViewSuccess(&$controller, &$xoopsUser, &$render)
+    public function executeViewSuccess($controller, &$xoopsUser, &$render)
     {
         require_once XOOPS_ROOT_PATH . '/class/template.php';
-        
+
         $xoopsTpl =new XoopsTpl();
         $xoopsTpl->clear_cache('db:' . $this->mObject->get('tpl_file'));
         $xoopsTpl->clear_compiled_tpl('db:' . $this->mObject->get('tpl_file'));
-        
+
         $tplset = $this->mObject->get('tpl_tplset');
         $module = $this->mObject->get('tpl_module');
         $controller->executeForward("./index.php?action=TplfileList&tpl_tplset=${tplset}&tpl_module=${module}");
     }
 
-    public function executeViewError(&$controller, &$xoopsUser, &$render)
+    public function executeViewError($controller, &$xoopsUser, &$render)
     {
         $controller->executeRedirect('./index.php?action=TplfileList', 1, _AD_LEGACYRENDER_ERROR_DBUPDATE_FAILED);
     }
 
-    public function executeViewCancel(&$controller, &$xoopsUser, &$render)
+    public function executeViewCancel($controller, &$xoopsUser, &$render)
     {
         $tplset = $this->mObject->get('tpl_tplset');
         $module = $this->mObject->get('tpl_module');

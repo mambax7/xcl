@@ -72,8 +72,8 @@ class XoopsTplfile extends XoopsObject
 }
 
 /**
-* XOOPS template file handler class.  
-* This class is responsible for providing data access mechanisms to the data source 
+* XOOPS template file handler class.
+* This class is responsible for providing data access mechanisms to the data source
 * of XOOPS template file class objects.
 *
 *
@@ -113,7 +113,7 @@ class XoopsTplfileHandler extends XoopsObjectHandler
         return $ret;
     }
 
-    public function loadSource(&$tplfile)
+    public function loadSource($tplfile)
     {
         if ('xoopstplfile' != strtolower(get_class($tplfile))) {
             return false;
@@ -129,7 +129,7 @@ class XoopsTplfileHandler extends XoopsObjectHandler
         return true;
     }
 
-    public function insert(&$tplfile)
+    public function insert($tplfile)
     {
         if ('xoopstplfile' != strtolower(get_class($tplfile))) {
             return false;
@@ -175,7 +175,7 @@ class XoopsTplfileHandler extends XoopsObjectHandler
         return true;
     }
 
-    public function forceUpdate(&$tplfile)
+    public function forceUpdate($tplfile)
     {
         if ('xoopstplfile' != strtolower(get_class($tplfile))) {
             return false;
@@ -206,7 +206,7 @@ class XoopsTplfileHandler extends XoopsObjectHandler
         }
     }
 
-    public function delete(&$tplfile)
+    public function delete($tplfile)
     {
         if ('xoopstplfile' != strtolower(get_class($tplfile))) {
             return false;
@@ -240,7 +240,7 @@ class XoopsTplfileHandler extends XoopsObjectHandler
 
         $sql = sprintf('DELETE FROM %s', $this->db->prefix('tplfile'));
         $sql .= ' ' . $criteria->renderWhere();
-        
+
         return $this->db->query($sql);
     }
 

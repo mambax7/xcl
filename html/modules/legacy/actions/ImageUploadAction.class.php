@@ -26,11 +26,11 @@ class Legacy_ImageUploadAction extends Legacy_ImageEditAction
     {
         parent::prepare($controller, $xoopsUser);
         $controller->setDialogMode(true);
-        
+
         $root =& $controller->mRoot;
         $root->mLanguageManager->loadModuleMessageCatalog('legacy');
     }
-    
+
     public function &_getHandler()
     {
         $handler =& xoops_getmodulehandler('image', 'legacy');
@@ -49,8 +49,8 @@ class Legacy_ImageUploadAction extends Legacy_ImageEditAction
         $this->mActionForm =new Legacy_ImageUploadForm();
         $this->mActionForm->prepare();
     }
-    
-    public function hasPermission(&$controller, &$xoopsUser)
+
+    public function hasPermission(&$controller, $xoopsUser)
     {
         $groups = [];
         if (is_object($xoopsUser)) {
@@ -58,7 +58,7 @@ class Legacy_ImageUploadAction extends Legacy_ImageEditAction
         } else {
             $groups = [XOOPS_GROUP_ANONYMOUS];
         }
-            
+
         $handler =& xoops_getmodulehandler('imagecategory', 'legacy');
         $this->mCategory =& $handler->get(xoops_getrequest('imgcat_id'));
         if (!is_object($this->mCategory) || (is_object($this->mCategory) && !$this->mCategory->hasUploadPerm($groups))) {
@@ -73,7 +73,7 @@ class Legacy_ImageUploadAction extends Legacy_ImageEditAction
         $render->setTemplateName('legacy_image_upload.html');
         $render->setAttribute('actionForm', $this->mActionForm);
         $render->setAttribute('object', $this->mObject);
-        
+
         $render->setAttribute('category', $this->mCategory);
         $render->setAttribute('target', xoops_getrequest('target'));
     }

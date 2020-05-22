@@ -15,7 +15,7 @@ class User_UserDataUploadConfAction extends User_UserDataUploadAction
     /// アップされたCSVファイルを出力する
     public function execute(&$controller, &$xoopsUser)
     {
-    
+
         /// csv file check
         if (isset($_FILES['user_csv_file']) &&
             0 == $_FILES['user_csv_file']['error']) {
@@ -23,10 +23,10 @@ class User_UserDataUploadConfAction extends User_UserDataUploadAction
         }
         return $this->getDefaultView($controller, $xoopsUser);
     }
-    
-    
+
+
     /// 確認画面を表示
-    public function executeViewSuccess(&$controller, &$xoopsUser, &$render)
+    public function executeViewSuccess(&$controller, &$xoopsUser, $render)
     {
         /// success
         $render->setTemplateName('user_data_upload_conf.html');
@@ -131,13 +131,13 @@ class User_UserDataUploadConfAction extends User_UserDataUploadAction
             }
             fclose($handle);
         }
-        
+
         $render->setAttribute('csv_data', $csv_data);
         $_SESSION['user_csv_upload_data'] = $csv_data;
     }
-    
-    
-    
+
+
+
     // {{{ explodeCSV(Ethna_Util.php)
     /**
      *  CSV形式の文字列を配列に分割する

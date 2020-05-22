@@ -7,14 +7,14 @@ class favoritesAction extends AbstractAction
 {
     private $mService;
     private $favorites;
-  
+
     public function __construct()
     {
         parent::__construct();
         $this->mService = $this->root->mServiceManager->getService('UserSearch');
         $this->setUrl('index.php?action=favorites');
     }
-  
+
     private function addFavorites()
     {
         $ret = [];
@@ -34,7 +34,7 @@ class favoritesAction extends AbstractAction
             $this->setErr(_MD_MESSAGE_FAVORITES2);
         }
     }
-  
+
     private function edtFavorites()
     {
         $weight = $this->root->mContext->mRequest->getRequest('weight');
@@ -53,7 +53,7 @@ class favoritesAction extends AbstractAction
         }
         return true;
     }
-  
+
     private function delFavorites()
     {
         $delid = $this->root->mContext->mRequest->getRequest('delid');
@@ -70,14 +70,14 @@ class favoritesAction extends AbstractAction
             $this->setErr(_MD_MESSAGE_FAVORITES5);
         }
     }
-  
+
     private function getFavorites()
     {
         $mid = $this->root->mContext->mXoopsModule->get('mid');
         $client = $this->root->mServiceManager->createClient($this->mService);
         $this->favorites = $client->call('getFavoritesUsers', ['mid' => $mid]);
     }
-  
+
     public function execute()
     {
         if (!$this->chk_use()) {
@@ -88,7 +88,7 @@ class favoritesAction extends AbstractAction
                 $this->setErr('Service Not loaded.');
                 return;
             }
-      
+
             $this->root->mLanguageManager->loadModuleMessageCatalog('usersearch');
             $cmd = $this->root->mContext->mRequest->getRequest('cmd');
             if ('' == $cmd) {
@@ -107,8 +107,8 @@ class favoritesAction extends AbstractAction
             }
         }
     }
-  
-    public function executeView(&$render)
+
+    public function executeView($render)
     {
         $render->setTemplateName('message_favorites.html');
         $render->setAttribute('fuser', $this->favorites);

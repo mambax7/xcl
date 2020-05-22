@@ -36,7 +36,7 @@ class Legacy_CommentDeleteAction extends Legacy_AbstractDeleteAction
         $this->mActionForm->prepare();
     }
 
-    public function executeViewInput(&$controller, &$xoopsUser, &$render)
+    public function executeViewInput(&$controller, &$xoopsUser, $render)
     {
         //
         // Lazy load
@@ -65,17 +65,17 @@ class Legacy_CommentDeleteAction extends Legacy_AbstractDeleteAction
         $render->setAttribute('children', $children);
     }
 
-    public function executeViewSuccess(&$controller, &$xoopsUser, &$render)
+    public function executeViewSuccess($controller, &$xoopsUser, &$render)
     {
         $controller->executeForward('./index.php?action=CommentList');
     }
 
-    public function executeViewError(&$controller, &$xoopsUser, &$render)
+    public function executeViewError($controller, &$xoopsUser, &$render)
     {
         $controller->executeRedirect('./index.php?action=CommentList', 1, _MD_LEGACY_ERROR_DBUPDATE_FAILED);
     }
-    
-    public function executeViewCancel(&$controller, &$xoopsUser, &$render)
+
+    public function executeViewCancel($controller, &$xoopsUser, &$render)
     {
         $controller->executeForward('./index.php?action=CommentList');
     }
@@ -95,32 +95,32 @@ class Legacy_CommentDeleteAction extends Legacy_AbstractDeleteAction
             $user =& $handler->getUser($comment->get('com_uid'));
             if (is_object($user)) {
                 $count = $user->get('posts');
-            
+
                 if ($count > 0) {
                     $handler->updateUserByField($user, 'posts', $count - 1);
                 }
             }
         }
-        
+
         //
         // callback
         //
         $comment_config = Legacy_CommentEditAction::loadCallbackFile($comment);
-        
+
         if (false == $comment_config) {
             return;
         }
-        
+
         $function = $comment_config['callback']['update'];
-        
+
         if (function_exists($function)) {
             $criteria = new CriteriaCompo(new Criteria('com_modid', $comment->get('com_modid')));
             $criteria->add(new Criteria('com_itemid', $comment->get('com_itemid')));
             $criteria->add(new Criteria('com_status', XOOPS_COMMENT_ACTIVE));
-            
+
             $handler =& xoops_gethandler('comment');
             $commentCount = $handler->getCount($criteria);
-            
+
             call_user_func($function, $comment->get('com_id'), $commentCount);
         }
     }

@@ -12,23 +12,23 @@ class User_AvatarUploadAction extends User_Action
     public $mActionForm = null;
     public $mErrorMessages = [];
     public $mAllowedExts = ['gif' =>'image/gif', 'jpg' =>'image/jpeg', 'jpeg' =>'image/jpeg', 'png' =>'image/png'];
-    
+
     public function prepare(&$controller, &$xoopsUser)
     {
         $this->mActionForm =new User_AvatarUploadForm();
         $this->mActionForm->prepare();
     }
-    
+
     public function getDefaultView(&$controller, &$xoopsUser)
     {
         return USER_FRAME_VIEW_INPUT;
     }
-    
+
     public function _addErrorMessage($msg)
     {
         $this->mErrorMessages[] = $msg;
     }
-    
+
     public function execute(&$controller, &$xoopsUser)
     {
         $form_cancel = $controller->mRoot->mContext->mRequest->getRequest('_form_control_cancel');
@@ -38,11 +38,11 @@ class User_AvatarUploadAction extends User_Action
 
         $this->mActionForm->fetch();
         $this->mActionForm->validate();
-        
+
         if ($this->mActionForm->hasError()) {
             return $this->getDefaultView($controller, $xoopsUser);
         }
-        
+
         $formFile = $this->mActionForm->get('upload');
         $formFileExt = $formFile->getExtension();
         $files = [];
@@ -79,8 +79,8 @@ class User_AvatarUploadAction extends User_Action
         }
         return USER_FRAME_VIEW_SUCCESS;
     }
-    
-    public function _fetchZipAvatarImages(&$files, &$avatarimages)
+
+    public function _fetchZipAvatarImages($files, &$avatarimages)
     {
         foreach ($files as $file) {
             $file_pos = strrpos($file['filename'], '/') ;
@@ -95,7 +95,7 @@ class User_AvatarUploadAction extends User_Action
         return true;
     }
 
-    public function _fetchTarAvatarImages(&$files, &$avatarimages)
+    public function _fetchTarAvatarImages($files, &$avatarimages)
     {
         foreach ($files as $id => $info) {
             $file_pos = strrpos($info['name'], '/') ;
@@ -110,12 +110,12 @@ class User_AvatarUploadAction extends User_Action
         return true;
     }
 
-    public function _saveAvatarImages(&$avatarimages)
+    public function _saveAvatarImages($avatarimages)
     {
         if (0 == count($avatarimages)) {
             return true;
         }
-        
+
         $avatarhandler =& xoops_getmodulehandler('avatar');
 
         for ($i = 0; $i < count($avatarimages); $i++) {
@@ -154,22 +154,22 @@ class User_AvatarUploadAction extends User_Action
             }
             unset($avatar);
         }
-        
+
         return true;
     }
-    
-    public function executeViewInput(&$controller, &$xoopsUser, &$render)
+
+    public function executeViewInput(&$controller, &$xoopsUser, $render)
     {
         $render->setTemplateName('avatar_upload.html');
         $render->setAttribute('actionForm', $this->mActionForm);
     }
 
-    public function executeViewSuccess(&$controller, &$xoopsUser, &$render)
+    public function executeViewSuccess($controller, &$xoopsUser, &$render)
     {
         $controller->executeForward('./index.php?action=AvatarList');
     }
 
-    public function executeViewError(&$controller, &$xoopsUser, &$render)
+    public function executeViewError($controller, &$xoopsUser, $render)
     {
         if (0 == count($this->mErrorMessages)) {
             $controller->executeRedirect('./index.php?action=AvatarList', 1, _AD_USER_ERROR_DBUPDATE_FAILED);
@@ -178,8 +178,8 @@ class User_AvatarUploadAction extends User_Action
             $render->setAttribute('errorMessages', $this->mErrorMessages);
         }
     }
-    
-    public function executeViewCancel(&$controller, &$xoopsUser, &$render)
+
+    public function executeViewCancel($controller, &$xoopsUser, &$render)
     {
         $controller->executeForward('./index.php?action=AvatarList');
     }

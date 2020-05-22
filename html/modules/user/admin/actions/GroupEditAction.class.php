@@ -17,7 +17,7 @@ class User_GroupEditAction extends User_AbstractEditAction
     {
         return xoops_getrequest('groupid');
     }
-    
+
     public function &_getHandler()
     {
         $handler =& xoops_getmodulehandler('groups');
@@ -30,23 +30,23 @@ class User_GroupEditAction extends User_AbstractEditAction
         $this->mActionForm->prepare();
     }
 
-    public function executeViewInput(&$controller, &$xoopsUser, &$render)
+    public function executeViewInput(&$controller, &$xoopsUser, $render)
     {
         $render->setTemplateName('group_edit.html');
         $render->setAttribute('actionForm', $this->mActionForm);
     }
 
-    public function executeViewSuccess(&$controller, &$xoopsUser, &$render)
+    public function executeViewSuccess($controller, &$xoopsUser, &$render)
     {
         $controller->executeForward('index.php?action=GroupList');
     }
 
-    public function executeViewError(&$controller, &$xoopsUser, &$render)
+    public function executeViewError($controller, &$xoopsUser, &$render)
     {
         $controller->executeRedirect('index.php?action=GroupList', 1, _MD_USER_ERROR_DBUPDATE_FAILED);
     }
 
-    public function executeViewCancel(&$controller, &$xoopsUser, &$render)
+    public function executeViewCancel($controller, &$xoopsUser, &$render)
     {
         $controller->executeForward('index.php?action=GroupList');
     }
