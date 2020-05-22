@@ -111,7 +111,7 @@ class Legacy_BlockFilterForm extends Legacy_AbstractFilterForm
             } else {
                 $this->_mCriteria->add(new Criteria('dirname', xoops_getrequest('dirname')));
             //wanikoo
-            $handler =& xoops_gethandler('module');
+            $handler           = xoops_gethandler('module');
                 $this->mModule =& $handler->getByDirname($dirname);
             }
             $this->mNavi->addExtra('dirname', xoops_getrequest('dirname'));
@@ -150,7 +150,7 @@ class Legacy_BlockFilterForm extends Legacy_AbstractFilterForm
         // added criteria of group permissions
         $selectedGid = (int) $root->mContext->mRequest->getRequest('selgid');
         if (0 !== $selectedGid) {
-            $handler =& xoops_gethandler('groupperm');
+            $handler  = xoops_gethandler('groupperm');
             $criteria =new CriteriaCompo();
             $criteria->add(new Criteria('gperm_modid', 1));
             $criteria->add(new Criteria('gperm_groupid', $selectedGid));

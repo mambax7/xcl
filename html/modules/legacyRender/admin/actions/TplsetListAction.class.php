@@ -42,7 +42,7 @@ class LegacyRender_TplsetListAction extends LegacyRender_AbstractListAction
         $this->mActionForm->fetch();
         $this->mActionForm->validate();
         if (!$this->mActionForm->hasError()) {
-            $configHandler =& xoops_gethandler('config');
+            $configHandler = xoops_gethandler('config');
 
             $criteria =new CriteriaCompo();
             $criteria->add(new Criteria('conf_name', 'template_set'));

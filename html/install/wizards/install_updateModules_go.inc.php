@@ -15,8 +15,8 @@ error_reporting(E_ERROR);
 
 ob_start();
 
-$module_handler =& xoops_gethandler('module');
-$modules =& $module_handler->getObjects(null, true);
+$module_handler              = xoops_gethandler('module');
+$modules                     =& $module_handler->getObjects(null, true);
 foreach (array_keys($modules) as $mid) {
     echo '<h5>' . $modules[$mid]->getVar('name') . '</h5>';
     $dirname = $modules[$mid]->getVar('dirname');
@@ -27,9 +27,9 @@ foreach (array_keys($modules) as $mid) {
         } else {
             $newmid = $modules[$mid]->getVar('mid');
             $msgs = [];
-            $msgs[] = 'Module data updated.';
-            $tplfile_handler =& xoops_gethandler('tplfile');
-            $templates = $modules[$mid]->getInfo('templates');
+            $msgs[]          = 'Module data updated.';
+            $tplfile_handler = xoops_gethandler('tplfile');
+            $templates       = $modules[$mid]->getInfo('templates');
             if (false !== $templates) {
                 $msgs[] = 'Generating templates...';
                 foreach ($templates as $tpl) {
@@ -203,9 +203,9 @@ foreach (array_keys($modules) as $mid) {
             }
 
             if (false != $configs) {
-                $msgs[] = 'Adding module config data...';
-                $config_handler =& xoops_gethandler('config');
-                $order = 0;
+                $msgs[]         = 'Adding module config data...';
+                $config_handler = xoops_gethandler('config');
+                $order          = 0;
                 foreach ($configs as $config) {
                     $confobj =& $config_handler->createConfig();
                     $confobj->setVar('conf_modid', $newmid);

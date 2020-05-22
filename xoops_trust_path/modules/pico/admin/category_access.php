@@ -80,7 +80,7 @@ if (!empty($_POST['user_update'])) {
 		}
 	}
 
-	$member_hander = &xoops_gethandler('member');
+	$member_hander = xoops_gethandler('member');
 	if (is_array(@$_POST['new_uids'])) foreach (array_keys($_POST['new_uids']) as $i) {
 		if (empty($_POST['new_can_read'][$i])) continue;
 		if (empty($_POST['new_uids'][$i])) {
@@ -122,8 +122,8 @@ foreach ($pico_category_permissions as $perm_name) {
 }
 
 // create group form
-$group_handler = &xoops_gethandler('group');
-$groups = &$group_handler->getObjects();
+$group_handler = xoops_gethandler('group');
+$groups        = &$group_handler->getObjects();
 $groups4assign = [];
 foreach ($groups as $group) {
 	$gid = $group->getVar('groupid');

@@ -9,8 +9,8 @@ require_once dirname(__DIR__) . '/class/gtickets.php';
 $db = XoopsDatabaseFactory::getDatabaseConnection();
 
 
-$module_handler = &xoops_gethandler('module');
-$modules = &$module_handler->getObjects();
+$module_handler = xoops_gethandler('module');
+$modules        = &$module_handler->getObjects();
 $importable_modules = [];
 foreach ($modules as $module) {
 	$mid = $module->getVar('mid');

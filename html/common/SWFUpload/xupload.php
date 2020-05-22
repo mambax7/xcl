@@ -18,7 +18,7 @@ require_once "../../mainfile.php";
 $root =& XCube_Root::getSingleton();
 
 
-// check ticket 
+// check ticket
 $auth = false;
 
 if (isset($_POST["ticket"])) {
@@ -73,8 +73,8 @@ if (isset($_POST["path"])) {
 }
 
 // get file extensions whitelist
-$config_handler = &xoops_gethandler('config');
-$moduleConfig =& $config_handler->getConfigsByDirname('fileManager');
+$config_handler = xoops_gethandler('config');
+$moduleConfig   =& $config_handler->getConfigsByDirname('fileManager');
 $extension_whitelist = explode('|', $moduleConfig['extensions']);
 
 // Check post_max_size (https://us3.php.net/manual/en/features.file-upload.php#73762)

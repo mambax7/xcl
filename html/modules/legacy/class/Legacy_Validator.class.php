@@ -25,7 +25,7 @@ class XCube_ObjectExistValidator extends XCube_Validator
             $moduleName = isset($vars['module']) ? $vars['module'] : null;
 
             if (null == $moduleName) {
-                $handler =& xoops_gethandler($handleName);
+                $handler = xoops_gethandler($handleName);
             } else {
                 $handler =& xoops_getmodulehandler($handleName, $moduleName);
             }

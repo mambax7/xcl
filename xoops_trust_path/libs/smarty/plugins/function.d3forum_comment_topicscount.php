@@ -8,13 +8,13 @@
  * Version:  1.0
  * Date:     Oct 16, 2006
  * Author:   GIJOE
- * Purpose:  
- * Input:    
- * 
+ * Purpose:
+ * Input:
+ *
  * Examples: {d3forum_comment_topicscount dirname=d3forum forum_id=1}
  * -------------------------------------------------------------
  */
-function smarty_function_d3forum_comment_topicscount($params, &$smarty)
+function smarty_function_d3forum_comment_topicscount($params, $smarty)
 {
 	$dirname = isset( $params['dirname'] ) ? $params['dirname'] : @$GLOBALS['xoopsModuleConfig']['d3forum_comment_dirname'] ;
 	$forum_id = isset( $params['forum_id'] ) ? intval( $params['forum_id'] ) : intval( @$GLOBALS['xoopsModuleConfig']['d3forum_comment_forum_id'] ) ;

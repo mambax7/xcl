@@ -124,7 +124,7 @@ class User_EditUserAction extends User_AbstractEditAction
         $render->setAttribute('currentUser', $xoopsUser);
         $render->setAttribute('allow_chgmail', $this->mConfig['allow_chgmail']);
 
-        $handler =& xoops_gethandler('timezone');
+        $handler     = xoops_gethandler('timezone');
         $timezoneArr =& $handler->getObjects();
         $render->setAttribute('timezones', $timezoneArr);
 

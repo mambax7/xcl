@@ -24,9 +24,9 @@ class Xupdate_Installer
 
     /**
      * __construct
-     * 
+     *
      * @param   void
-     * 
+     *
      * @return  void
     **/
     public function __construct()
@@ -36,9 +36,9 @@ class Xupdate_Installer
 
     /**
      * setCurrentXoopsModule
-     * 
+     *
      * @param   XoopsModule  &$xoopsModule
-     * 
+     *
      * @return  void
     **/
     public function setCurrentXoopsModule(/*** XoopsModule ***/ &$xoopsModule)
@@ -49,9 +49,9 @@ class Xupdate_Installer
 
     /**
      * setForceMode
-     * 
+     *
      * @param   bool  $isForceMode
-     * 
+     *
      * @return  void
     **/
     public function setForceMode(/*** bool ***/ $isForceMode)
@@ -61,9 +61,9 @@ class Xupdate_Installer
 
     /**
      * _installTables
-     * 
+     *
      * @param   void
-     * 
+     *
      * @return  bool
     **/
     private function _installTables()
@@ -76,21 +76,21 @@ class Xupdate_Installer
 
     /**
      * _installModule
-     * 
+     *
      * @param   void
-     * 
+     *
      * @return  bool
     **/
     private function _installModule()
     {
-        $moduleHandler =& Xupdate_Utils::getXoopsHandler('module');
+        $moduleHandler = Xupdate_Utils::getXoopsHandler('module');
         if (!$moduleHandler->insert($this->_mXoopsModule)) {
             $this->mLog->addError(_MI_XUPDATE_INSTALL_ERROR_MODULE_INSTALLED);
             return false;
         }
-    
-        $gpermHandler =& Xupdate_Utils::getXoopsHandler('groupperm');
-    
+
+        $gpermHandler = Xupdate_Utils::getXoopsHandler('groupperm');
+
         if ($this->_mXoopsModule->getInfo('hasAdmin')) {
             $adminPerm =& $this->_createPermission(XOOPS_GROUP_ADMIN);
             $adminPerm->setVar('gperm_name', 'module_admin');
@@ -98,11 +98,11 @@ class Xupdate_Installer
                 $this->mLog->addError(_MI_XUPDATE_INSTALL_ERROR_PERM_ADMIN_SET);
             }
         }
-    
+
         if ($this->_mXoopsModule->getInfo('hasMain')) {
             if ($this->_mXoopsModule->getInfo('read_any')) {
-                $memberHandler =& Xupdate_Utils::getXoopsHandler('member');
-                $groupObjects =& $memberHandler->getGroups();
+                $memberHandler = Xupdate_Utils::getXoopsHandler('member');
+                $groupObjects  =& $memberHandler->getGroups();
                 foreach ($groupObjects as $group) {
                     $readPerm =& $this->_createPermission($group->getVar('groupid'));
                     $readPerm->setVar('gperm_name', 'module_read');
@@ -120,7 +120,7 @@ class Xupdate_Installer
                 }
             }
         }
-    
+
         return true;
     }
 
@@ -133,20 +133,20 @@ class Xupdate_Installer
      */
     private function &_createPermission(/*** int ***/ $group)
     {
-        $gpermHandler =& Xupdate_Utils::getXoopsHandler('groupperm');
-        $perm =& $gpermHandler->create();
+        $gpermHandler = Xupdate_Utils::getXoopsHandler('groupperm');
+        $perm         =& $gpermHandler->create();
         $perm->setVar('gperm_groupid', $group);
         $perm->setVar('gperm_itemid', $this->_mXoopsModule->getVar('mid'));
         $perm->setVar('gperm_modid', 1);
-    
+
         return $perm;
     }
 
     /**
      * _installTemplates
-     * 
+     *
      * @param   void
-     * 
+     *
      * @return  void
     **/
     private function _installTemplates()
@@ -159,9 +159,9 @@ class Xupdate_Installer
 
     /**
      * _installBlocks
-     * 
+     *
      * @param   void
-     * 
+     *
      * @return  void
     **/
     private function _installBlocks()
@@ -174,9 +174,9 @@ class Xupdate_Installer
 
     /**
      * _installPreferences
-     * 
+     *
      * @param   void
-     * 
+     *
      * @return  void
     **/
     private function _installPreferences()
@@ -189,9 +189,9 @@ class Xupdate_Installer
 
     /**
      * _processReport
-     * 
+     *
      * @param   void
-     * 
+     *
      * @return  void
     **/
     private function _processReport()
@@ -222,9 +222,9 @@ class Xupdate_Installer
 
     /**
      * executeInstall
-     * 
+     *
      * @param   void
-     * 
+     *
      * @return  bool
     **/
     public function executeInstall()
@@ -234,31 +234,31 @@ class Xupdate_Installer
             $this->_processReport();
             return false;
         }
-    
+
         $this->_installModule();
         if (!$this->_mForceMode && $this->mLog->hasError()) {
             $this->_processReport();
             return false;
         }
-    
+
         $this->_installTemplates();
         if (!$this->_mForceMode && $this->mLog->hasError()) {
             $this->_processReport();
             return false;
         }
-    
+
         $this->_installBlocks();
         if (!$this->_mForceMode && $this->mLog->hasError()) {
             $this->_processReport();
             return false;
         }
-    
+
         $this->_installPreferences();
         if (!$this->_mForceMode && $this->mLog->hasError()) {
             $this->_processReport();
             return false;
         }
-    
+
         $this->_processReport();
         return true;
     }

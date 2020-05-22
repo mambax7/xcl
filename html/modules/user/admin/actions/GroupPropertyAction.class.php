@@ -22,12 +22,12 @@ class User_GroupPropertyAction extends User_Action
     public $_mActiveModulesLoadedFlag = false;
     public $_mActiveBlocks = [];
     public $_mActiveBlocksLoadedFlag = false;
-    
+
     public $mGroup;
     public $mPermissions;
     public $mSystemPermissions;
     public $mBlockPermissions;
-    
+
     public $mUsers;
     public $mPageNavi;
 
@@ -46,7 +46,7 @@ class User_GroupPropertyAction extends User_Action
         //
         // Get member list
         //
-        $memberHandler =& xoops_gethandler('member');
+        $memberHandler = xoops_gethandler('member');
 
         $total = $memberHandler->getUserCountByGroup($this->mGroup->getVar('groupid'));
         $this->mPageNavi =new XCube_PageNavigator('./index.php?action=GroupProperty', XCUBE_PAGENAVI_START | XCUBE_PAGENAVI_PERPAGE);    // TODO get controller->getUrl() ?
@@ -54,10 +54,10 @@ class User_GroupPropertyAction extends User_Action
         $this->mPageNavi->addExtra('groupid', $this->mGroup->get('groupid'));
 
         $this->mPageNavi->fetch();
-        
+
         $this->mUsers =& $memberHandler->getUsersByGroup($this->mGroup->getVar('groupid'), true, $this->mPageNavi->getPerPage(), $this->mPageNavi->getStart());
 
-        $moduleHandler =& xoops_gethandler('module');
+        $moduleHandler = xoops_gethandler('module');
         //
         // Get...
         //
@@ -84,15 +84,15 @@ class User_GroupPropertyAction extends User_Action
         // Get module list
         //
         $this->_loadActiveModules();
-    
+
         $t_activeModuleIDs = [];
-    
+
         foreach ($this->_mActiveModules as $module) {
             $item =new User_PermissionModuleItem($module);
             $this->mPermissions[] =new User_Permission($this->mGroup->getVar('groupid'), $item);
-        
+
             $t_activeModuleIDs[] = $module->get('mid');
-        
+
             unset($module);
             unset($item);
         }
@@ -112,25 +112,25 @@ class User_GroupPropertyAction extends User_Action
                 unset($item);
                 unset($block);
             }
-            
+
             $idx++;
         }
 
         return USER_FRAME_VIEW_INDEX;
     }
-    
+
     public function _loadActiveModules()
     {
         if ($this->_mActiveModulesLoadedFlag) {
             return;
         }
-        
-        $moduleHandler =& xoops_gethandler('module');
+
+        $moduleHandler         = xoops_gethandler('module');
         $this->_mActiveModules =& $moduleHandler->getObjects(new Criteria('isactive', 1));
-        
+
         $this->_mActiveModulesLoadedFlag = true;
     }
-    
+
     public function _loadActiveBlocks()
     {
         if ($this->_mActiveBlocksLoadedFlag) {
@@ -138,7 +138,7 @@ class User_GroupPropertyAction extends User_Action
         }
 
         $this->_loadActiveModules();
-        
+
         $t_activeModuleIDs = [];
         foreach ($this->_mActiveModules as $module) {
             $t_activeModuleIDs[] = $module->get('mid');
@@ -156,10 +156,10 @@ class User_GroupPropertyAction extends User_Action
                 }
                 unset($block);
             }
-            
+
             unset($blockArr);
         }
-        
+
         $this->_mActiveBlocksLoadedFlag = true;
     }
 

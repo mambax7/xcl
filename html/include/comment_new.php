@@ -98,7 +98,7 @@ if ($com_itemid > 0)
 
     $noname = 0;
 
-    $handler =& xoops_gethandler('comment');
+    $handler = xoops_gethandler('comment');
     $comment =& $handler->create();
 
     //
@@ -130,7 +130,7 @@ if ($com_itemid > 0)
     //
     // Get the icons of subject.
     //
-    $handler =& xoops_gethandler('subjecticon');
+    $handler      = xoops_gethandler('subjecticon');
     $subjectIcons =& $handler->getObjects();
 
     //

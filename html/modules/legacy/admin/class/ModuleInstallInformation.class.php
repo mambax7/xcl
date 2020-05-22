@@ -721,8 +721,8 @@ class Legacy_ModinfoX2FileReader extends Legacy_AbstractModinfoReader
             //
             // Get the module object to get mid.
             //
-            $handler =& xoops_gethandler('module');
-            $module =& $handler->getByDirname($this->_mDirname);
+            $handler = xoops_gethandler('module');
+            $module  =& $handler->getByDirname($this->_mDirname);
 
             $t_options = [];
             $t_categoryArr =& notificationCategoryInfo('', $module->get('mid'));
@@ -882,10 +882,10 @@ class Legacy_ModinfoX2DBReader extends Legacy_AbstractModinfoReader
     {
         $collection =new Legacy_PreferenceInfoCollection();
 
-        $handler =& xoops_gethandler('module');
-        $module =& $handler->getByDirname($this->_mDirname);
+        $handler = xoops_gethandler('module');
+        $module  =& $handler->getByDirname($this->_mDirname);
 
-        $handler =& xoops_gethandler('config');
+        $handler  = xoops_gethandler('config');
         $criteria =new Criteria('conf_modid', $module->get('mid'));
         $criteria->setOrder('conf_order');
         $configArr =& $handler->getConfigs($criteria);

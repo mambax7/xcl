@@ -157,7 +157,7 @@ class xoopsmultimailer extends PHPMailer
     {
         global $xoopsConfig;
         $this->ClearAllRecipients();
-        $config_handler = &xoops_gethandler('config');
+        $config_handler    = xoops_gethandler('config');
         $xoopsMailerConfig = &$config_handler->getConfigsByCat(XOOPS_CONF_MAILER);
         $this->From = $xoopsMailerConfig['from'];
         if ('' == $this->From) {

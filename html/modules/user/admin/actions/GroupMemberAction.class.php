@@ -59,8 +59,8 @@ class User_GroupMemberAction extends User_Action
             return USER_FRAME_VIEW_ERROR;
         }
 
-        $memberHandler =& xoops_gethandler('member');
-        $groupid = $this->mGroup->getVar('groupid');
+        $memberHandler = xoops_gethandler('member');
+        $groupid       = $this->mGroup->getVar('groupid');
 
         //
         // Get member list
@@ -108,8 +108,8 @@ class User_GroupMemberAction extends User_Action
             return $this->getDefaultView($controller, $xoopsUser);
         }
 
-        $memberHandler =& xoops_gethandler('member');
-        $userHandler =& xoops_getmodulehandler('users');
+        $memberHandler = xoops_gethandler('member');
+        $userHandler   =& xoops_getmodulehandler('users');
 
         foreach ($this->mActionForm->get('uid') as $uid => $value) {
             $user =& $userHandler->get($uid);

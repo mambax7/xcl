@@ -24,7 +24,7 @@ class Legacy_PreferenceListAction extends Legacy_Action
 
     public function getDefaultView(&$controller, &$xoopsUser)
     {
-        $handler =& xoops_gethandler('configcategory');
+        $handler        = xoops_gethandler('configcategory');
         $this->mObjects =& $handler->getObjects();
 
         return LEGACY_FRAME_VIEW_INDEX;

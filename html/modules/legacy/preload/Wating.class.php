@@ -18,12 +18,12 @@ class Legacy_Waiting extends XCube_ActionFilter
     {
         $this->mController->mRoot->mDelegateManager->add('Legacyblock.Waiting.Show', [&$this, 'callbackWaitingShow']);
     }
-    
+
     public function callbackWaitingShow(&$modules)
     {
         $xoopsDB =& Database::getInstance();
         // for News Module
-        $module_handler =& xoops_gethandler('module');
+        $module_handler = xoops_gethandler('module');
         if ($module_handler->getCount(new Criteria('dirname', 'news'))) {
             $result = $xoopsDB->query('SELECT COUNT(*) FROM ' . $xoopsDB->prefix('stories') . ' WHERE published=0');
             if ($result) {

@@ -163,8 +163,8 @@ function smarty_resource_db_tplinfo($tpl_name, $smarty)
             case 'DBTPLSET':
                 // find a DB template of the selected tplset
                 // check template update
-                $tplfileHandler =& xoops_gethandler('tplfile');
-                $tplObj = $tplfileHandler->find($tplset, null, null, null, $tpl_name, true);
+                $tplfileHandler = xoops_gethandler('tplfile');
+                $tplObj         = $tplfileHandler->find($tplset, null, null, null, $tpl_name, true);
                 if (!empty($tplObj)) {
                     return $cache[$tpl_name] = $tplObj[0];
                 }
@@ -176,7 +176,7 @@ function smarty_resource_db_tplinfo($tpl_name, $smarty)
 
     // Finally, find a DB template in default tplset
     if (! isset($tplfileHandler)) {
-        $tplfileHandler =& xoops_gethandler('tplfile');
+        $tplfileHandler = xoops_gethandler('tplfile');
     }
     $tplObj = $tplfileHandler->find('default', null, null, null, $tpl_name, true);
     if (empty($tplObj)) {

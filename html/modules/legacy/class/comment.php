@@ -53,7 +53,7 @@ class LegacyCommentObject extends XoopsSimpleObject
      */
     public function loadUser()
     {
-        $handler =& xoops_gethandler('member');
+        $handler     = xoops_gethandler('member');
         $this->mUser =& $handler->getUser($this->get('com_uid'));
     }
 
@@ -62,7 +62,7 @@ class LegacyCommentObject extends XoopsSimpleObject
      */
     public function loadModule()
     {
-        $handler =& xoops_gethandler('module');
+        $handler       = xoops_gethandler('module');
         $this->mModule =& $handler->get($this->get('com_modid'));
     }
 

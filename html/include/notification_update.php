@@ -58,7 +58,7 @@ if (!isset($_POST['not_submit'])) {
 
 // NOTE: in addition to the templates provided in the block and view
 // modes, we can have buttons, etc. which load the arguments to be
-// read by this script.  That way a module can really customize its 
+// read by this script.  That way a module can really customize its
 // look as to where/how the notification options are made available.
 
 $update_list = $_POST['not_list'];
@@ -72,7 +72,7 @@ $user_id = !empty($xoopsUser) ? $xoopsUser->getVar('uid') : 0;
 // FIXME: right now I just ignore database errors (e.g. if already
 //  subscribed)... deal with this more gracefully?
 
-$notification_handler =& xoops_gethandler('notification');
+$notification_handler = xoops_gethandler('notification');
 
 foreach ($update_list as $update_item) {
     list($category, $item_id, $event) = explode(',', $update_item['params']);

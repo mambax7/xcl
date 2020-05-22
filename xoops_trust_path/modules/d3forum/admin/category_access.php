@@ -73,7 +73,7 @@ if( ! empty( $_POST['user_update'] ) && empty( $invaild_cat_id ) ) {
 		}
 	}
 
-	$member_hander =& xoops_gethandler( 'member' ) ;
+	$member_hander = xoops_gethandler('member' ) ;
 	if( is_array( @$_POST['new_uids'] ) ) foreach( $_POST['new_uids'] as $i => $uid ) {
 		$can_post = empty( $_POST['new_can_posts'][$i] ) ? 0 : 1 ;
 		$can_edit = empty( $_POST['new_can_edits'][$i] ) ? 0 : 1 ;
@@ -112,8 +112,8 @@ while( list( $id , $title , $depth ) = $db->fetchRow( $crs ) ) {
 
 
 // create group form
-$group_handler =& xoops_gethandler( 'group' ) ;
-$groups =& $group_handler->getObjects() ;
+$group_handler = xoops_gethandler('group' ) ;
+$groups        =& $group_handler->getObjects() ;
 $group_trs = '' ;
 foreach( $groups as $group ) {
 	$gid = $group->getVar('groupid') ;

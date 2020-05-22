@@ -22,7 +22,7 @@ class UserGroupsObject extends XoopsSimpleObject
 
     public function getUserCount()
     {
-        $handler = &xoops_gethandler('member');
+        $handler = xoops_gethandler('member');
         return $handler->getUserCountByGroup($this->get('groupid'));
     }
 }

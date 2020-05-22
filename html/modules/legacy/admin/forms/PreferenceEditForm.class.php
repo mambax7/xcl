@@ -151,7 +151,7 @@ class Legacy_ModulePreferenceEditForm extends Legacy_PreferenceEditForm
     public $mKeyName = 'confmod_id';
     public $mKeyValue = 0;
 
-    public function Legacy_ModulePreferenceEditForm(&$module)
+    public function Legacy_ModulePreferenceEditForm($module)
     {
         self::__construct($module);
     }

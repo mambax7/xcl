@@ -7,7 +7,7 @@
 if (!defined('XOOPS_ROOT_PATH')) {
     exit();
 }
- 
+
 /***
  * @internal
  * This is static functions collection class for legacy pages access.
@@ -27,10 +27,10 @@ class User_LegacypageFunctions
         //
         $root =& XCube_Root::getSingleton();
         $root->mController->executeHeader();
-        
+
         $root->mController->setupModuleContext('user');
         $root->mLanguageManager->loadModuleMessageCatalog('user');
-        
+
         require_once XOOPS_MODULE_PATH . '/user/class/ActionFrame.class.php';
 
         $moduleRunner = new User_ActionFrame(false);
@@ -39,10 +39,10 @@ class User_LegacypageFunctions
         $root->mController->mExecute->add([&$moduleRunner, 'execute']);
 
         $root->mController->execute();
-        
+
         $root->mController->executeView();
     }
-    
+
     /***
      * @internal
      * The process for edituser.php. This process doesn't execute anything
@@ -56,21 +56,21 @@ class User_LegacypageFunctions
             case 'avatarupload':
                 $actionName = 'AvatarEdit';
                 break;
-                
+
             case 'avatarchoose':
                 $actionName = 'AvatarSelect';
                 break;
         }
-        
+
         //
         // Boot the action frame of the user module directly.
         //
         $root =& XCube_Root::getSingleton();
         $root->mController->executeHeader();
-        
+
         $root->mController->setupModuleContext('user');
         $root->mLanguageManager->loadModuleMessageCatalog('user');
-        
+
         require_once XOOPS_MODULE_PATH . '/user/class/ActionFrame.class.php';
 
         $moduleRunner = new User_ActionFrame(false);
@@ -79,10 +79,10 @@ class User_LegacypageFunctions
         $root->mController->mExecute->add([&$moduleRunner, 'execute']);
 
         $root->mController->execute();
-        
+
         $root->mController->executeView();
     }
-    
+
     /***
      * @internal
      * The process for register.php. This process doesn't execute anything
@@ -92,11 +92,11 @@ class User_LegacypageFunctions
     {
         $root =& XCube_Root::getSingleton();
         $xoopsUser =& $root->mContext->mXoopsUser;
-        
+
         if (is_object($xoopsUser)) {
             $root->mController->executeForward(XOOPS_URL);
         }
-        
+
         //
         // Boot the action frame of the user module directly.
         //
@@ -104,7 +104,7 @@ class User_LegacypageFunctions
 
         $root->mController->setupModuleContext('user');
         $root->mLanguageManager->loadModuleMessageCatalog('user');
-                
+
         require_once XOOPS_MODULE_PATH . '/user/class/ActionFrame.class.php';
 
         $actionName = '';
@@ -121,10 +121,10 @@ class User_LegacypageFunctions
         $root->mController->mExecute->add([&$moduleRunner, 'execute']);
 
         $root->mController->execute();
-        
+
         $root->mController->executeView();
     }
-    
+
     /***
      * @internal
      * The process for lostpass.php. This process doesn't execute anything
@@ -139,7 +139,7 @@ class User_LegacypageFunctions
         if (is_object($xoopsUser)) {
             $root->mController->executeForward(XOOPS_URL);
         }
-        
+
         //
         // Boot the action frame of the user module directly.
         //
@@ -147,7 +147,7 @@ class User_LegacypageFunctions
 
         $root->mController->setupModuleContext('user');
         $root->mLanguageManager->loadModuleMessageCatalog('user');
-                
+
         require_once XOOPS_MODULE_PATH . '/user/class/ActionFrame.class.php';
 
         $root =& XCube_Root::getSingleton();
@@ -158,7 +158,7 @@ class User_LegacypageFunctions
         $root->mController->mExecute->add([&$moduleRunner, 'execute']);
 
         $root->mController->execute();
-        
+
         $root->mController->executeView();
     }
 
@@ -172,42 +172,42 @@ class User_LegacypageFunctions
         $root =& XCube_Root::getSingleton();
         $op = isset($_REQUEST['op']) ? trim(xoops_getrequest('op')) : 'main';
         $xoopsUser =& $root->mContext->mXoopsUser;
-        
+
         $actionName = 'default';
-        
+
         switch ($op) {
             case 'login':
                 $root->mController->checkLogin();
                 return;
-            
+
             case 'logout':
                 $root->mController->logout();
                 return;
-                
+
             case 'main':
                 if (is_object($xoopsUser)) {
                     $root->mController->executeForward(XOOPS_URL . '/userinfo.php?uid=' . $xoopsUser->get('uid'));
                 }
                 break;
-                
+
             case 'actv':
                 $actionName = 'UserActivate';
                 break;
-                
+
             case 'delete':
                 $actionName = 'UserDelete';
                 break;
         }
-        
+
         //
         // Boot the action frame of the user module directly.
         //
         $root =& XCube_Root::getSingleton();
         $root->mController->executeHeader();
-        
+
         $root->mController->setupModuleContext('user');
         $root->mLanguageManager->loadModuleMessageCatalog('user');
-        
+
         require_once XOOPS_MODULE_PATH . '/user/class/ActionFrame.class.php';
 
         $moduleRunner = new User_ActionFrame(false);
@@ -216,7 +216,7 @@ class User_LegacypageFunctions
         $root->mController->mExecute->add([&$moduleRunner, 'execute']);
 
         $root->mController->execute();
-        
+
         $root->mController->executeView();
     }
 
@@ -230,7 +230,7 @@ class User_LegacypageFunctions
         $root->mLanguageManager->loadModuleMessageCatalog('user');
 
         $userHandler = xoops_getmodulehandler('users', 'user');
-        
+
         $criteria = new CriteriaCompo();
         $criteria->add(new Criteria('uname', xoops_getrequest('uname')));
         $userArr = $userHandler->getObjects($criteria);
@@ -243,15 +243,15 @@ class User_LegacypageFunctions
         if (! User_Utils::passwordVerify($pass, $hash)) {
             return;
         }
-        
+
         if (0 == $userArr[0]->get('level')) {
             // TODO We should use message "_MD_USER_LANG_NOACTTPADM"
             return;
         }
-        
-        $handler =& xoops_gethandler('user');
-        $user =& $handler->get($userArr[0]->get('uid'));
-        
+
+        $handler = xoops_gethandler('user');
+        $user    =& $handler->get($userArr[0]->get('uid'));
+
         if (is_callable([$user, 'getNumGroups'])) { // Compatible for replaced handler.
             if (0 == $user->getNumGroups()) {
                 return;
@@ -262,7 +262,7 @@ class User_LegacypageFunctions
                 return;
             }
         }
-        
+
         // auto re-hash
         if (User_Utils::passwordNeedsRehash($hash)) {
             $user->set('pass', User_Utils::encryptPassword($pass), true);
@@ -290,7 +290,7 @@ class User_LegacypageFunctions
         if (is_object($xoopsUser)) {
             $handler = xoops_gethandler('user');
             $xoopsUser->set('last_login', time());
-            
+
             $handler->insert($xoopsUser);
 
             if (self::$passwordNeedsRehash) {
@@ -308,7 +308,7 @@ class User_LegacypageFunctions
     {
         $root =& XCube_Root::getSingleton();
         $xoopsConfig = $root->mContext->mXoopsConfig;
-        
+
         $root->mLanguageManager->loadModuleMessageCatalog('user');
 
         // Reset session
@@ -317,10 +317,10 @@ class User_LegacypageFunctions
 
         // clear entry from online users table
         if (is_object($xoopsUser)) {
-            $onlineHandler =& xoops_gethandler('online');
+            $onlineHandler = xoops_gethandler('online');
             $onlineHandler->destroy($xoopsUser->get('uid'));
         }
-        
+
         $successFlag = true;
     }
 
@@ -329,12 +329,12 @@ class User_LegacypageFunctions
         if ('online' != xoops_getrequest('type')) {
             return;
         }
-        
+
         require_once XOOPS_MODULE_PATH . '/user/class/ActionFrame.class.php';
 
         $root =& XCube_Root::getSingleton();
         $root->mController->setupModuleContext('user');
-        
+
         $actionName = 'MiscOnline';
 
         $moduleRunner = new User_ActionFrame(false);

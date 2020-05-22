@@ -33,8 +33,8 @@ if (function_exists('mb_http_output')) {
 $image_id = isset($_GET['id']) ? (int)$_GET['id'] : 0;
 if ($image_id > 0) {
     include './mainfile.php';
-    $imagehandler = & xoops_gethandler('image');
-    $criteria = new CriteriaCompo(new Criteria('i.image_display', 1));
+    $imagehandler = xoops_gethandler('image');
+    $criteria     = new CriteriaCompo(new Criteria('i.image_display', 1));
     $criteria->add(new Criteria('i.image_id', $image_id));
     $image = & $imagehandler->getObjects($criteria, false, true);
     if (count($image) > 0) {

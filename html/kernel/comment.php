@@ -370,7 +370,7 @@ class XoopsCommentHandler extends XoopsObjectHandler
      *
      * @return int Array of <a href='psi_element://XoopsComment'>XoopsComment</a> objects
      */
-    public function &getCountByItemId($module_id, $item_id, $status = null)
+    public function getCountByItemId($module_id, $item_id, $status = null)
     {
         $criteria = new CriteriaCompo(new Criteria('com_modid', (int)$module_id));
         $criteria->add(new Criteria('com_itemid', (int)$item_id));
@@ -432,7 +432,7 @@ class XoopsCommentHandler extends XoopsObjectHandler
      *
      * @return  bool
      **/
-    public function updateByField(&$comment, $field_name, $field_value)
+    public function updateByField($comment, $field_name, $field_value)
     {
         $comment->unsetNew();
         $comment->setVar($field_name, $field_value);

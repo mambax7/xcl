@@ -289,7 +289,7 @@ function xoops_template_touch($tpl_id, $clear_old = true)
     if (null === $result) {
         $tpl = new XoopsTpl();
         $tpl->force_compile = true;
-        $tplfile_handler =& xoops_gethandler('tplfile');
+        $tplfile_handler = xoops_gethandler('tplfile');
         $tplfile =& $tplfile_handler->get($tpl_id);
         if (is_object($tplfile)) {
             $file = $tplfile->getVar('tpl_file');
@@ -321,8 +321,8 @@ function xoops_template_touch($tpl_id, $clear_old = true)
 function xoops_template_create($resource_type, $resource_name, &$template_source, &$template_timestamp, &$smarty_obj)
 {
     if ('db' == $resource_type) {
-        $file_handler =& xoops_gethandler('tplfile');
-        $tpl =& $file_handler->find('default', null, null, null, $resource_name, true);
+        $file_handler = xoops_gethandler('tplfile');
+        $tpl          =& $file_handler->find('default', null, null, null, $resource_name, true);
         if (count($tpl) > 0 && is_object($tpl[0])) {
             $template_source = $tpl[0]->getSource();
             $template_timestamp = $tpl[0]->getLastModified();

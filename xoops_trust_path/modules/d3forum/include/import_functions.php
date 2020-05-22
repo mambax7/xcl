@@ -137,9 +137,9 @@ $GLOBALS['d3forum_tables'] = [
 
 function d3forum_import_getimportablemodules( $mydirname )
 {
-	$db =& Database::getInstance() ;
-	$module_handler =& xoops_gethandler( 'module' ) ;
-	$modules = $module_handler->getObjects() ;
+	$db             =& Database::getInstance() ;
+	$module_handler = xoops_gethandler('module' ) ;
+	$modules        = $module_handler->getObjects() ;
 
 	$ret = [];
 
@@ -192,9 +192,9 @@ function d3forum_import_from_cbb3( $mydirname , $import_mid )
 	$from_prefix = 'bb' ;
 
 	// get group_ids
-	$group_handler =& xoops_gethandler( 'group' ) ;
+	$group_handler = xoops_gethandler('group' ) ;
 	$group_objects = $group_handler->getObjects() ;
-	$group_ids = [];
+	$group_ids     = [];
 	foreach( $group_objects as $group_object ) {
 		$group_ids[] = $group_object->getVar('groupid') ;
 	}
@@ -265,9 +265,9 @@ function d3forum_import_from_newbb1( $mydirname , $import_mid )
 	$from_prefix = 'bb' ;
 
 	// get group_ids
-	$group_handler =& xoops_gethandler( 'group' ) ;
+	$group_handler = xoops_gethandler('group' ) ;
 	$group_objects = $group_handler->getObjects() ;
-	$group_ids = [];
+	$group_ids     = [];
 	foreach( $group_objects as $group_object ) {
 		$group_ids[] = $group_object->getVar('groupid') ;
 	}
@@ -368,9 +368,9 @@ function d3forum_import_from_xhnewbb( $mydirname , $import_mid )
 	$from_prefix = 'xhnewbb' ;
 
 	// get group_ids
-	$group_handler =& xoops_gethandler( 'group' ) ;
+	$group_handler = xoops_gethandler('group' ) ;
 	$group_objects = $group_handler->getObjects() ;
-	$group_ids = [];
+	$group_ids     = [];
 	foreach( $group_objects as $group_object ) {
 		$group_ids[] = $group_object->getVar('groupid') ;
 	}
@@ -470,8 +470,8 @@ function d3forum_import_from_d3forum( $mydirname , $import_mid )
 {
 	$db =& Database::getInstance() ;
 
-	$module_handler =& xoops_gethandler( 'module' ) ;
-	$from_module =& $module_handler->get( $import_mid ) ;
+	$module_handler = xoops_gethandler('module' ) ;
+	$from_module    =& $module_handler->get( $import_mid ) ;
 
 	foreach( $GLOBALS['d3forum_tables'] as $table_name => $columns ) {
 		$to_table = $db->prefix( $mydirname.'_'.$table_name ) ;
@@ -494,8 +494,8 @@ function d3forum_comimport_as_topics( $mydirname , $mid , $forum_id )
 	if(1 != $db->getRowsNum($frs )) die( 'Invalid forum_id' ) ;
 
 	// get comments configs from xoops_version.php of the module
-	$module_handler =& xoops_gethandler( 'module' ) ;
-	$module_obj =& $module_handler->get( $mid ) ;
+	$module_handler = xoops_gethandler('module' ) ;
+	$module_obj     =& $module_handler->get( $mid ) ;
 	if( ! is_object( $module_obj ) ) die( 'Invalid mid' ) ;
 	$com_configs = $module_obj->getInfo('comments') ;
 
@@ -548,8 +548,8 @@ function d3forum_export_forum_to_d3forum( $mydirname , $export_mid , $export_cat
 {
 	$db =& Database::getInstance() ;
 
-	$module_handler =& xoops_gethandler( 'module' ) ;
-	$to_module =& $module_handler->get( $export_mid ) ;
+	$module_handler   = xoops_gethandler('module' ) ;
+	$to_module        =& $module_handler->get( $export_mid ) ;
 	$export_mydirname = $to_module->getVar('dirname') ;
 
 	// forums table
@@ -587,8 +587,8 @@ function d3forum_export_topic_to_d3forum( $mydirname , $export_mid , $export_for
 {
 	$db =& Database::getInstance() ;
 
-	$module_handler =& xoops_gethandler( 'module' ) ;
-	$to_module =& $module_handler->get( $export_mid ) ;
+	$module_handler   = xoops_gethandler('module' ) ;
+	$to_module        =& $module_handler->get( $export_mid ) ;
 	$export_mydirname = $to_module->getVar('dirname') ;
 
 	// topics table

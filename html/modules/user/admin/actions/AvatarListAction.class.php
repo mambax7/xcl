@@ -144,7 +144,7 @@ class User_AvatarListAction extends User_AbstractListAction
 
                     if ($avatarHandler->delete($avatar)) {
                         if (count($linkArr) > 0) {
-                            $userHandler =& xoops_gethandler('user');
+                            $userHandler = xoops_gethandler('user');
                             foreach ($linkArr as $link) {
                                 $user =& $userHandler->get($link->get('user_id'));
                                 if (is_object($user)) {

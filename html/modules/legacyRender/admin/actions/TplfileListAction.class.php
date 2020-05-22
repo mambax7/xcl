@@ -173,8 +173,8 @@ class LegacyRender_TplfileListAction extends LegacyRender_AbstractListAction
         //
         // fetch module objects, assign to template for pull-down menu.
         //
-        $moduleHandler =& xoops_gethandler('module');
-        $modules =& $moduleHandler->getObjects();
+        $moduleHandler = xoops_gethandler('module');
+        $modules       =& $moduleHandler->getObjects();
         $render->setAttribute('modules', $modules);
 
         $handler =& xoops_getmodulehandler('tplset');

@@ -4,8 +4,8 @@ function d3forum_notify_iteminfo( $mydirname , $category , $item_id )
 {
 	$db =& Database::getInstance() ;
 
-	$module_handler =& xoops_gethandler( 'module' ) ;
-	$module =& $module_handler->getByDirname( $mydirname ) ;
+	$module_handler = xoops_gethandler('module' ) ;
+	$module         =& $module_handler->getByDirname( $mydirname ) ;
 
 	if('global' == $category) {
 		$item['name'] = '';

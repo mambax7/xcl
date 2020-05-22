@@ -34,7 +34,7 @@ class Legacy_ModuleListAction extends Legacy_Action
         $this->mFilter =new Legacy_ModuleListFilterForm();
         $this->mFilter->fetch();
 
-        $moduleHandler =& xoops_gethandler('module');
+        $moduleHandler        = xoops_gethandler('module');
         $this->mModuleObjects =& $moduleHandler->getObjects($this->mFilter->getCriteria());
 
         return LEGACY_FRAME_VIEW_INDEX;
@@ -65,8 +65,8 @@ class Legacy_ModuleListAction extends Legacy_Action
 
     public function _processConfirm(&$controller, &$xoopsUser)
     {
-        $moduleHandler =& xoops_gethandler('module');
-        $t_objectArr =& $moduleHandler->getObjects();
+        $moduleHandler = xoops_gethandler('module');
+        $t_objectArr   =& $moduleHandler->getObjects();
 
         //
         // Do mapping.
@@ -81,9 +81,9 @@ class Legacy_ModuleListAction extends Legacy_Action
 
     public function _processSave(&$controller, &$xoopsUser)
     {
-        $moduleHandler =& xoops_gethandler('module');
-        $blockHandler =& xoops_gethandler('block');
-        $t_objectArr =& $moduleHandler->getObjects();
+        $moduleHandler = xoops_gethandler('module');
+        $blockHandler  = xoops_gethandler('block');
+        $t_objectArr   =& $moduleHandler->getObjects();
 
         $successFlag = true;
         foreach ($t_objectArr as $module) {
@@ -148,8 +148,8 @@ class Legacy_ModuleListAction extends Legacy_Action
 
         $render->setAttribute('moduleObjects', $this->mModuleObjects);
 
-        $moduleHandler =& xoops_gethandler('module');
-        $module_total = $moduleHandler->getCount();
+        $moduleHandler = xoops_gethandler('module');
+        $module_total  = $moduleHandler->getCount();
         $active_module_total = $moduleHandler->getCount(new Criteria('isactive', 1));
         $render->setAttribute('ModuleTotal', $module_total);
         $render->setAttribute('activeModuleTotal', $active_module_total);

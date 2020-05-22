@@ -45,7 +45,7 @@ function pico_delete_category($mydirname, $cat_id, $delete_also_contents = true)
 	}
 
 	// delete notifications about this category
-	$notification_handler = &xoops_gethandler('notification');
+	$notification_handler = xoops_gethandler('notification');
 	$notification_handler->unsubscribeByItem($xoopsModule->getVar('mid'), 'category', $cat_id);
 
 	// delete category
@@ -217,10 +217,10 @@ function pico_sync_all($mydirname)
 {
 	$db = XoopsDatabaseFactory::getDatabaseConnection();
 
-	$module_handler = &xoops_gethandler('module');
-	$module = &$module_handler->getByDirname($mydirname);
-	$config_handler = &xoops_gethandler('config');
-	$configs = $config_handler->getConfigList($module->mid());
+	$module_handler = xoops_gethandler('module');
+	$module         = &$module_handler->getByDirname($mydirname);
+	$config_handler = xoops_gethandler('config');
+	$configs        = $config_handler->getConfigList($module->mid());
 
 	// sync contents <- content_votes
 	$result = $db->query('SELECT content_id FROM ' . $db->prefix($mydirname . '_contents'));
@@ -416,11 +416,11 @@ function pico_get_requests4content($mydirname, &$errors, $auto_approval = true, 
 	$db = XoopsDatabaseFactory::getDatabaseConnection();
 
 	// get config
-	$module_handler = &xoops_gethandler('module');
-	$module = &$module_handler->getByDirname($mydirname);
+	$module_handler = xoops_gethandler('module');
+	$module         = &$module_handler->getByDirname($mydirname);
 	if (!is_object($module)) return [];
-	$config_handler = &xoops_gethandler('config');
-	$mod_config = &$config_handler->getConfigsByCat(0, $module->getVar('mid'));
+	$config_handler = xoops_gethandler('config');
+	$mod_config     = &$config_handler->getConfigsByCat(0, $module->getVar('mid'));
 
 	// check $cat_id
 	$cat_id = (int)@$_POST['cat_id'];
@@ -582,7 +582,7 @@ function pico_get_requests4content($mydirname, &$errors, $auto_approval = true, 
 // get uid from free form (numeric=uid, not numeric=uname)
 function pico_main_get_uid($text)
 {
-	$user_handler = &xoops_gethandler('user');
+	$user_handler = xoops_gethandler('user');
 
 	$text = trim($text);
 	if (is_numeric($text)) {

@@ -336,7 +336,7 @@ google.load("jqueryui", "'. $this->_mUi .'");
     **/
     protected function _getRenderConfig($key)
     {
-        $handler =& xoops_gethandler('config');
+        $handler   = xoops_gethandler('config');
         $configArr =& $handler->getConfigsByDirname('legacyRender');
         return $configArr[$key];
     }

@@ -32,16 +32,16 @@ class User_GroupDeleteAction extends User_AbstractDeleteAction
 
     public function _doExecute()
     {
-        $handler =& xoops_gethandler('group');
-        $group =& $handler->get($this->mObject->get('groupid'));
+        $handler = xoops_gethandler('group');
+        $group   =& $handler->get($this->mObject->get('groupid'));
 
-        $handler =& xoops_gethandler('member');
+        $handler = xoops_gethandler('member');
 
         if (!$handler->delete($group)) {
             return USER_FRAME_VIEW_ERROR;
         }
 
-        $handler =& xoops_gethandler('groupperm');
+        $handler = xoops_gethandler('groupperm');
         if (!$handler->deleteByGroup($this->mObject->get('groupid'))) {
             return USER_FRAME_VIEW_ERROR;
         }

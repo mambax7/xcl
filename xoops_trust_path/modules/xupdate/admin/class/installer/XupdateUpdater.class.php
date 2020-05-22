@@ -201,8 +201,8 @@ class Xupdate_Updater
     **/
     public function setCurrentXoopsModule(/*** XoopsModule ***/ $module)
     {
-        $moduleHandler =& Xupdate_Utils::getXoopsHandler('module');
-        $cloneModule =& $moduleHandler->create();
+        $moduleHandler = Xupdate_Utils::getXoopsHandler('module');
+        $cloneModule   =& $moduleHandler->create();
 
         $cloneModule->unsetNew();
         $cloneModule->set('mid', $module->get('mid'));
@@ -345,8 +345,8 @@ class Xupdate_Updater
     public function executeUpgrade()
     {
         // remove modules.ini cache
-        $root =& XCube_Root::getSingleton();
-        $ch =& xoops_gethandler('config');
+        $root  =& XCube_Root::getSingleton();
+        $ch    = xoops_gethandler('config');
         $mconf = $ch->getConfigsByDirname($this->_mCurrentXoopsModule->get('dirname'));
         $cdir = XOOPS_TRUST_PATH . '/'.trim($mconf['temp_path'], '/');
         if (is_dir($cdir)) {
@@ -437,7 +437,7 @@ class Xupdate_Updater
     **/
     public function saveXoopsModule(/*** XoopsModule ***/ &$module)
     {
-        $moduleHandler =& Xupdate_Utils::getXoopsHandler('module');
+        $moduleHandler = Xupdate_Utils::getXoopsHandler('module');
 
         if ($moduleHandler->insert($module)) {
             $this->mLog->addReport(_MI_XUPDATE_INSTALL_MSG_UPDATE_FINISHED);

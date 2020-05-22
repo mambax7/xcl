@@ -163,7 +163,7 @@ class protector
             while (list($key, $val) = mysqli_fetch_row($result)) {
                 $db_conf[ $key ] = $val;
             }
-        } 
+        }
 
         $db_conf_serialized = serialize($db_conf);
 
@@ -698,7 +698,7 @@ class protector
      * @return bool
      */
 
-    public function &get_ref_from_base64index(&$current, $indexes)
+    public function get_ref_from_base64index(&$current, $indexes)
     {
         foreach ($indexes as $index) {
             $index = base64_decode($index);
@@ -725,16 +725,16 @@ class protector
 
         switch ($base_array) {
         case 'G':
-            $main_ref = &$this->get_ref_from_base64index($_GET, $indexes);
-            $legacy_ref = &$this->get_ref_from_base64index($HTTP_GET_VARS, $indexes);
+            $main_ref   = $this->get_ref_from_base64index($_GET, $indexes);
+            $legacy_ref = $this->get_ref_from_base64index($HTTP_GET_VARS, $indexes);
             break;
         case 'P':
-            $main_ref = &$this->get_ref_from_base64index($_POST, $indexes);
-            $legacy_ref = &$this->get_ref_from_base64index($HTTP_POST_VARS, $indexes);
+            $main_ref   = $this->get_ref_from_base64index($_POST, $indexes);
+            $legacy_ref = $this->get_ref_from_base64index($HTTP_POST_VARS, $indexes);
             break;
         case 'C':
-            $main_ref = &$this->get_ref_from_base64index($_COOKIE, $indexes);
-            $legacy_ref = &$this->get_ref_from_base64index($HTTP_COOKIE_VARS, $indexes);
+            $main_ref   = $this->get_ref_from_base64index($_COOKIE, $indexes);
+            $legacy_ref = $this->get_ref_from_base64index($HTTP_COOKIE_VARS, $indexes);
             break;
         default:
             exit;
@@ -742,7 +742,7 @@ class protector
         if (!isset($main_ref)) {
             exit;
         }
-        $request_ref = &$this->get_ref_from_base64index($_REQUEST, $indexes);
+        $request_ref = $this->get_ref_from_base64index($_REQUEST, $indexes);
         if (false !== $request_ref && $main_ref == $request_ref) {
             $request_ref = $val;
         }

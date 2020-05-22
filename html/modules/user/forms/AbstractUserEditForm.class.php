@@ -9,7 +9,7 @@ require_once XOOPS_ROOT_PATH . '/core/XCube_ActionForm.class.php';
 class User_AbstractUserEditForm extends XCube_ActionForm
 {
     public $mConfig = null;
-    
+
     public function User_AbstractUserEditForm($userConfig)
     {
         self::__construct($userConfig);
@@ -20,15 +20,15 @@ class User_AbstractUserEditForm extends XCube_ActionForm
         parent::__construct();
         $this->mConfig = $userConfig;
     }
-    
+
     public function validateUname()
     {
         if ($this->get('uname')) {
             //
             // uname unique check
             //
-            $userHandler=&xoops_gethandler('user');
-            $criteria =new CriteriaCompo(new Criteria('uname', $this->get('uname')));
+            $userHandler = xoops_gethandler('user');
+            $criteria    =new CriteriaCompo(new Criteria('uname', $this->get('uname')));
             if ($this->get('uid') > 0) {
                 $criteria->add(new Criteria('uid', $this->get('uid'), '<>'));
             }
@@ -68,7 +68,7 @@ class User_AbstractUserEditForm extends XCube_ActionForm
             }
         }
     }
-    
+
     public function validateEmail()
     {
         if (strlen($this->get('email')) > 0) {
@@ -78,12 +78,12 @@ class User_AbstractUserEditForm extends XCube_ActionForm
                     return;
                 }
             }
-            
+
             //
             // email unique check
             //
-            $userHandler=&xoops_gethandler('user');
-            $criteria =new CriteriaCompo(new Criteria('email', $this->get('email')));
+            $userHandler = xoops_gethandler('user');
+            $criteria    =new CriteriaCompo(new Criteria('email', $this->get('email')));
             if ($this->get('uid') > 0) {
                 $criteria->add(new Criteria('uid', $this->get('uid'), '<>'));
             }
@@ -95,13 +95,13 @@ class User_AbstractUserEditForm extends XCube_ActionForm
 
     public function validateTimezone_offset()
     {
-        $handler =& xoops_gethandler('timezone');
-        $obj =& $handler->get($this->get('timezone_offset'));
+        $handler = xoops_gethandler('timezone');
+        $obj     =& $handler->get($this->get('timezone_offset'));
         if (!is_object($obj)) {
             $this->addErrorMessage(_MD_USER_ERROR_TIMEZONE);
         }
     }
-    
+
     public function validateUrl()
     {
         $t_url = $this->get('url');
@@ -111,7 +111,7 @@ class User_AbstractUserEditForm extends XCube_ActionForm
             }
         }
     }
-    
+
     public function validatePass()
     {
         // precondition check
@@ -120,7 +120,7 @@ class User_AbstractUserEditForm extends XCube_ActionForm
             $this->set('pass', null); // reset
             $this->set('vpass', null);
         }
-        
+
         if (strlen($this->get('pass'))>0||strlen($this->get('vpass'))>0) {
             if ($this->get('pass')!=$this->get('vpass')) {
                 $this->addErrorMessage(_MD_USER_ERROR_PASSWORD);

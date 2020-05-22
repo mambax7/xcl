@@ -31,7 +31,7 @@ class Legacy_SearchResultsAction extends Legacy_Action
         $root->mLanguageManager->loadPageTypeMessageCatalog('search');
         $root->mLanguageManager->loadModuleMessageCatalog('legacy');
 
-        $handler =& xoops_gethandler('config');
+        $handler       = xoops_gethandler('config');
         $this->mConfig =& $handler->getConfigsByCat(XOOPS_CONF_SEARCH);
 
         $this->_setupActionForm();
@@ -80,7 +80,7 @@ class Legacy_SearchResultsAction extends Legacy_Action
         if (is_object($service)) {
             $this->mActionForm->update($params);
 
-            $handler =& xoops_gethandler('module');
+            $handler = xoops_gethandler('module');
             foreach ($this->_getSelectedMids() as $mid) {
                 $t_module =& $handler->get($mid);
                 if (is_object($t_module)) {

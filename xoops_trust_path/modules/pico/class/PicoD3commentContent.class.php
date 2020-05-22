@@ -11,9 +11,9 @@ class PicoD3commentContent extends D3commentAbstract
     {
         (method_exists('MyTextSanitizer', 'sGetInstance') and $myts = &MyTextSanitizer::sGetInstance()) || $myts = &MyTextsanitizer::getInstance();
 
-        $module_handler = &xoops_gethandler('module');
+        $module_handler = xoops_gethandler('module');
         $module         = &$module_handler->getByDirname($this->mydirname);
-        $config_handler = &xoops_gethandler('config');
+        $config_handler = xoops_gethandler('config');
         $configs        = $config_handler->getConfigList($module->mid());
 
         // external_link_id means $content_id

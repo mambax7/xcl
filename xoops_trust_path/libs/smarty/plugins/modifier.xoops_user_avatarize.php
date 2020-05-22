@@ -19,8 +19,8 @@
  */
 function smarty_modifier_xoops_user_avatarize($uid, $tag=false, $url=null)
 {
-    $handler =& xoops_gethandler('user');
-    $user =& $handler->get(intval($uid));
+    $handler = xoops_gethandler('user');
+    $user    =& $handler->get(intval($uid));
     if (is_object($user) && $user->isActive() && ($user->get('user_avatar') != "blank.gif") && file_exists(XOOPS_UPLOAD_PATH . "/" . $user->get('user_avatar'))) {
         $src = XOOPS_UPLOAD_URL . "/" . $user->getShow('user_avatar');
         $path = XOOPS_UPLOAD_PATH . "/" . $user->getShow('user_avatar');

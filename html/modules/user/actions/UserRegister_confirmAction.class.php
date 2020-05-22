@@ -34,7 +34,7 @@ class User_UserRegister_confirmAction extends User_Action
      * @param $xoopsUser
      * @param $moduleConfig
      */
-    public function prepare(&$controller, &$xoopsUser, $moduleConfig)
+    public function prepare($controller, &$xoopsUser, $moduleConfig)
     {
         $this->mConfig = $moduleConfig;
 
@@ -48,7 +48,7 @@ class User_UserRegister_confirmAction extends User_Action
             return USER_FRAME_VIEW_CANCEL;
         }
 
-        $memberHandler =& xoops_gethandler('member');
+        $memberHandler  = xoops_gethandler('member');
         $this->mNewUser =& $memberHandler->createUser();
         $this->mRegistForm->update($this->mNewUser);
         $this->mNewUser->set('uorder', $controller->mRoot->mContext->getXoopsConfig('com_order'), true);

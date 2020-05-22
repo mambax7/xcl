@@ -218,7 +218,7 @@ class MyTextSanitizer
      * @param   string  $text
      * @return  string
      **/
-    public function &addSlashes($text)
+    public function addSlashes($text)
     {
         return addslashes($text);
     }
@@ -345,7 +345,7 @@ class MyTextSanitizer
     public function &censorString($text)
     {
         if (!isset($this->censorConf)) {
-            $config_handler =& xoops_gethandler('config');
+            $config_handler   = xoops_gethandler('config');
             $this->censorConf =& $config_handler->getConfigsByCat(XOOPS_CONF_CENSOR);
         }
         if (1 == $this->censorConf['censor_enable']) {
@@ -485,7 +485,7 @@ class MyTextSanitizer
     public function &oopsStripSlashesRT($text)
     {
         if (get_magic_quotes_runtime()) {
-            $text =& stripslashes($text);
+            $text = stripslashes($text);
         }
         return $text;
     }

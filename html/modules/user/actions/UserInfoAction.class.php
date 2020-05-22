@@ -58,7 +58,7 @@ class User_UserInfoAction extends User_Action
     {
         $uid = isset($_GET['uid']) ? (int)xoops_getrequest('uid') : 0;
 
-        $handler =& xoops_gethandler('user');
+        $handler       = xoops_gethandler('user');
         $this->mObject =& $handler->get($uid);
 
         if (!is_object($this->mObject)) {

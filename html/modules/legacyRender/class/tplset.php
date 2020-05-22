@@ -45,8 +45,8 @@ class LegacyRenderTplsetObject extends XoopsSimpleObject
         //
         // get module list
         //
-        $moduleHandler =& xoops_gethandler('module');
-        $modules =& $moduleHandler->getObjects();
+        $moduleHandler = xoops_gethandler('module');
+        $modules       =& $moduleHandler->getObjects();
 
         $tplfileHandler =& xoops_getmodulehandler('tplfile', 'legacyRender');
 

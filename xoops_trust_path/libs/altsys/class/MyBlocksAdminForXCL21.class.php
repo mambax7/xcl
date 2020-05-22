@@ -37,8 +37,8 @@ public function renderCell4BlockOptions($block_data)
 
 //HACK by domifara
 //	$block = new XoopsBlock( $bid ) ;
-    $handler =& xoops_gethandler('block');
-    $block =& $handler->create(false) ;
+    $handler = xoops_gethandler('block');
+    $block   =& $handler->create(false) ;
     $block->load($bid) ;
 
     $legacy_block =& Legacy_Utils::createBlockProcedure($block) ;

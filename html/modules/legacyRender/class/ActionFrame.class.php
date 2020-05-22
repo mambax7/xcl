@@ -89,7 +89,7 @@ class LegacyRender_ActionFrame
             die();    //< TODO
         }
 
-        $handler =& xoops_gethandler('config');
+        $handler      = xoops_gethandler('config');
         $moduleConfig =& $handler->getConfigsByDirname('legacyRender');
 
         $this->mAction->prepare($controller, $controller->mRoot->mContext->mXoopsUser, $moduleConfig);

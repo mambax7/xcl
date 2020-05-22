@@ -17,7 +17,7 @@ $avatars = getImageFileList(XOOPS_ROOT_PATH . '/images/avatar/users/');
 
 $xoopsDB->query('UPDATE ' . $xoopsDB->prefix('users') . " SET user_avatar='blank.gif'"); //TODO avatar image
 
-$avt_handler =& xoops_gethandler('avatar');
+$avt_handler = xoops_gethandler('avatar');
 if (!defined('XOOPS_UPLOAD_PATH')) {
     define('XOOPS_UPLOAD_PATH', '../uploads');
 }

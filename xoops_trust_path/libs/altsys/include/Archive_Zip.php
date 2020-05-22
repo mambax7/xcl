@@ -1772,7 +1772,7 @@ class Archive_Zip
      * @param $p_params
      * @return int
      */
-  public function _extractByRule(&$p_file_list, &$p_params)
+  public function _extractByRule(&$p_file_list, $p_params)
   {
       $v_result=1;
 

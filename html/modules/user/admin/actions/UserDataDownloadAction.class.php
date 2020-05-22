@@ -26,8 +26,8 @@ class User_UserDataDownloadAction extends User_Action
     public function executeViewIndex(&$controller, &$xoopsUser, $render)
     {
         $render->setTemplateName('user_data_download.html');
-        $member_handler =& xoops_gethandler('member');
-        $user_count = $member_handler->getUserCount();
+        $member_handler = xoops_gethandler('member');
+        $user_count     = $member_handler->getUserCount();
         $render->setAttribute('user_count', $user_count);
     }
 

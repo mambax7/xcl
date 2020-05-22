@@ -44,8 +44,8 @@ function pico_common_get_categories_can_read($mydirname, $uid = null)
 	$db = XoopsDatabaseFactory::getDatabaseConnection();
 
 	if ($uid > 0) {
-		$user_handler = &xoops_gethandler('user');
-		$user = &$user_handler->get($uid);
+		$user_handler = xoops_gethandler('user');
+		$user         = &$user_handler->get($uid);
 	} else {
 		$user = @$GLOBALS['xoopsUser'];
 	}
@@ -84,7 +84,7 @@ function pico_make_content_link4html($mod_config, $content_row, $mydirname = nul
 function pico_common_make_content_link4html($mod_config, $content_row, $mydirname = null)
 {
 	if (!empty($mod_config['use_wraps_mode'])) {
-		// wraps mode 
+		// wraps mode
 		if (!is_array($content_row) && !empty($mydirname)) {
 			// specify content by content_id instead of content_row
 			$db = XoopsDatabaseFactory::getDatabaseConnection();
@@ -134,11 +134,11 @@ function pico_common_get_submenu($mydirname, $caller = 'xoops_version')
 
 	if (!empty($submenus_cache[$caller][$mydirname])) return $submenus_cache[$caller][$mydirname];
 
-	$module_handler = &xoops_gethandler('module');
-	$module = &$module_handler->getByDirname($mydirname);
+	$module_handler = xoops_gethandler('module');
+	$module         = &$module_handler->getByDirname($mydirname);
 	if (!is_object($module)) return [];
-	$config_handler = &xoops_gethandler('config');
-	$mod_config = &$config_handler->getConfigsByCat(0, $module->getVar('mid'));
+	$config_handler = xoops_gethandler('config');
+	$mod_config     = &$config_handler->getConfigsByCat(0, $module->getVar('mid'));
 
 	$db = XoopsDatabaseFactory::getDatabaseConnection();
 	(method_exists('MyTextSanitizer', 'sGetInstance') and $myts = &MyTextSanitizer::sGetInstance()) || $myts = &MyTextSanitizer::getInstance();

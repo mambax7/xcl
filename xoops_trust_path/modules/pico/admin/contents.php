@@ -16,8 +16,8 @@ define('SPECIAL_CAT_ID_DELETED', -2);
 
 
 // get exportable modules
-$module_handler = &xoops_gethandler('module');
-$modules = &$module_handler->getObjects();
+$module_handler = xoops_gethandler('module');
+$modules        = &$module_handler->getObjects();
 $exportable_modules = ['0' => '----'];
 foreach ($modules as $module) {
 	$mid = $module->getVar('mid');

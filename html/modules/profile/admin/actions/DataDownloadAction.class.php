@@ -18,7 +18,7 @@ class Profile_Admin_DataDownloadAction extends Profile_AbstractListAction
         return $handler;
     }
 
-    public function &_getBaseUrl()
+    public function _getBaseUrl()
     {
         return './index.php?action=DataDownload';
     }

@@ -13,12 +13,12 @@ include_once __DIR__ . '/class/D3LanguageManager.class.php' ;
 
 
 // only groups have 'module_admin' of 'altsys' can do that.
-$module_handler =& xoops_gethandler('module') ;
-$module =& $module_handler->getByDirname('altsys') ;
+$module_handler = xoops_gethandler('module') ;
+$module         =& $module_handler->getByDirname('altsys') ;
 if (! is_object($module)) {
     die('install altsys') ;
 }
-$moduleperm_handler =& xoops_gethandler('groupperm') ;
+$moduleperm_handler = xoops_gethandler('groupperm') ;
 if (! is_object(@$xoopsUser) || ! $moduleperm_handler->checkRight('module_admin', $module->getVar('mid'), $xoopsUser->getGroups())) {
     die('only admin of altsys can access this area') ;
 }
@@ -38,7 +38,7 @@ if (! is_object($xoopsModule)) {
 }
 
 // set target_module if specified by $_GET['dirname']
-$module_handler =& xoops_gethandler('module');
+$module_handler = xoops_gethandler('module');
 if (! empty($_GET['dirname'])) {
     $dirname = preg_replace('/[^0-9a-zA-Z_-]/', '', $_GET['dirname']) ;
     $target_module =& $module_handler->getByDirname($dirname) ;

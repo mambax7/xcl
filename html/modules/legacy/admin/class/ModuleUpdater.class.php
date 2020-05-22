@@ -126,7 +126,7 @@ class Legacy_ModulePhasedUpgrader
      */
     public function setCurrentXoopsModule($xoopsModule)
     {
-        $handler =& xoops_gethandler('module');
+        $handler     = xoops_gethandler('module');
         $cloneModule =& $handler->create();
 
         $cloneModule->unsetNew();
@@ -264,7 +264,7 @@ class Legacy_ModulePhasedUpgrader
      */
     public function saveXoopsModule(&$module)
     {
-        $handler =& xoops_gethandler('module');
+        $handler = xoops_gethandler('module');
         if ($handler->insert($module)) {
             $this->mLog->addReport('XoopsModule is updated.');
         } else {

@@ -26,7 +26,7 @@ class UserOnlineObject extends XoopsSimpleObject
     public function loadModule()
     {
         if ($this->get('online_module')) {
-            $handler = &xoops_gethandler('module');
+            $handler       = xoops_gethandler('module');
             $this->mModule = &$handler->get($this->get('online_module'));
         }
     }

@@ -53,8 +53,8 @@ function pico_main_get_category_permissions_of_current_user($mydirname, $uid = n
 	$db = XoopsDatabaseFactory::getDatabaseConnection();
 
 	if ($uid > 0) {
-		$user_handler = &xoops_gethandler('user');
-		$user = &$user_handler->get($uid);
+		$user_handler = xoops_gethandler('user');
+		$user         = &$user_handler->get($uid);
 	} else {
 		$user = @$GLOBALS['xoopsUser'];
 	}

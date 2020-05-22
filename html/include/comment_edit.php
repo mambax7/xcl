@@ -72,8 +72,8 @@ if (!isset($_GET['com_order'])) {
 } else {
     $com_order = (int)$_GET['com_order'];
 }
-$comment_handler =& xoops_gethandler('comment');
-$comment =& $comment_handler->get($com_id);
+$comment_handler = xoops_gethandler('comment');
+$comment         =& $comment_handler->get($com_id);
 $dohtml = $comment->getVar('dohtml');
 $dosmiley = $comment->getVar('dosmiley');
 $dobr = $comment->getVar('dobr');
@@ -89,7 +89,7 @@ $com_rootid = $comment->getVar('com_rootid');
 //
 // Get the icons of subject.
 //
-$handler =& xoops_gethandler('subjecticon');
+$handler      = xoops_gethandler('subjecticon');
 $subjectIcons =& $handler->getObjects();
 
 if ('system' != $xoopsModule->getVar('dirname')) {

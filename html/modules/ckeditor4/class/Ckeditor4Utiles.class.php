@@ -56,7 +56,7 @@ class Ckeditor4_Utils
 	 *
 	 * @return  XoopsObjectHandler
 	 **/
-	public static function &getXoopsHandler(
+	public static function getXoopsHandler(
 	/*** string ***/
 	$name,
 	/*** bool ***/
@@ -68,7 +68,7 @@ class Ckeditor4_Utils
 
 	public static function getMid()
 	{
-		$mHandler = &self::getXoopsHandler('module');
+		$mHandler    = self::getXoopsHandler('module');
 		$xoopsModule = $mHandler->getByDirname(self::DIRNAME);
 		return $xoopsModule->getVar('mid');
 	}
@@ -120,9 +120,9 @@ class Ckeditor4_Utils
 			if (is_null($finder)) {
 
 				// Get X-elFinder module
-				$mHandler = &self::getXoopsHandler('module');
-				$mObj = $mHandler->getByDirname($conf['xelfinder']);
-				$finder = is_object($mObj) ? $conf['xelfinder'] : '';
+				$mHandler = self::getXoopsHandler('module');
+				$mObj     = $mHandler->getByDirname($conf['xelfinder']);
+				$finder   = is_object($mObj) ? $conf['xelfinder'] : '';
 
 				if ($finder) {
 					require_once XOOPS_TRUST_PATH . '/modules/xelfinder/class/xelFinderMisc.class.php';

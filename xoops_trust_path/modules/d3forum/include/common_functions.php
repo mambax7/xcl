@@ -79,11 +79,11 @@ function d3forum_get_submenu( $mydirname )
 
 	if( ! empty( $submenus_cache[$mydirname] ) ) return $submenus_cache[$mydirname] ;
 
-	$module_handler =& xoops_gethandler('module') ;
-	$module =& $module_handler->getByDirname( $mydirname ) ;
+	$module_handler = xoops_gethandler('module') ;
+	$module         =& $module_handler->getByDirname( $mydirname ) ;
 	if( ! is_object( $module ) ) return [];
-	$config_handler =& xoops_gethandler('config') ;
-	$mod_config =& $config_handler->getConfigsByCat( 0 , $module->getVar('mid') ) ;
+	$config_handler = xoops_gethandler('config') ;
+	$mod_config     =& $config_handler->getConfigsByCat( 0 , $module->getVar('mid') ) ;
 
 	$db =& Database::getInstance() ;
 	(method_exists('MyTextSanitizer', 'sGetInstance') and $myts =& MyTextSanitizer::sGetInstance()) || $myts =& MyTextSanitizer::getInstance();
@@ -162,7 +162,7 @@ function &d3forum_common_get_antispam_object( $mod_config )
 	if( ! is_object( $antispam_obj ) ) {
 		$antispam_obj = new D3forumAntispamDefault() ;
 	}
-	
+
 	return $antispam_obj ;
 }
 

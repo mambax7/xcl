@@ -68,8 +68,8 @@ if (!isset($_GET['com_order'])) {
 } else {
     $com_order = (int)$_GET['com_order'];
 }
-$comment_handler =& xoops_gethandler('comment');
-$comment =& $comment_handler->get($com_id);
+$comment_handler = xoops_gethandler('comment');
+$comment         =& $comment_handler->get($com_id);
 
 $r_name = XoopsUser::getUnameFromId($comment->getVar('com_uid'));
 $r_text = _CM_POSTER.': <b>'.$r_name.'</b>&nbsp;&nbsp;'._CM_POSTED.': <b>'.formatTimestamp($comment->getVar('com_created')).'</b><br><br>'.$comment->getVar('com_text');$com_title = $comment->getVar('com_title', 'E');
@@ -116,7 +116,7 @@ $actionForm->load($res_comment);
 //
 // Get the icons of subject.
 //
-$handler =& xoops_gethandler('subjecticon');
+$handler      = xoops_gethandler('subjecticon');
 $subjectIcons =& $handler->getObjects();
 
 themecenterposts($comment->getVar('com_title'), $r_text);

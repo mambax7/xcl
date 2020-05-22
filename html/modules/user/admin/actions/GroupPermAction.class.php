@@ -44,7 +44,7 @@ class User_GroupPermAction extends User_GroupPropertyAction
         //
         // Reset group permission
         //
-        $gpermHandler =& xoops_gethandler('groupperm');
+        $gpermHandler = xoops_gethandler('groupperm');
 
         $criteria =new CriteriaCompo();
         $criteria->add(new Criteria('gperm_groupid', $this->mGroup->get('groupid')));
@@ -62,8 +62,8 @@ class User_GroupPermAction extends User_GroupPropertyAction
             unset($perm);
         }
 
-        $moduleHandler =& xoops_gethandler('module');
-        $modPerms = [];
+        $moduleHandler = xoops_gethandler('module');
+        $modPerms      = [];
 
         //
         // Store module read permission
@@ -87,7 +87,7 @@ class User_GroupPermAction extends User_GroupPropertyAction
             }
         }
 
-        $blockHandler =& xoops_gethandler('block');
+        $blockHandler = xoops_gethandler('block');
 
         $this->_loadActiveBlocks();
         foreach ($this->_mActiveBlocks as $side => $blocks) {

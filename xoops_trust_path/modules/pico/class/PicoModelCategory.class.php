@@ -212,9 +212,9 @@ class PicoCategory
 
     public function setOverriddenModConfig()
     {
-        $module_handler   = &xoops_gethandler('module');
+        $module_handler   = xoops_gethandler('module');
         $module           = &$module_handler->getByDirname($this->mydirname);
-        $config_handler   = &xoops_gethandler('config');
+        $config_handler   = xoops_gethandler('config');
         $this->mod_config = $config_handler->getConfigList($module->getVar('mid'));
         $this->mod_name   = $module->getVar('name', 'n');
 

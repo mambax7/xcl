@@ -133,9 +133,9 @@ class User_UserDeleteAction extends User_Action
      */
     public function _doDelete(&$flag, $controller, $xoopsUser)
     {
-        $handler =& xoops_gethandler('member');
+        $handler = xoops_gethandler('member');
         if ($handler->deleteUser($xoopsUser)) {
-            $handler =& xoops_gethandler('online');
+            $handler = xoops_gethandler('online');
             $handler->destroy($this->mObject->get('uid'));
             xoops_notification_deletebyuser($this->mObject->get('uid'));
 

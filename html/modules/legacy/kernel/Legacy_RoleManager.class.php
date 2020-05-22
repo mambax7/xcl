@@ -36,7 +36,7 @@ class Legacy_RoleManager
 
         $groups = is_object($context->mXoopsUser) ? $context->mXoopsUser->getGroups() : [XOOPS_GROUP_ANONYMOUS];
 
-        $handler =& xoops_gethandler('groupperm');
+        $handler = xoops_gethandler('groupperm');
         if ($handler->checkRight('module_read', $module->get('mid'), $groups)) {
             $context->mUser->addRole('Module.' . $module->get('dirname') . '.Visitor');
         }
@@ -61,8 +61,8 @@ class Legacy_RoleManager
      */
     public function loadRolesByMid($mid)
     {
-        $handler =& xoops_gethandler('module');
-        $module =& $handler->get($mid);
+        $handler = xoops_gethandler('module');
+        $module  =& $handler->get($mid);
 
         if (is_object($module)) {
             $this->loadRolesByModule($module);
@@ -77,8 +77,8 @@ class Legacy_RoleManager
      */
     public function loadRolesByDirname($dirname)
     {
-        $handler =& xoops_gethandler('module');
-        $module =& $handler->getByDirname($dirname);
+        $handler = xoops_gethandler('module');
+        $module  =& $handler->getByDirname($dirname);
 
         if (is_object($module)) {
             $this->loadRolesByModule($module);

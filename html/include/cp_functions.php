@@ -116,7 +116,7 @@ function xoops_module_get_admin_menu()
     $js = '';
     $maxlevel = 0;
     $cnt = 1;
-    $module_handler =& xoops_gethandler('module');
+    $module_handler = xoops_gethandler('module');
     $criteria = new CriteriaCompo();
     $criteria->add(new Criteria('hasadmin', 1));
     $criteria->add(new Criteria('isactive', 1));

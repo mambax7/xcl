@@ -34,7 +34,7 @@ class Legacy_SessionCallback extends XCube_ActionFilter
 
     public static function setupSessionHandler()
     {
-        $sessionHandler =& xoops_gethandler('session');
+        $sessionHandler = xoops_gethandler('session');
         session_set_save_handler(
             [&$sessionHandler, 'open'],
             [&$sessionHandler, 'close'],

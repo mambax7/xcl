@@ -24,9 +24,9 @@ class Xupdate_Uninstaller
 
     /**
      * __construct
-     * 
+     *
      * @param   void
-     * 
+     *
      * @return  void
     **/
     public function __construct()
@@ -36,9 +36,9 @@ class Xupdate_Uninstaller
 
     /**
      * setCurrentXoopsModule
-     * 
+     *
      * @param   XoopsModule  &$xoopsModule
-     * 
+     *
      * @return  void
     **/
     public function setCurrentXoopsModule(/*** XoopsModule ***/ &$xoopsModule)
@@ -48,9 +48,9 @@ class Xupdate_Uninstaller
 
     /**
      * setForceMode
-     * 
+     *
      * @param   bool  $isForceMode
-     * 
+     *
      * @return  void
     **/
     public function setForceMode(/*** bool ***/ $isForceMode)
@@ -60,15 +60,15 @@ class Xupdate_Uninstaller
 
     /**
      * _uninstallModule
-     * 
+     *
      * @param   void
-     * 
+     *
      * @return  void
     **/
     private function _uninstallModule()
     {
-        $moduleHandler =& Xupdate_Utils::getXoopsHandler('module');
-    
+        $moduleHandler = Xupdate_Utils::getXoopsHandler('module');
+
         if ($moduleHandler->delete($this->_mXoopsModule)) {
             $this->mLog->addReport(_MI_XUPDATE_INSTALL_MSG_MODULE_INFORMATION_DELETED);
         } else {
@@ -78,9 +78,9 @@ class Xupdate_Uninstaller
 
     /**
      * _uninstallTables
-     * 
+     *
      * @param   void
-     * 
+     *
      * @return  void
     **/
     private function _uninstallTables()
@@ -88,7 +88,7 @@ class Xupdate_Uninstaller
         $root =& XCube_Root::getSingleton();
         $db =& $root->mController->getDB();
         $dirname = $this->_mXoopsModule->get('dirname');
-    
+
         $tables =& $this->_mXoopsModule->getInfo('tables');
         if (is_array($tables)) {
             foreach ($tables as $table) {
@@ -102,7 +102,7 @@ class Xupdate_Uninstaller
                 } else {
                     $sql = sprintf('drop table `%s`;', $tableName);
                 }
-                
+
                 if ($db->query($sql)) {
                     $this->mLog->addReport(
                         XCube_Utils::formatString(
@@ -124,9 +124,9 @@ class Xupdate_Uninstaller
 
     /**
      * _uninstallTemplates
-     * 
+     *
      * @param   void
-     * 
+     *
      * @return  void
     **/
     private function _uninstallTemplates()
@@ -136,17 +136,17 @@ class Xupdate_Uninstaller
 
     /**
      * _uninstallBlocks
-     * 
+     *
      * @param   void
-     * 
+     *
      * @return  void
     **/
     private function _uninstallBlocks()
     {
         Xupdate_InstallUtils::uninstallAllOfBlocks($this->_mXoopsModule, $this->mLog);
-    
-        $tplHandler =& Xupdate_Utils::getXoopsHandler('tplfile');
-        $cri = new Criteria('tpl_module', $this->_mXoopsModule->get('dirname'));
+
+        $tplHandler = Xupdate_Utils::getXoopsHandler('tplfile');
+        $cri        = new Criteria('tpl_module', $this->_mXoopsModule->get('dirname'));
         if (!$tplHandler->deleteAll($cri)) {
             $this->mLog->addError(
                 XCube_Utils::formatString(
@@ -159,9 +159,9 @@ class Xupdate_Uninstaller
 
     /**
      * _uninstallPreferences
-     * 
+     *
      * @param   void
-     * 
+     *
      * @return  void
     **/
     private function _uninstallPreferences()
@@ -171,9 +171,9 @@ class Xupdate_Uninstaller
 
     /**
      * _processReport
-     * 
+     *
      * @param   void
-     * 
+     *
      * @return  void
     **/
     private function _processReport()
@@ -204,9 +204,9 @@ class Xupdate_Uninstaller
 
     /**
      * executeUninstall
-     * 
+     *
      * @param   void
-     * 
+     *
      * @return  bool
     **/
     public function executeUninstall()
@@ -216,33 +216,33 @@ class Xupdate_Uninstaller
             $this->_processReport();
             return false;
         }
-    
+
         if (null != $this->_mXoopsModule->get('mid')) {
             $this->_uninstallModule();
             if (!$this->_mForceMode && $this->mLog->hasError()) {
                 $this->_processReport();
                 return false;
             }
-    
+
             $this->_uninstallTemplates();
             if (!$this->_mForceMode && $this->mLog->hasError()) {
                 $this->_processReport();
                 return false;
             }
-    
+
             $this->_uninstallBlocks();
             if (!$this->_mForceMode && $this->mLog->hasError()) {
                 $this->_processReport();
                 return false;
             }
-    
+
             $this->_uninstallPreferences();
             if (!$this->_mForceMode && $this->mLog->hasError()) {
                 $this->_processReport();
                 return false;
             }
         }
-    
+
         $this->_processReport();
         return true;
     }

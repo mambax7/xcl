@@ -70,11 +70,11 @@ class Legacy_CommentFilterForm extends Legacy_AbstractFilterForm
     {
         return COMMENT_SORT_KEY_DEFAULT;
     }
-    
+
     public function fetch()
     {
         parent::fetch();
-    
+
         $root =& XCube_Root::getSingleton();
         $com_modid = $root->mContext->mRequest->getRequest('com_modid');
         $dirname = $root->mContext->mRequest->getRequest('dirname');
@@ -91,28 +91,28 @@ class Legacy_CommentFilterForm extends Legacy_AbstractFilterForm
         } elseif (isset($_REQUEST['dirname'])) {
             $this->mNavi->addExtra('dirname', xoops_getrequest('dirname'));
 
-            $handler =& xoops_gethandler('module');
-            $module =& $handler->getByDirname(xoops_getrequest('dirname'));
+            $handler = xoops_gethandler('module');
+            $module  =& $handler->getByDirname(xoops_getrequest('dirname'));
             if (is_object($module)) {
                 $this->_mCriteria->add(new Criteria('com_modid', $module->get('mid')));
             }
         }
-    
+
         if (isset($_REQUEST['com_icon'])) {
             $this->mNavi->addExtra('com_icon', xoops_getrequest('com_icon'));
             $this->_mCriteria->add(new Criteria('com_icon', xoops_getrequest('com_icon')));
         }
-    
+
         if (isset($_REQUEST['com_uid'])) {
             $this->mNavi->addExtra('com_uid', xoops_getrequest('com_uid'));
             $this->_mCriteria->add(new Criteria('com_uid', xoops_getrequest('com_uid')));
         }
-    
+
         if (isset($_REQUEST['com_ip'])) {
             $this->mNavi->addExtra('com_ip', xoops_getrequest('com_ip'));
             $this->_mCriteria->add(new Criteria('com_ip', xoops_getrequest('com_ip')));
         }
-    
+
         if (xoops_getrequest('com_status') > 0) {
             $this->mNavi->addExtra('com_status', xoops_getrequest('com_status'));
             $this->_mCriteria->add(new Criteria('com_status', xoops_getrequest('com_status')));
@@ -140,7 +140,7 @@ class Legacy_CommentFilterForm extends Legacy_AbstractFilterForm
                 //search about uname
             if ('guest' != $this->mKeyword) {
                 //in case of member
-            $cm_handler =& xoops_gethandler('member');
+            $cm_handler  = xoops_gethandler('member');
                 $cm_user =& $cm_handler->getUsers(new Criteria('uname', $this->mKeyword));
                 if (1 == count($cm_user) && is_object($cm_user[0])) {
                     $cm_user_uid = $cm_user[0]->getVar('uid');

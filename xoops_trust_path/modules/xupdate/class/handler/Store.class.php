@@ -44,7 +44,7 @@ class Xupdate_StoreHandler extends XoopsObjectGenericHandler
     /*** string ***/ public $mClass = 'Xupdate_StoreObject';
 
     private $cacheCheckFile;
-    
+
     /**
      * __construct
      *
@@ -57,7 +57,7 @@ class Xupdate_StoreHandler extends XoopsObjectGenericHandler
     {
         $this->mTable = strtr($this->mTable, ['{dirname}' => $dirname]);
         parent::__construct($db);
-        $configHandler = & xoops_gethandler('config');
+        $configHandler = xoops_gethandler('config');
         $module_config = $configHandler->getConfigsByDirname($dirname);
         $this->cacheCheckFile = XOOPS_TRUST_PATH . '/' . trim($module_config['temp_path'], '/') . '/' . rawurlencode(substr(XOOPS_URL, 7)).'_cacheCheck.ini.php';
     }
@@ -70,7 +70,7 @@ class Xupdate_StoreHandler extends XoopsObjectGenericHandler
             touch($this->cacheCheckFile, 0);
         }
     }
-    
+
     public function getCacheCheckFile()
     {
         return $this->cacheCheckFile;

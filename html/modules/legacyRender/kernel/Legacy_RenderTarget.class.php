@@ -37,7 +37,7 @@ class Legacy_AbstractThemeRenderTarget extends XCube_RenderTarget
         header('Pragma: no-cache');
     }
 
-    public function setResult(&$result)
+    public function setResult($result)
     {
         parent::setResult($result);
         if (!$this->mSendHeaderFlag) {
@@ -75,7 +75,7 @@ class Legacy_DialogRenderTarget extends Legacy_AbstractThemeRenderTarget
         parent::__construct();
         $this->setAttribute('isFileTheme', false);
     }
-    
+
     public function getTemplateName()
     {
         return 'legacy_render_dialog.html';

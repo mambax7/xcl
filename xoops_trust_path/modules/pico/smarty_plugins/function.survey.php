@@ -4,7 +4,7 @@ require_once XOOPS_TRUST_PATH . '/modules/pico/class/FormProcessByHtml.class.php
 require_once XOOPS_TRUST_PATH . '/modules/pico/class/PicoFormProcessBySmartyBase.class.php';
 
 
-function smarty_function_survey($params, &$smarty)
+function smarty_function_survey($params, $smarty)
 {
 	$controller = new PicoFormProcessBySmartySurvey();
 	$controller->canPostAgain = false; // default false for survey

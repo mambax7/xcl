@@ -289,7 +289,7 @@ class File_Archive_Reader
      * @param int $bufferSize Size of the chunks that will be sent to the writer
      *        If $bufferSize <= 0 (default value), the blockSize option is used
      */
-    public function extract(&$writer, $autoClose = true, $bufferSize = 0)
+    public function extract($writer, $autoClose = true, $bufferSize = 0)
     {
         if (PEAR::isError($writer)) {
             $this->close();
@@ -335,7 +335,7 @@ class File_Archive_Reader
      * @param int $bufferSize Size of the chunks that will be sent to the writer
      *        If $bufferSize <= 0 (default value), the blockSize option is used
      */
-    public function extractFile($filename, &$writer,
+    public function extractFile($filename, $writer,
                          $autoClose = true, $bufferSize = 0)
     {
         if (PEAR::isError($writer)) {

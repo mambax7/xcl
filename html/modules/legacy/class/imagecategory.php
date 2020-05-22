@@ -78,10 +78,10 @@ class LegacyImagecategoryObject extends XoopsSimpleObject
             return;
         }
 
-        $handler =& xoops_gethandler('groupperm');
-        $gidArr = $handler->getGroupIds('imgcat_read', $this->get('imgcat_id'));
+        $handler = xoops_gethandler('groupperm');
+        $gidArr  = $handler->getGroupIds('imgcat_read', $this->get('imgcat_id'));
 
-        $handler =& xoops_gethandler('group');
+        $handler = xoops_gethandler('group');
         foreach ($gidArr as $gid) {
             $object =& $handler->get($gid);
 
@@ -125,10 +125,10 @@ class LegacyImagecategoryObject extends XoopsSimpleObject
             return;
         }
 
-        $handler =& xoops_gethandler('groupperm');
-        $gidArr = $handler->getGroupIds('imgcat_write', $this->get('imgcat_id'));
+        $handler = xoops_gethandler('groupperm');
+        $gidArr  = $handler->getGroupIds('imgcat_write', $this->get('imgcat_id'));
 
-        $handler =& xoops_gethandler('group');
+        $handler = xoops_gethandler('group');
         foreach ($gidArr as $gid) {
             $object =& $handler->get($gid);
 

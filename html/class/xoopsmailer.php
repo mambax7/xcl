@@ -364,8 +364,8 @@ class xoopsmailer
     public function sendPM($uid, $subject, $body)
     {
         global $xoopsUser;
-        $pm_handler =& xoops_gethandler('privmessage');
-        $pm =& $pm_handler->create();
+        $pm_handler = xoops_gethandler('privmessage');
+        $pm         =& $pm_handler->create();
         $pm->setVar('subject', $subject);
         // RMV-NOTIFY
         $pm->setVar('from_userid', !empty($this->fromUser) ? $this->fromUser->getVar('uid') : $xoopsUser->getVar('uid'));
@@ -509,8 +509,8 @@ class xoopsmailer
     {
         if (!is_array($group)) {
             if ('xoopsgroup' == strtolower(get_class($group))) {
-                $member_handler =& xoops_gethandler('member');
-                $groups=&$member_handler->getUsersByGroup($group->getVar('groupid'), true);
+                $member_handler = xoops_gethandler('member');
+                $groups         =&$member_handler->getUsersByGroup($group->getVar('groupid'), true);
                 $this->setToUsers($groups, true);
             }
         } else {

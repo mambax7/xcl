@@ -12,8 +12,8 @@ if ('__CustomBlocks__' == $current_dirname) {
     return ;
 }
 
-    $module_handler4menu =& xoops_gethandler('module');
-    $criteria4menu = new CriteriaCompo(new Criteria('isactive', 1));
+    $module_handler4menu = xoops_gethandler('module');
+    $criteria4menu       = new CriteriaCompo(new Criteria('isactive', 1));
     //$criteria4menu->add(new Criteria('hasmain', 1));
     $criteria4menu->add(new Criteria('mid', '1', '>'));
     $modules4menu =& $module_handler4menu->getObjects($criteria4menu, true);

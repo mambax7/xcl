@@ -26,15 +26,15 @@ $modid = isset($_POST['modid']) ? (int)$_POST['modid'] : 1;
 
 if (1 == $modid) {
     // check by the permission of eather 'altsys' or 'system'
-    $module_handler =& xoops_gethandler('module') ;
-    $module =& $module_handler->getByDirname('altsys') ;
+    $module_handler = xoops_gethandler('module') ;
+    $module         =& $module_handler->getByDirname('altsys') ;
     if (! is_object($module)) {
         $module =& $module_handler->getByDirname('system') ;
         if (! is_object($module)) {
             die('there is no UI Components nor base system.') ;
         }
     }
-    $moduleperm_handler =& xoops_gethandler('groupperm') ;
+    $moduleperm_handler = xoops_gethandler('groupperm') ;
     if (! is_object(@$GLOBALS['xoopsUser']) || ! $moduleperm_handler->checkRight('module_admin', $module->getVar('mid'), $GLOBALS['xoopsUser']->getGroups())) {
         die('only admin of UI Components can access this area') ;
     }
@@ -43,15 +43,15 @@ if (1 == $modid) {
     if ($modid <= 0 || !is_object($GLOBALS['xoopsUser']) || !$GLOBALS['xoopsUser']->isAdmin($modid)) {
         die(_NOPERM) ;
     }
-    $module_handler =& xoops_gethandler('module');
-    $module =& $module_handler->get($modid);
+    $module_handler = xoops_gethandler('module');
+    $module         =& $module_handler->get($modid);
     if (!is_object($module) || !$module->getVar('isactive')) {
         die(_MODULENOEXIST) ;
     }
 }
 
-$member_handler =& xoops_gethandler('member');
-$group_list = $member_handler->getGroupList();
+$member_handler = xoops_gethandler('member');
+$group_list     = $member_handler->getGroupList();
 if (!empty($_POST['perms']) && is_array($_POST['perms'])) {
     if (!isset($msg) || !is_array($msg)) {
         $msg = isset($msg)? [$msg] : [];

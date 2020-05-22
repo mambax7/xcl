@@ -254,7 +254,8 @@ class File_Archive
      *       function may not work with
      *       URLs containing folders which name ends with such an extension
      */
-    public function readSource(&$source, $URL, $symbolic = null,
+    public function readSource(
+        $source, $URL, $symbolic = null,
                   $uncompression = 0, $directoryDepth = -1)
     {
         return File_Archive::_readSource($source, $URL, $reachable, $baseDir,
@@ -268,17 +269,18 @@ class File_Archive
      *
      * @access private
      */
-    public function _readSource(&$toConvert, $URL, &$reachable, &$baseDir, $symbolic = null,
+    public function _readSource(
+        $toConvert, $URL, &$reachable, &$baseDir, $symbolic = null,
                   $uncompression = 0, $directoryDepth = -1)
     {
-        $source =& File_Archive::_convertToReader($toConvert);
+        $source = File_Archive::_convertToReader($toConvert);
         if (PEAR::isError($source)) {
             return $source;
         }
         if (is_array($URL)) {
             $converted = array();
             foreach ($URL as $key => $foo) {
-                $converted[] =& File_Archive::_convertToReader($URL[$key]);
+                $converted[] = File_Archive::_convertToReader($URL[$key]);
             }
             return File_Archive::readMulti($converted);
         }
@@ -348,7 +350,7 @@ class File_Archive
                 require_once 'File/Archive/Reader/Filter.php';
                 require_once 'File/Archive/Predicate/MaxDepth.php';
 
-                $tmp =& File_Archive::filter(
+                $tmp = File_Archive::filter(
                     new File_Archive_Predicate_MaxDepth($directoryDepth),
                     $result
                 );
@@ -464,7 +466,7 @@ class File_Archive
         $cacheCondition = File_Archive::getOption('cacheCondition');
         if ($cacheCondition !== false &&
             preg_match($cacheCondition, $URL)) {
-            $tmp =& File_Archive::cache($result);
+            $tmp = File_Archive::cache($result);
             unset($result);
             $result =& $tmp;
         }
@@ -546,9 +548,9 @@ class File_Archive
      *        It can be a File_Archive_Reader or a string, which will be converted using the
      *        read function
      */
-    public function cache(&$toConvert)
+    public function cache($toConvert)
     {
-        $source =& File_Archive::_convertToReader($toConvert);
+        $source = File_Archive::_convertToReader($toConvert);
         if (PEAR::isError($source)) {
             return $source;
         }
@@ -564,7 +566,7 @@ class File_Archive
      *
      * @access private
      */
-    public function &_convertToReader($source)
+    public function _convertToReader($source)
     {
         if (is_string($source)) {
             $cacheCondition = File_Archive::getOption('cacheCondition');
@@ -593,7 +595,7 @@ class File_Archive
     public function &_convertToWriter(&$dest)
     {
         if (is_string($dest)) {
-            $obj =& File_Archive::appender($dest);
+            $obj = File_Archive::appender($dest);
             return $obj;
         } elseif (is_array($dest)) {
             require_once 'File/Archive/Writer/Multi.php';
@@ -648,9 +650,9 @@ class File_Archive
      *         $source interpreting it as a $extension archive
      *         If $extension is not handled return false
      */
-    public function readArchive($extension, &$toConvert, $sourceOpened = false)
+    public function readArchive($extension, $toConvert, $sourceOpened = false)
     {
-        $source =& File_Archive::_convertToReader($toConvert);
+        $source = File_Archive::_convertToReader($toConvert);
         if (PEAR::isError($source)) {
             return $source;
         }
@@ -734,7 +736,7 @@ class File_Archive
         require_once "File/Archive/Reader/Multi.php";
         $result = new File_Archive_Reader_Multi();
         foreach ($sources as $index => $foo) {
-            $s =& File_Archive::_convertToReader($sources[$index]);
+            $s = File_Archive::_convertToReader($sources[$index]);
             if (PEAR::isError($s)) {
                 return $s;
             } else {
@@ -756,9 +758,9 @@ class File_Archive
      *        mime type thanks to the extension of $filename
      * @see   File_Archive_Reader_Concat
      */
-    public function readConcat(&$toConvert, $filename, $stat=array(), $mime=null)
+    public function readConcat($toConvert, $filename, $stat=array(), $mime=null)
     {
-        $source =& File_Archive::_convertToReader($toConvert);
+        $source = File_Archive::_convertToReader($toConvert);
         if (PEAR::isError($source)) {
             return $source;
         }
@@ -780,9 +782,9 @@ class File_Archive
      * @return File_Archive_Reader a new reader that contains the same files
      *        as $toConvert but with a different name
      */
-    public function changeName($function, &$toConvert)
+    public function changeName($function, $toConvert)
     {
-        $source =& File_Archive::_convertToReader($toConvert);
+        $source = File_Archive::_convertToReader($toConvert);
         if (PEAR::isError($source)) {
             return $source;
         }
@@ -799,9 +801,9 @@ class File_Archive
      * @param File_Archive_Reader $source Source that will be filtered
      * @see   File_Archive_Reader_Filter
      */
-    public function filter($predicate, &$toConvert)
+    public function filter($predicate, $toConvert)
     {
-        $source =& File_Archive::_convertToReader($toConvert);
+        $source = File_Archive::_convertToReader($toConvert);
         if (PEAR::isError($source)) {
             return $source;
         }
@@ -1227,9 +1229,9 @@ class File_Archive
      *        You shouldn't need to change that
      * @return null or a PEAR error if an error occured
      */
-    public function extract(&$sourceToConvert, &$destToConvert, $autoClose = true, $bufferSize = 0)
+    public function extract($sourceToConvert, $destToConvert, $autoClose = true, $bufferSize = 0)
     {
-        $source =& File_Archive::_convertToReader($sourceToConvert);
+        $source = File_Archive::_convertToReader($sourceToConvert);
         if (PEAR::isError($source)) {
             return $source;
         }
@@ -1266,10 +1268,11 @@ class File_Archive
      *        Time (index 9) will be overwritten to current time
      * @return File_Archive_Writer a writer that you can use to append files to the reader
      */
-    public function appenderFromSource(&$toConvert, $URL = null, $unique = null,
+    public function appenderFromSource(
+        $toConvert, $URL = null, $unique = null,
                                  $type = null, $stat = array())
     {
-        $source =& File_Archive::_convertToReader($toConvert);
+        $source = File_Archive::_convertToReader($toConvert);
         if (PEAR::isError($source)) {
             return $source;
         }
@@ -1311,7 +1314,7 @@ class File_Archive
             if ($source !== null) {
                 $writer =& $source->makeWriter();
             } else {
-                $writer =& File_Archive::toFiles();
+                $writer = File_Archive::toFiles();
             }
             if (PEAR::isError($writer)) {
                 return $writer;
@@ -1373,9 +1376,9 @@ class File_Archive
      *        (for which $pred->isTrue($source) is true) will be erased
      * @param File_Archive_Reader $source A reader that contains the files to remove
      */
-    public function removeFromSource($pred, &$toConvert, $URL = null)
+    public function removeFromSource($pred, $toConvert, $URL = null)
     {
-        $source =& File_Archive::_convertToReader($toConvert);
+        $source = File_Archive::_convertToReader($toConvert);
         if (PEAR::isError($source)) {
             return $source;
         }
@@ -1413,9 +1416,9 @@ class File_Archive
      *
      * @param File_Archive_Reader a reader that may contain duplicates
      */
-    public function removeDuplicatesFromSource(&$toConvert, $URL = null)
+    public function removeDuplicatesFromSource($toConvert, $URL = null)
     {
-        $source =& File_Archive::_convertToReader($toConvert);
+        $source = File_Archive::_convertToReader($toConvert);
         if (PEAR::isError($source)) {
             return $source;
         }

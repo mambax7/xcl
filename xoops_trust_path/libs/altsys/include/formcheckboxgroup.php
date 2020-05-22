@@ -8,7 +8,7 @@ if (!defined('XOOPS_ROOT_PATH')) {
 /**
  * @package     kernel
  * @subpackage  form
- * 
+ *
  * @author	    Kazumi Ono	<onokazu@xoops.org>
  * @copyright	copyright (c) 2000-2003 XOOPS.org
  */
@@ -20,10 +20,10 @@ include_once XOOPS_ROOT_PATH . '/class/xoopsform/formcheckbox.php';
 
 /**
  * A checkbox field with a choice of available groups
- * 
+ *
  * @package     kernel
  * @subpackage  form
- * 
+ *
  * @author	    Kazumi Ono	<onokazu@xoops.org>
  * @copyright	copyright (c) 2000-2003 XOOPS.org
  */
@@ -31,8 +31,8 @@ class AltsysFormCheckboxGroup extends XoopsFormCheckbox
 {
     /**
      * Constructor
-     * 
-     * @param	string	$caption	
+     *
+     * @param	string	$caption
      * @param	string	$name
      * @param	bool	$include_anon	Include group "anonymous"?
      * @param	mixed	$value	    	Pre-selected value (or array of them).
@@ -40,7 +40,7 @@ class AltsysFormCheckboxGroup extends XoopsFormCheckbox
     public function __construct($caption, $name, $include_anon=false, $value=null)
     {
         $this->XoopsFormCheckbox($caption, $name, $value);
-        $member_handler =& xoops_gethandler('member');
+        $member_handler = xoops_gethandler('member');
         if (!$include_anon) {
             $options = $member_handler->getGroupList(new Criteria('groupid', XOOPS_GROUP_ANONYMOUS, '!='));
         } else {

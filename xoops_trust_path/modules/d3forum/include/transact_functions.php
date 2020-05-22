@@ -46,13 +46,13 @@ function d3forum_delete_post_recursive( $mydirname , $post_id )
 	d3forum_transact_make_post_history( $mydirname , $post_id , true ) ;
 	$db->query('DELETE FROM ' . $db->prefix($mydirname . '_posts') . " WHERE post_id=$post_id" ) ;
 	$db->query('DELETE FROM ' . $db->prefix($mydirname . '_post_votes') . " WHERE post_id=$post_id" ) ;
-	
+
 	// call back to the target of comment
 	d3forum_main_d3comment_callback( $mydirname , $topic_id , 'delete' , $post_id ) ;
 }
 
 
-// delete a topic 
+// delete a topic
 function d3forum_delete_topic( $mydirname , $topic_id , $delete_also_posts = true )
 {
 	global $xoopsModule ;
@@ -71,7 +71,7 @@ function d3forum_delete_topic( $mydirname , $topic_id , $delete_also_posts = tru
 	}
 
 	// delete notifications about this topic
-	$notification_handler =& xoops_gethandler( 'notification' ) ;
+	$notification_handler = xoops_gethandler('notification' ) ;
 	$notification_handler->unsubscribeByItem( $xoopsModule->getVar( 'mid' ) , 'topic' , $topic_id ) ;
 
 	// delete topic
@@ -101,7 +101,7 @@ function d3forum_delete_forum( $mydirname , $forum_id , $delete_also_topics = tr
 	}
 
 	// delete notifications about this forum
-	$notification_handler =& xoops_gethandler( 'notification' ) ;
+	$notification_handler = xoops_gethandler('notification' ) ;
 	$notification_handler->unsubscribeByItem( $xoopsModule->getVar( 'mid' ) , 'forum' , $forum_id ) ;
 
 	// delete forum
@@ -131,7 +131,7 @@ function d3forum_delete_category( $mydirname , $cat_id , $delete_also_forums = t
 	}
 
 	// delete notifications about this category
-	$notification_handler =& xoops_gethandler( 'notification' ) ;
+	$notification_handler = xoops_gethandler('notification' ) ;
 	$notification_handler->unsubscribeByItem( $xoopsModule->getVar( 'mid' ) , 'category' , $cat_id ) ;
 
 	// delete category
@@ -456,7 +456,7 @@ function d3forum_cutpasteposts( $mydirname , $post_id , $pid , $new_forum_id , $
 
 
 // done
-function d3forum_update_topic_from_post( $mydirname , $topic_id , $forum_id , $forum_permissions , $isadmin ) 
+function d3forum_update_topic_from_post( $mydirname , $topic_id , $forum_id , $forum_permissions , $isadmin )
 {
 	global $myts ;
 

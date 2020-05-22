@@ -313,7 +313,7 @@ class PicoFormProcessBySmartyBase
         $this->error_html .= _MD_PICO_FORMMAIL_BLOCK_ERROR_END;
     }
 
-    public function execute($params, &$smarty)
+    public function execute($params, $smarty)
     {
         // initials
         $this->init($params, $smarty);

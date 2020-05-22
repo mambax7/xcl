@@ -115,7 +115,7 @@ class XCube_RenderTarget
         //return $this->mType;
     }
 
-    public function setResult(&$result)
+    public function setResult($result)
     {
         $this->mRenderBuffer = $result;
     }

@@ -25,7 +25,7 @@ if( $uid > 0 ) {
 		if( isset( $notify ) ) {
 			$notify = (int)$notify;
 		} else {
-			$notification_handler =& xoops_gethandler('notification') ;
+			$notification_handler = xoops_gethandler('notification') ;
 			if( ! empty( $topic_id ) && $notification_handler->isSubscribed('topic' , $topic_id , 'newpost' , $xoopsModule->getVar('mid') , $uid ) ) {
 				$notify = 1;
 			} else {

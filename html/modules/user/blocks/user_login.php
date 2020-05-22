@@ -2,12 +2,12 @@
 function b_user_login_show()
 {
     global $xoopsUser;
-    
+
     if (!$xoopsUser) {
-        $block = [];
-        $config_handler =& xoops_gethandler('config');
-        $moduleConfig =& $config_handler->getConfigsByDirname('user');
-        
+        $block          = [];
+        $config_handler = xoops_gethandler('config');
+        $moduleConfig   =& $config_handler->getConfigsByDirname('user');
+
         if (isset($_COOKIE[$moduleConfig['usercookie']])) {
             $block['unamevalue'] = $_COOKIE[$moduleConfig['usercookie']];
         } else {

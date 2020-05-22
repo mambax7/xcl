@@ -27,16 +27,16 @@ class Xupdate_Utils
         $conf = $handler->getConfigsByDirname($dirname);
         return (isset($conf[$key])) ? $conf[$key] : null;
     }
-    
+
     /**
      * &getXoopsHandler
-     * 
+     *
      * @param   string  $name
      * @param   bool  $optional
-     * 
+     *
      * @return  XoopsObjectHandler
     **/
-    public static function &getXoopsHandler(/*** string ***/ $name, /*** bool ***/ $optional = false)
+    public static function getXoopsHandler(/*** string ***/ $name, /*** bool ***/ $optional = false)
     {
         // TODO will be emulated xoops_gethandler
         return xoops_gethandler($name, $optional);
@@ -44,10 +44,10 @@ class Xupdate_Utils
 
     /**
      * &getModuleHandler
-     * 
+     *
      * @param   string  $name
      * @param   string  $dirname
-     * 
+     *
      * @return  XoopsObjectHandleer
     **/
     public static function &getModuleHandler(/*** string ***/ $name, /*** string ***/ $dirname)
@@ -58,10 +58,10 @@ class Xupdate_Utils
 
     /**
      * &getXupdateHandler
-     * 
+     *
      * @param   string  $name
      * @param   string  $dirname
-     * 
+     *
      * @return  XoopsObjectHandleer
     **/
     public static function &getXupdateHandler(/*** string ***/ $name, /*** string ***/ $dirname)
@@ -79,9 +79,9 @@ class Xupdate_Utils
 
     /**
      * getEnv
-     * 
+     *
      * @param   string  $key
-     * 
+     *
      * @return  string
     **/
     public static function getEnv(/*** string ***/ $key)
@@ -145,7 +145,7 @@ class Xupdate_Utils
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
         self::setupCurlSsl($ch);
         self::setupCurlProxy($ch, $url);
-        
+
         $data = curl_exec($ch);
         $http_code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
         if (301 == $http_code || 302 == $http_code || 303 == $http_code || 307 == $http_code) {
@@ -196,7 +196,7 @@ class Xupdate_Utils
     {
         $errors = [];
         $proxy = '';
-        
+
         if (! empty($_SERVER['HTTP_PROXY']) || ! empty($_SERVER['http_proxy'])) {
             $proxy = !empty($_SERVER['http_proxy'])? $_SERVER['http_proxy'] : $_SERVER['HTTP_PROXY'];
         }
@@ -209,7 +209,7 @@ class Xupdate_Utils
                 // url
                 $proxyURL = (isset($proxy['scheme']) ? $proxy['scheme'] : 'http') . '://';
                 $proxyURL .= $proxy['host'];
-                
+
                 if (isset($proxy['port'])) {
                     $proxyURL .= ':' . $proxy['port'];
                 } elseif ('https://' === substr($proxyURL, 0, 7)) {
@@ -242,10 +242,10 @@ class Xupdate_Utils
         }
         return $errors;
     }
-    
+
     /**
      * Check, Is directory writable
-     * 
+     *
      * @param string $dir
      * @return bool
      */
@@ -264,10 +264,10 @@ class Xupdate_Utils
         }
         return $ret;
     }
-    
+
     /**
      * Check, Can make directory
-     * 
+     *
      * @param unknown $targetDir
      * @return bool
      */
@@ -275,10 +275,10 @@ class Xupdate_Utils
     {
         return (@mkdir($targetDir.PATH_SEPARATOR.'mkdir_test') && @rmdir($targetDir.PATH_SEPARATOR.'mkdir_test'));
     }
-    
+
     /**
      * check_http_timeout
-     * 
+     *
      * @return void
      */
     public static function check_http_timeout()
@@ -300,10 +300,10 @@ class Xupdate_Utils
         $storeData = json_decode($jsonData, $isAssoc);
         return self::convertEncoding($storeData['categories']);
     }
-    
+
     /**
      * Convert encoding to _CHARSET from UTF-8
-     * 
+     *
      * @param  mixed $arg
      * @return mixed
      */

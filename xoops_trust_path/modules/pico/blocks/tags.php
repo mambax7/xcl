@@ -55,10 +55,10 @@ function b_pico_tags_show($options)
 	$tags4assign = array_values($tags);
 
 	// module config
-	$module_handler = &xoops_gethandler('module');
-	$module = &$module_handler->getByDirname($mydirname);
-	$config_handler = &xoops_gethandler('config');
-	$configs = $config_handler->getConfigList($module->mid());
+	$module_handler = xoops_gethandler('module');
+	$module         = &$module_handler->getByDirname($mydirname);
+	$config_handler = xoops_gethandler('config');
+	$configs        = $config_handler->getConfigList($module->mid());
 
 	// constpref
 	$constpref = '_MB_' . strtoupper($mydirname);

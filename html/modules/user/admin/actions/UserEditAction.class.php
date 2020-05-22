@@ -53,8 +53,8 @@ class User_UserEditAction extends User_AbstractEditAction
         //
         // Get some objects for input form.
         //
-        $tzoneHandler =& xoops_gethandler('timezone');
-        $timezones =& $tzoneHandler->getObjects();
+        $tzoneHandler = xoops_gethandler('timezone');
+        $timezones    =& $tzoneHandler->getObjects();
 
         $render->setAttribute('timezones', $timezones);
 
@@ -63,8 +63,8 @@ class User_UserEditAction extends User_AbstractEditAction
 
         $render->setAttribute('ranks', $ranks);
 
-        $groupHandler =& xoops_gethandler('group');
-        $groups =& $groupHandler->getObjects(null, true);
+        $groupHandler = xoops_gethandler('group');
+        $groups       =& $groupHandler->getObjects(null, true);
 
         $groupOptions = [];
         foreach ($groups as $gid => $group) {

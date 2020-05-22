@@ -20,10 +20,10 @@ if (!function_exists('pico_global_search_base')) {
 	function pico_global_search_base($mydirname, $keywords, $andor, $limit, $offset, $uid)
 	{
 		// get this module's config
-		$module_handler = &xoops_gethandler('module');
-		$module = &$module_handler->getByDirname($mydirname);
-		$config_handler = &xoops_gethandler('config');
-		$configs = $config_handler->getConfigList($module->mid());
+		$module_handler = xoops_gethandler('module');
+		$module         = &$module_handler->getByDirname($mydirname);
+		$config_handler = xoops_gethandler('config');
+		$configs        = $config_handler->getConfigList($module->mid());
 
 		// check xmobile or not
 		$is_xmobile = false;

@@ -21,7 +21,7 @@
  * @param Smarty
  * @return string output from {@link Smarty::_generate_debug_output()}
  */
-function smarty_function_debug($params, &$smarty)
+function smarty_function_debug($params, $smarty)
 {
     if (isset($params['output'])) {
         $smarty->assign('_smarty_debug_output', $params['output']);

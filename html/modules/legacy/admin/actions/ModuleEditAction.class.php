@@ -25,7 +25,7 @@ class Legacy_ModuleEditAction extends Legacy_AbstractEditAction
 
     public function &_getHandler()
     {
-        $handler =& xoops_gethandler('module');
+        $handler = xoops_gethandler('module');
         return $handler;
     }
 
@@ -66,8 +66,8 @@ class Legacy_ModuleEditAction extends Legacy_AbstractEditAction
         $ret = parent::execute($controller, $xoopsUser);
 
         if (LEGACY_FRAME_VIEW_SUCCESS == $ret) {
-            $handler =& xoops_gethandler('group');
-            $permHandler =& xoops_gethandler('groupperm');
+            $handler     = xoops_gethandler('group');
+            $permHandler = xoops_gethandler('groupperm');
 
             foreach ($this->mActionForm->get('read_groupid') as $readgroupid) {
                 $this->mReadGroups[] =& $handler->get($readgroupid);
@@ -157,8 +157,8 @@ class Legacy_ModuleEditAction extends Legacy_AbstractEditAction
             }
 
             //module_cache
-            $confighandler =& xoops_gethandler('config');
-            $criteria =new CriteriaCompo();
+            $confighandler = xoops_gethandler('config');
+            $criteria      =new CriteriaCompo();
             $criteria->add(new Criteria('conf_name', 'module_cache'));
             $criteria->add(new Criteria('conf_catid', XOOPS_CONF));
             $configObjects =& $confighandler->getConfigs($criteria);
@@ -191,9 +191,9 @@ class Legacy_ModuleEditAction extends Legacy_AbstractEditAction
         $render->setAttribute('actionForm', $this->mActionForm);
         $render->setAttribute('object', $this->mObject);
 
-        $handler =& xoops_gethandler('groupperm');
-        $grouphandler =& xoops_gethandler('group');
-        $groupArr =& $grouphandler->getObjects();
+        $handler      = xoops_gethandler('groupperm');
+        $grouphandler = xoops_gethandler('group');
+        $groupArr     =& $grouphandler->getObjects();
         $render->setAttribute('groupArr', $groupArr);
 
         $criteria =new CriteriaCompo();
@@ -218,7 +218,7 @@ class Legacy_ModuleEditAction extends Legacy_AbstractEditAction
         }
         $render->setAttribute('admingroupidArr', $admingroupid);
         //for modulecache
-        $cachehandler =& xoops_gethandler('cachetime');
+        $cachehandler = xoops_gethandler('cachetime');
         $cachetimeArr =& $cachehandler->getObjects();
         $render->setAttribute('cachetimeArr', $cachetimeArr);
     }

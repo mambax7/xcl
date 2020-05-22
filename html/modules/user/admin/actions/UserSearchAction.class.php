@@ -32,8 +32,8 @@ class User_UserSearchAction extends User_Action
         $render->setTemplateName('user_search.html');
         $render->setAttribute('actionForm', $this->mActionForm);
 
-        $groupHandler =& xoops_gethandler('group');
-        $groups =& $groupHandler->getObjects(null, true);
+        $groupHandler = xoops_gethandler('group');
+        $groups       =& $groupHandler->getObjects(null, true);
 
         $groupOptions = [];
         foreach ($groups as $gid => $group) {
@@ -49,8 +49,8 @@ class User_UserSearchAction extends User_Action
         $render->setAttribute('groupOptions', $groupOptions);
         $render->setAttribute('matchOptions', $matchOptions);
 
-        $member_handler =& xoops_gethandler('member');
-        $active_total = $member_handler->getUserCount(new Criteria('level', 0, '>'));
+        $member_handler = xoops_gethandler('member');
+        $active_total   = $member_handler->getUserCount(new Criteria('level', 0, '>'));
         $inactive_total = $member_handler->getUserCount(new Criteria('level', 0));
         $render->setAttribute('activeUserTotal', $active_total);
         $render->setAttribute('inactiveUserTotal', $inactive_total);

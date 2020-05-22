@@ -12,12 +12,12 @@ include_once __DIR__ . '/include/tpls_functions.php';
 
 
 // only groups have 'module_admin' of 'altsys' can do that.
-$module_handler =& xoops_gethandler('module') ;
-$module =& $module_handler->getByDirname('altsys') ;
+$module_handler = xoops_gethandler('module') ;
+$module         =& $module_handler->getByDirname('altsys') ;
 if (! is_object($module)) {
     die('install altsys') ;
 }
-$moduleperm_handler =& xoops_gethandler('groupperm') ;
+$moduleperm_handler = xoops_gethandler('groupperm') ;
 if (! is_object(@$xoopsUser) || ! $moduleperm_handler->checkRight('module_admin', $module->getVar('mid'), $xoopsUser->getGroups())) {
     die('only admin of altsys can access this area') ;
 }
@@ -36,7 +36,7 @@ if (! is_object($xoopsModule)) {
 }
 
 // set target_module if specified by $_GET['dirname']
-$module_handler =& xoops_gethandler('module');
+$module_handler = xoops_gethandler('module');
 if (! empty($_GET['dirname'])) {
     $dirname = preg_replace('/[^0-9a-zA-Z_-]/', '', $_GET['dirname']) ;
     $target_module =& $module_handler->getByDirname($dirname) ;
@@ -234,8 +234,8 @@ $javascript = <<<EOD
 EOD;
 
 // get tplsets
-$tplset_handler =& xoops_gethandler('tplset') ;
-$tplsets = array_keys($tplset_handler->getList()) ;
+$tplset_handler = xoops_gethandler('tplset') ;
+$tplsets        = array_keys($tplset_handler->getList()) ;
 $sql = 'SELECT distinct tpl_tplset FROM ' . $db->prefix('tplfile') . " ORDER BY tpl_tplset='default' DESC,tpl_tplset" ;
 $srs = $db->query($sql);
 while (list($tplset) = $db->fetchRow($srs)) {
@@ -358,7 +358,7 @@ while (list($tpl_file, $tpl_desc, $type, $count) = $db->fetchRow($frs)) {
             }
             echo "
             <td class='{$class}'>".formatTimestamp($tpl['tpl_lastmodified'], 'm').'<br>'.substr($fingerprint, 0, 16)."<br>
-            <input type='checkbox' name='{$tplset4disp}_check[{$tpl_file}]' value='1' /> &nbsp; 
+            <input type='checkbox' name='{$tplset4disp}_check[{$tpl_file}]' value='1' /> &nbsp;
             <a href='?mode=admin&amp;lib=altsys&amp;page=mytplsform&amp;tpl_file=".htmlspecialchars($tpl['tpl_file'], ENT_QUOTES)."&amp;tpl_tplset=".htmlspecialchars($tpl['tpl_tplset'], ENT_QUOTES)."&amp;dirname=".htmlspecialchars($target_dirname, ENT_QUOTES)."'>"._EDIT."</a> ($numrows)
             </td>\n" ;
         }

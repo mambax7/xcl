@@ -110,8 +110,8 @@ class User_UserSearchListAction extends User_AbstractListAction
 
     public function _processSave(&$controller, &$xoopsUser)
     {
-        $levelArr = $this->mActionForm->get('level');
-        $userHandler =& xoops_gethandler('user');
+        $levelArr    = $this->mActionForm->get('level');
+        $userHandler = xoops_gethandler('user');
 
         foreach (array_keys($levelArr) as $uid) {
             if (1 != $uid) {
@@ -137,7 +137,7 @@ class User_UserSearchListAction extends User_AbstractListAction
                         $user =& $userHandler->get($uid);
                         if (is_object($user)) {
                             XCube_DelegateUtils::call('Legacy.Admin.Event.UserDelete', new XCube_Ref($user));
-                            $memberhandler =& xoops_gethandler('member');
+                            $memberhandler = xoops_gethandler('member');
                             if ($memberhandler->delete($user)) {
                                 XCube_DelegateUtils::call('Legacy.Admin.Event.UserDelete.Success', new XCube_Ref($user));
                             } else {

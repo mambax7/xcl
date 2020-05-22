@@ -71,7 +71,7 @@ class LegacyNon_installation_moduleHandler extends XoopsObjectHandler
             return $ret;
         }
 
-        $moduleHandler =& xoops_gethandler('module');
+        $moduleHandler = xoops_gethandler('module');
 
         $check =& $moduleHandler->getByDirname($dirname);
         if (is_object($check)) {

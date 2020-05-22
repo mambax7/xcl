@@ -43,7 +43,7 @@ class User_LostPassAction extends User_Action
         return !$controller->mRoot->mContext->mUser->mIdentity->isAuthenticated();
     }
 
-    public function getDefaultView(&$controller, &$xoopsUser)
+    public function getDefaultView($controller, &$xoopsUser)
     {
         $root =& XCube_Root::getSingleton();
         $code = $root->mContext->mRequest->getRequest('code');    // const $code
@@ -59,8 +59,8 @@ class User_LostPassAction extends User_Action
     {
         $this->mActionForm->fetch();
 
-        $userHandler =& xoops_gethandler('user');
-        $criteria =new CriteriaCompo(new Criteria('email', $this->mActionForm->get('email')));
+        $userHandler = xoops_gethandler('user');
+        $criteria    =new CriteriaCompo(new Criteria('email', $this->mActionForm->get('email')));
         $criteria->add(new Criteria('pass', $this->mActionForm->get('code'), '=', '', 'LEFT(%s, 5)'));
         $lostUserArr =& $userHandler->getObjects($criteria);
 
@@ -101,7 +101,7 @@ class User_LostPassAction extends User_Action
             return USER_FRAME_VIEW_INPUT;
         }
 
-        $userHandler =& xoops_gethandler('user');
+        $userHandler = xoops_gethandler('user');
         $lostUserArr =& $userHandler->getObjects(new Criteria('email', $this->mActionForm->get('email')));
 
         if (is_array($lostUserArr) && count($lostUserArr) > 0) {

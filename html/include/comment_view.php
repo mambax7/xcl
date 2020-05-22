@@ -39,8 +39,8 @@ if (!defined('XOOPS_ROOT_PATH') || !is_object($xoopsModule)) {
 require_once XOOPS_ROOT_PATH.'/include/comment_constants.php';
 
 if (XOOPS_COMMENT_APPROVENONE != $xoopsModuleConfig['com_rule']) {
-    $gperm_handler = & xoops_gethandler('groupperm');
-    $groups = ($xoopsUser) ? $xoopsUser -> getGroups() : XOOPS_GROUP_ANONYMOUS;
+    $gperm_handler       = xoops_gethandler('groupperm');
+    $groups              = ($xoopsUser) ? $xoopsUser -> getGroups() : XOOPS_GROUP_ANONYMOUS;
     $xoopsTpl->assign('xoops_iscommentadmin', $gperm_handler->checkRight('system_admin', LEGACY_SYSTEM_COMMENT, $groups));
 
     $t_root =& XCube_Root::getSingleton();
@@ -82,8 +82,8 @@ if (XOOPS_COMMENT_APPROVENONE != $xoopsModuleConfig['com_rule']) {
         }
 
         $com_id = isset($_GET['com_id']) ? (int)$_GET['com_id'] : 0;
-        $com_rootid = isset($_GET['com_rootid']) ? (int)$_GET['com_rootid'] : 0;
-        $comment_handler =& xoops_gethandler('comment');
+        $com_rootid      = isset($_GET['com_rootid']) ? (int)$_GET['com_rootid'] : 0;
+        $comment_handler = xoops_gethandler('comment');
         if ('flat' == $com_mode) {
             $comments =& $comment_handler->getByItemId($xoopsModule->getVar('mid'), $com_itemid, $com_dborder);
             include_once XOOPS_ROOT_PATH.'/class/commentrenderer.php';
@@ -93,7 +93,7 @@ if (XOOPS_COMMENT_APPROVENONE != $xoopsModuleConfig['com_rule']) {
         } elseif ('thread' == $com_mode) {
             // RMV-FIX... added extraParam stuff here
             $comment_url = $comment_config['pageName'] . '?';
-            
+
             //
             // Parse extra parameters from the request.
             //
@@ -151,35 +151,35 @@ if (XOOPS_COMMENT_APPROVENONE != $xoopsModuleConfig['com_rule']) {
                 }
             }
         }
-        
+
         $renderSystem =& $t_root->getRenderSystem($t_root->mContext->mBaseRenderSystemName);
         $renderTarget =& $renderSystem->createRenderTarget('main');
 
         $renderTarget->setTemplateName('legacy_comment_navi.html');
         $renderTarget->setAttribute('pageName', $comment_config['pageName']);
-        
+
         $modeOptions = ['nest' => _NESTED, 'flat' => _FLAT, 'thread' => _THREADED];
         $renderTarget->setAttribute('modeOptions', $modeOptions);
         $renderTarget->setAttribute('com_mode', $com_mode);
-        
+
         $orderOptions = [0 => _OLDESTFIRST, 1 => _NEWESTFIRST];
         $renderTarget->setAttribute('orderOptions', $orderOptions);
         $renderTarget->setAttribute('com_order', $com_order);
-        
+
         $renderTarget->setAttribute('itemName', $comment_config['itemName']);
         $renderTarget->setAttribute('com_itemid', $com_itemid);
         $renderTarget->setAttribute('com_anonpost', $xoopsModuleConfig['com_anonpost']);
-        
+
         $postcomment_link = '';
         if (!empty($xoopsModuleConfig['com_anonpost']) || is_object($xoopsUser)) {
             $postcomment_link = 'comment_new.php?com_itemid=' . $com_itemid . '&com_order=' . $com_order . '&com_mode=' . $com_mode;
         }
-        
+
         //
         // Parse extra parameters from the request.
         // TODO The following lines are *CODE CLONE*
         // $link_extra is raw data and not sanitized.
-        // 
+        //
         $link_extra = '';
         $fetchParams = [];
         if (isset($comment_config['extraParams']) && is_array($comment_config['extraParams'])) {
@@ -193,7 +193,7 @@ if (XOOPS_COMMENT_APPROVENONE != $xoopsModuleConfig['com_rule']) {
                     $fetchParams[$extra_key] = xoops_getrequest($extra_key);
                 }
             }
-            
+
             //
             // Composite link_extra
             //
@@ -205,12 +205,12 @@ if (XOOPS_COMMENT_APPROVENONE != $xoopsModuleConfig['com_rule']) {
         $renderTarget->setAttribute('extraParams', $fetchParams);
         $renderTarget->setAttribute('link_extra', $link_extra);
         $renderTarget->setAttribute('postcomment_link', $postcomment_link);
-        
+
         $renderSystem->render($renderTarget);
-        
+
         //
         // TODO We change raw string data, we must change template for guarding XSS.
-        //		
+        //
         $xoopsTpl->assign(
             ['commentsnav' => $renderTarget->getResult(), 'editcomment_link' => 'comment_edit.php?com_itemid=' . $com_itemid . '&amp;com_order=' . $com_order . '&amp;com_mode=' . $com_mode . '' . htmlspecialchars($link_extra, ENT_QUOTES), 'deletecomment_link' => 'comment_delete.php?com_itemid=' . $com_itemid . '&amp;com_order=' . $com_order . '&amp;com_mode=' . $com_mode . '' . $link_extra, 'replycomment_link' => 'comment_reply.php?com_itemid=' . $com_itemid . '&amp;com_order=' . $com_order . '&amp;com_mode=' . $com_mode . '' . $link_extra]
         );

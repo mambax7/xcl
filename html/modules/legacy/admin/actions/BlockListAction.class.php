@@ -87,7 +87,7 @@ class Legacy_BlockListAction extends Legacy_AbstractListAction
         // added query for view module pages
         $root =& XCube_Root::getSingleton();
         $render->setAttribute('selectedMid', $root->mContext->mRequest->getRequest('selmid'));
-        $handler =& xoops_gethandler('module');
+        $handler  = xoops_gethandler('module');
         $criteria = new CriteriaCompo(new Criteria('hasmain', 1));
         $criteria->add(new Criteria('isactive', 1));
         $criteria->add(new Criteria('weight', 0, '>'));
@@ -95,7 +95,7 @@ class Legacy_BlockListAction extends Legacy_AbstractListAction
         $render->setAttribute('view_modules', $view_modules);
 
         // added query for groups
-        $handler =& xoops_gethandler('group');
+        $handler  = xoops_gethandler('group');
         $groupArr =& $handler->getObjects();
         $render->setAttribute('groupArr', $groupArr);
         $render->setAttribute('selectedGid', $root->mContext->mRequest->getRequest('selgid'));
@@ -103,7 +103,7 @@ class Legacy_BlockListAction extends Legacy_AbstractListAction
         //
         // Load cache-time pattern objects and set.
         //
-        $handler =& xoops_gethandler('cachetime');
+        $handler      = xoops_gethandler('cachetime');
         $cachetimeArr =& $handler->getObjects();
         $render->setAttribute('cachetimeArr', $cachetimeArr);
         $render->setAttribute('actionForm', $this->mActionForm);
@@ -229,7 +229,7 @@ class Legacy_BlockListAction extends Legacy_AbstractListAction
         $handler =& xoops_getmodulehandler('columnside');
         $columnSideArr =& $handler->getObjects($criteria = null, $id_as_key = true);
         $render->setAttribute('columnSideArr', $columnSideArr);
-        $handler =& xoops_gethandler('cachetime');
+        $handler      = xoops_gethandler('cachetime');
         $cachetimeArr =& $handler->getObjects($criteria = null, $id_as_key = true);
         $render->setAttribute('cachetimeArr', $cachetimeArr);
     }

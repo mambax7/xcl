@@ -70,7 +70,7 @@ class Legacy_CommentListAction extends Legacy_AbstractListAction
         $handler =& xoops_getmodulehandler('comment');
         $modIds = $handler->getModuleIds();
 
-        $moduleHandler =& xoops_gethandler('module');
+        $moduleHandler = xoops_gethandler('module');
         foreach ($modIds as $mid) {
             $module =& $moduleHandler->get($mid);
             if (is_object($module)) {
@@ -195,8 +195,8 @@ class Legacy_CommentListAction extends Legacy_AbstractListAction
 
                     $uid = $comment->getVar('com_uid');
                     if ($uid > 0 && false != $add_userpost) {
-                        $member_handler =& xoops_gethandler('member');
-                        $poster =& $member_handler->getUser($uid);
+                        $member_handler = xoops_gethandler('member');
+                        $poster         =& $member_handler->getUser($uid);
                         if (is_object($poster)) {
                             $member_handler->updateUserByField($poster, 'posts', $poster->getVar('posts') + 1);
                         }
@@ -208,13 +208,13 @@ class Legacy_CommentListAction extends Legacy_AbstractListAction
                         if ($notify_event) {
                             $not_modid = $comment->getVar('com_modid');
                             include_once XOOPS_ROOT_PATH . '/include/notification_functions.php';
-                            $not_catinfo =& notificationCommentCategoryInfo($not_modid);
-                            $not_category = $not_catinfo['name'];
+                            $not_catinfo                   = notificationCommentCategoryInfo($not_modid);
+                            $not_category                  = $not_catinfo['name'];
                             $not_itemid = $comment->getVar('com_itemid');
                             $not_event = $notify_event;
-                            $comment_tags = [];
-                            $module_handler =& xoops_gethandler('module');
-                            $not_module =& $module_handler->get($not_modid);
+                            $comment_tags                  = [];
+                            $module_handler                = xoops_gethandler('module');
+                            $not_module                    =& $module_handler->get($not_modid);
                             $com_config =& $not_module->getInfo('comments');
                             $comment_url = $com_config['pageName'] . '?';
                 //Umm....not use com_exparams(--;;Fix Me!)
@@ -222,7 +222,7 @@ class Legacy_CommentListAction extends Legacy_AbstractListAction
                            //$comment_url .= $extra_params;
                           $comment_url .= $com_config['itemName'];
                             $comment_tags['X_COMMENT_URL'] = XOOPS_URL . '/modules/' . $not_module->getVar('dirname') . '/' .$comment_url . '=' . $comment->getVar('com_itemid').'&amp;com_id='.$comment->getVar('com_id').'&amp;com_rootid='.$comment->getVar('com_rootid').'#comment'.$comment->getVar('com_id');
-                            $notification_handler =& xoops_gethandler('notification');
+                            $notification_handler          = xoops_gethandler('notification');
                             $notification_handler->triggerEvent($not_category, $not_itemid, $not_event, $comment_tags, false, $not_modid);
                         }//notify if
                 }//count if
@@ -238,8 +238,8 @@ class Legacy_CommentListAction extends Legacy_AbstractListAction
                             }
 
                             if (1 != $comment->get('com_status') && $comment->get('com_uid') > 0) {
-                                $memberhandler =& xoops_gethandler('member');
-                                $user =& $memberhandler->getUser($comment->get('com_uid'));
+                                $memberhandler = xoops_gethandler('member');
+                                $user          =& $memberhandler->getUser($comment->get('com_uid'));
                                 if (is_object($user)) {
                                     $count = $user->get('posts');
                                     if ($count > 0) {

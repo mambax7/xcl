@@ -24,8 +24,8 @@ class D3commentAbstract
 
         // set $this->mod_config as config of target_module
         if ($this->mydirname) {
-            $module_hanlder =& xoops_gethandler('module');
-            $config_handler =& xoops_gethandler('config');
+            $module_hanlder = xoops_gethandler('module');
+            $config_handler = xoops_gethandler('config');
             $this->module   =& $module_hanlder->getByDirname($this->mydirname);
             if (is_object($this->module)) {
                 $this->mod_config =& $config_handler->getConfigsByCat(0, $this->module->getVar('mid'));
@@ -278,7 +278,7 @@ class D3commentAbstract
 
         $not_module  =& $this->module;
         $not_modid   = $this->module->getVar('mid');
-        $not_catinfo =& notificationCommentCategoryInfo($not_modid);
+        $not_catinfo = notificationCommentCategoryInfo($not_modid);
 
         // module without 'comment' notification
         if (empty($not_catinfo)) {
@@ -311,7 +311,7 @@ class D3commentAbstract
         $mydirname = $params['forum_dirname'];
 
         // check the d3forum exists and is active
-        $module_hanlder =& xoops_gethandler('module');
+        $module_hanlder = xoops_gethandler('module');
         $module         =& $module_hanlder->getByDirname($mydirname);
         if (!is_object($module) || !$module->getVar('isactive')) {
             return 0;

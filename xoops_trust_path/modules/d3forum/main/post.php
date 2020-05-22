@@ -360,8 +360,8 @@ if( ! empty( $_POST['contents_preview'] ) ) {
 		'CAT_URL' => XOOPS_URL."/modules/$mydirname/index.php?cat_id=$cat_id" ,
     ];
 
-	$notification_handler =& xoops_gethandler('notification') ;
-	$users2notify = d3forum_get_users_can_read_forum( $mydirname , $forum_id , $cat_id ) ;
+	$notification_handler = xoops_gethandler('notification') ;
+	$users2notify         = d3forum_get_users_can_read_forum( $mydirname , $forum_id , $cat_id ) ;
 	if( empty( $users2notify ) ) $users2notify = [0];
 
 	if( ! empty( $need_notify ) ) {

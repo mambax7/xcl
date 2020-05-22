@@ -68,8 +68,8 @@ if (! function_exists('altsys_oninstall_base')) {
         }
 
     // TEMPLATES
-    $tplfile_handler =& xoops_gethandler('tplfile') ;
-        $tpl_path = __DIR__ . '/templates' ;
+    $tplfile_handler = xoops_gethandler('tplfile') ;
+        $tpl_path    = __DIR__ . '/templates' ;
         if ($handler = @opendir($tpl_path . '/')) {
             while (false !== ($file = readdir($handler))) {
                 if ('.' == substr($file, 0, 1)) {

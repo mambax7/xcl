@@ -71,9 +71,9 @@ class MyBlocksAdmin
     public function checkPermission()
     {
         // only groups have 'module_admin' of 'altsys' can do that.
-        $module_handler = &xoops_gethandler('module');
-        $module = &$module_handler->getByDirname('altsys');
-        $moduleperm_handler = &xoops_gethandler('groupperm');
+        $module_handler     = xoops_gethandler('module');
+        $module             = &$module_handler->getByDirname('altsys');
+        $moduleperm_handler = xoops_gethandler('groupperm');
         if (!is_object(@$GLOBALS['xoopsUser']) || !$moduleperm_handler->checkRight('module_admin', $module->getVar('mid'), $GLOBALS['xoopsUser']->getGroups())) {
             die('only admin of UI Components can access this area');
         }
@@ -85,7 +85,7 @@ class MyBlocksAdmin
         // altsys "module" MODE
         if ('altsys' == $xoopsModule->getVar('dirname')) {
             // set target_module if specified by $_GET['dirname']
-            $module_handler = &xoops_gethandler('module');
+            $module_handler = xoops_gethandler('module');
             if (!empty($_GET['dirname'])) {
                 $dirname = preg_replace('/[^0-9a-zA-Z_-]/', '', $_GET['dirname']);
                 $target_module = &$module_handler->getByDirname($dirname);
@@ -183,8 +183,8 @@ class MyBlocksAdmin
 
         //HACK by domifara
         if (defined('XOOPS_CUBE_LEGACY')) {
-            $handler = &xoops_gethandler('block');
-            $block = &$handler->create(false);
+            $handler = xoops_gethandler('block');
+            $block   = &$handler->create(false);
             $block->load($bid);
         } else {
             $block = new XoopsBlock($bid);
@@ -216,8 +216,8 @@ class MyBlocksAdmin
         }
 
         // get all targets
-        $module_handler = &xoops_gethandler('module');
-        $criteria = new CriteriaCompo(new Criteria('hasmain', 1));
+        $module_handler = xoops_gethandler('module');
+        $criteria       = new CriteriaCompo(new Criteria('hasmain', 1));
         $criteria->add(new Criteria('isactive', 1));
         $module_list = $module_handler->getList($criteria);
         $module_list = [-1 => _MD_A_MYBLOCKSADMIN_TOPPAGE, 0 => _MD_A_MYBLOCKSADMIN_ALLPAGES] + $module_list;
@@ -265,8 +265,8 @@ class MyBlocksAdmin
         }
 
         // get all targets
-        $group_handler = &xoops_gethandler('group');
-        $groups = $group_handler->getObjects();
+        $group_handler = xoops_gethandler('group');
+        $groups        = $group_handler->getObjects();
 
         // build options
         $group_options = '';
@@ -352,7 +352,7 @@ class MyBlocksAdmin
 				<div title='Block-Right'>
 					<input type='radio' name='sides[$bid]' value='" . XOOPS_SIDEBLOCK_RIGHT . "' class='blockposition' $ssel1 onclick='document.getElementById(\"extra_side_$bid\").value=" . XOOPS_SIDEBLOCK_RIGHT . ";' />
 				</div>
-		
+
 				<div style='width:45px;' title='Block-Extra'>
 					<input type='text' name='extra_sides[$bid]' value='" . $value4extra_side . "' class='block-extra-side' id='extra_side_$bid' />
 				</div>
@@ -374,7 +374,7 @@ class MyBlocksAdmin
         $block_arr = [];
         //HACK by domifara
         if (defined('XOOPS_CUBE_LEGACY')) {
-            $handler = &xoops_gethandler('block'); //add
+            $handler = xoops_gethandler('block'); //add
         }
         while ($myrow = $this->db->fetchArray($result)) {
 
@@ -456,7 +456,7 @@ class MyBlocksAdmin
         $block_arr = [];
         //HACK by domifara
         if (defined('XOOPS_CUBE_LEGACY')) {
-            $handler = &xoops_gethandler('block'); //add
+            $handler = xoops_gethandler('block'); //add
         }
         while ($myrow = $this->db->fetchArray($result)) {
             //HACK by domifara
@@ -493,8 +493,8 @@ class MyBlocksAdmin
 
         //HACK by domifara
         if (defined('XOOPS_CUBE_LEGACY')) {
-            $handler = &xoops_gethandler('block');
-            $block = &$handler->create(false);
+            $handler = xoops_gethandler('block');
+            $block   = &$handler->create(false);
             $block->load($bid);
         } else {
             $block = new XoopsBlock($bid);
@@ -651,8 +651,8 @@ class MyBlocksAdmin
 
         //HACK by domifara
         if (defined('XOOPS_CUBE_LEGACY')) {
-            $handler = &xoops_gethandler('block');
-            $block = &$handler->create(false);
+            $handler = xoops_gethandler('block');
+            $block   = &$handler->create(false);
             $block->load($bid);
         } else {
             $block = new XoopsBlock($bid);
@@ -685,8 +685,8 @@ class MyBlocksAdmin
         //HACK by domifara
         //HACK by domifara
         if (defined('XOOPS_CUBE_LEGACY')) {
-            $handler = &xoops_gethandler('block');
-            $block = &$handler->create(false);
+            $handler = xoops_gethandler('block');
+            $block   = &$handler->create(false);
             $block->load($bid);
         } else {
             $block = new XoopsBlock($bid);
@@ -715,8 +715,8 @@ class MyBlocksAdmin
 
         //HACK by domifara
         if (defined('XOOPS_CUBE_LEGACY')) {
-            $handler = &xoops_gethandler('block');
-            $block = &$handler->create(false);
+            $handler = xoops_gethandler('block');
+            $block   = &$handler->create(false);
             $block->load($bid);
         } else {
             $block = new XoopsBlock($bid);
@@ -794,7 +794,7 @@ class MyBlocksAdmin
 
             //HACK by domifara
             if (defined('XOOPS_CUBE_LEGACY')) {
-                $handler = &xoops_gethandler('block');
+                $handler   = xoops_gethandler('block');
                 $new_block = &$handler->create(false);
             } else {
                 $new_block = new XoopsBlock();
@@ -834,8 +834,8 @@ class MyBlocksAdmin
 
         //HACK by domifara
         if (defined('XOOPS_CUBE_LEGACY')) {
-            $handler = &xoops_gethandler('block');
-            $block = &$handler->create(false);
+            $handler = xoops_gethandler('block');
+            $block   = &$handler->create(false);
             $block->load($bid);
         } else {
             $block = new XoopsBlock($bid);
@@ -883,7 +883,7 @@ class MyBlocksAdmin
 
         if (!$is_custom && $block_template) {
             // find template of the block
-            $tplfile_handler = &xoops_gethandler('tplfile');
+            $tplfile_handler = xoops_gethandler('tplfile');
             $found_templates = $tplfile_handler->find($GLOBALS['xoopsConfig']['template_set'], 'block', null, null, $block_template);
             $block_template_tplset = count($found_templates) > 0 ? $GLOBALS['xoopsConfig']['template_set'] : 'default';
         }

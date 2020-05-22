@@ -35,7 +35,7 @@
  * @param Smarty
  * @return string
  */
-function smarty_function_html_select_date($params, &$smarty)
+function smarty_function_html_select_date($params, $smarty)
 {
     require_once $smarty->_get_plugin_filepath('shared','escape_special_chars');
     require_once $smarty->_get_plugin_filepath('shared','make_timestamp');

@@ -14,10 +14,10 @@ function b_d3forum_list_forums_show( $options )
 	(method_exists('MyTextSanitizer', 'sGetInstance') and $myts =& MyTextSanitizer::sGetInstance()) || $myts =& MyTextSanitizer::getInstance();
 	$uid = is_object( @$xoopsUser ) ? $xoopsUser->getVar('uid') : 0 ;
 
-	$module_handler =& xoops_gethandler('module');
-	$module =& $module_handler->getByDirname($mydirname);
-	$config_handler =& xoops_gethandler('config');
-	$configs = $config_handler->getConfigList( $module->mid() ) ;
+	$module_handler = xoops_gethandler('module');
+	$module         =& $module_handler->getByDirname($mydirname);
+	$config_handler = xoops_gethandler('config');
+	$configs        = $config_handler->getConfigList( $module->mid() ) ;
 
 	// forums can be read by current viewer (check by forum_access)
 	require_once dirname(__DIR__) . '/include/common_functions.php' ;
@@ -134,10 +134,10 @@ function b_d3forum_list_topics_show( $options )
 	(method_exists('MyTextSanitizer', 'sGetInstance') and $myts =& MyTextSanitizer::sGetInstance()) || $myts =& MyTextSanitizer::getInstance();
 	$uid = is_object( @$xoopsUser ) ? $xoopsUser->getVar('uid') : 0 ;
 
-	$module_handler =& xoops_gethandler('module');
-	$module =& $module_handler->getByDirname($mydirname);
-	$config_handler =& xoops_gethandler('config');
-	$configs = $config_handler->getConfigList( $module->mid() ) ;
+	$module_handler = xoops_gethandler('module');
+	$module         =& $module_handler->getByDirname($mydirname);
+	$config_handler = xoops_gethandler('config');
+	$configs        = $config_handler->getConfigList( $module->mid() ) ;
 
 	// naao from
 	// get all forums
@@ -437,10 +437,10 @@ function b_d3forum_list_posts_show( $options )
 	(method_exists('MyTextSanitizer', 'sGetInstance') and $myts =& MyTextSanitizer::sGetInstance()) || $myts =& MyTextSanitizer::getInstance();
 	$uid = is_object( @$xoopsUser ) ? $xoopsUser->getVar('uid') : 0 ;
 
-	$module_handler =& xoops_gethandler('module');
-	$module =& $module_handler->getByDirname($mydirname);
-	$config_handler =& xoops_gethandler('config');
-	$configs = $config_handler->getConfigList( $module->mid() ) ;
+	$module_handler = xoops_gethandler('module');
+	$module         =& $module_handler->getByDirname($mydirname);
+	$config_handler = xoops_gethandler('config');
+	$configs        = $config_handler->getConfigList( $module->mid() ) ;
 
 	// naao from
 	// get all forums

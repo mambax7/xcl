@@ -112,7 +112,7 @@ class UserMailjobObject extends XoopsSimpleObject
         $userArr = &$this->getUsers($this->getCurrentRetry());
         $handler = &xoops_getmodulehandler('mailjob_link', 'user');
 
-        $userHandler = &xoops_gethandler('user');
+        $userHandler = xoops_gethandler('user');
 
         foreach (array_keys($userArr) as $key) {
             $to_user = &$userHandler->get($userArr[$key]->get('uid'));

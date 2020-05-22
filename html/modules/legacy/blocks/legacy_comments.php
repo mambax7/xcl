@@ -24,15 +24,15 @@ function b_legacy_comments_show($options)
 {
     $block = [];
     include_once XOOPS_ROOT_PATH.'/include/comment_constants.php';
-    $comment_handler =& xoops_gethandler('comment');
-    $criteria = new CriteriaCompo(new Criteria('com_status', XOOPS_COMMENT_ACTIVE));
+    $comment_handler = xoops_gethandler('comment');
+    $criteria        = new CriteriaCompo(new Criteria('com_status', XOOPS_COMMENT_ACTIVE));
     $criteria->setLimit((int)$options[0]);
     $criteria->setSort('com_created');
     $criteria->setOrder('DESC');
-    $comments =& $comment_handler->getObjects($criteria, true);
-    $member_handler =& xoops_gethandler('member');
-    $module_handler =& xoops_gethandler('module');
-    $modules =& $module_handler->getObjects(new Criteria('hascomments', 1), true);
+    $comments       =& $comment_handler->getObjects($criteria, true);
+    $member_handler = xoops_gethandler('member');
+    $module_handler = xoops_gethandler('module');
+    $modules        =& $module_handler->getObjects(new Criteria('hascomments', 1), true);
     $comment_config = [];
     foreach (array_keys($comments) as $i) {
         $mid = $comments[$i]->getVar('com_modid');

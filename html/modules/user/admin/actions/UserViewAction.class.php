@@ -93,7 +93,7 @@ class User_UserViewAction extends User_AbstractViewAction
 
         $render->setAttribute('rank', $this->mObject->getRank());
 
-        $handler =& xoops_gethandler('timezone');
+        $handler  = xoops_gethandler('timezone');
         $timezone =& $handler->get($this->mObject->get('timezone_offset'));
         $render->setAttribute('timezone', $timezone);
 

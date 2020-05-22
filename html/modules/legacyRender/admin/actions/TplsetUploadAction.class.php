@@ -144,8 +144,8 @@ class LegacyRender_TplsetUploadAction extends LegacyRender_Action
             return true;
         }
 
-        $handler =& xoops_gethandler('imageset');
-        $imgset =& $handler->create();
+        $handler = xoops_gethandler('imageset');
+        $imgset  =& $handler->create();
         $imgset->set('imgset_name', $tplset->get('tplset_name'));
         $imgset->set('imgset_refid', 0);
 
@@ -159,7 +159,7 @@ class LegacyRender_TplsetUploadAction extends LegacyRender_Action
             return false;
         }
 
-        $handler =& xoops_gethandler('imagesetimg');
+        $handler = xoops_gethandler('imagesetimg');
         for ($i = 0; $i < count($themeimages); $i++) {
             if (isset($themeimages[$i]['name']) && '' != $themeimages[$i]['name']) {
                 $image =& $handler->create();

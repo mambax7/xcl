@@ -341,7 +341,7 @@ class XoopsObject extends AbstractXoopsObject
     * @param string $format format to use for the output
     * @return mixed formatted value of the variable
     */
-    public function &getVar($key, $format = 's')
+    public function getVar($key, $format = 's')
     {
         $var =& $this->vars[$key];
         $ret = $var['value'];

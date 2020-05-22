@@ -133,7 +133,7 @@ class Legacy_ActSearchAction extends Legacy_Action
 
         $result=$db->query($sql);
 
-        $handler =& xoops_gethandler('module');
+        $handler = xoops_gethandler('module');
         while ($row = $db->fetchArray($result)) {
             $module =& $handler->get($row['mid']);
             $adapter =new Legacy_ModuleAdapter($module); // FIXMED
@@ -147,7 +147,7 @@ class Legacy_ActSearchAction extends Legacy_Action
 
     public function hasPermission(&$controller, $xoopsUser)
     {
-        $permHandler =& xoops_gethandler('groupperm');
+        $permHandler = xoops_gethandler('groupperm');
         return $permHandler->checkRight('module_admin', -1, $xoopsUser->getGroups());
     }
 

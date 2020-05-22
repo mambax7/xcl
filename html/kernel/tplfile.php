@@ -61,7 +61,7 @@ class XoopsTplfile extends XoopsObject
 
     public function &getSource()
     {
-        $ret =& $this->getVar('tpl_source');
+        $ret = $this->getVar('tpl_source');
         return $ret;
     }
 

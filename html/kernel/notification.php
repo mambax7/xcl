@@ -935,7 +935,7 @@ class XoopsNotificationHandler extends XoopsObjectHandler
      *
      * @return  bool
      **/
-    public function updateByField(&$notification, $field_name, $field_value)
+    public function updateByField($notification, $field_name, $field_value)
     {
         $notification->unsetNew();
         $notification->setVar($field_name, $field_value);

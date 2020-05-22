@@ -794,7 +794,7 @@ class Text_Diff_Op_copy extends Text_Diff_Op
         $this->final = $final;
     }
 
-    public function &reverse()
+    public function reverse()
     {
         return $reverse = new Text_Diff_Op_copy($this->final, $this->orig);
     }
@@ -814,7 +814,7 @@ class Text_Diff_Op_delete extends Text_Diff_Op
         $this->final = false;
     }
 
-    public function &reverse()
+    public function reverse()
     {
         return $reverse = new Text_Diff_Op_add($this->orig);
     }
@@ -834,7 +834,7 @@ class Text_Diff_Op_add extends Text_Diff_Op
         $this->orig = false;
     }
 
-    public function &reverse()
+    public function reverse()
     {
         return $reverse = new Text_Diff_Op_delete($this->final);
     }
@@ -854,7 +854,7 @@ class Text_Diff_Op_change extends Text_Diff_Op
         $this->final = $final;
     }
 
-    public function &reverse()
+    public function reverse()
     {
         return $reverse = new Text_Diff_Op_change($this->final, $this->orig);
     }

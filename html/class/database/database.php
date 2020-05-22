@@ -81,7 +81,7 @@ if (!defined('XOOPS_C_DATABASE_INCLUDED')) {
          * @see XoopsLogger
          * @param object $logger reference to a {@link XoopsLogger} object
          */
-        public function setLogger(&$logger)
+        public function setLogger($logger)
         {
             $this->logger =& $logger;
         }

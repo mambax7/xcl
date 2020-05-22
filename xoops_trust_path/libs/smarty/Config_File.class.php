@@ -19,7 +19,7 @@
  *
  * For questions, help, comments, discussion, etc., please join the
  * Smarty mailing list. Send a blank e-mail to
- * smarty-discussion-subscribe@googlegroups.com 
+ * smarty-discussion-subscribe@googlegroups.com
  *
  * @link https://www.smarty.net/
  * @version 2.6.25-dev
@@ -160,7 +160,7 @@ class Config_File {
     function &get_key($config_key)
     {
         list($file_name, $section_name, $var_name) = explode('/', $config_key, 3);
-        $result = &$this->get($file_name, $section_name, $var_name);
+        $result = $this->get($file_name, $section_name, $var_name);
         return $result;
     }
 
@@ -309,7 +309,7 @@ class Config_File {
                         $vars = array();
                         continue;
                     }
-                } else {                    
+                } else {
                     $section_name = $match[1];
                 }
                 if (!isset($config_data['sections'][$section_name]))

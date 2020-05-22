@@ -32,7 +32,7 @@ class LegacyRender_TplfileFilterForm extends LegacyRender_AbstractFilterForm
         TPLFILE_SORT_KEY_TPL_LASTIMPORTED => 'tpl_lastimported',
         TPLFILE_SORT_KEY_TPL_TYPE => 'tpl_type'
     ];
-    
+
     public $mTplset = null;
     public $mModule = null;
 
@@ -40,28 +40,28 @@ class LegacyRender_TplfileFilterForm extends LegacyRender_AbstractFilterForm
     {
         return TPLFILE_SORT_KEY_DEFAULT;
     }
-    
+
     public function fetch()
     {
         parent::fetch();
         $this->additionalFetch();
     }
-    
+
     public function additionalFetch()
     {
         if (isset($_REQUEST['tpl_module'])) {
             $this->mNavi->addExtra('tpl_module', xoops_getrequest('tpl_module'));
             $this->_mCriteria->add(new Criteria('tpl_module', [XOBJ_DTYPE_STRING, xoops_getrequest('tpl_module')]));
-            
-            $handler =& xoops_gethandler('module');
+
+            $handler       = xoops_gethandler('module');
             $this->mModule =& $handler->getByDirname(xoops_getrequest('tpl_module'));
         }
-    
+
         if (isset($_REQUEST['tpl_type'])) {
             $this->mNavi->addExtra('tpl_type', xoops_getrequest('tpl_type'));
             $this->_mCriteria->add(new Criteria('tpl_type', [XOBJ_DTYPE_STRING, xoops_getrequest('tpl_type')]));
         }
-        
+
         if (isset($_REQUEST['tpl_file'])) {
             $this->mNavi->addExtra('tpl_file', xoops_getrequest('tpl_file'));
             $this->_mCriteria->add(new Criteria('tpl_file', '%' . xoops_getrequest('tpl_file') . '%', 'LIKE'));

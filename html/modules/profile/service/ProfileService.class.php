@@ -19,7 +19,7 @@ class Profile_DataObj extends XCube_Object
         foreach (array_keys($defArr) as $key) {
             $ret[] = S_PUBLIC_VAR($defArr->getServiceField());
         }
-    
+
         return $ret;
     }
 }
@@ -49,7 +49,7 @@ class Profile_OptionsObj extends XCube_Object
         $ret = [
             S_PUBLIC_VAR('string option_name'),
         ];
-        
+
         return $ret;
     }
 }
@@ -82,7 +82,7 @@ class Profile_DefinitionsObj extends XCube_Object
             S_PUBLIC_VAR('text access'),
             S_PUBLIC_VAR('Profile_OptionsObjArray options'),
         ];
-        
+
         return $ret;
     }
 }
@@ -115,12 +115,12 @@ class Profile_Service extends XCube_Service
         $this->addType('Profile_OptionsObjArray');
         $this->addType('Profile_DefinitionsObj');
         $this->addType('Profile_DefinitionsObjArray');
-    
+
         $this->addFunction(S_PUBLIC_FUNC('Profile_DefinitionsObjArray getDefinitions(int uid, int groupid, bool show_form)'));
         $this->addFunction(S_PUBLIC_FUNC('Profile_DataObj getProfile(int uid)'));
         $this->addFunction(S_PUBLIC_FUNC('Profile_DataObjArr getProfileArr(string field_name, string value)'));
         $this->addFunction(S_PUBLIC_FUNC('bool setProfile(string field_name, string value, int uid)'));
-    
+
         $handler =& xoops_getmodulehandler('definitions', 'profile');
         $defArr =& $handler->getObjects();
         $fieldDef = '';
@@ -141,22 +141,22 @@ class Profile_Service extends XCube_Service
     public function getDefinitions()
     {
         $definitionsArr = [];
-    
+
         $root =& XCube_Root::getSingleton();
         $uid = ($root->mContext->mXoopsUser) ? $root->mContext->mXoopsUser->get('uid') : 0;
-    
+
         //get parameters
         //access limit by uid
         $request_uid = $root->mContext->mRequest->getRequest('uid');
         if ($request_uid>0) {
-            $gHandler =& xoops_gethandler('member');
+            $gHandler = xoops_gethandler('member');
             $groupArr =& $gHandler->getGroupsByUser($request_uid);
         }
         //access limit by group id
         $groupid = $root->mContext->mRequest->getRequest('groupid');
         //show_form
         $show_form = $root->mContext->mRequest->getRequest('show_form');
-    
+
         $criteria = new CriteriaCompo();
         if (true == $show_form) {
             $criteria->add(new Criteria('show_form', '1'));
@@ -216,11 +216,11 @@ class Profile_Service extends XCube_Service
     public function getProfileArr()
     {
         $dataList = [];
-    
+
         $root =& XCube_Root::getSingleton();
         $field_name = $root->mContext->mRequest->getRequest('field_name');
         $value = $root->mContext->mRequest->getRequest('value');
-    
+
         $handler =& xoops_getmodulehandler('data', 'profile');
         $criteria = new CriteriaCompo();
         $criteria->add(new Criteria($field_name, $value));
@@ -241,14 +241,14 @@ class Profile_Service extends XCube_Service
         $field_name = $root->mContext->mRequest->getRequest('field_name');
         $value = $root->mContext->mRequest->getRequest('value');
         $uid = $root->mContext->mRequest->getRequest('uid');
-    
+
         $handler =& xoops_getmodulehandler('data', 'profile');
         $obj =& $handler->get($uid);
-        
+
         if (! $obj) {
             return false;
         }
-        
+
         $obj->set($field_name, $value);
         if ($handler->insert($obj)) {
             return true;
@@ -265,10 +265,10 @@ class Profile_Service extends XCube_Service
     {
         $root =& XCube_Root::getSingleton();
         $uid = $root->mContext->mRequest->getRequest('uid');
-    
+
         $defHandler =& xoops_getmodulehandler('definitions', 'profile');
         $defArr =& $defHandler->getObjects();
-    
+
         $dataHandler =& xoops_getmodulehandler('data', 'profile');
         $dataObj =& $dataHandler->get($uid);
 
@@ -277,11 +277,11 @@ class Profile_Service extends XCube_Service
         }
 
         $dataObj->set('uid', $uid);
-    
+
         foreach (array_keys($defArr) as $key) {
             $dataObj->set($defArr[$key]->getShow('field_name'), $root->mContext->mRequest->getRequest($defArr[$key]->getShow('field_name')));
         }
-    
+
         if ($dataHandler->insert($dataObj)) {
             return true;
         } else {

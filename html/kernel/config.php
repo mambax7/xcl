@@ -38,7 +38,7 @@ require_once XOOPS_ROOT_PATH.'/kernel/configitem.php';
 
 /**
  * @package     kernel
- * 
+ *
  * @author	    Kazumi Ono	<onokazu@xoops.org>
  * @copyright	copyright (c) 2000-2003 XOOPS.org
  */
@@ -61,7 +61,7 @@ class XoopsConfigHandler
 
     /**
      * holds reference to config item handler(DAO) class
-     * 
+     *
      * @var     object
      * @access	private
      */
@@ -69,7 +69,7 @@ class XoopsConfigHandler
 
     /**
      * holds reference to config option handler(DAO) class
-     * 
+     *
      * @var	    object
      * @access	private
      */
@@ -86,7 +86,7 @@ class XoopsConfigHandler
 
     /**
      * Constructor
-     * 
+     *
      * @param	object  &$db    reference to database object
      */
     public function __construct(&$db)
@@ -97,7 +97,7 @@ class XoopsConfigHandler
 
     /**
      * Create a config
-     * 
+     *
      * @see     XoopsConfigItem
      * @return	object  reference to the new {@link XoopsConfigItem}
      */
@@ -109,10 +109,10 @@ class XoopsConfigHandler
 
     /**
      * Get a config
-     * 
+     *
      * @param	int     $id             ID of the config
      * @param	bool    $withoptions    load the config's options now?
-     * @return	object  reference to the {@link XoopsConfig} 
+     * @return	object  reference to the {@link XoopsConfig}
      */
     public function &getConfig($id, $withoptions = false)
     {
@@ -129,7 +129,7 @@ class XoopsConfigHandler
      * @param object  &$config reference to the {@link XoopsConfigItem}
      * @return bool
      */
-    public function insertConfig(&$config)
+    public function insertConfig($config)
     {
         if (!$this->_cHandler->insert($config)) {
             return false;
@@ -155,7 +155,7 @@ class XoopsConfigHandler
      * @param object  &$config reference to a {@link XoopsConfigItem}
      * @return bool
      */
-    public function deleteConfig(&$config)
+    public function deleteConfig($config)
     {
         if (!$this->_cHandler->delete($config)) {
             return false;
@@ -179,11 +179,11 @@ class XoopsConfigHandler
 
     /**
      * get one or more Configs
-     * 
-     * @param	object  $criteria       {@link CriteriaElement} 
+     *
+     * @param	object  $criteria       {@link CriteriaElement}
      * @param	bool    $id_as_key      Use the configs' ID as keys?
      * @param	bool    $with_options   get the options now?
-     * 
+     *
      * @return	array   Array of {@link XoopsConfigItem} objects
      */
     public function &getConfigs($criteria = null, $id_as_key = false, $with_options = false)
@@ -205,11 +205,11 @@ class XoopsConfigHandler
 
     /**
      * Get configs from a certain category
-     * 
+     *
      * @param	int $category   ID of a category
      * @param	int $module     ID of a module
-     * 
-     * @return	array   array of {@link XoopsConfig}s 
+     *
+     * @return	array   array of {@link XoopsConfig}s
      * @todo This method keeps cache for categories. This may be problem...
      */
     public function &getConfigsByCat($category, $module = 0)
@@ -264,16 +264,16 @@ class XoopsConfigHandler
         if (!is_object($module)) {
             return $ret;
         }
-        
+
         $ret =& $this->getConfigsByCat($category, $module->get('mid'));
-        
+
         return $ret;
     }
 
     /**
-     * Make a new {@link XoopsConfigOption} 
-     * 
-     * @return	object  {@link XoopsConfigOption} 
+     * Make a new {@link XoopsConfigOption}
+     *
+     * @return	object  {@link XoopsConfigOption}
      */
     public function &createConfigOption()
     {
@@ -282,11 +282,11 @@ class XoopsConfigHandler
     }
 
     /**
-     * Get a {@link XoopsConfigOption} 
-     * 
+     * Get a {@link XoopsConfigOption}
+     *
      * @param	int $id ID of the config option
-     * 
-     * @return	object  {@link XoopsConfigOption} 
+     *
+     * @return	object  {@link XoopsConfigOption}
      */
     public function &getConfigOption($id)
     {
@@ -296,10 +296,10 @@ class XoopsConfigHandler
 
     /**
      * Get one or more {@link XoopsConfigOption}s
-     * 
-     * @param	object  $criteria   {@link CriteriaElement} 
+     *
+     * @param	object  $criteria   {@link CriteriaElement}
      * @param	bool    $id_as_key  Use IDs as keys in the array?
-     * 
+     *
      * @return	array   Array of {@link XoopsConfigOption}s
      */
     public function &getConfigOptions($criteria = null, $id_as_key = false)
@@ -310,9 +310,9 @@ class XoopsConfigHandler
 
     /**
      * Count some {@link XoopsConfigOption}s
-     * 
-     * @param	object  $criteria   {@link CriteriaElement} 
-     * 
+     *
+     * @param	object  $criteria   {@link CriteriaElement}
+     *
      * @return	int     Count of {@link XoopsConfigOption}s matching $criteria
      */
     public function getConfigOptionsCount($criteria = null)
@@ -322,10 +322,10 @@ class XoopsConfigHandler
 
     /**
      * Get a list of configs
-     * 
+     *
      * @param	int $conf_modid ID of the modules
      * @param	int $conf_catid ID of the category
-     * 
+     *
      * @return	array   Associative array of name=>value pairs.
      */
     public function &getConfigList($conf_modid, $conf_catid = 0)

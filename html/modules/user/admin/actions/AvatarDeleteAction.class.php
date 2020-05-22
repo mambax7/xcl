@@ -41,7 +41,7 @@ class User_AvatarDeleteAction extends User_AbstractDeleteAction
             // Clear all user who set the avatar deleted with blank.gif
             //
             if (count($linkArr) > 0) {
-                $userHandler =& xoops_gethandler('user');
+                $userHandler = xoops_gethandler('user');
                 foreach ($linkArr as $link) {
                     $user =& $userHandler->get($link->get('user_id'));
 

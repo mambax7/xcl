@@ -48,7 +48,7 @@ class User_AvatarEditAction extends User_AbstractEditAction
                     $criteria =new Criteria('avatar_id', $this->mObject->get('avatar_id'));
                     $linkArr =& $linkHandler->getObjects($criteria);
 
-                    $userHandler =& xoops_gethandler('user');
+                    $userHandler = xoops_gethandler('user');
                     foreach ($linkArr as $link) {
                         $user =& $userHandler->get($link->get('user_id'));
 

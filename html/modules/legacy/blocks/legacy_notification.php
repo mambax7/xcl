@@ -23,15 +23,15 @@ function b_legacy_notification_show()
 {
     global $xoopsConfig, $xoopsUser, $xoopsModule;
     include_once XOOPS_ROOT_PATH . '/include/notification_functions.php';
-    
+
     $root =& XCube_Root::getSingleton();
     $root->mLanguageManager->loadPageTypeMessageCatalog('notification');
-    
+
     // Notification must be enabled, and user must be logged in
     if (empty($xoopsUser) || !notificationEnabled('block')) {
         return false; // do not display block
     }
-    $notification_handler =& xoops_gethandler('notification');
+    $notification_handler = xoops_gethandler('notification');
     // Now build the a nested associative array of info to pass
     // to the block template.
     $block = [];
