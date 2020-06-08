@@ -1,0 +1,89 @@
+<h3>Smarty</h3>
+
+<p>These smarty variables can be used in the Admin Theme. A theme is a collection of single template files (HTML, CSS, JS, Smarty).</p>
+<p>XCL uses custom left <code>&lt;{</code> and right <code>}&gt;</code> delimiters. Every module can have its own templates and smarty variables. Briefly, you have different smarty variables for the front-end and back-end.</p>
+<p>You can also use <code>&lt;{$smarty.const.NAME}&gt;</code> to access PHP constants. And use <a href="https://www.smarty.net/docs/en/language.function.assign.tpl" target="_blank"><code>&lt;{assign}&gt;</code></a> for assigning template variables during the execution of a template.
+    The <a href="https://www.smarty.net/docs/en/language.function.assign.tpl" target="_blank">scope</a> of the assigned variable can be : 'parent', 'root' or 'global'. Assignment of variables in-template is essentially placing application logic into the presentation that may be better handled in PHP. Use at your own discretion.</p>
+
+<table class="outer">
+    <thead>
+        <th><code><{$Smarty}></code></th>
+        <th>Output</th>
+    </thead>
+    <tbody>
+        <tr>
+            <td><code><{$smarty.const._CPHOME}></code></td>
+            <td><{$smarty.const._CPHOME}></td>
+        </tr>
+        <tr>
+            <td><code><{$legacy_sitename}></code></td>
+            <td><{$legacy_sitename|xoops_escape}></td>
+        </tr>
+        <tr>
+            <td><code><{$legacy_pagetitle}></code></td>
+            <td><{$legacy_pagetitle}></td>
+        </tr>
+        <tr>
+            <td><code><{$legacy_slogan}></code></td>
+            <td><{$legacy_slogan}></td>
+        </tr>
+        <tr>
+            <td><code><{$xoops_url}></code></td>
+            <td><{$xoops_url}></td>
+        </tr>
+        <tr>
+            <td><code><{$xoops_rootpath}></code></td>
+            <td><{$xoops_rootpath}></td>
+        </tr>
+        <tr>
+            <td><code><{$xoops_langcode}></code></td>
+            <td><{$xoops_langcode}></td>
+        </tr>
+        <tr>
+            <td><code><{$xoops_charset}></code></td>
+            <td><{$xoops_charset}></td>
+        </tr>
+        <tr>
+            <td><code><{$xoops_version}></code></td>
+            <td><{$xoops_version}></td>
+        </tr>
+        <tr>
+            <td><code><{$xoops_upload_url}></code></td>
+            <td><{$xoops_upload_url}></td>
+        </tr>
+        <tr>
+            <td><code><{$xoops_modulename}></code></td>
+            <td><{$xoops_modulename}></td>
+        </tr>
+        <tr>
+            <td><code><{$xoops_dirname}></code></td>
+            <td><{$xoops_dirname}></td>
+        </tr>
+        <tr>
+            <td><code><{$xoops_isadmin}></code></td>
+            <td><{$xoops_isadmin}></td>
+        </tr>
+        <tr>
+            <td><code><{$uid}></code></td>
+            <td><{$uid}></td>
+        </tr>
+        <tr>
+            <td><code><{$uid|xoops_user:"uname"</code></td>
+            <td><{$uid|xoops_user:"uname"}></td>
+        </tr>
+        <tr>
+            <td><code><{$uid|xoops_user:"name"</code></td>
+            <td><{$uid|xoops_user:"name"}></td>
+        </tr>
+        <tr>
+            <td><code><{$uid|xoops_user:"email"</code></td>
+            <td><{$uid|xoops_user:"email"}></td>
+        </tr>
+        <tr>
+            <td><code><{$uid|xoops_user:"last_login"</code></td>
+            <td><{$uid|xoops_user:"last_login"}></td>
+        </tr>
+    </tbody>
+    </table>
+
+    <p>Learn more: <a href="https://www.smarty.net/" target="_blank">Smarty Template Engine</a></p>

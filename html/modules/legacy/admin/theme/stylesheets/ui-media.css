@@ -1,244 +1,254 @@
 /*
-	XOOPS Cube Theme : XCL Admin Flex Grid
-	Distribution : XCL 2.3 Alpha
-	Version : 0.0.5
-	Author : Nuno Luciano aka Gigamaster
-	Date : 2019-11-11
-	URL : https://github.com/xoopscube/xcl/
+    XOOPSCube Theme : XCL Admin Flex Grid
+    Distribution : XCL 2.3 Alpha
+    Version : 0.0.5
+    Author : Nuno Luciano aka Gigamaster
+    Date : 2019-11-11
+    URL : https://github.com/xoopscube/xcl/
 
-	-------------------- -------------------- -------------------- -------------------- Media Queries */
-	/*
-	* Screen Mode Portrait -> Invite To Turn Device
-	*
-	/* -------------------- -------------------- -------------------- Screen Portrait */
+    -------------------- -------------------- -------------------- -------------------- Media Queries */
+    /*
+    * Screen Mode Portrait -> Invite To Turn Device
+    *
+    /* -------------------- -------------------- -------------------- Screen Portrait */
 
 
-	@media only screen and (min-width: 320px) and (orientation:portrait) {
+    @media only screen and (min-width: 320px) and (orientation:portrait) {
 
-	body {
+    body {
 
-		height						: 100vw;
+        height      : 100vw;
 
-	}
+    }
 
-	.grid,
-	.ondemand,
-	.ondemand-button  {
+    .grid,
+    .ondemand,
+    .ondemand-button  {
 
-		display						: none;
-		left							: -30px;
-		visibility				: hidden;
+        display     : none;
+        left        : -30px;
+        visibility  : hidden;
 
-	}
+    }
 
-	/*Screen Orientation Notification */
-	.ui-screen-mode {
+    /*Screen Orientation Notification */
+    .ui-screen-mode {
 
-		background				: var(--ui-screen-mode-background);
-		border						: 2px solid var(--ui-screen-mode-border-color);
-		font-size					: 1.5rem;
-		height						: 100vh; /* vh fallback for Custom Properties */
-		height						: calc(var(--vh, 1vh) * 100); /* CSS fallback for Javascript */
-		margin						: 0 auto;
-		width							: 100%;
+        background  : var(--ui-screen-mode-background);
+        border      : 2px solid var(--ui-screen-mode-border-color);
+        font-size   : 1.5rem;
+        height      : 100vh; /* vh fallback for Custom Properties */
+        height      : calc(var(--vh, 1vh) * 100); /* CSS fallback for Javascript */
+        margin      : 0 auto;
+        width       : 100%;
 
-		}
+        }
 
-		.ui-screen-info {
+        .ui-screen-info {
 
-		align-items				: center;
-		display						: flex;
-		height						: 20%;
-		justify-content		: center;
+        align-items     : center;
+        display         : flex;
+        height          : 20%;
+        justify-content : center;
 
-		}
+        }
 
-		.ui-screen-info:nth-child(1) {
+        .ui-screen-info:nth-child(1) {
 
-		color							: var(--ui-screen-mode-info-color);
+        color       : var(--ui-screen-mode-info-color);
 
-		}
+        }
 
-		.ui-screen-info:nth-child(5) {
+        .ui-screen-info:nth-child(5) {
 
-		color							: var(--ui-screen-mode-info-child);
+        color       : var(--ui-screen-mode-info-child);
 
-		}
+        }
 
-	}
+    }
 
 
-	/* -------------------- -------------------- -------------------- -------------------- Screen max 420px */
+    /* -------------------- -------------------- -------------------- -------------------- Screen max 420px */
 
-	@media only screen and (min-width: 420px) and (orientation:landscape) {
+    @media only screen and (min-width: 420px) and (orientation:landscape) {
 
-	.grid {
+    .grid {
 
-		grid-template-areas:
-												"header header"
-												"main main"
-												"footer footer";
+        grid-template-areas:
+            "header header"
+            "main main"
+            "footer footer";
 
-	}
+    }
 
-	.ui-screen-mode {
+    .ui-screen-mode {
 
-		display						: none;
+        display     : none;
 
-	}
+    }
 
-	.nav-side-menu {
+    .main {
 
-		margin						: 0;
+        padding: 0 2rem 2rem;
 
-	}
+    }
+    .nav-side-menu {
 
-	.ui-card-small {
+        margin      : 0;
 
-	}
+    }
 
-	.ui-card-2-col {
+    .ui-card-small {
+        margin      : 0;
+    }
 
-		column-count			: 1;
-		display						: block;
-		margin						: 0;
+    .ui-card-2-col {
 
-	}
+        column-count    : 1;
+        display         : block;
+        margin          : 0;
 
+    }
 
-	.ui-card-overview {
 
-		grid-template-areas	:
-												"header"
-												/* "nav-aside" */
-												"main"
-												"footer";
-		width								: 100%;
+    .ui-card-overview {
 
-		}
+        grid-template-areas	:
+            "header"
+            "main"
+            "footer";
+        width       : 100%;
 
+        }
 
-		.ui-flex-column {
-			flex: 1
-		}
 
-		.ui-flex-column-2 {
-			flex: 2
-		}
-	}
+        .ui-flex-column {
+            flex    : 1
+        }
 
+        .ui-flex-column-2 {
+            flex    : 2
+        }
+    }
 
 
-	/* -------------------- -------------------- -------------------- -------------------- Tablet Hor. 1024px*/
 
-	@media only screen and (min-width: 46.875em) {
+    /* -------------------- -------------------- -------------------- -------------------- Tablet Hor. 1024px*/
 
-	table {
+    @media only screen and (min-width: 46.875em) {
 
-		border							: 0;
-		overflow-x					: auto;
-		-webkit-overflow-scrolling: touch;
-		-ms-overflow-style	: -ms-autohiding-scrollbar;
-		width								: 100%;
+    .main {
 
-	}
+        padding: 0 4rem 2rem;
 
-	table tr {
+    }
 
-		padding							: 0.5rem;
+    table {
 
-	}
+        border              : 0;
+        overflow-x          : auto;
+        -webkit-overflow-scrolling: touch;
+        -ms-overflow-style  : -ms-autohiding-scrollbar;
+        width               : 100%;
 
-	table tbody td.legacy_blockside {
+    }
 
-		display							: flex;
-		justify-content			: center;
+    table tr {
 
-	}
+        padding         : 0.5rem;
 
-	.table-responsive {
+    }
 
-		display							: block;
-		overflow-x					: auto;
-		-webkit-overflow-scrolling: touch;
-		-ms-overflow-style: -ms-autohiding-scrollbar;
-		width								: 100%;
+    table tbody td.legacy_blockside {
 
-	}
+        display         : flex;
+        justify-content : center;
 
-	.table-responsive > .table-bordered {
+    }
 
-		border							: 0;
+    .table-responsive {
 
-	}
+        display             : block;
+        overflow-x          : auto;
+        -webkit-overflow-scrolling: touch;
+        -ms-overflow-style  : -ms-autohiding-scrollbar;
+        width               : 100%;
 
-	}
+    }
 
+    .table-responsive > .table-bordered {
 
-	/* -------------------- -------------------- -------------------- -------------------- Tablet Hor. 1024px*/
-	@media only screen and (min-width: 65.625em) {
+        border          : 0;
 
-	.grid {
+    }
 
-		display								: grid;
-		grid-template-columns	: 230px calc(100% - 230px);
-		grid-template-rows		: 50px 1fr 50px;
-		grid-template-areas		: "header header" "nav-aside main" "footer footer";
+    }
 
-	}
 
-	.nav-mobile {
+    /* -------------------- -------------------- -------------------- -------------------- Tablet Hor. 1024px*/
+    @media only screen and (min-width: 65.625em) {
 
-		visibility						: hidden;
+    .grid {
 
-	}
+        display                 : grid;
+        grid-template-columns   : 230px calc(100% - 230px);
+        grid-template-rows      : 50px 1fr 50px;
+        grid-template-areas     : "header header" "nav-aside main" "footer footer";
 
-	.nav-aside {
+    }
 
-		visibility						: unset;
-		transform							: translateX(0);
+    .nav-mobile {
 
-	}
+        visibility              : hidden;
 
-	.nav-side-menu {
+    }
 
-		margin								: 2rem 0;
+    .nav-aside {
 
-	}
+        visibility              : unset;
+        transform               : translateX(0);
 
-	.ui-card-overview {
+    }
 
-		grid-template-columns	: repeat(auto-fit, minmax(214px, 1fr));
+    /* .nav-side-menu {
 
-	}
+        margin                  : 2rem 0;
 
-	.ui-card-2-col {
+    } */
 
-		column-count					: 2;
+    .ui-card-overview {
 
-	}
+        grid-template-columns   : repeat(auto-fit, minmax(214px, 1fr));
 
-	.ui-card-full {
+    }
 
-		column-count					: 1;
+    .ui-card-2-col {
 
-	}
-	.ui-block-online-content {
+        column-count            : 2;
 
-		flex-direction				: row;
+    }
 
-	}
+    .ui-card-full {
 
-	.ui-block-online-welcome {
+        column-count            : 1;
 
-		align-items						: flex-start;
+    }
+    .ui-block-online-content {
 
-	}
+        flex-direction          : row;
 
-/* 	.ui-card-small {
+    }
 
-		padding								: .5rem;
+    .ui-block-online-welcome {
 
-	} */
+        align-items             : flex-start;
 
-	}
+    }
+
+    	.ui-card-small {
+
+        padding                 : .5rem;
+
+    }
+
+    }

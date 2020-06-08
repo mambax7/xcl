@@ -1,146 +1,197 @@
 /*
-	XOOPS Cube Theme : XCL Admin Flex Grid
-	Distribution : XCL 2.3 Alpha
-	Version : 0.0.5
-	Author : Nuno Luciano aka Gigamaster
-	Date : 2019-11-11
-	URL : https://github.com/xoopscube/xcl/
+    XOOPSCube Theme : XCL Admin Flex Grid
+    Distribution : XCL 2.3 Alpha
+    Version : 0.0.5
+    Author : Nuno Luciano aka Gigamaster
+    Date : 2019-11-11
+    URL : https://github.com/xoopscube/xcl/
 
-	-------------------- -------------------- -------------------- -------------------- AVATAR */
+    -------------------- -------------------- -------------------- -------------------- AVATAR */
 
-	img.ui-avatar-card {
-		/* border-color  	: var( --ui-sort-border-color		); */
-		border-color  	: var( --ui-color-200 );
-		/* border-radius 	: var( --ui-sort-border-radius	); */
-		border-radius 	: 50%;
-		border-style  	: var( --ui-sort-border-style	);
-		/* border-width  	: var( --ui-sort-border-width		); */
-		border-width  	: 5px;
-	}
+    img.ui-avatar-card {
+        border-color    : var(  --ui-color-200      );
+        border-radius   : 50%;
+        border-style    : var(  --ui-border-style   );
+        border-width    : 5px;
+    }
 
-	.ui-widget {
-		font-family: Arial,sans-serif;
-		font-size: 1em;
-	}
+    .ui-widget {
+        font-family     : Arial,sans-serif;
+        font-size       : 1em;
+    }
 
-	/*-------------------- -------------------- -------------------- -------------------- BLOCK SECTION FILTER SEARCH */
+    /*-------------------- -------------------- -------------------- -------------------- BLOCK SECTION FILTER SEARCH */
 
 
-	section.filter {
+    section.filter {
 
-		align-items			: center;
+        align-items     : center;
 
-		background    	: var( --ui-filter-background			);
+        background      : var(  --ui-filter-background      );
 
-		border-color  	: var( --ui-filter-border-color		);
-		border-radius 	: var( --ui-filter-border-radius	);
-		border-style  	: var( --ui-filter-border-radius	);
-		border-width  	: var( --ui-filter-border-width		);
+        border-color    : var(  --ui-filter-border-color    );
+        border-radius   : var(  --ui-filter-border-radius   );
+        border-style    : var(  --ui-filter-border-radius   );
+        border-width    : var(  --ui-filter-border-width    );
 
-		box-shadow    	: var( --ui-filter-box-shadow			);
+        box-shadow      : var(  --ui-filter-box-shadow      );
 
-		padding       	: var( --ui-filter-padding				);
-		margin        	: var( --ui-filter-margin					);
+        display         : flex;
+        flex-direction  : row;
+        flex-wrap       : wrap;
+        padding         : var(  --ui-filter-padding  );
+        margin          : var(  --ui-filter-margin   );
+        width           : 100%;
 
-		display					: flex;
-		flex-direction	: row;
-		flex-wrap				: wrap;
-		margin					: 1rem auto;
-		padding					: var(--ui-space-700);
-		width						: 100%;
+    }
 
-	}
+        section.filter article {
 
-	  section.filter article {
+        flex            : 1;
+        padding-right   : var(  --ui-space-200  );
 
-		flex						: 1;
-		padding-right		: var(--ui-space-200);
+        }
 
-	  }
+        section .search-button {
 
-	  section .search-button {
+        flex-basis      : 100%;
+        padding-top     : 1rem;
 
-		flex-basis			: 100%;
-		padding-top			: 1rem;
+        }
 
-	  }
+    /* -------------------- -------------------- -------------------- -------------------- BLOCK SECTION SORT */
 
-	/* -------------------- -------------------- -------------------- -------------------- BLOCK SECTION SORT */
+    section.sort {
 
-	section.sort {
+        align-items     : center;
 
-		align-items			: center;
+        background      : var(  --ui-sort-background    );
 
-		background    	: var( --ui-sort-background			);
+        border-color  	: var(  --ui-sort-border-color  );
+        border-radius 	: var(  --ui-sort-border-radius );
+        border-style  	: var(  --ui-sort-border-style  );
+        border-width  	: var(  --ui-sort-border-width  );
 
-		border-color  	: var( --ui-sort-border-color		);
-		border-radius 	: var( --ui-sort-border-radius	);
-		border-style  	: var( --ui-sort-border-style		);
-		border-width  	: var( --ui-sort-border-width		);
+        box-shadow    	: var(  --ui-sort-box-shadow    );
 
-		box-shadow    	: var( --ui-sort-box-shadow			);
+        padding       	: var(  --ui-sort-padding       );
+        margin        	: var(  --ui-sort-margin        );
 
-		padding       	: var( --ui-sort-padding				);
-		margin        	: var( --ui-sort-margin					);
+        display         : flex;
+        flex-direction  : row;
+        flex-wrap       : wrap;
+        justify-content : space-evenly;
+        max-width       : 95%;
 
-		display					: flex;
-		flex-direction	: row;
-		flex-wrap				: wrap;
-		justify-content	: space-evenly;
-		max-width				: 95%;
-
-	}
+    }
 
 
-	/* -------------------- -------------------- -------------------- -------------------- BLOCK STATE SWITCH */
+    /* -------------------- -------------------- -------------------- -------------------- BLOCK STATE SWITCH */
 
-	/* Block Switch Off - color indicator */
-	.ui-update-change {
+    /* Block Switch Off - color indicator */
+    .ui-update-change {
 
-		background			: var(--ui-color-500);
+        background      : var(  --ui-color-500  );
 
-		transition			: all 1s;
+        transition      : all 1s;
 
-	}
-	.ui-block-type.ui-update-change {
+    }
+    .ui-block-type.ui-update-change {
 
-		background			: var(--ui-color-red);
+        background      : var(  --ui-color-red  );
 
-	}
-	.ui-update-change svg,
-	.ui-update-change > svg path.block-icon,
-	.ui-update-change > svg text.block-name {
+    }
+    .ui-update-change svg,
+    .ui-update-change > svg path.block-icon,
+    .ui-update-change > svg text.block-name {
 
-		color						: var(--ui-color-red);
+        color           : var(  --ui-color-red  );
 
-	}
+    }
 
-	/* -------------------- -------------------- -------------------- -------------------- Module STATE SWITCH */
+    /* -------------------- -------------------- -------------------- -------------------- Module STATE SWITCH */
 
-  /* Update indicator */
-	/* .ui-update-change {
+    /* Update indicator */
+    .ui-update-change {
 
-		transition			: all 1s;
+        transition      : all 1s;
 
-	} */
-	.ui-update-change a {
+    }
+    .ui-update-change a {
 
-		background			: var(--ui-color-red);
+        background      : var(  --ui-color-red  );
 
-	}
-	.ui-update-change svg,
-	.ui-update-change > svg path.module-icon,
-	.ui-update-change > svg text.module-name {
+    }
+    .ui-update-change svg,
+    .ui-update-change > svg path.module-icon,
+    .ui-update-change > svg text.module-name {
 
-		color						: var(--ui-color-red);
+        color           : var(  --ui-color-red  );
 
-	}
+    }
 
-	/* -------------------- -------------------- -------------------- -------------------- BLOCK PREVIEW */
+    /* -------------------- -------------------- -------------------- -------------------- BLOCK PREVIEW */
 
-	.ui-block-admin-preview,
-	.ui-block-permissions {
+    .ui-block-admin-preview,
+    .ui-block-permissions {
+        font: normal;
+    }
 
-	}
+    /* -------------------- -------------------- -------------------- -------------------- jQuery UI Widget */
 
+    .ui-widget-content {
+        border          : 1px solid var(  --ui-border-color );
+        background      : var(  --ui-button-background  );
+        color           : var(  --ui-button-color       );
+    }
 
+    .ui-checkboxradio-radio-label.ui-checkboxradio-checked .ui-icon,
+    .ui-checkboxradio-radio-label.ui-checkboxradio-checked:hover .ui-icon {
+        background-image: none;
+        width           : 16px;
+        height          : 16px;
+        border-width    : 4px;
+        border-style    : solid;
+    }
+
+    .ui-state-default,
+    .ui-widget-content .ui-state-default,
+    .ui-widget-header .ui-state-default,
+    .ui-button,
+    html .ui-button.ui-state-disabled:hover,
+    html .ui-button.ui-state-disabled:active {
+        border          : 1px solid var(  --ui-border-color );
+        background      : var(  --ui-button-background      );
+        font-weight     : normal;
+        color           : var(  --ui-button-color           );
+    }
+   .ui-widget.ui-widget-content {
+        border          : 1px solid var(  --ui-border-color );
+    }
+    .ui-spinner-input{
+        background      : var(  --ui-button-background      );
+        color           : var(  --ui-button-color           );
+    }
+    .ui-state-default a, .ui-state-default a:link, .ui-state-default a:visited, a.ui-button, a:link.ui-button, a:visited.ui-button, .ui-button {
+        color: var(--ui-color-200);
+        text-decoration: none;
+    }
+     .ui-state-hover,
+     .ui-widget-content .ui-state-hover,
+     .ui-widget-header .ui-state-hover,
+     .ui-state-focus,
+     .ui-widget-content .ui-state-focus,
+     .ui-widget-header .ui-state-focus,
+     .ui-button:hover, .ui-button:focus {
+        background      : var( --ui-button-hover-bg     );
+        border          : 1px solid var(  --ui-boder-color    );
+        color           : var(  --ui-button-hover-txt   );
+        font-weight     : normal;
+    }
+
+    .ui-widget-header,
+    .ui-state-active {
+        background      : var( --ui-button-hover-bg     );
+        border          : 1px solid var( --ui-border-color  );
+        color           : var(  --ui-button-hover-txt   );
+    }

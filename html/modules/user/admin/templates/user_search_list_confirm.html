@@ -48,7 +48,7 @@
       <{else}>
          (<{$userObjects[$uid]->getShow('posts')}>) &raquo; <b  class="user_module_error"><{$actionForm->get('posts',$uid)|xoops_escape}></b>
       <{/if}>
-      <input type="hidden" name="posts[<{$uid}>]" value="<{$actionForm->get('posts',$uid)|xoops_escape:edit}>" />
+      <input type="hidden" name="posts[<{$uid}>]" value="<{$actionForm->get('posts',$uid)|xoops_escape:edit}>">
     </td>
     <td class="user_list_order">
       <{if $actionForm->get('level',$uid) == $userObjects[$uid]->get('level')}>
@@ -56,7 +56,7 @@
       <{else}>
          (<{$userObjects[$uid]->getShow('level')}>) &raquo; <b  class="user_module_error"><{$actionForm->get('level',$uid)|xoops_escape}></b>
       <{/if}>
-      <input type="hidden" name="level[<{$uid}>]" value="<{$actionForm->get('level',$uid)|xoops_escape:edit}>" />
+      <input type="hidden" name="level[<{$uid}>]" value="<{$actionForm->get('level',$uid)|xoops_escape:edit}>">
     </td>
     <td class="user_list_select">
         <b class="user_module_error">
@@ -67,9 +67,9 @@
         <{/if}>
 	</b>
       <{if $actionForm->get('delete',$uid)}>
-        <input type="hidden" name="delete[<{$uid}>]" value="1" />
+        <input type="hidden" name="delete[<{$uid}>]" value="1">
       <{else}>
-        <input type="hidden" name="delete[<{$uid}>]" value="0" />
+        <input type="hidden" name="delete[<{$uid}>]" value="0">
       <{/if}>
     </td>
   </tr>
@@ -77,8 +77,8 @@
 <{/foreach}>
   <tr>
     <td class="foot" colspan="6">
-      <input type="submit" value="<{$smarty.const._SUBMIT}>" class="formButton" />
-      <input class="formButton" type="submit" value="<{$smarty.const._BACK}>" name="_form_control_cancel" />
+      <input type="submit" value="<{$smarty.const._SUBMIT}>" class="formButton">
+      <input class="formButton" type="submit" value="<{$smarty.const._BACK}>" name="_form_control_cancel">
     </td>
   </tr>
 </table>

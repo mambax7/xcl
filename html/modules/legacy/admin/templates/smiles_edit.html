@@ -56,7 +56,7 @@
       <td class="head"><{$smarty.const._AD_LEGACY_LANG_SMILE_URL}></td>
       <td class="<{cycle values="odd,even"}>">
         <{if $actionForm->get('id')}>
-          <img src="<{$smarty.const.XOOPS_UPLOAD_URL}>/<{$object->getShow('smile_url')}>" alt="<{$object->getShow('emotion')}>" title="<{$object->getShow('emotion')}>" />
+          <img src="<{$smarty.const.XOOPS_UPLOAD_URL}>/<{$object->getShow('smile_url')}>" alt="<{$object->getShow('emotion')}>" title="<{$object->getShow('emotion')}>">
           &raquo;&raquo;
         <{/if}>
         <{xoops_input type=file name=smile_url size=30}>
@@ -77,8 +77,8 @@
     </tr>
     <tr>
       <td colspan="2" class="foot">
-        <input class="formButton" type="submit" value="<{$smarty.const._SUBMIT}>">
-        <input class="formButton" type="submit" value="<{$smarty.const._BACK}>" name="_form_control_cancel">
+        <input class="button-submit" type="submit" value="<{$smarty.const._SUBMIT}>">
+        <input class="button-cancel" type="submit" value="<{$smarty.const._BACK}>" name="_form_control_cancel">
       </td>
     </tr>
   </table>

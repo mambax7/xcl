@@ -29,7 +29,7 @@
     <tr>
       <td class="head"><{$smarty.const._AD_LEGACY_LANG_SMILE_URL}></td>
       <td class="<{cycle values="odd,even"}>">
-        <img src="<{$smarty.const.XOOPS_UPLOAD_URL}>/<{$object->getShow('smile_url')}>" alt="<{$object->getShow('emotion')}>" title="<{$object->getShow('emotion')}>" />
+        <img src="<{$smarty.const.XOOPS_UPLOAD_URL}>/<{$object->getShow('smile_url')}>" alt="<{$object->getShow('emotion')}>" title="<{$object->getShow('emotion')}>">
         ( <{$object->getShow('smile_url')}> )
       </td>
     </tr>
@@ -49,8 +49,8 @@
     </tr>
     <tr>
       <td colspan="2" class="foot">
-        <input class="button-delete formButton" type="submit" value="<{$smarty.const._DELETE}>">
-        <input class="formButton" type="submit" value="<{$smarty.const._BACK}>" name="_form_control_cancel">
+        <input class="button-delete" type="submit" value="<{$smarty.const._DELETE}>">
+        <input class="button-cancel" type="submit" value="<{$smarty.const._BACK}>" name="_form_control_cancel">
       </td>
     </tr>
   </table>

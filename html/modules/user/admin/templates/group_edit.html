@@ -32,6 +32,7 @@
   <{xoops_token form=$actionForm}>
   <{xoops_input type=hidden name=groupid value=$actionForm->get('groupid')}>
   <table class="outer">
+      <thead>
     <tr>
       <th colspan="2">
       <{if $actionForm->get('groupid') }>
@@ -41,6 +42,8 @@
       <{/if}>
       </th>
     </tr>
+</thead>
+<tbody>
     <tr>
       <td class="head"><{$smarty.const._AD_USER_LANG_GROUP_NAME}></td>
       <td class="<{cycle values="odd,even"}>">
@@ -53,11 +56,14 @@
         <{xoops_dhtmltarea name=description value=$actionForm->get('description')}>
       </td>
     </tr>
+</tbody>
+<tfoot>
     <tr>
       <td colspan="2" class="foot">
-        <input class="formButton" type="submit" value="<{$smarty.const._SUBMIT}>" />
-        <input class="formButton" type="submit" value="<{$smarty.const._BACK}>" name="_form_control_cancel" />
+        <input class="button-submit" type="submit" value="<{$smarty.const._SUBMIT}>">
+        <input class="button-cancel" type="submit" value="<{$smarty.const._BACK}>" name="_form_control_cancel">
       </td>
     </tr>
+</tfoot>
   </table>
 </form>

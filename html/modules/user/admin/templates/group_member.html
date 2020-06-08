@@ -10,6 +10,7 @@
 <div class="ui-dev-mode"><{$smarty.template}></div>
 
 <table class="outer">
+    <thead>
   <tr>
     <th>&nbsp;</th>
     <th><{$smarty.const._AD_USER_LANG_GROUP_GID}></th>
@@ -19,6 +20,8 @@
     <th><{$smarty.const._AD_USER_LANG_GROUP_AMMO}></th>
     <th><{$smarty.const._AD_USER_LANG_CONTROL}></th>
   </tr>
+</thead>
+<tbody>
   <tr class="odd">
     <td class="user_list_image"><i title="<{$smarty.const._AD_USER_LANG_GROUP}>"><img src="<{"icons/icon-user-group.svg"|theme}>" class="svg"></i></td>
     <td class="user_list_id"><{$group->getShow('groupid')}></td>
@@ -46,6 +49,7 @@
       </a>
     </td>
   </tr>
+</tbody>
 </table>
 
 <hr />
@@ -66,11 +70,12 @@
 
 <form method="post" action="">
 <{xoops_token name=$tokenName value=$tokenValue}>
-<input type="hidden" name="perpage" value="<{$pageNavi->getPerpage()}>" />
-<input type="hidden" name="start" value="<{$pageNavi->getStart()}>" />
-<input type="hidden" name="noperpage" value="<{$noPageNavi->getPerpage()}>" />
-<input type="hidden" name="nostart" value="<{$noPageNavi->getStart()}>" />
+<input type="hidden" name="perpage" value="<{$pageNavi->getPerpage()}>">
+<input type="hidden" name="start" value="<{$pageNavi->getStart()}>">
+<input type="hidden" name="noperpage" value="<{$noPageNavi->getPerpage()}>">
+<input type="hidden" name="nostart" value="<{$noPageNavi->getStart()}>">
 <table class="outer">
+    <thead>
   <tr>
     <th><{$smarty.const._MD_USER_LANG_ASSIGN}></th>
     <th>&nbsp;</th>
@@ -83,10 +88,12 @@
     <th><{$smarty.const._MD_USER_LANG_LEVEL}></th>
     <th><{$smarty.const._AD_USER_LANG_CONTROL}></th>
   </tr>
+</thead>
+<tbody>
   <{foreach from=$noUsers item=user }>
     <tr class="<{cycle values="odd,even"}>">
       <td class="user_list_select">
-        <input type="checkbox" name="uid[<{$user->getShow('uid')}>]" value="1" />
+        <input type="checkbox" name="uid[<{$user->getShow('uid')}>]" value="1">
       </td>
       <td class="user_list_image"><i title="<{$smarty.const._AD_USER_LANG_USER}>">  <img src="<{"icons/icon-user-group.svg"|theme}>" class="svg"></i></td>
       <td class="user_list_id"><{$user->getShow('uid')}></td>
@@ -108,11 +115,14 @@
       </td>
     </tr>
   <{/foreach}>
+</tbody>
+<tbody>
   <tr>
     <td class="foot" colspan="10">
-      <input type="submit" value="<{$smarty.const._MD_USER_LANG_ASSIGN}>" class="formButton" />
+      <input type="submit" value="<{$smarty.const._MD_USER_LANG_ASSIGN}>" class="button-assign">
     </td>
   </tr>
+</tbody>
 </table>
 </form>
 
@@ -124,11 +134,12 @@
 
 <form  method="post" action="">
 <{xoops_token name=$tokenName value=$tokenValue}>
-<input type="hidden" name="perpage" value="<{$pageNavi->getPerpage()}>" />
-<input type="hidden" name="start" value="<{$pageNavi->getStart()}>" />
-<input type="hidden" name="noperpage" value="<{$noPageNavi->getPerpage()}>" />
-<input type="hidden" name="nostart" value="<{$noPageNavi->getStart()}>" />
+<input type="hidden" name="perpage" value="<{$pageNavi->getPerpage()}>">
+<input type="hidden" name="start" value="<{$pageNavi->getStart()}>">
+<input type="hidden" name="noperpage" value="<{$noPageNavi->getPerpage()}>">
+<input type="hidden" name="nostart" value="<{$noPageNavi->getStart()}>">
 <table class="outer">
+    <thead>
   <tr>
     <th><{$smarty.const._MD_USER_LANG_UNASSIGN}></th>
     <th>&nbsp;</th>
@@ -141,10 +152,12 @@
     <th><{$smarty.const._MD_USER_LANG_LEVEL}></th>
     <th><{$smarty.const._AD_USER_LANG_CONTROL}></th>
   </tr>
+</thead>
+<tbody>
   <{foreach from=$users item=user }>
     <tr class="<{cycle values="odd,even"}>">
       <td class="user_list_select">
-        <input type="checkbox" name="uid[<{$user->getShow('uid')}>]" value="2" />
+        <input type="checkbox" name="uid[<{$user->getShow('uid')}>]" value="2">
       </td>
       <td class="user_list_image"><i title="<{$smarty.const._AD_USER_LANG_USER}>">  <img src="<{"icons/icon-user-group.svg"|theme}>" class="svg"></i></td>
       <td class="user_list_id"><{$user->getShow('uid')}></td>
@@ -166,11 +179,14 @@
       </td>
     </tr>
   <{/foreach}>
+</tbody>
+<tfoot>
   <tr>
     <td class="foot" colspan="10">
-      <input type="submit" value="<{$smarty.const._MD_USER_LANG_UNASSIGN}>" class="button-unassign">
+      <input class="button-unassign" type="submit" value="<{$smarty.const._MD_USER_LANG_UNASSIGN}>">
     </td>
   </tr>
+</tfoot>
 </table>
 </form>
 

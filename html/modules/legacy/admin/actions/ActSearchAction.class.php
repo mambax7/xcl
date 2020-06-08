@@ -57,8 +57,16 @@ class Legacy_ActionSearchArgs
      */
     public function hasRecord()
     {
-        return count($this->mRecords) > 0;
+        // PHP >= 7.1
+        if (is_iterable($this->mRecords)) {
+            return count($this->mRecords) > 0;
+        }
+        // PHP >= 7.3
+        // if(is_countable($searchdata)) {
+        //     return count($this->mRecords) > 0;
+        // }
     }
+
 }
 
 /**
@@ -133,7 +141,7 @@ class Legacy_ActSearchAction extends Legacy_Action
 
         $result=$db->query($sql);
 
-        $handler = xoops_gethandler('module');
+        $handler =& xoops_gethandler('module');
         while ($row = $db->fetchArray($result)) {
             $module =& $handler->get($row['mid']);
             $adapter =new Legacy_ModuleAdapter($module); // FIXMED
@@ -145,9 +153,9 @@ class Legacy_ActSearchAction extends Legacy_Action
         }
     }
 
-    public function hasPermission(&$controller, $xoopsUser)
+    public function hasPermission(&$controller, &$xoopsUser)
     {
-        $permHandler = xoops_gethandler('groupperm');
+        $permHandler =& xoops_gethandler('groupperm');
         return $permHandler->checkRight('module_admin', -1, $xoopsUser->getGroups());
     }
 
@@ -191,20 +199,20 @@ class Legacy_ActSearchAction extends Legacy_Action
         $this->mActionForm->prepare();
     }
 
-    public function executeViewSuccess(&$controller, &$xoopsUser, $render)
+    public function executeViewSuccess(&$controller, &$xoopsUser, &$render)
     {
         $render->setTemplateName('legacy_admin_actionsearch_success.html');
         $render->setAttribute('records', $this->mRecords);
         $render->setAttribute('actionForm', $this->mActionForm);
     }
 
-    public function executeViewInput(&$controller, &$xoopsUser, $render)
+    public function executeViewInput(&$controller, &$xoopsUser, &$render)
     {
         $render->setTemplateName('legacy_admin_actionsearch_input.html');
         $render->setAttribute('actionForm', $this->mActionForm);
     }
 
-    public function executeViewError(&$controller, &$xoopsUser, $render)
+    public function executeViewError(&$controller, &$xoopsUser, &$render)
     {
         $render->setTemplateName('legacy_admin_actionsearch_error.html');
         $render->setAttribute('actionForm', $this->mActionForm);

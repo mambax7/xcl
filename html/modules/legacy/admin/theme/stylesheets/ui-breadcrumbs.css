@@ -1,37 +1,37 @@
-.ui-breadcrumbs,
-.adminnavi,
-.pagenavi {
+    .ui-breadcrumbs,
+    .adminnavi,
+    .pagenavi {
 
-	background    		: var( --ui-breadcrumbs-background		);
+    background      : var(  --ui-breadcrumbs-background     );
 
-	border-color  		: var( --ui-breadcrumbs-border-color	);
-	border-radius 		: var( --ui-breadcrumbs-border-radius	);
-	border-style  		: var( --ui-breadcrumbs-border-radius );
-	border-width  		: var( --ui-breadcrumbs-border-width	);
+    border-color    : var(  --ui-breadcrumbs-border-color   );
+    border-radius   : var(  --ui-breadcrumbs-border-radius  );
+    border-style    : var(  --ui-breadcrumbs-border-radius  );
+    border-width    : var(  --ui-breadcrumbs-border-width   );
 
-	box-shadow    		: var( --ui-breadcrumbs-box-shadow		);
+    box-shadow      : var(  --ui-breadcrumbs-box-shadow     );
 
-	padding						: var( --ui-breadcrumbs-padding				);
-	margin						: var( --ui-breadcrumbs-margin				);
+    padding         : var(  --ui-breadcrumbs-padding        );
+    margin          : var(  --ui-breadcrumbs-margin         );
 
-}
+    }
 
-.ui-breadcrumbs a,
-.adminnavi a,
-.pagenavi a {
+    .ui-breadcrumbs a,
+    .adminnavi a,
+    .pagenavi a {
 
-	background				: var( --ui-breadcrumbs-bg-link				);
+    background      : var(  --ui-breadcrumbs-bg-link        );
 
-	border-color  		: var( --ui-breadcrumbs-border-color	);
-	border-radius 		: var( --ui-breadcrumbs-border-radius	);
-	border-style  		: var( --ui-breadcrumbs-border-radius );
-	border-width  		: var( --ui-breadcrumbs-border-width	);
+    border-color    : var(  --ui-breadcrumbs-border-color   );
+    border-radius   : var(  --ui-breadcrumbs-border-radius  );
+    border-style    : var(  --ui-breadcrumbs-border-radius  );
+    border-width    : var(  --ui-breadcrumbs-border-width   );
 
-	box-shadow    		: var( --ui-breadcrumbs-box-shadow		);
+    box-shadow      : var(  --ui-breadcrumbs-box-shadow     );
 
-	padding						: var( --ui-breadcrumbs-padding				);
-	margin						: var( --ui-breadcrumbs-margin				);
+    padding         : var(  --ui-breadcrumbs-padding        );
+    margin          : var(  --ui-breadcrumbs-margin         );
 
-	transition				: all 0.3s ease;
+    transition      : all 0.3s ease;
 
-}
+    }

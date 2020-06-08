@@ -12,10 +12,10 @@
       <{/if}>
     <{/foreach}>
     <{if $submit}>
-      <input type="submit" name="confirm_submit" value="<{$submit}>" />
+      <input type="submit" name="confirm_submit" value="<{$submit}>">
     <{else}>
-      <input type="submit" name="confirm_submit" value="<{$smarty.const._SUBMIT}>" />
+      <input type="submit" name="confirm_submit" value="<{$smarty.const._SUBMIT}>">
     <{/if}>
-    <input type="button" name="confirm_back" value="<{$smarty.const._CANCEL}>"  onclick="javascript:history.go(-1);" />
+    <input type="button" name="confirm_back" value="<{$smarty.const._CANCEL}>"  onclick="javascript:history.go(-1);">
   </form>
 </div>

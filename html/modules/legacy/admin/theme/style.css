@@ -1,24 +1,24 @@
 /*
-	Theme : XCL Admin Flex Grid
-	Distribution : XCL 2.3 Alpha
+	XCL Admin Theme : XCL Admin Flex Grid
+	Distribution : XOOPSCube XCL 2.3
 	Version : 0.0.5
 	Author : Nuno Luciano aka Gigamaster
 	Date : 2019-11-11
 	URL : https://github.com/xoopscube/xcl/
 
-	-------------------- -------------------- -------------------- ----- IMPORT			*/
-	@import "./stylesheets/ui-root.css";				/*      UI Default Settings				 */
-	@import "./stylesheets/ui-body.css";	    	/*      Body Elements						  */
-	@import "./stylesheets/ui-layout.css";	  	/*      Layout Grid-Flex				 */
-	@import "./stylesheets/ui-breadcrumbs.css";	/*      Breadcrumbs Adminnavi	  */
-	@import "./stylesheets/ui-button.css";	    /*      Buttons								 */
-	@import "./stylesheets/ui-card.css";	    	/*      Card elements					*/
-	@import "./stylesheets/ui-form.css";	    	/*      Form Elements				 */
-	@import "./stylesheets/ui-menunav.css";	  	/*      Menu Navigation			*/
-	@import "./stylesheets/ui-media.css";		  	/*      Modules CSS				 */
-	@import "./stylesheets/ui-module.css";	   	/*      Media Queries			*/
-	@import "./stylesheets/ui-notification.css";/*      Notifications		 */
-	@import "./stylesheets/ui-svg.css";	      	/*      SVG settings		*/
-	@import "./stylesheets/ui-table.css";	     	/*      Tables				 */
-	@import "./stylesheets/ui-scrollbar.css";	 	/*      Scrollbar		  */
+	-------------------- -------------------- -------------------- ----- IMPORT   */
+	@import "./stylesheets/ui-root.css";        /*  UI Default Settings          */
+	@import "./stylesheets/ui-body.css";        /*  Body Elements               */
+	@import "./stylesheets/ui-layout.css";      /*  Layout Grid-Flex           */
+	@import "./stylesheets/ui-breadcrumbs.css"; /*  Breadcrumbs Adminnavi     */
+	@import "./stylesheets/ui-button.css";      /*  Buttons                  */
+	@import "./stylesheets/ui-card.css";        /*  Card elements           */
+	@import "./stylesheets/ui-form.css";        /*  Form Elements          */
+	@import "./stylesheets/ui-menunav.css";	  	/*  Menu Navigation       */
+	@import "./stylesheets/ui-media.css";       /*  Modules CSS          */
+	@import "./stylesheets/ui-module.css";	   	/*  Media Queries       */
+	@import "./stylesheets/ui-notification.css";/*  Notifications      */
+	@import "./stylesheets/ui-svg.css";         /*  SVG settings      */
+	@import "./stylesheets/ui-table.css";       /*  Tables           */
+	@import "./stylesheets/ui-scrollbar.css";   /*  Scrollbar		*/
  /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/

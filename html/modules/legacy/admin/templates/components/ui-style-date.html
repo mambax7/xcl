@@ -1,0 +1,199 @@
+<h3>Date</h3>
+
+<p>Select a date from a popup or inline calendar</p>
+
+<div class="ui-flex-row">
+
+    <div class="ui-flex-column">
+
+    <script>
+    $( function() {
+        $( "#datepicker-animated" ).datepicker();
+        $( "#anim-datepicker" ).on( "change", function() {
+        $( "#datepicker-animated" ).datepicker( "option", "showAnim", $( this ).val() );
+        });
+    } );
+    </script>
+        <p>Datepicker animation:</p>
+        <p><input type="text" id="datepicker-animated" size="30"></p>
+
+    </div>
+
+    <div class="ui-flex-column">
+
+        <h4>Animations</h4>
+        <p>Use different animations when opening or closing the datepicker.
+            Choose an animation from the dropdown, then click on the input to see its effect.
+            You can use one of the three standard animations or any of the UI Effects.</p>
+        <p>
+            <select id="anim-datepicker">
+            <option value="show">Show (default)</option>
+            <option value="slideDown">Slide down</option>
+            <option value="fadeIn">Fade in</option>
+            <option value="blind">Blind (UI Effect)</option>
+            <option value="bounce">Bounce (UI Effect)</option>
+            <option value="clip">Clip (UI Effect)</option>
+            <option value="drop">Drop (UI Effect)</option>
+            <option value="fold">Fold (UI Effect)</option>
+            <option value="slide">Slide (UI Effect)</option>
+            <option value="">None</option>
+            </select>
+        </p>
+        <p>Select the Animation to display the datepicker.</p>
+
+    </div>
+</div>
+
+
+
+
+<div class="ui-flex-row">
+    <script>
+        $( function() {
+          $( "#datepicker-inline" ).datepicker();
+        } );
+    </script>
+    <div class="ui-flex-column">
+        <p>Datepicker inline on a div.</p>
+         <p><div id="datepicker-inline"></div></p>
+    </div>
+
+    <div class="ui-flex-column">
+        <h4>Display inline</h4>
+        <p>Display the datepicker embedded in the page instead of in an overlay. Simply call .datepicker() on a div instead of an input.</p>
+    </div>
+
+</div>
+
+
+
+<div class="ui-flex-row">
+    <script>
+        $( function() {
+          $( "#datepicker-button" ).datepicker({
+            showButtonPanel: true
+          });
+        } );
+        </script>
+    <div class="ui-flex-column">
+        <p>Datepicker with buttons:</p>
+        <p><input type="text" id="datepicker-button"></p>
+    </div>
+
+    <div class="ui-flex-column">
+        <h4>Button bar</h4>
+        <p>Display a button for selecting Today's date and a Done button for closing the calendar with the boolean showButtonPanel option.</p>
+        <p>Each button is enabled by default when the bar is displayed, but can be turned off with additional options. Button text is customizable.</p>
+    </div>
+
+</div>
+
+
+<div class="ui-flex-row">
+    <script>
+        $( function() {
+          $( "#datepicker-format" ).datepicker();
+          $( "#format" ).on( "change", function() {
+            $( "#datepicker-format" ).datepicker( "option", "dateFormat", $( this ).val() );
+          });
+        } );
+        </script>
+    <div class="ui-flex-column">
+        <p>Datepicker with custom date format:</p>
+        <p><input type="text" id="datepicker-format" size="30"></p>
+    </div>
+
+    <div class="ui-flex-column">
+        <h4>Format Date</h4>
+        <p>Format options:<br>
+            <select id="format">
+              <option value="mm/dd/yy">Default - mm/dd/yy</option>
+              <option value="yy-mm-dd">ISO 8601 - yy-mm-dd</option>
+              <option value="d M, y">Short - d M, y</option>
+              <option value="d MM, y">Medium - d MM, y</option>
+              <option value="DD, d MM, yy">Full - DD, d MM, yy</option>
+              <option value="&apos;day&apos; d &apos;of&apos; MM &apos;in the year&apos; yy">With text - 'day' d 'of' MM 'in the year' yy</option>
+            </select>
+          </p>
+          <p>Display date feedback in a variety of ways. Choose a date format from the dropdown,
+              then click on the input and select a date to see it in that format.</p>
+    </div>
+
+</div>
+
+<div class="ui-flex-row">
+    <style>
+    #datepicker-year,
+    #datepicker-month {
+        max-width: 100px;
+    }
+    .show-year .ui-datepicker-prev,
+    .show-year .ui-datepicker-next,
+    .show-year .ui-datepicker-month,
+    .show-year .ui-datepicker-calendar {
+        display: none;
+    }
+    .show-month .ui-datepicker-prev,
+    .show-month .ui-datepicker-next,
+    .show-month .ui-datepicker-year,
+    .show-month .ui-datepicker-calendar {
+        display: none;
+    }
+    </style>
+    <script>
+        $(function() {
+            $('#datepicker-year').datepicker( {
+                changeMonth: false,
+                changeYear: true,
+                showButtonPanel: true,
+                dateFormat: 'yy',
+                showAnim: '',
+                beforeShow: function( input, inst){
+                $(inst.dpDiv).addClass('show-year');
+                },
+                onClose: function(dateText, inst) {
+                    var year = $("#ui-datepicker-div .ui-datepicker-year :selected").val();
+                    $(this).datepicker('setDate', new Date(year, 1));
+                    $(inst.dpDiv).removeClass('show-year');
+                }
+            });
+        });
+        $(function() {
+            $('#datepicker-month').datepicker( {
+                changeMonth: true,
+                changeYear: false,
+                showButtonPanel: true,
+                dateFormat: 'MM',
+                showAnim: '',
+                beforeShow: function( input, inst){
+                $(inst.dpDiv).addClass('show-month');
+                },
+                onClose: function(dateText, inst) {
+                    var month = $("#ui-datepicker-div .ui-datepicker-month :selected").val();
+                    $(this).datepicker('setDate', new Date(month, 1));
+                    $(inst.dpDiv).removeClass('show-month');
+                }
+            });
+        });
+
+    </script>
+
+    <div class="ui-flex-column">
+
+        <p>Custom call .datepicker() on a form input.</p>
+        <p><label for="datepicker-year">Year</label>
+        <input type="text" id="datepicker-year" name='date-year'></p>
+
+        <p><label for="datepicker-month">Month</label>
+        <input type="text" id="datepicker-month" name='date-month'></p>
+
+
+    </div>
+
+    <div class="ui-flex-column">
+        <h4>Custom Datepicker</h4>
+        <p>The Datepicker bellow only features the year and month..</p>
+
+    </div>
+
+</div>

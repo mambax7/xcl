@@ -49,7 +49,7 @@
         <{if $actionForm->get('htmlbanner')}>
           <{$actionForm->get('htmlcode')}>
         <{else}>
-          <a href="<{$actionForm->get('clickurl')}>" rel="external"><img src="<{$actionForm->get('imageurl')}>" alt="Banner" /></a>
+          <a href="<{$actionForm->get('clickurl')}>" rel="external"><img src="<{$actionForm->get('imageurl')}>" alt="Banner"></a>
         <{/if}>
       </td>
     </tr>
@@ -101,8 +101,8 @@
 	<tfoot>
     <tr>
       <td class="foot" colspan="2">
-        <input class="formButton" type="submit" value="<{$smarty.const._SUBMIT}>" />
-        <input class="formButton" type="submit" value="<{$smarty.const._BACK}>" name="_form_control_cancel" />
+        <input class="formButton" type="submit" value="<{$smarty.const._SUBMIT}>">
+        <input class="formButton" type="submit" value="<{$smarty.const._BACK}>" name="_form_control_cancel">
       </td>
     </tr>
 	</table>

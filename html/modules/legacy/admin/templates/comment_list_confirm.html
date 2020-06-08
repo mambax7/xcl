@@ -64,7 +64,7 @@
 		<{$smarty.const._CM_HIDDEN}>
 					<{/if}>)
 					&raquo;
-					<b class="legacy_module_error">
+					<b class="message-warning">
 					<{if $actionForm->get('status',$cid) == 1 }>
 		<{$smarty.const._CM_PENDING}>
 					<{elseif $actionForm->get('status',$cid) == 2 }>
@@ -73,12 +73,12 @@
 		<{$smarty.const._CM_HIDDEN}>
 					<{/if}></b>
 				<{/if}>
-				<input type="hidden" name="status[<{$cid}>]" value="<{$actionForm->get('status',$cid)}>" />
+				<input type="hidden" name="status[<{$cid}>]" value="<{$actionForm->get('status',$cid)}>">
 			</td>
 			<td class="legacy_list_select">
 
 					<{if $actionForm->get('delete',$cid) == 1}>
-						<b class="legacy_module_error">
+						<b class="message-warning">
 						<{$smarty.const._YES}>
 						<b class="legacy_module_warning">
 					<{else}>
@@ -86,9 +86,9 @@
 					<{/if}>
 						</b>
 				<{if $actionForm->get('delete',$cid)}>
-					<input type="hidden" name="delete[<{$cid}>]" value="1" />
+					<input type="hidden" name="delete[<{$cid}>]" value="1">
 				<{else}>
-					<input type="hidden" name="delete[<{$cid}>]" value="0" />
+					<input type="hidden" name="delete[<{$cid}>]" value="0">
 				<{/if}>
 			</td>
 		</tr>
@@ -98,8 +98,8 @@
 	<tfoot class="foot">
 		<tr>
 			<tdcolspan="6">
-				<input type="submit" value="<{$smarty.const._AD_LEGACY_LANG_UPDATE}>" class="formButton" />
-				<input class="formButton" type="submit" value="<{$smarty.const._BACK}>" name="_form_control_cancel" />
+				<input class="button-update" type="submit" value="<{$smarty.const._AD_LEGACY_LANG_UPDATE}>">
+				<input class="button-cancel" type="submit" value="<{$smarty.const._BACK}>" name="_form_control_cancel">
 			</td>
 		</tr>
 	</tfoot>

@@ -29,9 +29,9 @@
     <td class="head"><{$smarty.const._MD_USER_LANG_USER_AVATAR}></td>
     <td class="<{cycle values='odd,even'}>">
       <{if $object->get('user_avatar') != "blank.gif" }>
-        <img src="<{$smarty.const.XOOPS_UPLOAD_URL}>/<{$object->getShow('user_avatar')}>" alt="Avatar" title="Avatar" />
+        <img src="<{$smarty.const.XOOPS_UPLOAD_URL}>/<{$object->getShow('user_avatar')}>" alt="Avatar" title="Avatar">
       <{else}>
-        <img src="<{$smarty.const.XOOPS_URL}>/modules/user/images/no_avatar.gif" alt="No Avatar" title="No Avatar" />
+        <img src="<{$smarty.const.XOOPS_URL}>/modules/user/images/no_avatar.gif" alt="No Avatar" title="No Avatar">
       <{/if}>
     </td>
   </tr>
@@ -51,7 +51,7 @@
     <td class="head"><{$smarty.const._MD_USER_LANG_RANK}></td>
     <td class="<{cycle values='odd,even'}>">
       <{if $rank}>
-        <img src="<{$smarty.const.XOOPS_UPLOAD_URL}>/<{$rank->getShow('rank_image')}>" alt="<{$rank->getShow('rank_title')}>" title="<{$rank->getShow('rank_title')}>" />
+        <img src="<{$smarty.const.XOOPS_UPLOAD_URL}>/<{$rank->getShow('rank_image')}>" alt="<{$rank->getShow('rank_title')}>" title="<{$rank->getShow('rank_title')}>">
         <{$rank->getShow('rank_title')}>
       <{/if}>
     </td>

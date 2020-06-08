@@ -1,5 +1,5 @@
 /*
-	XOOPS Cube Theme : XCL Admin Flex Grid
+	XOOPSCube Theme : XCL Admin Flex Grid
 	Distribution : XCL 2.3 Alpha
 	Version : 0.0.5
 	Author : Nuno Luciano aka Gigamaster
@@ -64,14 +64,14 @@
 
 	.ui-block-online-title {
 
-		font-size				: var(  --ui-text-500				);
+		font-size				: var(  --ui-size-500				);
 		margin-bottom		: var(	--ui-space-600			);
 
 	}
 
 	.ui-block-online-text {
 
-		font-size				: var(  --ui-text-200			);
+		font-size				: var(  --ui-size-200			);
 
 	}
 
@@ -95,21 +95,21 @@
 
 	.ui-block-online-stats-total {
 
-		font-size				: var(  --ui-text-300			);
+		font-size				: var(  --ui-size-300			);
 		margin-bottom		: var(	--ui-space-600			);
 
 	}
 
 	.ui-block-online-stats-title {
 
-		font-size				: var(  --ui-text-300			);
+		font-size				: var(  --ui-size-300			);
 		margin-bottom		: var(	--ui-space-600			);
 
 	}
 
 	.ui-block-online-stats-text {
 
-		font-size				: var(  --ui-text-300			);
+		font-size				: var(  --ui-size-300			);
 		text-align			: center;
 
 	}
@@ -156,7 +156,7 @@
 		border-radius   : 50%;
 		color           : var(  --ui-color-200	);
 		display         : flex;
-		font-size       : var(  --ui-text-300			);
+		font-size       : var(  --ui-size-300			);
 		height          : 42px;
 		justify-content : center;
 		width           : 42px;
@@ -172,7 +172,7 @@
 
 	.ui-card-small-title {
 
-		font-size       : var(  --ui-text-300			);
+		font-size       : var(  --ui-size-300			);
 		margin          : 0 0 0 1rem;
 
 	}
@@ -211,7 +211,7 @@
 	.ui-card-block {
 
 		background      : var(  --ui-card-block-background			);
-
+        background-image: var(  --ui-card-block-image   			);
 		border-color    : var(  --ui-card-block-border-color		);
 		border-radius   : var(  --ui-card-block-border-radius		);
 		border-style    : var(  --ui-card-block-border-style		);
@@ -229,15 +229,15 @@
 		page-break-inside: avoid;
 		break-inside: avoid;
 
-		transition 			: var(  --ui-shadow-transition					);
+		transition 			: var(  --ui-shadow-transition  );
 
 	}
 
 	.ui-card-block:hover  {
 
-		background      : var(  --ui-card-block-hover						);
+		background      : var(  --ui-card-block-hover       );
 
-		box-shadow      : var(  --ui-shadow-hover								);
+		box-shadow      : var(  --ui-shadow-hover           );
 
 	}
 
@@ -264,8 +264,11 @@
 
 		text-align			: center;
 
-	}
-
+    }
+    /* TODO : change altsys templates "ui-block-type" */
+    a.ui-block-type {
+        display: block;
+    }
 	.ui-card-block-content {
 
 		align-items			: center;

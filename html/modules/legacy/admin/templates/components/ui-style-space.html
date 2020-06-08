@@ -1,0 +1,111 @@
+<h3>Spacing</h3>
+
+    <p>Relative Margin and padding settings</p>
+
+    <div class="ui-flex-row">
+        <script>
+
+        </script>
+        <style>
+            div.padding,div.margin {
+                background: var(--ui-color-500);
+                border: 1px solid var(--ui-color-400);
+                text-align: center;}
+                div.padding span {background: var(--ui-color-400);}
+
+/*              {
+            background: var(--ui-color-400);
+            border: 1px solid var(--ui-color-500);
+            text-align: center;} */
+                div.margin span {background: var(--ui-color-500);}
+        </style>
+
+        <div class="ui-flex-column">
+
+            <div class="padding">
+            <span style="padding:var(--ui-space-100);border-width:var(--ui-space-100)">padding: var(--ui-space-100)</span></div>
+                <br>
+            <div class="padding">
+                <span style="padding:var(--ui-space-200);border-width:var(--ui-space-200)">padding: var(--ui-space-200)</span></div>
+                <br>
+            <div class="padding">
+                <span style="padding:var(--ui-space-300);border-width:var(--ui-space-300)">padding: var(--ui-space-300)</span></div>
+                <br>
+            <div class="padding">
+                <span style="padding:var(--ui-space-400);border-width:var(--ui-space-400)">padding: var(--ui-space-400)</span></div>
+                <br>
+            <div class="padding">
+                <span style="padding:var(--ui-space-500);border-width:var(--ui-space-500)">padding: var(--ui-space-500)</span></div>
+                <br>
+            <div class="padding">
+                <span style="padding:var(--ui-space-600);border-width:var(--ui-space-600)">padding: var(--ui-space-600)</span></div>
+                <br>
+            <div class="padding">
+                <span style="padding:var(--ui-space-700);border-width:var(--ui-space-700)">padding: var(--ui-space-700)</span></div>
+                <br>
+            <div class="padding">
+                <span style="padding:var(--ui-space-800);border-width:var(--ui-space-800)">padding: var(--ui-space-800)</span></div>
+        </div>
+
+        <div class="ui-flex-column">
+            <h4>margin and padding</h4>
+            <p>Exmple :</p>
+<pre><code>
+/*
+    'ui-space-unit' = 16px x 'ui-space-100' = 2px of space
+    'ui-space-unit' = 16px x 'ui-space-400' = 8px of space
+*/
+
+    --ui-space-unit : 16px;
+
+    --ui-space-no   : 0;
+    --ui-space-100  : calc(var(--ui-space-unit) * 0.125);
+    --ui-space-200  : calc(var(--ui-space-unit) * 0.25);
+    --ui-space-300  : calc(var(--ui-space-unit) * 0.375);
+    --ui-space-400  : calc(var(--ui-space-unit) * 0.5);
+    --ui-space-500  : calc(var(--ui-space-unit) * 0.75);
+    --ui-space-600  : calc(var(--ui-space-unit) * 1.25);
+    --ui-space-700  : calc(var(--ui-space-unit) * 2);
+    --ui-space-800  : calc(var(--ui-space-unit) * 3.25);
+</code></pre>
+        </div>
+
+    </div>
+
+    <div class="ui-flex-row">
+
+        <div class="ui-flex-column">
+
+            <div class="margin" style="margin:var(--ui-space-100);border-width:var(--ui-space-100)">
+            <span>margin: var(--ui-space-100)</span></div>
+
+            <div class="margin" style="margin:var(--ui-space-200);border-width:var(--ui-space-200)">
+                <span>margin: var(--ui-space-200)</span></div>
+
+            <div class="margin" style="margin:var(--ui-space-300);border-width:var(--ui-space-300)">
+                <span>margin: var(--ui-space-300)</span></div>
+
+            <div class="margin" style="margin:var(--ui-space-400);border-width:var(--ui-space-400)">
+                <span>margin: var(--ui-space-400)</span></div>
+
+            <div class="margin" style="margin:var(--ui-space-500);border-width:var(--ui-space-500)">
+                <span>margin: var(--ui-space-500)</span></div>
+
+            <div class="margin" style="margin:var(--ui-space-600);border-width:var(--ui-space-600)">
+                <span>margin: var(--ui-space-600)</span></div>
+
+            <div class="margin" style="margin:var(--ui-space-700);border-width:var(--ui-space-700)">
+                <span>margin: var(--ui-space-700)</span></div>
+
+            <div class="margin" style="margin:var(--ui-space-800);border-width:var(--ui-space-800)">
+                <span>margin: var(--ui-space-800)</span></div>
+
+
+        </div>
+
+        <div class="ui-flex-column">
+            <h4></h4>
+            <p></p>
+        </div>
+
+    </div>

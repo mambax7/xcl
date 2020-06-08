@@ -46,7 +46,7 @@
       <td class="head"><{$smarty.const._MD_LEGACY_LANG_COM_ICON}></td>
       <td class="<{cycle values="odd,even"}>">
         <{foreach item=icon from=$subjectIconArr}>
-          <label><{xoops_input type=radio name=com_icon value=$icon->get('filename') default=$actionForm->get('com_icon')}><img src="<{$xoops_url}>/images/subject/<{$icon->getShow('filename')}>" /></label>
+          <label><{xoops_input type=radio name=com_icon value=$icon->get('filename') default=$actionForm->get('com_icon')}><img src="<{$xoops_url}>/images/subject/<{$icon->getShow('filename')}>"></label>
         <{/foreach}>
       </td>
     </tr>
@@ -86,8 +86,8 @@
 	<tfoot class="foot">
     <tr>
       <td colspan="2">
-        <input class="formButton" type="submit" value="<{$smarty.const._SUBMIT}>" />
-        <input class="formButton" type="submit" value="<{$smarty.const._BACK}>" name="_form_control_cancel" />
+        <input class="button-submit" type="submit" value="<{$smarty.const._SUBMIT}>">
+        <input class="button-cancel" type="submit" value="<{$smarty.const._BACK}>" name="_form_control_cancel">
       </td>
 		</tr>
 	</tfoot>

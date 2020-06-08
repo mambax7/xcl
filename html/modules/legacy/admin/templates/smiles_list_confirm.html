@@ -40,14 +40,14 @@
       <{if $actionForm->get('code',$sid) == $smilesObjects[$sid]->get('code')}>
         <{$actionForm->get('code',$sid)|xoops_escape}>
       <{else}>
-         (<{$smilesObjects[$sid]->getShow('code')}>) &raquo; <b  class="legacy_module_error"><{$actionForm->get('code',$sid)|xoops_escape}></b>
+         (<{$smilesObjects[$sid]->getShow('code')}>) &raquo; <b  class="message-warning"><{$actionForm->get('code',$sid)|xoops_escape}></b>
       <{/if}>
     </td>
     <td class="legacy_list_name">
       <{if $actionForm->get('emotion',$sid) == $smilesObjects[$sid]->get('emotion')}>
         <{$actionForm->get('emotion',$sid)|xoops_escape}>
       <{else}>
-         (<{$smilesObjects[$sid]->getShow('emotion')}>) &raquo; <br><b  class="legacy_module_error"><{$actionForm->get('emotion',$sid)|xoops_escape}></b>
+         (<{$smilesObjects[$sid]->getShow('emotion')}>) &raquo; <br><b  class="message-warning"><{$actionForm->get('emotion',$sid)|xoops_escape}></b>
       <{/if}>
     </td>
     <td class="legacy_list_select">
@@ -62,42 +62,42 @@
         &raquo;
 
         <{if $actionForm->get('display',$sid) == 1}>
-        <b class="legacy_module_error">
+        <b class="message-warning">
           <{$smarty.const._YES}>
         <{else}>
         <b class="legacy_module_warning">
           <{$smarty.const._NO}>
         <{/if}></b>
       <{/if}>
-      <input type="hidden" name="code[<{$sid}>]" value="<{$actionForm->get('code',$sid)|xoops_escape:edit}>" />
-      <input type="hidden" name="emotion[<{$sid}>]" value="<{$actionForm->get('emotion',$sid)|xoops_escape:edit}>" />
+      <input type="hidden" name="code[<{$sid}>]" value="<{$actionForm->get('code',$sid)|xoops_escape:edit}>">
+      <input type="hidden" name="emotion[<{$sid}>]" value="<{$actionForm->get('emotion',$sid)|xoops_escape:edit}>">
       <{if $actionForm->get('display',$sid)}>
-        <input type="hidden" name="display[<{$sid}>]" value="1" />
+        <input type="hidden" name="display[<{$sid}>]" value="1">
       <{else}>
-        <input type="hidden" name="display[<{$sid}>]" value="0" />
+        <input type="hidden" name="display[<{$sid}>]" value="0">
       <{/if}>
     </td>
     <td class="legacy_list_select">
 
         <{if $actionForm->get('delete',$sid) == 1}>
-        <b class="legacy_module_error">
+        <b class="message-warning">
           <{$smarty.const._YES}>
         <{else}>
         <b class="legacy_module_warning">
           <{$smarty.const._NO}>
         <{/if}></b>
       <{if $actionForm->get('delete',$sid)}>
-        <input type="hidden" name="delete[<{$sid}>]" value="1" />
+        <input type="hidden" name="delete[<{$sid}>]" value="1">
       <{else}>
-        <input type="hidden" name="delete[<{$sid}>]" value="0" />
+        <input type="hidden" name="delete[<{$sid}>]" value="0">
       <{/if}>
     </td>
   </tr>
 <{/foreach}>
   <tr>
     <td class="foot" colspan="5">
-      <input type="submit" value="<{$smarty.const._AD_LEGACY_LANG_UPDATE}>" class="formButton" />
-      <input class="formButton" type="submit" value="<{$smarty.const._BACK}>" name="_form_control_cancel" />
+      <input class="button-update" type="submit" value="<{$smarty.const._AD_LEGACY_LANG_UPDATE}>">
+      <input class="button-cancel" type="submit" value="<{$smarty.const._BACK}>" name="_form_control_cancel">
     </td>
   </tr>
 </table>

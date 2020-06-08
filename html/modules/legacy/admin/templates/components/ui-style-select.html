@@ -1,0 +1,160 @@
+<h3>Select Action</h3>
+
+<script>
+    $( function() {
+        $( "select.opt" ).selectmenu({
+        classes: {
+            "ui-selectmenu-button": "ui-button-icon-only demo-splitbutton-select"
+        },
+        change: function(){
+            $( ".output" ).append( "<li>" + this.value + "</li>" );
+        }
+        });
+        $( ".controlgroup" ).controlgroup();
+        $( "button" ).click(function() {
+        $( ".output" ).append( "<li>Running Last Action...</li>" );
+        });
+    } );
+</script>
+
+<div class="ui-flex-row">
+
+    <div class="ui-flex-column">
+        <h4>Output:</h4>
+        <ul class="output" style="background:var(--ui-color-400);  border:2px solid var(ui-color-300); height: 140px; overflow-y: auto;"></ul>
+    </div>
+
+    <div class="ui-flex-column">
+        <div class="widget-select">
+            <h4>Split button</h4>
+            <p>short desc</p>
+            <div class="controlgroup">
+            <button>Run last option</button>
+                <select class="opt">
+                <option>Open...</option>
+                <option>Save</option>
+                <option>Delete</option>
+                </select>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<hr>
+
+
+<h3>Select</h3>
+
+    <script>
+    $( function() {
+        $.widget( "custom.iconselectmenu", $.ui.selectmenu, {
+        _renderItem: function( ul, item ) {
+            var li = $( "<li>" ),
+            wrapper = $( "<div>", { text: item.label } );
+
+            if ( item.disabled ) {
+            li.addClass( "ui-state-disabled" );
+            }
+
+            $( "<span>", {
+            style: item.element.attr( "data-style" ),
+            "class": "ui-icon " + item.element.attr( "data-class" )
+            })
+            .appendTo( wrapper );
+
+            return li.append( wrapper ).appendTo( ul );
+        }
+        });
+
+        $( "#filesA" )
+        .iconselectmenu()
+        .iconselectmenu( "menuWidget" )
+            .addClass( "ui-menu-icons" );
+
+        $( "#filesB" )
+        .iconselectmenu()
+        .iconselectmenu( "menuWidget" )
+            .addClass( "ui-menu-icons customicons" );
+
+        $( "#people" )
+        .iconselectmenu()
+        .iconselectmenu( "menuWidget")
+            .addClass( "ui-menu-icons avatar" );
+    } );
+    </script>
+    <style>
+        /* select with custom icons */
+        .ui-selectmenu-menu .ui-menu.customicons .ui-menu-item-wrapper {
+        padding: 0.5em 0 0.5em 3em;
+        }
+        .ui-selectmenu-menu .ui-menu.customicons .ui-menu-item .ui-icon {
+        height: 24px;
+        width: 24px;
+        top: 0.1em;
+        }
+        .ui-icon.video {
+        background: url("images/24-video-square.png") 0 0 no-repeat;
+        }
+        .ui-icon.podcast {
+        background: url("images/24-podcast-square.png") 0 0 no-repeat;
+        }
+        .ui-icon.rss {
+        background: url("images/24-rss-square.png") 0 0 no-repeat;
+        }
+
+        /* select with CSS avatar icons */
+        option.avatar {
+        background-repeat: no-repeat !important;
+        padding-left: 20px;
+        }
+        .avatar .ui-icon {
+        background-position: left top;
+        }
+    </style>
+
+<div class="ui-flex-row">
+
+    <div class="ui-flex-column">
+        <div class="demo">
+            <form action="#">
+              <h4>Selectmenu with framework icons</h4>
+              <fieldset>
+                <label for="filesA">Select a File:</label>
+                <select name="filesA" id="filesA">
+                  <option value="jquery" data-class="ui-icon-script">jQuery.js</option>
+                  <option value="jquerylogo" data-class="ui-icon-image">jQuery Logo</option>
+                  <option value="jqueryui" data-class="ui-icon-script">ui.jQuery.js</option>
+                  <option value="jqueryuilogo" selected="selected" data-class="ui-icon-image">jQuery UI Logo</option>
+                  <option value="somefile" disabled="disabled" data-class="ui-icon-help">Some unknown file</option>
+                </select>
+              </fieldset>
+              <h4>Selectmenu with custom icon images</h4>
+              <fieldset>
+                <label for="filesB">Select a podcast:</label>
+                <select name="filesB" id="filesB">
+                  <option value="mypodcast" data-class="podcast">John Resig Podcast</option>
+                  <option value="myvideo" data-class="video">Scott González Video</option>
+                  <option value="myrss" data-class="rss">jQuery RSS XML</option>
+                </select>
+              </fieldset>
+              <h4>Selectmenu with custom avatar 16x16 images as CSS background<img src="<{'icons/icon-blocks.svg'|theme}>"></h4>
+              <fieldset>
+                <label for="people">Select a Person:</label>
+                <select name="people" id="people">
+                  <option value="1" data-class="avatar" data-style="background-image: url(<{'icons/icon-blocks.svg'|theme}>);">style 16px 16px</option>
+                  <option value="2" data-class="avatar" data-style="background-image: url(<{'icons/icon-blocks.svg'|theme}>);background-size: 16px 16px">icon|theme - SVG</option>
+                  <option value="3" data-class="avatar" data-style="background-image: url(&apos;http://www.gravatar.com/avatar/bdeaec11dd663f26fa58ced0eb7facc8?d=monsterid&amp;r=g&amp;s=16&apos;);">Jane Doe</option>
+                </select>
+              </fieldset>
+            </form>
+
+        </div>
+    </div>
+
+    <div class="ui-flex-column">
+        <h4>Select custom icon</h4>
+        <p>shot desc</p>
+    </div>
+
+</div>

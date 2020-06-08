@@ -1,5 +1,5 @@
 /*
-	XOOPS Cube Theme : XCL Admin Flex Grid
+	XOOPSCube Theme : XCL Admin Flex Grid
 	Distribution : XCL 2.3 Alpha
 	Version : 0.0.5
 	Author : Nuno Luciano aka Gigamaster
@@ -8,242 +8,443 @@
 
 -------------------- -------------------- -------------------- -------------------- Button */
 
-.ui-btn,
-[class*="ui-btn-"] {
+    .ui-btn,
+    [class*="ui-btn-"] {
 
-	background-color			: var(  --ui-color-300			);
+        background-color    : var(  --ui-button-background  );
 
-  /* border-radius					: 0.1rem; */
-  border								: var(  --ui-button-border		);
-	border-color					: transparent;
-	border-radius					: var(  --ui-button-radius	);
+        border              : var(  --ui-button-border      );
+        border-radius       : var(  --ui-button-radius      );
 
-  box-shadow						: 0 2px 5px rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+        box-shadow          : var(  --ui-button-box-shadow  );
 
-	color									: var(  --ui-button-color		) !important;
-	cursor								: pointer;
+        color               : var(  --ui-button-color       );
+        cursor              : pointer;
 
-	display								: inline-block;
+        display             : inline-block;
 
-  font-size							: 0.875rem;
-  font-family						: sans-serif;
-  font-style						: normal;
-  font-weight						: 300;
-  letter-spacing				: 0.08rem;
-	line-height						: 1;
+        /* font-size           : 0.875rem;
+        font-family         : sans-serif;
+        font-style          : normal;
+        font-weight         : 300;
+        letter-spacing      : 0.08rem;
+        line-height         : 1; */
 
+        padding             : var(  --ui-button-padding     );
+        margin              : var(  --ui-button-margin      );
 
-	padding								: var( --ui-button-padding	 );
-	margin 								: var( --ui-button-margin		 );
+        text-align          : center;
+        text-decoration     : none;
+        touch-action        : manipulation;
+        transition          : all 0.3s ease 0s;
+        user-select         : none;
+        vertical-align      : middle;
+        white-space         : nowrap;
 
-  text-align						: center;
-  text-decoration				: none;
-  /* text-transform				: uppercase; */
-  touch-action					: manipulation;
-  transition						: all 0.3s ease 0s;
-  user-select						: none;
-  vertical-align				: middle;
-	white-space						: nowrap;
+    }
 
-}
+    .ui-btn:active,
+    [class*="ui-btn-"]:active {
 
-.ui-btn:active,
-[class*="ui-btn-"]:active {
+        box-shadow          : var(  --ui-shadow-300     );
 
-	box-shadow						: var(  --ui-shadow-300				);
-
-}
+    }
 
 
-.ui-btn.ui-btn-small,
-[class*="ui-btn-"].ui-btn-small {
+    .ui-btn.ui-btn-small,
+    [class*="ui-btn-"].ui-btn-small {
 
-	color									: var(  --ui-button-color		);
-  font-size							: 0.8rem;
-	/* padding								: 0.75rem 1rem; */
-	padding								: var(  --ui-button-padding	);
+        color               : var(  --ui-button-color   );
+        font-size           : 0.85rem;
+        padding             : 0.75rem;
+        /* padding             : var(  --ui-button-padding ); */
 
-}
+    }
 
-a.ui-btn.ui-btn-small > svg.svg-ui-icon {
+    a.ui-btn > svg.svg-ui-icon,
+    a.ui-btn.ui-btn-small > svg.svg-ui-icon,
+    [class*="ui-btn-"]> svg.svg-ui-icon {
 
-vertical-align					: middle; /* Align icon = text  */
-width										: 1.4em !important;          /* Size icon + text   */
-color										: var(  --ui-button-color		);
+        color               : var(  --ui-button-color   );
+        font-size           : 1rem;
+        padding-right       : 0.25em;
+        vertical-align      : middle;            /* Align icon = text  */
+        width               : 1.4em !important; /* Size icon + text   */
 
+    }
 
-}
+    .ui-btn:hover,
+    .ui-btn:focus,
+    .ui-btn.ui-btn-small:hover,
+    .ui-btn.ui-btn-small:focus {
 
-.ui-btn:hover,.ui-btn:focus,
-.ui-btn.ui-btn-small:hover,
-.ui-btn.ui-btn-small:focus {
+        background          : var(  --ui-button-hover-bg    );
+        color               : var(  --ui-button-hover-txt   );
 
-	background						: var(  --ui-color-link	);
-	color									: var(  --ui-button-color			);
+    }
 
-}
-
-
-a.ui-btn.disabled,
-.ui-btn.disabled, .ui-btn:disabled,
-[class*="ui-btn--"].disabled,
-[class*="ui-btn--"]:disabled {
-
-  cursor: not-allowed;
-	opacity								: 0.5;
-
-}
+    a.ui-btn.disabled,
+    .ui-btn.disabled,
+    .ui-btn:disabled:hover,
+    [class*="ui-btn--"].disabled,
+    [class*="ui-btn--"]:disabled:hover {
+        background-color    : var(  --button-disable-bg     );
+        color               : var(  --button-disable-txt    );
+        cursor              : not-allowed;
+        opacity             : 0.5;
+    }
 
 /* -------------------- -------------------- -------------------- -------------------- BTN Black */
 
-.ui-btn-black {
-
-  background						: var(  --ui-color-black	);
-	color									: var(  --ui-color-link		);
-
-}
-.ui-btn-black:active {
-
-  background						: var(  --ui-color-black	);
-
-}
-.ui-btn-black:hover, .ui-btn-black:focus {
-
-	background						: var(  --ui-color-black	);
-
-}
-
-
-/*-------------------- -------------------- -------------------- -------------------- BTN White */
-
-.ui-btn-white {
-
-  background						: var(  --ui-color-100			);
-	color									: var(  --ui-color-black		);
-
-}
-.ui-btn-white:active {
-
-  background						: var(  --ui-color-link-hover	);
-
-}
-
-.ui-btn-white:hover, .ui-btn-white:focus {
-
-	background						: var(  --ui-color-link-hover	);
-
-}
-
+    .ui-btn-black {
+        /* background          : var(  --ui-color-black    ); */
+        border              : 1px solid var(  --ui-color-black    );
+        /* color               : var(  --ui-color-white  ); */
+    }
+    .ui-btn-black:active,
+    .ui-btn-black:hover,
+    .ui-btn-black:focus {
+        background          : var(  --ui-color-black    );
+        color               : var(  --ui-color-white  );
+    }
 
 /* -------------------- -------------------- -------------------- -------------------- BTN Danger */
 
-.ui-btn-danger {
-
-  background						: var(  --ui-color-red		);
-	color									: var(  --ui-color-200		);
-
-}
-
-.ui-btn-danger:active {
-
-  background						: var(  --ui-color-red		);
-
-}
-
-.ui-btn-danger:hover, .ui-btn-danger:focus {
-
-  background						: var(  --ui-color-red		);
-
-}
+    .ui-btn-danger {
+        background          : var(  --ui-color-800    );
+        border              : 1px solid var(  --ui-color-red  );
+        color               : var(  --ui-color-red      );
+    }
+    .ui-btn-danger:active,
+    .ui-btn-danger:hover,
+    .ui-btn-danger:focus {
+        background          : var(  --ui-color-red  );
+        color               : var(  --ui-color-100  );
+    }
 
 /* -------------------- -------------------- -------------------- -------------------- BTN Success */
 
-.ui-btn-success {
-
-  background						: var(  --ui-color-green	);
-	color									: var(  --ui-color-200		);
-
-}
-
-.ui-btn-success:active {
-
-  background						: var(  --ui-color-green		);
-
-
-}
-
-.ui-btn-success:hover, .ui-btn-success:focus {
-
-  background						: var(  --ui-color-green		);
-
-
-}
+    .ui-btn-success {
+        background          : var(  --ui-color-800    );
+        border              : 1px solid var(  --ui-color-green    );
+        color               : var(  --ui-color-green    );
+    }
+    .ui-btn-success:active,
+    .ui-btn-success:hover,
+    .ui-btn-success:focus {
+        background          : var(  --ui-color-green    );
+        color               : var(  --ui-color-100  );
+    }
 
 /* -------------------- -------------------- -------------------- -------------------- BTN Warning */
 
-.ui-btn-warning {
+    .ui-btn-warning {
+        background          : var(  --ui-color-800    );
+        border              : 1px solid var(  --ui-color-orange   );
+        color               : var(  --ui-color-orange   );
+    }
+    .ui-btn-warning:active,
+    .ui-btn-warning:hover,
+    .ui-btn-warning:focus {
+        background          : var(  --ui-color-orange   );
+        color               : var(  --ui-color-100  );
+    }
 
-  background					: var(  --ui-color-orange	);
-	color								: var(  --ui-color-200		);
+    /*-------------------- -------------------- -------------------- -------------------- BTN White */
 
-}
-
-.ui-btn-warning:active {
-
-  background					: var(  --ui-color-orange	);
-
-}
-.ui-btn-warning:hover, .ui-btn-warning:focus {
-
-  background					: var(  --ui-color-orange	);
-
-}
-
+    .ui-btn-white {
+        border              : 1px solid var(  --ui-color-white  );
+        color               : var(  --ui-link    );
+    }
+    .ui-btn-white:active,
+    .ui-btn-white:hover,
+    .ui-btn-white:focus {
+        background          : var(  --ui-color-white    );
+        color               : var(  --ui-color-black    );
+    }
 
 /* -------------------- -------------------- -------------------- -------------------- BADGE */
 
-.ui-badge {
+    a.ui-badge,
+    .ui-badge {
+        background          : var(  --ui-color-500  );
+        border-radius       : 15px;
+        box-shadow          : var(	--ui-button-box-shadow );
+        color               : var(  --ui-color-100  );
+        display             : inline-block;
+        font-size           : 0.7rem;
+        font-family         : sans-serif;
+        font-style          : normal;
+        font-weight         : 300;
+        letter-spacing      : 0.08rem;
+        line-height         : 1em;
+        margin              : var(  --ui-button-margin  );
+        padding             : var(  --ui-button-padding );
+        text-align          : center;
+        text-transform      : uppercase;
+        vertical-align      : baseline;
+        white-space         : nowrap;
 
-  background					: var(  --ui-color-100		);
-  border-radius				: 50px;
-  color								: var(  --ui-color-black	);
-  display							: inline-block;
-  font-size						: 0.7rem;
-  font-family					: sans-serif;
-  font-style					: normal;
-  font-weight					: 300;
-  letter-spacing			: 0.08rem;
-  line-height					: 1.2;
-  padding							: .25rem .8rem;
-  text-align					: center;
-  text-transform			: uppercase;
-  vertical-align			: baseline;
-	white-space					: nowrap;
-
-}
-.ui-badge:hover {
-  transition					: all 0.45s;
-  box-shadow					: var(	--ui-shadow-300		);
-}
+    }
+    .ui-badge:hover {
+        transition          : all 0.45s;
+        box-shadow          : var(	--ui-shadow-300		);
+    }
 
 
-.ui-btn-block {
+    .ui-btn-block {
+        display             : block;
+        width               : 100%;
+    }
+    .ui-btn-block + .ui-btn-block {
+        margin-top          : 5px;
+    }
+    input[type="submit"].ui-btn-block,
+    input[type="reset"].ui-btn-block,
+    input[type="button"].ui-btn-block {
+        width               : 100%;
+    }
 
-  display							: block;
-	width								: 100%;
+    /* -------------------- -------------------- -------------------- -------------------- btn-anim Theme Default */
 
-}
+    /* Button Default Theme Design*/
 
-.ui-btn-block + .ui-btn-block {
+    .btn-anim {
+        background  : none;
+        border      : var(  --ui-button-border  );
+        color       : var(  --ui-button-color  );
+        touch-action: manipulation;
+        min-width   : 40px;  /* icon */
+        max-width   : 240px;/* text */
+        padding     : 1em 2em;
+        position    : relative;
+        z-index     : 1;
 
-	margin-top					: 5px;
+        backface-visibility: hidden;
+        -webkit-backface-visibility: hidden;
+        -moz-osx-font-smoothing: grayscale;
+    }
+    .btn-anim:focus {
+        outline: none;
+    }
+    .btn-anim > span {
+        vertical-align: middle;
+    }
 
-}
+    /* -------------------- -------------------- -------------------- -------------------- btn-anim button-openout */
 
-input[type="submit"].ui-btn-block,
-input[type="reset"].ui-btn-block,
-input[type="button"].ui-btn-block {
+    .button-openout {
+        box-shadow      : var(  --ui-shadow-100         );
+        border          : var(  --ui-button-border      );
+        transition      : border-color 0.5s, color 0.5s;
+    }
+    .button-openout::before {
+        background      : var(  --ui-button-background  );
+        border-color    : var(  --ui-button-border      );
+        content         : '';
+        height          : 100%;
+        left            : 0;
+        position        : absolute;
+        transform       : scale3d(0.5, 1, 1);
+        transition      : transform 0.5s, opacity 0.5s;
+        transition-timing-function: cubic-bezier(0.2, 1, 0.4, 1);
+        top             : 0;
+        opacity         : 0;
+        width           : 100%;
+        z-index         : -1;
+    }
+    .button-openout,
+    .button-openout::before {
+        transition-timing-function: cubic-bezier(0.2, 1, 0.4, 1);
+    }
+    .button-openout:hover {
+        border-color          : var(  --ui-link-hover     );
+        color           : var(  --ui-link-hover     );
 
-	width								: 100%;
+    }
+    .button-openout:hover::before {
+        opacity         : 1;
+        transform       : translate3d(0, 0, 0);
+    }
 
-}
+
+    /* -------------------- -------------------- -------------------- -------------------- btn-anim button-pushin */
+
+    .button-pushin {
+        color           : var(  --ui-button-color   );
+        padding         : 1.5em 3em;
+        width           : 200px;
+    }
+    .button-pushin::before,
+    .button-pushin::after {
+        border-color    : var(  --ui-color-red      );
+        content         : '';
+        height          : 100%;
+        left            : 0;
+        position        : absolute;
+        top             : 0;
+        transition      : transform 0.3s, background-color 0.3s;
+        transition-timing-function: cubic-bezier(0.25, 0, 0.3, 1);
+        width           : 100%;
+        z-index         : -1;
+    }
+    .button-pushin::before {
+        border-color    : var(  --ui-color-red      );
+    }
+    .button-pushin::after {
+        background      : var(--ui-button-background);
+    }
+    .button-pushin:hover::before {
+        transform       : scale3d(1, 1, 1);
+    }
+    .button-pushin::before,
+    .button-pushin:hover::after {
+        transform       : scale3d(0.7, 0.7, 1);
+    }
+    .button-pushin:hover::after {
+        background-color: var(  --ui-button-hover-bg    );
+    }
+
+
+    /* -------------------- -------------------- -------------------- -------------------- btn-anim button-border-zoomin */
+
+    .button-border-zoomin {
+        background      : var(  --ui-button-background  );
+        border          : none;
+        height          : 50px;
+        transition      : color 0.3s;
+        transition-timing-function: cubic-bezier(0.75, 0, 0.125, 1);
+    }
+    .button-border-zoomin > span {
+        padding-left    : 0.35em;
+    }
+    .button-border-zoomin::before,
+    .button-border-zoomin::after {
+        border          : var(  --ui-button-border      );
+        content         : '';
+        height          : 100%;
+        left            : 0;
+        opacity         : 0;
+        pointer-events  : none;
+        position        : absolute;
+        top             : 0;
+        transform       : scale3d(1.2, 1.2, 1);
+        transition      : transform 0.3s, opacity 0.3s;
+        transition-timing-function: cubic-bezier(0.75, 0, 0.125, 1);
+        width           : 100%;
+        backface-visibility: hidden;
+        -webkit-backface-visibility: hidden;
+        z-index         : -1;
+    }
+    .button-border-zoomin::before {
+        border-width    : 1px;
+        border-color    : var(  --ui-button-border      );
+    }
+    .button-border-zoomin::after {
+        background      : var(  --ui-button-hover-bg    );
+    }
+    .button-border-zoomin:hover {
+        color           : var(  --ui-button-hover-txt   );
+    }
+    .button-border-zoomin:hover::before {
+        opacity         : 1;
+        transform       : scale3d(1, 1, 1);
+    }
+    .button-border-zoomin:hover::after {
+        opacity         : 0;
+        transform       : scale3d(0.8, 0.8, 1);
+    }
+
+
+    /* -------------------- -------------------- -------------------- -------------------- btn-anim button-border-light */
+
+    .button-border-light {
+        background      : var(  --ui-button-background  );
+        box-shadow      : var(  --ui-shadow-100         );
+        color           : var(  --ui-button-color       );
+        overflow        : hidden;
+        transition      : color 0.3s;
+        transition-timing-function: cubic-bezier(0.75, 0, 0.125, 1);
+    }
+    .button-border-light::before,
+    .button-border-light::after {
+        content         : '';
+        position        : absolute;
+        z-index         : -1;
+    }
+    .button-border-light::after {
+        background      : var(  --ui-button-background  );
+        bottom          : 1px;
+        left            : 1px;
+        right           : 1px;
+        top             : 1px;
+    }
+    .button-border-light::before {
+        background      : var( --ui-link-hover ); /*effect border*/
+        height          : 100%;
+        left            : 0;
+        top             : 0;
+        transform       : translate3d(0, 100%, 0);
+        transition      : transform 0.3s;
+        transition-timing-function: cubic-bezier(0.75, 0, 0.125, 1);
+        width           : 100%;
+    }
+    .button-border-light > span {
+        line-height     : 1em;
+     }
+    .button-border-light:hover {
+        color           : var(  --ui-link-hover  ); /*effect border*/
+    }
+    .button-border-light:hover::before {
+        transform       : translate3d(0, 0, 0);
+    }
+
+    /* -------------------- -------------------- -------------------- -------------------- btn-anim BTNVAV */
+
+    .btnav {
+        border          : var(  --ui-color-700      );
+        color           : var(  --ui-color-white    );
+        font-size       : var(  --ui-size-200       );
+        height          : 40px;
+        line-height     : 40px;
+        margin          : var(--ui-space-400);
+        padding         : 0;
+        transition      : color 0.3s;
+
+        min-width       : 40px;   /* icon */
+        max-width       : 240px; /* text */
+    }
+    .btnav.button-round {
+        border-radius   : 50%;
+        height          : 40px;
+        width           : 40px;
+    }
+    .btnav::before {
+        box-shadow      : inset 0 0 0 35px transparent;
+        border-radius   : inherit;
+        content         : '';
+        height          : 100%;
+        left            : 0;
+        position        : absolute;
+        top             : 0;
+        transform       : scale3d(0.9, 0.9, 1);
+        transition      : box-shadow 0.3s, transform 0.3s;
+        width           : 100%;
+        z-index         : -1;
+    }
+    .btnav .nav-icon {
+        font-size       : 1em;
+        width           : 1em;
+    }
+    .btnav > span {
+        position        : absolute;
+        pointer-events  : none;
+        opacity         : 0;
+    }
+    .btnav:hover {
+        color           : var( --ui-link-hover  );
+    }
+    .btnav:hover::before {
+        box-shadow      : inset 0 0 0 1px var( --ui-link-hover  );
+        transform       : scale3d(1, 1, 1);
+    }

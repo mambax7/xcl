@@ -311,8 +311,7 @@ function pico_main_parse_ret2uri($mydirname, $ret)
 			default:
 				return false;
 		}
-	} else if ('/' == $ret{
-                      0}) {
+	} else if ('/' == $ret[0]) {
 		// specify the relative link inside XOOPS_URL
 		return XOOPS_URL . str_replace('..', '', preg_replace('/[\x00-\x1f]/', '', $ret));
 	} else {

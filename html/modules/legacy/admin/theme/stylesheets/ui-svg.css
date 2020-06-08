@@ -1,5 +1,5 @@
 /*
-	XOOPS Cube Theme : XCL Admin Flex Grid
+	XOOPSCube Theme : XCL Admin Flex Grid
 	Distribution : XCL 2.3 Alpha
 	Version : 0.0.5
 	Author : Nuno Luciano aka Gigamaster
@@ -14,7 +14,7 @@
 	*/
 	svg {
 
-		filter              : drop-shadow( 0px 1px 0px rgba(100, 110, 210, .7));
+		/* filter              : drop-shadow( 0px 1px 0px var( --ui-link)); */
 		-webkit-user-select : none;
 		-moz-user-select    : none;
 		-ms-user-select     : none;

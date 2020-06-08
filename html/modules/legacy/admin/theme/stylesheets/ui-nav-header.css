@@ -1,188 +1,205 @@
 /*
-	XOOPS Cube Theme : XCL Admin Flex Grid
-	Distribution : XCL 2.3 Alpha
-	Version : 0.0.5
-	Author : Nuno Luciano aka Gigamaster
-	Date : 2019-11-11
-	URL : https://github.com/xoopscube/xcl/
+    XOOPSCube Theme : XCL Admin Flex Grid
+    Distribution : XCL 2.3 Alpha
+    Version : 0.0.5
+    Author : Nuno Luciano aka Gigamaster
+    Date : 2019-11-11
+    URL : https://github.com/xoopscube/xcl/
 
-	-------------------- -------------------- -------------------- -------------------- HEADER NAV */
+    -------------------- -------------------- -------------------- -------------------- HEADER NAV */
 
-	header > nav {
+    header > nav {
 
-		color							: var(  --ui-text-light		);
-		height						: 50px;
-		margin						: 0;
-		overflow					: hidden;
-		padding						: 0;
-		width							: 100%;
+        height          : 50px;
+        margin          : 0;
+        overflow        : hidden;
+        padding         : 0;
+        width           : 100%;
 
-	}
+    }
 
-	nav ul {
-
-		align-items				: center;
-		display						: flex;
-		margin						: 0;
-		padding						: 0;
-
-	}
-
-	nav ul li {
-
-		list-style-type		: none;
-		transition				: all 0.2s;
-
-	}
-
-	nav ul li.nav-logo {
-
-		/* text-align				: center; */
-		width							: 207px;
-
-	}
-	nav ul li.nav-logo > a > img {
-
-		bottom 						: -5px;
-		flex-shrink				: 0;
-		max-height				: 42px;
-		position					: relative;
-
-	}
-
-	/* Remove Color Mode Switch if there’s no JS */
-	.no-js .ui-color-mode {
-		display						: none;
-	}
-	nav ul li.ui-color-mode {
-		align-items				: center;
-		display						: flex;
-		margin						: 0 1em 0 auto;
-		padding						: 0 1rem;
-	}
-	nav ul li.ui-color-mode > a,
-	nav ul li.ui-color-mode > span {
-		margin			: 0 1em;
-	}
+    nav ul {
 
 
-	nav > ul > li > a {
-		color							: var(--ui-text-light) !important;
-		padding						: 0px var(  --ui-space-500			);
+        display         : flex;
 
-	}
+        margin          : 0;
+        padding         : 0;
 
-	nav > ul > li > a > .caret {
+    }
 
-		border-top				: 5px solid var(  --ui-color-200	);
-		border-right			: 5px solid transparent;
-		border-left				: 5px solid transparent;
+    nav ul li {
 
-		content						: "";
+        list-style-type : none;
+        transition      : all 0.2s;
 
-		display						: inline-block;
+    }
 
-		height						: 0;
+    nav ul li.nav-logo {
+        padding     : 0 var(  --ui-space-700  );
+    }
+    nav ul li.nav-logo > a > img {
+        max-height  : 45px;
+        transition  : all 2s ease-in-out;
+        filter      : drop-shadow(1px 10px 10px #face74);
+    }
+    nav ul li.nav-logo > a > img:hover {
+        animation   : filter-animation 2.5s infinite;
+    }
+    @keyframes filter-animation {
+        0% {
+        filter      : brightness(100%);
+        filter      : drop-shadow(1px 10px 10px #face74);
+        transition  : all 0.5s ease-in-out;
+        }
+        25% {
+        filter      : brightness(115%);
+        filter      : drop-shadow(-10px 1px 10px #face74);
+        transition  : all 0.5s ease-in-out;
+        }
+        50% {
+        filter      : brightness(135%);
+        filter      : drop-shadow(1px 1px 10px #face74);
+        transition  : all 0.5s ease-in-out;
+        }
+        75% {
+        filter      : brightness(145%);
+        filter      : drop-shadow(10px 1px 10px #face74);
+        transition  : all 0.5s ease-in-out;
+        }
+        100% {
+        filter      : brightness(100%);
+        filter      : drop-shadow(1px 10px 10px #face74);
+        transition  : all 0.5s ease-in-out;
+        }
+    }
 
-		transition				: color 0.1s linear;
-		vertical-align		: middle;
-		width							: 0;
-
-	}
-
-	nav > ul > li:hover > a > .caret {
-
-		border-top-color	: var(  --ui-color-100		);
-
-	}
-
-	nav > ul > li:hover {
-
-		background				: transparent;
-
-	}
+    /* Remove Color Mode Switch if there’s no JS */
+    .no-js .ui-color-mode {
+        display         : none;
+    }
+    nav ul li.ui-color-mode {
+        display         : flex;
+        margin          : 0 0 0 auto;
+        padding         : 0;
+    }
+    nav ul li.ui-color-mode > a,
+    nav ul li.ui-color-mode > span {
+        margin          : 0 1em;
+    }
 
 
-	/* nav-sub */
-	nav > ul > li > ul.nav-sub  {
+    nav > ul > li > a {
+        padding         : 0px var(  --ui-space-500  );
 
-		background				: var(  --ui-color-500			);
+    }
+    nav ul li .ui-nav-icon {
+        font-size: 1.25em;
+        /* width: 20px; */
+        /* height: 20px; */
+        background: var( --ui-color-700);
+        color: var( --ui-color-200);
+        cursor: pointer;
+        text-align: center;
+        margin: 0 1em;
+        line-height: 50px;
+    }
 
-		border-top				: 0;
-		border-radius			: var(  --ui-border-radius	);
+    nav > ul > li > button > .caret {
 
-		box-shadow				: var(  --ui-shadow-400 		);
+        border-top      : 5px solid var(  --ui-color-200    );
+        border-right    : 5px solid transparent;
+        border-left     : 5px solid transparent;
+        content         : "";
+        display         : inline-block;
+        height          : 0;
+        transition      : color 0.1s linear;
+        vertical-align  : middle;
+        width           : 0;
+    }
 
-		display						: none;
+    nav > ul > li:hover > button > .caret {
+        border-top-color : var(  --ui-link-hover		);
+    }
 
-		margin						: 0;
-		opacity						: 0;
-		position					: absolute;
-		left							: 15px;
-		width							: 200px;
-		visibility				: hidden;
-
-		transition				: opacity 0.3s;
-
-	}
+    nav > ul > li:hover {
+        background      : transparent;
+    }
 
 
-	nav > ul > li:hover > ul.nav-sub {
+    /* nav-sub */
+    nav > ul > li > ul.nav-sub  {
 
-		display						: block;
-		opacity						: 1;
-		visibility				: visible;
+        background      : var(  --ui-color-600      );
 
-	}
+        border-top      : 0;
+        border-radius   : var(  --ui-border-radius  );
 
-	nav > ul > li > ul.nav-sub > li {
+        box-shadow      : var(  --ui-shadow-400     );
 
-		display						: block;
+        display         : none;
+        left            : 174px;
+        margin          : 0;
+        opacity         : 0;
+        position        : absolute;
+        visibility      : hidden;
+        width           : 200px;
+        top             : 50px;
 
-	}
+        transition      : opacity 0.3s;
+        z-index: 710;
 
-	/*
-	Theme : XCL Admin Flex Grid
-	Distribution : XCL 2.3 Alpha
-	Version : 0.0.5
-	Author : Nuno Luciano aka Gigamaster
-	Date : 2019-11-11
-	URL : https://github.com/xoopscube/xcl/
+    }
 
-	-------------------- -------------------- -------------------- -------------------- NAV HEADER */
 
-	nav > ul > li > ul.nav-sub > li > a {
+    nav > ul > li.nav-submenu:hover > ul.nav-sub {
 
-		padding						: var(  --ui-space-500 		);
-		text-decoration		: none;
-		width							: 100%;
+        display         : block;
+        opacity         : 1;
+        visibility      : visible;
 
-	}
+    }
 
-	nav > ul > li > ul.nav-sub > li:hover > a {
+    nav > ul > li > ul.nav-sub > li {
 
-		background				: var(  --ui-color-400	);
+        display         : block;
 
-	}
+    }
 
-	/* nav-sub nav-user-menu */
-	nav > ul > li.nav-user-menu > ul.nav-sub {
-		float						: right;
+    /* -------------------- -------------------- -------------------- -------------------- NAV HEADER */
 
-	}
-	nav > ul > li.nav-user-menu:hover > ul.nav-sub {
+    nav > ul > li > ul.nav-sub > li > a {
 
-		display					: block;
-		opacity					: 1;
-		visibility			: visible;
-		right 					: 0px;
-		width						: 200px;
+        padding         : var(  --ui-space-500 		);
+        text-decoration : none;
+        width           : 100%;
 
-	}
+    }
 
-	ul.nav-sub > li > a > .svg-ui-icon {
+    nav > ul > li > ul.nav-sub > li:hover > a {
 
-		margin-right		: 1em; /* Space icon -> text */
-		vertical-align	: middle; /* Align icon and text */
-		width						: 1.5em; /* Size icon to text */
-	}
+        background      : var(  --ui-color-400	);
+
+    }
+
+    /* nav-sub nav-user-menu */
+    nav > ul > li.nav-user-menu > ul.nav-sub {
+        float           : right;
+
+    }
+    nav > ul > li.nav-user-menu:hover > ul.nav-sub {
+
+        display         : block;
+        opacity         : 1;
+        visibility      : visible;
+        right           : 0px;
+        width           : 200px;
+
+    }
+
+    ul.nav-sub > li > a > .svg-ui-icon {
+
+        margin-right    : 1em; /* Space icon -> text */
+        vertical-align  : middle; /* Align icon and text */
+        width           : 1.5em; /* Size icon to text */
+    }

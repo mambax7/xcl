@@ -43,7 +43,7 @@
       <{else}>
          (<{$ranksObjects[$rid]->getShow('rank_title')}>) &raquo; <b  class="user_module_error"><{$actionForm->get('title',$rid)|xoops_escape}></b>
       <{/if}>
-      <input type="hidden" name="title[<{$rid}>]" value="<{$actionForm->get('title',$rid)|xoops_escape:edit}>" />
+      <input type="hidden" name="title[<{$rid}>]" value="<{$actionForm->get('title',$rid)|xoops_escape:edit}>">
     </td>
     <td class="user_list_number">
       <{if $actionForm->get('min',$rid) == $ranksObjects[$rid]->get('rank_min')}>
@@ -51,7 +51,7 @@
       <{else}>
          (<{$ranksObjects[$rid]->getShow('rank_min')}>) &raquo; <b  class="user_module_error"><{$actionForm->get('min',$rid)|xoops_escape}></b>
       <{/if}>
-      <input type="hidden" name="min[<{$rid}>]" value="<{$actionForm->get('min',$rid)|xoops_escape:edit}>" />
+      <input type="hidden" name="min[<{$rid}>]" value="<{$actionForm->get('min',$rid)|xoops_escape:edit}>">
     </td>
     <td class="user_list_number">
       <{if $actionForm->get('max',$rid) == $ranksObjects[$rid]->get('rank_max')}>
@@ -59,7 +59,7 @@
       <{else}>
          (<{$ranksObjects[$rid]->getShow('rank_max')}>) &raquo; <b  class="user_module_error"><{$actionForm->get('max',$rid)|xoops_escape}></b>
       <{/if}>
-      <input type="hidden" name="max[<{$rid}>]" value="<{$actionForm->get('max',$rid)|xoops_escape:edit}>" />
+      <input type="hidden" name="max[<{$rid}>]" value="<{$actionForm->get('max',$rid)|xoops_escape:edit}>">
     </td>
       <td class="user_list_order">
         <{if $ranksObjects[$rid]->getShow('rank_special') == 1}>
@@ -77,17 +77,17 @@
         <{/if}>
 	</b>
       <{if $actionForm->get('delete',$rid)}>
-        <input type="hidden" name="delete[<{$rid}>]" value="1" />
+        <input type="hidden" name="delete[<{$rid}>]" value="1">
       <{else}>
-        <input type="hidden" name="delete[<{$rid}>]" value="0" />
+        <input type="hidden" name="delete[<{$rid}>]" value="0">
       <{/if}>
     </td>
   </tr>
 <{/foreach}>
   <tr>
     <td class="foot" colspan="6">
-      <input type="submit" value="<{$smarty.const._SUBMIT}>" class="formButton" />
-      <input class="formButton" type="submit" value="<{$smarty.const._BACK}>" name="_form_control_cancel" />
+      <input type="submit" value="<{$smarty.const._SUBMIT}>" class="formButton">
+      <input class="formButton" type="submit" value="<{$smarty.const._BACK}>" name="_form_control_cancel">
     </td>
   </tr>
 </table>

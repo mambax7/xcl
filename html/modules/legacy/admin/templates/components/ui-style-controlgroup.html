@@ -1,0 +1,237 @@
+<h3>Control Group</h3>
+
+<style>
+    .ui-controlgroup-vertical {
+        width: 150px;
+    }
+    .ui-controlgroup.ui-controlgroup-vertical > button.ui-button,
+    .ui-controlgroup.ui-controlgroup-vertical > .ui-controlgroup-label {
+        text-align: center;
+    }
+    #car-type-button {
+        width: 120px;
+    }
+    .ui-controlgroup-horizontal .ui-spinner-input {
+        width: 20px;
+    }
+</style>
+<script>
+    $( function() {
+        $( ".controlgroup" ).controlgroup()
+        $( ".controlgroup-vertical" ).controlgroup({
+            "direction": "vertical"
+        });
+    } );
+</script>
+
+<div class="ui-flex-row">
+
+    <div class="ui-flex-column">
+        <div class="widget">
+
+            <fieldset>
+                    <legend>Control Group Horizontal</legend>
+                    <div class="controlgroup">
+                    <select id="car-type">
+                        <option>Compact car</option>
+                        <option>Midsize car</option>
+                        <option>Full size car</option>
+                        <option>SUV</option>
+                        <option>Luxury</option>
+                        <option>Truck</option>
+                        <option>Van</option>
+                    </select>
+                    <label for="transmission-standard">Standard</label>
+                    <input type="radio" name="transmission" id="transmission-standard">
+                    <label for="transmission-automatic">Automatic</label>
+                    <input type="radio" name="transmission" id="transmission-automatic">
+                    <label for="insurance">Insurance</label>
+                    <input type="checkbox" name="insurance" id="insurance">
+                    <label for="horizontal-spinner" class="ui-controlgroup-label"># of cars</label>
+                    <input id="horizontal-spinner" class="ui-spinner-input">
+                    <button>Book Now!</button>
+                    </div>
+                </fieldset>
+
+            <fieldset>
+            <legend>Control Group Vertical</legend>
+            <div class="controlgroup-vertical">
+            <select>
+                <option>Compact car</option>
+                <option>Midsize car</option>
+                <option>Full size car</option>
+                <option>SUV</option>
+                <option>Luxury</option>
+                <option>Truck</option>
+                <option>Van</option>
+            </select>
+            <label for="transmission-standard-v">Standard</label>
+            <input type="radio" name="transmission-v" id="transmission-standard-v">
+            <label for="transmission-automatic-v">Automatic</label>
+            <input type="radio" name="transmission-v" id="transmission-automatic-v">
+            <label for="insurance-v">Insurance</label>
+            <input type="checkbox" name="insurance" id="insurance-v">
+            <label for="vertical-spinner" class="ui-controlgroup-label"># of cars</label>
+            <input id="vertical-spinner" class="ui-spinner-input">
+            <button id="book">Book Now!</button>
+            </div>
+        </fieldset>
+
+        </div>
+    </div>
+
+    <div class="ui-flex-column">
+        <h4>Controlgroup</h4>
+        <p>control group horizontal and vertical</p>
+    </div>
+
+</div>
+
+
+<hr>
+
+
+<h3>control shape</h3>
+
+<script>
+    $( function() {
+    function handleShape( e ) {
+        $( ".controls .shape" )
+        .removeClass( "circle pill square rectangle" )
+        .addClass( $( e.target ).val() );
+    };
+    function handleToggle( e ) {
+        var target = $( e.target );
+
+        if ( target.is( ".controls .brand-toggle" ) ) {
+        var checked = target.is( ":checked" ),
+            value = $( "[name='brand']" )
+            .filter( ":checked" )
+            .attr( "data-" + target[ 0 ].id )
+        $( ".controls .shape" ).css( target[ 0 ].id, checked ? value : "" );
+        } else {
+        $( ".controls .shape" ).toggleClass( target[ 0 ].id, target.is( ":checked") );
+        }
+    }
+    function updateBrand() {
+        handleShape( { target: $( "[name='shape']:checked" ) } );
+        $( ".toggle:checked" ).each( function() {
+        handleToggle( { target: $( this ) } );
+        } );
+    }
+
+    // Initalize widgets
+    $( ".controls input" ).checkboxradio();
+    $( ".controls .shape-bar, .controls .brand" ).controlgroup();
+    $( ".controls .toggles" ).controlgroup( {
+        direction: "vertical"
+    } );
+
+    // Bind event handlers
+    $( "[name='shape']").on( "change", handleShape );
+    $( ".toggle" ).on( "change", handleToggle );
+    $( "[name='brand']").on( "change", updateBrand );
+
+    // Set initial values
+    updateBrand();
+    } );
+</script>
+<style>
+    .shape {
+        margin-left: 4em;
+        margin-top: 2.5em;
+        height: 8em;
+        width: 8em;
+        box-shadow: rgba(255, 255, 255, 0.15) 0px 1px 0px 0px;
+        color: #ccc;
+        /* background-repeat: no-repeat;
+        background-size: 90%;
+        background-position: 50%; */
+
+    }
+    .shape > span {
+        display: block;
+        font-size: 2em;
+        font-weight: bold;
+        text-align: center;
+        padding: 1em;
+        position: relative;
+    }
+    .circle, .pill {
+        border-radius: 8em;
+    }
+    .pill, .rectangle {
+        width: 16em;
+    }
+    .square, .circle {
+        margin-left: 9em;
+    }
+    .border {
+        border: 2px solid var(--ui-color-100);
+    }
+    .toggles {
+        width: 200px;
+    }
+    .toggle-wrap, .shape {
+        display: inline-block;
+        vertical-align: top;
+    }
+    .controls {
+        padding: 1em;
+        display: inline-block;
+    }
+</style>
+
+<div class="ui-flex-row">
+
+    <div class="ui-flex-column">
+
+        <div class="controls">
+            <div class="brand-wrap">
+            <h4>1. Select a project brand</h4>
+            <div class="brand">
+                <label for="brand-xoopscube">XOOPSCube</label>
+                    <input type="radio" name="brand" id="brand-xoopscube" data-background-color="#0769AD" data-color="currentColor">
+                <label for="brand-legacy">Legacy</label>
+                    <input type="radio" name="brand" id="brand-legacy" data-background-color="#B24926" data-color="#FAA523" checked>
+                <label for="brand-xcl">XCL</label>
+                    <input type="radio" name="brand" id="brand-xcl" data-background-color="#108040" data-color="#3EB249">
+                <label for="brand-xdapp">X-Dapp</label>
+                    <input type="radio" name="brand" id="brand-xdapp" data-background-color="#9A1B1E" data-color="#FAA523">
+            </div>
+            </div>
+            <div class="shape-wrap">
+            <h4>2. Select a shape</h4>
+            <div class="shape-bar">
+                <label for="shape-circle">Circle</label>
+                    <input type="radio" name="shape" id="shape-circle" value="circle" checked>
+                <label for="shape-square">Square</label>
+                    <input type="radio" name="shape" id="shape-square" value="square">
+                <label for="shape-pill">Pill</label>
+                    <input type="radio" name="shape" id="shape-pill" value="pill">
+                <label for="shape-rectangle">Rectangle</label>
+                    <input type="radio" name="shape" id="shape-rectangle" value="rectangle">
+            </div>
+            </div>
+            <div class="toggle-wrap">
+            <h4>3. Customize</h4>
+            <div class="toggles">
+                <label for="color">Title</label>
+                    <input class="toggle brand-toggle" type="checkbox" name="color" id="color">
+                <label for="border">Border</label>
+                    <input class="toggle" type="checkbox" name="border" id="border">
+                <label for="background-color">Background</label>
+                    <input class="toggle brand-toggle" type="checkbox" name="background-color" id="background-color" checked>
+            </div>
+            </div>
+            <div class="shape circle background jquery-ui"><span>XCL</span></div>
+        </div>
+
+    </div>
+
+    <dic class="ui-flex-column">
+        <h4>Control Group</h4>
+        <p>short desc</p>
+    </dic>
+
+</div>

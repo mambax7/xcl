@@ -5,6 +5,52 @@ All notable changes to this project will be documented in this file.
 - Format based on [Keep A Change Log](https://keepachangelog.com/en/1.0.0/).
 - This project adheres to [Semantic Versioning](https://semver.org/).
 
+## [unreleased] 2020-05-29
+
+### Added
+
+- Components templates:
+- Dashboard style guide
+- ui-style-accordion
+- ui-style-button
+- ui-style-colors
+- ui-style-date
+- ui-style-fonts
+- ui-style-form
+- ui-style-menu
+- ui-style-spacing
+- ui-style-modal
+- ui-style-table
+- ui-style-tabs
+- Theme Manger to /common
+- SVG Render to /common
+
+### Changed
+
+- [WIP] Admin Dashboard
+- [WIP] Admin Templates
+- Ajax load style guide
+- Ajax load help sections
+- jQuery-UI custom CSS
+- Dark Mode Switch
+- Stylesheet to jQuery-UI
+
+### Fixed
+
+- ActionSearch - WARNING: count() #157
+- CSS variables for Light Mode
+- PHP74 module Altsys curly braces #205
+- PHP74 module Pico curly braces #205
+- SearchResultsForm - Notice #163
+
+### Removed
+
+- Cleanup css
+- Cleanup javascript
+- Darkmode from admin script
+- SVG Render from admin script 
+- CSS custom properties
+
 ## [unreleased] 2020-05-11
 
 ### Added

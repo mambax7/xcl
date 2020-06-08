@@ -1,310 +1,186 @@
 /*
-	XOOPS Cube Theme : XCL Admin Flex Grid
-	Distribution : XCL 2.3 Alpha
-	Version : 0.0.5
-	Author : Nuno Luciano aka Gigamaster
-	Date : 2019-11-11
-	URL : https://github.com/xoopscube/xcl/
+    XOOPSCube Theme : XCL Admin Flex Grid
+    Distribution : XCL 2.3 Alpha
+    Version : 0.0.5
+    Author : Nuno Luciano aka Gigamaster
+    Date : 2019-11-11
+    URL : https://github.com/xoopscube/xcl/
 
-	-------------------- -------------------- --------------------  Table */
+    -------------------- -------------------- --------------------  Table */
 
-	/* TODO
-	Clean up D3 templates
-	Responsive tables and tabs
-	Alternative data display
-	*/
+    /* TODO
+    Clean up D3 templates
+    Responsive tables and tabs
+    Alternative data display
+    */
 
-	table {
+    table {
 
-		background			: var(  --ui-table-background	);
+        background      : var(  --ui-table-background   );
 
-		border-color  	: var(  --ui-border-color			);
-		border-radius 	: var(  --ui-border-radius		);
-		border-style  	: var(  --ui-border-radius		);
-		border-width  	: var(  --ui-border-width			);
+        border-color    : var(  --ui-border-color       );
+        border-radius   : var(  --ui-border-radius      );
+        border-style    : var(  --ui-border-radius      );
+        border-width    : var(  --ui-border-width       );
 
-		border-collapse : collapse;
+        border-collapse : collapse;
 
-		box-shadow    	: var( --ui-shadow-200				);
+        box-shadow    	: var(  --ui-shadow-200         );
 
-		padding       	: var( --ui-space-400					);
-		margin        	: 0;
+        padding       	: var(  --ui-space-400          );
+        margin        	: 0;
 
-		width           : 100%;
+        width           : 100%;
 
-	}
+    }
 
-	thead > tr {
-		/* TODO ui-root custom */
-		background			: var(  --ui-table-thead			);
-	}
+    thead > tr {
+        /* TODO ui-root custom */
+        background      : var(  --ui-table-thead        );
+    }
 
-	tbody > tr {
-	/* TODO ui-root custom */
-		background			: var(  --ui-table-tbody			);
-	}
+    tbody > tr {
+        /* TODO ui-root custom */
+        background      : var(  --ui-table-tbody        );
+    }
 
-	table > tfoot > tr {
+    table > tfoot > tr {
 
-		background			: var(  --ui-table-tfoot			);
-		text-align			: center;
+        background      : var(  --ui-table-tfoot        );
+        text-align      : center;
 
-	}
+    }
 
-	tr,
-	th,
-	td {
+    tr,
+    th,
+    td {
 
-		padding					: var(  --ui-table-padding		);
+        padding         : var(  --ui-table-padding      );
+        font-weight     : 300;
 
-	}
-	/* Alternate cycle TR class even | odd */
-	tbody > tr:nth-child(even) {
+    }
+    /* Alternate cycle TR class even | odd */
+    tbody > tr:nth-child(even) {
 
-		background			: var(  --ui-table-even				);
+        background      : var(  --ui-table-even         );
 
-	}
-	tbody > tr:nth-child(odd){
+    }
+    tbody > tr:nth-child(odd){
 
-		background			: var(  --ui-table-odd				);
+        background      : var(  --ui-table-odd          );
 
-	}
-	/* tr:not(:first-child):hover */
+    }
+    /* tr:not(:first-child):hover */
 
 
 
-	/* table > *:not(tfoot){
-		TODO ui-root custom
-	}
+    /* table > *:not(tfoot){
+        TODO ui-root custom
+    }
 
-	tr:not(:last-child) {
-		TODO ui-root custom
-	} */
+    tr:not(:last-child) {
+        TODO ui-root custom
+    } */
 
 
 
-	div.foot,
-	.pagenavi,
-	table td.foot,
-	.legacy_list_id,
-	.legacy_list_order,
-	.legacy_list_date,
-	.legacy_list_select,
-	.legacy_list_control {
+    div.foot,
+    .pagenavi,
+    table td.foot,
+    .legacy_list_id,
+    .legacy_list_order,
+    .legacy_list_date,
+    .legacy_list_select,
+    .legacy_list_control {
 
-		text-align			: center;
+        text-align      : center;
 
-	}
+    }
 
-	table.altsys_mytplsadmin .dbtplset_active {
+    table.altsys_mytplsadmin .dbtplset_active {
 
-		background			: var(  --ui-color-green			);
+        background      : var(  --ui-color-green        );
 
-	}
+    }
 
-	table.altsys_mytplsadmin .dbtplset_active sup {
+    table.altsys_mytplsadmin .dbtplset_active sup {
 
-		/*display				: none;*/
+        /*display       : none;*/
 
-	}
+    }
 
-	table.altsys_mytplsadmin .fingerprint1 {
+    table.altsys_mytplsadmin .fingerprint1 {
 
-		background			: var(  --ui-color-green			);
+        background      : var(  --ui-color-green        );
 
-	}
+    }
 
-	table.altsys_mytplsadmin .fingerprint2 {
+    table.altsys_mytplsadmin .fingerprint2 {
 
-		background			: var(  --ui-color-green			);
+        background      : var(  --ui-color-green        );
 
-	}
+    }
 
-	table.altsys_mytplsadmin .fingerprint3 {
+    table.altsys_mytplsadmin .fingerprint3 {
 
-		background			: var(  --ui-color-amber			);
+        background      : var(  --ui-color-amber        );
 
-	}
+    }
 
-	table.altsys_mytplsadmin .fingerprint4 {
+    table.altsys_mytplsadmin .fingerprint4 {
 
-		background			: var(  --ui-color-blue				);
+        background      : var(  --ui-color-blue         );
 
-	}
+    }
 
-	table.altsys_mytplsadmin .fingerprint5 {
+    table.altsys_mytplsadmin .fingerprint5 {
 
-		background			: var(  --ui-color-orange			);
+        background      : var(  --ui-color-orange       );
 
-	}
+    }
 
-	table.altsys_mytplsadmin .fingerprint6 {
+    table.altsys_mytplsadmin .fingerprint6 {
 
-		background			: var(  --ui-color-indigo			);
+        background      : var(  --ui-color-indigo       );
 
-	}
+    }
 
-	table.altsys_mytplsadmin .fingerprint7 {
+    table.altsys_mytplsadmin .fingerprint7 {
 
-		background			: var(  --ui-color-indigo			);
-	}
+        background      : var(  --ui-color-indigo       );
+    }
 
 
-	div > input.blockposition {
+    div > input.blockposition {
 
-		display					: flex;
-		margin-right		: 5px;
+        display         : flex;
+        margin-right    : 5px;
 
-	}
+    }
 
-	tbody tr:hover,
-	table.outer .altsys_mytplsadmin tbody tr:hover,
-	table.outer tbody tr:hover,
-	.table-striped tbody tr:hover {
+    tbody tr:hover,
+    table.outer .altsys_mytplsadmin tbody tr:hover,
+    table.outer tbody tr:hover,
+    .table-striped tbody tr:hover {
 
-		background			: var(  --ui-table-hover 				);
-		color           : var(  --ui-table-hover-text		);
+        background      : var(  --ui-table-hover        );
+        color           : var(  --ui-table-hover-text   );
 
-	}
-/* 	div.unselected {
+    }
+    /* 	div.unselected {
 
-		background			: #37474f;
+        background      : #37474f;
 
-	} */
+    } */
 
-/* 	div.selected {
+    /* 	div.selected {
 
-		background			: var(--ui-color-green);
+        background      : var(--ui-color-green);
 
-	} */
+    } */
 
-	div.disabled {
+    div.disabled {
 
-		background			: var(--ui-color-red);
+        background      : var(  --ui-color-red          );
 
-	}
-
-
-/*	-------------------- -------------------- --------------------  Tabs */
-
-	.ui-tab-wrap {
-
-		background-color: var( --ui-tab-background-hover ); /* transition */
-		border-radius		: 5px;
-		/* box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24); */
-		box-shadow			:var( --ui-tab-shadow );
-		display					: flex;
-		flex-wrap				: wrap;
-		list-style			: none;
-		margin					: 40px 0;
-		max-width				: 100%;
-		position				: relative;
-		transition			: 0.3s box-shadow ease;
-
-	}
-
-	.ui-tab-wrap:hover {
-
-		/* box-shadow: 0 12px 23px rgba(0, 0, 0, 0.23), 0 10px 10px rgba(0, 0, 0, 0.19); */
-		box-shadow			:var( --ui-tab-shadow-hover );
-
-	}
-
-	.ui-tab {
-
-		display					: none;
-
-	}
-
-  .ui-tab:checked:nth-of-type(1) ~ .ui-tab-content:nth-of-type(1),
-	.ui-tab:checked:nth-of-type(2) ~ .ui-tab-content:nth-of-type(2),
-	.ui-tab:checked:nth-of-type(3) ~ .ui-tab-content:nth-of-type(3),
-	.ui-tab:checked:nth-of-type(4) ~ .ui-tab-content:nth-of-type(4),
-	.ui-tab:checked:nth-of-type(5) ~ .ui-tab-content:nth-of-type(5),
-	.ui-tab:checked:nth-of-type(6) ~ .ui-tab-content:nth-of-type(6),
-	.ui-tab:checked:nth-of-type(7) ~ .ui-tab-content:nth-of-type(7) {
-		border-top-left-radius: 0;
-		border-top-right-radius: 0;
-		opacity					: 1;
-		transition			: 0.5s opacity ease-in, 0.8s transform ease;
-		position				: relative;
-		top							: 0;
-		z-index					: 10;
-		transform				: translateY(0px);
-		background-color: var( --ui-tab-background-hover );
-
-	}
-
-	.ui-tab:first-of-type:not(:last-of-type) + label {
-
-		border-top-right-radius: 0;
-		border-bottom-right-radius: 0;
-
-	}
-
-	.ui-tab:not(:first-of-type):not(:last-of-type) + label {
-
-		border-radius		: 0;
-
-	}
-	.ui-tab:last-of-type:not(:first-of-type) + label {
-
-		border-top-left-radius: 0;
-		border-bottom-left-radius: 0;
-
-	}
-
-	.ui-tab:checked + label {
-
-		background-color: var( --ui-tab-background-hover );
-		cursor					: default;
-
-	}
-
-	.ui-tab:checked + label:hover {
-
-		box-shadow			: 0 -1px 0 #face74 inset;
-		/* background-color:#face74; */
-
-	}
-
-	.ui-tab + label {
-
-		background-color: var( --ui-tab-background		 );
-		border-radius		: 5px 5x 0 0;
-		box-shadow			: 0 -1px 0 transparent inset;
-		color						: #fff;
-		cursor					: pointer;
-		display					: block;
-		flex-grow				: 3;
-		height					: 50px;
-		padding					: 15px;
-		text-align			: center;
-		text-decoration	: none;
-		transition			: 0.3s background-color ease, 0.3s box-shadow ease;
-		user-select			: none;
-		-webkit-user-select: none;
-			 -moz-user-select: none;
-				-ms-user-select: none;
-
-	}
-	.ui-tab + label:hover {
-
-		background-color: var( --ui-tab-background-hover );
-		box-shadow			: 0 -1px 0 #face74 inset;
-
-	}
-	.ui-tab-content {
-
-		background-color: transparent;
-		border-bottom-left-radius: 5px;
-		border-bottom-right-radius: 5px;
-		left						: 0; right: 0;
-		opacity					: 0;
-		padding					: 10px 25px;
-		position				: absolute;
-		transform				: translateY(-3px);
-		width						: 100%;
-		z-index					: -1;
-
-	}
+    }

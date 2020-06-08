@@ -26,7 +26,7 @@
         <{if $object->get('htmlbanner')}>
           <{$object->get('htmlcode')}>
         <{else}>
-          <a href="<{$object->getShow('clickurl')}>" rel="external"><img src="<{$object->getShow('imageurl')}>" alt="Banner" /></a>
+          <a href="<{$object->getShow('clickurl')}>" rel="external"><img src="<{$object->getShow('imageurl')}>" alt="Banner"></a>
         <{/if}>
       </td>
     </tr>
@@ -80,8 +80,8 @@
 	<tfoot>
     <tr>
       <td class="foot" colspan="2">
-        <input class="button-delete" type="submit" value="<{$smarty.const._DELETE}>" />
-        <input class="formButton" type="submit" value="<{$smarty.const._BACK}>" name="_form_control_cancel" />
+        <input class="button-delete" type="submit" value="<{$smarty.const._DELETE}>">
+        <input class="formButton" type="submit" value="<{$smarty.const._BACK}>" name="_form_control_cancel">
       </td>
 		</tr>
 	</tfoot>

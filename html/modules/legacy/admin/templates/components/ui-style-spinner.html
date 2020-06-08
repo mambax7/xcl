@@ -1,0 +1,46 @@
+<h3>Input Spinner</h3>
+
+<script>
+    $( function() {
+        $( "#currency" ).on( "change", function() {
+        $( "#spinner" ).spinner( "option", "culture", $( this ).val() );
+        });
+
+        $( "#spinner" ).spinner({
+        min: 5,
+        max: 100,
+        step: 5,
+        start: 100,
+        numberFormat: "C"
+        });
+    } );
+</script>
+
+<div class="ui-flex-row">
+
+<div class="ui-flex-column">
+
+<p>
+    <label for="spinner">Amount to donate:</label>
+    <input id="spinner" name="spinner" value="5">
+</p>
+<p>
+    <label for="currency">Currency to donate</label>
+    <select id="currency" name="currency">
+        <option value="en-US">US $</option>
+        <option value="de-DE">EUR €</option>
+        <option value="ja-JP">YEN ¥</option>
+    </select>
+</p>
+<p>
+    Date <input type="date">
+</p>
+
+</div>
+
+<div class="ui-flex-column">
+    <h4>jQuery-UI Spinner</h4>
+    <p>short desc</p>
+</div>
+
+</div>

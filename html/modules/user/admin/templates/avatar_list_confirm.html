@@ -44,7 +44,7 @@
       <{else}>
          (<{$avatarObjects[$aid]->getShow('avatar_name')}>) &raquo; <b  class="user_module_error"><{$actionForm->get('name',$aid)|xoops_escape}></b>
       <{/if}>
-      <input type="hidden" name="name[<{$aid}>]" value="<{$actionForm->get('name',$aid)|xoops_escape:edit}>" />
+      <input type="hidden" name="name[<{$aid}>]" value="<{$actionForm->get('name',$aid)|xoops_escape:edit}>">
     </td>
     <td class="user_list_type"><{$avatarObjects[$aid]->getShow('avatar_mimetype')}></td>
     <td class="user_list_select">
@@ -69,9 +69,9 @@
         <{/if}></b>
       <{/if}>
       <{if $actionForm->get('display',$aid)}>
-        <input type="hidden" name="display[<{$aid}>]" value="1" />
+        <input type="hidden" name="display[<{$aid}>]" value="1">
       <{else}>
-        <input type="hidden" name="display[<{$aid}>]" value="0" />
+        <input type="hidden" name="display[<{$aid}>]" value="0">
       <{/if}>
     </td>
     <td class="user_list_number">
@@ -80,7 +80,7 @@
       <{else}>
          (<{$avatarObjects[$aid]->getShow('avatar_weight')}>) &raquo; <b  class="user_module_error"><{$actionForm->get('weight',$aid)|xoops_escape}></b>
       <{/if}>
-      <input type="hidden" name="weight[<{$aid}>]" value="<{$actionForm->get('weight',$aid)|xoops_escape:edit}>" />
+      <input type="hidden" name="weight[<{$aid}>]" value="<{$actionForm->get('weight',$aid)|xoops_escape:edit}>">
     </td>
       <td class="user_list_type">
         <{if $avatarObjects[$aid]->getShow('avatar_type') == "C"}>
@@ -98,17 +98,17 @@
         <{/if}>
 	</b>
       <{if $actionForm->get('delete',$aid)}>
-        <input type="hidden" name="delete[<{$aid}>]" value="1" />
+        <input type="hidden" name="delete[<{$aid}>]" value="1">
       <{else}>
-        <input type="hidden" name="delete[<{$aid}>]" value="0" />
+        <input type="hidden" name="delete[<{$aid}>]" value="0">
       <{/if}>
     </td>
   </tr>
 <{/foreach}>
   <tr>
     <td class="foot" colspan="7">
-      <input type="submit" value="<{$smarty.const._SUBMIT}>" class="formButton" />
-      <input class="formButton" type="submit" value="<{$smarty.const._BACK}>" name="_form_control_cancel" />
+      <input type="submit" value="<{$smarty.const._SUBMIT}>" class="formButton">
+      <input class="formButton" type="submit" value="<{$smarty.const._BACK}>" name="_form_control_cancel">
     </td>
   </tr>
 </table>

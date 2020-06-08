@@ -39,7 +39,7 @@
 
   <tr>
     <td class="head ui-card-block-image" width="240" colspan="2">
-      <div style="max-width: 80%;"><img class="svg" src="<{$xoops_url}>/modules/<{$module->getShow('dirname')}>/<{$module->modinfo.image}>" title="<{$module->getShow('name')}>" /></div>
+      <div style="max-width: 80%;"><img class="svg" src="<{$xoops_url}>/modules/<{$module->getShow('dirname')}>/<{$module->modinfo.image}>" title="<{$module->getShow('name')}>"></div>
       <!-- <div class="legacy_list_imagetitle"><{$module->modinfo.name|xoops_escape}></div> -->
     </td>
   <!-- <td class="head"></td> -->
@@ -93,8 +93,8 @@
 
   <tr>
     <td class="foot" colspan="2">
-      <input class="formButton" type="submit" value="<{$smarty.const._AD_LEGACY_LANG_UPDATE}>" />
-      <input class="formButton" type="submit" value="<{$smarty.const._BACK}>" name="_form_control_cancel" />
+      <input class="button-update" type="submit" value="<{$smarty.const._AD_LEGACY_LANG_UPDATE}>">
+      <input class="button-cancel" type="submit" value="<{$smarty.const._BACK}>" name="_form_control_cancel">
     </td>
   </tr>
 

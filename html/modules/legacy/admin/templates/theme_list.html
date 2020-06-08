@@ -40,7 +40,7 @@
     <{/if}>
       <td class="ui-card-block-image">
         <{if $theme->get('screenshot')}>
-          <img src="<{$smarty.const.XOOPS_THEME_URL}>/<{$theme->getShow('dirname')}>/<{$theme->getShow('screenshot')}>" width="120" height="90" alt="<{$theme->getShow('name')}>" title="<{$theme->getShow('name')}>" />
+          <img src="<{$smarty.const.XOOPS_THEME_URL}>/<{$theme->getShow('dirname')}>/<{$theme->getShow('screenshot')}>" width="120" height="90" alt="<{$theme->getShow('name')}>" title="<{$theme->getShow('name')}>">
         <{/if}>
         <div class="legacy_list_imagetitle"><{$theme->getShow('name')}></div>
       </td>
@@ -64,7 +64,7 @@
       </td>
       <td class="legacy_list_control">
         <{if $currentThemeName != $theme->get('dirname')}>
-          <input name="choose[<{$theme->getShow('dirname')}>]" type="submit" value="<{$smarty.const._SELECT}>" class="formButton" />
+          <input class="button-select" name="choose[<{$theme->getShow('dirname')}>]" type="submit" value="<{$smarty.const._SELECT}>">
         <{else}>
           <i class="green" ara-label="<{$smarty.const._AD_LEGACY_LANG_SELECTED}>">
             <img src="<{"icons/icon-check.svg"|theme}>" class="svg">
@@ -75,7 +75,7 @@
   <{/foreach}>
   <tr>
     <td colspan="4" class="foot">
-      <input type="submit" value="<{$smarty.const._SUBMIT}>" class="formButton" name="submit">
+      <input  class="button-submit" type="submit" value="<{$smarty.const._SUBMIT}>" name="submit">
     </td>
 
   </tr>

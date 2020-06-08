@@ -21,15 +21,15 @@
 	<div class="legacyRender_TemplateSearch">
 	<form method="get" action="index.php"><{$smarty.const._AD_LEGACYRENDER_LANG_SEARCH_TEMPLATE}> :
 		<{xoops_explaceholder control=LegacyRenderPagenaviHidden pagenavi=$pageNavi mask=tpl_file}>
-		<input type="hidden" name="action" value="TplfileList" />
-		<input type="text" name="tpl_file" />
-		<input class="formButton" type="submit" value="<{$smarty.const._SEARCH}>" />
+		<input type="hidden" name="action" value="TplfileList">
+		<input type="text" name="tpl_file">
+		<input class="formButton" type="submit" value="<{$smarty.const._SEARCH}>">
 	</form>
 	</div>
 
 	<div class="legacyRender_TemplateSelect">
 	<form action="./index.php" method="get">
-		<input type="hidden" name="action" value="TplfileList" />
+		<input type="hidden" name="action" value="TplfileList">
 		<{$smarty.const._AD_LEGACYRENDER_LANG_TPL_TPLSET}> :
 		<select name="tpl_tplset">
 			<{foreach from=$tplsets item=tplset}>
@@ -55,7 +55,7 @@
 				<{/if}>
 			<{/foreach}>
 		</select>
-		<input class="formButton" type="submit" value="<{$smarty.const._SUBMIT}>" />
+		<input class="formButton" type="submit" value="<{$smarty.const._SUBMIT}>">
 	</form>
 	</div>
 
@@ -77,26 +77,26 @@
 		<thead>
     <tr>
       <th><{$smarty.const._AD_LEGACYRENDER_LANG_TPL_ID}>
-        <a href="<{$pageNavi->renderUrlForSort()}>&amp;sort=<{$smarty.const.TPLFILE_SORT_KEY_TPL_ID}>"><img src="<{"icons/up.png"|theme}>" alt="<{$smarty.const._ASCENDING}>" title="<{$smarty.const._ASCENDING}>" /></a>
-        <a href="<{$pageNavi->renderUrlForSort()}>&amp;sort=-<{$smarty.const.TPLFILE_SORT_KEY_TPL_ID}>"><img src="<{"icons/down.png"|theme}>" alt="<{$smarty.const._DESCENDING}>" title="<{$smarty.const._DESCENDING}>" /></a></th>
+        <a href="<{$pageNavi->renderUrlForSort()}>&amp;sort=<{$smarty.const.TPLFILE_SORT_KEY_TPL_ID}>"><img src="<{"icons/up.png"|theme}>" alt="<{$smarty.const._ASCENDING}>" title="<{$smarty.const._ASCENDING}>"></a>
+        <a href="<{$pageNavi->renderUrlForSort()}>&amp;sort=-<{$smarty.const.TPLFILE_SORT_KEY_TPL_ID}>"><img src="<{"icons/down.png"|theme}>" alt="<{$smarty.const._DESCENDING}>" title="<{$smarty.const._DESCENDING}>"></a></th>
       <th><{$smarty.const._AD_LEGACYRENDER_LANG_TPL_MODULE}>
-        <a href="<{$pageNavi->renderUrlForSort()}>&amp;sort=<{$smarty.const.TPLFILE_SORT_KEY_TPL_MODULE}>"><img src="<{"icons/up.png"|theme}>" alt="<{$smarty.const._ASCENDING}>" title="<{$smarty.const._ASCENDING}>" /></a>
-        <a href="<{$pageNavi->renderUrlForSort()}>&amp;sort=-<{$smarty.const.TPLFILE_SORT_KEY_TPL_MODULE}>"><img src="<{"icons/down.png"|theme}>" alt="<{$smarty.const._DESCENDING}>" title="<{$smarty.const._DESCENDING}>" /></a></th>
+        <a href="<{$pageNavi->renderUrlForSort()}>&amp;sort=<{$smarty.const.TPLFILE_SORT_KEY_TPL_MODULE}>"><img src="<{"icons/up.png"|theme}>" alt="<{$smarty.const._ASCENDING}>" title="<{$smarty.const._ASCENDING}>"></a>
+        <a href="<{$pageNavi->renderUrlForSort()}>&amp;sort=-<{$smarty.const.TPLFILE_SORT_KEY_TPL_MODULE}>"><img src="<{"icons/down.png"|theme}>" alt="<{$smarty.const._DESCENDING}>" title="<{$smarty.const._DESCENDING}>"></a></th>
       <th><{$smarty.const._AD_LEGACYRENDER_LANG_TPL_TPLSET}>
-        <a href="<{$pageNavi->renderUrlForSort()}>&amp;sort=<{$smarty.const.TPLFILE_SORT_KEY_TPL_TPLSET}>"><img src="<{"icons/up.png"|theme}>" alt="<{$smarty.const._ASCENDING}>" title="<{$smarty.const._ASCENDING}>" /></a>
-        <a href="<{$pageNavi->renderUrlForSort()}>&amp;sort=-<{$smarty.const.TPLFILE_SORT_KEY_TPL_TPLSET}>"><img src="<{"icons/down.png"|theme}>" alt="<{$smarty.const._DESCENDING}>" title="<{$smarty.const._DESCENDING}>" /></a></th>
+        <a href="<{$pageNavi->renderUrlForSort()}>&amp;sort=<{$smarty.const.TPLFILE_SORT_KEY_TPL_TPLSET}>"><img src="<{"icons/up.png"|theme}>" alt="<{$smarty.const._ASCENDING}>" title="<{$smarty.const._ASCENDING}>"></a>
+        <a href="<{$pageNavi->renderUrlForSort()}>&amp;sort=-<{$smarty.const.TPLFILE_SORT_KEY_TPL_TPLSET}>"><img src="<{"icons/down.png"|theme}>" alt="<{$smarty.const._DESCENDING}>" title="<{$smarty.const._DESCENDING}>"></a></th>
       <th><{$smarty.const._AD_LEGACYRENDER_LANG_TPL_FILE}>
-        <a href="<{$pageNavi->renderUrlForSort()}>&amp;sort=<{$smarty.const.TPLFILE_SORT_KEY_TPL_FILE}>"><img src="<{"icons/up.png"|theme}>" alt="<{$smarty.const._ASCENDING}>" title="<{$smarty.const._ASCENDING}>" /></a>
-        <a href="<{$pageNavi->renderUrlForSort()}>&amp;sort=-<{$smarty.const.TPLFILE_SORT_KEY_TPL_FILE}>"><img src="<{"icons/down.png"|theme}>" alt="<{$smarty.const._DESCENDING}>" title="<{$smarty.const._DESCENDING}>" /></a></th>
+        <a href="<{$pageNavi->renderUrlForSort()}>&amp;sort=<{$smarty.const.TPLFILE_SORT_KEY_TPL_FILE}>"><img src="<{"icons/up.png"|theme}>" alt="<{$smarty.const._ASCENDING}>" title="<{$smarty.const._ASCENDING}>"></a>
+        <a href="<{$pageNavi->renderUrlForSort()}>&amp;sort=-<{$smarty.const.TPLFILE_SORT_KEY_TPL_FILE}>"><img src="<{"icons/down.png"|theme}>" alt="<{$smarty.const._DESCENDING}>" title="<{$smarty.const._DESCENDING}>"></a></th>
       <th><{$smarty.const._AD_LEGACYRENDER_LANG_TPL_LASTMODIFIED}>
-        <a href="<{$pageNavi->renderUrlForSort()}>&amp;sort=<{$smarty.const.TPLFILE_SORT_KEY_TPL_LASTMODIFIED}>"><img src="<{"icons/up.png"|theme}>" alt="<{$smarty.const._ASCENDING}>" title="<{$smarty.const._ASCENDING}>" /></a>
-        <a href="<{$pageNavi->renderUrlForSort()}>&amp;sort=-<{$smarty.const.TPLFILE_SORT_KEY_TPL_LASTMODIFIED}>"><img src="<{"icons/down.png"|theme}>" alt="<{$smarty.const._DESCENDING}>" title="<{$smarty.const._DESCENDING}>" /></a></th>
+        <a href="<{$pageNavi->renderUrlForSort()}>&amp;sort=<{$smarty.const.TPLFILE_SORT_KEY_TPL_LASTMODIFIED}>"><img src="<{"icons/up.png"|theme}>" alt="<{$smarty.const._ASCENDING}>" title="<{$smarty.const._ASCENDING}>"></a>
+        <a href="<{$pageNavi->renderUrlForSort()}>&amp;sort=-<{$smarty.const.TPLFILE_SORT_KEY_TPL_LASTMODIFIED}>"><img src="<{"icons/down.png"|theme}>" alt="<{$smarty.const._DESCENDING}>" title="<{$smarty.const._DESCENDING}>"></a></th>
       <th><{$smarty.const._AD_LEGACYRENDER_LANG_TPL_LASTIMPORTED}>
-        <a href="<{$pageNavi->renderUrlForSort()}>&amp;sort=<{$smarty.const.TPLFILE_SORT_KEY_TPL_LASTIMPORTED}>"><img src="<{"icons/up.png"|theme}>" alt="<{$smarty.const._ASCENDING}>" title="<{$smarty.const._ASCENDING}>" /></a>
-        <a href="<{$pageNavi->renderUrlForSort()}>&amp;sort=-<{$smarty.const.TPLFILE_SORT_KEY_TPL_LASTIMPORTED}>"><img src="<{"icons/down.png"|theme}>" alt="<{$smarty.const._DESCENDING}>" title="<{$smarty.const._DESCENDING}>" /></a></th>
+        <a href="<{$pageNavi->renderUrlForSort()}>&amp;sort=<{$smarty.const.TPLFILE_SORT_KEY_TPL_LASTIMPORTED}>"><img src="<{"icons/up.png"|theme}>" alt="<{$smarty.const._ASCENDING}>" title="<{$smarty.const._ASCENDING}>"></a>
+        <a href="<{$pageNavi->renderUrlForSort()}>&amp;sort=-<{$smarty.const.TPLFILE_SORT_KEY_TPL_LASTIMPORTED}>"><img src="<{"icons/down.png"|theme}>" alt="<{$smarty.const._DESCENDING}>" title="<{$smarty.const._DESCENDING}>"></a></th>
       <th><{$smarty.const._AD_LEGACYRENDER_LANG_TPL_TYPE}>
-        <a href="<{$pageNavi->renderUrlForSort()}>&amp;sort=<{$smarty.const.TPLFILE_SORT_KEY_TPL_TYPE}>"><img src="<{"icons/up.png"|theme}>" alt="<{$smarty.const._ASCENDING}>" title="<{$smarty.const._ASCENDING}>" /></a>
-        <a href="<{$pageNavi->renderUrlForSort()}>&amp;sort=-<{$smarty.const.TPLFILE_SORT_KEY_TPL_TYPE}>"><img src="<{"icons/down.png"|theme}>" alt="<{$smarty.const._DESCENDING}>" title="<{$smarty.const._DESCENDING}>" /></a></th>
+        <a href="<{$pageNavi->renderUrlForSort()}>&amp;sort=<{$smarty.const.TPLFILE_SORT_KEY_TPL_TYPE}>"><img src="<{"icons/up.png"|theme}>" alt="<{$smarty.const._ASCENDING}>" title="<{$smarty.const._ASCENDING}>"></a>
+        <a href="<{$pageNavi->renderUrlForSort()}>&amp;sort=-<{$smarty.const.TPLFILE_SORT_KEY_TPL_TYPE}>"><img src="<{"icons/down.png"|theme}>" alt="<{$smarty.const._DESCENDING}>" title="<{$smarty.const._DESCENDING}>"></a></th>
       <{if $targetTplset != null && $targetTplset != 'default'}><th colspan="2"><{else}><th><{/if}>
         <{$smarty.const._AD_LEGACYRENDER_LANG_CONTROL}></th>
 		</tr>

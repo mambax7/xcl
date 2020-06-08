@@ -1,396 +1,409 @@
 /*
-	XOOPS Cube Theme : XCL Admin Flex Grid
-	Distribution : XCL 2.3 Alpha
-	Version : 0.0.5
-	Author : Nuno Luciano aka Gigamaster
-	Date : 2019-11-11
-	URL : https://github.com/xoopscube/xcl/
+    XOOPSCube Theme : XCL Admin Flex Grid
+    Distribution : XCL 2.3 Alpha
+    Version : 0.0.5
+    Author : Nuno Luciano aka Gigamaster
+    Date : 2019-11-11
+    URL : https://github.com/xoopscube/xcl/
 
-	-------------------- -------------------- -------------------- -------------------- Form elements  */
+    -------------------- -------------------- -------------------- -------------------- Form elements  */
 
-  /* TODO
-  test overwrite default templates
-  */
-	input[type="button"],
-	input[type="color"],
-	input[type="email"],
-	input[type="number"],
-	input[type="password"],
-	input[type="search"],
-	input[type="tel"],
-	input[type="text"],
-	input[type="url"],
-	textarea {
+    /* TODO
+    test overwrite default templates
+    */
+    input[type="button"],
+    input[type="color"],
+    input[type="email"],
+    input[type="number"],
+    input[type="password"],
+    input[type="search"],
+    input[type="tel"],
+    input[type="text"],
+    input[type="url"],
+    textarea {
 
-	background        : var(  --ui-input-background		);
+    background      : var(  --ui-input-background     );
 
-    border-color      : var(  --ui-input-border-color	);
-	border-radius     : var(  --ui-input-border-radius);
-	border-style      : var(  --ui-input-border-style	);
-    border-width      : var(  --ui-input-border-width	);
+    border-color    : var(  --ui-input-border-color   );
+    border-radius   : var(  --ui-input-border-radius  );
+    border-style    : var(  --ui-input-border-style   );
+    border-width    : var(  --ui-input-border-width   );
 
-	/* box-shadow        : var(  --ui-input-shadow		); */
+    /* box-shadow        : var(  --ui-input-shadow		); */
 
-	color             : var(  --ui-input-color			);
+    color           : var(  --ui-input-color          );
 
-	padding           : var(  --ui-space-200			);
-	margin            : var(  --ui-space-no				);
+    padding         : var(  --ui-space-300            )  ;
+    margin          : var(  --ui-space-no             );
 
-  }
-	input[type="button"]:hover,
-	input[type="color"]:hover,
-	input[type="email"]:hover,
-	input[type="number"]:hover,
-	input[type="password"]:hover,
-	input[type="search"]:hover,
-	input[type="tel"]:hover,
-	input[type="text"]:hover,
-	input[type="url"]:hover,
-	textarea:hover {
+    }
+    input[type="button"]:hover,
+    input[type="color"]:hover,
+    input[type="email"]:hover,
+    input[type="number"]:hover,
+    input[type="password"]:hover,
+    input[type="search"]:hover,
+    input[type="tel"]:hover,
+    input[type="text"]:hover,
+    input[type="url"]:hover,
+    textarea:hover {
 
-	/* border          	: var(--ui-input-border); */
+    /* border       : var(  --ui-input-border       ); */
 
-	box-shadow      	: var(  --ui-input-shadow			);
+    box-shadow      : var(  --ui-input-shadow       );
 
-    border     			: var(  --ui-input-border-hover		);
+    border          : var(  --ui-input-border-hover );
 
-  }
+    }
+    input[type="button"]:focus,
+    input[type="color"]:focus,
+    input[type="email"]:focus,
+    input[type="number"]:focus,
+    input[type="password"]:focus,
+    input[type="search"]:focus,
+    input[type="tel"]:focus,
+    input[type="text"]:focus,
+    input[type="url"]:focus,
+    textarea:focus {
 
+    /* border       : var(  --ui-input-border); */
 
-	/* 	-------------------- -------------------- -------------------- -------------------- BUTTON  */
+    box-shadow      : var(  --ui-input-shadow       );
 
-	
-	input[type="image"] svg path {
+    border          : var(  --ui-input-border-focus );
 
-		fill: #0f0 !important; 
-		color: #ff5722;
+    }
 
-	}
+    /* 	-------------------- -------------------- -------------------- -------------------- BUTTON  */
 
-	/* {
-		color			: var(--ui-color-link);
-	} */
 
-	input[type="submit"] {
+    input[type="image"] svg path {
+        color: var( --ui-link)
+    }
 
-		background		: var(  --ui-input-background			);
+    /* {
+        color			: var(--ui-color-link);
+    } */
 
-		border-color	: rgba(248, 194, 0, 1);
-		border-color	: var(--ui-color-link);
-		/* border-color	: var(  --ui-input-border-color		); */
-		border-radius	: var(  --ui-input-border-radius	);
-		border-style	: var(  --ui-input-border-style		);
-		border-width	: var(  --ui-input-border-width		);
+    input[type="submit"],
+    input[type="submit"].button-cancel {
 
-		/* box-shadow        : var(  --ui-input-shadow		); */
-		box-shadow		: 0 2px 2px 0 rgba(248, 194, 0, 0.42), 0 3px 1px -2px rgba(248, 194, 0, 0.42), 0 1px 5px 0 rgba(248, 194, 0, 0.42);
-		/* color		: var(  --ui-input-color			); */
-		color			:var(--ui-color-link);
-		cursor			: pointer;
+        background      : var(  --ui-input-background       );
 
-		padding			: var(  --ui-space-300		) var(  --ui-space-700		);
+        border-color    : var(  --ui-input-border-color     ); /*border-color    : hsla(47, 100%, 49%, 0.42);*/
+        border-radius   : var(  --ui-input-border-radius    );
+        border-style    : var(  --ui-input-border-style     );
+        border-width    : var(  --ui-input-border-width     );
 
-		transition		: 0.2s ease-in;
+        /* box-shadow   : var(  --ui-input-shadow		); */
+        box-shadow      : 0 1px 1px 0 rgba(248, 194, 0, 0.42), 0 1px 1px -1px rgba(248, 194, 0, 0.42), 0 0px 1px 0 rgba(248, 194, 0, 0.42);
+        /* color        : var(  --ui-input-color        ); */
+        color           : var(  --ui-color-link         );
+        cursor          : pointer;
 
-	}
+        padding         : var(  --ui-space-300      ) var(  --ui-space-700  );
 
-	input[type="submit"]:hover {
+        transition      : 0.2s ease-in;
 
-		background        : var(  --ui-input-background			);
-		background        : rgba(248, 194, 0, 0.42);
-		border-color      : rgba(248, 194, 0, 0.42);
-		/* box-shadow        : 0 12px 20px -10px rgba(248, 194, 0, 0.42), 0 4px 20px 0 rgba(0, 0, 0, 0.12), 0 8px 10px -5px rgba(248, 194, 0, 0.2); */
-		/* box-shadow        : 0 2px 2px 0 rgba(248, 194, 0, 0.42), 0 3px 1px -2px rgba(248, 194, 0, 0.42), 0 1px 5px 0 rgba(248, 194, 0, 0.42); */
-		box-shadow        : 0 14px 26px -12px rgba(248, 194, 0, 0.42), 0 4px 23px 0 rgba(248, 194, 0, 0.42), 0 8px 10px -5px rgba(248, 194, 0, 0.42);
-		/* color             : var(  --ui-input-color					); */
-		color             : #ffffff;
+    }
 
-	}
+    input[type="submit"]:hover,
+    input[type="submit"].button-cancel:hover {
 
-	input.button-delete,
-	input.button-unassign,
-	input.buttom-uninstall,
-	input[type="reset"] {
+        background      : var(  --ui-input-background			);
+        background      : rgba(248, 194, 0, 0.42);
+        border-color    : rgba(248, 194, 0, 0.42);
+        /* box-shadow   : 0 12px 20px -10px rgba(248, 194, 0, 0.42), 0 4px 20px 0 rgba(0, 0, 0, 0.12), 0 8px 10px -5px rgba(248, 194, 0, 0.2); */
+        /* box-shadow   : 0 2px 2px 0 rgba(248, 194, 0, 0.42), 0 3px 1px -2px rgba(248, 194, 0, 0.42), 0 1px 5px 0 rgba(248, 194, 0, 0.42); */
+        box-shadow      : 0 14px 26px -12px rgba(248, 194, 0, 0.42), 0 4px 23px 0 rgba(248, 194, 0, 0.42), 0 8px 10px -5px rgba(248, 194, 0, 0.42);
+        /* color        : var(  --ui-input-color    ); */
+        color           : #ffffff;
 
-		background        : var(  --ui-input-background			);
+    }
 
-		border-color      : #ff5722;
-		border-width      : var(  --ui-input-border-width		);
+    input[type="submit"].button-delete,
+    input.button-unassign,
+    input.buttom-uninstall,
+    input[type="reset"] {
 
-		box-shadow        : 0 2px 2px 0 #ff572224, 0 3px 1px -2px #ff572233, 0 1px 5px 0 #ff57221f;
+        background      : var(  --ui-input-background       );
 
-		color             : #ff5722;
+        border-color    : #ff5722;
+        border-width    : var(  --ui-input-border-width     );
 
-		cursor            : pointer;
+        box-shadow      : 0 2px 2px 0 #ff572224, 0 3px 1px -2px #ff572233, 0 1px 5px 0 #ff57221f;
 
-		padding           : 5px 20px;
-		transition        : 0.2s ease-in;
+        color           : #ff5722;
 
-	}
+        cursor          : pointer;
 
-	input.button-delete:hover,
-	input.button-unassign:hover,
-	input.buttom-uninstall:hover,
-	input[type="reset"]:hover {
+        padding         : 5px 20px;
+        transition      : 0.2s ease-in;
 
-		background        : #ff5722;
+    }
+    input[type="submit"].button-delete:hover,
+    input.button-delete:hover,
+    input.button-unassign:hover,
+    input.buttom-uninstall:hover,
+    input[type="reset"]:hover {
 
-		border-color      : #ff5722;
+        background      : #ff5722;
 
-		box-shadow        : 0 14px 26px -12px #ff57226b, 0 4px 23px 0 #0000001f, 0 8px 10px -5px #ff572233;
+        border-color    : #ff5722;
 
-		color             : #ffffff;
+        box-shadow      : 0 14px 26px -12px #ff57226b, 0 4px 23px 0 #0000001f, 0 8px 10px -5px #ff572233;
 
-	}
+        color           : #ffffff;
 
+    }
 
-	/* 	-------------------- -------------------- -------------------- -------------------- SELECT  */
 
-	select {
+    /* 	-------------------- -------------------- -------------------- -------------------- SELECT  */
 
-		background        : var(  --ui-input-background			);
+    select {
 
-		border-color      : var(  --ui-input-border-color		);
-		border-radius     : var(  --ui-input-border-radius	);
-		border-style      : var(  --ui-input-border-style		);
-		border-width      : var(  --ui-input-border-width		);
+        background      : var(  --ui-input-background       );
 
-		box-shadow        : 0 2px 2px 0 rgba(66, 165, 245, 0.14), 0 3px 1px -2px rgba(66, 165, 245, 0.2), 0 1px 5px 0 rgba(66, 165, 245, 0.12);
+        border-color    : var(  --ui-input-border-color     );
+        border-radius   : var(  --ui-input-border-radius    );
+        border-style    : var(  --ui-input-border-style     );
+        border-width    : var(  --ui-input-border-width     );
 
-		color             : var(  --ui-input-color					);
+        box-shadow      : 0 2px 2px 0 rgba(66, 165, 245, 0.14), 0 3px 1px -2px rgba(66, 165, 245, 0.2), 0 1px 5px 0 rgba(66, 165, 245, 0.12);
 
-		padding           : 0.2rem;
-		transition        : 0.2s ease-in;
+        color           : var(  --ui-input-color            );
 
-	}
+        padding         : 0.2rem;
+        transition      : 0.2s ease-in;
 
-	select:active,
-	select:hover,
-	select:focus {
+    }
 
-		background        : var(  --ui-input-background			);
+    select:active,
+    select:hover,
+    select:focus {
 
-		border-color      : var(  --ui-input-border-hover		);
+        background      : var(  --ui-input-background       );
 
-		/* color             : var(--ui-input-border-hover); */
+        border-color    : var(  --ui-input-border-hover     );
 
+        /* color             : var(--ui-input-border-hover); */
 
-	}
 
-	/* 	textarea {
-		background:
-		linear-gradient(rgba(35, 40, 49, 0.8) 30%, rgba(52, 59, 70, 0.8)),
-		linear-gradient(rgba(52, 59, 70, 0.8), rgba(35, 40, 49, 0.8) 70%) 0 100%,
-		radial-gradient(farthest-side at 50% 0, rgba(34,34,34, 0.8), rgba(10,10,10,0)),
-		radial-gradient(farthest-side at 50% 100%, rgba(34,34,34, 0.8), rgba(10,10,10,0)) 0 100%;
-		background-color: var(  --ui-input-background			);
-		background-repeat: no-repeat;
-		background-attachment: local, local, scroll, scroll;
-		background-size: 100% 15px, 100% 15px, 100% 10px, 100% 10px;
-	} */
+    }
 
-/* 	-------------------- -------------------- -------------------- -------------------- CHECKBOX & RADIO  */
+    /* 	textarea {
+        background:
+        linear-gradient(rgba(35, 40, 49, 0.8) 30%, rgba(52, 59, 70, 0.8)),
+        linear-gradient(rgba(52, 59, 70, 0.8), rgba(35, 40, 49, 0.8) 70%) 0 100%,
+        radial-gradient(farthest-side at 50% 0, rgba(34,34,34, 0.8), rgba(10,10,10,0)),
+        radial-gradient(farthest-side at 50% 100%, rgba(34,34,34, 0.8), rgba(10,10,10,0)) 0 100%;
+        background-color: var(  --ui-input-background			);
+        background-repeat: no-repeat;
+        background-attachment: local, local, scroll, scroll;
+        background-size: 100% 15px, 100% 15px, 100% 10px, 100% 10px;
+    } */
 
-  @supports (-webkit-appearance: none) or (-moz-appearance: none) {
+    /* 	-------------------- -------------------- -------------------- -------------------- CHECKBOX & RADIO  */
 
-	input[type='checkbox'],
-	input[type='radio'] {
+    @supports (-webkit-appearance: none) or (-moz-appearance: none) {
 
-		-webkit-appearance: none;
-		-moz-appearance   : none;
+    input[type='checkbox']:not(.ui-checkboxradio),
+    input[type='radio']:not(.ui-checkboxradio) {
+    /* input[type='checkbox'],
+    input[type='radio'] { */
 
-		background        : var(  --input-check-background		);
+        -webkit-appearance: none;
+        -moz-appearance   : none;
 
-		border            : var(  --input-check-border				);
+        background        : var(  --input-check-background      );
 
-		box-shadow        : var(  --input-check-shadow-inner	);
+        border            : var(  --input-check-border          );
 
-		cursor            : pointer;
-		height            : 20px;
-		margin            : 0;
-		outline           : none;
-		padding           : 0;
-		position          : relative;
-		transition        : background .3s ease, border-color .3s ease;
+        box-shadow        : var(  --input-check-shadow-inner    );
 
-	}
+        cursor            : pointer;
+        height            : 20px;
+        margin            : 0;
+        outline           : none;
+        padding           : 0;
+        position          : relative;
+        transition        : background .3s ease, border-color .3s ease;
 
-	input[type='checkbox']:after,
-	input[type='radio']:after {
+    }
 
-		content			: '';
-		display			: block;
-		left			: 0;
-		position		: absolute;
-		top				: 0;
+    input[type='checkbox']:after,
+    input[type='radio']:after {
 
-		transition		: opacity .2s ease, -webkit-transform .3s ease, -webkit-filter .3s ease;
-		transition		: transform .3s ease, opacity .2s ease, filter .3s ease;
-		transition		: transform .3s ease, opacity .2s ease, filter .3s ease, -webkit-transform .3s ease, -webkit-filter .3s ease;
+        content         : '';
+        display         : block;
+        left            : 0;
+        position        : absolute;
+        top             : 0;
 
-	}
+        /* transition   : opacity .2s ease, -webkit-transform .3s ease, -webkit-filter .3s ease; */
+        transition      : transform .3s ease, opacity .2s ease, filter .3s ease;
+        /* transition   : transform .3s ease, opacity .2s ease, filter .3s ease, -webkit-transform .3s ease, -webkit-filter .3s ease; */
 
-	input[type='checkbox']:checked,
-	input[type='radio']:checked {
+    }
 
-		animation		: pulse 1s;
+    input[type='checkbox']:checked,
+    input[type='radio']:checked {
 
-		background		: var(--input-check-active);
+        animation       : pulse 1s;
 
-		border			: var(--input-check-border);
+        background      : var(  --input-check-active    );
 
-		box-shadow		: 0 0 0 8px rgba(52, 152, 219, 0);
+        border          : var(  --input-check-border    );
 
-	}
+        box-shadow      : 0 0 0 8px rgba(52, 152, 219, 0);
 
-	input[type='checkbox']:checked:after,
-	input[type='radio']:checked:after {
+    }
 
-		filter			: drop-shadow(0 1px 2px var(  --input-check-shadow-inner	));
+    input[type='checkbox']:checked:after,
+    input[type='radio']:checked:after {
 
-		transition		: opacity 0.3s ease, -webkit-filter 0.3s ease, -webkit-transform 0.6s cubic-bezier(0.175, 0.88, 0.32, 1.2);
-		transition		: opacity 0.3s ease, filter 0.3s ease, transform 0.6s cubic-bezier(0.175, 0.88, 0.32, 1.2);
-		transition		: opacity 0.3s ease, filter 0.3s ease, transform 0.6s cubic-bezier(0.175, 0.88, 0.32, 1.2), -webkit-filter 0.3s ease, -webkit-transform 0.6s cubic-bezier(0.175, 0.88, 0.32, 1.2);
+        filter          : drop-shadow(0 1px 2px var(  --input-check-shadow-inner    ));
+        transition      : opacity 0.3s ease, filter 0.3s ease, transform 0.6s cubic-bezier(0.175, 0.88, 0.32, 1.2);
+    }
 
-	}
+    input[type='checkbox']:disabled,
+    input[type='radio']:disabled {
 
-	input[type='checkbox']:disabled,
-	input[type='radio']:disabled {
+        background      : var(  --input-check-disabled      );
 
-		background		: var(  --input-check-disabled	);
+        cursor          : not-allowed;
+        opacity         : .9;
 
-		cursor			: not-allowed;
-		opacity			: .9;
+    }
 
-	}
+    input[type='checkbox']:disabled:checked,
+    input[type='radio']:disabled:checked {
 
-	input[type='checkbox']:disabled:checked,
-	input[type='radio']:disabled:checked {
+        background      : var(  --input-check-disabled      );
 
-		background		: var(--input-check-disabled);
+        border          : var(  --input-check-border        );
 
-		border			: var(--input-check-border);
+    }
 
-	}
+    input[type='checkbox']:hover:not(:checked):not(:disabled),
+    input[type='radio']:hover:not(:checked):not(:disabled) {
 
-	input[type='checkbox']:hover:not(:checked):not(:disabled),
-	input[type='radio']:hover:not(:checked):not(:disabled) {
+        border          : var(  --input-check-border-hover  );
 
-		border			: var(--input-check-border-hover);
+    }
 
-	}
+    input[type='checkbox']:not(.switch),
+    input[type='radio']:not(.switch) {
+        margin          : 0 var(  --ui-space-300   );
+        vertical-align  : bottom;
+        width           : 20px;
 
-	input[type='checkbox']:not(.switch),
-	input[type='radio']:not(.switch) {
+    }
 
-		width			: 20px;
+    input[type='checkbox']:not(.switch):after,
+    input[type='radio']:not(.switch):after {
 
-	}
+        opacity         : 0;
 
-	input[type='checkbox']:not(.switch):after,
-	input[type='radio']:not(.switch):after {
+    }
 
-		opacity			: 0;
+    input[type='checkbox']:not(.switch):checked:after,
+    input[type='radio']:not(.switch):checked:after {
 
-	}
+        opacity         : 1;
 
-	input[type='checkbox']:not(.switch):checked:after,
-	input[type='radio']:not(.switch):checked:after {
+    }
 
-		opacity			: 1;
+    input[type='checkbox']:not(.switch) {
 
-	}
+        border-radius   : 6px;
 
-	input[type='checkbox']:not(.switch) {
+    }
 
-		border-radius	: 6px;
+    input[type='checkbox']:not(.switch):after {
 
-	}
+        border          : 2px solid var(  --input-check-active-inner    );
+        border-left     : 0;
+        border-top      : 0;
+        height          : 9px;
+        left            : 7px;
+        top             : 4px;
+        transform       : rotate(20deg);
+        width           : 5px;
 
-	input[type='checkbox']:not(.switch):after {
+    }
 
-		border			: 2px solid var(--input-check-active-inner);
-		border-left		: 0;
-		border-top		: 0;
-		height			: 9px;
-		left			: 7px;
-		top				: 4px;
-		transform		: rotate(20deg);
-		width			: 5px;
+    input[type='checkbox']:not(.switch):checked:after {
 
-	}
+        transform       : rotate(43deg);
 
-	input[type='checkbox']:not(.switch):checked:after {
+    }
 
-		transform		: rotate(43deg);
+    input[type='checkbox'].switch {
 
-	}
+        border-radius   : 11px;
+        width           : 38px;
 
-	input[type='checkbox'].switch {
+    }
 
-		border-radius	: 11px;
-		width			: 38px;
+    input[type='checkbox'].switch:after {
 
-	}
+        background      : var(  --input-check-disabled-inner    );
+        border-radius   : 50%;
+        height          : 18px;
+        left            : 1px;
+        top             : 0;
+        width           : 18px;
 
-	input[type='checkbox'].switch:after {
+    }
 
-		background		: var(--input-check-disabled-inner );
-		border-radius	: 50%;
-		height			: 18px;
-		left			: 1px;
-		top				: 0;
-		width			: 18px;
+    input[type='checkbox'].switch:checked:after {
 
-	}
+        background      : var(  --input-check-active-inner      );
+        transform       : translateX(17px);
 
-	input[type='checkbox'].switch:checked:after {
+    }
 
-		background		: var(--input-check-active-inner);
-		transform		: translateX(17px);
+    input[type='checkbox'].switch:disabled:not(:checked):after {
 
-	}
+        opacity         : .6;
 
-	input[type='checkbox'].switch:disabled:not(:checked):after {
+    }
 
-		opacity			: .6;
+    input[type='radio'] {
 
-	}
+        border-radius   : 50%;
 
-	input[type='radio'] {
+    }
 
-		border-radius	: 50%;
+    input[type='radio']:after {
 
-	}
+        background      : var(  --input-check-active-inner      );
 
-	input[type='radio']:after {
+        border-radius   : 50%;
 
-		background		: var(--input-check-active-inner);
+        height          : 17px;
 
-		border-radius	: 50%;
+        opacity         : 0;
 
-		height			: 17px;
+        transform       : scale(0.7);
 
-		opacity			: 0;
+        width           : 17px;
 
-		transform		: scale(0.7);
+    }
 
-		width			: 17px;
+    input[type='radio']:checked:after {
 
-	}
+        background      : var(  --input-check-active-inner      );
 
-	input[type='radio']:checked:after {
+        transform       : scale(0.5);
 
-		background		: var(--input-check-active-inner);
+    }
 
-		transform		: scale(0.5);
+    @keyframes pulse {
+        from {
+            box-shadow  : 0 0 0 0 var(  --input-check-animation );
+        }
+    }
 
-	}
-
-	@keyframes pulse {
-		from {
-			box-shadow	: 0 0 0 0 var(--input-check-animation);
-		}
-	}
-
-}
+    }

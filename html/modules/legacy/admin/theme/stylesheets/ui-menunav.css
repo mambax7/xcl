@@ -1,106 +1,105 @@
 /*
-	XOOPS Cube Theme : XCL Admin Flex Grid
-	Distribution : XCL 2.3 Alpha
-	Version : 0.0.5
-	Author : Nuno Luciano aka Gigamaster
-	Date : 2019-11-11
-	URL : https://github.com/xoopscube/xcl/
+XOOPSCube Theme : XCL Admin Flex Grid
+Distribution : XCL 2.3 Alpha
+Version : 0.0.5
+Author : Nuno Luciano aka Gigamaster
+Date : 2019-11-11
+URL : https://github.com/xoopscube/xcl/
 
 
-	-------------------- -------------------- -------------------- -------------------- NAV IMPORT */
+    -------------------- -------------------- -------------------- -------------------- NAV IMPORT */
 
-	@import "./ui-nav-aside.css";	     			/*      Nav-side			 */
-	@import "./ui-nav-header.css";	     	 /*      Nav-header		  */
+    @import "./ui-nav-aside.css";        /*      Nav-side            */
+    @import "./ui-nav-header.css";      /*      Nav-header          */
 
-/* -------------------- -------------------- -------------------- NAV ADMIN */
+    /* -------------------- -------------------- -------------------- NAV ADMIN */
 
-.adminavi,
-.adminavi-sub,
-.admin-menu {
+    .adminavi,
+    .adminavi-sub,
+    .admin-menu {
 
-	background			: var(  --ui-color-200			);
+    background      : var(  --ui-color-600   );
 
-	border-radius		: var(  --ui-border-radius	);
+    /* border-radius   : var(  --ui-border-radius      ); */
+    border-bottom-left-radius: var(  --ui-border-radius      );;
+    border-bottom-right-radius: var(  --ui-border-radius      );;
 
-	/* box-shadow			: 0 4px 8px rgba(159, 162, 177, 0.8); */
+    /* box-shadow   : 0 4px 8px rgba(159, 162, 177, 0.8); */
 
-	display					: inline-flex;
-	overflow				: hidden;
-	max-width				: 100%;
+    display         : inline-flex;
+    overflow        : hidden;
+    max-width       : 100%;
 
-}
+    }
 
-.adminavi-sub {
+    .adminavi-sub {
 
-	/* box-shadow			: var(  --ui-shadow-300		); */
-	font-size				: var(  --ui-text-100			);
-	margin					: var(  --ui-space-700		) 0 ;
-	text-align			: center;
-	list-style-type: none;
-}
-
-
-
-a.adminavi-item {
-
-	/* border-bottom		: 3px solid var(--ui-text-color); */
-
-	color						: var(--ui-text-color);
-	font-weight			: 600;
-	padding					: 10px;
-	text-decoration	: none;
-	transition			: .3s;
-	z-index					: 1;
-
-}
-
-a.adminavi-item:not(.selected) {
-
-	background      : transparent;
-}
-
-a.adminavi-item:not(.selected):hover {
-	color						: var(--ui-color-link-hover);
-	border-bottom		: 3px solid var(--ui-color-link-hover);
-
-}
-
-
-a.adminavi-item.selected,
-a.adminavi-item.selected:active {
-
-	color		 				: var(--ui-color-link-hover);
-	border-bottom		: 3px solid var(--ui-color-link-hover);
-	outline-width		: 0;
-}
+    /* box-shadow   : var(  --ui-shadow-300     ); */
+    font-size       : var(  --ui-size-200       );
+    margin          : var(  --ui-space-600      ) 0 ;
+    text-align      : center;
+    list-style-type : none;
+    }
 
 
 
+    a.adminavi-item {
+
+    color           : var(  --ui-link      );
+    font-weight     : 300;
+    padding         : 10px;
+    text-decoration : none;
+    transition      : .3s;
+
+    }
+
+    a.adminavi-item:not(.selected) {
+
+    background      : transparent;
+    }
+
+    a.adminavi-item:not(.selected):hover {
+    color           : var(  --ui-link-hover     );
+    border-bottom   : 2px solid var(  --ui-link-hover       );
+
+    }
 
 
-/* fix this > remove altsys css */
+    a.adminavi-item.selected,
+    a.adminavi-item.selected:active {
 
-/* .admin-menu, */
-.altsys_mymenu {
+    color           : var(  --ui-link-hover     );
+    border-bottom   : 2px solid var(  --ui-link-hover       );
+    outline-width   : 0;
+    }
 
-align-items				: flex-start;
-background      	: var(--ui-color-400);
 
-border          	: 0px;
-border-radius   	: 5px;
-box-shadow      	: var(--ui-shadow-200);
 
-display         	: flex;
-flex-flow       	: row;
-flex-wrap       	: wrap;
 
-}
 
-.admin-menu > div,
-.altsys_mymenu > div {
+    /* fix this > remove altsys css */
 
-background				: var(--ui-color-400);
-border-radius   	: 5px;
-padding         	: 1rem;
+    /* .admin-menu, */
+    .altsys_mymenu {
 
-}
+    align-items     : flex-start;
+    background      : var(  --ui-color-400      );
+
+    border          : 0px;
+    border-radius   : 5px;
+    box-shadow      : var(  --ui-shadow-200     );
+
+    display         : flex;
+    flex-flow       : row;
+    flex-wrap       : wrap;
+
+    }
+
+    .admin-menu > div,
+    .altsys_mymenu > div {
+
+    background      : var(  --ui-color-400      );
+    border-radius   : 5px;
+    padding         : 1rem;
+
+    }

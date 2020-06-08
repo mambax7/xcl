@@ -1,250 +1,251 @@
 /*
-	XOOPS Cube Theme : XCL Admin Flex Grid
-	Distribution : XCL 2.3 Alpha
-	Version : 0.0.5
-	Author : Nuno Luciano aka Gigamaster
-	Date : 2019-11-11
-	URL : https://github.com/xoopscube/xcl/
+    XOOPSCube Theme : XCL Admin Flex Grid
+    Distribution : XCL 2.3 Alpha
+    Version : 0.0.5
+    Author : Nuno Luciano aka Gigamaster
+    Date : 2019-11-11
+    URL : https://github.com/xoopscube/xcl/
 
-	-------------------- -------------------- -------------------- -------------------- NAV MOBILE */
+    -------------------- -------------------- -------------------- -------------------- NAV MOBILE */
 
-	.nav-mobile {
+    .nav-mobile {
 
-		background				: var(  --ui-color-500		);
+        background      : var(  --ui-color-500      );
 
-		border-color			: var(  --ui-border-color		);
-		border-radius			: 0 var(  --ui-border-radius	) 0 0;
-		border-style			: var(  --ui-border-style		);
-		border-width			: var(  --ui-border-width		);
-		box-shadow				: var(  --ui-shadow-300			);
+        border-color    : var(  --ui-border-color   );
+        border-radius   : 0 var(--ui-border-radius  ) 0 0;
+        border-style    : var(  --ui-border-style   );
+        border-width    : var(  --ui-border-width   );
+        box-shadow      : var(  --ui-shadow-300     );
 
-		/* border-top-right-radius		: 5px;
-		border-bottom-right-radius: 5px; */
+        /* border-top-right-radius  : 5px;
+        border-bottom-right-radius: 5px; */
 
-		height						: 30px;
-		left							: 0px; /*required for transition */
-		padding						: 3px;
-		position					: fixed;
-		width							: 30px;
-		transition				: all 0.6s ease-in-out;
-		z-index						: 10;
-		top								: 127px;
+        height          : 30px;
+        left            : 0px; /*required for transition */
+        padding         : 3px;
+        position        : fixed;
+        width           : 30px;
+        transition      : all 0.6s ease-in-out;
+        top             : 127px;
+        z-index         : 700;
 
-	}
+    }
 
-	.nav-mobile-close {
+    .nav-mobile-close {
 
-		left							: 237px;
-		top								: 127px;
+        left            : 237px;
+        top             : 127px;
 
-	}
+    }
 
-	/* -------------------- -------------------- -------------------- -------------------- SIDE NAV */
+    /* -------------------- -------------------- -------------------- -------------------- SIDE NAV */
 
-	.nav-aside {
+    .nav-aside {
 
-		background				: var(  --ui-aside-background		);
+        background      : var(  --ui-aside-background   );
 
-		color							: var(  --ui-text-color					);
+        color           : var(  --ui-color-600         );
 
-		grid-area					: nav-aside;
+        grid-area       : nav-aside;
 
-		height						: 100%;
-		left							: 0;
-		overflow-x				: hidden;
-		overflow-y				: auto;
-		position					: fixed;
-		padding-top				: 50px;
-		transform					: translateX(-235px);
-		transition				: all 0.6s ease-in-out;
-		width							: 235px;
-		z-index						: 2;
+        height          : 100%;
+        left            : 0;
+        overflow-x      : hidden;
+        overflow-y      : auto;
+        position        : fixed;
+        margin-top     : 50px;
+        transform       : translateX(-235px);
+        transition      : all 0.6s ease-in-out;
+        width           : 235px;
+        z-index         : 710;
 
-	}
+    }
 
-	.nav-aside-active {
+    .nav-aside-active {
 
-		transform					: translateX(0);
+        transform       : translateX(0);
 
-	}
+    }
 
-/* -------------------- -------------------- -------------------- NAV-SIDE-MENU */
+    /* -------------------- -------------------- -------------------- NAV-SIDE-MENU */
 
-	.nav-side-menu {
+    .nav-side-menu {
 
-		background			: var(  --ui-nav-side-background		);
+        background      : var(  --ui-nav-side-background    );
+        background-image: var(  --ui-nav-side-image         );
 
-		box-shadow      : var(  --ui-nav-side-box-shadow		);
+        box-shadow      : var(  --ui-nav-side-box-shadow    );
 
-		padding         : var(  --ui-nav-side-padding				);
-		margin          : var(  --ui-nav-side-margin				);
+        padding         : var(  --ui-nav-side-padding       );
+        margin          : var(  --ui-nav-side-margin        );
 
-		width	          : var(  --ui-nav-side-width					);
+        width           : var(  --ui-nav-side-width         );
 
 
-		border-top-right-radius: 5px;
-		border-bottom-right-radius: 5px;
+        border-top-right-radius: 5px;
+        border-bottom-right-radius: 5px;
 
-		list-style-type : none;
+        list-style-type : none;
 
-	}
+    }
 
 
-	/* -------------------- -------------------- NAV-SIDE - Module Block */
+    /* -------------------- -------------------- NAV-SIDE - Module Block */
 
-	/* > nav-block | .nav-block-open:after
-			nav-module-icon | nav-module-name
-				> module-admin
-					nav-module-link
-	*/
+    /* > nav-block | .nav-block-open:after
+            nav-module-icon | nav-module-name
+                > module-admin
+                    nav-module-link
+    */
 
-	.nav-block {
+    .nav-block {
 
-		border-left			: 3px solid transparent;
-		color						: var(--ui-link);
-		padding					: 10px 10px;
-		position				: relative;
-		text-transform	: capitalize;
+        border-left     : 3px solid transparent;
+        color           : var(  --ui-link   );
+        padding         : 10px 10px;
+        position        : relative;
+        text-transform	: capitalize;
 
-	}
+    }
 
-	/* Animation Open */
-	.nav-block:after {
+    /* Animation Open */
+    .nav-block:after {
 
-		border-width		: 1px 0 0 1px;
-		border-style		: solid;
-		border-color		: var(  --ui-color-link-hover				);
-		content					: "";
-		height					: var(  --ui-nav-block-height				);
-		position				: absolute;
-		right						: 1em;
-		top							: 47%;
-		transition			: all 0.3s ease-out;
-		transform				: rotate(135deg) translate(0, -50%);
-		transform-origin: top;
-		width						: var(  --ui-nav-block-width				);
+        border-width    : 1px 0 0 1px;
+        border-style    : solid;
+        border-color    : var(  --ui-link-hover   );
+        content         : "";
+        height          : var(  --ui-nav-set-height   );
+        position        : absolute;
+        right           : 1em;
+        top             : 47%;
+        transition      : all 0.3s ease-out;
+        transform       : rotate(135deg) translate(0, -50%);
+        transform-origin: top;
+        width           : var(  --ui-nav-set-width    );
 
-	}
+    }
 
-	.nav-block:hover {
+    .nav-block:hover {
 
-		background			: var(  --ui-nav-block-background		);
+        background      : var(  --ui-nav-block-background   );
 
-		border-left			: var(  --ui-nav-block-border-color	)
-											var(  --ui-nav-block-border-style	)
-											var(  --ui-nav-block-border-width	);
+        border-left     : var(  --ui-nav-block-border-color )
+                          var(  --ui-nav-block-border-style	)
+                          var(  --ui-nav-block-border-width	);
 
-		color						: var(  --ui-color-link-hover				);
+        color           : var(  --ui-link-hover       );
 
-	}
+    }
 
-	.nav-side-menu li:last-child .nav-block:hover {
+    .nav-side-menu li:last-child .nav-block:hover {
 
-		border-bottom-right-radius: var(  --ui-border-radius );
+        border-bottom-right-radius: var(    --ui-border-radius  );
 
-	}
+    }
 
-	/* .nav-block:first-child:hover{
-		border-top-right-radius: 5px;
-		} */
+    /* .nav-block:first-child:hover{
+        border-top-right-radius: 5px;
+        } */
 
-	.nav-module-icon {
+    .nav-module-icon {
 
-		align-items			: center;
-		display					: flex;
-		justify-content : center;
+        align-items     : center;
+        display         : flex;
+        justify-content : center;
 
-	}
+    }
 
-	/* -------------------- -------------------- NAV-SIDE - Module Name */
+    /* -------------------- -------------------- NAV-SIDE - Module Name */
 
-	.nav-module-name {
+    .nav-module-name {
 
-		margin					: 0 10px;
-		border-left			: 3px solid transparent;
-	}
+        margin          : 0 10px;
+        border-left     : 3px solid transparent;
+    }
 
 
-	.nav-block-open {
+    .nav-block-open {
 
-		background			: var(  --ui-nav-block-background		);
-		border-left			: 3px solid transparent;
-		color						: var(  --ui-color-link-hover				);
+        background      : var(  --ui-nav-block-background   );
+        border-left     : 3px solid transparent;
+        color           : var(  --ui-link-hover   );
 
-	}
+    }
 
-	.nav-block:hover {
+    .nav-block:hover {
 
-		border-color		: var(  --ui-nav-block-border-color	);
+        border-color    : var(  --ui-nav-block-border-color );
 
-	}
+    }
 
-	.nav-block-open:after {
+    .nav-block-open:after {
 
-		transform				: rotate(-135deg) translate(0, -50%); /* Animation */
+        transform       : rotate(-135deg) translate(0, -50%); /* Animation */
 
-	}
+    }
 
-	.nav-side-menu .nav-block-close {
+    .nav-side-menu .nav-block-close {
 
-		max-height			: 0;
-		visibility			: hidden;
+        max-height      : 0;
+        visibility      : hidden;
 
-	}
+    }
 
 
-	/* -------------------- -------------------- NAV-Module-Admin */
+    /* -------------------- -------------------- NAV-Module-Admin */
 
-	.nav-module-admin {
+    .nav-module-admin {
 
-		background			: var(  --ui-nav-block-background		);
+        background      : var(  --ui-nav-block-background   );
 
-		list-style-type : none;
-		margin					: 0;
-		overflow				: hidden;
-		padding					: 0;
-		transition			: all 0.4s ease-in-out;
-		visibility			: visible;
+        list-style-type : none;
+        margin          : 0;
+        overflow        : hidden;
+        padding         : 0;
+        transition      : all 0.4s ease-in-out;
+        visibility      : visible;
 
-	}
+    }
 
-	.nav-module-link {
+    .nav-module-link {
 
-		align-items			: center;
-		border-left			: var(  --ui-nav-block-border-color	)
-											var(  --ui-nav-block-border-style	)
-											var(  --ui-nav-block-border-width	);
-		display					: flex;
-		line-height			: 2.5rem;
+        align-items     : center;
+        border-left     : var(  --ui-nav-block-border-color )
+                          var(  --ui-nav-block-border-style )
+                          var(  --ui-nav-block-border-width );
+        display         : flex;
+        line-height     : 2.5rem;
 
-	}
+    }
 
-	.nav-module-link a,
-	.nav-module-link a:hover {
+    .nav-module-link a,
+    .nav-module-link a:hover {
 
-		color						: var(  --ui-nav-block-color-link		);
-		padding					: 0 0 0 1.5rem;
-		width						: 100%;
+        color           : var(  --ui-nav-block-color-link   );
+        padding         : 0 0 0 1.5rem;
+        width           : 100%;
 
-	}
+    }
 
-	.nav-module-link:hover {
+    .nav-module-link:hover {
 
-		background			: var(--ui-nav-hover);
-		color						: var(--ui-nav-link-color);
+        background      : var(  --ui-nav-hover      );
+        color           : var(  --ui-nav-link-color );
 
-	}
+    }
 
 
-	/* -------------------- -------------------- NAV-Module-Options Icons */
+    /* -------------------- -------------------- NAV-Module-Options Icons */
 
-	.nav-module-options > a,
-	.nav-module-options > a:hover {
+    .nav-module-options > a,
+    .nav-module-options > a:hover {
 
-		align-items			: center;
-		display					: flex;
-		justify-content	: center;
-		padding					: var(  --ui-space-400	) 0;
-		width						: 100%;
+        align-items     : center;
+        display         : flex;
+        justify-content : center;
+        padding         : var(  --ui-space-400  ) 0;
+        width           : 100%;
 
-	}
+    }

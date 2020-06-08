@@ -10,6 +10,7 @@
 <div class="ui-dev-mode"><{$smarty.template}></div>
 
 <table class="outer">
+    <thead>
   <tr>
     <th>&nbsp;</th>
     <th><{$smarty.const._AD_USER_LANG_GROUP_GID}></th>
@@ -19,6 +20,8 @@
     <th><{$smarty.const._AD_USER_LANG_GROUP_AMMO}></th>
     <th><{$smarty.const._AD_USER_LANG_CONTROL}></th>
   </tr>
+</thead>
+<tbody>
   <tr class="odd">
     <td class="user_list_image"><i title="<{$smarty.const._AD_USER_LANG_GROUP}>">  <img src="<{"icons/icon-user-group.svg"|theme}>" class="svg"></i></td>
     <td class="user_list_id"><{$group->getShow('groupid')}></td>
@@ -46,12 +49,14 @@
       </a>
     </td>
   </tr>
+</tbody>
 </table>
 
 <hr>
 <h3 class="admintitle"><{$smarty.const._AD_USER_LANG_GROUP_ASSIN_MEMBERS}></h3>
 
 <table class="outer">
+    <thead>
   <tr>
     <th>&nbsp;</th>
     <th><{$smarty.const._MD_USER_LANG_UID}></th>
@@ -63,6 +68,8 @@
     <th><{$smarty.const._MD_USER_LANG_LEVEL}></th>
     <th><{$smarty.const._AD_USER_LANG_CONTROL}></th>
   </tr>
+  </thead>
+  <tbody>
   <{foreach from=$users item=user }>
     <tr class="<{cycle values="odd,even"}>">
       <td class="user_list_image"><i title="<{$smarty.const._AD_USER_LANG_USER}>"><img src="<{"icons/icon-user-group.svg"|theme}>" class="svg"></i></td>
@@ -85,6 +92,7 @@
       </td>
     </tr>
   <{/foreach}>
+</tbody>
 </table>
 
 <div class="pagenavi"><{xoops_pagenavi pagenavi=$pageNavi}></div>
@@ -95,9 +103,12 @@
 <h5 class="admintitle"><{$smarty.const._AD_USER_LANG_PERM_MODULE_ACCESS}></h5>
 <{if $systemPermissions }>
 <table class="outer">
+    <thead>
   <tr class="head">
     <th colspan="4"><{$smarty.const._AD_USER_LANG_PERM_SYSTEM_PERM_MODULE}></th>
   </tr>
+</thead>
+<tbody>
   <tr>
   <{foreach item=perm from=$systemPermissions key="perm_key" name="SysPer"}>
     <td class="head" style="width:35%;">&nbsp;<{$perm->mItem->getName()|xoops_escape}></td>
@@ -114,13 +125,17 @@
         <{cycle values=",</tr><tr>" name="SysPer"}>
       <{/if}>
   <{/foreach}>
+</tbody>
 </table>
 <br>
 <{/if}>
 <table class="outer">
+    <thead>
   <tr>
     <th colspan="4"><{$smarty.const._AD_USER_LANG_PERM_GROUP_PERM_MODULE}></th>
   </tr>
+</thead>
+<tbody>
   <tr>
   <{foreach item=perm from=$modulePermissions name="ModPer"}>
     <td class="head" style="width:25%;">&nbsp;<{$perm->mItem->getName()|xoops_escape}></td>
@@ -143,6 +158,7 @@
         <{cycle values=",</tr><tr>" name="ModPer"}>
       <{/if}>
   <{/foreach}>
+</tbody>
 </table>
 
 <br>
@@ -150,6 +166,7 @@
 
 <{foreach key=i item=permissions from=$blockPermissions}>
 <table class="outer">
+<thead>
   <tr>
     <th colspan="4"><{$smarty.const._AD_USER_LANG_PERM_GROUP_PERM_BLOCK}>
       <{if $i == 0}>( <{$smarty.const._LEFT}> )
@@ -159,6 +176,8 @@
       <{elseif $i == 3}>( <{$smarty.const._CENTER}>-<{$smarty.const._RIGHT}> )
       <{/if}></th>
   </tr>
+</thead>
+<tbody>
   <tr>
   <{foreach item=perm from=$permissions name=$i}>
     <td class="head" style="width:35%;">&nbsp;
@@ -178,6 +197,7 @@
       <{cycle values=",</tr><tr>" name=$i}>
   <{/foreach}>
   </tr>
+</tbody>
 </table>
 <br>
 <{/foreach}>

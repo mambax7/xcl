@@ -52,9 +52,9 @@
       <td class="head"><{$smarty.const._MD_LEGACY_LANG_COM_ICON}></td>
       <td class="<{cycle values="odd,even"}>">
         <{if $object->getShow('com_icon')}>
-          <img src="<{$smarty.const.XOOPS_URL}>/images/subject/<{$object->getShow('com_icon')}>" />
+          <img src="<{$smarty.const.XOOPS_URL}>/images/subject/<{$object->getShow('com_icon')}>">
         <{else}>
-          <img src="<{$smarty.const.XOOPS_URL}>/images/icons/no_posticon.gif" />
+          <img src="<{$smarty.const.XOOPS_URL}>/images/icons/no_posticon.gif">
         <{/if}>
       </td>
     </tr>
@@ -136,8 +136,8 @@
 	<tfoot>
     <tr>
       <td colspan="2" class="foot">
-        <input class="formButton" type="submit" value="<{$smarty.const._DELETE}>" />
-        <input class="formButton" type="submit" value="<{$smarty.const._BACK}>" name="_form_control_cancel" />
+        <input class="button-delete" type="submit" value="<{$smarty.const._DELETE}>">
+        <input class="button-cancel" type="submit" value="<{$smarty.const._BACK}>" name="_form_control_cancel">
       </td>
 		</tr>
 	</tfoot>

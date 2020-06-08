@@ -113,7 +113,7 @@ foreach ($compile_hooks as $command => $compile_hook) {
             while (false !== ($file = readdir($handler))) {
 
                 // skip /. /.. and hidden files
-                if ('.' == $file{0}) {
+                if ('.' == $file[0]) {
                     continue ;
                 }
 
@@ -322,3 +322,5 @@ echo "
 
 
 xoops_cp_footer() ;
+
+?>

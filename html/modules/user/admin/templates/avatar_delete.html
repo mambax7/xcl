@@ -27,7 +27,7 @@
     <tr>
       <td class="head"><{$smarty.const._AD_USER_LANG_AVATAR_FILE}></td>
       <td class="<{cycle values="odd,even"}>">
-        <img src="<{$smarty.const.XOOPS_UPLOAD_URL}>/<{$object->getShow('avatar_file')}>" alt="<{$object->getShow('avatar_name')}>" title="<{$object->getShow('avatar_name')}>" />
+        <img src="<{$smarty.const.XOOPS_UPLOAD_URL}>/<{$object->getShow('avatar_file')}>" alt="<{$object->getShow('avatar_name')}>" title="<{$object->getShow('avatar_name')}>">
         <br><{$object->getShow('avatar_file')}>
       </td>
     </tr>
@@ -69,8 +69,8 @@
     </tr>
     <tr>
       <td class="foot" colspan="2">
-        <input class="button-delete" type="submit" value="<{$smarty.const._DELETE}>" />
-        <input class="formButton" type="submit" value="<{$smarty.const._BACK}>" name="_form_control_cancel" />
+        <input class="button-delete" type="submit" value="<{$smarty.const._DELETE}>">
+        <input class="formButton" type="submit" value="<{$smarty.const._BACK}>" name="_form_control_cancel">
       </td>
     </tr>
 </table>

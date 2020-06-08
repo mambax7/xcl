@@ -1,0 +1,126 @@
+<h3>Checkbox and radio button widgets</h3>
+
+<script>
+    $( function() {
+        $( ".widget-btn-check input" ).checkboxradio({
+        /* icon: false */
+        });
+    } );
+</script>
+
+<div class="ui-flex-row">
+
+    <div class="ui-flex-column">
+
+        <div class="widget-btn-check">
+
+            <fieldset>
+                <legend>Select a Location: </legend>
+                <label for="radio-1">Barcelona</label>
+                <input type="radio" name="radio-1" id="radio-1">
+                <label for="radio-2">Lisbon</label>
+                <input type="radio" name="radio-1" id="radio-2">
+                <label for="radio-3">Roma</label>
+                <input type="radio" name="radio-1" id="radio-3">
+            </fieldset>
+
+            <h4>Checkbox</h4>
+            <fieldset>
+                <legend>Ratings: </legend>
+                <label for="checkbox-1">2 Star</label>
+                <input type="checkbox" name="checkbox-1" id="checkbox-1">
+                <label for="checkbox-2">3 Star</label>
+                <input type="checkbox" name="checkbox-2" id="checkbox-2">
+                <label for="checkbox-3">4 Star</label>
+                <input type="checkbox" name="checkbox-3" id="checkbox-3">
+                <label for="checkbox-4">5 Star</label>
+                <input type="checkbox" name="checkbox-4" id="checkbox-4">
+            </fieldset>
+
+            <h4>Checkbox nested in label</h4>
+            <fieldset>
+                <legend>User Groups: </legend>
+                <label for="checkbox-nested-1">Group 1
+                    <input type="checkbox" name="checkbox-nested-1" id="checkbox-nested-1" class="ui-btn ui-btn-danger">
+                </label>
+                <label for="checkbox-nested-2">Group 2
+                    <input type="checkbox" name="checkbox-nested-2" id="checkbox-nested-2">
+                </label>
+                <label for="checkbox-nested-3">Group 3
+                    <input type="checkbox" name="checkbox-nested-3" id="checkbox-nested-3">
+                </label>
+                <label for="checkbox-nested-4">Groupe 4
+                    <input type="checkbox" name="checkbox-nested-4" id="checkbox-nested-4">
+                </label>
+            </fieldset>
+        </div>
+
+    </div>
+
+    <div class="ui-flex-colun">
+        <h4>Radio Group</h4>
+        <p>Examples of the markup that can be used with checkboxes and radio buttons.</p>
+        <pre>
+            <code>
+                1
+                2
+                3
+            </code>
+        </pre>
+    </div>
+</div>
+
+
+<hr>
+
+
+<h3>Checkbox radio</h3>
+<script>
+$( function() {
+  $( ".ui-radio input" ).checkboxradio();
+  $( ".ui-radio fieldset" ).controlgroup();
+} );
+</script>
+
+<div class="ui-flex-row">
+
+    <div class="ui-flex-column">
+
+        <div class="widget">
+
+            <div class="ui-radio">
+            <fieldset>
+              <legend>Select a Location: </legend>
+              <label for="radio-cg-1">New York</label>
+              <input type="radio" name="radio-cg-1" id="radio-cg-1">
+              <label for="radio-cg-2">Paris</label>
+              <input type="radio" name="radio-cg-1" id="radio-cg-2">
+              <label for="radio-cg-3">London</label>
+              <input type="radio" name="radio-cg-1" id="radio-cg-3">
+            </fieldset></div>
+
+          </div>
+
+    </div>
+
+    <div class="ui-flex-column">
+        <h4>Radio Group</h4>
+        <p>short desc</p>
+        <p>The jQuery UI checkboxradio plugin works on checkboxes with a label only, not on text inputs,
+        and $('input') targets both tags, make sure you target the checkbox only, and jQuery UI will
+        no longer throw the error when it tries to convert a text input into a radiobutton</p>
+        <p>
+            <code>
+                $(function () {
+                    $("#cbxForRent").checkboxradio();
+                });
+            </code>
+        </p>
+        <p>You could also target all checkboxes on the page with
+                <code>
+                $('input[type="checkbox"]')
+
+            </code>
+        </p>
+    </div>
+</div>
