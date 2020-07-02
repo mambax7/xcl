@@ -17,7 +17,7 @@ function altsys_admin_in_theme($s)
     }
 
     // redirect
-    if (strstr($s, '<meta http-equiv="Refresh" ')) {
+    if (strpos($s, '<meta http-equiv="Refresh" ') !== false) {
         define('ALTSYS_DONT_USE_ADMIN_IN_THEME', 1) ;
         return $s ;
     }
@@ -108,7 +108,6 @@ function altsys_admin_in_theme_in_last($contents = null)
         'xoops_requesturi' => htmlspecialchars($GLOBALS['xoopsRequestUri'], ENT_QUOTES),
         'xoops_sitename' => htmlspecialchars($xoopsConfig['sitename'], ENT_QUOTES),
         'xoops_showlblock' => 1,
-//		'xoops_js' => '//--></script><script type="text/javascript" src="'.XOOPS_URL.'/include/xoops.js"></script><script type="text/javascript" src="'.XOOPS_URL.'/include/layersmenu.js"></script><script type="text/javascript"><!--'."\n".$xoops_admin_menu_js ,
         'xoops_js' => '//--></script><script type="text/javascript" src="'.XOOPS_URL.'/include/xoops.js"></script><script type="text/javascript"><!--'."\n",
         'xoops_runs_admin_side' => 1,
         'xoops_breadcrumbs' => $xoops_breadcrumbs,

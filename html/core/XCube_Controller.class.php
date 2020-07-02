@@ -63,7 +63,7 @@ class XCube_Controller
     /**
      * Array of a procedure class object.
      *
-     * @var Array
+     * @var
      */
     public $_mBlockChain = [];
 
@@ -71,7 +71,7 @@ class XCube_Controller
     /**
      * Vector Array of XCube_ActionFilter class object.
      * @protected
-     * @var Array
+     * @var
      * @remarks
      *	   typedef std:vector<XCube_ActionFilter*> FilterList; \n
      *	   FilterList _mFilterChain; \n
@@ -99,7 +99,7 @@ class XCube_Controller
      * @access public
      * @var string
      */
-    public $mLocale = null;
+    public $mLocale;
 
     /**
      * A name of the current language.
@@ -107,7 +107,7 @@ class XCube_Controller
      * @access public
      * @var string
      */
-    public $mLanguage = null;
+    public $mLanguage;
 
     /**
      * Rebuilds the principal object for the current HTTP-request.
@@ -469,8 +469,8 @@ class XCube_Controller
 
     /**
      * Creates an instance of the permission manager and returns it.
-     *
-     * @return XCube_PermissionManager
+     * XCube_PermissionManager Object
+     * @return
      */
     public function &_createPermissionManager()
     {
@@ -486,8 +486,8 @@ class XCube_Controller
 
     /**
      * Creates an instance of the role manager and returns it.
-     *
-     * @return XCube_RoleManager
+     * XCube_RoleManager
+     * @return Object
      */
     public function &_createRoleManager()
     {

@@ -1,12 +1,12 @@
 <?php
 
 // variable check (and default)
-$smiley = isset( $smiley ) ? $smiley : 1 ;
-$xcode = isset( $xcode ) ? $xcode : 1 ;
-$br = isset( $br ) ? $br : 1 ;
-$number_entity = isset( $number_entity ) ? $number_entity : 1 ; // default on
-$special_entity = isset( $special_entity ) ? $special_entity : 0 ; // default off
-$solved = isset( $solved ) ? $solved : 1 ;
+$smiley = $smiley ?? 1;
+$xcode = $xcode ?? 1;
+$br = $br ?? 1;
+$number_entity = $number_entity ?? 1; // default on
+$special_entity = $special_entity ?? 0; // default off
+$solved = $solved ?? 1;
 $pid = empty( $pid ) ? 0 : (int)$pid;
 $post_id = empty( $post_id ) ? 0 : (int)$post_id;
 $topic_id = empty( $topic_id ) ? 0 : (int)$topic_id;
@@ -20,7 +20,7 @@ if( $uid > 0 ) {
 	$allow_sig = $xoopsModuleConfig['allow_sig'] ;
 	$attachsig = isset( $attachsig ) ? (int)$attachsig : $xoopsUser->getVar('attachsig') ;
 	// notification (what a buggy functions ... :-x
-	if( ! empty( $xoopsModuleConfig['notification_enabled'] ) && in_array( 'topic-newpost' , @$xoopsModuleConfig['notification_events'] ) ) {
+	if( ! empty( $xoopsModuleConfig['notification_enabled'] ) && in_array('topic-newpost', @$xoopsModuleConfig['notification_events'], true)) {
 		$allow_notify = true ;
 		if( isset( $notify ) ) {
 			$notify = (int)$notify;
@@ -64,7 +64,7 @@ include dirname(__DIR__) . '/include/wysiwyg_editors.inc.php' ;
 
 	// naao from
 if( is_object( $xoopsUser ) ) {
-	if (1 == $xoopsModuleConfig['use_name'] && $xoopsUser->getVar('name' ) ) {
+	if (1 === $xoopsModuleConfig['use_name'] && $xoopsUser->getVar('name' ) ) {
 		$poster_uname4disp = $xoopsUser->getVar( 'name' ) ;
 	} else {
 		$poster_uname4disp = $xoopsUser->getVar( 'uname' ) ;
@@ -144,7 +144,7 @@ $xoopsTpl->assign([
                       'category' => $category4assign,
                       'forum' => $forum4assign,
                       'topic' => @$topic4assign,
-                      'post' => 'edit' == $mode ? @$post4assign : [],
+                      'post' => 'edit' === $mode ? @$post4assign : [],
                       'body_wysiwyg' => $d3forum_wysiwyg_body,
                       'antispam' => $antispam4assign,
                       'xoops_module_header' => '<link rel="stylesheet" type="text/css" media="all" href="' . str_replace('{mod_url}', XOOPS_URL . '/modules/' . $mydirname, $xoopsModuleConfig['css_uri']) . '">' . $xoopsTpl->get_template_vars('xoops_module_header') . "\n" . $d3forum_wysiwyg_header,
@@ -154,5 +154,3 @@ $xoopsTpl->assign([
 ) ;
 
 include XOOPS_ROOT_PATH.'/footer.php' ;
-
-?>

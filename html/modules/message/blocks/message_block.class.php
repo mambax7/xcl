@@ -9,10 +9,10 @@ if (!defined('XOOPS_ROOT_PATH')) {
 }
 class Message_Block extends Legacy_BlockProcedure
 {
-    public function __construct(&$block)
-    {
-        parent::__construct($block);
-    }
+//    public function __construct(&$block)
+//    {
+//        parent::__construct($block);
+//    }
 
     public function prepare()
     {
@@ -45,12 +45,12 @@ class Message_Block extends Legacy_BlockProcedure
 
         $service = $root->mServiceManager->getService('privateMessage');
         $uid = $root->mContext->mXoopsUser->get('uid');
-        if (null != $service) {
+        if (null !== $service) {
             $client = $root->mServiceManager->createClient($service);
             $render->setAttribute('block', $client->call('getCountUnreadPM', ['uid' => $uid]));
         }
 
-        if (null != $root->mServiceManager->getService('UserSearch')) {
+        if (null !== $root->mServiceManager->getService('UserSearch')) {
             $render->setAttribute('UserSearch', true);
         }
 

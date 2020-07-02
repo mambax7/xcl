@@ -34,7 +34,7 @@ class PicoControllerInsertContent extends PicoControllerAbstract
         parent::execute($request);
 
         // initialize
-        $cat_data       = $this->currentCategoryObj->getData();
+        $cat_data = $this->currentCategoryObj->getData();
         $picoPermission = &PicoPermission::getInstance();
 
         // permission check
@@ -42,13 +42,13 @@ class PicoControllerInsertContent extends PicoControllerAbstract
             redirect_header(XOOPS_URL . '/', 2, _MD_PICO_ERR_MAKECONTENT);
         }
 
-        // insert a content
-        $content_id       = pico_makecontent($this->mydirname, $cat_data['post_auto_approved'], $cat_data['isadminormod']);
+        // create content
+        $content_id = pico_makecontent($this->mydirname, $cat_data['post_auto_approved'], $cat_data['isadminormod']);
         $content_uri4html = XOOPS_URL . "/modules/$this->mydirname/" . pico_common_make_content_link4html($this->mod_config, $content_id, $this->mydirname);
 
         // get contentObj
         $this->contentObj = new PicoContent($this->mydirname, $content_id, $this->currentCategoryObj);
-        $content_data     = $this->contentObj->getData();
+        $content_data = $this->contentObj->getData();
 
         // return uri
         if (!empty($_GET['ret']) && ($ret_uri = pico_main_parse_ret2uri($this->mydirname, $_GET['ret']))) {
@@ -64,9 +64,9 @@ class PicoControllerInsertContent extends PicoControllerAbstract
 
         // create extra_tags for notifications
         $extra_tags = [
-            'CONTENT_URL'     => pico_common_unhtmlspecialchars($content_uri4html),
-            'APPROVAL_URL'    => XOOPS_URL . "/modules/$this->mydirname/index.php?page=contentmanager&content_id=$content_id",
-            'CAT_TITLE'       => $cat_data['cat_title'],
+            'CONTENT_URL' => pico_common_unhtmlspecialchars($content_uri4html),
+            'APPROVAL_URL' => XOOPS_URL . "/modules/$this->mydirname/index.php?page=contentmanager&content_id=$content_id",
+            'CAT_TITLE' => $cat_data['cat_title'],
             'CONTENT_SUBJECT' => $content_data['subject_raw'],
         ];
 

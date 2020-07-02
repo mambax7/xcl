@@ -1,9 +1,9 @@
 /*
 XOOPSCube Theme : XCL Admin Flex Gridd
 Distribution : XCL 2.3 Alpha
-Version : 0.0.5
+Version : 0.7.0
 Author : Nuno Luciano aka Gigamaster
-Date : 2019-11-11
+Date : 2020-06-11
 URL : https://github.com/xoopscube/xcl/
 
 -------------------- -------------------- -------------------- Notifications */
@@ -11,7 +11,7 @@ URL : https://github.com/xoopscube/xcl/
 /* TODO override with modal notification */
 
 
-    .tips, .error, .confirm {
+    .tips, .error, .confirm, .success {
 
         background      : var(  --ui-notif-background    );
 
@@ -48,12 +48,17 @@ URL : https://github.com/xoopscube/xcl/
         /* animation: warning 1s infinite alternate; */
     }
 
+    .success {
+        border-left     : 7px solid var(  --ui-color-green     );
+        background: var(  --ui-notif-background    ) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1.5em' height='1.5em' style='vertical-align: -0.125em;' viewBox='0 0 24 24'%3E %3Cpath d='M9 19l-5.657-5.657l2.121-2.121L9 14.757l8.485-8.485l2.122 2.121L9 19zm-3.536-6.364l-.707.707L9 17.586l9.192-9.193l-.707-.707L9 16.172l-3.536-3.536z' fill='%23face74'/%3E %3C/svg%3E") 1em 1em no-repeat;
+    }
+
     .message-warning {
 
         background      : var(  --ui-notif-background    );
         border          : 1px solid var(  --ui-color-amber );
         border-radius   : var(  --ui-notif-border-radius );
-        color           : var(  --ui-color-600     );
+        color           : var(  --ui-color-white     );
         padding         : var(  --ui-space-200       );
         animation       : badge-warning 1s infinite alternate;
 
@@ -92,7 +97,7 @@ URL : https://github.com/xoopscube/xcl/
 
     .notification {
 
-        color           : var(  --ui-color-600     );
+        color           : var(  --ui-color-white     );
         display         : flex;
         flex-basis      : 100%;
         flex-direction  : row-reverse;
@@ -104,8 +109,8 @@ URL : https://github.com/xoopscube/xcl/
 
     .sticky {
 
-        background      : var(  --ui-color-400      );
-
+        background      : var(  --ui-color-green      );
+        border-bottom   : 1px solid transparent !important;
         border-color    : var(  --ui-border-color   );
         border-radius   : var(  --ui-border-radius  );
         border-style    : var(  --ui-border-style   );
@@ -121,7 +126,7 @@ URL : https://github.com/xoopscube/xcl/
 
     .ondemand {
 
-        background      : var(  --ui-color-400      );
+        background      : var(  --ui-color-green      );
 
         border-color    : var(  --ui-border-color   ) !important;
         border-radius   : var(  --ui-border-radius  );
@@ -130,7 +135,7 @@ URL : https://github.com/xoopscube/xcl/
 
         box-shadow      : var(  --ui-shadow-300     );
 
-        color           : var(  --ui-color-600     );
+        color           : var(  --ui-color-white     );
 
         height          : 50px;
         left            : unset;

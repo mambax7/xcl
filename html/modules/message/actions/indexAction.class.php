@@ -7,15 +7,15 @@ require _MY_MODULE_PATH.'kernel/MyPageNavi.class.php';
 class indexAction extends AbstractAction
 {
     private $listdata;
-    private $mPagenavi = null;
+    private $mPagenavi;
     private $select;
     private $subject = '';
     private $status = '';
 
-    public function __construct()
-    {
-        parent::__construct();
-    }
+//    public function __construct()
+//    {
+//        parent::__construct();
+//    }
 
     private function _view()
     {
@@ -32,13 +32,13 @@ class indexAction extends AbstractAction
         $this->mPagenavi->setPagenum($pagenum);
         $this->mPagenavi->addSort('utime', 'DESC');
         $this->mPagenavi->addCriteria(new Criteria('uid', $this->root->mContext->mXoopsUser->get('uid')));
-        if ('POST' == $_SERVER['REQUEST_METHOD']) {
+        if ('POST' === $_SERVER['REQUEST_METHOD']) {
             $fromuid = (int)$this->root->mContext->mRequest->getRequest('fromuid');
             if ($fromuid > 0) {
                 $this->mPagenavi->addCriteria(new Criteria('from_uid', $fromuid));
             }
             $this->subject = $this->root->mContext->mRequest->getRequest('subject');
-            if ('' != $this->subject) {
+            if ('' !== $this->subject) {
                 $this->mPagenavi->addCriteria(new Criteria('title', '%'.$this->subject.'%', 'LIKE'));
             }
             $this->status = $this->root->mContext->mRequest->getRequest('status');
@@ -71,7 +71,7 @@ class indexAction extends AbstractAction
         }
     }
 
-    public function executeView($render)
+    public function executeView(&$render)
     {
         $render->setTemplateName('message_inboxlist.html');
         $render->setAttribute('ListData', $this->listdata);

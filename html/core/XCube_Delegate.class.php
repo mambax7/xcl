@@ -30,7 +30,7 @@ class XCube_Ref
      * @private
      * @brief mixed
      */
-    public $_mObject = null;
+    public $_mObject;
 
     /**
      * @public Constructor.
@@ -131,7 +131,7 @@ class XCube_Delegate
      * @private
      * @brief string - This is register name for lazy registering.
      */
-    public $_mLazyRegisterName = null;
+    public $_mLazyRegisterName;
 
     /**
      * @private
@@ -162,7 +162,7 @@ class XCube_Delegate
     /**
      * @private
      * @brief Set signatures for this delegate.
-     * @param Vector $args Array - std::vector<string>
+     * @param  $args Array - std::vector<string>
      * @return void
      *
      * By this method, this function will come to check arguments with following
@@ -171,8 +171,8 @@ class XCube_Delegate
     public function _setSignatures($args)
     {
         $this->_mSignatures =& $args;
-        for ($i=0, $max=count($args); $i<$max ; $i++) {
-            $arg = $args[$i];
+        foreach ($args as $i => $iValue) {
+            $arg = $iValue;
             $idx = strpos($arg, ' &');
             if (false !== $idx) {
                 $args[$i] = substr($arg, 0, $idx);
@@ -224,11 +224,10 @@ class XCube_Delegate
         $priority = XCUBE_DELEGATE_PRIORITY_NORMAL;
         $filepath = null;
 
-        if (!is_array($callback) && strstr($callback, '::')) {
-            if (2 == count($tmp = explode('::', $callback))) {
+            //@gigamaster fixed to save memory
+            if (!is_array($callback) && strpos($callback, '::') !== false && 2 === count($tmp = explode('::', $callback))) {
                 $callback = $tmp;
             }
-        }
 
         if (null !== $param2) {
             if (is_int($param2)) {
@@ -290,10 +289,8 @@ class XCube_Delegate
             $this->register($this->_mLazyRegisterName);
         }
 
-        if ($hasSig = $this->_mHasCheckSignatures) {
-            if (count($mSigs = &$this->_mSignatures) != $num) {
-                return false;
-            }
+        if (($hasSig = $this->_mHasCheckSignatures) && count($mSigs = &$this->_mSignatures) !== $num) {
+            return false;
         }
 
         for ($i=0 ; $i<$num ;$i++) {
@@ -349,10 +346,8 @@ class XCube_Delegate
                 if ($file) {
                     require_once $file;
                 }
-                if (is_callable($callback)) {
-                    if (XCUBE_DELEGATE_CHAIN_BREAK === call_user_func_array($callback, $args)) {
-                        break 2;
-                    }
+                if (is_callable($callback) && XCUBE_DELEGATE_CHAIN_BREAK === call_user_func_array($callback, $args)) {
+                    break 2;
                 }
             }
         }
@@ -438,19 +433,19 @@ class XCube_DelegateManager
         $mDelegate =& $this->_mDelegates[$name];
         if (isset($mDelegate[$id=$delegate->getID()])) {
             return false;
-        } else {
-            $mDelegate[$id] =& $delegate;
-
-            $mcb = &$this->_mCallbacks[$name];
-            if (isset($mcb) && count($mcb) > 0) {
-                foreach ($mcb as $key=>$func) {
-                    list($a, $b) = $this->_mCallbackParameters[$name][$key];
-                    $delegate->add($func, $a, $b);
-                }
-            }
-
-            return true;
         }
+
+        $mDelegate[$id] =& $delegate;
+
+        $mcb = &$this->_mCallbacks[$name];
+        if (isset($mcb) && count($mcb) > 0) {
+            foreach ($mcb as $key=>$func) {
+                list($a, $b) = $this->_mCallbackParameters[$name][$key];
+                $delegate->add($func, $a, $b);
+            }
+        }
+
+        return true;
     }
 
     /**
@@ -498,8 +493,7 @@ class XCube_DelegateManager
             foreach (array_keys($this->_mCallbacks[$name]) as $key) {
                 $callback = $this->_mCallbacks[$name][$key];
                 if (XCube_DelegateUtils::_compareCallback($callback, $delcallback)) {
-                    unset($this->_mCallbacks[$name][$key]);
-                    unset($this->_mCallbackParameters[$name][$key]);
+                    unset($this->_mCallbacks[$name][$key], $this->_mCallbackParameters[$name][$key]);
                 }
             }
         }
@@ -520,8 +514,7 @@ class XCube_DelegateManager
             }
         }
         if (isset($this->_mCallbacks[$name])) {
-            unset($this->_mCallbacks[$name]);
-            unset($this->_mCallbackParameters[$name]);
+            unset($this->_mCallbacks[$name], $this->_mCallbackParameters[$name]);
         }
     }
 
@@ -680,9 +673,8 @@ class XCube_DelegateUtils
             $args[1] = new XCube_Ref($string);
             call_user_func_array(['XCube_DelegateUtils', 'call'], $args);
             return $string;
-        } else {
-            return '';
         }
+        return '';
     }
 
     /**
@@ -700,11 +692,13 @@ class XCube_DelegateUtils
     {
         if (!is_array($callback1) && !is_array($callback2) && ($callback1 === $callback2)) {
             return true;
-        } elseif (is_array($callback1) && is_array($callback2) && (gettype($callback1[0]) === gettype($callback2[0]))
+        }
+        if (is_array($callback1) && is_array($callback2) && (gettype($callback1[0]) === gettype($callback2[0]))
                                                                && ($callback1[1] === $callback2[1])) {
             if (!is_object($callback1[0]) && ($callback1[0] === $callback2[0])) {
                 return true;
-            } elseif (is_object($callback1[0]) && (get_class($callback1[0]) === get_class($callback2[0]))) {
+            }
+            if (is_object($callback1[0]) && (get_class($callback1[0]) === get_class($callback2[0]))) {
                 return true;
             }
         }

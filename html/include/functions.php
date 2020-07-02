@@ -46,7 +46,7 @@ function xoops_header($closehead = true)
 {
     $root =& XCube_Root::getSingleton();
     $renderSystem =& $root->getRenderSystem('Legacy_RenderSystem');
-    if (null != $renderSystem) {
+    if (null !== $renderSystem) {
         $renderSystem->showXoopsHeader($closehead);
     }
 }
@@ -58,7 +58,7 @@ function xoops_footer()
 {
     $root =& XCube_Root::getSingleton();
     $renderSystem =& $root->getRenderSystem('Legacy_RenderSystem');
-    if (null != $renderSystem) {
+    if (null !== $renderSystem) {
         $renderSystem->showXoopsFooter();
     }
 }
@@ -158,10 +158,10 @@ function xoops_confirm_validate()
 function xoops_refcheck($docheck=1)
 {
     $ref = xoops_getenv('HTTP_REFERER');
-    if (0 == $docheck) {
+    if (0 === $docheck) {
         return true;
     }
-    if ('' == $ref) {
+    if ('' === $ref) {
         return false;
     }
     if (0 !== strpos($ref, XOOPS_URL)) {
@@ -231,7 +231,7 @@ function _formatTimeStamp($time, $format='l')
         $datestring = _DATESTRING;
         break;
     default:
-        if ('' != $format) {
+        if ('' !== $format) {
             $datestring = $format;
         } else {
             $datestring = _DATESTRING;
@@ -250,7 +250,8 @@ function userTimeToServerTime($timestamp, $userTZ=null)
     if (!isset($userTZ)) {
         $userTZ = $xoopsConfig['default_TZ'];
     }
-    $timestamp = $timestamp - (($userTZ - $xoopsConfig['server_TZ']) * 3600);
+    //@gigamaster changed short this : $timestamp = $timestamp - (($userTZ - $xoopsConfig['server_TZ']) * 3600);
+    $timestamp -= (($userTZ - $xoopsConfig['server_TZ']) * 3600);
     return $timestamp;
 }
 
@@ -260,7 +261,7 @@ function xoops_makepass()
     $syllables = ['er', 'in', 'tia', 'wol', 'fe', 'pre', 'vet', 'jo', 'nes', 'al', 'len', 'son', 'cha', 'ir', 'ler', 'bo', 'ok', 'tio', 'nar', 'sim', 'ple', 'bla', 'ten', 'toe', 'cho', 'co', 'lat', 'spe', 'ak', 'er', 'po', 'co', 'lor', 'pen', 'cil', 'li', 'ght', 'wh', 'at', 'the', 'he', 'ck', 'is', 'mam', 'bo', 'no', 'fi', 've', 'any', 'way', 'pol', 'iti', 'cs', 'ra', 'dio', 'sou', 'rce', 'sea', 'rch', 'pa', 'per', 'com', 'bo', 'sp', 'eak', 'st', 'fi', 'rst', 'gr', 'oup', 'boy', 'ea', 'gle', 'tr', 'ail', 'bi', 'ble', 'brb', 'pri', 'dee', 'kay', 'en', 'be', 'se'];
     mt_srand((double)microtime() * 1000000);
     for ($count = 1; $count <= 4; $count++) {
-        if (1 == mt_rand() % 10) {
+        if (1 === mt_rand() % 10) {
             $makepass .= sprintf('%0.0f', (mt_rand() % 50) + 1);
         } else {
             $makepass .= sprintf('%s', $syllables[mt_rand() % 62]);
@@ -379,7 +380,7 @@ function xoops_getbanner()
             $db->queryF(sprintf('UPDATE %s SET impmade = impmade+1 WHERE bid = %u', $db->prefix('banner'), $bid));
         }
         /* Check if this impression is the last one and print the banner */
-        if (0 != $imptotal && $imptotal == $impmade) {
+        if (0 !== $imptotal && $imptotal == $impmade) {
             $newid = $db->genId($db->prefix('bannerfinish') . '_bid_seq');
             $sql = sprintf('INSERT INTO %s (bid, cid, impressions, clicks, datestart, dateend) VALUES (%u, %u, %u, %u, %u, %u)', $db->prefix('bannerfinish'), $newid, $cid, $impmade, $clicks, $date, time());
             $db->queryF($sql);
@@ -424,8 +425,9 @@ function redirect_header($url, $time = 3, $message = '', $addredirect = true)
         $xoopsTpl->assign('langcode', _LANGCODE);
         $xoopsTpl->assign('charset', _CHARSET);
         $xoopsTpl->assign('time', $time);
-        if ($addredirect && strstr($url, 'user.php')) {
-            if (!strstr($url, '?')) {
+        //@gigamaster changed this to save memory
+        if ($addredirect && strpos($url, 'user.php') !== false) {
+            if (strpos($url, '?') === false) {
                 $url .= '?xoops_redirect='.urlencode($xoopsRequestUri);
             } else {
                 $url .= '&amp;xoops_redirect='.urlencode($xoopsRequestUri);
@@ -433,12 +435,14 @@ function redirect_header($url, $time = 3, $message = '', $addredirect = true)
         }
         if (defined('SID') && (! isset($_COOKIE[session_name()]) || ($xoopsConfig['use_mysession'] && '' != $xoopsConfig['session_name'] && !isset($_COOKIE[$xoopsConfig['session_name']])))) {
             if (0 === strpos($url, XOOPS_URL)) {
-                if (!strstr($url, '?')) {
+                //@gigamaster changed this to save memory
+                if (strpos($url, '?') === false) {
                     $connector = '?';
                 } else {
                     $connector = '&amp;';
                 }
-                if (strstr($url, '#')) {
+                //@gigamaster changed this to save memory
+                if (strpos($url, '#') !== false) {
                     $urlArray = explode('#', $url);
                     $url = $urlArray[0] . $connector . SID;
                     if (! empty($urlArray[1])) {
@@ -451,53 +455,50 @@ function redirect_header($url, $time = 3, $message = '', $addredirect = true)
         }
         $url = preg_replace('/&amp;/i', '&', htmlspecialchars($url, ENT_QUOTES));
         $xoopsTpl->assign('url', $url);
-        $message = '' != trim($message) ? $message : _TAKINGBACK;
+        $message = '' !== trim($message) ? $message : _TAKINGBACK;
         $xoopsTpl->assign('message', $message);
         $xoopsTpl->assign('lang_ifnotreload', sprintf(_IFNOTRELOAD, $url));
         $GLOBALS['xoopsModuleUpdate'] = 1;
         $xoopsTpl->display('db:system_redirect.html');
         exit();
-    } else {
-        $url = preg_replace('/&amp;/i', '&', htmlspecialchars($url, ENT_QUOTES));
-        echo '
-        <html>
-        <head>
-        <title>'.htmlspecialchars($xoopsConfig['sitename']).'</title>
-        <meta http-equiv="Content-Type" content="text/html; charset='._CHARSET.'" />
-        <meta http-equiv="Refresh" content="'.$time.'; url='.$url.'" />
-        <style type="text/css">
-                body {background-color : #fcfcfc; font-size: 12px; font-family: Trebuchet MS,Verdana, Arial, Helvetica, sans-serif; margin: 0px;}
-                .redirect {width: 70%; margin: 110px; text-align: center; padding: 15px; border: #e0e0e0 1px solid; color: #666666; background-color: #f6f6f6;}
-                .redirect a:link {color: #666666; text-decoration: none; font-weight: bold;}
-                .redirect a:visited {color: #666666; text-decoration: none; font-weight: bold;}
-                .redirect a:hover {color: #999999; text-decoration: underline; font-weight: bold;}
-        </style>
-        </head>
-        <body>
-        <div align="center">
-        <div class="redirect">
-          <span style="font-size: 16px; font-weight: bold;">'.$message.'</span>
-          <hr style="height: 3px; border: 3px #E18A00 solid; width: 95%;" />
-          <p>'.sprintf(_IFNOTRELOAD, $url).'</p>
-        </div>
-        </div>
-        </body>
-        </html>';
     }
+    //@gigamaster split workflow
+    $url = preg_replace('/&amp;/i', '&', htmlspecialchars($url, ENT_QUOTES));
+    echo '
+    <html>
+    <head>
+    <title>'.htmlspecialchars($xoopsConfig['sitename']).'</title>
+    <meta http-equiv="Content-Type" content="text/html; charset='._CHARSET.'" />
+    <meta http-equiv="Refresh" content="'.$time.'; url='.$url.'" />
+    <style type="text/css">
+            body {background-color : #fcfcfc; font-size: 12px; font-family: Trebuchet MS,Verdana, Arial, Helvetica, sans-serif; margin: 0px;}
+            .redirect {width: 70%; margin: 110px; text-align: center; padding: 15px; border: #e0e0e0 1px solid; color: #666666; background-color: #f6f6f6;}
+            .redirect a:link {color: #666666; text-decoration: none; font-weight: bold;}
+            .redirect a:visited {color: #666666; text-decoration: none; font-weight: bold;}
+            .redirect a:hover {color: #999999; text-decoration: underline; font-weight: bold;}
+    </style>
+    </head>
+    <body>
+    <div align="center">
+    <div class="redirect">
+      <span style="font-size: 16px; font-weight: bold;">'.$message.'</span>
+      <hr style="height: 3px; border: 3px #E18A00 solid; width: 95%;" />
+      <p>'.sprintf(_IFNOTRELOAD, $url).'</p>
+    </div>
+    </div>
+    </body>
+    </html>';
     exit();
 }
 
 function xoops_getenv($key)
 {
     $ret = null;
-    //$phpv = explode(".", PHP_VERSION);
-    //if ($phpv[0] > 3 && $phpv[1] > 0) {
-    //  $ret = isset($_SERVER[$key]) ? $_SERVER[$key] : $_ENV[$key];
-    //} else {
+
         if (isset($_SERVER[$key]) || isset($_ENV[$key])) {
             $ret = isset($_SERVER[$key]) ? $_SERVER[$key] : $_ENV[$key];
         }
-    //}
+
 
     switch ($key) {
         case 'PHP_SELF':
@@ -533,11 +534,12 @@ function getcss($theme = '')
  */
 function xoops_getcss($theme = '')
 {
-    if ('' == $theme) {
+    if ('' === $theme) {
         $theme = $GLOBALS['xoopsConfig']['theme_set'];
     }
     $uagent = xoops_getenv('HTTP_USER_AGENT');
-    if (stristr($uagent, 'mac')) {
+    //@gigamaster changed for stripos to save memory
+    if (stripos($uagent, 'mac') !== false) {
         $str_css = '/styleMAC.css';
     } elseif (preg_match('/MSIE ([0-9]\.[0-9]{1,2})/i', $uagent)) {
         $str_css = '/style.css';
@@ -547,7 +549,9 @@ function xoops_getcss($theme = '')
     if (is_dir($path = XOOPS_THEME_PATH.'/'.$theme)) {
         if (file_exists($path.$str_css)) {
             return XOOPS_THEME_URL.'/'.$theme.$str_css;
-        } elseif (file_exists($path.'/style.css')) {
+        }
+        //@gigamaster split workflows
+        if (file_exists($path.'/style.css')) {
             return XOOPS_THEME_URL.'/'.$theme.'/style.css';
         }
     }
@@ -586,7 +590,7 @@ function xoops_gethandler($name, $optional = false)
     }
 
         //
-        // The following delegate is test at Alpha4-c.
+        // The following delegate was tested with version Alpha4-c.
         //
         $handler = null;
     XCube_DelegateUtils::call('Legacy.Event.GetHandler', new XCube_Ref($handler), $name, $optional);
@@ -701,7 +705,8 @@ function xoops_substr($str, $start, $length, $trimmarker = '...')
     $pos_st=0;
     $action = false;
     for ($pos_i = 0; $pos_i < strlen($str); $pos_i++) {
-        if (ord(substr($str, $pos_i, 1)) > 127) {
+        //@gigamaster changed to array
+        if (ord($str[$pos_i]) > 127) {
             $pos_i++;
         }
         if ($pos_i<=$start) {
@@ -757,13 +762,13 @@ function xoops_comment_delete($module_id, $item_id)
         $comment_handler = xoops_gethandler('comment');
         $comments        =& $comment_handler->getByItemId($module_id, $item_id);
         if (is_array($comments)) {
-            $count = count($comments);
             $deleted_num = [];
-            for ($i = 0; $i < $count; $i++) {
-                if (false != $comment_handler->delete($comments[$i])) {
+            //@gigamaster changed foreach
+            foreach ($comments as $i => $iValue) {
+                if (false !== $comment_handler->delete($comments[$i])) {
                     // store poster ID and deleted post number into array for later use
-                    $poster_id = $comments[$i]->getVar('com_uid', 'n');
-                    if (0 != $poster_id) {
+                    $poster_id = $iValue->getVar('com_uid', 'n');
+                    if (0 !== $poster_id) {
                         $deleted_num[$poster_id] = !isset($deleted_num[$poster_id]) ? 1 : ($deleted_num[$poster_id] + 1);
                     }
                 }
@@ -796,7 +801,7 @@ function xoops_groupperm_deletebymoditem($module_id, $perm_name, $item_id = null
 
 function &xoops_utf8_encode($text)
 {
-    if (XOOPS_USE_MULTIBYTES == 1) {
+    if (XOOPS_USE_MULTIBYTES === 1) {
         if (function_exists('mb_convert_encoding')) {
             $out_text = mb_convert_encoding($text, 'UTF-8', 'auto');
             return $out_text;
@@ -841,7 +846,7 @@ if (!function_exists('htmlspecialchars_decode')) {
     }
 }
 
-if (!function_exists('session_regenerate_id')) { // @ToDo this compatible function should be moved to other file.
+/*if (!function_exists('session_regenerate_id')) { // @ToDo this compatible function should be moved to other file.
     // session_regenerate_id compatible function for PHP Version< PHP4.3.2
     function session_regenerate_id()
     {
@@ -853,4 +858,4 @@ if (!function_exists('session_regenerate_id')) { // @ToDo this compatible functi
             return false;
         }
     }
-}
+}*/

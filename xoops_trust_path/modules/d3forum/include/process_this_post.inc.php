@@ -5,7 +5,7 @@ include __DIR__ . '/process_eachpost.inc.php' ;
 
 // vote history
 if( $uid ) {
-	list( $past_vote ) = $db->fetchRow( $db->query('SELECT vote_point FROM ' . $db->prefix($mydirname . '_post_votes') . " WHERE post_id=$post_id AND uid=$uid" ) ) ;
+	[$past_vote] = $db->fetchRow($db->query('SELECT vote_point FROM ' . $db->prefix($mydirname . '_post_votes') . " WHERE post_id=$post_id AND uid=$uid"));
 }
 $past_vote = isset( $past_vote ) ? (int)$past_vote : -1 ;
 
@@ -62,5 +62,3 @@ $post4assign = [
 
 // assign breadcrumbs of this forum
 $xoops_breadcrumbs[] = ['url' => XOOPS_URL . '/modules/' . $mydirname . '/index.php?post_id=' . $post_id, 'name' => $post4assign['subject']];
-
-?>

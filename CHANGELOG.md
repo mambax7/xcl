@@ -5,6 +5,104 @@ All notable changes to this project will be documented in this file.
 - Format based on [Keep A Change Log](https://keepachangelog.com/en/1.0.0/).
 - This project adheres to [Semantic Versioning](https://semver.org/).
 
+[unreleased] 2020-06-10
+
+### Added 
+
+- Admin nav component
+- Copy code sample with clipboardjs
+- Guideline toggle view source code
+- [WIP] Toggle filter search and sort
+- [WIP] Components templates tree
+- [WIP] Dashboard XCL desktop modal
+- [WIP] Set of icons (inline SVG) 
+
+### Changed 
+
+- Altsys refactor code
+- XCube refactor code
+- Refactoring to save memory
+- PrismJS import local script
+- Help files semantic structure
+- Help ajax load section or article 
+
+###  Fixed
+
+- Buttons action with icon and text
+- Buttons action with icon only
+- Declaration of Render TplsetUploadAction
+- Typos in dashboard and D3 modules
+- UI-btn inherent and default styles
+- [WIP] CSS variables 
+
+### Removed 
+
+- buttons fx anim
+- CDN library loading javascript
+- deprecated Xoops2 functions
+- xoops_admin_menu_js
+- xoops_module_get_admin_menu
+- xoops_module_write_admin_menu
+
+
+## [unreleased] 2020-06-08
+
+### Added
+
+- Code samples
+- Custom code highlight
+- Components templates
+- Dashboard style guide
+- [WIP] Icons for buttons
+- Inline SVG icons for buttons
+- Inline SVG background-color 
+- PrismJS + plugins
+- PrismJS custom CSS
+
+### Changed
+
+- Code refactoring 
+- Components inherit default values
+- Delegate and extend Admin UI
+- [WIP] Button color
+- [WIP] Button FX
+- [WIP] Button icon
+- [WIP] D3 templates
+- [WIP] D3 Protector
+- [WIP] Admin Dashboard
+- [WIP] Admin Templates
+- Ajax load component guide
+- Ajax load module help sections
+- jQuery-UI inherit CSS
+- Dark Mode Switch
+- Stylesheet to jQuery-UI
+
+### Fixed
+
+- ActionSearch Form
+- [WIP] CSS variables
+- Card block content padding
+- [WIP] Default buttons
+- Layout main max-width
+- Layout for mobile
+- ui-theme-manager.js
+- ui-render-svg.js
+- ui-render-viewport.js
+
+### Removed
+
+- Cleanup css
+- Cleanup javascript
+- Cleanup guide templates
+- Cleanup SVG (inline) 
+- CSS custom properties
+- Screen mode (mobile)
+
+### Update
+
+- jQuery 3.5.1
+
+
 ## [unreleased] 2020-05-29
 
 ### Added
@@ -50,6 +148,7 @@ All notable changes to this project will be documented in this file.
 - Darkmode from admin script
 - SVG Render from admin script 
 - CSS custom properties
+
 
 ## [unreleased] 2020-05-11
 
@@ -141,6 +240,7 @@ All notable changes to this project will be documented in this file.
 
 - X-elFinder version 2.56
 
+
 ## [unreleased] 2020-02-29
 
 ### Added
@@ -166,6 +266,7 @@ All notable changes to this project will be documented in this file.
 ### Update
 
 - X-elFinder version 2.53
+
 
 ## [unreleased] 2019-12-19
 
@@ -223,6 +324,7 @@ All notable changes to this project will be documented in this file.
 - HTML Purifier HTML5 attributes 
 - Standards Compliant HTML Filtering
 
+
 ## [unreleased] 2019-11-29
 
 ### Added
@@ -255,6 +357,7 @@ All notable changes to this project will be documented in this file.
 
 - HTML Purifier 4.12.0 - Standards Compliant HTML Filtering
 - Xupdate Store phpseclib-2.0.23
+
 
 ## [unreleased] 2019-11-15
 
@@ -329,6 +432,7 @@ All notable changes to this project will be documented in this file.
 ### Update
 
 - XelFinder v2.50
+
 
 ## [unreleased] 2019-10-19
 
@@ -408,6 +512,7 @@ All notable changes to this project will be documented in this file.
 - Pico Preferences #150
 - xelFinder Preferences #150
 
+
 ## [unreleased] - 2019-10-09
 
 ### Changed
@@ -432,6 +537,7 @@ All notable changes to this project will be documented in this file.
 - Catalog english : install, legacy, profile, stdCache, user
 - xelfinder version 2.50 by Naoki Sawada aka nao-pon
 
+
 ## [unreleased] - 2019-10-07
 
 ### Added
@@ -454,6 +560,7 @@ All notable changes to this project will be documented in this file.
 - XCL and modules version (legacy,profile,stdCache,user)
 - modules doc/help
 
+
 ## [unreleased] - 2019-09-25
 
 ### Removed
@@ -469,6 +576,7 @@ All notable changes to this project will be documented in this file.
 
 - HTML Purifier 4.11.0
 
+
 ## [unreleased] - 2019-04-30
 
 ### Added
@@ -476,6 +584,7 @@ All notable changes to this project will be documented in this file.
 - Extra Meta Webmaster Tools
 - Hack by Ryuji to prevent Legacy_redirect if AdelieDebug
 - Fixes Pico Category
+
 
 ## [unreleased] - 2019-04-18
 

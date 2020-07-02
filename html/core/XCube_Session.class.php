@@ -26,13 +26,13 @@ class XCube_Session
      * @public
      * @brief [READ ONLY] XCube_Delegate
      */
-    public $mSetupSessionHandler = null;
+    public $mSetupSessionHandler;
 
     /**
      * @public
      * @brief [READ ONLY] XCube_Delegate
      */
-    public $mGetSessionCookiePath = null;
+    public $mGetSessionCookiePath;
 
     public function __construct($sessionName='', $sessionExpire=0)
     {
@@ -90,7 +90,10 @@ class XCube_Session
             if (isset($session_params['httponly'])) {
                 $session_cookie_params[] = $session_params['httponly'];
             }
+            //!Todo check sameSite secure to replace with
+            // setcookie(...$session_cookie_params);
             call_user_func_array('setcookie', $session_cookie_params);
+
         }
     }
 

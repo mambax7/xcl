@@ -1,0 +1,296 @@
+<h3 id="Buttons">Buttons</h3>
+
+<p>Use buttons and links to trigger actions and enhance standard form elements inputs and anchors to
+themeable buttons with appropriate hover and active styles.</p>
+<script>Prism.highlightAll();</script>
+
+<hr>
+<!-- Button class "btn-icon-text" -->
+<div class="ui-flex-row">
+    <div class="ui-flex-column">
+        <h4>Button Action</h4>
+        <p><button>Default</button> <button class="btn-icon-text" disabled><i class="i-edit"></i>Disabled</button></p>
+        <p><button class="btn-icon-text btn-white" title="i-edit"><i class="i-edit"></i>btn-white</button>
+        <button class="btn-icon-text btn-amber" title="i-edit"><i class="i-edit"></i>btn-amber</button>
+        <button class="btn-icon-text btn-black" title="i-edit"><i class="i-edit"></i>black</button></p>
+        <p><button class="btn-icon-text btn-blue" title="i-edit"><i class="i-edit"></i>btn-blue</button>
+        <button class="btn-icon-text btn-green" title="i-edit"><i class="i-edit"></i>btn-green</button>
+        <button class="btn-icon-text btn-indigo" title="i-edit"><i class="i-edit"></i>btn-indigo</button></p>
+        <p><button class="btn-icon-text btn-orange" title="i-edit"><i class="i-edit"></i>btn-orange</button>
+        <button class="btn-icon-text btn-purple" title="i-edit"><i class="i-edit"></i>btn-purple</button>
+        <button class="btn-icon-text btn-red" title="i-delete"><i class="i-delete"></i>btn-red</button></p>
+    </div>
+    <div class="ui-flex-column">
+        <h4>Button action with class "btn-icon-text"</h4>
+        <p>The class <code>btn-icon-text</code> is a container with <code>position:relative</code> and
+            the class <code>i-[actioname]</code> with <code>position:absolute</code></p>
+        <p>source code</p>
+        <pre>
+        <code class="lang-html"><!--
+        <button class="btn-icon-text" title="Button with icon">
+        <i class="i-block-add"></i> btn-icon-text
+        </button>
+        --></code>
+        </pre>
+    </div>
+</div>
+
+<hr>
+<!-- Button class "btn-ico" -->
+<div class="ui-flex-row">
+    <div class="ui-flex-column">
+        <h4>Button icon only</h4>
+        <p>
+            <button class="btn-ico" title="i-add"><i class="i-add"></i> i-add</button>
+            <button class="btn-ico btn-orange" title="i-alert"><i class="i-alert"></i> i-alert</button>
+            <button class="btn-ico btn-blue" title="i-backup"><i class="i-backup"></i> i-backup</button>
+            <button class="btn-ico" title="i-backup-upload"><i class="i-backup-upload"></i> i-backup-upload</button>
+            <button class="btn-ico" title="i-block"><i class="i-block"></i> i-block</button>
+            <button class="btn-ico" title="i-block-add"><i class="i-block-add"></i> i-block-add</button>
+            <button class="btn-ico btn-green" title="i-copy"><i class="i-copy"></i> i-copy</button>
+            <button class="btn-ico btn-red" title="i-danger"><i class="i-danger"></i> i-danger</button>
+            <button class="btn-ico" title="i-data-export"><i class="i-data-export"></i> i-data-export</button>
+            <button class="btn-ico" title="i-data-import"><i class="i-data-import"></i> i-data-import</button>
+            <button class="btn-ico btn-red" title="i-delete"><i class="i-delete"></i> i-delete</button>
+            <button class="btn-ico" title="i-deploy"><i class="i-deploy"></i> i-deploy</button>
+            <button class="btn-ico" title="i-download"><i class="i-download"></i> i-download</button>
+            <button class="btn-ico btn-blue" title="i-edit"><i class="i-edit"></i> i-edit</button>
+            <button class="btn-ico btn-blue" title="i-info"><i class="i-info"></i> i-info</button>
+            <button class="btn-ico" title="i-user"><i class="i-user"></i> i-user</button>
+            <button class="btn-ico" title="i-group"><i class="i-group"></i> i-group</button>
+            <button class="btn-ico" title="i-user"><i class="i-user"></i> i-user</button>
+            <button class="btn-ico" title="i-move"><i class="i-move"></i> i-move</button>
+            <button class="btn-ico  btn-green" title="i-sync"><i class="i-sync"></i> i-sync</button>
+            <button class="btn-ico" title="i-template"><i class="i-template"></i> i-template</button>
+            <button class="btn-ico" title="i-tar"><i class="i-tar"></i> i-tar</button>
+            <button class="btn-ico" title="i-zip"><i class="i-zip"></i> i-zip"</button>
+            <button class="btn-ico" title="i-zip-upload"><i class="i-zip-upload"></i> i-zip-upload</button>
+            <button class="btn-ico" title="i-copy"><i class="i-copy"></i> i-copy</button>
+        </p>
+    </div>
+    <div class="ui-flex-column">
+
+        <h4>Button with class "btn-ico"</h4>
+        <pre><code class="lang-html"><!--
+        <button class="btn-ico" title="Button with icon only">
+            <i class="i-block-add"></i> btn-ico
+        </button>
+        --></code></pre>
+    </div>
+</div>
+
+<hr>
+<!-- Button class "badge" -->
+<div class="ui-flex-row">
+    <div class="ui-flex-column">
+        <h4>Button class "badge"</h4>
+        <p>
+            <a href="#" class="badge" title="A link with class badge">a.badge</a>
+            <button class="badge" title="Button with class badge">button.badge</button>
+            <span class="badge" title="Span with class badge">span.badge</span>
+        </p>
+        <h4>Button with class "badge"</h4>
+        <p>
+            <button class="ui-btn">
+                <span class="badge btn-red" title="badge 1">1</span> Button span.badge
+            </button>
+            <button class="ui-btn btn-orange">
+                <span class="badge btn-blue" title="badge 5">5</span> Button span.badge
+            </button>
+            <button class="ui-btn btn-indigo">
+                <span class="badge btn-green" title="badge 10">10</span> Button span.badge
+            </button>
+        </p>
+    </div>
+    <div class="ui-flex-column">
+        <h4>Button with class "badge" and HTML elements</h4>
+        <pre><code class="lang-html"><!--
+           <a href="#" class="badge" title="A link with class badge">a.badge</a>
+           <button class="badge" title="Button with class badge">button.badge</button>
+           <span class="badge" title="Span with class badge">span.badge</span>
+        --></code></pre>
+        <h4>Button with badge class</h4>
+        <!-- toggle display -->
+        <p><input class="switch" type="checkbox" id="code-badge" onclick="slideToggle('.code-badge', this)" value="0">
+            <label for="code-badge"> View source code</label></p>
+        <!--  display code -->
+        <div class="code-badge" style="display:none">
+        <pre><code class="lang-html"><!--
+            <button class="ui-btn">
+                <span class="badge btn-red" title="badge 1">1</span>
+                Button span.badge
+            </button>
+
+            <button class="ui-btn btn-orange">
+                <span class="badge btn-blue" title="badge 5">5</span>
+                Button span.badge
+            </button>
+
+            <button class="ui-btn btn-indigo">
+                <span class="badge btn-green" title="badge 10">10</span>
+                Button span.badge
+            </button>
+        --></code></pre>
+        </div>
+    </div>
+</div>
+
+<hr>
+<!-- Button class "btnav" -->
+<div class="ui-flex-row">
+    <div class="ui-flex-column">
+        <h4>Button class "btnav"</h4>
+        <nav style="background: var( --ui-header-background );">
+            <ul>
+            <li><a class="btnav">Open Source</a>
+            <li><a class="btnav">Create</a>
+            <li><a class="btnav">Publish</a>
+            </ul>
+        </nav>
+        <p style="background: var( --ui-header-background );">
+            <button class="btnav">
+                <i class="i-module"></i>
+                <span>Open</span>
+            </button>
+            <button class="btnav">
+                <i class="i-block-add"></i>
+                <span>Create</span>
+            </button>
+            <button class="btnav btn-round">
+                <i class="i-deploy"></i>
+                <span>Publish</span>
+            </button>
+        </p>
+    </div>
+    <div class="ui-flex-column">
+        <h4>Button class "btnav" </h4>
+        <p>A link square or round, text or icon.</p>
+        <!-- toggle display -->
+        <p><input class="switch" type="checkbox" id="code-btnav" onclick="slideToggle('.code-btnav-html', this)" value="0">
+            <label for="code-btnav"> View source code</label></p>
+        <!--  display code -->
+        <div class="code-btnav-html" style="display:none">
+        <pre><code class="lang-html"><!--
+            <ul>
+            <li><a class="btnav">Open Source</a>
+            <li><a class="btnav">Create</a>
+            <li><a class="btnav">Publish</a>
+            </ul>
+
+            <button class="btnav btn-round">
+            <i class="i-deploy"></i>
+            <span>Publish</span>
+            </button>
+        --></code></pre>
+        </div>
+    </div>
+</div>
+
+<hr>
+<!-- Button class "ui-btn" for jQuery-UI -->
+<div class="ui-flex-row">
+    <div class="ui-flex-column">
+        <h4>Button class "ui-btn"</h4>
+        <p>
+            <button class="ui-btn">ui-btn default</button>
+            <button class="ui-btn ui-btn disabled">ui-btn disabled</button></p>
+        <p>
+            <button class="ui-btn ui-btn-alert">ui-btn-alert</button>
+            <button class="ui-btn ui-btn-danger">ui-btn-danger</button>
+            <button class="ui-btn ui-btn-success">ui-btn-success</button>
+        </p>
+    </div>
+    <div class="ui-flex-column">
+        <h4>Button class "ui-btn" for jQuery-UI</h4>
+        <p>XCL class applied by default to overwrite jQuery-UI stylesheet.</p>
+        <p>Although any tag can be used for a button with a message, it will only be keyboard focusable if you use a <code>button</code>
+            tag or you add the property tabindex="0".</p>
+        <!-- toggle display -->
+        <p><input class="switch" type="checkbox" id="code-btn-ui" onclick="slideToggle('.code-btn-ui-html', this)" value="0">
+        <label for="code-btn-ui"> View source code</label></p>
+        <!--  display code -->
+        <div class="code-btn-ui-html" style="display:none">
+        <pre><code class="lang-html"><!--
+            <button class="ui-btn">ui-btn default</button>
+            <button class="ui-btn ui-btn disabled">ui-btn disabled</button>
+            <button class="ui-btn ui-btn-alert">ui-btn-alert</button>
+            <button class="ui-btn ui-btn-danger">ui-btn-danger</button>
+            <button class="ui-btn ui-btn-success">ui-btn-success</button>
+        --></code></pre>
+        </div>
+    </div>
+</div>
+
+<hr>
+<!-- Button jQuery-UI widget -->
+<div class="ui-flex-row">
+    <div class="ui-flex-column">
+    <h4>Button jQuery-UI widget</h4>
+        <script>
+            $( function() {
+                $( ".widget-with-icons button" )
+                    .eq( 0 ).button()
+                    .end().eq( 1 ).button( {
+                    icon: "ui-icon-gear",
+                    showLabel: false
+                } ).end().eq( 2 ).button( {
+                    icon: "ui-icon-gear"
+                } ).end().eq( 3 ).button( {
+                    icon: "ui-icon-gear",
+                    iconPosition: "end"
+                } ).end().eq( 4 ).button( {
+                    icon: "ui-icon-gear",
+                    iconPosition: "top"
+                } ).end().eq( 5 ).button( {
+                    icon: "ui-icon-gear",
+                    iconPosition: "bottom"
+                } );
+            } );
+        </script>
+        <div class="widget-with-icons">
+            <p><button>Button with only text</button></p>
+            <p><button>Button with icon only</button></p>
+            <p><button>Button with icon on the left</button>
+            <p><button>Button with icon on the right</button></p>
+            <p><button>Button with icon on the top</button></p>
+            <p><button>Button with icon on the bottom</button></p>
+        </div>
+    </div>
+    <div class="ui-flex-column">
+     <h4>Button jQuery-UI widget with icons</h4>
+        <p>XCL theme stylesheet applied by default and jQuery-UI script for widget with icons.</p>
+        <P>A button can have only an icon. The button will be automatically sized according to the visible content size.</p>
+        <!-- toggle display -->
+        <p><input class="switch" type="checkbox" id="code-jquery-widget" onclick="slideToggle('.code-jquery-widget', this)" value="0">
+            <label for="code-jquery-widget"> View source code</label></p>
+        <!--  display code -->
+        <div class="code-jquery-widget" style="display:none">
+        <pre><code class="lang-html"><!--
+        <button>Button with icon</button>
+        --></code></pre>
+        <pre><code class="lang-js"><!--
+        <script>
+            $( function() {
+                $( ".widget-with-icons button" )
+                    .eq( 0 ).button()
+                    .end().eq( 1 ).button( {
+                    icon: "ui-icon-gear",
+                    showLabel: false
+                } ).end().eq( 2 ).button( {
+                    icon: "ui-icon-gear"
+                } ).end().eq( 3 ).button( {
+                    icon: "ui-icon-gear",
+                    iconPosition: "end"
+                } ).end().eq( 4 ).button( {
+                    icon: "ui-icon-gear",
+                    iconPosition: "top"
+                } ).end().eq( 5 ).button( {
+                    icon: "ui-icon-gear",
+                    iconPosition: "bottom"
+                } );
+            } );
+        </script>
+        --></code></pre>
+        </div>
+    </div>
+</div>

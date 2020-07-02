@@ -1,38 +1,291 @@
 /*
 	XOOPSCube Theme : XCL Admin Flex Grid
 	Distribution : XCL 2.3 Alpha
-	Version : 0.0.5
+	Version : 0.7.0
 	Author : Nuno Luciano aka Gigamaster
-	Date : 2019-11-11
+	Date : 2020-06-11
 	URL : https://github.com/xoopscube/xcl/
 
--------------------- -------------------- -------------------- -------------------- Button */
+-------------------- -------------------- -------------------- -------------------- ICONS */
+
+    /*  .i-danger {
+        mask-image:
+        -webkit-mask-image:
+    }*/
+    .i-add {
+        mask-image : url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' width='24px' height='24px' viewBox='0 0 24 24' class='icon-add-plus'%3e%3cpath d='M13.09 20H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h16c1.11 0 2 .89 2 2v7.81c-.88-.51-1.91-.81-3-.81c-3.31 0-6 2.69-6 6c0 .34.04.67.09 1M18 15v3h-3v2h3v3h2v-3h3v-2h-3v-3h-2z' fill='currentColor'%3e%3c/path%3e%3c/svg%3e");
+        -webkit-mask-image : url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' width='24px' height='24px' viewBox='0 0 24 24' class='icon-add-plus'%3e%3cpath d='M13.09 20H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h16c1.11 0 2 .89 2 2v7.81c-.88-.51-1.91-.81-3-.81c-3.31 0-6 2.69-6 6c0 .34.04.67.09 1M18 15v3h-3v2h3v3h2v-3h3v-2h-3v-3h-2z' fill='currentColor'%3e%3c/path%3e%3c/svg%3e");
+    }
+    .i-alert {
+        mask-image : url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' width='1em' height='1em' viewBox='0 0 24 24'%3e%3cpath d='M13 14h-2v-4h2m0 8h-2v-2h2M1 21h22L12 2L1 21z' fill='currentColor'/%3e%3c/svg%3e");
+        -webkit-mask-image : url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' width='1em' height='1em' viewBox='0 0 24 24'%3e%3cpath d='M13 14h-2v-4h2m0 8h-2v-2h2M1 21h22L12 2L1 21z' fill='currentColor'/%3e%3c/svg%3e");
+    }
+    .i-backup {
+        mask-image : url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' width='24px' height='24px' viewBox='0 0 36 36'%3e%3cpath class='clr-i-outline clr-i-outline-path-1' d='M6 22h24v2H6z' fill='%23626262'/%3e%3cpath class='clr-i-outline clr-i-outline-path-2' d='M30.84 13.37A1.94 1.94 0 0 0 28.93 12h-2.38a3 3 0 0 1-.14 2h2.54c1.05 2.94 2.77 7.65 3.05 8.48V30H4v-7.52C4.28 21.65 7.05 14 7.05 14h2.53a3 3 0 0 1-.14-2H7.07a1.92 1.92 0 0 0-1.9 1.32C2 22 2 22.1 2 22.33V30a2 2 0 0 0 2 2h28a2 2 0 0 0 2-2v-7.67c0-.23 0-.33-3.16-8.96z' fill='%23626262'/%3e%3cpath class='clr-i-outline clr-i-outline-path-3' d='M18 19.84l6.38-6.35A1 1 0 1 0 23 12.08L19 16V4a1 1 0 1 0-2 0v12l-4-3.95a1 1 0 0 0-1.41 1.42z' fill='currentColor'/%3e%3c/svg%3e");
+        -webkit-mask-image : url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' width='24px' height='24px' viewBox='0 0 36 36'%3e%3cpath class='clr-i-outline clr-i-outline-path-1' d='M6 22h24v2H6z' fill='%23626262'/%3e%3cpath class='clr-i-outline clr-i-outline-path-2' d='M30.84 13.37A1.94 1.94 0 0 0 28.93 12h-2.38a3 3 0 0 1-.14 2h2.54c1.05 2.94 2.77 7.65 3.05 8.48V30H4v-7.52C4.28 21.65 7.05 14 7.05 14h2.53a3 3 0 0 1-.14-2H7.07a1.92 1.92 0 0 0-1.9 1.32C2 22 2 22.1 2 22.33V30a2 2 0 0 0 2 2h28a2 2 0 0 0 2-2v-7.67c0-.23 0-.33-3.16-8.96z' fill='%23626262'/%3e%3cpath class='clr-i-outline clr-i-outline-path-3' d='M18 19.84l6.38-6.35A1 1 0 1 0 23 12.08L19 16V4a1 1 0 1 0-2 0v12l-4-3.95a1 1 0 0 0-1.41 1.42z' fill='currentColor'/%3e%3c/svg%3e");
+    }
+    .i-backup-upload {
+        mask-image : url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' width='24px' height='24px' viewBox='0 0 36 36'%3e%3cpath class='clr-i-outline clr-i-outline-path-1' d='M6 22h24v2H6z' fill='%23626262'/%3e%3cpath class='clr-i-outline clr-i-outline-path-2' d='M26 26h4v2h-4z' fill='%23626262'/%3e%3cpath class='clr-i-outline clr-i-outline-path-3' d='M13 9.92L17 6v13a1 1 0 1 0 2 0V6l4 3.95a1 1 0 1 0 1.38-1.45L18 2.16L11.61 8.5A1 1 0 0 0 13 9.92z' fill='currentColor'/%3e%3cpath class='clr-i-outline clr-i-outline-path-4' d='M30.84 13.37A1.94 1.94 0 0 0 28.93 12H21v2h7.95c1.05 2.94 2.77 7.65 3.05 8.48V30H4v-7.52C4.28 21.65 7.05 14 7.05 14H15v-2H7.07a1.92 1.92 0 0 0-1.9 1.32C2 22 2 22.1 2 22.33V30a2 2 0 0 0 2 2h28a2 2 0 0 0 2-2v-7.67c0-.23 0-.33-3.16-8.96z' fill='currentColor'/%3e%3c/svg%3e");
+        -webkit-mask-image : url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' width='24px' height='24px' viewBox='0 0 36 36'%3e%3cpath class='clr-i-outline clr-i-outline-path-1' d='M6 22h24v2H6z' fill='%23626262'/%3e%3cpath class='clr-i-outline clr-i-outline-path-2' d='M26 26h4v2h-4z' fill='%23626262'/%3e%3cpath class='clr-i-outline clr-i-outline-path-3' d='M13 9.92L17 6v13a1 1 0 1 0 2 0V6l4 3.95a1 1 0 1 0 1.38-1.45L18 2.16L11.61 8.5A1 1 0 0 0 13 9.92z' fill='currentColor'/%3e%3cpath class='clr-i-outline clr-i-outline-path-4' d='M30.84 13.37A1.94 1.94 0 0 0 28.93 12H21v2h7.95c1.05 2.94 2.77 7.65 3.05 8.48V30H4v-7.52C4.28 21.65 7.05 14 7.05 14H15v-2H7.07a1.92 1.92 0 0 0-1.9 1.32C2 22 2 22.1 2 22.33V30a2 2 0 0 0 2 2h28a2 2 0 0 0 2-2v-7.67c0-.23 0-.33-3.16-8.96z' fill='currentColor'/%3e%3c/svg%3e");
+    }
+    .i-block {
+        mask-image : url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' width='24px' height='24px' viewBox='0 0 24 24'%3e%3cpath d='M14 12h5.5L14 6.5V12M8 5h7l6 6v10a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2v-3h5v2l4-3l-4-3v2H6V7a2 2 0 0 1 2-2m5.5-2H4v13h2v2H4a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h7.5l2 2z' fill='%23f5f5f5'%3e%3c/path%3e%3c/svg%3e");
+        -webkit-mask-image : url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' width='24px' height='24px' viewBox='0 0 24 24'%3e%3cpath d='M14 12h5.5L14 6.5V12M8 5h7l6 6v10a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2v-3h5v2l4-3l-4-3v2H6V7a2 2 0 0 1 2-2m5.5-2H4v13h2v2H4a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h7.5l2 2z' fill='%23f5f5f5'%3e%3c/path%3e%3c/svg%3e");
+    }
+    .i-block-add {
+        mask-image : url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' width='24px' height='24px' viewBox='0 0 24 24' class='icon-block-plus'%3e%3cpath d='M13 3v8h8V3h-8M3 21h8v-8H3v8M3 3v8h8V3H3m10 13h3v-3h2v3h3v2h-3v3h-2v-3h-3v-2z' fill='currentColor'%3e%3c/path%3e%3c/svg%3e");
+        -webkit-mask-image : url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' width='24px' height='24px' viewBox='0 0 24 24' class='icon-block-plus'%3e%3cpath d='M13 3v8h8V3h-8M3 21h8v-8H3v8M3 3v8h8V3H3m10 13h3v-3h2v3h3v2h-3v3h-2v-3h-3v-2z' fill='currentColor'%3e%3c/path%3e%3c/svg%3e");
+    }
+    .i-copy {
+        mask-image : url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' width='24px' height='24px' viewBox='0 0 24 24'%3e%3cpath d='M14 12h5.5L14 6.5V12M8 5h7l6 6v10a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2v-3h5v2l4-3l-4-3v2H6V7a2 2 0 0 1 2-2m5.5-2H4v13h2v2H4a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h7.5l2 2z' fill='currentColor'%3e%3c/path%3e%3c/svg%3e");
+        -webkit-mask-image : url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' width='24px' height='24px' viewBox='0 0 24 24'%3e%3cpath d='M14 12h5.5L14 6.5V12M8 5h7l6 6v10a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2v-3h5v2l4-3l-4-3v2H6V7a2 2 0 0 1 2-2m5.5-2H4v13h2v2H4a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h7.5l2 2z' fill='currentColor'%3e%3c/path%3e%3c/svg%3e");
+    }
+    .i-danger {
+        mask-image : url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' width='1em' height='1em' viewBox='0 0 24 24'%3e%3cpath d='M12 2c-.5 0-1 .19-1.41.59l-8 8c-.79.78-.79 2.04 0 2.82l8 8c.78.79 2.04.79 2.82 0l8-8c.79-.78.79-2.04 0-2.82l-8-8C13 2.19 12.5 2 12 2m-1 5h2v6h-2V7m0 8h2v2h-2v-2z' fill='currentColor'/%3e%3c/svg%3e");
+        -webkit-mask-image : url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' width='1em' height='1em' viewBox='0 0 24 24'%3e%3cpath d='M12 2c-.5 0-1 .19-1.41.59l-8 8c-.79.78-.79 2.04 0 2.82l8 8c.78.79 2.04.79 2.82 0l8-8c.79-.78.79-2.04 0-2.82l-8-8C13 2.19 12.5 2 12 2m-1 5h2v6h-2V7m0 8h2v2h-2v-2z' fill='currentColor'/%3e%3c/svg%3e");
+    }
+    .i-data-export {
+        mask-image : url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' width='24px' height='24px' viewBox='0 0 24 24'%3e%3cpath d='M12 3C7.58 3 4 4.79 4 7s3.58 4 8 4c.5 0 1-.03 1.5-.08V9.5h2.89l-1-1L18.9 5c-1.4-1.2-3.96-2-6.9-2m6.92 4.08L17.5 8.5L20 11h-5v2h5l-2.5 2.5l1.42 1.42L23.84 12M4 9v3c0 2.21 3.58 4 8 4c1.17 0 2.26-.15 3.25-.37l1.13-1.13H13.5v-1.58c-.5.05-1 .08-1.5.08c-4.42 0-8-1.79-8-4m0 5v3c0 2.21 3.58 4 8 4c2.94 0 5.5-.8 6.9-2L17 17.1c-1.39.56-3.1.9-5 .9c-4.42 0-8-1.79-8-4z' fill='currentColor'/%3e%3c/svg%3e");
+        -webkit-mask-image : url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' width='24px' height='24px' viewBox='0 0 24 24'%3e%3cpath d='M12 3C7.58 3 4 4.79 4 7s3.58 4 8 4c.5 0 1-.03 1.5-.08V9.5h2.89l-1-1L18.9 5c-1.4-1.2-3.96-2-6.9-2m6.92 4.08L17.5 8.5L20 11h-5v2h5l-2.5 2.5l1.42 1.42L23.84 12M4 9v3c0 2.21 3.58 4 8 4c1.17 0 2.26-.15 3.25-.37l1.13-1.13H13.5v-1.58c-.5.05-1 .08-1.5.08c-4.42 0-8-1.79-8-4m0 5v3c0 2.21 3.58 4 8 4c2.94 0 5.5-.8 6.9-2L17 17.1c-1.39.56-3.1.9-5 .9c-4.42 0-8-1.79-8-4z' fill='currentColor'/%3e%3c/svg%3e");
+    }
+    .i-data-import {
+        mask-image : url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' width='24px' height='24px' viewBox='0 0 24 24'%3e%3cpath d='M12 3C8.59 3 5.69 4.07 4.54 5.57l5.25 5.25c.71.11 1.43.18 2.21.18c4.42 0 8-1.79 8-4s-3.58-4-8-4M3.92 7.08L2.5 8.5L5 11H0v2h5l-2.5 2.5l1.42 1.42L8.84 12M20 9c0 2.21-3.58 4-8 4c-.66 0-1.3-.05-1.91-.13l-2.47 2.47c1.26.41 2.76.66 4.38.66c4.42 0 8-1.79 8-4m0 2c0 2.21-3.58 4-8 4c-2.28 0-4.33-.5-5.79-1.25l-1.68 1.68C5.68 19.93 8.59 21 12 21c4.42 0 8-1.79 8-4' fill='currentColor'/%3e%3c/svg%3e");
+        -webkit-mask-image : url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' width='24px' height='24px' viewBox='0 0 24 24'%3e%3cpath d='M12 3C8.59 3 5.69 4.07 4.54 5.57l5.25 5.25c.71.11 1.43.18 2.21.18c4.42 0 8-1.79 8-4s-3.58-4-8-4M3.92 7.08L2.5 8.5L5 11H0v2h5l-2.5 2.5l1.42 1.42L8.84 12M20 9c0 2.21-3.58 4-8 4c-.66 0-1.3-.05-1.91-.13l-2.47 2.47c1.26.41 2.76.66 4.38.66c4.42 0 8-1.79 8-4m0 2c0 2.21-3.58 4-8 4c-2.28 0-4.33-.5-5.79-1.25l-1.68 1.68C5.68 19.93 8.59 21 12 21c4.42 0 8-1.79 8-4' fill='currentColor'/%3e%3c/svg%3e");
+    }
+    .i-delete {
+        mask-image : url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' width='24px' height='24px' viewBox='0 0 24 24'%3e%3cpath d='M6 19a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V7H6v12m2.46-7.12l1.41-1.41L12 12.59l2.12-2.12l1.41 1.41L13.41 14l2.12 2.12l-1.41 1.41L12 15.41l-2.12 2.12l-1.41-1.41L10.59 14l-2.13-2.12M15.5 4l-1-1h-5l-1 1H5v2h14V4h-3.5z' fill='currentColor'%3e%3c/path%3e%3c/svg%3e");
+        -webkit-mask-image : url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' width='24px' height='24px' viewBox='0 0 24 24'%3e%3cpath d='M6 19a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V7H6v12m2.46-7.12l1.41-1.41L12 12.59l2.12-2.12l1.41 1.41L13.41 14l2.12 2.12l-1.41 1.41L12 15.41l-2.12 2.12l-1.41-1.41L10.59 14l-2.13-2.12M15.5 4l-1-1h-5l-1 1H5v2h14V4h-3.5z' fill='currentColor'%3e%3c/path%3e%3c/svg%3e");
+    }
+    .i-deploy {
+        mask-image : url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' width='24px' height='24px' viewBox='0 0 1024 1024'%3e%3cpath d='M888.3 693.2c-42.5-24.6-94.3-18-129.2 12.8l-53-30.7V523.6c0-15.7-8.4-30.3-22-38.1l-136-78.3v-67.1c44.2-15 76-56.8 76-106.1c0-61.9-50.1-112-112-112s-112 50.1-112 112c0 49.3 31.8 91.1 76 106.1v67.1l-136 78.3c-13.6 7.8-22 22.4-22 38.1v151.6l-53 30.7c-34.9-30.8-86.8-37.4-129.2-12.8c-53.5 31-71.7 99.4-41 152.9c30.8 53.5 98.9 71.9 152.2 41c42.5-24.6 62.7-73 53.6-118.8l48.7-28.3l140.6 81c6.8 3.9 14.4 5.9 22 5.9s15.2-2 22-5.9L674.5 740l48.7 28.3c-9.1 45.7 11.2 94.2 53.6 118.8c53.3 30.9 121.5 12.6 152.2-41c30.8-53.6 12.6-122-40.7-152.9zm-673 138.4a47.6 47.6 0 0 1-65.2-17.6c-13.2-22.9-5.4-52.3 17.5-65.5a47.6 47.6 0 0 1 65.2 17.6c13.2 22.9 5.4 52.3-17.5 65.5zM522 463.8zM464 234a48.01 48.01 0 0 1 96 0a48.01 48.01 0 0 1-96 0zm170 446.2l-122 70.3l-122-70.3V539.8l122-70.3l122 70.3v140.4zm239.9 133.9c-13.2 22.9-42.4 30.8-65.2 17.6c-22.8-13.2-30.7-42.6-17.5-65.5s42.4-30.8 65.2-17.6c22.9 13.2 30.7 42.5 17.5 65.5z' fill='currentColor'/%3e%3c/svg%3e");
+        -webkit-mask-image : url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' width='24px' height='24px' viewBox='0 0 1024 1024'%3e%3cpath d='M888.3 693.2c-42.5-24.6-94.3-18-129.2 12.8l-53-30.7V523.6c0-15.7-8.4-30.3-22-38.1l-136-78.3v-67.1c44.2-15 76-56.8 76-106.1c0-61.9-50.1-112-112-112s-112 50.1-112 112c0 49.3 31.8 91.1 76 106.1v67.1l-136 78.3c-13.6 7.8-22 22.4-22 38.1v151.6l-53 30.7c-34.9-30.8-86.8-37.4-129.2-12.8c-53.5 31-71.7 99.4-41 152.9c30.8 53.5 98.9 71.9 152.2 41c42.5-24.6 62.7-73 53.6-118.8l48.7-28.3l140.6 81c6.8 3.9 14.4 5.9 22 5.9s15.2-2 22-5.9L674.5 740l48.7 28.3c-9.1 45.7 11.2 94.2 53.6 118.8c53.3 30.9 121.5 12.6 152.2-41c30.8-53.6 12.6-122-40.7-152.9zm-673 138.4a47.6 47.6 0 0 1-65.2-17.6c-13.2-22.9-5.4-52.3 17.5-65.5a47.6 47.6 0 0 1 65.2 17.6c13.2 22.9 5.4 52.3-17.5 65.5zM522 463.8zM464 234a48.01 48.01 0 0 1 96 0a48.01 48.01 0 0 1-96 0zm170 446.2l-122 70.3l-122-70.3V539.8l122-70.3l122 70.3v140.4zm239.9 133.9c-13.2 22.9-42.4 30.8-65.2 17.6c-22.8-13.2-30.7-42.6-17.5-65.5s42.4-30.8 65.2-17.6c22.9 13.2 30.7 42.5 17.5 65.5z' fill='currentColor'/%3e%3c/svg%3e");
+    }
+    .i-download {
+        mask-image : url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' width='24px' height='24px' viewBox='0 0 24 24'%3e%3cpath d='M14 2H6c-1.11 0-2 .89-2 2v16c0 1.11.89 2 2 2h12c1.11 0 2-.89 2-2V8l-6-6m-2 17l-4-4h2.5v-3h3v3H16l-4 4m1-10V3.5L18.5 9H13z' fill='currentColor'%3e%3c/path%3e%3c/svg%3e");
+        -webkit-mask-image : url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' width='24px' height='24px' viewBox='0 0 24 24'%3e%3cpath d='M14 2H6c-1.11 0-2 .89-2 2v16c0 1.11.89 2 2 2h12c1.11 0 2-.89 2-2V8l-6-6m-2 17l-4-4h2.5v-3h3v3H16l-4 4m1-10V3.5L18.5 9H13z' fill='currentColor'%3e%3c/path%3e%3c/svg%3e");
+    }
+    .i-edit {
+        mask-image : url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' width='24px' height='24px' viewBox='0 0 24 24' class='icon-edit'%3e%3cpath d='M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83l3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z' fill='currentColor'%3e%3c/path%3e%3c/svg%3e ");
+        -webkit-mask-image : url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' width='24px' height='24px' viewBox='0 0 24 24' class='icon-edit'%3e%3cpath d='M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83l3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z' fill='currentColor'%3e%3c/path%3e%3c/svg%3e ");
+    }
+    .i-info {
+        mask-image : url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' aria-hidden='true' focusable='false' width='24px' height='24px' style='vertical-align: -0.125em;' viewBox='0 0 24 24'%3e%3cpath d='M11.5 3a9.5 9.5 0 1 1 0 19a9.5 9.5 0 0 1 0-19zm0 1a8.5 8.5 0 1 0 0 17a8.5 8.5 0 0 0 0-17zM11 8v2h1V8h-1zm0 4v5h1v-5h-1z' fill='currentColor'/%3e%3c/svg%3e");
+        -webkit-mask-image : url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' aria-hidden='true' focusable='false' width='24px' height='24px' style='vertical-align: -0.125em;' viewBox='0 0 24 24'%3e%3cpath d='M11.5 3a9.5 9.5 0 1 1 0 19a9.5 9.5 0 0 1 0-19zm0 1a8.5 8.5 0 1 0 0 17a8.5 8.5 0 0 0 0-17zM11 8v2h1V8h-1zm0 4v5h1v-5h-1z' fill='currentColor'/%3e%3c/svg%3e");
+    }
+    .i-user {
+        mask-image : url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' width='24px' height='24px' viewBox='0 0 24 24'%3e%3cpath d='M14 12h5.5L14 6.5V12M8 5h7l6 6v10a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2v-3h5v2l4-3l-4-3v2H6V7a2 2 0 0 1 2-2m5.5-2H4v13h2v2H4a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h7.5l2 2z' fill='%23f5f5f5'%3e%3c/path%3e%3c/svg%3e");
+        -webkit-mask-image : url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' width='24px' height='24px' viewBox='0 0 24 24'%3e%3cpath d='M14 12h5.5L14 6.5V12M8 5h7l6 6v10a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2v-3h5v2l4-3l-4-3v2H6V7a2 2 0 0 1 2-2m5.5-2H4v13h2v2H4a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h7.5l2 2z' fill='%23f5f5f5'%3e%3c/path%3e%3c/svg%3e");
+    }
+    .i-group {
+        mask-image : url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' width='24px' height='24px' viewBox='0 0 24 24'%3e%3cpath d='M14 12h5.5L14 6.5V12M8 5h7l6 6v10a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2v-3h5v2l4-3l-4-3v2H6V7a2 2 0 0 1 2-2m5.5-2H4v13h2v2H4a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h7.5l2 2z' fill='%23f5f5f5'%3e%3c/path%3e%3c/svg%3e");
+        -webkit-mask-image : url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' width='24px' height='24px' viewBox='0 0 24 24'%3e%3cpath d='M14 12h5.5L14 6.5V12M8 5h7l6 6v10a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2v-3h5v2l4-3l-4-3v2H6V7a2 2 0 0 1 2-2m5.5-2H4v13h2v2H4a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h7.5l2 2z' fill='%23f5f5f5'%3e%3c/path%3e%3c/svg%3e");
+    }
+    .i-module {
+        mask-image : url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' width='24px' height='24px' viewBox='0 0 24 24' class='icon-package'%3e%3cpath d='M21 16.5c0 .38-.21.71-.53.88l-7.9 4.44c-.16.12-.36.18-.57.18c-.21 0-.41-.06-.57-.18l-7.9-4.44A.991.991 0 0 1 3 16.5v-9c0-.38.21-.71.53-.88l7.9-4.44c.16-.12.36-.18.57-.18c.21 0 .41.06.57.18l7.9 4.44c.32.17.53.5.53.88v9M12 4.15l-1.89 1.07L16 8.61l1.96-1.11L12 4.15M6.04 7.5L12 10.85l1.96-1.1l-5.88-3.4L6.04 7.5M5 15.91l6 3.38v-6.71L5 9.21v6.7m14 0v-6.7l-6 3.37v6.71l6-3.38z' fill='currentColor'%3e%3c/path%3e%3c/svg%3e");
+        -webkit-mask-image : url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' width='24px' height='24px' viewBox='0 0 24 24' class='icon-package'%3e%3cpath d='M21 16.5c0 .38-.21.71-.53.88l-7.9 4.44c-.16.12-.36.18-.57.18c-.21 0-.41-.06-.57-.18l-7.9-4.44A.991.991 0 0 1 3 16.5v-9c0-.38.21-.71.53-.88l7.9-4.44c.16-.12.36-.18.57-.18c.21 0 .41.06.57.18l7.9 4.44c.32.17.53.5.53.88v9M12 4.15l-1.89 1.07L16 8.61l1.96-1.11L12 4.15M6.04 7.5L12 10.85l1.96-1.1l-5.88-3.4L6.04 7.5M5 15.91l6 3.38v-6.71L5 9.21v6.7m14 0v-6.7l-6 3.37v6.71l6-3.38z' fill='currentColor'%3e%3c/path%3e%3c/svg%3e");
+    }
+    .i-move {
+        mask-image : url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' width='24px' height='24px' viewBox='0 0 24 24'%3e%3cpath d='M14 17h4v-3l5 4.5l-5 4.5v-3h-4v-3m-1-8h5.5L13 3.5V9M6 2h8l6 6v4.34c-.63-.22-1.3-.34-2-.34a6 6 0 0 0-6 6c0 1.54.58 2.94 1.53 4H6a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2z' fill='currentColor'/%3e%3c/svg%3e");
+        -webkit-mask-image : url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' width='24px' height='24px' viewBox='0 0 24 24'%3e%3cpath d='M14 17h4v-3l5 4.5l-5 4.5v-3h-4v-3m-1-8h5.5L13 3.5V9M6 2h8l6 6v4.34c-.63-.22-1.3-.34-2-.34a6 6 0 0 0-6 6c0 1.54.58 2.94 1.53 4H6a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2z' fill='currentColor'/%3e%3c/svg%3e");
+    }
+    .i-sync {
+        mask-image : url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' width='24px' height='24px' viewBox='0 0 24 24'%3e%3cpath d='M11 13h2V7h-2m10-3h-6v6l2.24-2.24A6.003 6.003 0 0 1 19 12a5.99 5.99 0 0 1-4 5.65v2.09c3.45-.89 6-4.01 6-7.74c0-2.21-.91-4.2-2.36-5.64M11 17h2v-2h-2m-8-3c0 2.21.91 4.2 2.36 5.64L3 20h6v-6l-2.24 2.24A6.003 6.003 0 0 1 5 12a5.99 5.99 0 0 1 4-5.65V4.26C5.55 5.15 3 8.27 3 12z' fill='currentColor'/%3e%3c/svg%3e");
+        -webkit-mask-image : url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' width='24px' height='24px' viewBox='0 0 24 24'%3e%3cpath d='M11 13h2V7h-2m10-3h-6v6l2.24-2.24A6.003 6.003 0 0 1 19 12a5.99 5.99 0 0 1-4 5.65v2.09c3.45-.89 6-4.01 6-7.74c0-2.21-.91-4.2-2.36-5.64M11 17h2v-2h-2m-8-3c0 2.21.91 4.2 2.36 5.64L3 20h6v-6l-2.24 2.24A6.003 6.003 0 0 1 5 12a5.99 5.99 0 0 1 4-5.65V4.26C5.55 5.15 3 8.27 3 12z' fill='currentColor'/%3e%3c/svg%3e");
+    }
+    .i-transfert {
+        mask-image : url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' width='1em' height='1em' viewBox='0 0 24 24'%3e%3cpath d='M16 2l5 5v14.008a.993.993 0 0 1-.993.992H3.993A1 1 0 0 1 3 21.008V2.992C3 2.444 3.445 2 3.993 2H16zm-4 9H8v2h4v3l4-4l-4-4v3z' fill='currentColor'/%3e%3c/svg%3e");
+        -webkit-mask-image : url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' width='1em' height='1em' viewBox='0 0 24 24'%3e%3cpath d='M16 2l5 5v14.008a.993.993 0 0 1-.993.992H3.993A1 1 0 0 1 3 21.008V2.992C3 2.444 3.445 2 3.993 2H16zm-4 9H8v2h4v3l4-4l-4-4v3z' fill='currentColor'/%3e%3c/svg%3e");
+    }
+    .i-tar {
+        mask-image : url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' width='24px' height='24px' viewBox='0 0 24 24'%3e%3cpath d='M20 21H4V10h2v9h12v-9h2v11M3 3h18v6H3V3m2 2v2h14V5m-8.5 6v3H8l4 4l4-4h-2.5v-3' fill='%23626262'/%3e%3c/svg%3e");
+        -webkit-mask-image : url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' width='24px' height='24px' viewBox='0 0 24 24'%3e%3cpath d='M20 21H4V10h2v9h12v-9h2v11M3 3h18v6H3V3m2 2v2h14V5m-8.5 6v3H8l4 4l4-4h-2.5v-3' fill='%23626262'/%3e%3c/svg%3e");
+    }
+    .i-template {
+        mask-image : url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' width='24px' height='24px' viewBox='0 0 16 16'%3e%3cpath d='M6 3h2v1H6zm3 0h2v1H9zm5 0v4h-3V6h2V4h-1V3zM5 6h2v1H5zm3 0h2v1H8zM3 4v2h1v1H2V3h3v1zm3 5h2v1H6zm3 0h2v1H9zm5 0v4h-3v-1h2v-2h-1V9zm-9 3h2v1H5zm3 0h2v1H8zm-5-2v2h1v1H2V9h3v1zm12-9H1v14h14V1zm1-1v16H0V0h16z' fill='currentColor'/%3e%3c/svg%3e");
+        -webkit-mask-image : url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' width='24px' height='24px' viewBox='0 0 16 16'%3e%3cpath d='M6 3h2v1H6zm3 0h2v1H9zm5 0v4h-3V6h2V4h-1V3zM5 6h2v1H5zm3 0h2v1H8zM3 4v2h1v1H2V3h3v1zm3 5h2v1H6zm3 0h2v1H9zm5 0v4h-3v-1h2v-2h-1V9zm-9 3h2v1H5zm3 0h2v1H8zm-5-2v2h1v1H2V9h3v1zm12-9H1v14h14V1zm1-1v16H0V0h16z' fill='currentColor'/%3e%3c/svg%3e");
+    }
+    .i-zip {
+        mask-image : url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' width='24px' height='24px' viewBox='0 0 24 24'%3e%3cpath d='M18.71 3H5.29L3 5.79V21h18V5.79L18.71 3zM12 17.5L6.5 12H10v-2h4v2h3.5L12 17.5zM5.12 5l.81-1h12l.94 1H5.12z' fill='currentColor'/%3e%3c/svg%3e");
+        -webkit-mask-image : url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' width='24px' height='24px' viewBox='0 0 24 24'%3e%3cpath d='M18.71 3H5.29L3 5.79V21h18V5.79L18.71 3zM12 17.5L6.5 12H10v-2h4v2h3.5L12 17.5zM5.12 5l.81-1h12l.94 1H5.12z' fill='currentColor'/%3e%3c/svg%3e");
+    }
+    .i-zip-upload {
+        mask-image : url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' width='24px' height='24px' viewBox='0 0 24 24'%3e%3cpath d='M20 21H4V10h2v9h12v-9h2v11M3 3h18v6H3V3m2 2v2h14V5m-8.5 12v-3H8l4-4l4 4h-2.5v3' fill='%23626262'/%3e%3c/svg%3e");
+        -webkit-mask-image : url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' width='24px' height='24px' viewBox='0 0 24 24'%3e%3cpath d='M20 21H4V10h2v9h12v-9h2v11M3 3h18v6H3V3m2 2v2h14V5m-8.5 12v-3H8l4-4l4 4h-2.5v3' fill='%23626262'/%3e%3c/svg%3e");
+    }
+
+    /* Icons color and size */
+    i[class^="i-"] {
+        /* color for mask */
+        background-color    : var(--ui-button-color);
+        /* set max or overwrite with container btn */
+        height              : 24px;
+        width               : 24px;
+        /* container btn with position:relative */
+        position            : absolute;
+        opacity             : 0.74;
+        top                 : 1px;
+        left                : 4px;
+        mask-repeat         : no-repeat;
+        -webkit-mask-repeat : no-repeat;
+        mask-size           : 24px 24px;
+        -webkit-mask-size   : 24px 24px;
+    }
+    i[class|="i-"]:hover{
+        background-color    : var(  --ui-button-hover-txt   );
+        /*box-shadow          : 0 8px 6px -6px green;*/
+    }
+
+/* -------------------- -------------------- -------------------- -------------------- BADGE */
+
+    /* Badge default */
+    .badge {
+        background          : var(  --ui-button-background  );
+        border              : none;
+        border-radius       : 7px;
+        box-shadow          : var(	--ui-button-box-shadow );
+        color               : var(  --ui-color-100  );
+        display             : inline-block;
+        font-size           : 0.74rem;
+        font-family         : sans-serif;
+        font-style          : normal;
+        font-weight         : 300;
+        letter-spacing      : 0.1rem;
+        line-height         : 1em;
+        margin              : var(  --ui-button-margin  );
+        padding             : var(  --ui-space-400 ) var(  --ui-space-600 );
+        position            : relative;
+        text-align          : center;
+        text-transform      : uppercase;
+        transition          : all ease-in-out 0.2s;
+        vertical-align      : baseline;
+        white-space         : nowrap;
+    }
+    /* Badge with icon */
+    .badge > i[class^="i-"]{
+        mask-size           : 1.5em 1.5em;
+        -webkit-mask-size   : 1.5em 1.5em;
+    }
+    .badge:hover {
+        background          : var(  --ui-button-hover-bg  );
+    }
+    /* Button with badge */
+    button > .badge {
+        border-radius       : 50%;
+        box-shadow          : 1px 2px 2px -1px hsla(0, 0%, 7%, 0.9);
+        padding             : 4px 7px;
+        position            : absolute;
+        right               : -1em;
+        top                 : -1em;
+    }
+
+/* -------------------- -------------------- -------------------- -------------------- BTN-ICO */
+
+    .btn-ico {
+        background          : var(--ui-button-background);
+        border-radius       : .3rem;
+        box-shadow          : var( --ui-shadow-100 );
+        border              : none;
+        cursor              : pointer;
+        display             : inline-block;
+        height              : 28px;
+        width               : 32px;
+        overflow            : hidden;
+        margin              : 0 .25em 0.25em 0;
+        outline             : 0;
+        /*padding           : var(--ui-space-200);*/
+        transition          : all .2s ease;
+        user-select         : none;
+        vertical-align      : middle;
+        will-change         : auto;
+        /* Hide Text if any */
+        position            : relative;
+        text-indent         : -9999px;
+
+        -webkit-tap-highlight-color: transparent;
+    }
+    .btn-ico:hover {
+        background-color    : var(  --ui-button-hover-bg );
+        box-shadow          : 0 8px 4px -4px #face74;
+    }
+    /* Icon color on mouse hover */
+    .btn-ico:hover > i{
+        background-color    : var( --ui-button-hover-txt);
+    }
+
+
+/* -------------------- -------------------- -------------------- -------------------- BTN-ICON-TEXT */
+
+    .btn-icon-text {
+        background          : var(--ui-button-background);
+        border-radius       : .3rem;
+        box-shadow          : var(  --ui-shadow-100   );
+        border              : none;
+        color               : var(  --ui-button-color  );
+        cursor              : pointer;
+        margin              : 0 .25em 0 0;
+        min-width           : 127px;
+        width               : max-content;
+        outline             : 0;
+        padding             : 4px 7px 4px 27px;
+        position            : relative;
+        text-decoration     : none;
+        text-shadow         : none!important;
+        text-transform      : none;
+        transition          : all .2s ease;
+        user-select         : none;
+        will-change         : auto;
+        -webkit-tap-highlight-color: transparent;
+    }
+    .btn-icon-text:active,
+    .btn-icon-text:focus,
+    .btn-icon-text:hover {
+        color               : var(  --ui-button-hover-txt );
+    }
+    .btn-icon-text:hover i[class^="i-"] {
+        background-color    : var(  --ui-button-hover-txt ); /* inverse icon mask color */
+    }
+    .btn-icon-text:hover {
+        background-color    : var( --ui-button-hover-bg );
+    }
+
+/* -------------------- -------------------- -------------------- -------------------- BTN DISABLED */
+
+    button.btn-icon-text:disabled,
+    a.ui-btn.disabled,
+    .ui-btn.disabled,
+    .ui-btn:disabled:hover,
+    [class*="ui-btn-"].disabled,
+    [class*="ui-btn-"]:disabled:hover {
+        cursor              : not-allowed;
+        opacity             : 0.74;
+}
+    /* @Todo uninstall */
+    a.ui-btn.ui-btn-small[title="Uninstall"]{
+        background: var(  --ui-color-red);
+    }
+
+/* -------------------- -------------------- -------------------- -------------------- UI-BTN + jQueryUI */
+
+    /* Overwrite jQuery Components */
 
     .ui-btn,
     [class*="ui-btn-"] {
-
         background-color    : var(  --ui-button-background  );
-
         border              : var(  --ui-button-border      );
         border-radius       : var(  --ui-button-radius      );
-
         box-shadow          : var(  --ui-button-box-shadow  );
-
         color               : var(  --ui-button-color       );
         cursor              : pointer;
-
         display             : inline-block;
-
-        /* font-size           : 0.875rem;
+        /* font-size        : 0.875rem;
         font-family         : sans-serif;
         font-style          : normal;
         font-weight         : 300;
         letter-spacing      : 0.08rem;
         line-height         : 1; */
-
         padding             : var(  --ui-button-padding     );
+        position            : relative;
         margin              : var(  --ui-button-margin      );
-
         text-align          : center;
         text-decoration     : none;
         touch-action        : manipulation;
@@ -40,384 +293,128 @@
         user-select         : none;
         vertical-align      : middle;
         white-space         : nowrap;
-
     }
-
     .ui-btn:active,
     [class*="ui-btn-"]:active {
-
         box-shadow          : var(  --ui-shadow-300     );
-
     }
-
-
     .ui-btn.ui-btn-small,
     [class*="ui-btn-"].ui-btn-small {
-
         color               : var(  --ui-button-color   );
         font-size           : 0.85rem;
         padding             : 0.75rem;
         /* padding             : var(  --ui-button-padding ); */
-
     }
 
     a.ui-btn > svg.svg-ui-icon,
     a.ui-btn.ui-btn-small > svg.svg-ui-icon,
     [class*="ui-btn-"]> svg.svg-ui-icon {
-
         color               : var(  --ui-button-color   );
         font-size           : 1rem;
         padding-right       : 0.25em;
         vertical-align      : middle;            /* Align icon = text  */
         width               : 1.4em !important; /* Size icon + text   */
-
     }
 
     .ui-btn:hover,
     .ui-btn:focus,
     .ui-btn.ui-btn-small:hover,
     .ui-btn.ui-btn-small:focus {
-
         background          : var(  --ui-button-hover-bg    );
         color               : var(  --ui-button-hover-txt   );
-
     }
 
-    a.ui-btn.disabled,
-    .ui-btn.disabled,
-    .ui-btn:disabled:hover,
-    [class*="ui-btn--"].disabled,
-    [class*="ui-btn--"]:disabled:hover {
-        background-color    : var(  --button-disable-bg     );
-        color               : var(  --button-disable-txt    );
-        cursor              : not-allowed;
-        opacity             : 0.5;
+/* -------------------- -------------------- -------------------- BTN Alert */
+
+    .ui-btn-alert {
+        background          : var(  --ui-color-800      );
+        border              : 1px solid var(  --ui-color-orange );
+        color               : var(  --ui-color-orange   );
+    }
+    .ui-btn-alert:active,
+    .ui-btn-alert:hover,
+    .ui-btn-alert:focus {
+        background          : var(  --ui-color-orange   );
+        color               : var(  --ui-color-white    );
     }
 
-/* -------------------- -------------------- -------------------- -------------------- BTN Black */
-
-    .ui-btn-black {
-        /* background          : var(  --ui-color-black    ); */
-        border              : 1px solid var(  --ui-color-black    );
-        /* color               : var(  --ui-color-white  ); */
-    }
-    .ui-btn-black:active,
-    .ui-btn-black:hover,
-    .ui-btn-black:focus {
-        background          : var(  --ui-color-black    );
-        color               : var(  --ui-color-white  );
-    }
-
-/* -------------------- -------------------- -------------------- -------------------- BTN Danger */
+/* -------------------- -------------------- -------------------- BTN Danger */
 
     .ui-btn-danger {
-        background          : var(  --ui-color-800    );
+        background          : var(  --ui-color-800  );
         border              : 1px solid var(  --ui-color-red  );
-        color               : var(  --ui-color-red      );
+        color               : var(  --ui-color-red  );
     }
     .ui-btn-danger:active,
     .ui-btn-danger:hover,
     .ui-btn-danger:focus {
         background          : var(  --ui-color-red  );
-        color               : var(  --ui-color-100  );
+        color               : var(  --ui-color-white);
     }
 
-/* -------------------- -------------------- -------------------- -------------------- BTN Success */
+/* -------------------- -------------------- -------------------- BTN Success */
 
     .ui-btn-success {
-        background          : var(  --ui-color-800    );
-        border              : 1px solid var(  --ui-color-green    );
+        background          : var(  --ui-color-800      );
+        border              : 1px solid var(  --ui-color-green );
         color               : var(  --ui-color-green    );
     }
     .ui-btn-success:active,
     .ui-btn-success:hover,
     .ui-btn-success:focus {
         background          : var(  --ui-color-green    );
-        color               : var(  --ui-color-100  );
+        color               : var(  --ui-color-white    );
     }
 
-/* -------------------- -------------------- -------------------- -------------------- BTN Warning */
+/* -------------------- -------------------- -------------------- -------------------- BUTTON FX */
 
-    .ui-btn-warning {
-        background          : var(  --ui-color-800    );
-        border              : 1px solid var(  --ui-color-orange   );
-        color               : var(  --ui-color-orange   );
-    }
-    .ui-btn-warning:active,
-    .ui-btn-warning:hover,
-    .ui-btn-warning:focus {
-        background          : var(  --ui-color-orange   );
-        color               : var(  --ui-color-100  );
-    }
+    /* Button Default Theme Design */
 
-    /*-------------------- -------------------- -------------------- -------------------- BTN White */
-
-    .ui-btn-white {
-        border              : 1px solid var(  --ui-color-white  );
-        color               : var(  --ui-link    );
-    }
-    .ui-btn-white:active,
-    .ui-btn-white:hover,
-    .ui-btn-white:focus {
-        background          : var(  --ui-color-white    );
-        color               : var(  --ui-color-black    );
-    }
-
-/* -------------------- -------------------- -------------------- -------------------- BADGE */
-
-    a.ui-badge,
-    .ui-badge {
-        background          : var(  --ui-color-500  );
-        border-radius       : 15px;
-        box-shadow          : var(	--ui-button-box-shadow );
-        color               : var(  --ui-color-100  );
-        display             : inline-block;
-        font-size           : 0.7rem;
-        font-family         : sans-serif;
-        font-style          : normal;
-        font-weight         : 300;
-        letter-spacing      : 0.08rem;
-        line-height         : 1em;
-        margin              : var(  --ui-button-margin  );
-        padding             : var(  --ui-button-padding );
-        text-align          : center;
-        text-transform      : uppercase;
-        vertical-align      : baseline;
-        white-space         : nowrap;
-
-    }
-    .ui-badge:hover {
-        transition          : all 0.45s;
-        box-shadow          : var(	--ui-shadow-300		);
-    }
-
-
-    .ui-btn-block {
-        display             : block;
-        width               : 100%;
-    }
-    .ui-btn-block + .ui-btn-block {
-        margin-top          : 5px;
-    }
-    input[type="submit"].ui-btn-block,
-    input[type="reset"].ui-btn-block,
-    input[type="button"].ui-btn-block {
-        width               : 100%;
-    }
-
-    /* -------------------- -------------------- -------------------- -------------------- btn-anim Theme Default */
-
-    /* Button Default Theme Design*/
-
-    .btn-anim {
-        background  : none;
-        border      : var(  --ui-button-border  );
-        color       : var(  --ui-button-color  );
-        touch-action: manipulation;
-        min-width   : 40px;  /* icon */
-        max-width   : 240px;/* text */
-        padding     : 1em 2em;
-        position    : relative;
-        z-index     : 1;
+    .btn-fx {
+        background      : none;
+        border          : var(  --ui-button-border  );
+        color           : var(  --ui-button-color   );
+        touch-action    : manipulation;
+        min-width       : 40px;  /* icon */
+        max-width       : 240px;/* text */
+        padding         : 1em 2em;
+        position        : relative;
+        z-index         : 1;
 
         backface-visibility: hidden;
         -webkit-backface-visibility: hidden;
         -moz-osx-font-smoothing: grayscale;
     }
-    .btn-anim:focus {
-        outline: none;
+    .btn-fx:focus {
+        outline         : none;
     }
-    .btn-anim > span {
-        vertical-align: middle;
-    }
-
-    /* -------------------- -------------------- -------------------- -------------------- btn-anim button-openout */
-
-    .button-openout {
-        box-shadow      : var(  --ui-shadow-100         );
-        border          : var(  --ui-button-border      );
-        transition      : border-color 0.5s, color 0.5s;
-    }
-    .button-openout::before {
-        background      : var(  --ui-button-background  );
-        border-color    : var(  --ui-button-border      );
-        content         : '';
-        height          : 100%;
-        left            : 0;
-        position        : absolute;
-        transform       : scale3d(0.5, 1, 1);
-        transition      : transform 0.5s, opacity 0.5s;
-        transition-timing-function: cubic-bezier(0.2, 1, 0.4, 1);
-        top             : 0;
-        opacity         : 0;
-        width           : 100%;
-        z-index         : -1;
-    }
-    .button-openout,
-    .button-openout::before {
-        transition-timing-function: cubic-bezier(0.2, 1, 0.4, 1);
-    }
-    .button-openout:hover {
-        border-color          : var(  --ui-link-hover     );
-        color           : var(  --ui-link-hover     );
-
-    }
-    .button-openout:hover::before {
-        opacity         : 1;
-        transform       : translate3d(0, 0, 0);
+    .btn-fx > span {
+        vertical-align  : middle;
     }
 
 
-    /* -------------------- -------------------- -------------------- -------------------- btn-anim button-pushin */
 
-    .button-pushin {
-        color           : var(  --ui-button-color   );
-        padding         : 1.5em 3em;
-        width           : 200px;
-    }
-    .button-pushin::before,
-    .button-pushin::after {
-        border-color    : var(  --ui-color-red      );
-        content         : '';
-        height          : 100%;
-        left            : 0;
-        position        : absolute;
-        top             : 0;
-        transition      : transform 0.3s, background-color 0.3s;
-        transition-timing-function: cubic-bezier(0.25, 0, 0.3, 1);
-        width           : 100%;
-        z-index         : -1;
-    }
-    .button-pushin::before {
-        border-color    : var(  --ui-color-red      );
-    }
-    .button-pushin::after {
-        background      : var(--ui-button-background);
-    }
-    .button-pushin:hover::before {
-        transform       : scale3d(1, 1, 1);
-    }
-    .button-pushin::before,
-    .button-pushin:hover::after {
-        transform       : scale3d(0.7, 0.7, 1);
-    }
-    .button-pushin:hover::after {
-        background-color: var(  --ui-button-hover-bg    );
-    }
-
-
-    /* -------------------- -------------------- -------------------- -------------------- btn-anim button-border-zoomin */
-
-    .button-border-zoomin {
-        background      : var(  --ui-button-background  );
-        border          : none;
-        height          : 50px;
-        transition      : color 0.3s;
-        transition-timing-function: cubic-bezier(0.75, 0, 0.125, 1);
-    }
-    .button-border-zoomin > span {
-        padding-left    : 0.35em;
-    }
-    .button-border-zoomin::before,
-    .button-border-zoomin::after {
-        border          : var(  --ui-button-border      );
-        content         : '';
-        height          : 100%;
-        left            : 0;
-        opacity         : 0;
-        pointer-events  : none;
-        position        : absolute;
-        top             : 0;
-        transform       : scale3d(1.2, 1.2, 1);
-        transition      : transform 0.3s, opacity 0.3s;
-        transition-timing-function: cubic-bezier(0.75, 0, 0.125, 1);
-        width           : 100%;
-        backface-visibility: hidden;
-        -webkit-backface-visibility: hidden;
-        z-index         : -1;
-    }
-    .button-border-zoomin::before {
-        border-width    : 1px;
-        border-color    : var(  --ui-button-border      );
-    }
-    .button-border-zoomin::after {
-        background      : var(  --ui-button-hover-bg    );
-    }
-    .button-border-zoomin:hover {
-        color           : var(  --ui-button-hover-txt   );
-    }
-    .button-border-zoomin:hover::before {
-        opacity         : 1;
-        transform       : scale3d(1, 1, 1);
-    }
-    .button-border-zoomin:hover::after {
-        opacity         : 0;
-        transform       : scale3d(0.8, 0.8, 1);
-    }
-
-
-    /* -------------------- -------------------- -------------------- -------------------- btn-anim button-border-light */
-
-    .button-border-light {
-        background      : var(  --ui-button-background  );
-        box-shadow      : var(  --ui-shadow-100         );
-        color           : var(  --ui-button-color       );
-        overflow        : hidden;
-        transition      : color 0.3s;
-        transition-timing-function: cubic-bezier(0.75, 0, 0.125, 1);
-    }
-    .button-border-light::before,
-    .button-border-light::after {
-        content         : '';
-        position        : absolute;
-        z-index         : -1;
-    }
-    .button-border-light::after {
-        background      : var(  --ui-button-background  );
-        bottom          : 1px;
-        left            : 1px;
-        right           : 1px;
-        top             : 1px;
-    }
-    .button-border-light::before {
-        background      : var( --ui-link-hover ); /*effect border*/
-        height          : 100%;
-        left            : 0;
-        top             : 0;
-        transform       : translate3d(0, 100%, 0);
-        transition      : transform 0.3s;
-        transition-timing-function: cubic-bezier(0.75, 0, 0.125, 1);
-        width           : 100%;
-    }
-    .button-border-light > span {
-        line-height     : 1em;
-     }
-    .button-border-light:hover {
-        color           : var(  --ui-link-hover  ); /*effect border*/
-    }
-    .button-border-light:hover::before {
-        transform       : translate3d(0, 0, 0);
-    }
-
-    /* -------------------- -------------------- -------------------- -------------------- btn-anim BTNVAV */
+/* -------------------- -------------------- -------------------- btn-fx BTNVAV */
 
     .btnav {
-        border          : var(  --ui-color-700      );
+        background      : none;
+        border          : var(  --ui-button-border  );
+        border          : transparent;
         color           : var(  --ui-color-white    );
         font-size       : var(  --ui-size-200       );
         height          : 40px;
         line-height     : 40px;
-        margin          : var(--ui-space-400);
-        padding         : 0;
+        margin          : var(--ui-space-200);
+        padding         : 0 var( --ui-size-200 );
+        position        : relative;
+        touch-action    : manipulation;
         transition      : color 0.3s;
-
         min-width       : 40px;   /* icon */
         max-width       : 240px; /* text */
-    }
-    .btnav.button-round {
-        border-radius   : 50%;
-        height          : 40px;
-        width           : 40px;
+        z-index         : 1;
+        backface-visibility: hidden;
+        -webkit-backface-visibility: hidden;
+        -moz-osx-font-smoothing: grayscale;
     }
     .btnav::before {
         box-shadow      : inset 0 0 0 35px transparent;
@@ -432,9 +429,12 @@
         width           : 100%;
         z-index         : -1;
     }
-    .btnav .nav-icon {
-        font-size       : 1em;
-        width           : 1em;
+    .btnav.btn-round {
+        border-radius   : 50%;
+    }
+    .btnav > i {
+        top: 6px;
+        left: 8px;
     }
     .btnav > span {
         position        : absolute;
@@ -447,4 +447,47 @@
     .btnav:hover::before {
         box-shadow      : inset 0 0 0 1px var( --ui-link-hover  );
         transform       : scale3d(1, 1, 1);
+    }
+
+/*-------------------- -------------------- -------------------- BUTTON COLOR */
+
+    .btn-amber {
+        background      : var(  --ui-color-amber	);
+        color           : var(  --ui-color-white	);
+    }
+    .btn-black {
+        background      : var(  --ui-color-black	);
+        color           : var(  --ui-color-white	);
+    }
+    .btn-blue {
+        background      : var(  --ui-color-blue		);
+        color           : var(  --ui-color-white	);
+    }
+    .btn-green {
+        background      : var(  --ui-color-green	);
+        color           : var(  --ui-color-white	);
+    }
+    .btn-indigo {
+        background      : var(  --ui-color-indigo	);
+        color           : var(  --ui-color-white    );
+    }
+    .btn-orange {
+        background      : var(  --ui-color-orange   );
+        color           : var(  --ui-color-white    );
+    }
+    .btn-purple {
+        background      : var(  --ui-color-purple   );
+        color           : var(  --ui-color-white    );
+    }
+    .btn-red {
+        background      : var(  --ui-color-red      );
+        color           : var(  --ui-color-white    );
+    }
+    .btn-white {
+        background      : var(  --ui-color-white    );
+        color           : var(  --ui-color-black	);
+    }
+    /* button icon with color black */
+    button[class^="btn-ico"].btn-white > i {
+        background-color: var(  --ui-color-black    );
     }

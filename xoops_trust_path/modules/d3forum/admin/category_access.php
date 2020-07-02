@@ -9,17 +9,17 @@ $db =& Database::getInstance() ;
 
 // get right $cat_id
 $cat_id = (int)@$_GET['cat_id'];
-list( $cat_id , $cat_title ) = $db->fetchRow( $db->query('SELECT cat_id,cat_title FROM ' . $db->prefix($mydirname . '_categories') . " WHERE cat_id=$cat_id" ) ) ;
+[$cat_id, $cat_title] = $db->fetchRow($db->query('SELECT cat_id,cat_title FROM ' . $db->prefix($mydirname . '_categories') . " WHERE cat_id=$cat_id"));
 if( empty( $cat_id ) ) {
 	$invalid_cat_id = true ;
-	list( $cat_id ) = $db->fetchRow( $db->query('SELECT MIN(cat_id) FROM ' . $db->prefix($mydirname . '_categories') ) ) ;
+	[$cat_id] = $db->fetchRow($db->query('SELECT MIN(cat_id) FROM ' . $db->prefix($mydirname . '_categories')));
 	if( empty( $cat_id ) ) {
 		redirect_header( XOOPS_URL."/modules/$mydirname/index.php?page=makecategory" , 5 , _MD_A_D3FORUM_ERR_CREATECATEGORYFIRST ) ;
 		exit ;
-	} else {
-		header('Location: ' . XOOPS_URL . "/modules/$mydirname/admin/index.php?page=category_access&cat_id=$cat_id" ) ;
-		exit ;
 	}
+
+    header('Location: ' . XOOPS_URL . "/modules/$mydirname/admin/index.php?page=category_access&cat_id=$cat_id" ) ;
+    exit ;
 }
 
 
@@ -73,25 +73,27 @@ if( ! empty( $_POST['user_update'] ) && empty( $invaild_cat_id ) ) {
 		}
 	}
 
-	$member_hander = xoops_gethandler('member' ) ;
-	if( is_array( @$_POST['new_uids'] ) ) foreach( $_POST['new_uids'] as $i => $uid ) {
-		$can_post = empty( $_POST['new_can_posts'][$i] ) ? 0 : 1 ;
-		$can_edit = empty( $_POST['new_can_edits'][$i] ) ? 0 : 1 ;
-		$can_delete = empty( $_POST['new_can_deletes'][$i] ) ? 0 : 1 ;
-		$post_auto_approved = empty( $_POST['new_post_auto_approveds'][$i] ) ? 0 : 1 ;
-		$is_moderator = empty( $_POST['new_is_moderators'][$i] ) ? 0 : 1 ;
-		$can_makeforum = empty( $_POST['new_can_makeforums'][$i] ) ? 0 : 1 ;
-		if( empty( $uid ) ) {
-			$criteria = new Criteria( 'uname' , addslashes( @$_POST['new_unames'][$i] ) ) ;
-			@list( $user ) = $member_handler->getUsers( $criteria ) ;
-		} else {
-			$user =& $member_handler->getUser((int)$uid) ;
-		}
-		if( is_object( $user ) ) {
-			$db->query('INSERT INTO '
-                       . $db->prefix($mydirname . '_category_access') . " SET cat_id=$cat_id, uid=" . $user->getVar('uid') . ", can_post=$can_post, can_edit=$can_edit, can_delete=$can_delete, post_auto_approved=$post_auto_approved, is_moderator=$is_moderator, can_makeforum=$can_makeforum" ) ;
-		}
-	}
+	$member_hander =& xoops_gethandler( 'member' ) ;
+	if( is_array( @$_POST['new_uids'] ) ) {
+        foreach ($_POST['new_uids'] as $i => $uid) {
+            $can_post = empty($_POST['new_can_posts'][$i]) ? 0 : 1;
+            $can_edit = empty($_POST['new_can_edits'][$i]) ? 0 : 1;
+            $can_delete = empty($_POST['new_can_deletes'][$i]) ? 0 : 1;
+            $post_auto_approved = empty($_POST['new_post_auto_approveds'][$i]) ? 0 : 1;
+            $is_moderator = empty($_POST['new_is_moderators'][$i]) ? 0 : 1;
+            $can_makeforum = empty($_POST['new_can_makeforums'][$i]) ? 0 : 1;
+            if (empty($uid)) {
+                $criteria = new Criteria('uname', addslashes(@$_POST['new_unames'][$i]));
+                @list($user) = $member_handler->getUsers($criteria);
+            } else {
+                $user =& $member_handler->getUser((int)$uid);
+            }
+            if (is_object($user)) {
+                $db->query('INSERT INTO '
+                    . $db->prefix($mydirname . '_category_access') . " SET cat_id=$cat_id, uid=" . $user->getVar('uid') . ", can_post=$can_post, can_edit=$can_edit, can_delete=$can_delete, post_auto_approved=$post_auto_approved, is_moderator=$is_moderator, can_makeforum=$can_makeforum");
+            }
+        }
+    }
 
 	redirect_header( XOOPS_URL."/modules/$mydirname/admin/index.php?page=category_access&amp;cat_id=$cat_id" , 3 , _MD_D3FORUM_MSG_UPDATED ) ;
 	exit ;
@@ -112,8 +114,8 @@ while( list( $id , $title , $depth ) = $db->fetchRow( $crs ) ) {
 
 
 // create group form
-$group_handler = xoops_gethandler('group' ) ;
-$groups        =& $group_handler->getObjects() ;
+$group_handler =& xoops_gethandler( 'group' ) ;
+$groups =& $group_handler->getObjects() ;
 $group_trs = '' ;
 foreach( $groups as $group ) {
 	$gid = $group->getVar('groupid') ;
@@ -200,7 +202,6 @@ for( $i = 0 ; $i < 5 ; $i ++ ) {
 //
 // display stage
 //
-
 xoops_cp_header();
 include __DIR__ . '/mymenu.php' ;
 $tpl = new XoopsTpl() ;
@@ -221,5 +222,3 @@ $tpl->assign([
 ) ;
 $tpl->display( 'db:'.$mydirname.'_admin_category_access.html' ) ;
 xoops_cp_footer();
-
-?>

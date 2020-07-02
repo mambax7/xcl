@@ -1,0 +1,270 @@
+<h3 id="Accordion">Accordion</h3>
+
+<p>jQuery Accordion displays collapsible content panels for presenting information in a limited amount of space.</p>
+<script>Prism.highlightAll();</script>
+<div class="ui-flex-row">
+    <script>
+        $( function() {
+            $( "#accordion-default" ).accordion({
+            collapsible: true
+            });
+        } );
+    </script>
+    <div class="ui-flex-column">
+        <h4>Collapsible</h4>
+
+        <div id="accordion-default">
+            <h3>Section 1</h3>
+            <div>
+            <p>Mauris mauris ante, blandit et, ultrices a, suscipit eget, quam. Integer
+            ut neque. Vivamus nisi metus, molestie vel, gravida in, condimentum sit
+            amet, nunc. Nam a nibh. Donec suscipit eros. Nam mi.</p>
+            </div>
+            <h3>Section 2</h3>
+            <div>
+            <p>Sed non urna. Donec et ante. Phasellus eu ligula. Vestibulum sit amet
+            purus. Vivamus hendrerit, dolor at aliquet laoreet, mauris turpis porttitor
+            velit, faucibus interdum tellus libero ac justo. Vivamus non quam.</p>
+            </div>
+            <h3>Section 3</h3>
+            <div>
+            <p>Nam enim risus, molestie et, porta ac, aliquam ac, risus. Quisque lobortis.
+            Phasellus pellentesque purus in massa. Aenean in pede.</p>
+            <ul>
+                <li>List item one</li>
+                <li>List item two</li>
+            </ul>
+            </div>
+            <h3>Section 4</h3>
+            <div>
+            <p>Cras dictum. Pellentesque habitant morbi tristique senectus et netus
+            et malesuada fames ac turpis egestas. Vestibulum ante ipsum primis in
+            faucibus orci luctus et ultrices posuere cubilia Curae; Aenean lacinia
+            mauris vel est.</p>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="ui-flex-column">
+        <h4>Accordion default</h4>
+        <p>By default, accordions always keep one section open. To allow for all sections to be be collapsible, set the collapsible option to true.
+            Click on the currently open section to collapse its content pane.</p>
+        <p>The underlying HTML markup is a series of headers (H3 tags) and content divs so the content is usable without JavaScript.</p>
+            <!-- toggle display -->
+            <p><input class='switch' type='checkbox' name='accordion-default' onclick="slideToggle('.accordion-default', this)" value='0'>
+                <label for='accordion-default'> View source code</label></p>
+                <!--  display code -->
+                <div class="accordion-default" style="display:none">
+                <!-- <pre class="tips" style="display:block; max-width:100%; margin:auto; height:200px;white-space: pre-wrap; overflow-y: auto"> -->
+<pre>
+<code class="lang-js"><!--
+    <script>
+        $( function() {
+            $( "#accordion-default" ).accordion({
+            collapsible: true
+            });
+        } );
+    </script>
+--></code>
+</pre>
+
+<pre>
+<code class="lang-html"><!--
+<div id="accordion-default">
+    <h3>Section 1</h3>
+    <div>
+        <p>Lorem ipsum...</p>
+    </div>
+    <h3>Section 2</h3>
+    <div>
+        <p>Lorem ipsum...</p>
+    </div>
+    <h3>Section 3</h3>
+    <div>
+        <p>Lorem ipsum...</p>
+        <ul>
+        <li>List item one</li>
+        <li>List item two</li>
+        </ul>
+    </div>
+    <h3>Section 4</h3>
+    <div>
+        <p>Lorem ipsum...</p>
+    </div>
+</div>
+--></code>
+</pre>
+</div>
+
+</div>
+
+<div class="ui-flex-row">
+
+    <div class="ui-flex-column">
+    <script>
+        $( function() {
+            $( "#accordion-sortable" )
+            .accordion({
+                header: "> div > h3"
+            })
+            .sortable({
+                axis: "y",
+                handle: "h3",
+                stop: function( event, ui ) {
+                // IE doesn't register the blur when sorting
+                // so trigger focusout handlers to remove .ui-state-focus
+                ui.item.children( "h3" ).triggerHandler( "focusout" );
+
+                // Refresh accordion to handle new order
+                $( this ).accordion( "refresh" );
+                }
+            });
+        } );
+    </script>
+    <h4>Sortable</h4>
+        <div id="accordion-sortable">
+            <div class="group">
+                <h3>Section 1</h3>
+                <div><p>Mauris mauris ante, blandit et, ultrices a, suscipit eget, quam. Integer ut neque. Vivamus nisi metus, molestie vel, gravida in, condimentum sit amet, nunc. Nam a nibh. Donec suscipit eros. Nam mi. Proin viverra leo ut odio. Curabitur malesuada. Vestibulum a velit eu ante scelerisque vulputate.</p>
+                </div>
+            </div>
+            <div class="group">
+                <h3>Section 2</h3>
+                <div> <p>Sed non urna. Donec et ante. Phasellus eu ligula. Vestibulum sit amet purus. Vivamus hendrerit, dolor at aliquet laoreet, mauris turpis porttitor velit, faucibus interdum tellus libero ac justo. Vivamus non quam. In suscipit faucibus urna. </p>
+                </div>
+            </div>
+            <div class="group">
+                <h3>Section 3</h3>
+                <div><p>Nam enim risus, molestie et, porta ac, aliquam ac, risus. Quisque lobortis. Phasellus pellentesque purus in massa. Aenean in pede. Phasellus ac libero ac tellus pellentesque semper. Sed ac felis. Sed commodo, magna quis lacinia ornare, quam ante aliquam nisi, eu iaculis leo purus venenatis dui. </p>
+                <ul>
+                    <li>List item one</li>
+                    <li>List item two</li>
+                    <li>List item three</li>
+                </ul>
+                </div>
+            </div>
+            <div class="group">
+                <h3>Section 4</h3>
+                <div><p>Cras dictum. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Aenean lacinia mauris vel est. </p><p>Suspendisse eu nisl. Nullam ut libero. Integer dignissim consequat lectus. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="ui-flex-column">
+        <h4>Accordion Sortable</h4>
+        <p>Drag the header to re-order panels.</p>
+        <!-- toggle display -->
+        <p><input class='switch' type='checkbox' name='accordion-sortable' onclick="slideToggle('.accordion-sortable', this)" value='0'>
+        <label for='accordion-sortable'> View source code</label></p>
+        <!--  display code -->
+        <div class="accordion-sortable" style="display:none">
+            <pre>
+                <code class="lang-js">
+                    $( function() {
+                        $( "#accordion-sortable" )
+                        .accordion({
+                            header: "> div > h3"
+                        })
+                        .sortable({
+                            axis: "y",
+                            handle: "h3",
+                            stop: function( event, ui ) {
+                            // IE doesn't register the blur when sorting
+                            // so trigger focusout handlers to remove .ui-state-focus
+                            ui.item.children( "h3" ).triggerHandler( "focusout" );
+
+                            // Refresh accordion to handle new order
+                            $( this ).accordion( "refresh" );
+                            }
+                        });
+                    } );
+                </code>
+            </pre>
+        </div>
+    </div>
+</div>
+
+<div class="ui-flex-row">
+    <script>
+        $( function() {
+          var icons = {
+            header: "ui-icon-circle-arrow-e",
+            activeHeader: "ui-icon-circle-arrow-s"
+          };
+          $( "#accordion-custom" ).accordion({
+            icons: icons
+          });
+          $( "#toggle-custom" ).button().on( "click", function() {
+            if ( $( "#accordion-custom" ).accordion( "option", "icons" ) ) {
+              $( "#accordion-custom" ).accordion( "option", "icons", null );
+            } else {
+              $( "#accordion-custom" ).accordion( "option", "icons", icons );
+            }
+          });
+        } );
+    </script>
+    <div class="ui-flex-column">
+        <h4>Theming</h4>
+        <div id="accordion-custom">
+            <h3>Section 1</h3>
+            <div>
+              <p>Mauris mauris ante, blandit et, ultrices a, suscipit eget, quam. Integer ut neque. Vivamus nisi metus, molestie vel, gravida in, condimentum sit amet, nunc. Nam a nibh. Donec suscipit eros. Nam mi. Proin viverra leo ut odio. Curabitur malesuada. Vestibulum a velit eu ante scelerisque vulputate.</p>
+            </div>
+            <h3>Section 2</h3>
+            <div>
+              <p>Sed non urna. Donec et ante. Phasellus eu ligula. Vestibulum sit amet purus. Vivamus hendrerit, dolor at aliquet laoreet, mauris turpis porttitor velit, faucibus interdum tellus libero ac justo. Vivamus non quam. In suscipit faucibus urna. </p>
+            </div>
+            <h3>Section 3</h3>
+            <div>
+              <p>Nam enim risus, molestie et, porta ac, aliquam ac, risus. Quisque lobortis. Phasellus pellentesque purus in massa. Aenean in pede. Phasellus ac libero ac tellus pellentesque semper. Sed ac felis. Sed commodo, magna quis lacinia ornare, quam ante aliquam nisi, eu iaculis leo purus venenatis dui. </p>
+              <ul>
+                <li>List item one</li>
+                <li>List item two</li>
+                <li>List item three</li>
+              </ul>
+            </div>
+            <h3>Section 4</h3>
+            <div>
+              <p>Cras dictum. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Aenean lacinia mauris vel est. </p><p>Suspendisse eu nisl. Nullam ut libero. Integer dignissim consequat lectus. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. </p>
+            </div>
+        </div>
+    </div>
+
+    <div class="ui-flex-column">
+        <h4>Custom Icons</h4>
+        <p>Customize the header icons with the icons option, which accepts classes for the header's default and active (open) state. Use any class from the UI CSS framework, or create custom classes with background images.</p>
+        <p>Want to learn more about the accordion widget? Check out the <a href="https://api.jqueryui.com/accordion/" target="_blank" title="jQuery UI web site">API documentation.</a></p>
+
+        <p><button id="toggle-custom">Toggle icons</button></p>
+        <!-- toggle display -->
+        <p><input class='switch' type='checkbox' name='accordion-custom' onclick="slideToggle('.accordion-custom', this)" value='0'>
+        <label for='accordion-custom'> View source code</label></p>
+        <!--  display code -->
+        <div class="accordion-custom" style="display:none">
+            <pre>
+                <code class="lang-js">
+                    $( function() {
+                        var icons = {
+                          header: "ui-icon-circle-arrow-e",
+                          activeHeader: "ui-icon-circle-arrow-s"
+                        };
+                        $( "#accordion-custom" ).accordion({
+                          icons: icons
+                        });
+                        $( "#toggle-custom" ).button().on( "click", function() {
+                          if ( $( "#accordion-custom" ).accordion( "option", "icons" ) ) {
+                            $( "#accordion-custom" ).accordion( "option", "icons", null );
+                          } else {
+                            $( "#accordion-custom" ).accordion( "option", "icons", icons );
+                          }
+                        });
+                      } );
+                </code>
+            </pre>
+        </div>
+    </div>
+
+</div>
+

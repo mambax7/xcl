@@ -15,7 +15,7 @@ $pos = (int)@$_GET['pos'];
 $num = empty( $_GET['num'] ) ? 50 : (int)$_GET['num'];
 $request = d3forum_common_simple_request(['p.topic_id' => 'int', 'p.post_id' => 'int', 'ph.data' => 'like']) ;
 
-list( $hits ) = $db->fetchRow( $db->query('SELECT COUNT(*) FROM ' . $db->prefix($mydirname . '_post_histories') . ' ph LEFT JOIN ' . $db->prefix($mydirname . '_posts') . " p ON ph.post_id=p.post_id WHERE {$request['whr']}" ) ) ;
+[$hits] = $db->fetchRow($db->query('SELECT COUNT(*) FROM ' . $db->prefix($mydirname . '_post_histories') . ' ph LEFT JOIN ' . $db->prefix($mydirname . '_posts') . " p ON ph.post_id=p.post_id WHERE {$request['whr']}"));
 $result = $db->query('SELECT ph.history_id,ph.post_id,ph.history_time,ph.data,p.subject FROM ' . $db->prefix($mydirname . '_post_histories') . ' ph LEFT JOIN ' . $db->prefix($mydirname . '_posts') . " p ON ph.post_id=p.post_id WHERE {$request['whr']} ORDER BY ph.history_time DESC LIMIT $pos,$num") ;
 $navi_obj = new XoopsPageNav( $hits , $num , $pos , 'pos' , htmlspecialchars( 'page=post_histories&'.$request['query'] ) ) ;
 
@@ -52,5 +52,3 @@ $tpl->assign([
 ) ;
 $tpl->display( 'db:'.$mydirname.'_admin_post_histories.html' ) ;
 xoops_cp_footer();
-
-?>

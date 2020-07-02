@@ -8,10 +8,12 @@ function b_d3forum_list_forums_show( $options )
 	$categories = empty( $options[1] ) ? [] : explode(',', $options[1]) ;
 	$this_template = empty( $options[2] ) ? 'db:'.$mydirname.'_block_list_forums.html' : trim( $options[2] ) ;
 
-	if( preg_match( '/[^0-9a-zA-Z_-]/' , $mydirname ) ) die( 'Invalid mydirname' ) ;
+	if( preg_match( '/[^0-9a-zA-Z_-]/' , $mydirname ) ) {
+        die('Invalid mydirname');
+    }
 
 	$db =& Database::getInstance();
-	(method_exists('MyTextSanitizer', 'sGetInstance') and $myts =& MyTextSanitizer::sGetInstance()) || $myts =& MyTextSanitizer::getInstance();
+	(method_exists('MyTextSanitizer', 'sGetInstance') and $myts =& MyTextSanitizer::sGetInstance()) || $myts =& (new MyTextSanitizer)->getInstance();
 	$uid = is_object( @$xoopsUser ) ? $xoopsUser->getVar('uid') : 0 ;
 
 	$module_handler = xoops_gethandler('module');
@@ -38,7 +40,9 @@ function b_d3forum_list_forums_show( $options )
            . $db->prefix($mydirname . '_categories') . " c ON f.cat_id=c.cat_id WHERE ($whr_forum) AND ($whr_categories) ORDER BY c.cat_order_in_tree,f.forum_weight" ;
 //	var_dump( $sql ) ;
 
-	if( ! $result = $db->query( $sql ) ) return [];
+	if( ! $result = $db->query( $sql ) ) {
+        return [];
+    }
 
 	$constpref = '_MB_' . strtoupper( $mydirname ) ;
 
@@ -82,9 +86,9 @@ function b_d3forum_list_forums_show( $options )
 		$tpl->assign( 'block' , $block ) ;
 		$ret['content'] = $tpl->fetch( $this_template ) ;
 		return $ret ;
-	} else {
-		return $block ;
 	}
+
+    return $block ;
 }
 
 
@@ -95,13 +99,15 @@ function b_d3forum_list_forums_edit( $options )
 	$categories = empty( $options[1] ) ? [] : explode(',', $options[1]) ;
 	$this_template = empty( $options[2] ) ? 'db:'.$mydirname.'_block_list_forums.html' : trim( $options[2] ) ;
 
-	if( preg_match( '/[^0-9a-zA-Z_-]/' , $mydirname ) ) die( 'Invalid mydirname' ) ;
+	if( preg_match( '/[^0-9a-zA-Z_-]/' , $mydirname ) ) {
+        die('Invalid mydirname');
+    }
 
-	for( $i = 0 ; $i < count( $categories ) ; $i ++ ) {
-		$categories[ $i ] = (int)$categories[$i];
-	}
+    foreach ($categories as $i => $iValue) {
+        $categories[ $i ] = (int)$iValue;
+    }
 
-	$form = "
+    $form = "
 		<input type='hidden' name='options[0]' value='$mydirname'>
 		<label for='categories'>"._MB_D3FORUM_CATLIMIT."</label>&nbsp;:
 		<input type='text' size='20' name='options[1]' id='categories' value='".implode(',',$categories)."'>"._MB_D3FORUM_CATLIMITDSC."
@@ -128,10 +134,12 @@ function b_d3forum_list_topics_show( $options )
 	$forums = empty( $options[7] ) ? [] : explode(',', $options[7]) ;
 	$this_template = empty( $options[6] ) ? 'db:'.$mydirname.'_block_list_topics.html' : trim( $options[6] ) ;
 
-	if( preg_match( '/[^0-9a-zA-Z_-]/' , $mydirname ) ) die( 'Invalid mydirname' ) ;
+	if( preg_match( '/[^0-9a-zA-Z_-]/' , $mydirname ) ) {
+        die('Invalid mydirname');
+    }
 
 	$db =& Database::getInstance();
-	(method_exists('MyTextSanitizer', 'sGetInstance') and $myts =& MyTextSanitizer::sGetInstance()) || $myts =& MyTextSanitizer::getInstance();
+	(method_exists('MyTextSanitizer', 'sGetInstance') and $myts =& MyTextSanitizer::sGetInstance()) || $myts =& (new MyTextSanitizer)->getInstance();
 	$uid = is_object( @$xoopsUser ) ? $xoopsUser->getVar('uid') : 0 ;
 
 	$module_handler = xoops_gethandler('module');
@@ -200,18 +208,18 @@ function b_d3forum_list_topics_show( $options )
 	$_hasAuto = false;
 	$_globalKey = 'D3forum_'.$mydirname;
 	$categories = array_map( 'b_d3forum_check_limits' , $categories ) ;
-	if ( $categories && false !== ($_key = array_search('auto', $categories)) ) {
+	if ( $categories && false !== ($_key = array_search('auto', $categories, true)) ) {
 		$_hasAuto = true;
- 		if (isset( $GLOBALS[$_globalKey]) && isset( $GLOBALS[$_globalKey]['category']) ) {
+ 		if (isset($GLOBALS[$_globalKey]['category'])) {
 			$categories[$_key] = $GLOBALS[$_globalKey]['category']['id'];
 		} else {
 			unset( $categories[$_key]);
 		}
 	}
 	$forums = array_map( 'b_d3forum_check_limits' , $forums ) ;
-	if ($forums && false !== ($_key = array_search('auto', $forums))) {
+	if ($forums && false !== ($_key = array_search('auto', $forums, true))) {
 		$_hasAuto = true;
-		if (isset( $GLOBALS[$_globalKey] ) && isset( $GLOBALS[$_globalKey]['forum']) ) {
+		if (isset($GLOBALS[$_globalKey]['forum'])) {
 			$forums[$_key] = $GLOBALS[$_globalKey]['forum']['id'];
 		} else {
 			unset( $forums[$_key] );
@@ -223,9 +231,9 @@ function b_d3forum_list_topics_show( $options )
 	}
 
 	// topic ( with out current topic )
-	$current_topic_id = ( isset( $GLOBALS[$_globalKey]) && isset( $GLOBALS[$_globalKey]['topic']) )? (int)$GLOBALS[$_globalKey]['topic']['id'] : 0;
+	$current_topic_id = (isset($GLOBALS[$_globalKey]['topic']))? (int)$GLOBALS[$_globalKey]['topic']['id'] : 0;
 	$whr_topic = '1';
-	if (isset( $GLOBALS[$_globalKey]) && isset( $GLOBALS[$_globalKey]['topic']) ) {
+	if (isset($GLOBALS[$_globalKey]['topic'])) {
 		//$whr_topic = 't.topic_id != '.intval($GLOBALS[$_globalKey]['topic']['id']);
 	}
 
@@ -265,7 +273,9 @@ function b_d3forum_list_topics_show( $options )
 	// naao to
 //	var_dump( $sql ) ;
 
-	if( ! $result = $db->query( $sql , $max_topics , 0 ) ) return [];
+	if( ! $result = $db->query( $sql , $max_topics , 0 ) ) {
+        return [];
+    }
 
 	$constpref = '_MB_' . strtoupper( $mydirname ) ;
 
@@ -304,7 +314,7 @@ function b_d3forum_list_topics_show( $options )
 			}
 		}	// naao to
 
-		if (true == $can_display) {	// naao
+		if (true === $can_display) {	// naao
 
 		    $topic4assign = [
                 'id' => (int)$topic_row['topic_id'],
@@ -336,9 +346,9 @@ function b_d3forum_list_topics_show( $options )
 		$tpl->assign( 'block' , $block ) ;
 		$ret['content'] = $tpl->fetch( $this_template ) ;
 		return $ret ;
-	} else {
-		return $block ;
 	}
+
+    return $block ;
 }
 
 
@@ -353,7 +363,9 @@ function b_d3forum_list_topics_edit( $options )
 	$forums = empty( $options[7] ) ? [] : explode(',', $options[7]) ;
 	$this_template = empty( $options[6] ) ? 'db:'.$mydirname.'_block_list_topics.html' : trim( $options[6] ) ;
 
-	if( preg_match( '/[^0-9a-zA-Z_-]/' , $mydirname ) ) die( 'Invalid mydirname' ) ;
+	if( preg_match( '/[^0-9a-zA-Z_-]/' , $mydirname ) ) {
+        die('Invalid mydirname');
+    }
 
 	if( $show_fullsize ) {
 		$fullyes_checked = "checked='checked'" ;
@@ -384,7 +396,7 @@ function b_d3forum_list_topics_edit( $options )
     ];
 	$order_options = '' ;
 	foreach( $orders as $order_value => $order_name ) {
-		$selected = $order_value == $now_order ? "selected='selected'" : '';
+		$selected = $order_value === $now_order ? "selected='selected'" : '';
 		$order_options .= "<option value='$order_value' $selected>$order_name</option>\n" ;
 	}
 
@@ -431,7 +443,9 @@ function b_d3forum_list_posts_show( $options )
 	$forums = empty( $options[5] ) ? [] : explode(',', $options[5]) ;
 	$this_template = empty( $options[4] ) ? 'db:'.$mydirname.'_block_list_posts.html' : trim( $options[4] ) ;
 
-	if( preg_match( '/[^0-9a-zA-Z_-]/' , $mydirname ) ) die( 'Invalid mydirname' ) ;
+	if( preg_match( '/[^0-9a-zA-Z_-]/' , $mydirname ) ) {
+        die('Invalid mydirname');
+    }
 
 	$db =& Database::getInstance();
 	(method_exists('MyTextSanitizer', 'sGetInstance') and $myts =& MyTextSanitizer::sGetInstance()) || $myts =& MyTextSanitizer::getInstance();
@@ -486,7 +500,7 @@ function b_d3forum_list_posts_show( $options )
 	$categories = array_map( 'b_d3forum_check_limits' , $categories ) ;
 	if ( $categories && false !== ($_key = array_search('auto', $categories)) ) {
 		$_hasAuto = true;
- 		if (isset( $GLOBALS[$_globalKey]) && isset( $GLOBALS[$_globalKey]['category']) ) {
+ 		if (isset($GLOBALS[$_globalKey]['category'])) {
 			$categories[$_key] = $GLOBALS[$_globalKey]['category']['id'];
 		} else {
 			unset( $categories[$_key]);
@@ -495,7 +509,7 @@ function b_d3forum_list_posts_show( $options )
 	$forums = array_map( 'b_d3forum_check_limits' , $forums ) ;
 	if ($forums && false !== ($_key = array_search('auto', $forums))) {
 		$_hasAuto = true;
-		if (isset( $GLOBALS[$_globalKey] ) && isset( $GLOBALS[$_globalKey]['forum']) ) {
+		if (isset($GLOBALS[$_globalKey]['forum'])) {
 			$forums[$_key] = $GLOBALS[$_globalKey]['forum']['id'];
 		} else {
 			unset( $forums[$_key] );
@@ -526,7 +540,9 @@ function b_d3forum_list_posts_show( $options )
 
 //	var_dump( $sql ) ;
 
-	if( ! $result = $db->query( $sql , $max_posts , 0 ) ) return [];
+	if( ! $result = $db->query( $sql , $max_posts , 0 ) ) {
+        return [];
+    }
 
 	$constpref = '_MB_' . strtoupper( $mydirname ) ;
 
@@ -561,7 +577,7 @@ function b_d3forum_list_posts_show( $options )
 			}
 		}	// naao to
 
-		if (true == $can_display) {	// naao
+		if (true === $can_display) {	// naao
 		    $post4assign = [
                 'id' => (int)$post_row['post_id'],
                 'subject' => $myts->makeTboxData4Show( $post_row['subject'] ),
@@ -588,9 +604,9 @@ function b_d3forum_list_posts_show( $options )
 		$tpl->assign( 'block' , $block ) ;
 		$ret['content'] = $tpl->fetch( $this_template ) ;
 		return $ret ;
-	} else {
-		return $block ;
 	}
+
+    return $block ;
 }
 
 
@@ -604,7 +620,9 @@ function b_d3forum_list_posts_edit( $options )
 	$forums = empty( $options[5] ) ? [] : explode(',', $options[5]) ;
 	$this_template = empty( $options[4] ) ? 'db:'.$mydirname.'_block_list_posts.html' : trim( $options[4] ) ;
 
-	if( preg_match( '/[^0-9a-zA-Z_-]/' , $mydirname ) ) die( 'Invalid mydirname' ) ;
+	if( preg_match( '/[^0-9a-zA-Z_-]/' , $mydirname ) ) {
+        die('Invalid mydirname');
+    }
 
 	$categories = array_map( 'b_d3forum_check_limits' , $categories ) ;
 	$forums = array_map( 'b_d3forum_check_limits' , $forums ) ;
@@ -655,7 +673,7 @@ if (! function_exists ('d3forum_b_get_comment_object')) {
    function d3forum_b_get_comment_object( $mydirname , $external_link_format , $forum_id = null )
    {
 	include_once dirname(__DIR__) . '/class/D3commentAbstract.class.php' ;
-	@list( $external_dirname , $classname , $external_trustdirname ) = explode( '::' , $external_link_format ) ;
+	[$external_dirname, $classname, $external_trustdirname] = explode('::', $external_link_format);
 	if( empty( $classname ) ) {
 		$obj = new D3commentAbstract( $mydirname , '' ) ;
 		if (!empty($forum_id)) {
@@ -694,5 +712,3 @@ if (! function_exists ('d3forum_b_get_comment_object')) {
 	return $obj ;
    }
 }
-
-?>

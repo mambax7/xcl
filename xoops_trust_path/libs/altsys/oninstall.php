@@ -6,7 +6,7 @@ eval(' function xoops_module_install_'.$mydirname . '( $module ) { return altsys
 if (! function_exists('altsys_oninstall_base')) {
     function altsys_oninstall_base($module, $mydirname)
     {
-        // transations on module install
+        // transactions on module install
 
     global $ret ; // TODO :-D
 

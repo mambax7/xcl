@@ -10,9 +10,9 @@
 
 class XCube_RenderCache
 {
-    public $mCacheId = null;
-    public $mResourceName = null;
-    
+    public $mCacheId;
+    public $mResourceName;
+
     public function __construct()
     {
     }
@@ -24,7 +24,7 @@ class XCube_RenderCache
     public function isCache($cachetime = null)
     {
     }
-    
+
     /**
      * @return bool
      */
@@ -32,19 +32,19 @@ class XCube_RenderCache
     {
         return true;
     }
-    
+
     public function setResourceName($name)
     {
         $this->mResourceName = $name;
     }
-    
+
     /**
      * @return string
      */
     public function getCacheId()
     {
     }
-    
+
     /**
      * @return string
      */
@@ -68,11 +68,11 @@ class XCube_RenderCache
             return file_get_contents($this->_getFileName());
         }
     }
-    
+
     public function clear()
     {
     }
-    
+
     public function reset()
     {
         $this->mResourceName = null;

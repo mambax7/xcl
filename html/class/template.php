@@ -109,7 +109,7 @@ class XoopsTpl extends Smarty
     }
     public function XoopsTpl()
     {
-        return self::__construct();
+        return $this->__construct();
     }
 
     /**
@@ -195,7 +195,7 @@ class XoopsTpl extends Smarty
      * @param   string  $data
      * @return  string  Rendered output
      **/
-    public function xoops_fetchFromData($data)
+    public function xoops_fetchFromData(&$data)
     {
         $dummyfile = XOOPS_CACHE_PATH.'/dummy_'.time();
         $fp = fopen($dummyfile, 'w');
@@ -286,10 +286,10 @@ function xoops_template_touch($tpl_id, $clear_old = true)
     //
     XCube_DelegateUtils::call('Legacy.XoopsTpl.TemplateTouch', $tpl_id, $clear_old, new XCube_Ref($result));
 
-    if (null === $result) {
+    if (null == $result) {
         $tpl = new XoopsTpl();
         $tpl->force_compile = true;
-        $tplfile_handler = xoops_gethandler('tplfile');
+        $tplfile_handler =& xoops_gethandler('tplfile');
         $tplfile =& $tplfile_handler->get($tpl_id);
         if (is_object($tplfile)) {
             $file = $tplfile->getVar('tpl_file');
@@ -321,8 +321,8 @@ function xoops_template_touch($tpl_id, $clear_old = true)
 function xoops_template_create($resource_type, $resource_name, &$template_source, &$template_timestamp, &$smarty_obj)
 {
     if ('db' == $resource_type) {
-        $file_handler = xoops_gethandler('tplfile');
-        $tpl          =& $file_handler->find('default', null, null, null, $resource_name, true);
+        $file_handler =& xoops_gethandler('tplfile');
+        $tpl =& $file_handler->find('default', null, null, null, $resource_name, true);
         if (count($tpl) > 0 && is_object($tpl[0])) {
             $template_source = $tpl[0]->getSource();
             $template_timestamp = $tpl[0]->getLastModified();
@@ -348,9 +348,9 @@ function xoops_template_clear_module_cache($mid)
     if ($count > 0) {
         $xoopsTpl = new XoopsTpl();
         $xoopsTpl->xoops_setCaching(2);
-        for ($i = 0; $i < $count; $i++) {
-            if ('' != $block_arr[$i]->getVar('template')) {
-                $xoopsTpl->clear_cache('db:'.$block_arr[$i]->getVar('template'), 'blk_'.$block_arr[$i]->getVar('bid'));
+        foreach ($block_arr as $iValue) {
+            if ('' !== $iValue->getVar('template')) {
+                $xoopsTpl->clear_cache('db:'. $iValue->getVar('template'), 'blk_'. $iValue->getVar('bid'));
             }
         }
     }

@@ -27,7 +27,7 @@ class PicoControllerVoteContent extends PicoControllerAbstract
 
         $this->contentObj = new PicoContent($this->mydirname, $request['content_id'], $this->currentCategoryObj);
 
-        // check existence
+        // check error
         if ($this->contentObj->isError()) {
             redirect_header(XOOPS_URL . "/modules/$this->mydirname/index.php", 2, _MD_PICO_ERR_READCONTENT);
             exit;

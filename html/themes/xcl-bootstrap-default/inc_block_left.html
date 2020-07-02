@@ -1,0 +1,42 @@
+<div class="row">
+
+
+    <div class="col-md-9 order-md-2">
+
+        <{if !empty($xoops_contents)}>
+
+            <div class="content"><{$xoops_contents}></div>
+
+        <{/if}>
+
+    </div>
+
+
+    <div class="col-md-3 order-md-1">
+
+        <{if $xoops_showlblock}>
+            <{foreach item=block from=$xoops_lblocks name=lbloop}>
+                <{if ! $block.title|strstr:"none"}>
+                    <h4 class="block-title"><{$block.title}></h4>
+                <{/if}>
+                <div class="btnList">
+                    <{$block.content}>
+                </div>
+            <{/foreach}>
+        <{/if}>
+
+        <{if $xoops_showrblock}>
+        <{foreach item=block from=$xoops_rblocks name=rbloop}>
+        <{if ! $block.title|strstr:"none"}>
+            <h4 class="block-title"><{$block.title}></h4>
+        <{/if}>
+        <div class="btnList">
+            <{$block.content}>
+        </div>
+        <{/foreach}>
+        <{/if}>
+
+    </div>
+
+
+</div>

@@ -32,13 +32,13 @@ define('XCUBE_RENDER_TARGET_TYPE_MAIN', 'main');
  */
 class XCube_RenderTarget
 {
-    public $mName = null;
+    public $mName;
 
-    public $mRenderBuffer = null;
+    public $mRenderBuffer;
 
-    public $mModuleName = null;
+    public $mModuleName;
 
-    public $mTemplateName = null;
+    public $mTemplateName;
 
     public $mAttributes = [];
 
@@ -47,7 +47,7 @@ class XCube_RenderTarget
      */
     public $mType = XCUBE_RENDER_TARGET_TYPE_BUFFER;
 
-    public $mCacheTime = null;
+    public $mCacheTime;
 
     public function __construct()
     {

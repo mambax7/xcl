@@ -124,5 +124,3 @@ class D3pipesBlockD3forumrevSubstance extends D3pipesBlockAbstract
     }
 
 }
-
-?>

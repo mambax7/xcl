@@ -63,7 +63,7 @@ class XCube_Service
      * @brief XCube_ActionStrategy(?) --- 'deprecated'
      * @deprecated
      */
-    public $_mActionStrategy = null;
+    public $_mActionStrategy;
 
     public $_mTypes = [];
 
@@ -105,8 +105,9 @@ class XCube_Service
     }
 
     /**
-     * @var   string          $name
-     * @param XCube_Procedure $procedure
+     * XCube_Procedure
+     * @var   string $name
+     * @param  $procedure
      */
     public function register($name, &$procedure)
     {
@@ -125,7 +126,7 @@ class XCube_AbstractServiceClient
     public $mService;
     public $mClientErrorStr;
 
-    public $mUser = null;
+    public $mUser;
 
     public function __construct(&$service)
     {
@@ -193,9 +194,9 @@ class XCube_ServiceClient extends XCube_AbstractServiceClient
             $root->mContext->mRequest =& $request_bak;
 
             return $ret;
-        } else {
-            $this->mClientErrorStr = "operation ${operation} not present.";
-            return null;
         }
+
+        $this->mClientErrorStr = "operation ${operation} not present.";
+        return null;
     }
 }

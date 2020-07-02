@@ -1,4 +1,6 @@
 <div class="adminnavi" aria-label="breadcrumb">
+    <a href="<{$xoops_url}>/admin.php">Dashboard</a>
+    &raquo;&raquo;
   <a href="./index.php"><{$smarty.const._MI_LEGACY_NAME}></a>
   &raquo;&raquo; <span class="adminnaviTitle" aria-current="page"><{$smarty.const._MI_LEGACY_MENU_PREFERENCE}></span>
 </div>
@@ -25,6 +27,47 @@
       </td>
     </tr>
   <{/foreach}>
+
+<div class="ui-flex-row">
+
+    <{foreach item=obj from=$objects}>
+    <div class="ui-flex-column" title="<{$smarty.const._AD_LEGACY_LANG_CONFCAT_ID}> - <{$obj->getVar('confcat_id')}>">
+    <p><{$obj->getName()|xoops_escape}></p>
+    <p><a href="./index.php?action=PreferenceEdit&amp;confcat_id=<{$obj->getVar('confcat_id')}>" title="<{$smarty.const._EDIT}>" class="ui-btn">
+        <img src="<{"icons/icon-edit.svg"|theme}>" class="svg" aria-label=""> <{$smarty.const._EDIT}>
+      </a></p>
+    </div>
+    <{/foreach}>
+
+    <div class="ui-flex-column">
+        <p>Users</p>
+        <a href="./index.php?action=PreferenceEdit&confmod_id=4" title="<{$smarty.const._EDIT}>" class="ui-btn">
+            <img src="<{"icons/icon-edit.svg"|theme}>" class="svg" aria-label="Users - <{$smarty.const._EDIT}>"> <{$smarty.const._EDIT}>
+          </a>
+    </div>
+
+    <div class="ui-flex-column">
+        <p>Meta Keywords</p>
+        <a href="./index.php?action=PreferenceEdit&confmod_id=3" title="<{$smarty.const._EDIT}>" class="ui-btn">
+            <img src="<{"icons/icon-edit.svg"|theme}>" class="svg" aria-label="Meta Keywords - <{$smarty.const._EDIT}>"> <{$smarty.const._EDIT}>
+          </a>
+    </div>
+
+    <!-- <div class="ui-flex-column"></div>
+
+    <div class="ui-flex-column"></div>
+
+    <div class="ui-flex-column"></div>
+
+    <div class="ui-flex-column"></div>
+
+    <div class="ui-flex-column"></div> -->
+
+</div>
+
+
+
+
 
   <!-- 2008-12-7 Gigamaster, Test Accessibility-->
 <!--   <tfoot>

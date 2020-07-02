@@ -14,12 +14,12 @@
 <h4 class="admintitle"><{$smarty.const._AD_LEGACY_LANG_MODUPDATE_LOG}></h4>
 
 <div class="updateMsg">
-  <ul>
+  <ul style="max-height: 340px; overflow-y:auto;">
   <{foreach item=msg from=$log}>
     <{if $msg.type=="error"}>
       <li class="message-warning"><{$msg.message|xoops_escape}></li>
     <{elseif $msg.type=="warning"}>
-      <li class="legacy_module_warning"><{$msg.message|xoops_escape}></li>
+      <li class="message-warning"><{$msg.message|xoops_escape}></li>
     <{else}>
       <li class="legacy_module_message"><{$msg.message|xoops_escape}></li>
     <{/if}>

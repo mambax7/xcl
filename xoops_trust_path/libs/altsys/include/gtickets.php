@@ -315,3 +315,4 @@ function admin_refcheck($chkref = '')
     return true;
 }
 }
+?>

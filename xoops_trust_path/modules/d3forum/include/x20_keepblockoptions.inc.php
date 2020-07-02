@@ -9,7 +9,7 @@ $record= $db->fetcharray($result);
 if ($record) {
 	$mid = $record['mid'];
 	$count = count($modversion['blocks']);
-	
+
 	$sql = 'SELECT * FROM ' . $db->prefix('newblocks') . ' WHERE mid=' . $mid . " AND block_type <>'D' AND func_num > $count";
 	$fresult = $db->query($sql);
 	while ($fblock = $db->fetchArray($fresult)) {
@@ -17,7 +17,7 @@ if ($record) {
 		$sql = 'DELETE FROM ' . $db->prefix('newblocks') . " WHERE bid='" . $fblock['bid'] . "'";
 		$iret = $db->query($sql);
 	}
-	
+
 	for ($i = 1 ; $i <= $count ; $i++) {
 		$sql = 'SELECT name,options FROM ' . $db->prefix('newblocks') . ' WHERE mid=' . $mid . ' AND func_num=' . $i . ' AND show_func=' . $db->quoteString($modversion['blocks'][$i]['show_func']) . ' AND func_file=' . $db->quoteString($modversion['blocks'][$i]['file']);
 		$fresult = $db->query($sql);
@@ -25,11 +25,11 @@ if ($record) {
 		if ( isset( $fblock['options'] ) ) {
 			$old_vals=explode('|', $fblock['options']);
 			$def_vals=explode('|', $modversion['blocks'][$i]['options']);
-			if (count($old_vals) == count($def_vals)) {
+			if (count($old_vals) === count($def_vals)) {
 				$modversion['blocks'][$i]['options'] = $fblock['options'];
 				$local_msgs[] = "Option's values of the block <b>".$fblock['name'] . '</b> will be kept. (value = <b>' . $fblock['options'] . '</b>)';
 			} else if (count($old_vals) < count($def_vals)){
-				for ($j=0; $j < count($old_vals); $j++) {
+				for ($j=0, $jMax = count($old_vals); $j < $jMax; $j++) {
 					$def_vals[$j] = $old_vals[$j];
 				}
 				$modversion['blocks'][$i]['options'] = implode('|', $def_vals);
@@ -46,5 +46,3 @@ if( ! empty( $msgs ) && ! empty( $local_msgs ) && empty( $myblocksadmin_parsed_u
 	$msgs = array_merge( $msgs , $local_msgs ) ;
 	$myblocksadmin_parsed_updateblock = true ;
 }
-
-?>

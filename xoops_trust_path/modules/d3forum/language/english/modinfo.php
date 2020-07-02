@@ -31,7 +31,7 @@ if (defined('FOR_XOOPS_LANG_CHECKER') || !defined($constpref . '_LOADED')) {
 
     // configurations
     define($constpref . '_TOP_MESSAGE', 'Message in forum top');
-    define($constpref . '_TOP_MESSAGEDEFAULT', '<h1 class="d3f_title">Top Forum</h1><p class="d3f_welcome">To start viewing messages, select a category and then a forum from the selection below.</p>');
+    define($constpref . '_TOP_MESSAGEDEFAULT', '<h1>Top Forum</h1><p>To start viewing messages, select a category and then a forum from the selection below.</p>');
     define($constpref . '_SHOW_BREADCRUMBS', 'Display breadcrumbs');
     define($constpref . '_DEFAULT_OPTIONS', 'Default checked in post form');
     define($constpref . '_DEFAULT_OPTIONSDSC', 'List checked options separated by comma(,).<br>eg) smiley,xcode,br,number_entity<br>available options: special_entity html attachsig u2t_marked');

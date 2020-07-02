@@ -76,7 +76,7 @@ if (!defined('XOOPS_C_ERRORHANDLER_INCLUDED')) {
                 '0019' => "You must type a message to post. You can't post an empty message. Go back and enter a message.",
                 '0020' => 'Could not enter data into the database. Please go back and try again.',
                 '0021' => "Can't delete the selected message.",
-                '0022' => 'An error ocurred while querying the database.',
+                '0022' => 'An error occurred while querying the database.',
                 '0023' => 'Selected message was not found in the forum database.',
                 '0024' => "You can't reply to that message. It wasn't sent to you.",
                 '0025' => "You can't post a reply to this topic, it has been locked. Contact the administrator if you have any question.",
@@ -107,9 +107,10 @@ if (!defined('XOOPS_C_ERRORHANDLER_INCLUDED')) {
             ];
 
             $errorno = array_keys($errmsg);
-            if (!in_array($e_code, $errorno)) {
+            if (!in_array($e_code, $errorno, true)) {
                 $e_code = '9999';
             }
+            //TODO use module template
             include_once XOOPS_ROOT_PATH . '/header.php';
             //OpenTable();
             echo '<div><b>' . htmlspecialchars($xoopsConfig['sitename'], ENT_QUOTES) . ' Error</b><br><br>';

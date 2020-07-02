@@ -6,41 +6,42 @@ if (!preg_match('/^[0-9a-zA-Z_-]+$/', $mydirname)) exit;
 
 if (!class_exists('PicoPreloadBase')) {
 
-	class PicoPreloadBase extends XCube_ActionFilter
-	{
-		public $mydirname = 'pico';
+    class PicoPreloadBase extends XCube_ActionFilter
+    {
+        public $mydirname = 'pico';
 
-		public function postFilter()
-		{
-			$this->mRoot->mDelegateManager->add('Legacy_BackendAction.GetRSSItems', [&$this, 'getRSSItems']);
-			$this->mRoot->mDelegateManager->add('Ckeditor4.Utils.PreBuild_ckconfig', [$this, 'ckeditor4PreBuild']);
-		}
+        public function postFilter()
+        {
+            $this->mRoot->mDelegateManager->add('Legacy_BackendAction.GetRSSItems', [&$this, 'getRSSItems']);
+            $this->mRoot->mDelegateManager->add('Ckeditor4.Utils.PreBuild_ckconfig', [$this, 'ckeditor4PreBuild']);
+        }
 
-		public function getRSSItems(&$items)
-		{
-			/*		$mydirname = $this->mydirname ;
-		$module_handler =& xoops_gethandler( 'module' ) ;
-		$xoopsModule =& $module_handler->getByDirname( $this->mydirname ) ;
-		$xoopsDB = XoopsDatabaseFactory::getDatabaseConnection() ;
-		$_GET['page'] = 'rss' ;
-		include dirname(__FILE__).'/main/index.php' ;
+        public function getRSSItems(&$items)
+        {
+            /*		$mydirname = $this->mydirname ;
+        $module_handler =& xoops_gethandler( 'module' ) ;
+        $xoopsModule =& $module_handler->getByDirname( $this->mydirname ) ;
+        $xoopsDB = XoopsDatabaseFactory::getDatabaseConnection() ;
+        $_GET['page'] = 'rss' ;
+        include dirname(__FILE__).'/main/index.php' ;
 
-		$items[] = array(
-			'pubdate' => time() ,
-			'title' => $this->mydirname ,
-			'link' => 'link' ,
-			'description' => 'desc' ,
-			'guid' => 'guid' ,
-		) ;*/ }
+        $items[] = array(
+            'pubdate' => time() ,
+            'title' => $this->mydirname ,
+            'link' => 'link' ,
+            'description' => 'desc' ,
+            'guid' => 'guid' ,
+        ) ;*/
+        }
 
-		public function ckeditor4PreBuild(&$params)
-		{
-			$mObj = $this->mRoot->mContext->mXoopsModule;
-			if (is_a($mObj, 'XoopsModule') && 'pico' === $mObj->get('trust_dirname')) {
-				$params['allowhtml'] = true;
-				if (!isset($params['switcher'])) {
-					$id = $params['id'];
-					$params['switcher'] = <<<EOD
+        public function ckeditor4PreBuild(&$params)
+        {
+            $mObj = $this->mRoot->mContext->mXoopsModule;
+            if (is_a($mObj, 'XoopsModule') && 'pico' === $mObj->get('trust_dirname')) {
+                $params['allowhtml'] = true;
+                if (!isset($params['switcher'])) {
+                    $id = $params['id'];
+                    $params['switcher'] = <<<EOD
 (function(){
 var f = $("#{$id}").closest("form");
 // checkbox
@@ -196,14 +197,13 @@ if (CKEDITOR.instances.{$id}) {
 }
 })();
 EOD;
-				}
-			}
-		}
-	}
+                }
+            }
+        }
+    }
 }
 
-if (!is_numeric($mydirname{
-	0})) {
-	// If you want to name the directory from 0-9, make a site preload.
-	eval('class ' . ucfirst($mydirname) . '_PicoPreload extends PicoPreloadBase { var $mydirname = \'' . $mydirname . '\' ; }');
+if (!is_numeric($mydirname[0])) {
+    // If you want to name the directory from 0-9, make a site preload.
+    eval('class ' . ucfirst($mydirname) . '_PicoPreload extends PicoPreloadBase { var $mydirname = \'' . $mydirname . '\' ; }');
 }

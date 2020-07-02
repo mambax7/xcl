@@ -33,7 +33,7 @@ define('_OLDESTFIRST', 'Oldest First');
 define('_NEWESTFIRST', 'Newest First');
 define('_MORE', 'more...');
 define('_MULTIPAGE', 'To have your article span multiple pages, insert the word <font color=red>[pagebreak]</font> (with brackets) in the article.');
-define('_IFNOTRELOAD', "If the page does not automatically reload, please click <a href='%s'>here</a>");
+define('_IFNOTRELOAD', "If the page does not automatically reload, please [ <a href='%s'>click here</a> ]");
 define('_WARNINSTALL2', 'WARNING: Directory %s exists on your server. Please remove this directory for security reasons.');
 define('_WARNINWRITEABLE', 'WARNING: File %s is writeable by the server. Please change the permission of this file for security reasons. in Unix (444), in Win32 (read-only)');
 define('_WARNPHPENV', 'WARNING: php.ini parameter "%s" is set to "%s". %s');

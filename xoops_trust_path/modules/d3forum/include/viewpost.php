@@ -4,8 +4,12 @@ $post_id = (int)@$_GET['post_id'];
 
 // get this "post" from given $post_id
 $sql = 'SELECT * FROM ' . $db->prefix($mydirname . '_posts') . " WHERE post_id=$post_id" ;
-if( ! $prs = $db->query( $sql ) ) die( _MD_D3FORUM_ERR_SQL.__LINE__ ) ;
-if( $db->getRowsNum( $prs ) <= 0 ) die( _MD_D3FORUM_ERR_READPOST ) ;
+if( ! $prs = $db->query( $sql ) ) {
+    die(_MD_D3FORUM_ERR_SQL . __LINE__);
+}
+if( $db->getRowsNum( $prs ) <= 0 ) {
+    die(_MD_D3FORUM_ERR_READPOST);
+}
 $post_row = $db->fetchArray( $prs ) ;
 $topic_id = (int)$post_row['topic_id'];
 
@@ -13,10 +17,14 @@ $topic_id = (int)$post_row['topic_id'];
 include __DIR__ . '/process_this_topic.inc.php' ;
 
 // get&check this forum ($forum4assign, $forum_row, $cat_id, $isadminormod), override options
-if( ! include __DIR__ . '/process_this_forum.inc.php' ) redirect_header(XOOPS_URL . '/user.php' , 3 , _MD_D3FORUM_ERR_READFORUM ) ;
+if( ! include __DIR__ . '/process_this_forum.inc.php' ) {
+    redirect_header(XOOPS_URL . '/user.php', 3, _MD_D3FORUM_ERR_READFORUM);
+}
 
 // get&check this category ($category4assign, $category_row), override options
-if( ! include __DIR__ . '/process_this_category.inc.php' ) redirect_header(XOOPS_URL . '/user.php' , 3 , _MD_D3FORUM_ERR_READCATEGORY ) ;
+if( ! include __DIR__ . '/process_this_category.inc.php' ) {
+    redirect_header(XOOPS_URL . '/user.php', 3, _MD_D3FORUM_ERR_READCATEGORY);
+}
 
 // get $post4assign
 include __DIR__ . '/process_this_post.inc.php' ;
@@ -26,7 +34,9 @@ $d3forum_meta_description = preg_replace('/[\r\n\t]/','',htmlspecialchars(mb_sub
 // posts loop
 $posts = [];
 $sql = 'SELECT * FROM ' . $db->prefix($mydirname . '_posts') . " WHERE topic_id=$topic_id ORDER BY order_in_tree,post_id" ; // TODO
-if( ! $prs = $db->query( $sql ) ) die( _MD_D3FORUM_ERR_SQL.__LINE__ ) ;
+if( ! $prs = $db->query( $sql ) ) {
+    die(_MD_D3FORUM_ERR_SQL . __LINE__);
+}
 while( $post_row = $db->fetchArray( $prs ) ) {
 
 	// get poster's information ($poster_*), $can_reply, $can_edit, $can_delete
@@ -87,7 +97,7 @@ $posts = d3forum_make_treeinformations( $posts ) ;
 
 // copy some tree informations from $posts into $post
 foreach( $posts as $eachpost ) {
-	if( $eachpost['id'] == $post_id ) {
+	if( $eachpost['id'] === $post_id ) {
 		$post4assign['next_id'] = @$eachpost['next_id'] ;
 		$post4assign['prev_id'] = @$eachpost['prev_id'] ;
 		$post4assign['first_child_id'] = @$eachpost['first_child_id'] ;
@@ -101,7 +111,7 @@ $_GET['topic_id'] = $topic_id ;
 
 	// naao from
 if( is_object( $xoopsUser ) ) {
-	if (1 == $xoopsModuleConfig['use_name'] && $xoopsUser->getVar('name' ) ) {
+	if (1 === $xoopsModuleConfig['use_name'] && $xoopsUser->getVar('name' ) ) {
 		$poster_uname4disp = $xoopsUser->getVar( 'name' ) ;
 	} else {
 		$poster_uname4disp = $xoopsUser->getVar( 'uname' ) ;
@@ -178,6 +188,3 @@ $xoopsTpl->assign(
         'xoops_breadcrumbs' => $xoops_breadcrumbs,
     ]
 ) ;
-
-
-?>

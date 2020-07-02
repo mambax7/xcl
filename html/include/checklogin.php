@@ -20,4 +20,3 @@ $root =& XCube_Root::getSingleton();
 $root->mController->checkLogin();
 
 // ! ToDo Add after care!
-;

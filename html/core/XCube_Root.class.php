@@ -40,25 +40,25 @@ class XCube_Root
      * @public
      * @brief [READ ONLY] XCube_Controller
      */
-    public $mController = null;
+    public $mController;
 
     /**
      * @public
      * @brief [READ ONLY] XCube_LanguageManager
      */
-    public $mLanguageManager = null;
+    public $mLanguageManager;
 
     /**
      * @public
      * @brief [READ ONLY] XCube_DelegateManager
      */
-    public $mDelegateManager = null;
+    public $mDelegateManager;
 
     /**
      * @public
      * @brief [READ ONLY] XCube_ServiceManager
      */
-    public $mServiceManager = null;
+    public $mServiceManager;
 
     /**
      * @private
@@ -79,21 +79,21 @@ class XCube_Root
      * @access public
      * @var XCube_AbstractPermissionProvider
      */
-    public $mPermissionManager = null;
+    public $mPermissionManager;
 
     /**
      * @public
      * @brief [READ ONLY] XCube_RoleManager
      * @todo Let's implements!
      */
-    public $mRoleManager = null;
+    public $mRoleManager;
 
     /**
      * @internal
      * @deprecated
      * @todo Check! This is deprecated member.
      */
-    public $mCacheSystem = null;
+    public $mCacheSystem;
 
     /**
      * @public
@@ -103,19 +103,19 @@ class XCube_Root
      *
      * @see getTextFilter()
      */
-    public $mTextFilter = null;
+    public $mTextFilter;
 
     /**
      * @public
      * @brief [READ ONLY] XCube_HttpContext
      */
-    public $mContext = null;
+    public $mContext;
 
     /**
      * @public
      * @brief [READ ONLY] XCube_Session
      */
-    public $mSession = null;
+    public $mSession;
 
     /**
      * @internal
@@ -183,7 +183,8 @@ class XCube_Root
     }
 
     /**
-     * @param Array$config
+     * Array
+     * @param $config
      * @return void
      * @internal
      * @public
@@ -243,7 +244,8 @@ class XCube_Root
         $n = func_num_args();
         if (0 === $n) {
             return $m;
-        } elseif (1 === $n) {
+        }
+        if (1 === $n) {
             $a = func_get_arg(0);
             if (isset($m[$a])) {
                 return $m[$a];
@@ -257,9 +259,8 @@ class XCube_Root
             list($a, $b, $c) = func_get_args();
             if (isset($m[$a][$b])) {
                 return $m[$a][$b];
-            } else {
-                return $c;
-            } //return 3rd param as a default value;
+            }
+            return $c; //return 3rd param as a default value;
         }
 
         return null;
@@ -469,9 +470,10 @@ class XCube_Root
     }
 
     /**
+     * XCube_Context
      * @public
      * @brief Sets the HTTP-context object.
-     * @param XCube_Context $context
+     * @param $context
      * @return void
      */
     public function setContext(&$context)
@@ -480,9 +482,10 @@ class XCube_Root
     }
 
     /**
+     * XCube_Context
      * @public
      * @brief Gets a HTTP-context object.
-     * @return XCube_Context
+     * @return
      */
     public function &getContext()
     {

@@ -31,5 +31,3 @@ if( is_object( $xoopsModule ) ) {
 
 // init meta description //nao-pon
 $d3forum_meta_description = '';
-
-?>

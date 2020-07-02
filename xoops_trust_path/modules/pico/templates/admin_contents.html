@@ -16,7 +16,6 @@
 <p>
 	<{$smarty.const._MD_PICO_CATEGORY}>: <strong><{$cat_title}></strong>
 	<{if $cat_id >= 0}>
-	<hr>
 	<a href="<{$mod_url}>/index.php?page=categorymanager&amp;cat_id=<{$cat_id}>" class="ui-btn ui-btn-small"><{$smarty.const._EDIT}></a>
 	<a href="<{$mod_url}>/admin/index.php?page=category_access&amp;cat_id=<{$cat_id}>" class="ui-btn ui-btn-small"><{$smarty.const._MD_PICO_LINK_CATEGORYPERMISSIONS}></a>
 	<a href="<{$mod_url}>/index.php?page=makecategory&amp;pid=<{$cat_id}>" class="ui-btn ui-btn-small"><{$smarty.const._MD_PICO_LINK_MAKESUBCATEGORY}></a>
@@ -31,7 +30,8 @@
 
 <form name="contents" action="<{$mod_url}>/admin/index.php?page=contents&amp;cat_id=<{$cat_id}>" method="post" style="margin:20px 0px;">
 	<{$gticket_hidden}>
-	<div align="<{$smarty.const._ALIGN_END}>"><{$smarty.const._MD_A_PICO_LEGEND_CONTENTSTHS}></div>
+	<div align="<{$smarty.const._ALIGN_END}>"><label for="pico-legend"> Display hints </label><input class="switch" type="checkbox" id="pico-legend" onclick="slideToggle('.pico-legend', this)" value="0"></div>
+    <div align="<{$smarty.const._ALIGN_END}>" class="pico-legend" style="display: none"><{$smarty.const._MD_A_PICO_LEGEND_CONTENTSTHS}></div>
 	<table class="outer">
 		<tr>
 			<th>

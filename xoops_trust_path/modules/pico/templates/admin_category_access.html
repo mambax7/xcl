@@ -13,13 +13,11 @@
 </form>
 
 <!-- category title -->
-<p>
-	<{$smarty.const._MD_PICO_CATEGORY}>: <strong><{$cat_title}></strong>
-	<hr>
-	<a href="<{$mod_url}>/index.php?page=categorymanager&amp;cat_id=<{$cat_id}>" class="ui-btn ui-btn-small"><{$smarty.const._EDIT}></a>
+    <p><{$smarty.const._MD_PICO_CATEGORY}>: <strong><{$cat_title}></strong></p>
+
+	<p><a href="<{$mod_url}>/index.php?page=categorymanager&amp;cat_id=<{$cat_id}>" class="ui-btn ui-btn-small"><{$smarty.const._EDIT}></a>
 	<a href="<{$mod_url}>/index.php?page=makecategory&amp;pid=<{$cat_id}>" class="ui-btn ui-btn-small"><{$smarty.const._MD_PICO_LINK_MAKESUBCATEGORY}></a>
-	<a href="<{$mod_url}>/<{$cat_link}>" class="ui-btn ui-btn-small"><{$smarty.const._MD_PICO_LINK_PUBLICCATEGORYINDEX}></a>
-</p>
+	<a href="<{$mod_url}>/<{$cat_link}>" class="ui-btn ui-btn-small"><{$smarty.const._MD_PICO_LINK_PUBLICCATEGORYINDEX}></a></p>
 
 <{if $cat_id != 0 }>
 <!-- cat_permission_id == cat_id -->
@@ -37,6 +35,7 @@
 	<a href="<{$mod_url}>/admin/index.php?page=category_access&amp;cat_id=<{$cat_permission_id}>"><{$smarty.const._MD_A_PICO_LINK_CATPERMISSIONID}></a>
 <{else}>
 </div>
+
 <!-- group form -->
 <h2 class="head"><{$smarty.const._MD_A_PICO_H2_GROUPPERMS}></h2>
 
@@ -77,12 +76,16 @@
 		</tr>
 	</tfoot>
 	</table>
-	
+
 </form>
 
 
 <!-- user form -->
 <h2 class="head"><{$smarty.const._MD_A_PICO_H2_USERPERMS}></h2>
+
+<div class="tips">
+    <{$smarty.const._MD_A_PICO_NOTICE_ADDUSERS}>
+</div>
 
 <form name="userperms" action="<{$mod_url}>/admin/index.php?page=category_access&amp;cat_id=<{$cat_id}>" method="post">
 	<{$gticket_hidden}>
@@ -143,12 +146,8 @@
 			</td>
 		</tr>
 	</tfoot>
-
-
 	</table>
-	
-	<br>
-	<{$smarty.const._MD_A_PICO_NOTICE_ADDUSERS}>
+
 </form>
 
 <{/if}>

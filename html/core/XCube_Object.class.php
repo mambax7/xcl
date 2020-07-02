@@ -44,9 +44,9 @@ class XCube_Object
     }
 
     public function __construct()
-    {
-        $fileds = $this->getPropertyDefinition();
-        foreach ($fileds as $t_field) {
+    { //typo rename to fields
+        $fields = $this->getPropertyDefinition();
+        foreach ($fields as $t_field) {
             $this->mProperty[$t_field['name']] = [
                 'type' => $t_field['type'],
                 'value' => null

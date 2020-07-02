@@ -1,4 +1,4 @@
-<?php 
+<?php
 /**
  *
  * @package Legacy
@@ -53,4 +53,3 @@ $root->mController->_mStrategy->setupModuleLanguage();    //< Umm...
 //
 // TODO
 //
-;

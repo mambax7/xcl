@@ -1,6 +1,6 @@
 <?php
 
-require_once __DIR__ . '/pico.textsanitizer.php';
+require_once __DIR__ . '/PicoTextSanitizer.class.php';
 require_once __DIR__ . '/PicoModelCategory.class.php';
 require_once __DIR__ . '/PicoPermission.class.php';
 
@@ -267,7 +267,7 @@ class PicoContent
                         $filters[$j] = '';
                     }
                 }
-                require_once dirname(__DIR__) . '/class/pico.textsanitizer.php';
+                require_once dirname(__DIR__) . '/class/PicoTextSanitizer.class.php';
                 $myts = &PicoTextSanitizer::sGetInstance();
                 $text = $myts->displayTarea($text, 1, $smiley, 1, 1, $nl2br);
                 $text = $myts->pageBreak($this->mydirname, $text, $content4assign);

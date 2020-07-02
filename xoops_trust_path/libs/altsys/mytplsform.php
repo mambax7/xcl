@@ -178,7 +178,8 @@ $mymenu_fake_uri = 'index.php?mode=admin&lib=altsys&page=mytplsadmin&dirname='.$
 // mymenu
 altsys_include_mymenu() ;
 
-echo "<h2 style='text-align:"._GLOBAL_LEFT.";'>"._MD_A_MYTPLSFORM_EDIT." : ".htmlspecialchars($tpl['tpl_type'], ENT_QUOTES)." : ".htmlspecialchars($tpl['tpl_file'], ENT_QUOTES)." (".htmlspecialchars($tpl['tpl_tplset'], ENT_QUOTES).")</h2>\n" ;
+echo "<h4 style='text-align:"._GLOBAL_LEFT.";'>"._MD_A_MYTPLSFORM_EDIT."</h4>"
+    ."<p><code>".htmlspecialchars($tpl['tpl_type'], ENT_QUOTES)." : ".htmlspecialchars($tpl['tpl_file'], ENT_QUOTES)." (".htmlspecialchars($tpl['tpl_tplset'], ENT_QUOTES).")</code></p>" ;
 
 
 // diff from file to selected DB template
@@ -192,9 +193,9 @@ if (file_exists($basefilepath)) {
     $diff_str = htmlspecialchars($renderer->render($diff), ENT_QUOTES) ;
     foreach (explode("\n", $diff_str) as $line) {
         if (0x2d == ord($line)) {
-            $diff_from_file4disp .= "<span style='color:red;'>".$line."</span>\n" ;
+            $diff_from_file4disp .= "<span style='color:var(--ui-color-red);'>".$line."</span>\n" ;
         } elseif (0x2b == ord($line)) {
-            $diff_from_file4disp .= "<span style='color:blue;'>".$line."</span>\n" ;
+            $diff_from_file4disp .= "<span style='color:var(--ui-color-green);'>".$line."</span>\n" ;
         } else {
             $diff_from_file4disp .= $line."\n" ;
         }
@@ -224,42 +225,43 @@ if ('default' != $tpl['tpl_tplset']) {
 }
 
 
-echo "<div class='ui-card-full'>\n\n
-	<form name='diff_form' id='diff_form' action='' method='get'>\n" ;
+echo "<div class='ui-card-full'>
+	<form name='diff_form' id='diff_form' action='' method='get'>";
 if ($diff_from_file4disp) {
-    echo "<input type='checkbox' name='display_diff2file' value='1' onClick=\"if(this.checked){document.getElementById('diff2file').style.display='block'}else{document.getElementById('diff2file').style.display='none'};\" id='display_diff2file' checked='checked' />&nbsp;<label for='display_diff2file'>diff from file</label>
-	<pre id='diff2file' style='display:block;border:1px solid black;'>$diff_from_file4disp</pre>\n" ;
+    echo "<input class='switch' type='checkbox' name='display_diff2file' value='1' onClick=\"if(this.checked){document.getElementById('diff2file').style.display='block'}else{document.getElementById('diff2file').style.display='none'};\" id='display_diff2file' checked='checked'>
+    &nbsp;<label for='display_diff2file'>Diff from file</label>
+	<pre id='diff2file'><code class='language-diff diff-highlight'>$diff_from_file4disp</code></pre>";
 }
 if ($diff_from_default4disp) {
-    echo "<input type='checkbox' name='display_diff2default' value='1' onClick=\"if(this.checked){document.getElementById('diff2default').style.display='block'}else{document.getElementById('diff2default').style.display='none'};\" id='display_diff2default' />&nbsp;<label for='display_diff2default'>diff from default</label>
-	<pre id='diff2default' style='display:none;border:1px solid black;'>$diff_from_default4disp</pre>\n" ;
+    echo "<input class='switch' type='checkbox' name='display_diff2default' value='1' onClick=\"if(this.checked){document.getElementById('diff2default').style.display='block'}else{document.getElementById('diff2default').style.display='none'};\" id='display_diff2default'>
+    &nbsp;<label for='display_diff2default'>diff from default</label>
+	<pre id='diff2default'><code class='language-diff diff-highlight'>$diff_from_default4disp</code></pre>";
 }
-echo "
-	</form>\n" ;
+echo "</form>";
 
 
-echo "
-<a name='altsys_tplsform_top' id='altsys_tplsform_top'></a>
+echo "<a name='altsys_tplsform_top' id='altsys_tplsform_top'></a>
 <form name='MainForm' id='altsys_tplsform' action='?mode=admin&amp;lib=altsys&amp;page=mytplsform&amp;tpl_file=".htmlspecialchars($tpl_file, ENT_QUOTES)."&amp;tpl_tplset=".htmlspecialchars($tpl['tpl_tplset'], ENT_QUOTES)."&amp;dirname=".$target_mname."' method='post'>
 	".$xoopsGTicket->getTicketHtml(__LINE__, 1800, 'altsys_tplsform')."
-	<textarea name='tpl_source' id='altsys_tpl_source' wrap='off' style='width:100%; height:20vh'>".htmlspecialchars($tpl['tpl_source'], ENT_QUOTES)."</textarea>
+	<textarea name='tpl_source' id='altsys_tpl_source' style='width:100%; height:25vh'>".htmlspecialchars($tpl['tpl_source'], ENT_QUOTES)."</textarea>
 	<br>
 ";
 if ('create' == $edit_mode) {
     // create form
     echo "
 	<label for='tpl_file'>"._MD_A_MYTPLSFORM_LABEL_TPLFILE."</label>
-	<input type='text' name='tpl_file' id='tpl_file' value='".htmlspecialchars($tpl['tpl_file'], ENT_QUOTES)."' size='64' /><br>
-	<input type='submit' name='do_create' id='do_create' value='"._MD_A_MYTPLSFORM_BTN_CREATE."' />\n" ;
+	<input type='text' name='tpl_file' id='tpl_file' value='".htmlspecialchars($tpl['tpl_file'], ENT_QUOTES)."' size='64'><br>
+	<input type='submit' name='do_create' id='do_create' value='"._MD_A_MYTPLSFORM_BTN_CREATE."'>" ;
 } else {
     // modify form
     echo "<br>
     <div class='foot'>
-	<input type='submit' name='do_modifycont' id='do_modifycont' value='"._MD_A_MYTPLSFORM_BTN_MODIFYCONT."' />
-	<input type='submit' name='do_modify' id='do_modify' value='"._MD_A_MYTPLSFORM_BTN_MODIFYEND."' />
-    <input type='reset' name='reset' value='"._MD_A_MYTPLSFORM_BTN_RESET."' />
+	<input type='submit' name='do_modifycont' id='do_modifycont' value='"._MD_A_MYTPLSFORM_BTN_MODIFYCONT."'>
+	<input type='submit' name='do_modify' id='do_modify' value='"._MD_A_MYTPLSFORM_BTN_MODIFYEND."'>
+    <input type='reset' name='reset' value='"._MD_A_MYTPLSFORM_BTN_RESET."'>
     </div>
-</form></div>\n" ;
+</form></div>" ;
 }
 
 xoops_cp_footer() ;
+?>

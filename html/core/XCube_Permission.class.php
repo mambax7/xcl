@@ -10,6 +10,11 @@
 
 /**
  * XCube_PermissionUtils
+ * Note:
+ * In some other languages, such as C, a void function can't be used in an expression, only as a statement.
+ * IDEs and other tools can warn the user when the return value of a void function is being used.
+ * It isn't strictly necessary for the language itself to cover this.
+ * https://wiki.php.net/rfc/void_return_type#use_of_void_functions_in_expressions
  */
 class XCube_Permissions
 {

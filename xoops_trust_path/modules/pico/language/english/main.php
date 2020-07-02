@@ -43,19 +43,19 @@ define('_MD_PICO_SUBCATEGORIES', 'Subcategories');
 define('_MD_PICO_CONTENT', 'Content');
 define('_MD_PICO_CONTENTS', 'Contents');
 
-define('_MD_PICO_LINK_MAKECATEGORY', 'Make a category');
-define('_MD_PICO_LINK_MAKESUBCATEGORY', 'Make a subcategory');
-define('_MD_PICO_LINK_MAKECONTENT', 'Make a content');
+define('_MD_PICO_LINK_MAKECATEGORY', 'Create a category');
+define('_MD_PICO_LINK_MAKESUBCATEGORY', 'Create a subcategory');
+define('_MD_PICO_LINK_MAKECONTENT', 'Create new content');
 define('_MD_PICO_LINK_EDITCATEGORY', 'Edit the category');
 define('_MD_PICO_LINK_EDITCONTENT', 'Edit the content');
 define('_MD_PICO_LINK_CATEGORYPERMISSIONS', 'Permissions');
 define('_MD_PICO_LINK_BATCHCONTENTS', 'Batch');
 define('_MD_PICO_LINK_PUBLICCATEGORYINDEX', 'Public index of the category');
 
-define('_MD_PICO_LINK_PRINTERFRIENDLY', 'Printer friendly');
+define('_MD_PICO_LINK_PRINTERFRIENDLY', 'Printer-friendly');
 define('_MD_PICO_LINK_TELLAFRIEND', 'Tell a friend');
 define('_MD_PICO_FMT_TELLAFRIENDSUBJECT', 'Article found in %s');
-define('_MD_PICO_FMT_TELLAFRIENDBODY', "I've just found an interestiong article\nSubject:%s");
+define('_MD_PICO_FMT_TELLAFRIENDBODY', "I've just found an interesting article\nSubject:%s");
 define('_MD_PICO_JUMPTOTOPOFPICOBODY', 'Jump to the top');
 define('_MD_PICO_CSVENCODING', 'UTF-8');
 
@@ -70,21 +70,21 @@ define('_MD_PICO_ERR_READCATEGORY', 'You cannot access the specified category');
 define('_MD_PICO_ERR_CREATECATEGORY', 'You cannot create a category');
 define('_MD_PICO_ERR_CATEGORYMANAGEMENT', 'You are not a manager of the category');
 define('_MD_PICO_ERR_READCONTENT', 'You cannot access the specified content');
-define('_MD_PICO_ERR_CREATECONTENT', 'You cannot create a content');
+define('_MD_PICO_ERR_CREATECONTENT', 'You cannot create new content');
 define('_MD_PICO_ERR_LOCKEDCONTENT', 'The content is locked');
 define('_MD_PICO_ERR_EDITCONTENT', 'You cannot edit the content');
 define('_MD_PICO_ERR_DELETECONTENT', 'You cannot delete the content');
-define('_MD_PICO_ERR_PERMREADFULL', 'You cannot read full of the contents');
-define('_MD_PICO_ERR_LOGINTOREADFULL', 'Log in as a member to read the contents entirely');
-define('_MD_PICO_ERR_COMPILEERROR', 'The body of this content is not processed by some errors like smarty compiling errors. Try to edit it again.');
+define('_MD_PICO_ERR_PERMREADFULL', 'You cannot read the full content');
+define('_MD_PICO_ERR_LOGINTOREADFULL', 'Login as a member to read the full content');
+define('_MD_PICO_ERR_COMPILEERROR', 'The content is not processed due to Smarty compilation errors. Try to edit and submit again.');
 
-define('_MD_PICO_MSG_CATEGORYMADE', 'A category is created successfully');
-define('_MD_PICO_MSG_CATEGORYUPDATED', 'The category is modified successfully');
-define('_MD_PICO_MSG_CATEGORYDELETED', 'The category is deleted successfully');
-define('_MD_PICO_MSG_CONTENTMADE', 'A content has been created successfully');
-define('_MD_PICO_MSG_CONTENTWAITINGREGISTER', 'A content has been queued for registering');
+define('_MD_PICO_MSG_CATEGORYMADE', 'The category has been created successfully');
+define('_MD_PICO_MSG_CATEGORYUPDATED', 'The category has been modified successfully');
+define('_MD_PICO_MSG_CATEGORYDELETED', 'The category has been deleted successfully');
+define('_MD_PICO_MSG_CONTENTMADE', 'The content has been created successfully');
+define('_MD_PICO_MSG_CONTENTWAITINGREGISTER', 'The content has been submitted for approval');
 define('_MD_PICO_MSG_CONTENTUPDATED', 'The content has been modified successfully');
-define('_MD_PICO_MSG_CONTENTWAITINGUPDATE', 'The content has been queued for updating');
+define('_MD_PICO_MSG_CONTENTWAITINGUPDATE', 'The content has been submitted for update');
 define('_MD_PICO_MSG_CONTENTDELETED', 'The content has been deleted successfully');
 
 define('_MD_PICO_CATEGORYMANAGER', 'Category manager');
@@ -98,12 +98,12 @@ define('_MD_PICO_TH_BODY', 'body');
 define('_MD_PICO_TH_BODY_WAITING', 'Waiting body');
 define('_MD_PICO_TH_FILTERS', 'filters');
 define('_MD_PICO_TH_TAGS', 'Tags');
-define('_MD_PICO_TH_TAGSDSC', 'separate tags by a space');
+define('_MD_PICO_TH_TAGSDSC', 'multiple tags separated by spaces');
 define('_MD_PICO_TH_WEIGHT', 'weight');
 define('_MD_PICO_TH_CONTENTOPTIONS', 'options');
 define('_MD_PICO_LABEL_USECACHE', 'use cache');
-define('_MD_PICO_NOTE_USECACHEDSC', 'Enable it only for static content');
-define('_MD_PICO_LABEL_LOCKED', 'Lock (only moderators can edit/delete it)');
+define('_MD_PICO_NOTE_USECACHEDSC', 'Enable only for static content');
+define('_MD_PICO_LABEL_LOCKED', 'Lock (only moderators can edit/delete)');
 define('_MD_PICO_LABEL_SPECIFY_DATETIME', 'Specify datetime');
 define('_MD_PICO_LABEL_VISIBLE', 'Visible');
 define('_MD_PICO_LABEL_SHOWINNAVI', 'Show in navigation');
@@ -117,25 +117,25 @@ define('_MD_PICO_TH_CATEGORYOPTIONS', 'Options');
 define('_MD_PICO_CONTENTS_TOTAL', 'Total content');
 define('_MD_PICO_SUBCATEGORIES_TOTAL', 'Total subcategories');
 define('_MD_PICO_SUBCATEGORY_COUNT', 'Number of subcategories');
-define('_MD_PICO_MSG_CONFIRMDELETECATEGORY', 'All content in the category will be removed. Please confirm?');
+define('_MD_PICO_MSG_CONFIRMDELETECATEGORY', 'All content of the category will be removed. Please confirm?');
 define('_MD_PICO_MSG_CONFIRMDELETECONTENT', 'Are you sure you want to delete?');
-define('_MD_PICO_MSG_CONFIRMSAVEASCONTENT', 'Are you sure you want to save as?');
+define('_MD_PICO_MSG_CONFIRMSAVEASCONTENT', 'Are you sure you want to save as...?');
 //define('_MD_PICO_MSG_GOTOPREFERENCE4EDITTOP','The TOP category is the special. You can change the settings of the TOP in module preferences.');
-define('_MD_PICO_LABEL_HTMLHEADERONOFF', 'display the textarea');
-define('_MD_PICO_LABEL_HTMLHEADERCONFIGALERT', '(HTML header for each content is disabled by preferences)');
-define('_MD_PICO_LABEL_INPUTHELPER', 'Input Helper ON/OFF');
-define('_MD_PICO_BTN_SUBMITEDITING', 'Save this form');
+define('_MD_PICO_LABEL_HTMLHEADERONOFF', 'Display the textarea');
+define('_MD_PICO_LABEL_HTMLHEADERCONFIGALERT', '(HTML header for each content is disabled in preferences)');
+define('_MD_PICO_LABEL_INPUTHELPER', 'Helper ON/OFF');
+define('_MD_PICO_BTN_SUBMITEDITING', 'Save');
 define('_MD_PICO_BTN_SUBMITSAVEAS', 'Save as...');
-define('_MD_PICO_BTN_COPYFROMWAITING', 'register waiting data');
-define('_MD_PICO_MSG_CONFIRMCOPYFROMWAITING', ' If you do not save, the entered data will be lost. Please confirm?');
-define('_MD_PICO_HOWTO_OVERRIDEOPTIONS', 'If you override preferences, write a line like:<br>(option name):(option value)<br>eg)<br>show_breadcrumbs:1 <br><br>Overridable options and current values:');
+define('_MD_PICO_BTN_COPYFROMWAITING', 'Save waiting content');
+define('_MD_PICO_MSG_CONFIRMCOPYFROMWAITING', ' If you do not save the waiting content, the data will be lost. Please confirm?');
+define('_MD_PICO_HOWTO_OVERRIDEOPTIONS', 'Override preferences by writing a line e.g.:<br>(option name):(option value)<br>Example: show_breadcrumbs:1<br><b>Overridable options current values</b>');
 
 
 // vote to post
 define('_MD_PICO_ERR_VOTEPERM', 'You cannot vote');
 define('_MD_PICO_ERR_VOTEINVALID', 'Invalid vote');
 define('_MD_PICO_MSG_VOTEDOUBLE', 'You can vote once per content');
-define('_MD_PICO_MSG_VOTEACCEPTED', 'Thanks for voting!');
+define('_MD_PICO_MSG_VOTEACCEPTED', 'Thank you for voting!');
 define('_MD_PICO_MSG_VOTEDISABLED', 'You cannot vote for this item');
 define('_MD_PICO_VOTECOUNT', 'Votes');
 define('_MD_PICO_VOTEPOINTAVG', 'Average');
@@ -144,8 +144,8 @@ define('_MD_PICO_VOTEPOINTDSCWORST', 'Useless');
 
 // query contents
 define('_MD_PICO_FMT_QUERYTAGTITLE', 'Tag: %s');
-define('_MD_PICO_FMT_QUERYTAGDESC', 'Contents tagged %s');
-define('_MD_PICO_ERR_NOCONTENTMATCHED', 'No contents');
+define('_MD_PICO_FMT_QUERYTAGDESC', 'Content tagged %s');
+define('_MD_PICO_ERR_NOCONTENTMATCHED', 'No content');
 
 // filters
 define('_MD_PICO_FILTERS_EVALTITLE', 'php code');
@@ -162,10 +162,10 @@ define('_MD_PICO_FILTERS_SMILEYTITLE', 'Smiley');
 define('_MD_PICO_FILTERS_SMILEYDESC', ':-) :-D etc.');
 define('_MD_PICO_FILTERS_XCODETITLE', 'BBCode');
 define('_MD_PICO_FILTERS_XCODEDESC', 'Auto link and BBCode will be enabled');
-define('_MD_PICO_FILTERS_WRAPSTITLE', 'Page wraps (note: the file specified by virtual path is displayed instead of body');
+define('_MD_PICO_FILTERS_WRAPSTITLE', 'Page wraps (note: displays the file specified in the virtual path)');
 define('_MD_PICO_FILTERS_WRAPSDESC', 'The target file is XOOPS_TRUST_PATH/wraps/(dirname)/file (same as wraps)');
-define('_MD_PICO_FILTERS_XOOPSTSTITLE', 'XOOPS default filter (smiley, xcode , img, br)');
-define('_MD_PICO_FILTERS_XOOPSTSDESC', 'Use XOOPS default text filter, enabled smiley, xcode , img & br');
+define('_MD_PICO_FILTERS_XOOPSTSTITLE', 'Editor default filter (smiley, xcode , img, br)');
+define('_MD_PICO_FILTERS_XOOPSTSDESC', 'Use default text filter, enabled smiley, xcode , img & br');
 
 
 // permissions
@@ -176,7 +176,7 @@ define('_MD_PICO_PERMS_CAN_EDIT', 'Edit');
 define('_MD_PICO_PERMS_CAN_DELETE', 'Delete');
 define('_MD_PICO_PERMS_POST_AUTO_APPROVED', 'Auto Approved');
 define('_MD_PICO_PERMS_IS_MODERATOR', 'Moderate');
-define('_MD_PICO_PERMS_CAN_MAKESUBCATEGORY', 'Make a Subcategry');
+define('_MD_PICO_PERMS_CAN_MAKESUBCATEGORY', 'Create a Subcategory');
 
 
 // LTR or RTL

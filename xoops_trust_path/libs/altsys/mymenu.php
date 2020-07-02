@@ -6,11 +6,6 @@ if (! defined('XOOPS_ROOT_PATH')) {
     exit ;
 }
 
-// Skip for ORETEKI XOOPS
-if (defined('XOOPS_ORETEKI')) {
-    return ;
-}
-
 if (! isset($module) || ! is_object($module)) {
     $module = $xoopsModule ;
 } elseif (! is_object($xoopsModule)) {

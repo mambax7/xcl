@@ -57,5 +57,3 @@ if ($d3forum_meta_description) {
 }
 
 include XOOPS_ROOT_PATH.'/footer.php';
-
-?>

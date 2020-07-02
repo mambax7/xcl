@@ -11,7 +11,7 @@
 		$whr_external_link_id = "t.topic_external_link_id='$external_link_id4sql'" ;
 		$d3comment_info = [
 			'comment_link' => d3forum_get_comment_link( $forum_row['forum_external_link_format'] , $external_link_id ) ,
-			'comment_description' => d3forum_get_comment_description( $mydirname , $forum_row['forum_external_link_format'] , $external_link_id , isset($forum_id)? $forum_id : null ) ,
+			'comment_description' => d3forum_get_comment_description( $mydirname , $forum_row['forum_external_link_format'] , $external_link_id , $forum_id ?? null) ,
         ];
 		if( is_array( $d3comment_info['comment_description'] ) ) {
 			$xoops_breadcrumbs[] = [
@@ -24,7 +24,7 @@
 		$whr_external_link_id = '1' ;
 		$d3comment_info = [];
 	}
-	
+
 	// TXT
 	if( ! empty( $_GET['txt'] ) ) {
 		$txt = $myts->stripSlashesGPC( $_GET['txt'] ) ;
@@ -36,7 +36,7 @@
 		$query4assign['txt'] = '' ;
 		$whr_txt = '1' ;
 	}
-	
+
 	// SOLVED
 	$solved_options = [
 		0 => '----' ,
@@ -52,16 +52,14 @@
 		// disable "solved function"
 		$query4assign['solved'] = 0 ;
 		$whr_solved = $solved_sqls[0] ;
-	} else {
-		if( ! empty( $solved_options[ @$_GET['solved'] ] ) ) {
-			$query4assign['solved'] = (int)$_GET['solved'];
-			$query4nav .= '&amp;solved=' . (int)$_GET['solved'];
-			$whr_solved = $solved_sqls[ $query4assign['solved'] ] ;
-		} else {
-			$query4assign['solved'] = 0 ;
-			$whr_solved = $solved_sqls[0] ;
-		}
-	}
+	} else if( ! empty( $solved_options[ @$_GET['solved'] ] ) ) {
+        $query4assign['solved'] = (int)$_GET['solved'];
+        $query4nav .= '&amp;solved=' . (int)$_GET['solved'];
+        $whr_solved = $solved_sqls[ $query4assign['solved'] ] ;
+    } else {
+        $query4assign['solved'] = 0 ;
+        $whr_solved = $solved_sqls[0] ;
+    }
 
 	// ORDER
 	$odr_options = [
@@ -107,8 +105,6 @@
 
 	// POS
 	$pos = (int)@$_GET['pos'] <= 0 ? 0 : (int)$_GET['pos'];
-	
+
 	// LIMIT
 	$num = $xoopsModuleConfig['topics_per_page'] < 5 ? 5 : (int)$xoopsModuleConfig['topics_per_page'];
-
-?>

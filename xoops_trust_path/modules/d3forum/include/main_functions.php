@@ -9,40 +9,40 @@ function d3forum_make_treeinformations( $data )
 	$previous_depth = -1 ;
 	$path_to_i = [];
 
-	for($i = 0 ; $i < count($data ) ; $i ++ ) {
-		$unique_path = $data[$i]['unique_path'] ;
-		$path_to_i[ $unique_path ] = $i ;
-		$parent_path = substr( $unique_path , 0 , strrpos( $unique_path , '.' ) ) ;
-		if( $parent_path && isset( $path_to_i[ $parent_path ] ) ) {
-			$data[ $path_to_i[ $parent_path ] ]['f1s'][ $data[$i]['id'] ] = strrchr( $data[$i]['unique_path'] , '.' ) ;
-		}
+    foreach ($data as $i => $iValue) {
+        $unique_path = $data[$i]['unique_path'] ;
+        $path_to_i[ $unique_path ] = $i ;
+        $parent_path = substr( $unique_path , 0 , strrpos( $unique_path , '.' ) ) ;
+        if( $parent_path && isset( $path_to_i[ $parent_path ] ) ) {
+            $data[ $path_to_i[ $parent_path ] ]['f1s'][ $iValue['id'] ] = strrchr( $iValue['unique_path'] , '.' ) ;
+        }
 
-		$depth_diff = $data[$i]['depth_in_tree'] - @$previous_depth ;
-		$previous_depth = $data[$i]['depth_in_tree'] ;
-		$data[$i]['ul_in'] = '' ;
-		$data[$i]['ul_out'] = '' ;
-		if( $depth_diff > 0 ) {
-			if( $i > 0 ) {
-				$data[$i-1]['first_child_id'] = $data[$i]['id'] ;
-			}
-			for( $j = 0 ; $j < $depth_diff ; $j ++ ) {
-				$data[$i]['ul_in'] .= '<ul><li>' ;
-			}
-		} else if( $depth_diff < 0 ) {
-			for( $j = 0 ; $j < - $depth_diff ; $j ++ ) {
-				$data[$i-1]['ul_out'] .= '</li></ul>' ;
-			}
-			$data[$i-1]['ul_out'] .= '</li>' ;
-			$data[$i]['ul_in'] = '<li>' ;
-		} else {
-			$data[$i-1]['ul_out'] .= '</li>' ;
-			$data[$i]['ul_in'] = '<li>' ;
-		}
-		if( $i > 0 ) {
-			$data[$i-1]['next_id'] = $data[$i]['id'] ;
-			$data[$i]['prev_id'] = $data[$i-1]['id'] ;
-		}
-	}
+        $depth_diff = $iValue['depth_in_tree'] - @$previous_depth ;
+        $previous_depth = $data[$i]['depth_in_tree'] ;
+        $data[$i]['ul_in'] = '' ;
+        $data[$i]['ul_out'] = '' ;
+        if( $depth_diff > 0 ) {
+            if( $i > 0 ) {
+                $data[$i-1]['first_child_id'] = $data[$i]['id'] ;
+            }
+            for( $j = 0 ; $j < $depth_diff ; $j ++ ) {
+                $data[$i]['ul_in'] .= '<ul><li>' ;
+            }
+        } else if( $depth_diff < 0 ) {
+            for( $j = 0 ; $j < - $depth_diff ; $j ++ ) {
+                $data[$i-1]['ul_out'] .= '</li></ul>' ;
+            }
+            $data[$i-1]['ul_out'] .= '</li>' ;
+            $data[$i]['ul_in'] = '<li>' ;
+        } else {
+            $data[$i-1]['ul_out'] .= '</li>' ;
+            $data[$i]['ul_in'] = '<li>' ;
+        }
+        if( $i > 0 ) {
+            $data[$i-1]['next_id'] = $data[$i]['id'] ;
+            $data[$i]['prev_id'] = $data[$i-1]['id'] ;
+        }
+    }
     $data[count($data ) - 1 ]['ul_out'] = str_repeat('</li></ul>' , $previous_depth + 1 ) ;
 
 	return $data ;
@@ -67,9 +67,11 @@ function d3forum_get_forum_permissions_of_current_user( $mydirname )
 
 	$sql = 'SELECT forum_id,SUM(can_post) AS can_post,SUM(can_edit) AS can_edit,SUM(can_delete) AS can_delete,SUM(post_auto_approved) AS post_auto_approved,SUM(is_moderator) AS is_moderator FROM ' . $db->prefix($mydirname . '_forum_access') . " WHERE ($whr) GROUP BY forum_id" ;
 	$result = $db->query( $sql ) ;
-	if( $result ) while( $row = $db->fetchArray( $result ) ) {
-		$ret[ $row['forum_id'] ] = $row ;
-	}
+	if( $result ) {
+        while ($row = $db->fetchArray($result)) {
+            $ret[$row['forum_id']] = $row;
+        }
+    }
 
 	if( empty( $ret ) ) return [0 => []];
 	else return $ret ;
@@ -86,20 +88,29 @@ function d3forum_get_category_permissions_of_current_user( $mydirname )
 	if( is_object( $xoopsUser ) ) {
 		$uid = (int)$xoopsUser->getVar('uid');
 		$groups = $xoopsUser->getGroups() ;
-		if( ! empty( $groups ) ) $whr = "`uid`=$uid || `groupid` IN (".implode(',', $groups) . ')';
-		else $whr = "`uid`=$uid" ;
+		if( ! empty( $groups ) ) {
+            $whr = "`uid`=$uid || `groupid` IN (" . implode(',', $groups) . ')';
+        }
+		else {
+            $whr = "`uid`=$uid";
+        }
 	} else {
 		$whr = '`groupid`=' . (int)XOOPS_GROUP_ANONYMOUS;
 	}
 
 	$sql = 'SELECT cat_id,SUM(can_makeforum) AS can_makeforum,SUM(is_moderator) AS is_moderator FROM ' . $db->prefix($mydirname . '_category_access') . " WHERE ($whr) GROUP BY cat_id" ;
 	$result = $db->query( $sql ) ;
-	if( $result ) while( $row = $db->fetchArray( $result ) ) {
-		$ret[ $row['cat_id'] ] = $row ;
-	}
+	if( $result ) {
+        while ($row = $db->fetchArray($result)) {
+            $ret[$row['cat_id']] = $row;
+        }
+    }
 
-	if( empty( $ret ) ) return [0 => []];
-	else return $ret ;
+	if( empty( $ret ) ) {
+        return [0 => []];
+    }
+
+    return $ret;
 }
 
 
@@ -113,7 +124,7 @@ function d3forum_get_users_can_read_forum( $mydirname , $forum_id , $cat_id = nu
 
 	if(null === $cat_id) {
 		// get $cat_id from $forum_id
-		list( $cat_id ) = $db->fetchRow( $db->query('SELECT `cat_id` FROM ' . $db->prefix($mydirname . '_forums') . " WHERE `forum_id`=$forum_id" ) ) ;
+		[$cat_id] = $db->fetchRow($db->query('SELECT `cat_id` FROM ' . $db->prefix($mydirname . '_forums') . " WHERE `forum_id`=$forum_id"));
 	}
 
 	$sql = 'SELECT `uid` FROM ' . $db->prefix($mydirname . '_category_access') . " WHERE `cat_id`=$cat_id AND `uid` IS NOT NULL" ;
@@ -179,7 +190,7 @@ function d3forum_get_forum_moderate_users4show( $mydirname , $forum_id )
 	$mrs = $db->query( $sql ) ;
 		// naao from
 	while( list( $mod_uid , $mod_uname , $mod_name) = $db->fetchRow( $mrs ) ) {
-		if (1 == $xoopsModuleConfig['use_name'] && $mod_name ) {
+		if (1 === $xoopsModuleConfig['use_name'] && $mod_name ) {
 			$mod_uname = $mod_name ;
 		}
 		// naao to
@@ -228,7 +239,7 @@ function d3forum_get_category_moderate_users4show( $mydirname , $cat_id )
 	$mrs = $db->query( $sql ) ;
 		// naao from
 	while( list( $mod_uid , $mod_uname , $mod_name) = $db->fetchRow( $mrs ) ) {
-		if (1 == $xoopsModuleConfig['use_name'] && $mod_name ) {
+		if (1 === $xoopsModuleConfig['use_name'] && $mod_name ) {
 			$mod_uname = $mod_name ;
 		}
 		// naao to
@@ -298,7 +309,7 @@ function d3forum_trigger_event( $mydirname ,  $category , $item_id , $event , $e
 // started from {XOOPS_URL} for conventional modules
 function d3forum_get_comment_link( $external_link_format , $external_link_id )
 {
-	if('{XOOPS_URL}' != substr($external_link_format , 0 , 11 )) return '' ;
+	if('{XOOPS_URL}' !== substr($external_link_format , 0 , 11 )) return '' ;
 
 	$format = str_replace( '{XOOPS_URL}' , XOOPS_URL , $external_link_format ) ;
 	return sprintf( $format , urlencode( $external_link_id ) ) ;
@@ -309,12 +320,18 @@ function d3forum_get_comment_link( $external_link_format , $external_link_id )
 function d3forum_get_comment_description( $mydirname , $external_link_format , $external_link_id , $forum_id = null)
 {
 	$d3com = d3forum_main_get_comment_object( $mydirname , $external_link_format , $forum_id ) ;
-	if( ! is_object( $d3com ) ) return '' ;
+	if( ! is_object( $d3com ) ) {
+        return '';
+    }
 
 	$description = $d3com->fetchDescription( $external_link_id ) ;
 
-	if( $description ) return $description ;
-	else return $d3com->fetchSummary( $external_link_id ) ;
+	if( $description ) {
+        return $description;
+    }
+	else {
+        return $d3com->fetchSummary($external_link_id);
+    }
 }
 
 // get object for comment integration  // naao modified
@@ -369,14 +386,14 @@ function d3forum_main_posthook_sametopic( $mydirname )
 		$result = $db->query('SELECT topic_first_post_id,topic_locked FROM ' . $db->prefix($mydirname . '_topics') . " WHERE topic_id=$topic_id AND ! topic_invisible" ) ;
 	}
 
-	if( empty( $result ) ) return ;
+	if( empty( $result ) ) {
+        return;
+    }
 
-	list( $pid , $topic_locked ) = $db->fetchRow( $result ) ;
+	[$pid, $topic_locked] = $db->fetchRow($result);
 	if( $pid > 0 && ! $topic_locked ) {
 		// hook to reply
 		$_POST['mode'] = 'reply' ;
 		$_POST['pid'] = $pid ;
 	}
 }
-
-?>

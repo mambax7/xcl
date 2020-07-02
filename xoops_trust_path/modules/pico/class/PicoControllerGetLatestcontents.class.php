@@ -28,7 +28,7 @@ class PicoControllerGetLatestcontents extends PicoControllerAbstract
             exit;
         }
 
-        $cat_data                 = $this->currentCategoryObj->getData();
+        $cat_data = $this->currentCategoryObj->getData();
         $this->assign['category'] = $this->currentCategoryObj->getData4html();
 
         // permission check
@@ -39,21 +39,21 @@ class PicoControllerGetLatestcontents extends PicoControllerAbstract
 
         // contents (order by modified_time DESC)
         $this->assign['contents'] = [];
-        $contentObjs              = $this->currentCategoryObj->getLatestContents(10, true);
+        $contentObjs = $this->currentCategoryObj->getLatestContents(10, true);
         foreach ($contentObjs as $contentObj) {
             $content_data = $contentObj->getData();
             if ($content_data['can_read']) {
                 $this->assign['contents'][] = [
-                                                  'body4rss'          => htmlspecialchars(xoops_substr(strip_tags($content_data['body_cached']), 0, 255), ENT_QUOTES),
-                                                  'created_time4rss'  => date('r', $content_data['created_time']),
-                                                  'modified_time4rss' => date('r', $content_data['modified_time']),
-                                              ] + $contentObj->getData4html();
+                        'body4rss' => htmlspecialchars(xoops_substr(strip_tags($content_data['body_cached']), 0, 255), ENT_QUOTES),
+                        'created_time4rss' => date('r', $content_data['created_time']),
+                        'modified_time4rss' => date('r', $content_data['modified_time']),
+                    ] + $contentObj->getData4html();
             }
         }
 
         // views
-        if ('rss' == $request['view']) {
-            $this->template_name         = 'db:' . $this->mydirname . '_independent_rss20.html';
+        if ('rss' === $request['view']) {
+            $this->template_name = 'db:' . $this->mydirname . '_independent_rss20.html';
             $this->is_need_header_footer = false;
             if (function_exists('mb_http_output')) {
                 mb_http_output('pass');
@@ -61,7 +61,7 @@ class PicoControllerGetLatestcontents extends PicoControllerAbstract
             pico_common_utf8_encode_recursive($this->assign);
             header('Content-Type:text/xml; charset=utf-8');
         } else {
-            $this->template_name         = $this->mydirname . '_main_latestcontents.html';
+            $this->template_name = $this->mydirname . '_main_latestcontents.html';
             $this->is_need_header_footer = true;
         }
     }

@@ -19,7 +19,7 @@ This module can protect a web site from most common Web Application attacks:
 - XMLRPC's eval() and SQL Injection Attacks
 - SPAMs for comment, trackback etc.
 
-Protector defends from these attacks, and records the activity into its log. 
+Protector defends from these attacks, and records the activity into its log.
 
 Of course, all vulnerablities can't be prevented.
 
@@ -39,9 +39,23 @@ This option requires to set writable _ROOT_PATH/.htaccess
 Before any use of this option, it is recommended to check the security risks if .htaccess is writable.
 
 
+XOOPS Cube Legacy 2.1
+
+Edit file : mainfile.php
+[code]
+    if (!defined('_LEGACY_PREVENT_LOAD_CORE_') && XOOPS_ROOT_PATH != '') {
+        include XOOPS_TRUST_PATH.'/modules/protector/include/precheck.inc.php' ;
+        @include_once XOOPS_ROOT_PATH.'/include/cubecore_init.php';
+        if (!isset($xoopsOption['nocommon']) && !defined('_LEGACY_PREVENT_EXEC_COMMON_')) {
+            include XOOPS_ROOT_PATH.'/include/common.php';
+        }
+        include XOOPS_TRUST_PATH.'/modules/protector/include/postcheck.inc.php' ;
+    }
+[/code]
+
 = How to rescue from 'Access denied' =
 
-If Protector redirects with an "Access Denied" error message or a similar, 
+If Protector redirects with an "Access Denied" error message or a similar,
 just delete the files from _TRUST_PATH/modules/protector/configs/
 
 
@@ -98,9 +112,9 @@ This feature can defend from almost any malicious SQL Injection attacks if a run
 
 = CHANGES =
 
-2.3.0 alpha [2019/10/19) Module version ref. to XCL 2.3.0 alpha 
+2.3.0 alpha [2019/10/19) Module version ref. to XCL 2.3.0 alpha
 |
-3.56 Module Maintained by XoopsX Team 
+3.56 Module Maintained by XoopsX Team
 |
 3.50 beta (2009/11/17)
 - modified filters can be turned on/off by preferences of Protector
@@ -318,392 +332,6 @@ I'm appreciated new language files for v3.0 :-)
 Moreover, I thank to JM2 and minahito -zx team- about having taught me kindly.
 You are very great programmers!
 
-
-[/xlang:en][xlang:ja]
-
-���׻�
-
-Protector �ϡ�XOOPS2�١����γƼ�CMS���͡��ʰ��դ��빶�⤫���뤿��Υ⥸�塼��Ǥ���
-
-���Υ⥸�塼��Ǥϡ��ʲ��ι�����ɤ��ޤ���
-
-- DoS
-- ���դ��륯�����顼�ʥ᡼������ܥåȤʤɡ�
-- SQL Injection
-- XSS �ʤȤ��äƤ⡢���ƤǤϤ���ޤ����
-- �����ƥ॰�����Х��ѿ�����
-- ���å����ϥ�����å�
-- �̥�Х��ȹ���
-- �ǥ��쥯�ȥ��̤깶��
-- �����Ĥ��δ�����CSRF (XOOPS 2.0.9.2�ʲ���¸�ߤ�����)
-- Brute Force �ʥѥ�������������
-- ��ĥ�ҵ��������ե����륢�åץ����� (���ʤ����IE Content-Type XSS)
-- �¹Բ�ǽ�ʥե�����򥢥åץ����ɤ��빶��
-- XMLRPC��Ϣ
-- ������SPAM/�ȥ�å��Хå�SPAM����������SPAM
-
-�����ι��⤫�餢�ʤ���XOOPS2�١���CMS���ꡢ�����˵�Ͽ���ޤ���
-
-�����������Υ⥸�塼��Ϥ����ޤǡ���������Ū���ɸ椷���Ԥ��ޤ���
-������3rd�ѡ��ƥ��⥸�塼��˸�����褦�ʷ�ΰ������ɤ��뤫�⤷��ޤ��󤬡����٤Ƥη���ɤ������ΤǤϤʤ����΅�϶�ʪ�Ǥ���
-
-���θ³��Ͼ��Τξ�ǡ����٤Ƥ�XOOPS2�١���CMS�桼�������Ф��ơ����󥹥ȡ����[color=ff0000][b]����[/b][/color]�����ᤷ�ޤ���
-
-
-
-��������ˡ
-
-���󥹥ȡ���ˤϡ�XOOPS_TRUST_PATH�����꤬ɬ�פǤ���
-
-���������֤�html���XOOPS_ROOT_PATH¦�˥��ԡ��������������֤�xoops_trust_path���XOOPS_TRUST_PATH¦�˥��ԡ����ޤ���
-
-�⥸�塼��������饤�󥹥ȡ���Ǥ���С��������ե����뤬�֤��Ƥ��ޤ���
-
-��������������ǤϤޤä���ư��Ƥ��ޤ���Τǡ�mainfile.php �����ƤӽФ��褦�ˤ��뤳�Ȥ�����ɬ�׾��Ǥ���
-
-Protector �򥤥󥹥ȡ���塢���Ȥ���XOOPS2�١���CMS�� mainfile.php �ΰ��ֲ��Τ������
-[code]
-	[color=ff0000]include XOOPS_TRUST_PATH.'/modules/protector/include/precheck.inc.php' ;[/color]
-	if (!isset($xoopsOption['nocommon']) [color=0000ff]&& XOOPS_ROOT_PATH != ''[/color] ) {
-		include XOOPS_ROOT_PATH."/include/common.php";
-	}
-	[color=ff0000]include XOOPS_TRUST_PATH.'/modules/protector/include/postcheck.inc.php' ;[/color]
-[/code]
-�ȡ��֤��ʤäƤ��룲�Ԥ��ɲä��Ʋ�������
-
-�Ŀ�����ʬ�ϡ��ǽ�˥��󥹥ȡ��뤷�����ΥС������ˤ�äưۤʤ�ޤ�������äƤ��Ƥⵤ�ˤ��ʤ��Ʒ빽�Ǥ���
-
-�С������3���顢�����ƥ�⥸�塼��ͳ���IP�����������ݤ����Ѥ��ʤ��ʤ�ޤ�����XOOPS_TRUST_PATH/modules/protector/configs �������Ĥ��Ƥ���������Protector������IP��ư��Ͽ�����硢�����˵��Ҥ���褦�ˤʤ�ޤ���
-
-�⤷���ʤ�餫����ͳ�ǡ���ʬ���Ȥ�IP���ݥꥹ�Ȥ˺ܤäƤ��ޤä���硢�С������2�ޤǤϥ쥹���塼�ѥ���ɤ����Ѥ��Ƥ��ޤ��������С������3����ϡ�FTP���� XOOPS_TRUST_PATH/modules/protector/configs ��Υե�������Խ��ޤ��Ϻ�����Ƥ���������
-
-2.34���顢�¸�Ū�ˡ�.htaccess�ˤ��DoS�ɸ�Ȥ������ץ������ɲä��ޤ�������������Ѥ����硢XOOPS_ROOT_PATH�ˤ���.htaccess������ǽ�Ȥ���ɬ�פ�����ޤ���Ƴ������ݤˤϡ�.htaccess�ե����뤬�����ǽ�Ǥ��롢�Ȥ����ꥹ������Ӥ��Ʋ�������
-
-
-��XOOPS Cube Legacy 2.1�ؤΥ��󥹥ȡ���
-
-���ʰ㤤�Ϥ���ޤ���
-mainfile.php �ν񤭴����ݥ���Ȥμ��դ��㤦�Τǡ��ѥå������Ƥ���򼨤��Ƥ����ޤ���
-[code]
-    if (!defined('_LEGACY_PREVENT_LOAD_CORE_') && XOOPS_ROOT_PATH != '') {
-        include XOOPS_TRUST_PATH.'/modules/protector/include/precheck.inc.php' ;
-        @include_once XOOPS_ROOT_PATH.'/include/cubecore_init.php';
-        if (!isset($xoopsOption['nocommon']) && !defined('_LEGACY_PREVENT_EXEC_COMMON_')) {
-            include XOOPS_ROOT_PATH.'/include/common.php';
-        }
-        include XOOPS_TRUST_PATH.'/modules/protector/include/postcheck.inc.php' ;
-    }
-[/code]
-
-
-��ImpressCMS�ؤΥ��󥹥ȡ���
-
-mainfile.php �ؤΥѥå���ɬ�פ���ޤ���
-���������֤� extras/ImpressCMS/preload/protector.php �򡢤��������ImpressCMS��preload�ե�����˥��ԡ����Ƥ���������
-
-preload���󶡤��Ƥ��줿vaughan�˴��դ��ޤ���
-
-
-���С������2����ΥС�����󥢥å�
-
-�ޤ���mainfile.php ���顢Protector�˴ؤ���Ԥ������Ƥ���������
-
-���ˡ����ä���XOOPS_ROOT_PATH/modules/protector/ ��Υե���������ƺ�����ޤ���
-
-�����ˡ����󥹥ȡ����Ʊ�ͤ����ե�����򥢥åץ����ɤ��ޤ���
-
-�������̤���⥸�塼����������äơ�Protector�⥸�塼��򥢥åץǡ��Ȥ��ޤ���
-
-�Ǹ�ˡ����١�mainfile.php���Խ�����precheck�����postcheck��ͭ���ˤ��Ƥ����������С������2�Ǥϡ�XOOPS_ROOT_PATH �ȤʤäƤ�����ʬ�����С������3�Ǥϡ�XOOPS_TRUST_PATH �ȤʤäƤ��뤳�Ȥ����դ�ɬ�פǤ���
-
-
-���ե��륿���ץ饰���������
-
-V3���顢XOOPS_TRUST_PATH/modules/protector/filters_enabled/ �˥ե��륿���ץ饰������Ǽ���뤳�Ȥǡ��ɲå����å����ɲå�å������������󥰤ʤɤ��Ǥ���褦�ˤʤ�ޤ������������¤���ñ�ʤϤ��Ǥ���
-
-���Υ�����������˥ǥե���Ȥ��Ѱդ���Ƥ���ե��륿���ץ饰����Τ�������Ū�ʤ�Τ�Ҳ𤷤ޤ���
-
-- postcommon_post_deny_by_rbl.php
-���ѥ��к��ѡ�
-RBL�����Ѥ���POST��Ϥͤޤ���
-RBL����Ͽ���줿IP�������ƤϤ��٤�SPAM����Ƚ�ꤷ�ޤ����䤤��碌�����뤿�ᡢ��ƻ��ν��������Ť��ʤ뤫�⤷��ޤ��󡣡��ä�Chat�ʤɤǤϱƶ������뤫���
-
-- postcommon_post_deny_by_httpbl.php
-���ѥ��к��ѡ�
-http:BL�����Ѥ���POST��Ϥͤޤ���
-���Ѥ������ˡ��ե�����򥨥ǥ����ǳ����ơ�
-define( 'PROTECTOR_HTTPBL_KEY' , '............' ) ;
-���ιԤ�񤭴����ޤ�https://L_KEY�ϡ�https://www.projecthoneypot.org/ ����������Ƥ���������
-
--postcommon_post_need_multibyte.php
-���ѥ��к��ѡ�
-��Ƥ����ܸ줬�ޤޤ�Ƥ��뤳�Ȥ��׵᤹��ץ饰����
-���ܸ줬��ʸ����ޤޤ�Ƥ��ʤ�100byte�ʾ��ʸ���󤬤��ä���SPAM����Ƚ�ꤷ�ޤ���
-
--postcommon_post_htmlpurify4guest.php
-�����Ȥˤ��POST�ǡ������٤ƤˤĤ��ơ�HTMLPurifier���̲ᤵ����ե��륿���Ǥ���
-�����Ȥ�HTML����Ĥ��Ƥ�����Ǥ�ͭ���ˤ��뤳�Ȥ򶯤������ᤷ�ޤ���
-
--postcommon_register_insert_js_check.php
-���ܥåȤˤ��桼����Ͽ���ɤ��ץ饰����
-��Ͽ���褦�Ȥ���桼���Υ֥饦����JavaScript��ư��Ƥ���ɬ�פ�����ޤ���
-
--bruteforce_overrun_message.php
-�ѥ���ɤ�������ʾ�ְ㤨�����Υ�å���������ꤷ�ޤ���*_message.php �Ȥ����ե��륿���ץ饰����Ϥ�����⡢��å���������ꤹ�륿���פΥե��륿���Ǥ���
-
--precommon_bwlimit_errorlog.php
-������ɻߵ�ǽ��Ư�������ˡ����λݤ�Apache�Υ��顼�����˵�Ͽ���ޤ���
-*_errorlog.php �Ȥ����ե��륿���ץ饰����Ϥ�����⡢���顼�����˵�Ͽ���륿���פΥե��륿���Ǥ���
-
-
-������⡢XOOPS_TRUST_PATH/modules/protector/filters_byconfig/ ���֤��Ƥ���Τǡ�ɬ�פ˱����ơ�filters_enabled �˥��ԡ����Ƥ���������
-XOOPS_TRUST_PATH�ϡ�ʣ�������Ȥ����ѽ������ͤʤΤǡ�����ե��륿���򥵥��Ȥˤ�äƻȤ�ʬ�������������⤢��Ǥ��礦��
-���ξ��ϡ�Protector�ΰ�������ˡ����Ѥ������ե��륿��̾�򵭽Ҥ��Ƥ���������������󡢵��ҤΤʤ������ȤǤ�ͭ��������ޤ���
-
-
-��3.3����ο���ǽ: DB�쥤�䡼�ȥ�å�anti-SQL-Injection
-
-Protector-3.3�ʹߡ��ǡ����١����쥤�䡼���ü�äơ�ưŪ��SQL Injection�к��򤹤뵡ǽ���ɲä��ޤ���������ˤ�äơ��ۤȤ�ɤ�SQL Injection�ȼ�����̵�����Ǥ��뵤�����ޤ����ʤ虜�ȷ�������Ĥ��ʤ餤����Ǥ��Ϥ���Τǡ��ݾڤϤ��ޤ����
-
-�����ͭ���ˤ��뤿��ˤϡ�����Ū�˥ǡ����١����ե����ȥꥯ�饹�˥ѥå������Ƥ�ɬ�פ�����ޤ���
-
-patches/ �ե�����ˡ��ƥ����ѤΥѥå��ѥǡ����١����ե����ȥꥯ�饹�ե����뤬�Ѱդ���Ƥ���Τǡ����ε�ǽ�����Ѥ��������ˤϡ�����Ǿ�񤭤��Ƥ���������
-
-������󡢳ƥ��������ब�Ѷ�Ū�ˤ��Υѥå���HEAD�˺��Ѥ��Ƥ����Τ��٥��Ȥ��ȹͤ��Ƥ��ޤ����ѥå��ˤĤ��Ƥ⡢�ʤ�٤����Ѥ��䤹�����ˤ����Ĥ��Ǥ���
-
-�ʤ����ʲ��Υ����κǿ��Ǥϡ����ε�ǽ�Υѥå����ǽ餫�������äƤ��ޤ������б����꤬�Ȥ��������ޤ���
-
-- XCL2.1.x
-- ImpressCMS 1.x
-
-
-���ѹ�����
-
-3.50 beta (2009/11/17)
-- �ƥ����Ȥ�Protector��������ǥե��륿����ON/OFF�򥳥�ȥ������ǽ�Ȥ���
-- filters_disabled �˼��ޤäƤ����ե��륿����filters_byconfig�ذ�ư����
-- FTP�����軰�Ԥˤ�륵���Ȳ���������å������ߤ���
-
-3.41 (2009/11/17)
-- swf�ե�����Υե����륿���׸�ǧ���б�
-- ����ե������ɲ�
--- polish_utf8 (thx jagi)
-
-3.40 (2009/09/16)
-- �����ǤȤ����ֹ�򿶤�ľ����
-- "Xoops Protector" �Ȥ���̾������ƥ���ץ�� "Protector" �ؤ��ѹ�����
-- ImpressCMS�����XCL�б�����������Ѱդ��� (thx rene)
-- �����Ķ��Ǥ�postcommon_post_need_multibyte��ư�����ɤ��б� (thx orange) 3.40a
-- ����ե����빹��
--- spanish (thx Colossus) 3.40b
-
-3.36 beta (2009/08/27)
-- HTMLPurifier �� 4.0.0 �˹���
-- �ե��륿���ɲ�
--- postcommon_post_htmlpurify4everyone.php (POST�����HTMLPurifier���̲᤹��)
--- postcommon_post_register_moratorium.php (��Ͽľ���URL����Ƥ�ػߤ���) 3.36a
-- ����ե����빹��
--- persian (thx voltan) 3.36a
-
-3.35 beta (2009/08/13)
-- ImpressCMS����modinfo.php����˱Ѹ�ˤʤäƤ����Τ��� (thx Phoenyx)
-- DBLT-ASI�Υ����Ȥ��Ф���ư���ꥯ�����Ȥ���Ƚ�Ǥ���褦�˽�������
-- �⥸�塼����ƥʡ��Τ���ˡ�Protector��ư��⡼�ɤ��Τ뤿���������������
--- PROTECTOR_ENABLED_ANTI_SQL_INJECTION
--- PROTECTOR_ENABLED_ANTI_XSS
-- ����ե����빹��
--- arabic (thx Onasre) 3.35a
-
-3.34 beta (2009/07/06)
-- DB�쥤�䡼�ȥ�å�anti-SQL-Injection(DBLT-ASI)�Υ����Ȥ��Ф���ư�����¤���
-- DB�쥤�䡼�ȥ�åפ����ON�ˤʤäƤ��ޤ��Ķ����б����륪�ץ������ɲ�
-
-3.33 beta (2009/04/03)
-- PHP_SELF��PATH_INFO���ü�ʸ�������Ѵ����᤿ (thx nao-pon)
-- PHP_SELF���礭�ʻ�anti-XSS���оݤ˲ä���
-- PROTECTOR_VERSION ����ǡ�Protector�ΥС��������ǧ�Ǥ���褦�ˤ���
-- ImpressCMS �ؤΥ��󥹥ȡ�����ˡ��HTMLPurifier��Ŭ�Ѥ�������� (thx vaughan)
-- F5Attack�䥯�����顼�ǡ֥����Τߡפν��������������ä��Τ��� (thx ChaFx)
-- �礭�ʻ�Anti-XSS�ν���ͤ�ͭ�����ѹ�����
-
-3.32 beta (2009/01/27)
-- nocommon�����Ǥ�DB�쥤�䡼�ȥ�å�anti-SQL-Injectionư�����򤷤� (thx naao)
-- ����ե����빹��
--- persian (thx voltan)
-
-3.31 beta (2009/01/20)
-- ��������ʤɤǥ��֥륯�����ơ�����󤬤����SQL Injection��Ƚ�ꤵ����������
-- ����ե����빹��
--- spanish (thx Colossus)
-
-3.30 beta (2009/01/14)
-- DB�쥤�䡼�ȥ�å�anti-SQL-Injection���������
-- �������Υե��륿���������ä����˥��顼�������Ǥ��ե��륿�����ɲ�
-- ����IP�Ȥ����Ƥ��줿���������ˤĤ��ƥ��顼�������Ǥ��ե��륿�����ɲ�
-- ����ե����빹��
--- spanish (thx Colossus)
-- ������к��ե��륿���ˤĤ��Ƥ�503���顼���֤��褦�ˤ��� (thx Colossus) 3.30a
-
-3.22 (2008/12/03)
-- ����ѥ��å�����'deleted'�Ȥ����ͤ�����졢BruteForce�����Ȥʤ븽�ݤ��б�
-- �������ƥ������ɤ�XOOPS_TRUST_PATH���ץ饤�١��ȤȤʤäƤ��뤫�Υ����å����ɲ�
-- ����ե������ɲ�
--- nederlands (thx Cath)
-- ����ե����빹��
--- persian (thx voltan) 3.22a
-- �ڡ����ʥӤ򲼤ˤ�ɽ������褦�ˤ��� (thx McDonald) 3.22a
-
-3.21 (2008/11/21)
-- ����������Ӱ����¤��ɲ�
-- IP BAN����ä����˲�����֤��Τ餻���å�������ǥե���Ȥˤ���
-- precommon�ե��륿���Ǥ���������ǽ�ˤ���
-- ����ե����빹��
--- spanish (thx Colossus) 3.21a
-- ����IP�ꥹ�Ȥ򹹿�����ʤ��ʤäƤ����Τ��� (thx rohi) 3.21a
-
-3.20 (2008/09/17)
-- �����ǤȤ��ƥС�������ֹ��դ�ľ����
-- ����ե����빹��
--- arabic (onasre)
-- ����ե����뽤��
--- de_utf8
-- ����ե������ɲ�
--- italian (thx Defcon1) 3.20a
-- ����Ƚ��᥽�å� isMobile() ��ProtectorFilterAbstract���饹���ɲ� 3.20b
-
-3.17 beta (2008/04/24)
-- URI SPAMȽ��ǡ����ۥ��Ȥ�Ʊ��ξ����̲᤹��褦�ˤ���
-- ����ե����빹��
--- persian (thx stranger and voltan) 3.17a
-- ����ե������ɲ�
--- de_utf8 (thx wuddel) 3.17a
-
-3.16 beta (2008/01/08)
-- SPAM�ե��륿���ɲ� postcommon_post_deny_by_httpbl (honeypotproject.org��BL����)
-- ����ե����빹��
--- polish (thx kurak_bu)
-
-3.15 beta (2007/10/18)
-- �����Υ���ѥ��Ȳ��ɲ�
-- ������������ɲ�
-- ����ե������ɲ�
--- fr_utf8 (thx gigamaster)
-
-3.14 beta (2007/09/17)
-- HTMLPurifierƳ�� (special thx! Edward Z. Yang) ��PHP4�ǤϤޤȤ��ư���ޤ���
-- �ե��륿���ݥ���Ȥ��ɲ� (spamcheck, crawler, f5attack, bruteforce, purge)
-- �ե��륿���ץ饰�����ɲ�
--- ��������ƤΤ��٤Ƥ�HTMLPurifier���̲ᤵ����ե��륿�� (PHP5����)
--- SPAMȽ�ꤵ�줿���˥�å�������ɽ������ʥ�����쥯�Ȥ���˥ե��륿��
--- ������������Ƚ�ꤵ�줿���˥�å�������ɽ������ʥ�����쥯�Ȥ���˥ե��륿��
--- F5�����å�Ƚ�ꤵ�줿���˥�å�������ɽ������ʥ�����쥯�Ȥ���˥ե��륿��
--- �֥롼�ȥե��������˥�å�������ɽ������ʥ�����쥯�Ȥ���˥ե��륿��
--- ����¾���ͽ��������ľ���˥�å�������ɽ������ʥ�����쥯�Ȥ���˥ե��륿��
-
-3.13 beta (2007/08/22)
-- �ե��륿���ץ饰����򥰥����Х�ؿ����饯�饹���ѹ�
-- �ե��륿���ݥ���Ȥ��ɲ� (badip, register)
-- �ե��륿���ץ饰�����ɲ�
--- �桼����Ͽ����JavaScript�����å��������ե��륿��(�桼����ϿSPAM�к�)
--- ����IP���˥�å�������ɽ������ե��륿��
--- ����IP���˥�����쥯�Ȥ���ե��륿��
-
-3.12 beta (2007/08/16)
-- $xoopsOption['nocommon'] ��ư��Ƥ��ʤ��ä��Х��ν���
-
-3.11 beta (2007/08/16)
-- mainfile.php �ؤΥѥå���precheck��postcheck����㤨�Ƥ�ư���褦���б�
-- RBL�ե��륿���Υǥե���Ȥ���niku.2ch.net����
-- ����ե������ɲ�
--- �ե�󥹸� (thx Christian)
-
-3.10 beta (2007/07/30)
-- precheck��config�ϡ��������륭��å��夫���������褦�ˤ���
-- MySQL�ؤ���ť��ͥ�����������ӽ�����
-- ���ѤǤ���IP�������ǵ�ǽ���Ƥ��ʤ��Х��ν���
-- ���󥹥ȡ����mainfile�ѥå��ν��֤��դǤ⥨�顼���Фʤ��褦�ˤ���
-- �ۥ��Υ��󥹥ȡ�����ȥե�����Υѡ��ߥå���������˥����å���������å����ɲ�
-- ����IP��ְ��סס��������סס�����ɽ���פΤ�����Ǥ�ɽ���Ǥ���褦�ˤ���
-- ����IP�˻������¤��ߤ���
-- configs�ǥ��쥯�ȥ꤬����ػߤˤʤäƤ������Warning���ɲ�
-
-3.04 (2007/06/13)
-- phpmailer�Υ��ޥ�ɼ¹��ȼ������Ф�������å����ɲä���
-- postcommon_post_need_multibyte �Υ����å���⤦�������Ϥˤ��� (3.04a)
-
-3.03 (2007/06/03)
-- ���󥹥ȡ��饢���å��ؤ��к����ɲä���
-- ����̾�ѹ�
--- ja_utf8 (������japaneseutf) 3.03a
-
-3.02 (2007/04/08)
-- ID���ѿ��ζ����Ѵ��ν�����⤦�����ˤ䤫�ˤ���
-- �������ƥ������ɤΥ���ڤ����
-- DoS/crawler�����å��򥹥��åפǤ�����ʤ��󶡡ʤ����������������
-- D3�����ƥ�Υ��åץǡ���
-- ����ե������ɲ�
--- persian (thx voltan)
--- russian (thx West) 3.02a
--- arabic (thx onasre) 3.02b
--- japaneseutf 3.02c
-
-3.01 (2007/02/10)
-- IP�����ȥ롼����ѹ�
-- ����ե������ɲ�
--- portuguesebr (thx beduino)
--- spanish (thx PepeMty)
--- polish (thx kurak_bu) 3.01a
--- german (thx wuddel) 3.01b
-- module_icon.php �򥭥�å����ǽ�� 3.01c
-- module_icon.php ��typo���� 3.01d
-
-3.00 (2007/02/06)
-- �����ǤȤ��ƤΥ�꡼��
-- ������٥����ߥ��ν���
-- �ޥ���Х��ȥץ饰������Ͽ�桼����POST���Ƥ��ʤ��褦�˽��� (thx mizukami)
-- �ܲ���2.2.x�Ȥ���������β��� 3.00a
-
-3.00beta2 (2007/01/31)
-- �ץ饰���󥷥��ƥ��Ƴ�� (�Ȥꤢ���� postcommon_post_* �Ȥ��������פΤ�)
-- �ե��륿���ץ饰������ɲ�
--- postcommon_post_deny_by_rbl.php (RBL�ˤ��IP�١�����SPAM�к�)
--- postcommon_post_need_multibyte.php (ʸ������ˤ��SPAM�к�)
-
-3.00beta (2007/01/30)
-- XOOPS_TRUST_PATH¦�����Τ��֤����Ȥˤ���
-- IP���ݵ�ǽ��ñ��ʥե��������(configs�ǥ��쥯�ȥ겼)���ѹ�����
-- ���롼��1�ˤʤ��IP���ɥ쥹���µ�ǽ���ɲáʤ����ñ�ʤ�ե����������
-- �쥹���塼��ǽ�κ�� ��3.0�ʹߤ�ñ��FTP���ǥե����������������褷�ޤ���
-- �ơ��֥빽¤�ν��� (MySQL5�б�)
-- BigUmbrella anti-XSS ��Ƴ��
-- �����ȡ��ȥ�å��Хå�SPAM�к���ǽ�ɲ�
-- Cube 2.1 Legacy RC �Ǥ�ư���ǧ
-
-
-���ռ�
- - Kikuchi (��������ե�����)
- - Marcelo Yuji Himoro (�֥饸��Υݥ�ȥ���졦���ڥ����ե�����)
- - HMN (�ե�󥹸�ե�����)
- - Defkon1 (�����ꥢ��ե�����)
- - Dirk Louwers (��������ե�����)
- - Rene (�ɥ��ĸ�ե�����)
- - kokko (�ե�����ɸ�ե�����)
- - Tomasz (�ݡ����ɸ�ե�����)
- - Sergey (��������ե�����)
- - Bezoops (���ڥ����ե�����)
- (�ʾ塢�С������2�ޤǤθ���ե���������ԤǤ����С������3�ǤϤ��ä����äƤޤ������ߤޤ����
- - beduino (�֥饸��Υݥ�ȥ����ե�����)
- - PepeMty (���ڥ����ե�����)
- - kurak_bu (�ݡ����ɸ�ե�����)
- - wuddel (�ɥ��ĸ�)
- - voltan&stranger (�ڥ륷���)
- - onasre (����ӥ���)
-
-
-�ޤ������Υ⥸�塼������ˤ����ꡢ�͡��ʤ���Ƴ������ڥ�򤤤���������zx������γ��͡��Ȥ�櫓JM2����minahito����ˡ�����괶�դ������ޤ���
-
-
-[/xlang:ja]
 
 ------------------------------------------------------------
 

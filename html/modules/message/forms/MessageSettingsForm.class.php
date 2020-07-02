@@ -11,10 +11,10 @@ require_once XOOPS_MODULE_PATH.'/legacy/class/Legacy_Validator.class.php';
 
 class MessageSettingsForm extends XCube_ActionForm
 {
-    public function __construct()
-    {
-        parent::__construct();
-    }
+//    public function __construct()
+//    {
+//        parent::__construct();
+//    }
 
     public function getTokenName()
     {
@@ -35,7 +35,9 @@ class MessageSettingsForm extends XCube_ActionForm
         $blacklist = $this->get('blacklist');
         if ('' == $blacklist) {
             return;
-        } elseif (false !== strpos($blacklist, ',')) {
+        }
+
+        if (false !== strpos($blacklist, ',')) {
             $lists = explode(',', $blacklist);
             $lists = array_map('intval', $lists);
             $lists = array_unique($lists);

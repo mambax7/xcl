@@ -36,6 +36,7 @@ $adminmenu = [
     ) ,*/
     /*	array(
         'title' => _MI_ALTSYS_MENU_MYSMILEY ,
+
         'link' => 'index.php?mode=admin&lib=altsys&page=mysmiley' ,
     ) ,*/
 ];

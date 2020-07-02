@@ -36,9 +36,9 @@ class PicoControllerUpdateCategory extends PicoControllerAbstract
 
         // $categoryObj (not parent)
         $picoPermission = &PicoPermission::getInstance();
-        $categoryObj    = new PicoCategory($this->mydirname, $request['cat_id'], $picoPermission->getPermissions($this->mydirname));
+        $categoryObj = new PicoCategory($this->mydirname, $request['cat_id'], $picoPermission->getPermissions($this->mydirname));
 
-        // check existence
+        // check error
         if ($categoryObj->isError()) {
             redirect_header(XOOPS_URL . "/modules/$this->mydirname/index.php", 2, _MD_PICO_ERR_READCONTENT);
             exit;
@@ -50,7 +50,7 @@ class PicoControllerUpdateCategory extends PicoControllerAbstract
             redirect_header(XOOPS_URL . '/', 2, _MD_PICO_ERR_CATEGORYMANAGER);
         }
 
-        // insert a category
+        // update category
         pico_updatecategory($this->mydirname, $this->cat_id);
 
         // view

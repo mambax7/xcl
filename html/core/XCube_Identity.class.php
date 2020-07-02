@@ -84,7 +84,7 @@ class XCube_Principal
     /**
      * The identity object which is tied to this object.
      */
-    public $mIdentity = null;
+    public $mIdentity;
 
     /**
      * Roles in this object.

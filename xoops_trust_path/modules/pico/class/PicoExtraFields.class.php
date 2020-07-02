@@ -23,23 +23,23 @@ class PicoExtraFields
 
     public function __construct($mydirname, $mod_config, $auto_approval, $isadminormod, $content_id)
     {
-        $this->mydirname     = $mydirname;
-        $this->mod_config    = $mod_config;
+        $this->mydirname = $mydirname;
+        $this->mod_config = $mod_config;
         $this->auto_approval = $auto_approval;
-        $this->isadminormod  = $isadminormod;
-        $this->content_id    = $content_id;
-        $this->images_path   = XOOPS_ROOT_PATH . '/' . $mod_config['extra_images_dir'];
-        $this->image_sizes   = [];
-        $size_combos         = preg_split('/\s+/', $this->mod_config['extra_images_size']);
+        $this->isadminormod = $isadminormod;
+        $this->content_id = $content_id;
+        $this->images_path = XOOPS_ROOT_PATH . '/' . $mod_config['extra_images_dir'];
+        $this->image_sizes = [];
+        $size_combos = preg_split('/\s+/', $this->mod_config['extra_images_size']);
         foreach ($size_combos as $size_combo) {
             $this->image_sizes[] = array_map('intval', preg_split('/\D+/', $size_combo));
         }
     }
 
-    public function getSerializedRequestsFromPost()
+    public function getSerializedRequestsFromPost(): ?string
     {
         $ret = [];
-        (method_exists('MyTextSanitizer', 'sGetInstance') and $myts = &MyTextSanitizer::sGetInstance()) || $myts = &MyTextSanitizer::getInstance();
+        (method_exists('MyTextSanitizer', 'sGetInstance') and $myts = &MyTextSanitizer::sGetInstance()) || $myts = &(new MyTextSanitizer)->getInstance();
 
         // text fields
         foreach ($_POST as $key => $val) {
@@ -64,7 +64,7 @@ class PicoExtraFields
         return $this->isadminormod;
     }
 
-    public function uploadImages(&$extra_fields)
+    public function uploadImages(&$extra_fields): void
     {
         foreach ($_FILES as $key => $file) {
             if (0 === strncmp($key, PICO_EXTRA_IMAGES_PREFIX, strlen(PICO_EXTRA_IMAGES_PREFIX))) {
@@ -75,7 +75,7 @@ class PicoExtraFields
         }
     }
 
-    public function uploadImage(&$extra_fields, $file, $field_name)
+    public function uploadImage(&$extra_fields, $file, $field_name): ?bool
     {
         // check it is true uploaded file
         if (!is_uploaded_file($file['tmp_name'])) {
@@ -88,7 +88,7 @@ class PicoExtraFields
         }
 
         // command for removing. upload "remove.gif"
-        if (PICO_EXTRA_IMAGES_REMOVAL_COMMAND == $file['name']) {
+        if (PICO_EXTRA_IMAGES_REMOVAL_COMMAND === $file['name']) {
             foreach (array_keys($this->image_sizes) as $size_key) {
                 unlink($this->getImageFullPath($field_name, $size_key, $extra_fields[$field_name]));
             }
@@ -132,7 +132,7 @@ class PicoExtraFields
         // force remove remove temporary
         @unlink($tmp_image);
 
-        // gabage collection (TODO)
+        // @Todo garbage collection
         $this->removeUnlinkedImages($id);
 
         // restore mask
@@ -148,12 +148,12 @@ class PicoExtraFields
         return substr(md5(time() . $salt), 8, 16);
     }
 
-    public function getImageFullPath($field_name, $size_key, $image_id)
+    public function getImageFullPath($field_name, $size_key, $image_id): string
     {
         return $this->images_path . '/' . sprintf(PICO_EXTRA_IMAGES_FMT, $field_name, $size_key, $image_id);
     }
 
-    public function getExtFromMime($mime)
+    public function getExtFromMime($mime): ?string
     {
         switch (strtolower($mime)) {
             case 'image/gif':
@@ -165,7 +165,7 @@ class PicoExtraFields
         }
     }
 
-    public function removeUnlinkedImages($current_id)
+    public function removeUnlinkedImages($current_id): void
     {
         $glob_pattern = '*' . substr($current_id, -1) . '.*'; // 1/16 random match
         //$glob_pattern = '*' ;
@@ -173,12 +173,12 @@ class PicoExtraFields
         $db = XoopsDatabaseFactory::getDatabaseConnection();
 
         foreach (glob($this->images_path . '/' . $glob_pattern) as $filename) {
-            if (strstr($filename, $current_id)) {
+            if (strpos($filename, $current_id) !== false) {
                 continue;
             }
             if (preg_match('/([0-9a-f]{16}\.[a-z]{3})$/', $filename, $regs)) {
                 $image_id = $regs[1];
-                list($count) = $db->fetchRow($db->query('SELECT COUNT(*) FROM ' . $db->prefix($this->mydirname . '_contents') . " WHERE extra_fields LIKE '%" . addslashes($image_id) . "%'"));
+                [$count] = $db->fetchRow($db->query('SELECT COUNT(*) FROM ' . $db->prefix($this->mydirname . '_contents') . " WHERE extra_fields LIKE '%" . addslashes($image_id) . "%'"));
                 if ($count <= 0) {
                     unlink($filename);
                 }

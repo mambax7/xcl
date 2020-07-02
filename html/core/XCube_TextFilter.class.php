@@ -14,7 +14,7 @@
  */
 class XCube_TextFilter
 {
-    public $mDummy=null;  //Dummy member for preventing object be treated as empty.
+    public $mDummy;  //Dummy member for preventing object be treated as empty.
 
     public function getInstance(&$instance)
     {

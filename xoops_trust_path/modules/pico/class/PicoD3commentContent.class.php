@@ -3,28 +3,28 @@
 require_once dirname(__DIR__) . '/include/common_functions.php';
 require_once XOOPS_TRUST_PATH . '/modules/d3forum/class/D3commentAbstract.class.php';
 
-// a class for d3forum comment integration
+// class for d3forum comment integration
 class PicoD3commentContent extends D3commentAbstract
 {
 
     public function fetchSummary($external_link_id)
     {
-        (method_exists('MyTextSanitizer', 'sGetInstance') and $myts = &MyTextSanitizer::sGetInstance()) || $myts = &MyTextsanitizer::getInstance();
+        (method_exists('MyTextSanitizer', 'sGetInstance') and $myts = &MyTextSanitizer::sGetInstance()) || $myts = &(new MyTextSanitizer)->getInstance();
 
-        $module_handler = xoops_gethandler('module');
-        $module         = &$module_handler->getByDirname($this->mydirname);
-        $config_handler = xoops_gethandler('config');
-        $configs        = $config_handler->getConfigList($module->mid());
+        $module_handler = &xoops_gethandler('module');
+        $module = &$module_handler->getByDirname($this->mydirname);
+        $config_handler = &xoops_gethandler('config');
+        $configs = $config_handler->getConfigList($module->mid());
 
         // external_link_id means $content_id
         $content_id = (int)$external_link_id;
-        $mydirname  = $this->mydirname;
+        $mydirname = $this->mydirname;
         if (preg_match('/[^0-9a-zA-Z_-]/', $mydirname)) {
             die('Invalid mydirname');
         }
 
         // get categoryObject and contentObject
-        list($categoryObj, $contentObj) = pico_common_get_objects_from_content_id($mydirname, $content_id);
+        [$categoryObj, $contentObj] = pico_common_get_objects_from_content_id($mydirname, $content_id);
 
         // existence check
         if (!is_object($categoryObj) || !is_object($contentObj)) {
@@ -41,11 +41,11 @@ class PicoD3commentContent extends D3commentAbstract
         $summary = str_replace('&amp;', '&', htmlspecialchars(xoops_substr(strip_tags($content_data['body_cached']), 0, 255), ENT_QUOTES));
 
         return [
-            'dirname'     => $mydirname,
+            'dirname' => $mydirname,
             'module_name' => $module->getVar('name'),
-            'subject'     => $myts->makeTboxData4Show($content_data['subject_raw'], 1, 1),
-            'uri'         => XOOPS_URL . '/modules/' . $mydirname . '/' . pico_common_make_content_link4html($configs, $content_data),
-            'summary'     => $summary,
+            'subject' => $myts->makeTboxData4Show($content_data['subject_raw'], 1, 1),
+            'uri' => XOOPS_URL . '/modules/' . $mydirname . '/' . pico_common_make_content_link4html($configs, $content_data),
+            'summary' => $summary,
         ];
     }
 
@@ -53,10 +53,10 @@ class PicoD3commentContent extends D3commentAbstract
     {
         // assume that link_id as content_id
         $content_id = (int)$link_id;
-        $mydirname  = $this->mydirname;
+        $mydirname = $this->mydirname;
 
         // get categoryObject and contentObject
-        list($categoryObj, $contentObj) = pico_common_get_objects_from_content_id($mydirname, $content_id);
+        [$categoryObj, $contentObj] = pico_common_get_objects_from_content_id($mydirname, $content_id);
 
         // existence check
         if (!is_object($categoryObj) || !is_object($contentObj)) {
@@ -74,11 +74,11 @@ class PicoD3commentContent extends D3commentAbstract
     public function onUpdate($mode, $link_id, $forum_id, $topic_id, $post_id = 0)
     {
         $content_id = (int)$link_id;
-        $mydirname  = $this->mydirname;
+        $mydirname = $this->mydirname;
 
         $db = XoopsDatabaseFactory::getDatabaseConnection();
 
-        list($count) = $db->fetchRow($db->query('SELECT COUNT(*) FROM ' . $db->prefix($this->d3forum_dirname . '_posts') . ' p LEFT JOIN ' . $db->prefix($this->d3forum_dirname . '_topics') . " t ON t.topic_id=p.topic_id WHERE t.forum_id=$forum_id AND t.topic_external_link_id='$content_id'"));
+        [$count] = $db->fetchRow($db->query('SELECT COUNT(*) FROM ' . $db->prefix($this->d3forum_dirname . '_posts') . ' p LEFT JOIN ' . $db->prefix($this->d3forum_dirname . '_topics') . " t ON t.topic_id=p.topic_id WHERE t.forum_id=$forum_id AND t.topic_external_link_id='$content_id'"));
         $db->queryF('UPDATE ' . $db->prefix($mydirname . '_contents') . " SET comments_count=$count WHERE content_id=$content_id");
 
         return true;

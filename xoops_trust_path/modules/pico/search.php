@@ -1,7 +1,7 @@
 <?php
 
 require_once __DIR__ . '/include/common_functions.php';
-require_once __DIR__ . '/class/pico.textsanitizer.php';
+require_once __DIR__ . '/class/PicoTextSanitizer.class.php';
 require_once __DIR__ . '/class/PicoModelContent.class.php';
 
 eval('
@@ -27,11 +27,9 @@ if (!function_exists('pico_global_search_base')) {
 
 		// check xmobile or not
 		$is_xmobile = false;
-		if (function_exists('debug_backtrace') && ($backtrace = debug_backtrace())) {
-			if (strstr($backtrace[2]['file'], '/xmobile/actions/')) {
-				$is_xmobile = true;
-			}
-		}
+		if (function_exists('debug_backtrace') && ($backtrace = debug_backtrace()) && strpos($backtrace[2]['file'], '/xmobile/actions/') !== false) {
+            $is_xmobile = true;
+        }
 
 		// XOOPS Search module
 		$showcontext = empty($_GET['showcontext']) ? 0 : 1;
@@ -79,7 +77,9 @@ if (!function_exists('pico_global_search_base')) {
 			// get context for module "search"
 			if (function_exists('search_make_context') && $showcontext && $content['can_readfull']) {
 				$full_context = strip_tags(@$content['body_cached']);
-				if (function_exists('easiestml')) $full_context = easiestml($full_context);
+				if (function_exists('easiestml')) {
+                    $full_context = easiestml($full_context);
+                }
 				$context = search_make_context($full_context, $keywords);
 			} else {
 				$context = '';

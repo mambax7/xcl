@@ -39,7 +39,7 @@ class PicoControllerInsertCategory extends PicoControllerAbstract
             redirect_header(XOOPS_URL . '/', 2, _MD_PICO_ERR_MAKECATEGORY);
         }
 
-        // insert a category
+        // create category
         $this->new_cat_id = pico_makecategory($this->mydirname);
 
         // view

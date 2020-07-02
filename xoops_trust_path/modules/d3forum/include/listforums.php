@@ -4,27 +4,33 @@ $cat_id = (int)@$_GET['cat_id'];
 
 // count total topics
 $sql = 'SELECT COUNT(*) FROM '.$db->prefix($mydirname.'_topics') ;
-list( $total_topics_count ) = $db->fetchRow( $db->query( $sql ) ) ;
+[$total_topics_count] = $db->fetchRow($db->query($sql));
 
 // count total posts
 $sql = 'SELECT COUNT(*) FROM '.$db->prefix($mydirname.'_posts') ;
-list( $total_posts_count ) = $db->fetchRow( $db->query( $sql ) ) ;
+[$total_posts_count] = $db->fetchRow($db->query($sql));
 
 // get last visit
 if( $uid > 0 ) {
 	$db =& Database::getInstance() ;
 	$lv_result = $db->query('SELECT MAX(u2t_time) FROM ' . $db->prefix($mydirname . '_users2topics') . " WHERE uid='$uid'" ) ;
-	list( $last_visit ) = $db->fetchRow( $lv_result ) ;
+	[$last_visit] = $db->fetchRow($lv_result);
 }
-if( empty( $last_visit ) ) $last_visit = time() ;
+if( empty( $last_visit ) ) {
+    $last_visit = time();
+}
 
 // get&check this category ($category4assign, $category_row), override options
-if( ! include __DIR__ . '/process_this_category.inc.php' ) die( _MD_D3FORUM_ERR_READCATEGORY ) ;
+if( ! include __DIR__ . '/process_this_category.inc.php' ) {
+    die(_MD_D3FORUM_ERR_READCATEGORY);
+}
 
 // subcategories loop
 $subcategories = [];
 $sql = 'SELECT * FROM ' . $db->prefix($mydirname . '_categories') . " c WHERE ($whr_read4cat) AND pid=$cat_id ORDER BY cat_order_in_tree" ;
-if( ! $crs = $db->query( $sql ) ) die( _MD_D3FORUM_ERR_SQL.__LINE__ ) ;
+if( ! $crs = $db->query( $sql ) ) {
+    die(_MD_D3FORUM_ERR_SQL . __LINE__);
+}
 while( $cat_row = $db->fetchArray( $crs ) ) {
 	// categories array
 	$subcategories[] = [
@@ -53,7 +59,9 @@ $forums = [];
 $sql = 'SELECT f.*, p.topic_id, p.post_time, p.subject, p.icon, p.uid, p.guest_name FROM '
        . $db->prefix($mydirname . '_forums') . ' f LEFT JOIN '
        . $db->prefix($mydirname . '_posts') . " p ON p.post_id=f.forum_last_post_id WHERE ($whr_read4forum) AND cat_id=$cat_id ORDER BY f.forum_weight, f.forum_id" ;
-if( ! $frs = $db->query( $sql ) ) die( _MD_D3FORUM_ERR_SQL.__LINE__ ) ;
+if( ! $frs = $db->query( $sql ) ) {
+    die(_MD_D3FORUM_ERR_SQL . __LINE__);
+}
 while( $forum_row = $db->fetchArray( $frs ) ) {
 
 	$forum_id = (int)$forum_row['forum_id'];
@@ -61,9 +69,11 @@ while( $forum_row = $db->fetchArray( $frs ) ) {
 	// get last visit each forums
 	if( $uid > 0 ) {
 		$sql = 'SELECT u2t.u2t_time FROM '.$db->prefix($mydirname.'_posts').' p LEFT JOIN '.$db->prefix($mydirname.'_users2topics').' u2t ON u2t.topic_id=p.topic_id WHERE p.post_id=' . (int)$forum_row['forum_last_post_id'] . ' AND u2t.uid=' . $uid ;
-		list( $u2t_time ) = $db->fetchRow( $db->query( $sql ) ) ;
+		[$u2t_time] = $db->fetchRow($db->query($sql));
 	}
-	if( empty( $u2t_time ) ) $u2t_time = 0 ;
+	if( empty( $u2t_time ) ) {
+        $u2t_time = 0;
+    }
 
 	// get last poster's object
 	$user_handler    = xoops_gethandler('user' ) ;
@@ -71,7 +81,7 @@ while( $forum_row = $db->fetchArray( $frs ) ) {
 	if( is_object( $last_poster_obj ) ) {
 		// naao from
 		//$last_post_uname = $last_poster_obj->getVar( 'uname' ) ;
-		if (1 == $xoopsModuleConfig['use_name'] && $last_poster_obj->getVar('name' ) ) {
+		if (1 === $xoopsModuleConfig['use_name'] && $last_poster_obj->getVar('name' ) ) {
 			$last_post_uname = $last_poster_obj->getVar( 'name' ) ;
 		} else {
 			$last_post_uname = $last_poster_obj->getVar( 'uname' ) ;
@@ -132,5 +142,3 @@ $xoopsTpl->assign(
         'xoops_breadcrumbs' => $xoops_breadcrumbs,
     ]
 ) ;
-
-?>

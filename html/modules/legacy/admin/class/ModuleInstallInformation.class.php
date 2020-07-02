@@ -36,7 +36,7 @@ class Legacy_BlockInformation
 
     public function Legacy_BlockInformation($funcNum, $name, $funcFile, $showFunc, $editFunc, $template, $options = null)
     {
-        self::__construct($funcNum, $name, $funcFile, $showFunc, $editFunc, $template, $options);
+        $this->__construct($funcNum, $name, $funcFile, $showFunc, $editFunc, $template, $options);
     }
 
     public function __construct($funcNum, $name, $funcFile, $showFunc, $editFunc, $template, $options = null)
@@ -128,7 +128,7 @@ class Legacy_BlockInfoCollection
 
     public function funcExists($info)
     {
-        return (in_array($info->mShowFunc, $this->mShowFuncs) && in_array($info->mFuncFile, $this->mFuncFiles));
+        return (in_array($info->mShowFunc, $this->mShowFuncs, true) && in_array($info->mFuncFile, $this->mFuncFiles, true));
     }
 
     /**
@@ -192,7 +192,7 @@ class Legacy_PreferenceInformation
 
     public function Legacy_PreferenceInformation($name, $title, $description, $formType, $valueType, $default, $order = 0)
     {
-        self::__construct($name, $title, $description, $formType, $valueType, $default, $order);
+        $this->__construct($name, $title, $description, $formType, $valueType, $default, $order);
     }
 
     public function __construct($name, $title, $description, $formType, $valueType, $default, $order = 0)
@@ -272,7 +272,7 @@ class Legacy_PreferenceInfoCollection
 
     public function Legacy_PreferenceInfoCollection()
     {
-        self::__construct();
+        $this->__construct();
     }
 
     public function __construct()
@@ -443,7 +443,7 @@ class Legacy_PreferenceOptionInformation
 
     public function Legacy_PreferenceOptionInformation($name, $value)
     {
-        self::__construct($name, $value);
+        $this->__construct($name, $value);
     }
 
     public function __construct($name, $value)
@@ -498,7 +498,7 @@ class Legacy_AbstractModinfoReader
 {
     public function Legacy_AbstractModinfoReader()
     {
-        self::__construct();
+        $this->__construct();
     }
 
     public function __construct()
@@ -528,11 +528,11 @@ class Legacy_ModinfoX2FileReader extends Legacy_AbstractModinfoReader
     /**
      * @protected
      */
-    public $_mDirname = null;
+    public $_mDirname;
 
     public function Legacy_ModinfoX2FileReader($dirname)
     {
-        self::__construct($dirname);
+        $this->__construct($dirname);
     }
 
     public function __construct($dirname)
@@ -544,7 +544,7 @@ class Legacy_ModinfoX2FileReader extends Legacy_AbstractModinfoReader
      * @private
      * @param $funcNum
      * @param $arr
-     * @return \Legacy_BlockInformation
+     * @return Legacy_BlockInformation
      */
     public function &_createBlockInformation($funcNum, $arr)
     {
@@ -709,15 +709,13 @@ class Legacy_ModinfoX2FileReader extends Legacy_AbstractModinfoReader
             ];
             $info =& $this->_createPreferenceInformation($notifyEnable);
             $collection->add($info);
-            unset($info);
+
 
             //
             // FIXME: doesn't work when update module... can't read back the
             //        array of options properly...  " changing to &quot;
             //
-
-            unset($t_options);
-
+            unset($info, $t_options);
             //
             // Get the module object to get mid.
             //
@@ -823,11 +821,11 @@ class Legacy_ModinfoX2DBReader extends Legacy_AbstractModinfoReader
     /**
      * @protected
      */
-    public $_mDirname = null;
+    public $_mDirname;
 
     public function Legacy_ModinfoX2DBReader($dirname)
     {
-        self::__construct($dirname);
+        $this->__construct($dirname);
     }
 
     public function __construct($dirname)

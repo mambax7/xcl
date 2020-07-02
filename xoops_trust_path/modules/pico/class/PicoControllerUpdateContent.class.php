@@ -34,7 +34,7 @@ class PicoControllerUpdateContent extends PicoControllerAbstract
         parent::execute($request);
 
         // contentObj
-        $cat_data         = $this->currentCategoryObj->getData();
+        $cat_data = $this->currentCategoryObj->getData();
         $this->contentObj = new PicoContent($this->mydirname, $request['content_id'], $this->currentCategoryObj);
 
         // check existence
@@ -49,10 +49,10 @@ class PicoControllerUpdateContent extends PicoControllerAbstract
             if ($content_data['locked']) {
                 redirect_header(XOOPS_URL . '/', 2, _MD_PICO_ERR_LOCKEDCONTENT);
                 exit;
-            } else {
-                redirect_header(XOOPS_URL . '/', 2, _MD_PICO_ERR_EDITCONTENT);
-                exit;
             }
+
+            redirect_header(XOOPS_URL . '/', 2, _MD_PICO_ERR_EDITCONTENT);
+            exit;
         }
 
         // update the content

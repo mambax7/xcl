@@ -16,7 +16,7 @@ class LegacyRender_TplsetUploadAction extends LegacyRender_Action
     public $mActionForm = null;
     public $mErrorMessages = [];
 
-    public function prepare(&$controller, &$xoopsUser)
+    public function prepare(&$controller, &$xoopsUser, $moduleConfig)
     {
         $this->mActionForm =new LegacyRender_TplsetUploadForm();
         $this->mActionForm->prepare();
@@ -107,7 +107,7 @@ class LegacyRender_TplsetUploadAction extends LegacyRender_Action
         return LEGACYRENDER_FRAME_VIEW_SUCCESS;
     }
 
-    public function _fetchTemplateFiles($tar, $tplset, &$themeimages)
+    public function _fetchTemplateFiles(&$tar, &$tplset, &$themeimages)
     {
         $handler =& xoops_getmodulehandler('tplfile');
         foreach ($tar->files as $id => $info) {
@@ -138,14 +138,14 @@ class LegacyRender_TplsetUploadAction extends LegacyRender_Action
         return true;
     }
 
-    public function _fetchImageset(&$tar, $tplset, &$themeimages)
+    public function _fetchImageset(&$tar, &$tplset, &$themeimages)
     {
         if (0 == count($themeimages)) {
             return true;
         }
 
-        $handler = xoops_gethandler('imageset');
-        $imgset  =& $handler->create();
+        $handler =& xoops_gethandler('imageset');
+        $imgset =& $handler->create();
         $imgset->set('imgset_name', $tplset->get('tplset_name'));
         $imgset->set('imgset_refid', 0);
 
@@ -159,7 +159,7 @@ class LegacyRender_TplsetUploadAction extends LegacyRender_Action
             return false;
         }
 
-        $handler = xoops_gethandler('imagesetimg');
+        $handler =& xoops_gethandler('imagesetimg');
         for ($i = 0; $i < count($themeimages); $i++) {
             if (isset($themeimages[$i]['name']) && '' != $themeimages[$i]['name']) {
                 $image =& $handler->create();
@@ -176,18 +176,18 @@ class LegacyRender_TplsetUploadAction extends LegacyRender_Action
         return true;
     }
 
-    public function executeViewInput(&$controller, &$xoopsUser, $render)
+    public function executeViewInput(&$controller, &$xoopsUser, &$render)
     {
         $render->setTemplateName('tplset_upload.html');
         $render->setAttribute('actionForm', $this->mActionForm);
     }
 
-    public function executeViewSuccess($controller, &$xoopsUser, &$render)
+    public function executeViewSuccess(&$controller, &$xoopsUser, &$render)
     {
         $controller->executeForward('./index.php?action=TplsetList');
     }
 
-    public function executeViewError($controller, &$xoopsUser, $render)
+    public function executeViewError(&$controller, &$xoopsUser, &$render)
     {
         if (0 == count($this->mErrorMessages)) {
             $controller->executeRedirect('./index.php?action=TplsetList', 1, _AD_LEGACYRENDER_ERROR_DBUPDATE_FAILED);
@@ -197,7 +197,7 @@ class LegacyRender_TplsetUploadAction extends LegacyRender_Action
         }
     }
 
-    public function executeViewCancel($controller, &$xoopsUser, &$render)
+    public function executeViewCancel(&$controller, &$xoopsUser, &$render)
     {
         $controller->executeForward('./index.php?action=TplsetList');
     }

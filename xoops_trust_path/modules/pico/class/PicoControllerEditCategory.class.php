@@ -28,7 +28,7 @@ class PicoControllerEditCategory extends PicoControllerAbstract
 
         // $categoryObj (not parent)
         $picoPermission = &PicoPermission::getInstance();
-        $categoryObj    = new PicoCategory($this->mydirname, $request['cat_id'], $picoPermission->getPermissions($this->mydirname), 'makecategory' == $page, $this->currentCategoryObj);
+        $categoryObj    = new PicoCategory($this->mydirname, $request['cat_id'], $picoPermission->getPermissions($this->mydirname), 'makecategory' === $page, $this->currentCategoryObj);
 
         // check existence
         if ($categoryObj->isError()) {
@@ -43,7 +43,7 @@ class PicoControllerEditCategory extends PicoControllerAbstract
         $this->assign['category']            = $categoryObj->getData4edit();
 
         // permission check
-        if ('makecategory' == $page) {
+        if ('makecategory' === $page) {
             $pcat_data = $this->currentCategoryObj->getData();
             if (empty($pcat_data['can_makesubcategory'])) {
                 redirect_header(XOOPS_URL . '/', 2, _MD_PICO_ERR_CREATECATEGORY);
@@ -68,7 +68,7 @@ class PicoControllerEditCategory extends PicoControllerAbstract
 
         // breadcrumbs
         $breadcrumbsObj = &AltsysBreadcrumbs::getInstance();
-        if ('makecategory' == $page) {
+        if ('makecategory' === $page) {
             $breadcrumbsObj->appendPath('', _MD_PICO_LINK_MAKECATEGORY);
             $this->assign['xoops_pagetitle'] = _MD_PICO_LINK_MAKECATEGORY;
         } else {
@@ -80,7 +80,7 @@ class PicoControllerEditCategory extends PicoControllerAbstract
 
         // misc assigns
         $this->assign['page']                          = $page;
-        $this->assign['formtitle']                     = 'makecategory' == $page ? _MD_PICO_LINK_MAKECATEGORY : _MD_PICO_CATEGORYMANAGER;
+        $this->assign['formtitle']                     = 'makecategory' === $page ? _MD_PICO_LINK_MAKECATEGORY : _MD_PICO_CATEGORYMANAGER;
         $this->assign['gticket_hidden']                = $GLOBALS['xoopsGTicket']->getTicketHtml(__LINE__, 1800, 'pico');
         $this->assign['category']['option_desc']       = $this->getCategoryOptions4edit();
         $this->assign['category']['wraps_directories'] = ['' => '---'] + pico_main_get_wraps_directories_recursively($this->mydirname, '/');
@@ -91,7 +91,7 @@ class PicoControllerEditCategory extends PicoControllerAbstract
     }
 
     // get samples of category options
-    public function getCategoryOptions4edit()
+    public function getCategoryOptions4edit(): string
     {
         include dirname(__DIR__) . '/include/configs_can_override.inc.php';
 
@@ -99,7 +99,7 @@ class PicoControllerEditCategory extends PicoControllerAbstract
         foreach ($pico_configs_can_be_override as $key => $type) {
             if (isset($this->mod_config[$key])) {
                 $val = $this->mod_config[$key];
-                if ('int' == $type || 'bool' == $type) {
+                if ('int' === $type || 'bool' === $type) {
                     $val = (int)$val;
                 }
                 $lines[] = htmlspecialchars($key . ':' . $val, ENT_QUOTES);

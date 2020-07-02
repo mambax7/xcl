@@ -40,9 +40,11 @@ class settingsAction extends AbstractAction
         }
     }
 
-    public function executeView($render)
+    public function executeView(&$render)
     {
         $render->setTemplateName('message_settings.html');
         $render->setAttribute('mActionForm', $this->mActionForm);
+        $render->setAttribute('purgedays', $this->root->mContext->mModuleConfig['savedays']);
+        $render->setAttribute('purgetype', $this->root->mContext->mModuleConfig['dletype']);
     }
 }

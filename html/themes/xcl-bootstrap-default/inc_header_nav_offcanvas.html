@@ -1,0 +1,61 @@
+<nav class="navbar navbar-expand-lg fixed-top navbar-dark">
+    <a class="navbar-brand mr-auto mr-lg-0" href="<{$xoops_url}>"><{$xoops_sitename}></a>
+
+        <button class="navbar-toggler p-0 border-0" type="button" data-toggle="offcanvas">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+    <div class="navbar-collapse offcanvas-collapse" id="navCollapse">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+                <a class="nav-link" href="#">Welcome <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Forum</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Pico</a>
+            </li>
+            <li class="nav-item">
+
+            </li>
+        </ul>
+
+        <form class="form-inline my-2 my-lg-0" action="<{$xoops_url}>/search.php" method="get" role="search">
+            <input class="form-control form-control-sm mr-sm-2" type="search" name="query" placeholder="Search" aria-label="Search">
+            <input type="hidden" name="action" value="results">
+            <button class="btn btn-outline-primary btn-sm my-2 my-sm-0" type="submit" name="submit" value="search" accesskey="F"><{$smarty.const._SEARCH}></button>
+        </form>
+
+        <div>
+            <{if $xoops_isuser === true}>
+            <{include file="$xoops_theme/inc_header_user.html"}>
+            <{else}>
+            <span class="nav-item">
+                <a class="nav-link" href="<{$xoops_url}>/user.php"><{$smarty.const._LOGIN}></a>
+            </span>
+            <{/if}>
+        </div>
+    </div>
+</nav>
+
+<{* Sub-navigation scrolling left-right *}>
+
+<div class="nav-scroller bg-white shadow-sm">
+    <nav class="nav nav-underline">
+        <a class="nav-link btn-scroller" href="#" title="Horizontal scrolling">
+            <svg xmlns="http://www.w3.org/2000/svg" width="1.5em" height="1.5em" viewBox="0 0 24 24">
+            <title>Horizontal scrolling</title>
+            <g fill="currentColor"><path d="M7.182 9.172L5.768 7.757L1.525 12l4.243 4.243l1.414-1.415L4.353 12l2.829-2.828z" fill="currentColor"/>
+            <path d="M16.818 14.828l1.414 1.415L22.475 12l-4.243-4.243l-1.414 1.415L19.646 12l-2.828 2.828z" fill="currentColor"/>
+            <path fill-rule="evenodd" clip-rule="evenodd" d="M15 12a3 3 0 1 1-6 0a3 3 0 0 1 6 0zm-2 0a1 1 0 1 1-2 0a1 1 0 0 1 2 0z" fill="currentColor"/></g>
+            </svg></a>
+        <a class="nav-link" href="#">Apache</a>
+        <a class="nav-link" href="#">MySQL</a>
+        <a class="nav-link" href="#">PHP</a>
+        <a class="nav-link" href="#">Smarty</a>
+        <a class="nav-link" href="#">HTML</a>
+        <a class="nav-link" href="#">CSS</a>
+        <a class="nav-link" href="#">Javascript</a>
+    </nav>
+</div>

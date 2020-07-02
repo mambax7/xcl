@@ -1,0 +1,52 @@
+<h3>User Interface Components</h3>
+
+<hr>
+<style>
+    #gradient stop:nth-child(3) {stop-color: #d53a3a;}
+    #gradient stop:nth-child(2) {stop-color: orange;}
+    #gradient stop:nth-child(1) {stop-color: indigo;}
+    .flex-item-guide {align-items: center;background: var(--ui-color-600);border: 1px solid var(--ui-color-500);color: var(--ui-color-200);display: flex;height: 80px;justify-content: end;margin: 5px;max-width: 80px;min-width: 80px;text-align: center;transition: all ease-in 1s;}
+    .flex-item-guide:hover {background: var(--ui-color-500);border-image-slice: 1;border-width: 1px;border-image-source: linear-gradient(to right, #743ad5, orange, #d53a3a);}
+    .flex-item-guide > a > svg.uix {display: block;max-height: 80px;margin: 0 auto 10px;transition: all ease-in 1s;opacity: 0.3;fill: url("#gradient");}
+    .flex-item-guide:hover > a > svg.uix {opacity: 1;}.flex-item-guide:hover > a > svg.uix path {fill: url("#gradient");transition: ease-in 2s;opacity: 1;}
+</style>
+<div class="ui-flex-row">
+    <div class="ui-flex-column flex-item-guide"><a href="ui-style-accordion.html">
+    <svg class="uix" xmlns="http://www.w3.org/2000/svg" width="2em" height="2em" viewBox="0 0 16 16"><path fill="currentColor" d="M0 4v8h16V4H0zm15 7H1V7h14v4z"/><path fill="currentColor" d="M0 0h16v3H0V0z"/><path fill="currentColor" d="M0 13h16v3H0v-3z"/></svg>
+    Accordion</a></div>
+    <div class="ui-flex-column flex-item-guide"><a href="ui-style-buttons.html">
+    <svg class="uix" xmlns="http://www.w3.org/2000/svg" width="2em" height="2em" viewBox="0 0 16 16"><path fill="currentColor" d="M15.7 5.3l-1-1c-.2-.2-.4-.3-.7-.3H1c-.6 0-1 .4-1 1v5c0 .3.1.6.3.7l1 1c.2.2.4.3.7.3h13c.6 0 1-.4 1-1V6c0-.3-.1-.5-.3-.7zM14 10H1V5h13v5z"/></svg>
+    Button</a></div>
+    <div class="ui-flex-column flex-item-guide"><a href="ui-style-colors.html">
+    <svg class="uix" xmlns="http://www.w3.org/2000/svg" width="2em" height="2em" viewBox="0 0 16 16"><path fill="currentColor" d="M8.25 0C1.87 0-.86 7.38.24 9.92c.82 1.89 2.62.08 3.34 1c1.88 2.46-2.11 3.81.09 4.68C6.26 16.66 16 16 16 7.07C16 4.38 14.66 0 8.25 0zM4.47 9A1.5 1.5 0 1 1 6 7.5A1.5 1.5 0 0 1 4.5 9h-.032zM6 3.5A1.5 1.5 0 1 1 7.5 5h-.032A1.5 1.5 0 0 1 6 3.5zM8.47 14A1.5 1.5 0 1 1 10 12.5A1.5 1.5 0 0 1 8.5 14h-.032zm4-3A1.5 1.5 0 1 1 14 9.5a1.5 1.5 0 0 1-1.5 1.5h-.032zm0-5A1.5 1.5 0 1 1 14 4.5A1.5 1.5 0 0 1 12.5 6h-.032z"/></svg>
+    Colors</a></div>
+    <div class="ui-flex-column flex-item-guide"><a href="ui-style-date.html">
+    <svg class="uix" xmlns="http://www.w3.org/2000/svg" width="2em" height="2em" viewBox="0 0 16 16"><path fill="currentColor" d="M14 1v3h-3V1H5v3H2V1H0v15h16V1h-2zM3 15H1v-2h2v2zm0-3H1v-2h2v2zm0-3H1V7h2v2zm3 6H4v-2h2v2zm0-3H4v-2h2v2zm0-3H4V7h2v2zm3 6H7v-2h2v2zm0-3H7v-2h2v2zm0-3H7V7h2v2zm3 6h-2v-2h2v2zm0-3h-2v-2h2v2zm0-3h-2V7h2v2zm3 6h-2v-2h2v2zm0-3h-2v-2h2v2zm0-3h-2V7h2v2z"/><path fill="currentColor" d="M3 0h1v3H3V0z"/><path fill="currentColor" d="M12 0h1v3h-1V0z"/></svg>
+    Date</a></div>
+    <div class="ui-flex-column flex-item-guide"><a href="ui-style-typo.html">
+    <svg class="uix" xmlns="http://www.w3.org/2000/svg" width="2em" height="2em" viewBox="0 0 16 16"><path d="M1 8h6v2H5v6H3v-6H1zm14-4h-3.934v12H8.933V4H4.999V2h10z" fill="currentColor"/></svg>
+    Fonts</a></div>
+    <div class="ui-flex-column flex-item-guide"><a href="ui-style-form.html">
+    <svg class="uix" xmlns="http://www.w3.org/2000/svg" width="2em" height="2em" viewBox="0 0 16 16"><path fill="currentColor" d="M5 3.5a1.5 1.5 0 1 1-3.001-.001A1.5 1.5 0 0 1 5 3.5z"/><path fill="currentColor" d="M3.5 0C1.6 0 0 1.6 0 3.5S1.6 7 3.5 7S7 5.4 7 3.5S5.4 0 3.5 0zm0 6C2.1 6 1 4.9 1 3.5S2.1 1 3.5 1S6 2.1 6 3.5S4.9 6 3.5 6z"/><path fill="currentColor" d="M3.5 8C1.6 8 0 9.6 0 11.5S1.6 15 3.5 15S7 13.4 7 11.5S5.4 8 3.5 8zm0 6C2.1 14 1 12.9 1 11.5S2.1 9 3.5 9S6 10.1 6 11.5S4.9 14 3.5 14z"/><path fill="currentColor" d="M8 2h8v3H8V2z"/><path fill="currentColor" d="M8 10h8v3H8v-3z"/></svg>
+    Form</a></div>
+    <div class="ui-flex-column flex-item-guide"><a href="ui-style-menu.html">
+    <svg class="uix" xmlns="http://www.w3.org/2000/svg" width="2em" height="2em" viewBox="0 0 16 16"><path fill="currentColor" d="M1 0h12v2H1V0z"/><path fill="currentColor" d="M1 8h13v2H1V8z"/><path fill="currentColor" d="M1 11h11v2H1v-2z"/><path fill="currentColor" d="M1 14h14v2H1v-2z"/><path fill="currentColor" d="M0 3v4h16V3H0zm11 3H1V4h10v2z"/></svg>
+    Menu</a></div>
+    <div class="ui-flex-column flex-item-guide"><a href="ui-style-space.html">
+    <svg class="uix" xmlns="http://www.w3.org/2000/svg" width="2em" height="2em" viewBox="0 0 16 16"><path fill="currentColor" d="M0 0h1v1H0V0z"/><path fill="currentColor" d="M2 0h1v1H2V0z"/><path fill="currentColor" d="M1 1h1v1H1V1z"/><path fill="currentColor" d="M0 2h1v1H0V2z"/><path fill="currentColor" d="M2 2h1v1H2V2z"/><path fill="currentColor" d="M1 3h1v1H1V3z"/><path fill="currentColor" d="M0 4h1v1H0V4z"/><path fill="currentColor" d="M1 5h1v1H1V5z"/><path fill="currentColor" d="M0 6h1v1H0V6z"/><path fill="currentColor" d="M1 7h1v1H1V7z"/><path fill="currentColor" d="M0 8h1v1H0V8z"/><path fill="currentColor" d="M1 9h1v1H1V9z"/><path fill="currentColor" d="M0 10h1v1H0v-1z"/><path fill="currentColor" d="M1 11h1v1H1v-1z"/><path fill="currentColor" d="M0 12h1v1H0v-1z"/><path fill="currentColor" d="M1 13h1v1H1v-1z"/><path fill="currentColor" d="M0 14h1v1H0v-1z"/><path fill="currentColor" d="M2 14h1v1H2v-1z"/><path fill="currentColor" d="M1 15h1v1H1v-1z"/><path fill="currentColor" d="M3 15h1v1H3v-1z"/><path fill="currentColor" d="M5 15h1v1H5v-1z"/><path fill="currentColor" d="M4 0h1v1H4V0z"/><path fill="currentColor" d="M3 1h1v1H3V1z"/><path fill="currentColor" d="M5 1h1v1H5V1z"/><path fill="currentColor" d="M4 14h1v1H4v-1z"/><path fill="currentColor" d="M6 0h1v1H6V0z"/><path fill="currentColor" d="M8 0h1v1H8V0z"/><path fill="currentColor" d="M7 1h1v1H7V1z"/><path fill="currentColor" d="M6 14h1v1H6v-1z"/><path fill="currentColor" d="M8 14h1v1H8v-1z"/><path fill="currentColor" d="M7 15h1v1H7v-1z"/><path fill="currentColor" d="M9 15h1v1H9v-1z"/><path fill="currentColor" d="M11 15h1v1h-1v-1z"/><path fill="currentColor" d="M10 0h1v1h-1V0z"/><path fill="currentColor" d="M9 1h1v1H9V1z"/><path fill="currentColor" d="M11 1h1v1h-1V1z"/><path fill="currentColor" d="M10 14h1v1h-1v-1z"/><path fill="currentColor" d="M12 0h1v1h-1V0z"/><path fill="currentColor" d="M14 0h1v1h-1V0z"/><path fill="currentColor" d="M13 1h1v1h-1V1z"/><path fill="currentColor" d="M13 2h-1v1h-1V2h-1v1H9V2H8v1H7V2H6v1H5V2H4v1H3v1H2v1h1v1H2v1h1v1H2v1h1v1H2v1h1v1H2v1h1v1h1v-1h1v1h1v-1h1v1h1v-1h1v1h1v-1h1v1h1v-1h1v-1h1v-1h-1v-1h1V9h-1V8h1V7h-1V6h1V5h-1V4h1V3h-1V2zm-1 10H4V4h8v8z"/><path fill="currentColor" d="M14 2h1v1h-1V2z"/><path fill="currentColor" d="M14 4h1v1h-1V4z"/><path fill="currentColor" d="M14 6h1v1h-1V6z"/><path fill="currentColor" d="M14 8h1v1h-1V8z"/><path fill="currentColor" d="M14 10h1v1h-1v-1z"/><path fill="currentColor" d="M14 12h1v1h-1v-1z"/><path fill="currentColor" d="M13 13h1v1h-1v-1z"/><path fill="currentColor" d="M12 14h1v1h-1v-1z"/><path fill="currentColor" d="M14 14h1v1h-1v-1z"/><path fill="currentColor" d="M13 15h1v1h-1v-1z"/><path fill="currentColor" d="M15 15h1v1h-1v-1z"/><path fill="currentColor" d="M15 1h1v1h-1V1z"/><path fill="currentColor" d="M15 3h1v1h-1V3z"/><path fill="currentColor" d="M15 5h1v1h-1V5z"/><path fill="currentColor" d="M15 7h1v1h-1V7z"/><path fill="currentColor" d="M15 9h1v1h-1V9z"/><path fill="currentColor" d="M15 11h1v1h-1v-1z"/><path fill="currentColor" d="M15 13h1v1h-1v-1z"/></svg>
+    Spacing</a></div>
+
+    <div class="ui-flex-column flex-item-guide"><a href="ui-style-modal.html">
+    <svg class="uix" xmlns="http://www.w3.org/2000/svg" width="2em" height="2em" viewBox="0 0 16 16"><path fill="currentColor" d="M0 1v14h16V1H0zm15 13H1V4h14v10zm0-11h-1V2h1v1z"/></svg>
+    Modal</a></div>
+
+    <div class="ui-flex-column flex-item-guide"><a href="ui-style-table.html">
+    <svg class="uix" xmlns="http://www.w3.org/2000/svg" width="2em" height="2em" viewBox="0 0 16 16"><path fill="currentColor" d="M0 1v15h16V1H0zm5 14H1v-2h4v2zm0-3H1v-2h4v2zm0-3H1V7h4v2zm0-3H1V4h4v2zm5 9H6v-2h4v2zm0-3H6v-2h4v2zm0-3H6V7h4v2zm0-3H6V4h4v2zm5 9h-4v-2h4v2zm0-3h-4v-2h4v2zm0-3h-4V7h4v2zm0-3h-4V4h4v2z"/></svg>
+    Table</a></div>
+    <div class="ui-flex-column flex-item-guide"><a href="ui-style-tabs.html">
+    <svg class="uix" xmlns="http://www.w3.org/2000/svg" width="2em" height="2em" viewBox="0 0 16 16"><path fill="currentColor" d="M14 4V2H0v12h16V4h-2zm-4-1h3v1h-3V3zM6 3h3v1H6V3zm9 10H1V3h4v2h10v8z"/></svg>
+     Tabs</a></div>
+    <script>window.onload = function(){var svg = document.querySelectorAll (".uix");var i;for (i = 0; i < svg.length; i++) {/* svg[i].style.backgroundColor = "var(--ui-color-500)"; svg[i].style.stroke ="var(--ui-color-700)"; svg[i].setAttribute("fill", "url(#gradient)");*/
+        svg[i].insertAdjacentHTML('afterbegin', '<defs><linearGradient id="gradient"><stop offset="0%"/><stop offset="50%"/><stop offset="100%"/></linearGradient></defs>');}}
+    </script>
+</div>

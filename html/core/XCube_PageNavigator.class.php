@@ -25,7 +25,7 @@ class XCube_PageNavigator
 {
     /**
      * Array for extra informations.
-     * @var Array
+     * @var
      */
     public $mAttributes = [];
 
@@ -56,7 +56,7 @@ class XCube_PageNavigator
 
     /**
      * Array for sort.
-     * @var Array
+     * @var
      */
     public $mSort = [];
 
@@ -70,7 +70,7 @@ class XCube_PageNavigator
      * A prefix for variable names fetched by this navigator. If two independent
      * navigators are used, this property is must.
      */
-    public $mPrefix = null;
+    public $mPrefix;
 
     /**
      * Array of string for re-building the query strings.
@@ -85,7 +85,7 @@ class XCube_PageNavigator
     /**
      * @XCube_Delegate
      */
-    public $mFetch = null;
+    public $mFetch;
 
     /**
      * The value indicating whether the mTotal property already has been
@@ -101,7 +101,18 @@ class XCube_PageNavigator
      *
      * @var XCube_Delegate
      */
-    public $mGetTotalItems = null;
+    public $mGetTotalItems;
+    /**
+     * @var bool
+     */
+    public $_mIsSpecifiedTotal;
+    /**
+     * @var int
+     */
+    public $mTotal;
+    /**
+     * @var int
+     */
 
 
     /**
@@ -121,7 +132,7 @@ class XCube_PageNavigator
     }
     public function XCube_PageNavigator($url, $flags = XCUBE_PAGENAVI_START)
     {
-        return self::__construct($url, $flags);
+        return $this->__construct($url, $flags);
     }
 
     /**
@@ -133,7 +144,7 @@ class XCube_PageNavigator
         $this->mFetch->call(new XCube_Ref($this));
     }
 
-    public function fetchNaviControl($navi)
+    public function fetchNaviControl(&$navi)
     {
         $root =& XCube_Root::getSingleton();
 
@@ -192,8 +203,7 @@ class XCube_PageNavigator
             $tarr= [];
 
             foreach ($this->mExtra as $key=>$value) {
-                if (is_array($mask) && !in_array($key, $mask)) {
-                    //$tarr[]=$key."=".urlencode($value);
+                if (is_array($mask) && !in_array($key, $mask, true)) {
                     $this->_renderExtra($key, $value, $tarr);
                 }
             }
@@ -204,9 +214,9 @@ class XCube_PageNavigator
 
             if (false !== strpos($this->mUrl, '?')) {
                 return $this->mUrl . '&amp;' . implode('&amp;', $tarr);
-            } else {
-                return $this->mUrl . '?' . implode('&amp;', $tarr);
             }
+
+            return $this->mUrl . '?' . implode('&amp;', $tarr);
         }
 
         return $this->mUrl;
@@ -248,9 +258,9 @@ class XCube_PageNavigator
 
             if (false !== strpos($this->mUrl, '?')) {
                 return $this->mUrl . '&amp;' . implode('&amp;', $tarr);
-            } else {
-                return $this->mUrl . '?' . implode('&amp;', $tarr);
             }
+
+            return $this->mUrl . '?' . implode('&amp;', $tarr);
         }
 
         return $this->mUrl;

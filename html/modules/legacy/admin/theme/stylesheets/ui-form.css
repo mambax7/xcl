@@ -1,9 +1,9 @@
 /*
     XOOPSCube Theme : XCL Admin Flex Grid
     Distribution : XCL 2.3 Alpha
-    Version : 0.0.5
+    Version : 0.7.0
     Author : Nuno Luciano aka Gigamaster
-    Date : 2019-11-11
+    Date : 2020-06-11
     URL : https://github.com/xoopscube/xcl/
 
     -------------------- -------------------- -------------------- -------------------- Form elements  */
@@ -48,11 +48,8 @@
     input[type="url"]:hover,
     textarea:hover {
 
-    /* border       : var(  --ui-input-border       ); */
-
-    box-shadow      : var(  --ui-input-shadow       );
-
     border          : var(  --ui-input-border-hover );
+    box-shadow      : var(  --ui-input-shadow       );
 
     }
     input[type="button"]:focus,
@@ -66,12 +63,9 @@
     input[type="url"]:focus,
     textarea:focus {
 
-    /* border       : var(  --ui-input-border); */
-
-    box-shadow      : var(  --ui-input-shadow       );
-
     border          : var(  --ui-input-border-focus );
-
+    box-shadow      : var(  --ui-input-shadow       );
+    outline         : none;
     }
 
     /* 	-------------------- -------------------- -------------------- -------------------- BUTTON  */
@@ -176,6 +170,7 @@
         padding         : 0.2rem;
         transition      : 0.2s ease-in;
 
+
     }
 
     select:active,
@@ -187,7 +182,7 @@
         border-color    : var(  --ui-input-border-hover     );
 
         /* color             : var(--ui-input-border-hover); */
-
+        outline         : none;
 
     }
 
@@ -342,6 +337,7 @@
     input[type='checkbox'].switch {
 
         border-radius   : 11px;
+        vertical-align  : bottom;
         width           : 38px;
 
     }

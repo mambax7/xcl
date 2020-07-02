@@ -6,7 +6,9 @@ require_once dirname(__DIR__) . '/class/gtickets.php' ;
 $cat_id = (int)@$_GET['cat_id'];
 
 // get&check this category ($category4assign, $category_row), override options
-if( ! include dirname(__DIR__) . '/include/process_this_category.inc.php' ) die( _MD_D3FORUM_ERR_READCATEGORY ) ;
+if( ! include dirname(__DIR__) . '/include/process_this_category.inc.php' ) {
+    die(_MD_D3FORUM_ERR_READCATEGORY);
+}
 
 // count children
 include_once XOOPS_ROOT_PATH . '/class/xoopstree.php';
@@ -14,7 +16,9 @@ $mytree = new XoopsTree($db->prefix($mydirname . '_categories') , 'cat_id', 'pid
 $children = $mytree->getAllChildId( $cat_id ) ;
 
 // special check for categorymanager
-if( ! $isadmin ) die( _MD_D3FORUM_ERR_CREATECATEGORY ) ;
+if( ! $isadmin ) {
+    die(_MD_D3FORUM_ERR_CREATECATEGORY);
+}
 
 // TRANSACTION PART
 require_once dirname(__DIR__) . '/include/transact_functions.php' ;
@@ -23,11 +27,13 @@ if( isset( $_POST['categoryman_post'] ) ) {
 		redirect_header(XOOPS_URL.'/',3,$xoopsGTicket->getErrors());
 	}
 	d3forum_updatecategory( $mydirname , $cat_id ) ;
-	if( ! empty(  $_POST['batch_action_turnsolvedon'] ) ) d3forum_transact_turnsolvedon_in_category( $mydirname , $cat_id ) ;
+	if( ! empty(  $_POST['batch_action_turnsolvedon'] ) ) {
+        d3forum_transact_turnsolvedon_in_category($mydirname, $cat_id);
+    }
 	redirect_header( XOOPS_URL."/modules/$mydirname/index.php?cat_id=$cat_id" , 2 , _MD_D3FORUM_MSG_CATEGORYUPDATED ) ;
 	exit ;
 }
-if( isset( $_POST['categoryman_delete'] ) && 0 == count($children )) {
+if( isset( $_POST['categoryman_delete'] ) && 0 === count($children )) {
 	if ( ! $xoopsGTicket->check( true , 'd3forum' ) ) {
 		redirect_header(XOOPS_URL.'/',3,$xoopsGTicket->getErrors());
 	}
@@ -40,11 +46,22 @@ if( isset( $_POST['categoryman_delete'] ) && 0 == count($children )) {
 
 include dirname(__DIR__) . '/include/constant_can_override.inc.php' ;
 $options4html = '' ;
-$category_configs = @unserialize( $cat_row['cat_options'] ) ;
-if( is_array( $category_configs ) ) foreach( $category_configs as $key => $val ) {
-	if( isset( $d3forum_configs_can_be_override[ $key ] ) ) {
-		$options4html .= htmlspecialchars( $key , ENT_QUOTES ) . ':' . htmlspecialchars( $val , ENT_QUOTES ) . "\n" ;
-	}
+
+/* unserialize approach which supports older versions of PHP */
+if (PHP_VERSION_ID >= 70000) {
+    /* to forbid classes unserializing at all use this: array('allowed_classes' => false) */
+    $category_configs = unserialize($cat_row, array('allowed_classes' => ['cat_options']));
+} else {
+    /* previous version */
+    $category_configs = unserialize($cat_row['cat_options']);
+}
+
+if( is_array( $category_configs ) ) {
+    foreach ($category_configs as $key => $val) {
+        if (isset($d3forum_configs_can_be_override[$key])) {
+            $options4html .= htmlspecialchars($key, ENT_QUOTES) . ':' . htmlspecialchars($val, ENT_QUOTES) . "\n";
+        }
+    }
 }
 
 $category4assign = [
@@ -79,5 +96,3 @@ $xoopsTpl->assign([
 ) ;
 
 include XOOPS_ROOT_PATH.'/footer.php';
-
-?>

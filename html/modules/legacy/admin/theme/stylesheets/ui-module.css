@@ -1,9 +1,9 @@
 /*
     XOOPSCube Theme : XCL Admin Flex Grid
     Distribution : XCL 2.3 Alpha
-    Version : 0.0.5
+    Version : 0.7.0
     Author : Nuno Luciano aka Gigamaster
-    Date : 2019-11-11
+    Date : 2020-06-11
     URL : https://github.com/xoopscube/xcl/
 
     -------------------- -------------------- -------------------- -------------------- AVATAR */
@@ -137,6 +137,14 @@
         font: normal;
     }
 
+    .fingerprint1 { color: var(  --ui-color-red   ) }
+    .fingerprint2 { color: var(  --ui-color-blue   ) }
+    .fingerprint3 { color: var(  --ui-color-green   ) }
+    .fingerprint4 { color: var(  ---ui-color-orange   ) }
+    .fingerprint5 { color: var(  --ui-color-purple   ) }
+    .fingerprint6 { color: var(  --ui-color-amber   ) }
+    .fingerprint7 { color: var(  --ui-link   ) }
+
     /* -------------------- -------------------- -------------------- -------------------- jQuery UI Widget */
 
     .ui-widget-content {
@@ -164,6 +172,7 @@
         background      : var(  --ui-button-background      );
         font-weight     : normal;
         color           : var(  --ui-button-color           );
+        transition: all 0.3s ease 0s;;
     }
    .ui-widget.ui-widget-content {
         border          : 1px solid var(  --ui-border-color );
@@ -172,7 +181,13 @@
         background      : var(  --ui-button-background      );
         color           : var(  --ui-button-color           );
     }
-    .ui-state-default a, .ui-state-default a:link, .ui-state-default a:visited, a.ui-button, a:link.ui-button, a:visited.ui-button, .ui-button {
+    .ui-state-default a,
+    .ui-state-default a:link,
+    .ui-state-default a:visited,
+    a.ui-button,
+    a:link.ui-button,
+    a:visited.ui-button,
+    .ui-button {
         color: var(--ui-color-200);
         text-decoration: none;
     }
@@ -184,9 +199,9 @@
      .ui-widget-header .ui-state-focus,
      .ui-button:hover, .ui-button:focus {
         background      : var( --ui-button-hover-bg     );
-        border          : 1px solid var(  --ui-boder-color    );
+        border          : 1px solid rgba(27, 27, 27, 0.5);
         color           : var(  --ui-button-hover-txt   );
-        font-weight     : normal;
+        outline         : none;
     }
 
     .ui-widget-header,

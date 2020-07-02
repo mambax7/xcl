@@ -185,19 +185,21 @@ function pico_sync_tags($mydirname)
 	$result = $db->query('SELECT content_id,tags FROM ' . $db->prefix($mydirname . '_contents'));
 	while (list($content_id, $tags) = $db->fetchRow($result)) {
 		foreach (explode(' ', $tags) as $tag) {
-			if ('' == trim($tag)) continue;
+			if ('' == trim($tag)) {
+                continue;
+            }
 			$all_tags_array[$tag][] = $content_id;
 		}
 	}
 
 	// delete/insert or update tags table
-	foreach ($all_tags_array as $tag => $content_ids) {
-		$label4sql = $db->quoteString($tag);
-		$content_ids4sql = implode(',', $content_ids);
-		$count = count($content_ids);
-		$result = $db->queryF(' UPDATE ' . $db->prefix($mydirname . '_tags') . " SET count = $count, content_ids ='$content_ids4sql', modified_time = UNIX_TIMESTAMP() WHERE label = $label4sql");
-		if (!$result) {
-			$db->queryF(' INSERT INTO ' . $db->prefix($mydirname . '_tags') . " SET label = $label4sql, weight = 0, count ='$count', content_ids= '$content_ids4sql', created_time = UNIX_TIMESTAMP(), modified_time= UNIX_TIMESTAMP()");
+	foreach( $all_tags_array as $tag => $content_ids ) {
+		$label4sql = $db->quoteString( $tag ) ;
+		$content_ids4sql = implode( ',' , $content_ids ) ;
+		$count = sizeof( $content_ids ) ;
+		$result = $db->queryF( "INSERT INTO ".$db->prefix($mydirname."_tags" )." SET label=$label4sql,weight=0,count='$count',content_ids='$content_ids4sql',created_time=UNIX_TIMESTAMP(),modified_time=UNIX_TIMESTAMP()" ) ;
+		if( ! $result ) {
+			$db->queryF( "UPDATE ".$db->prefix($mydirname."_tags" )." SET count=$count,content_ids='$content_ids4sql',modified_time=UNIX_TIMESTAMP() WHERE label=$label4sql" ) ;
 		}
 	}
 

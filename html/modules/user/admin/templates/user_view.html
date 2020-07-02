@@ -84,7 +84,7 @@
     <td class="head"><{$smarty.const._MD_USER_LANG_POSTS}></td>
     <td class="<{cycle values='odd,even'}>">
       <form action="./index.php?action=UserView" method="post">
-      <{$object->getShow('posts')}>
+          <span class="badge"><{$object->getShow('posts')}></span>
         <{xoops_token form=$actionForm}>
         <{xoops_input type=hidden name=uid value=$actionForm->get('uid')}>
         <input class='formButton' type='submit' value='<{$smarty.const._AD_USER_LANG_RECOUNT}>' />

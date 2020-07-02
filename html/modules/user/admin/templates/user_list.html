@@ -11,7 +11,13 @@
 
 <div class="ui-dev-mode"><{$smarty.template}></div>
 
-<div class="tips"><{$smarty.const._AD_USER_TIPS_USER_ADMIN}></div>
+<div class="tips">
+    <p><{$smarty.const._AD_USER_TIPS_USER_ADMIN}></p>
+    <p><input class="switch" type="checkbox" id="user-search" onclick="slideToggle('.user-search', this)" value="0">
+        <label for="user-search"> Display user search</label></p>
+    <p><input class="switch" type="checkbox" id="user-filter" onclick="slideToggle('.user-filter', this)" value="0">
+        <label for="user-filter"> Display user filter</label></p>
+</div>
 
 
 <{if $actionForm->hasError()}>
@@ -29,10 +35,12 @@
 <form name="userlistform" method="post" action="./index.php?action=UserList">
   <{xoops_token form=$actionForm}>
 
-
+    <div class="user-search" style="display: none">
 	<{ include file="./components/user-search.html" }>
-
+    </div>
+    <div class="user-filter" style="display: none">
 	<{ include file="./components/user-filter.html" }>
+    </div>
 
 	<hr>
 

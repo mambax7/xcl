@@ -42,7 +42,7 @@
 	<td class="head"><{$smarty.const._AD_LEGACY_LANG_VERSION}></td>
 	<td class="<{cycle values='odd,even'}>"><{math equation="v/100" v=$module->get('version') format="%.2f"}>
 	<{if $module->get('version')/100 != $module->modinfo.version  }>
-	  &raquo; <b class="legacy_module_warning"><{math equation=$module->modinfo.version format="%.2f"}></b>
+	  &raquo; <b class="message-warning"><{math equation=$module->modinfo.version format="%.2f"}></b>
 	<{/if}>
 	</td>
   </tr>

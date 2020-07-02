@@ -1,9 +1,9 @@
 /*
     XOOPSCube Theme : XCL Admin Flex Grid
     Distribution : XCL 2.3 Alpha
-    Version : 0.0.5
+    Version : 0.7.0
     Author : Nuno Luciano aka Gigamaster
-    Date : 2019-11-11
+    Date : 2020-06-11
     URL : https://github.com/xoopscube/xcl/
 
     -------------------- -------------------- -------------------- ROOT SETTINGS */
@@ -57,9 +57,6 @@
             }
     } */
 
-
-
-
 @media (prefers-color-scheme: dark) {
 
 :root[data-theme="dark"] {
@@ -78,48 +75,48 @@
 
 /* -------------------- -------------------- -------------------- Color Scheme Dark */
 
-    --ui-color-amber    : hsl(45, 74%, 47%);
-    --ui-color-black    : hsl(0, 0%, 6%);
-    --ui-color-blue     : hsl(208, 74%, 27%);
-    --ui-color-green    : hsl(126, 74%, 27%);
-    --ui-color-indigo   : hsl(275, 74%, 27%);
-    --ui-color-orange   : hsl(36, 74%, 47%);
-    --ui-color-purple   : hsl(300, 74%, 27%); /* #673ab7 */
-    --ui-color-red      : hsl(4, 74%, 47%);
+    --ui-color-amber    : HSL(44, 74%, 44%);
+    --ui-color-black    : hsl(0, 0%, 7%);
+    --ui-color-blue     : hsl(207, 74%, 27%);
+    --ui-color-green    : hsl(127, 74%, 27%);
+    --ui-color-indigo   : hsl(274, 74%, 27%);
+    --ui-color-orange   : hsl(30, 74%, 42%);
+    --ui-color-purple   : hsl(300, 74%, 27%);
+    --ui-color-red      : hsl(5, 74%, 42%);
     --ui-color-white    : hsl(0, 0%, 90%);
 
 /* -------------------- -------------------- -------------------- Color Link Dark */
 
     --ui-body-background: var(  --ui-color-600  ); /* #232831; */
-
-    --ui-link         : var(  --ui-color-100    );
-    --ui-link-active  : #face74;
-    --ui-link-hover   : #face74;
-    --ui-link-visited : var(  --ui-color-100    );
+    --ui-body-color     : var(  --ui-color-200  );
+    --ui-link           : var(  --ui-color-100  );
+    --ui-link-active    : #face74;
+    --ui-link-hover     : #face74;
+    --ui-link-visited   : var(  --ui-color-100   );
 
     }
  }
 
 
-/* -------------------- -------------------- -------------------- Color Theme Light */
+/* -------------------- -------------------- -------------------- Light Mode */
 
     :root[data-theme="light"] {
 
         --color-mode        : 'light';
 
-        /* -------------------- -------------------- Color Theme Light */
+        /* -------------------- -------------------- Light Mode Color-Scheme */
 
         --ui-color-900      : hsl(219, 15%, 90%);
         --ui-color-800      : hsl(219, 15%, 85%);
         --ui-color-700      : hsl(219, 15%, 80%);
         --ui-color-600      : hsl(219, 15%, 70%);
-        --ui-color-500      : hsl(219, 15%, 60%);
+        --ui-color-500      : hsl(220, 15%, 60%);
         --ui-color-400      : hsl(219, 15%, 50%);
         --ui-color-300      : hsl(219, 15%, 30%);
         --ui-color-200      : hsl(219, 15%, 15%);
         --ui-color-100      : hsl(219, 15%, 7%);
 
-        /* -------------------- -------------------- Color Scheme Light */
+        /* -------------------- -------------------- Light Mode Colors */
 
         --ui-color-amber    : #ffc107;
         --ui-color-black    : #101010;
@@ -129,26 +126,30 @@
         --ui-color-orange   : #ff9800;
         --ui-color-purple   : #800080; /* #673ab7 */
         --ui-color-red      : #f44336;
-        --ui-color-white    : hsl(0, 0%, 90%);
+        --ui-color-white    : hsl(0, 0%, 95%);
 
-        /* -------------------- -------------------- Color Link Light */
+        /* -------------------- -------------------- Light Mode Link */
 
         --ui-link           : var(--ui-color-200);
         --ui-link-active    : var(--ui-color-blue);
         --ui-link-hover     : var(--ui-color-blue);
         --ui-link-visited   : var(--ui-color-200);
 
-        /* -------------------- -------------------- Color Link Misc */
+        /* -------------------- -------------------- Light Mode Misc */
 
         --ui-body-background        : var(  --ui-color-600      ); /* hsl(210, 18%, 80%); */
+        --ui-body-color             : var(  --ui-color-200      );
         --ui-breadcrumbs-background : var(  --ui-color-500      );
         --ui-breadcrumbs-bg-link    : var(  --ui-color-700      );
         --ui-button-background      : var(  --ui-color-700      );
+        --ui-button-color           : var(  --ui-color-200      );
         --ui-button-hover-txt       : var(  --ui-color-700      );
         --ui-card-block-background  : var(  --ui-color-700      );
         --ui-card-block-image    	: none;
         --ui-card-block-hover       : var(  --ui-color-900      );
+        --ui-card-full-background   : var(  --ui-color-700      );
         --ui-card-small-background  : var(  --ui-color-700      );
+        --ui-input-background       : var(  --ui-color-500      );
         --ui-footer-background      : var(  --ui-color-200      );
         --ui-footer-border          : solid var(  --ui-color-100);
         --ui-footer-border-width    : 1px 0 0 0 ;
@@ -175,7 +176,7 @@
     --ui-font-monospace     : SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono","Courier New",monospace;
     --ui-font-serif         : serif;
     --ui-font-size          : 15px;
-    --ui-font-weight        : 300;
+    --ui-font-weight        : normal; /* 300; */
 
 
 /* -------------------- -------------------- -------------------- LAYOUT Grid template */
@@ -217,7 +218,7 @@
     --ui-breadcrumbs-box-shadow     : var(	--ui-shadow-100     );
 
     --ui-breadcrumbs-padding        : var(	--ui-space-300      ) var(  --ui-space-500  );
-    --ui-breadcrumbs-margin         : var(	--ui-space-200      ) 0 var(  --ui-space-500  ); /* Top & Bottom, '0' for Left & Right*/
+    --ui-breadcrumbs-margin         : var(	--ui-space-300      ) 0 var(  --ui-space-300  ); /* Top & Bottom, '0' for Left & Right*/
 
     --ui-breadcrumbs-bg-link        : var(	--ui-color-400      );
 
@@ -225,7 +226,7 @@
 /* -------------------- -------------------- -------------------- BUTTON style [default]  */
 
     --ui-button-active      : 0;
-    --ui-button-background  : var(	--ui-color-500      );
+    --ui-button-background  : var(	--ui-color-400      );
 
     /* --ui-button-box-shadow  : 0 2px 5px rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12); */
 
@@ -234,12 +235,9 @@
     --ui-button-border      : 1px solid var(	--ui-color-600      );
     --ui-button-radius      : var(	--ui-border-radius  );
 
-    --ui-button-color       : var(  --ui-color-100    ); /*#3C4858; */
+    --ui-button-color       : var(  --ui-color-white    );
 
-    --ui-button-disable-bg  : var(  --ui-color-500      );
-    --ui-button-disable-txt : var(  --ui-color-300      );
-
-    --ui-button-font-size   : var(  --ui-size-300   );
+    --ui-button-font-size   : var(  --ui-size-300       );
 
     --ui-button-hover-bg    : var(  --ui-color-300      );
     --ui-button-hover-txt   : var(  --ui-color-100      );
@@ -251,7 +249,7 @@
 /* -------------------- -------------------- -------------------- CARD-BLOCK */
 
     --ui-card-block-background    	: var(  --ui-color-600      );
-    --ui-card-block-background    	: none; /* linear-gradient(200deg, hsla(219, 15%, 15%, 0.50), hsla(219, 15%, 10%, 0.80)); */
+     /* --ui-card-block-background    	: none; linear-gradient(200deg, hsla(219, 15%, 15%, 0.50), hsla(219, 15%, 10%, 0.80)); */
     --ui-card-block-border-color  	: var(  --ui-color-800      );
     --ui-card-block-border-radius 	: var(  --ui-border-radius  );
     --ui-card-block-border-style  	: var(  --ui-border-style   );
@@ -276,7 +274,7 @@
     --ui-card-block-content-bg      : transparent ;
 
     --ui-card-block-content-border	: var(  --ui-color-400      );
-    --ui-card-block-content-padding	: var(  --ui-space-600      );
+    --ui-card-block-content-padding	: 0;
 
     /* CARD BLOCK ITEM    */
     --ui-card-block-item-padding    : var(  --ui-space-400      ) 0.75em ;
@@ -285,7 +283,7 @@
 
 /* -------------------- -------------------- -------------------- CARD-FULL */
 
-    --ui-card-full-background       : var(  --ui-color-700      );
+    --ui-card-full-background       : var(  --ui-color-500      );
 
     --ui-card-full-border-color     : var(  --ui-color-600      );
     --ui-card-full-border-radius    : var(  --ui-border-radius  );
@@ -348,9 +346,9 @@
     --ui-input-border-width     : var(	--ui-border-width   );
 
     --ui-input-border-hover     : 1px solid var(  --ui-link-active  );
-    --ui-input-border-focus     : 1px solid var(  --ui-link-active  );
+    --ui-input-border-focus     : 1px solid var(  --ui-color-400    );
 
-    --ui-input-color            : var(  --ui-color-200 );
+    --ui-input-color            : var(  --ui-color-200  );
 
     /* --ui-input-shadow        : var(  --ui-shadow-inset 	); */
 
@@ -384,7 +382,7 @@
 
     --ui-nav-side-color         : var(  --ui-color-100     );
     --ui-nav-side-padding       : var(  --ui-space-600      ) 0 0;
-    --ui-nav-side-margin        : var(  --ui-space-600      );
+    --ui-nav-side-margin        : 0;
 
     --ui-nav-side-width         : 227px;
 
@@ -424,7 +422,7 @@
 
 /*	-------------------- -------------------- -------------------- SCREEN-MODE */
 
-    --ui-screen-mode-background : #ff21104d ;
+/*    --ui-screen-mode-background : #ff21104d ;
 
     --ui-screen-mode-border-color   : var(  --ui-color-400      );
     --ui-screen-mode-border-radius  : var(  --ui-border-radius  );
@@ -437,7 +435,7 @@
     --ui-screen-mode-margin         : var(  --ui-space-600;     );
 
     --ui-screen-mode-info-color     : #fc3232;
-    --ui-screen-mode-info-child     : #face74;
+    --ui-screen-mode-info-child     : #face74;*/
 
 
 /*	-------------------- -------------------- -------------------- SHADOW */
@@ -453,6 +451,7 @@
 
     --ui-shadow-inset   : 0 5px 10px rgba(0, 0, 0, 0.05), 0 0 0 1px #ddd inset;
     --ui-shadow-hover   : 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+
     --ui-shadow-transition	: all 0.3s cubic-bezier(.25,.8,.25,1);
 
 
@@ -510,8 +509,8 @@
 
 /*	-------------------- -------------------- -------------------- TABS */
 
-    --ui-tab-background         : var(  --ui-color-700  );
-    --ui-tab-background-hover   : var(  --ui-color-600  );
+    --ui-tab-background      : var(  --ui-color-700  );
+    --ui-tab-background-hover: var(  --ui-color-600  );
 
     --ui-tab-shadow         : var(  --ui-shadow-200 );
     --ui-tab-shadow-hover   : var(  --ui-shadow-600 );

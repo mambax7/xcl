@@ -11,54 +11,50 @@ abstract class AbstractAction
     protected $root;
     protected $url = 'index.php';
     protected $unamelink = [];
-  
+
     public function __construct()
     {
         $this->root = XCube_Root::getSingleton();
     }
-  
+
     protected function setUrl($url)
     {
         $this->url = $url;
     }
-  
+
     public function getUrl()
     {
         return $this->url;
     }
-  
+
     protected function setErr($msg)
     {
         $this->isError = true;
         $this->errMsg = $msg;
     }
-  
+
     public function getisError()
     {
         return $this->isError;
     }
-  
+
     public function geterrMsg()
     {
         return $this->errMsg;
     }
-  
+
     public function chk_use($uid = 0)
     {
         $modObj = $this->getSettings($uid);
-        if (1 == $modObj->get('usepm')) {
-            return true;
-        } else {
-            return false;
-        }
+        return 1 === $modObj->get('usepm');
     }
-  
+
     public function getSettings($uid = 0)
     {
-        if (0 == $uid) {
+        if (0 === $uid) {
             $uid = $this->root->mContext->mXoopsUser->get('uid');
         }
-    
+
         $modHand = xoops_getmodulehandler('settings', _MY_DIRNAME);
         $modObj = $modHand->get($uid);
         if (!is_object($modObj)) {
@@ -67,11 +63,11 @@ abstract class AbstractAction
         }
         return $modObj;
     }
-  
+
     public function getLinkUnameFromId($uid, $uname = '')
     {
         $uid = (int)$uid;
-    
+
         if ($uid > 0) {
             if (isset($this->unamelink[$uid])) {
                 return $this->unamelink[$uid];
@@ -83,15 +79,15 @@ abstract class AbstractAction
                 return $this->unamelink[$uid];
             }
             return $this->root->mContext->mXoopsConfig['anonymous'];
-        } else {
-            return $uname;
         }
+
+        return $uname;
     }
-  
+
     protected function getMailer()
     {
         $classname = 'XoopsMailer';
-        if (_USE_XOOPSMAILER == true) {
+        if (_USE_XOOPSMAILER === true) {
             require_once XOOPS_ROOT_PATH.'/class/xoopsmailer.php';
             if (is_file(XOOPS_ROOT_PATH.'/language/'.$this->root->mLanguageManager->mLanguageName.'/xoopsmailerlocal.php')) {
                 require_once XOOPS_ROOT_PATH.'/language/'.$this->root->mLanguageManager->mLanguageName.'/xoopsmailerlocal.php';
@@ -106,7 +102,7 @@ abstract class AbstractAction
         }
         return new $classname();
     }
-  
+
     abstract public function execute();
     abstract public function executeView(&$render);
 }

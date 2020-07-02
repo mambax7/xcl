@@ -9,7 +9,7 @@ define('_MD_PICO_FILTERS_XCODEDISABLEONHTML', true);
 
 function pico_xcode($mydirname, $text, $content4assign)
 {
-	require_once dirname(__DIR__) . '/class/pico.textsanitizer.php';
+	require_once dirname(__DIR__) . '/class/PicoTextSanitizer.class.php';
 	$myts = &PicoTextSanitizer::sGetInstance();
 
 	// html=on, smiley=0, xcode=1, $image=1, $br=0

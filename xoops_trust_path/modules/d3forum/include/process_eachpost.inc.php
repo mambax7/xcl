@@ -1,7 +1,7 @@
 <?php
 
 	// can_vote
-	$can_vote = ( ($uid || $xoopsModuleConfig['guest_vote_interval']) && 1 == $xoopsModuleConfig['use_vote']) ? true : false ;
+	$can_vote = ($uid || $xoopsModuleConfig['guest_vote_interval']) && 1 == $xoopsModuleConfig['use_vote'];
 
 	// invisible
 	if( $post_row['invisible'] || ! $post_row['approval'] ) {
@@ -21,7 +21,7 @@
 	if( is_object( $poster_obj ) ) {
 		// active user's post
 		// naao from
-		if (1 == $xoopsModuleConfig['use_name'] && $poster_obj->getVar('name' ) ) {
+		if (1 === $xoopsModuleConfig['use_name'] && $poster_obj->getVar('name' ) ) {
 			$poster_uname4disp = $poster_obj->getVar( 'name' ) ;
 		} else {
 			$poster_uname4disp = $poster_obj->getVar( 'uname' ) ;
@@ -37,7 +37,7 @@
 
 		// avatar
 		if( is_file( XOOPS_UPLOAD_PATH.'/'.$poster_obj->getVar( 'user_avatar' ) ) ) {
-			list( $avatar_width , $avatar_height , $avatar_type , $avatar_attr ) = getimagesize( XOOPS_UPLOAD_PATH.'/'.$poster_obj->getVar( 'user_avatar' ) ) ;
+			[$avatar_width, $avatar_height, $avatar_type, $avatar_attr] = getimagesize(XOOPS_UPLOAD_PATH . '/' . $poster_obj->getVar('user_avatar'));
 			$poster_avatar = [
 				'path' => htmlspecialchars( $poster_obj->getVar( 'user_avatar' ) , ENT_QUOTES ) ,
 				'width' => $avatar_width ,
@@ -61,9 +61,9 @@
 		if( $isadminormod ) {
 			$can_edit = true ;
 			$can_delete = true ;
-		} else if( $post_row['uid'] == $uid ) {
-			$can_edit = $forum_permissions[ $forum_id ]['can_edit'] && time() < $post_row['post_time'] + $xoopsModuleConfig['selfeditlimit'] ? true : false ;
-			$can_delete = $forum_permissions[ $forum_id ]['can_delete'] && time() < $post_row['post_time'] + $xoopsModuleConfig['selfdellimit'] ? true : false ;
+		} else if( $post_row['uid'] === $uid ) {
+			$can_edit = $forum_permissions[ $forum_id ]['can_edit'] && time() < $post_row['post_time'] + $xoopsModuleConfig['selfeditlimit'];
+			$can_delete = $forum_permissions[ $forum_id ]['can_delete'] && time() < $post_row['post_time'] + $xoopsModuleConfig['selfdellimit'];
 		} else {
 			$can_edit = false ;
 			$can_delete = false ;
@@ -87,9 +87,9 @@
 		if( $isadminormod ) {
 			$can_edit = true ;
 			$can_delete = true ;
-		} else if( $post_row['uid_hidden'] && $post_row['uid_hidden'] == $uid  ) {
-			$can_edit = $forum_permissions[ $forum_id ]['can_edit'] && time() < $post_row['post_time'] + $xoopsModuleConfig['selfeditlimit'] ? true : false ;
-			$can_delete = $forum_permissions[ $forum_id ]['can_delete'] && time() < $post_row['post_time'] + $xoopsModuleConfig['selfdellimit'] ? true : false ;
+		} else if( $post_row['uid_hidden'] && $post_row['uid_hidden'] === $uid  ) {
+			$can_edit = $forum_permissions[ $forum_id ]['can_edit'] && time() < $post_row['post_time'] + $xoopsModuleConfig['selfeditlimit'];
+			$can_delete = $forum_permissions[ $forum_id ]['can_delete'] && time() < $post_row['post_time'] + $xoopsModuleConfig['selfdellimit'];
 		} else if( $uid > 0 ) {
 			// normal user cannot touch guest's post
 			$can_edit = false ;
@@ -97,7 +97,7 @@
 		} else {
 			// guest can delete posts by password
 			$can_edit = false ;
-			$can_delete = $post_row['guest_pass_md5'] && $forum_permissions[ $forum_id ]['can_delete'] && time() < $post_row['post_time'] + $xoopsModuleConfig['selfdellimit'] ? true : false ;
+			$can_delete = $post_row['guest_pass_md5'] && $forum_permissions[ $forum_id ]['can_delete'] && time() < $post_row['post_time'] + $xoopsModuleConfig['selfdellimit'];
 		}
 	}
 
@@ -114,5 +114,3 @@
 		$can_delete = $d3com->canDelete( $topic_row['topic_external_link_id'] , $can_delete , $post_row['post_id'] ) ;
 		$need_approve = $d3com->needApprove( $topic_row['topic_external_link_id'] , $need_approve ) ;
 	}
-
-?>

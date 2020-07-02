@@ -23,5 +23,3 @@ function b_sitemap_d3forum( $mydirname )
 
 	return $ret;
 }
-
-?>

@@ -15,10 +15,8 @@ if (! function_exists('altsys_onupdate_base')) {
         $root =& XCube_Root::getSingleton();
         $root->mDelegateManager->add('Legacy.Admin.Event.ModuleUpdate.' . ucfirst($mydirname) . '.Success', 'altsys_message_append_onupdate') ;
         $msgs = [];
-    } else {
-        if (! is_array($msgs)) {
-            $msgs = [];
-        }
+    } else if (! is_array($msgs)) {
+        $msgs = [];
     }
 
         $db =& XoopsDatabaseFactory::getDatabaseConnection() ;
@@ -30,7 +28,7 @@ if (! function_exists('altsys_onupdate_base')) {
 
     // configs (Though I know it is not a recommended way...)
     $check_sql = 'SHOW COLUMNS FROM ' . $db->prefix('config') . " LIKE 'conf_title'" ;
-        if (($result = $db->query($check_sql)) && ($myrow = $db->fetchArray($result)) && 'varchar(30)' == @$myrow['Type']) {
+        if (($result = $db->query($check_sql)) && ($myrow = $db->fetchArray($result)) && 'varchar(30)' === @$myrow['Type']) {
             $db->queryF('ALTER TABLE ' . $db->prefix('config') . " MODIFY `conf_title` varchar(255) NOT NULL default '', MODIFY `conf_desc` varchar(255) NOT NULL default ''") ;
         }
 
@@ -46,7 +44,7 @@ if (! function_exists('altsys_onupdate_base')) {
         $tpl_path    = __DIR__ . '/templates' ;
         if ($handler = @opendir($tpl_path . '/')) {
             while (false !== ($file = readdir($handler))) {
-                if ('.' == substr($file, 0, 1)) {
+                if (strpos($file, '.') === 0) {
                     continue ;
                 }
                 $file_path = $tpl_path . '/' . $file ;

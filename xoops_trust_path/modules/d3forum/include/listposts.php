@@ -6,10 +6,14 @@ $topic_id = (int) @$_GET['topic_id'];
 include __DIR__ . '/process_this_topic.inc.php';
 
 // get&check this forum ($forum4assign, $forum_row, $cat_id, $isadminormod), override options
-if (!include __DIR__ . '/process_this_forum.inc.php') redirect_header(XOOPS_URL . '/user.php', 3, _MD_D3FORUM_ERR_READFORUM);
+if (!include __DIR__ . '/process_this_forum.inc.php') {
+    redirect_header(XOOPS_URL . '/user.php', 3, _MD_D3FORUM_ERR_READFORUM);
+}
 
 // get&check this category ($category4assign, $category_row), override options
-if (!include __DIR__ . '/process_this_category.inc.php') redirect_header(XOOPS_URL . '/user.php', 3, _MD_D3FORUM_ERR_READCATEGORY);
+if (!include __DIR__ . '/process_this_category.inc.php') {
+    redirect_header(XOOPS_URL . '/user.php', 3, _MD_D3FORUM_ERR_READCATEGORY);
+}
 
 
 // post order
@@ -32,8 +36,10 @@ switch ($postorder) {
 // post_hits ~ pagenavi //naao from
 
 $sql = 'SELECT COUNT(post_id) FROM ' . $db->prefix($mydirname . '_posts') . " WHERE topic_id='$topic_id'";
-if (!$prs = $db->query($sql)) die(_MD_D3FORUM_ERR_SQL . __LINE__);
-list($post_hits) = $db->fetchRow($prs);
+if (!$prs = $db->query($sql)) {
+    die(_MD_D3FORUM_ERR_SQL . __LINE__);
+}
+[$post_hits] = $db->fetchRow($prs);
 
 // pagenav
 $pagenav = '';
@@ -45,7 +51,7 @@ if ($post_hits > $num) {
     // POS
     //$pos = isset( $_GET['pos'] ) ? intval( $_GET['pos'] ) : (($postorder != 3) ? (int)(($post_hits-1) / $num) * $num : 0) ;
     $pos = isset($_GET['pos']) ? (int) $_GET['pos']
-        : ((0 == $postorder) || (2 == $postorder) ? (int) (($post_hits - 1) / $num) * $num : 0);
+        : ((0 === $postorder) || (2 === $postorder) ? (int) (($post_hits - 1) / $num) * $num : 0);
     require_once dirname(__DIR__) . '/class/D3forumPagenav.class.php';
     $pagenav_obj = new D3forumPagenav($post_hits, $num, $pos, 'pos', $query4nav);
     $pagenav = $pagenav_obj->getNav();
@@ -59,7 +65,9 @@ $last_post_offset = 0;
 $posts = [];
 //$sql = "SELECT * FROM ".$db->prefix($mydirname."_posts")." WHERE topic_id=$topic_id ORDER BY order_in_tree,post_id LIMIT $pos,$num" ; //naao
 $sql = 'SELECT * FROM ' . $db->prefix($mydirname . '_posts') . " WHERE topic_id=$topic_id ORDER BY $postorder4sql LIMIT $pos,$num"; //naao
-if (!$prs = $db->query($sql)) die(_MD_D3FORUM_ERR_SQL . __LINE__);
+if (!$prs = $db->query($sql)) {
+    die(_MD_D3FORUM_ERR_SQL . __LINE__);
+}
 
 while ($post_row = $db->fetchArray($prs)) {
 
@@ -67,7 +75,9 @@ while ($post_row = $db->fetchArray($prs)) {
     include __DIR__ . '/process_eachpost.inc.php';
 
     // get row of last_post
-    if ($post_row['post_time'] > $max_post_time) $last_post_offset = count($posts);
+    if ($post_row['post_time'] > $max_post_time) {
+        $last_post_offset = count($posts);
+    }
 
     // posts array
     $posts[] = [
@@ -131,10 +141,16 @@ $posts = d3forum_make_treeinformations($posts);
 // post order
 switch ($postorder) {
     case 3:
-        usort($posts, create_function('$a,$b', 'return $a["id"] > $b["id"] ? -1 : 1 ;'));
+        // usort($posts, create_function('$a,$b', 'return $a["id"] > $b["id"] ? -1 : 1 ;')); !Deprecated fix @gigamaster
+        usort($posts, static function($a, $b){
+        return ($a["id"] > $b["id"] ? -1 : 1 );
+        });
         break;
     case 2:
-        usort($posts, create_function('$a,$b', 'return $a["id"] > $b["id"] ? 1 : -1 ;'));
+        //usort($posts, create_function('$a,$b', 'return $a["id"] > $b["id"] ? 1 : -1 ;')); !Deprecated fix @gigamaster
+        usort($posts, static function($a, $b){
+            return ($a["id"] > $b["id"] ? 1 : -1 );
+        });
         break;
     case 1:
         rsort($posts);
@@ -147,7 +163,9 @@ switch ($postorder) {
 // for meta description // naao
 $reply_for_description = '';
 if ($post_hits) {
-    if ($post_hits > 1) $reply_for_description = '[' . _MD_D3FORUM_REPLIES . ($post_hits - 1) . ']';
+    if ($post_hits > 1) {
+        $reply_for_description = '[' . _MD_D3FORUM_REPLIES . ($post_hits - 1) . ']';
+    }
     $d3forum_meta_description = mb_substr(trim(strip_tags($posts[0]['post_text'])), 0, 57, _CHARSET);
     $d3forum_meta_description .= '...';
     $d3forum_meta_description .= mb_substr(trim(strip_tags($posts[count($posts) - 1]['post_text'])), 0, (60 - strlen($reply_for_description)), _CHARSET) . $reply_for_description;
@@ -162,7 +180,7 @@ $topic4assign['last_post_uname'] = @$posts[$last_post_offset]['poster_uname'];
 
 // naao from
 if (is_object($xoopsUser)) {
-    if (1 == $xoopsModuleConfig['use_name'] && $xoopsUser->getVar('name')) {
+    if (1 === $xoopsModuleConfig['use_name'] && $xoopsUser->getVar('name')) {
         $poster_uname4disp = $xoopsUser->getVar('name');
     } else {
         $poster_uname4disp = $xoopsUser->getVar('uname');
@@ -182,7 +200,9 @@ if ($topic4assign['external_link_id'] > 0) {
 			AND (t.topic_external_link_id='" . (int) $topic4assign['external_link_id'] . "'
 			OR t.topic_id=$topic_id ) ";
 
-    if (!$prs = $db->query($sql)) die(_MD_D3FORUM_ERR_SQL . __LINE__);
+    if (!$prs = $db->query($sql)) {
+        die(_MD_D3FORUM_ERR_SQL . __LINE__);
+    }
     while ($post_row = $db->fetchArray($prs)) {
         // topics array
         $topic_last_uid = (int) $post_row['topic_last_uid'];

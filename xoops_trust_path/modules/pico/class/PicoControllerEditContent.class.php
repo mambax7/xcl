@@ -17,7 +17,7 @@ class PicoControllerEditContent extends PicoControllerAbstract
         $page = empty($request['makecontent']) ? 'contentmanager' : 'makecontent';
 
         // $contentObj
-        $contentObj = new PicoContent($this->mydirname, $request['content_id'], $this->currentCategoryObj, 'makecontent' == $page);
+        $contentObj = new PicoContent($this->mydirname, $request['content_id'], $this->currentCategoryObj, 'makecontent' === $page);
 
         // check existence
         if ($contentObj->isError()) {
@@ -26,27 +26,25 @@ class PicoControllerEditContent extends PicoControllerAbstract
         }
 
         // fetch data from DB
-        $cat_data                          = $this->currentCategoryObj->getData();
-        $this->assign['category']          = $this->currentCategoryObj->getData4html();
-        $content_data                      = $contentObj->getData();
-        $this->assign['content_base']      = $contentObj->getData4html(true);
+        $cat_data = $this->currentCategoryObj->getData();
+        $this->assign['category'] = $this->currentCategoryObj->getData4html();
+        $content_data = $contentObj->getData();
+        $this->assign['content_base'] = $contentObj->getData4html(true);
         $this->contentObjs['content_base'] = &$contentObj;
-        $this->assign['content']           = $contentObj->getData4edit();
+        $this->assign['content'] = $contentObj->getData4edit();
 
         // permission check
-        if ('makecontent' == $page) {
+        if ('makecontent' === $page) {
             if (empty($cat_data['can_post'])) {
                 redirect_header(XOOPS_URL . '/', 2, _MD_PICO_ERR_CREATECONTENT);
             }
-        } else {
-            if (empty($content_data['can_edit'])) {
-                redirect_header(XOOPS_URL . '/', 2, $content_data['locked'] ? _MD_PICO_ERR_LOCKEDCONTENT : _MD_PICO_ERR_EDITCONTENT);
-            }
+        } else if (empty($content_data['can_edit'])) {
+            redirect_header(XOOPS_URL . '/', 2, $content_data['locked'] ? _MD_PICO_ERR_LOCKEDCONTENT : _MD_PICO_ERR_EDITCONTENT);
         }
 
         // category list can be read for category jumpbox etc.
-        $categoryHandler                     = new PicoCategoryHandler($this->mydirname, $this->permissions);
-        $categories                          = $categoryHandler->getAllCategories();
+        $categoryHandler = new PicoCategoryHandler($this->mydirname, $this->permissions);
+        $categories = $categoryHandler->getAllCategories();
         $this->assign['categories_can_post'] = [];
         foreach ($categories as $tmpObj) {
             $tmp_data = $tmpObj->getData();
@@ -61,7 +59,7 @@ class PicoControllerEditContent extends PicoControllerAbstract
 
         // breadcrumbs
         $breadcrumbsObj = &AltsysBreadcrumbs::getInstance();
-        if ('makecontent' == $page) {
+        if ('makecontent' === $page) {
             $breadcrumbsObj->appendPath('', _MD_PICO_LINK_MAKECONTENT);
             $this->assign['xoops_pagetitle'] = _MD_PICO_LINK_MAKECONTENT;
         } else {
@@ -73,21 +71,21 @@ class PicoControllerEditContent extends PicoControllerAbstract
 
         // misc assigns
         $this->assign['content_histories'] = pico_get_content_histories4assign($this->mydirname, $content_data['id']);
-        $this->assign['page']              = $page;
-        $this->assign['formtitle']         = 'makecontent' == $page ? _MD_PICO_LINK_MAKECONTENT : _MD_PICO_LINK_EDITCONTENT;
-        $this->assign['gticket_hidden']    = $GLOBALS['xoopsGTicket']->getTicketHtml(__LINE__, 1800, 'pico');
+        $this->assign['page'] = $page;
+        $this->assign['formtitle'] = 'makecontent' === $page ? _MD_PICO_LINK_MAKECONTENT : _MD_PICO_LINK_EDITCONTENT;
+        $this->assign['gticket_hidden'] = $GLOBALS['xoopsGTicket']->getTicketHtml(__LINE__, 1800, 'pico');
 
         // views
-        $this->template_name         = $this->mydirname . '_main_content_form.html';
+        $this->template_name = $this->mydirname . '_main_content_form.html';
         $this->is_need_header_footer = true;
 
         // preview
         $this->processPreview($request);
 
         // editor (wysiwyg etc)
-        $editor_assigns               = $this->getEditorAssigns('body', $this->assign['content']['body_raw']);
+        $editor_assigns = $this->getEditorAssigns('body', $this->assign['content']['body_raw']);
         $this->assign['body_wysiwyg'] = $editor_assigns['body'];
-        $this->html_header            .= $editor_assigns['header'];
+        $this->html_header .= $editor_assigns['header'];
     }
 
     // virtual
@@ -99,30 +97,32 @@ class PicoControllerEditContent extends PicoControllerAbstract
     {
         if (empty($_POST['body_editor'])) {
             $editor = $this->mod_config['body_editor'];
-        } else {
+        }
+        // @Todo add wysiwyg editor
+        /*  else {
             $editor = $_POST['body_editor'];
         }
 
-        if ('common_fckeditor' == $editor) {
+       if ('common_fckeditor' === $editor) {
             // FCKeditor in common/fckeditor/
             $header = '
 				<script type="text/javascript" src="' . XOOPS_URL . '/common/fckeditor/fckeditor.js"></script>
 				<script type="text/javascript"><!--
 					function fckeditor_exec() {
 						var oFCKeditor = new FCKeditor( "' . $name . '" , "100%" , "500" , "Default" );
-						
+
 						oFCKeditor.BasePath = "' . XOOPS_URL . '/common/fckeditor/";
-						
+
 						oFCKeditor.ReplaceTextarea();
 					}
 				// --></script>
 			';
             $body   = '<textarea id="' . $name . '" name="' . $name . '">' . htmlspecialchars($value, ENT_QUOTES) . '</textarea><script>fckeditor_exec();</script>';
-        } else {
-            // normal (xoopsdhtmltarea)
-            $header = '';
-            $body   = '';
-        }
+        } else {*/
+        // normal (xoopsdhtmltarea)
+        $header = '';
+        $body = '';
+        // }
 
         return ['header' => $header, 'body' => $body];
     }

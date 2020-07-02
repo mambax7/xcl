@@ -28,7 +28,7 @@ define('_MD_MESSAGE_TEMPLATE7', 'Sent Box');
 define('_MD_MESSAGE_TEMPLATE8', 'New message');
 define('_MD_MESSAGE_TEMPLATE9', 'To');
 define('_MD_MESSAGE_TEMPLATE10', 'Date');
-define('_MD_MESSAGE_TEMPLATE11', 'Message');
+define('_MD_MESSAGE_TEMPLATE11', 'Message Read');
 define('_MD_MESSAGE_TEMPLATE12', 'From');
 define('_MD_MESSAGE_TEMPLATE13', 'Reply');
 define('_MD_MESSAGE_TEMPLATE14', 'Delete');
@@ -38,7 +38,7 @@ define('_MD_MESSAGE_TEMPLATE17', 'Read');
 define('_MD_MESSAGE_TEMPLATE18', 'Order');
 define('_MD_MESSAGE_TEMPLATE19', 'Lock');
 define('_MD_MESSAGE_TEMPLATE20', 'Unlock');
-define('_MD_MESSAGE_TEMPLATE21', 'Send email');
+define('_MD_MESSAGE_TEMPLATE21', 'Forward to email');
 define('_MD_MESSAGE_TEMPLATE22', 'Status');
 
 define('_MD_MESSAGE_ADDFAVORITES', 'Add to favorites');
@@ -52,7 +52,7 @@ define('_MD_MESSAGE_FAVORITES5', 'Delete');
 
 define('_MD_MESSAGE_SETTINGS', 'Private Message Settings');
 define('_MD_MESSAGE_SETTINGS_MSG1', 'Use private message');
-define('_MD_MESSAGE_SETTINGS_MSG2', 'Forword to email');
+define('_MD_MESSAGE_SETTINGS_MSG2', 'Forward to Email');
 define('_MD_MESSAGE_SETTINGS_MSG3', 'change settings');
 define('_MD_MESSAGE_SETTINGS_MSG4', 'Fail updating !');
 define('_MD_MESSAGE_SETTINGS_MSG5', 'You cannot use private message. Please modify settings.');
@@ -74,10 +74,10 @@ define('_MD_MESSAGE_SETTINGS_MSG19', 'The user does not exist.');
 define('_MD_MESSAGE_MAILSUBJECT', 'You have a New Private Message');
 define('_MD_MESSAGE_MAILBODY', '{0} login, please.');
 
-define('_MD_MESSAGE_ADDBLACKLIST', 'This user was added to the blacklist.');
+define('_MD_MESSAGE_ADDBLACKLIST', 'Blacklist User');
 
-define('_MD_MESSAGE_DELETEMSG1', 'The parameter is illegal.');
-define('_MD_MESSAGE_DELETEMSG2', 'It is not selected.');
+define('_MD_MESSAGE_DELETEMSG1', 'The parameter is incorrect.');
+define('_MD_MESSAGE_DELETEMSG2', 'No Items Selected.');
 
 define('_MD_MESSAGE_SEARCH', 'Search');
 

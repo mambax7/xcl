@@ -1,13 +1,15 @@
 <?php
 
-if (!defined('XOOPS_ROOT_PATH')) exit();
+if (!defined('XOOPS_ROOT_PATH')) {
+    exit();
+}
 
 /**
  * This is test menu block for control panel of legacy module.
  *
  * [ASSIGN]
  *  No
- * 
+ *
  * @package legacy
  */
 class Legacy_AdminWaiting extends Legacy_AbstractBlockProcedure
@@ -34,6 +36,8 @@ class Legacy_AdminWaiting extends Legacy_AbstractBlockProcedure
 
     public function execute()
     {
+        $root =& XCube_Root::getSingleton();
+
         $render =& $this->getRenderTarget();
 
         // Load theme template ie fallback
@@ -45,7 +49,7 @@ class Legacy_AdminWaiting extends Legacy_AbstractBlockProcedure
 
         $modules = [];
         XCube_DelegateUtils::call('Legacyblock.Wating.Show', new XCube_Ref($modules));
-        //$root =& XCube_Root::getSingleton();
+
         $render->setAttribute('modules', $modules);
         $render->setAttribute('blockid', $this->getName());
         $renderSystem =& $root->getRenderSystem($this->getRenderSystemName());
@@ -69,4 +73,4 @@ class Legacy_AdminWaiting extends Legacy_AbstractBlockProcedure
     }
 }
 
-?>
+

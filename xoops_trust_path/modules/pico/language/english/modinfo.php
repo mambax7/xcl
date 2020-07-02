@@ -11,22 +11,22 @@ if (defined('FOR_XOOPS_LANG_CHECKER') || !defined($constpref . '_LOADED')) {
     define($constpref . '_NAME', 'pico');
 
     // A brief description of this module
-    define($constpref . '_DESC', 'The module manages content publication, versioning with revision history, diff and granular permissions.');
+    define($constpref . '_DESC', 'Content management with CKEditor, versioning with revision history, diff and granular permissions.');
 
     // admin menus
-    define($constpref . '_ADMENU_CONTENTSADMIN', 'Contents list');
-    define($constpref . '_ADMENU_CATEGORYACCESS', 'Permissions of Categories');
-    define($constpref . '_ADMENU_IMPORT', 'Import/Sync');
+    define($constpref . '_ADMENU_CONTENTSADMIN', 'Contents');
+    define($constpref . '_ADMENU_CATEGORYACCESS', 'Permissions');
+    define($constpref . '_ADMENU_IMPORT', 'Import-Sync');
     define($constpref . '_ADMENU_TAGS', 'Tags');
     define($constpref . '_ADMENU_EXTRAS', 'Extra');
-    define($constpref . '_ADMENU_MYLANGADMIN', 'Languages');
+    define($constpref . '_ADMENU_MYLANGADMIN', 'Language');
     define($constpref . '_ADMENU_MYTPLSADMIN', 'Templates');
-    define($constpref . '_ADMENU_MYBLOCKSADMIN', 'Blocks/Permissions');
+    define($constpref . '_ADMENU_MYBLOCKSADMIN', 'Blocks-Permissions');
     define($constpref . '_ADMENU_MYPREFERENCES', 'Preferences');
 
     // configurations
     define($constpref . '_USE_WRAPSMODE', 'enable wraps mode');
-    define($constpref . '_ERR_DOCUMENT_404', 'Redirecting to custom psge for Error:404 ');
+    define($constpref . '_ERR_DOCUMENT_404', 'Redirect to custom page for Error:404 ');
     define($constpref . '_ERR_DOCUMENT_404DSC', 'The path of the page to dislay when the content could not be found on the server.<br/>Repalaces header "xoops_root_path" by "' . XOOPS_ROOT_PATH . '" and "xoops_trust_path" by "' . XOOPS_TRUST_PATH . '"');
     define($constpref . '_USE_REWRITE', 'enable mod_rewrite mode');
     define($constpref . '_USE_REWRITEDSC', 'Rename .htaccess.rewrite_wraps(with wraps) or htaccess.rewrite_normal(without wraps) to .htaccess under XOOPS_ROOT_PATH/modules/(dirname)/');

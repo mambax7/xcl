@@ -27,30 +27,26 @@ class MessageSettingsHandler extends XoopsObjectGenericHandler
     public $mPrimary = 'uid';
     public $mClass = 'MessageSettingsObject';
 
-    public function __construct(&$db)
-    {
-        parent::__construct($db);
-    }
-  
+//    public function __construct(&$db)
+//    {
+//        parent::__construct($db);
+//    }
+
     public function chkUser($uid)
     {
         $sql = 'SELECT `uname` FROM `' . $this->db->prefix('users') . '` ';
         $sql.= 'WHERE `uid` = ' . $uid;
         $result = $this->db->query($sql);
-        if (1 != $this->db->getRowsNum($result)) {
-            return false;
-        } else {
-            return true;
-        }
+        return !(1 !== $this->db->getRowsNum($result));
     }
-  
+
     public function getuidTouname($uname)
     {
         $uid = -1;
         $sql = 'SELECT `uid` FROM `' . $this->db->prefix('users') . '` ';
         $sql.= 'WHERE `uname` = ' . $this->db->quoteString($uname);
         $result = $this->db->query($sql);
-        list($uid) = $this->db->fetchRow($result);
+        [$uid] = $this->db->fetchRow($result);
         return $uid;
     }
 }

@@ -1,9 +1,9 @@
 /*
     XOOPSCube Theme : XCL Admin Flex Grid
     Distribution : XCL 2.3 Alpha
-    Version : 0.0.5
+    Version : 0.7.0
     Author : Nuno Luciano aka Gigamaster
-    Date : 2019-11-11
+    Date : 2020-06-11
     URL : https://github.com/xoopscube/xcl/
 
     -------------------- -------------------- -------------------- -------------------- Media Queries */
@@ -25,52 +25,27 @@
     .ondemand,
     .ondemand-button  {
 
-        display     : none;
         left        : -30px;
-        visibility  : hidden;
+        grid-template-columns: auto;
 
     }
 
-    /*Screen Orientation Notification */
-    .ui-screen-mode {
+    nav ul li.nav-logo {
+        padding: 0;
+    }
 
-        background  : var(--ui-screen-mode-background);
-        border      : 2px solid var(--ui-screen-mode-border-color);
-        font-size   : 1.5rem;
-        height      : 100vh; /* vh fallback for Custom Properties */
-        height      : calc(var(--vh, 1vh) * 100); /* CSS fallback for Javascript */
-        margin      : 0 auto;
-        width       : 100%;
+    main {
 
-        }
+        padding: 0 1rem 1rem;
 
-        .ui-screen-info {
-
-        align-items     : center;
-        display         : flex;
-        height          : 20%;
-        justify-content : center;
-
-        }
-
-        .ui-screen-info:nth-child(1) {
-
-        color       : var(--ui-screen-mode-info-color);
-
-        }
-
-        .ui-screen-info:nth-child(5) {
-
-        color       : var(--ui-screen-mode-info-child);
-
-        }
+    }
 
     }
 
 
     /* -------------------- -------------------- -------------------- -------------------- Screen max 420px */
 
-    @media only screen and (min-width: 420px) and (orientation:landscape) {
+    @media only screen and (min-width: 420px)  and (orientation:portrait) {
 
     .grid {
 
@@ -78,12 +53,6 @@
             "header header"
             "main main"
             "footer footer";
-
-    }
-
-    .ui-screen-mode {
-
-        display     : none;
 
     }
 
@@ -110,7 +79,6 @@
 
     }
 
-
     .ui-card-overview {
 
         grid-template-areas	:
@@ -121,14 +89,6 @@
 
         }
 
-
-        .ui-flex-column {
-            flex    : 1
-        }
-
-        .ui-flex-column-2 {
-            flex    : 2
-        }
     }
 
 
@@ -137,10 +97,17 @@
 
     @media only screen and (min-width: 46.875em) {
 
-    .main {
+    /* .main {
 
         padding: 0 4rem 2rem;
 
+    } */
+    .ui-flex-column {
+        flex    : 1
+    }
+
+    .ui-flex-column-2 {
+        flex    : 2
     }
 
     table {

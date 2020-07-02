@@ -58,7 +58,7 @@ class XCube_ActionForm
      * The context object. Enables to access the HTTP-request information.
      * Basically, this member property is read only. Initialized in the constructor.
      */
-    public $mContext = null;
+    public $mContext;
 
     /**
      * @protected
@@ -68,7 +68,7 @@ class XCube_ActionForm
      * permissions of the current HTTP-request through principal object.
      * Basically, this member property is read only. Initialized in constructor.
      */
-    public $mUser = null;
+    public $mUser;
 
     /**
      * @protected
@@ -102,7 +102,7 @@ class XCube_ActionForm
      *
      * Token string as one time token.
      */
-    public $_mToken = null;
+    public $_mToken;
 
     /**
      * @public
@@ -248,7 +248,7 @@ class XCube_ActionForm
      * @return XCube_AbstractProperty[]
      * @attention
      *     This method may not be must. So it will be renamed in the near future.
-     * @todo Check whether this method is must.
+     * @todo Check whether this method is needed.
      */
     public function &getFormProperties()
     {
@@ -306,7 +306,7 @@ class XCube_ActionForm
         // check onetime & transaction token
         //
         if (null !== $this->getTokenName()) {
-            $key = strtr($this->getTokenName(), '.', '_');
+            $key = str_replace('.', '_', $this->getTokenName());
             $token = isset($_REQUEST[$key]) ? $_REQUEST[$key] : null;
 
             $flag = true;
@@ -616,7 +616,9 @@ class XCube_FieldProperty
                     // TEST!!
                     $this->mForm->addErrorMessage($this->renderMessage($name));
                 } else {
-                    // OK
+                    // OK check
+                    //!check empty block else
+                    return null;
                 }
             }
         }

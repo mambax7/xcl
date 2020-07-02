@@ -185,7 +185,7 @@ $xoopsTpl->assign(
         ],
         'sortby_selected' => empty( $sortby_selected ) ? 'p.post_time desc' : $sortby_selected,
         'uname' => @$uname4disp,
-        'show_results' => ! empty( $_GET['submit'] ) ? true : false,
+        'show_results' => ! empty( $_GET['submit'] ),
         'results' => $results4assign,
         'forum_jumpbox_options' => d3forum_make_jumpbox_options( $mydirname , $whr_read4cat , $whr_read4forum , @$forum_id ),
         'xoops_module_header' => '<link rel="stylesheet" type="text/css" media="all" href="' . str_replace('{mod_url}', XOOPS_URL . '/modules/' . $mydirname, $xoopsModuleConfig['css_uri']) . '">' . $xoopsTpl->get_template_vars('xoops_module_header'),
@@ -195,5 +195,3 @@ $xoopsTpl->assign(
 ) ;
 
 include XOOPS_ROOT_PATH.'/footer.php';
-
-?>

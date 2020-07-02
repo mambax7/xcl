@@ -1,9 +1,9 @@
     /*
     XOOPSCube Theme : XCL Admin Flex Grid
     Distribution : XCL 2.3 Alpha
-    Version : 0.0.5
+    Version : 0.7.0
     Author : Nuno Luciano aka Gigamaster
-    Date : 2019-11-11
+    Date : 2020-06-11
     URL : https://github.com/xoopscube/xcl/
 
     -------------------- -------------------- -------------------- -------------------- NORMALIZE */
@@ -56,7 +56,7 @@
     html,
     body {
         background      : var(  --ui-body-background    );
-        color           : var(  --ui-color-200         );
+        color           : var(  --ui-body-color         );
 
         font-family     : var(  --ui-font-family        );
         font-size       : var(  --ui-font-size          );
@@ -79,7 +79,8 @@
 
     .ui-dev-mode {
 
-        background      : var(  --ui-notif-background       ) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1.5em' height='1.5em' style='vertical-align: -0.125em;' viewBox='0 0 24 24'%3E %3Cpath d='M11.5 3a9.5 9.5 0 1 1 0 19a9.5 9.5 0 0 1 0-19zm0 1a8.5 8.5 0 1 0 0 17a8.5 8.5 0 0 0 0-17zM11 8v2h1V8h-1zm0 4v5h1v-5h-1z' fill='%23face74'/%3E %3C/svg%3E") 1em 1em no-repeat;
+        background      : var(  --ui-notif-background       )
+                          url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1.5em' height='1.5em' style='vertical-align: -0.125em;' viewBox='0 0 24 24'%3E %3Cpath d='M11.5 3a9.5 9.5 0 1 1 0 19a9.5 9.5 0 0 1 0-19zm0 1a8.5 8.5 0 1 0 0 17a8.5 8.5 0 0 0 0-17zM11 8v2h1V8h-1zm0 4v5h1v-5h-1z' fill='%23face74'/%3E %3C/svg%3E") 1em 1em no-repeat;
         border-color    : var(  --ui-notif-border-color     );
         border-radius   : var(  --ui-notif-border-radius    );
         border-style    : var(  --ui-notif-border-style     );
@@ -112,18 +113,17 @@
     a:visited:hover {
         color           : var(  --ui-link-hover   );
     }
-    /* Add icon to link */
-    /* a[href^="http"]::after {
-
+    /* Add icon to external link
+    a[href^="http://"]:not([href*="example.com"]):after,
+    a[href^="https://"]:not([href*="example.com"]):after{
         font-size       : 0.75rem;
         vertical-align  : text-top;
         content         : '\0020\2197';
         text-decoration : none;
-
-    } */
+    }*/
 
     a[name|=help] {
-        scroll-margin-top: 5em;
+        scroll-margin-top: 4em;
     }
 
     blockquote {
@@ -132,12 +132,16 @@
         font-size       : var(  --ui-size-300   );
         padding         : var(  --ui-space-500   ) var(  --ui-space-700  );
     }
-
+    pre {
+        background      : var( --ui-color-600 );
+        border-left     : 3px solid var( --ui-color-400 );
+        /* color           : var(--ui-color-100); */
+        padding         : var(--ui-space-300) ;
+    }
     code,kbd,pre,samp {
-        background      : var( --ui-color-500 );
-        border-left     : 1px solid var( --ui-color-400 );
-        color           : var(--ui-color-100);
-        padding         : var(--ui-space-200) var(--ui-space-500);
+        padding         : var(--ui-space-200);
+        /* overflow-wrap   : anywhere; /* normal | break-word | anywhere */
+        white-space     : pre-wrap;
     }
 
     h1 {
@@ -171,7 +175,7 @@
 
    h2, h3, h4 {
         font-weight     : 300;
-        margin          : 1em 0;
+        margin          : var(  --ui-space-300   ) 0;
         width           : 100%;
     }
 

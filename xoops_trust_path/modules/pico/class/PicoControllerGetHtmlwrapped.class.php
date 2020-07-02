@@ -31,7 +31,7 @@ class PicoControllerGetHtmlwrapped extends PicoControllerAbstract
             $this->exitFileNotFound();
         }
 
-        $cat_data                 = $this->currentCategoryObj->getData();
+        $cat_data = $this->currentCategoryObj->getData();
         $this->assign['category'] = $this->currentCategoryObj->getData4html();
 
         // permission check
@@ -45,10 +45,10 @@ class PicoControllerGetHtmlwrapped extends PicoControllerAbstract
         }
 
         // auto-register
-        if (!empty($this->mod_config['wraps_auto_register']) && '/' == @$cat_data['cat_vpath']{0}) {
+        if (!empty($this->mod_config['wraps_auto_register']) && '/' === @$cat_data['cat_vpath'][0]) {
             $register_class = empty($this->mod_config['auto_register_class']) ? 'PicoAutoRegisterWraps' : $this->mod_config['auto_register_class'];
             require_once __DIR__ . '/' . $register_class . '.class.php';
-            $register_obj  = new $register_class($this->mydirname, $this->mod_config);
+            $register_obj = new $register_class($this->mydirname, $this->mod_config);
             $affected_rows = $register_obj->registerByCatvpath($cat_data);
             if ($affected_rows > 0) {
                 // reload if the content is updated
@@ -65,47 +65,46 @@ class PicoControllerGetHtmlwrapped extends PicoControllerAbstract
                 );
         } else {
             $this->assign['content']['tellafriend_uri'] = 'mailto:?subject='
-                                                          . pico_main_escape4mailto(sprintf(_MD_PICO_FMT_TELLAFRIENDSUBJECT, @$GLOBALS['xoopsConfig']['sitename']))
-                                                          . '&amp;body='
-                                                          . pico_main_escape4mailto(sprintf(_MD_PICO_FMT_TELLAFRIENDBODY, $this->assign['content']['subject']))
-                                                          . '%0A'
-                                                          . rawurlencode(pico_common_unhtmlspecialchars($this->assign['mod_url'] . '/' . $this->assign['content']['link']));
+                . pico_main_escape4mailto(sprintf(_MD_PICO_FMT_TELLAFRIENDSUBJECT, @$GLOBALS['xoopsConfig']['sitename']))
+                . '&amp;body='
+                . pico_main_escape4mailto(sprintf(_MD_PICO_FMT_TELLAFRIENDBODY, $this->assign['content']['subject']))
+                . '%0A'
+                . rawurlencode(pico_common_unhtmlspecialchars($this->assign['mod_url'] . '/' . $this->assign['content']['link']));
         }
 
         // breadcrumbs
         $breadcrumbsObj = &AltsysBreadcrumbs::getInstance();
         $breadcrumbsObj->appendPath('', $this->assign['content']['subject']);
         $this->assign['xoops_breadcrumbs'] = $breadcrumbsObj->getXoopsbreadcrumbs();
-        $this->assign['xoops_pagetitle']   = $this->assign['content']['subject'];
+        $this->assign['xoops_pagetitle'] = $this->assign['content']['subject'];
 
         // views
         switch ($request['view']) {
             case 'singlecontent':
-                $this->template_name         = 'db:' . $this->mydirname . '_independent_singlecontent.html';
+                $this->template_name = 'db:' . $this->mydirname . '_independent_singlecontent.html';
                 $this->is_need_header_footer = false;
                 break;
             case 'print':
-                $this->template_name         = 'db:' . $this->mydirname . '_independent_print.html';
+                $this->template_name = 'db:' . $this->mydirname . '_independent_print.html';
                 $this->is_need_header_footer = false;
                 break;
             default:
-                $this->template_name         = $this->mydirname . '_main_viewcontent.html';
+                $this->template_name = $this->mydirname . '_main_viewcontent.html';
                 $this->is_need_header_footer = true;
                 break;
         }
     }
 
-    public function readWrappedFile($request)
+    public function readWrappedFile($request): array
     {
         $wrap_full_path = XOOPS_TRUST_PATH . _MD_PICO_WRAPBASE . '/' . $this->mydirname . $request['path_info'];
 
         ob_start();
         include $wrap_full_path;
-        $full_content = pico_convert_encoding_to_ie(ob_get_contents());
-        ob_end_clean();
+        $full_content = pico_convert_encoding_to_ie(ob_get_clean());
 
         // parse full_content (get subject, body etc.)
-        $file  = substr(strrchr($wrap_full_path, '/'), 1);
+        $file = substr(strrchr($wrap_full_path, '/'), 1);
         $mtime = (int)@filemtime($wrap_full_path);
         if (preg_match('/\<title\>([^<>]+)\<\/title\>/is', $full_content, $regs)) {
             $subject = $regs[1];
@@ -123,17 +122,17 @@ class PicoControllerGetHtmlwrapped extends PicoControllerAbstract
         $link = empty($this->mod_config['use_rewrite']) ? 'index.php' . $request['path_info'] : substr($request['path_info'], 1);
 
         return [
-            'id'                     => 0,
-            'link'                   => $link,
-            'created_time'           => $mtime,
+            'id' => 0,
+            'link' => $link,
+            'created_time' => $mtime,
             'created_time_formatted' => formatTimestamp($mtime),
-            'subject_raw'            => pico_common_unhtmlspecialchars($subject),
-            'subject'                => $subject,
-            'body'                   => $body,
-            'can_read'               => $cat_data['isadminormod'] || $cat_data['can_read'],
-            'can_readfull'           => $cat_data['isadminormod'] || $cat_data['can_readfull'],
-            'can_edit'               => false,
-            'can_vote'               => false,
+            'subject_raw' => pico_common_unhtmlspecialchars($subject),
+            'subject' => $subject,
+            'body' => $body,
+            'can_read' => $cat_data['isadminormod'] || $cat_data['can_read'],
+            'can_readfull' => $cat_data['isadminormod'] || $cat_data['can_readfull'],
+            'can_edit' => false,
+            'can_vote' => false,
         ];
     }
 }

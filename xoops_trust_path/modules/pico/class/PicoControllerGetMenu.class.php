@@ -23,11 +23,11 @@ class PicoControllerGetMenu extends PicoControllerAbstract
         parent::execute($request);
 
         $categoryHandler = new PicoCategoryHandler($this->mydirname, $this->permissions);
-        $categories      = $categoryHandler->getAllCategories();
+        $categories = $categoryHandler->getAllCategories();
 
         // auto-register
         foreach ($categories as $categoryObj) {
-            $mod_config     = $categoryObj->getOverriddenModConfig();
+            $mod_config = $categoryObj->getOverriddenModConfig();
             $register_class = empty($mod_config['auto_register_class']) ? 'PicoAutoRegisterWraps' : $mod_config['auto_register_class'];
             require_once __DIR__ . '/' . $register_class . '.class.php';
             if (!empty($mod_config['wraps_auto_register'])) {
@@ -42,7 +42,7 @@ class PicoControllerGetMenu extends PicoControllerAbstract
             $categories4assign[$cat_id] = $categoryObj->getData4html();
 
             // contents loop
-            $contentObjs              = $categoryObj->getContents(true);
+            $contentObjs = $categoryObj->getContents(true);
             $private_contents_counter = 0;
             foreach ($contentObjs as $contentObj) {
                 $content_data = $contentObj->getData();
@@ -57,14 +57,14 @@ class PicoControllerGetMenu extends PicoControllerAbstract
         $this->assign['categories'] = $categories4assign;
 
         // breadcrumbs and pagetitle
-        $lastnode4assign = 'menu' == @$_GET['page'] ? _MD_PICO_MENU : $GLOBALS['xoopsModule']->getVar('name');
-        $breadcrumbsObj  = &AltsysBreadcrumbs::getInstance();
+        $lastnode4assign = 'menu' === @$_GET['page'] ? _MD_PICO_MENU : $GLOBALS['xoopsModule']->getVar('name');
+        $breadcrumbsObj = &AltsysBreadcrumbs::getInstance();
         $breadcrumbsObj->appendPath('', $lastnode4assign);
         $this->assign['xoops_breadcrumbs'] = $breadcrumbsObj->getXoopsbreadcrumbs();
-        $this->assign['xoops_pagetitle']   = $lastnode4assign;
+        $this->assign['xoops_pagetitle'] = $lastnode4assign;
 
         // views (no views other than 'menu')
-        $this->template_name         = $this->mydirname . '_main_menu.html';
+        $this->template_name = $this->mydirname . '_main_menu.html';
         $this->is_need_header_footer = true;
     }
 }

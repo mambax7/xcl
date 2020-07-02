@@ -26,14 +26,14 @@ class PicoControllerGetHistory extends PicoControllerAbstract
     {
         parent::execute($request);
 
-        $cat_data       = $this->currentCategoryObj->getData();
+        $cat_data = $this->currentCategoryObj->getData();
         $breadcrumbsObj = &AltsysBreadcrumbs::getInstance();
 
         $this->contentObj = new PicoContent($this->mydirname, $request['content_id'], $this->currentCategoryObj);
 
         // add breadcrumbs if the content exists
         if (!$this->contentObj->isError()) {
-            $content_data            = $this->contentObj->getData();
+            $content_data = $this->contentObj->getData();
             $this->assign['content'] = $this->contentObj->getData4html();
             $breadcrumbsObj->appendPath(XOOPS_URL . '/modules/' . $this->mydirname . '/' . $this->assign['content']['link'], $this->assign['content']['subject']);
             $breadcrumbsObj->appendPath(XOOPS_URL . '/modules/' . $this->mydirname . '/index.php?page=contentmanager&amp;content_id=' . $content_data['id'], _MD_PICO_CONTENTMANAGER);
@@ -47,19 +47,19 @@ class PicoControllerGetHistory extends PicoControllerAbstract
 
         // get $history_profile from the id
         $this->assign['content_history_id'] = $request['content_history_id'];
-        list(, , $history_body) = pico_get_content_history_profile($this->mydirname, $request['content_history_id']);
+        [, , $history_body] = pico_get_content_history_profile($this->mydirname, $request['content_history_id']);
         $this->assign['history_body_raw'] = $history_body;
 
         // breadcrumbs
         $breadcrumbsObj->appendPath('', _MD_PICO_HISTORY);
         $this->assign['xoops_breadcrumbs'] = $breadcrumbsObj->getXoopsbreadcrumbs();
-        $this->assign['xoops_pagetitle']   = _MD_PICO_HISTORY;
+        $this->assign['xoops_pagetitle'] = _MD_PICO_HISTORY;
 
         // view
         $this->view = $request['view'];
         switch ($this->view) {
             case 'viewhistory':
-                $this->template_name         = $this->mydirname . '_main_viewhistory.html';
+                $this->template_name = $this->mydirname . '_main_viewhistory.html';
                 $this->is_need_header_footer = true;
                 break;
             case 'download':
@@ -76,17 +76,16 @@ class PicoControllerGetHistory extends PicoControllerAbstract
             ob_end_clean();
         }
 
-        switch ($this->view) {
-            case 'download':
-                header('Content-Type: text/plain');
-                header('Content-Disposition: attachment; filename="content_history_' . sprintf('%010d', $this->assign['content_history_id']) . '.txt"');
-                echo $this->assign['history_body_raw'];
-                break;
-            default:
-                header('Content-Type: text/html;');
-                header('Content-Disposition: inline; filename="content_history_' . sprintf('%010d', $this->assign['content_history_id']) . '.txt"');
-                echo nl2br(htmlspecialchars($this->assign['history_body_raw'], ENT_QUOTES));
-                break;
+        /* after */
+        if ($this->view === 'download') {
+            header('Content-Type: text/plain');
+            header('Content-Disposition: attachment; filename="content_history_' . sprintf('%010d', $this->assign['content_history_id']) . '.txt"');
+            echo $this->assign['history_body_raw'];
+        } else {
+            header('Content-Type: text/html;');
+            header('Content-Disposition: inline; filename="content_history_' . sprintf('%010d', $this->assign['content_history_id']) . '.txt"');
+            echo nl2br(htmlspecialchars($this->assign['history_body_raw'], ENT_QUOTES));
         }
+
     }
 }

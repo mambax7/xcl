@@ -3,18 +3,26 @@
 /********* mymenu for D3 modules always require altsys ********/
 
 // Deny direct access
-if ('mymenu' == preg_replace('/[^a-zA-Z0-9_-]/', '', @$_GET['page'])) exit;
+if ('mymenu' === preg_replace('/[^a-zA-Z0-9_-]/', '', @$_GET['page'])) {
+    exit;
+}
 
 // Skip for ORETEKI XOOPS
-if (defined('XOOPS_ORETEKI')) return;
+if (defined('XOOPS_ORETEKI')) {
+    return;
+}
 
 global $xoopsModule;
-if (!is_object($xoopsModule)) die('$xoopsModule is not set');
+if (!is_object($xoopsModule)) {
+    die('$xoopsModule is not set');
+}
 
 
 // language files (modinfo.php)
 $langmanpath = XOOPS_TRUST_PATH . '/libs/altsys/class/D3LanguageManager.class.php';
-if (!file_exists($langmanpath)) die('install the latest altsys');
+if (!file_exists($langmanpath)) {
+    die('install the latest altsys');
+}
 require_once($langmanpath);
 $langman = &D3LanguageManager::getInstance();
 $langman->read('modinfo.php', $mydirname, $mytrustdirname);
@@ -29,7 +37,7 @@ $mymenu_link = substr(strstr($mymenu_uri, '/admin/'), 1);
 
 // highlight
 foreach (array_keys($adminmenu) as $i) {
-	if ($mymenu_link == $adminmenu[$i]['link']) {
+	if ($mymenu_link === $adminmenu[$i]['link']) {
 		$adminmenu[$i]['selected'] = true;
 		$adminmenu_hilighted = true;
 		$GLOBALS['altsysAdminPageTitle'] = $adminmenu[$i]['title'];
@@ -39,7 +47,7 @@ foreach (array_keys($adminmenu) as $i) {
 }
 if (empty($adminmenu_hilighted)) {
 	foreach (array_keys($adminmenu) as $i) {
-		if (stristr($mymenu_uri, $adminmenu[$i]['link'])) {
+		if (stripos($mymenu_uri, $adminmenu[$i]['link']) !== false) {
 			$adminmenu[$i]['selected'] = true;
 			$GLOBALS['altsysAdminPageTitle'] = $adminmenu[$i]['title'];
 			break;
@@ -49,7 +57,7 @@ if (empty($adminmenu_hilighted)) {
 
 // link conversion from relative to absolute
 foreach (array_keys($adminmenu) as $i) {
-	if (false === stristr($adminmenu[$i]['link'], XOOPS_URL)) {
+	if (stripos($adminmenu[$i]['link'], XOOPS_URL) === false) {
 		$adminmenu[$i]['link'] = XOOPS_URL . "/modules/$mydirname/" . $adminmenu[$i]['link'];
 	}
 }

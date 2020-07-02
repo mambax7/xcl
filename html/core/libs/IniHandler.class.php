@@ -8,8 +8,6 @@
  *
  */
 
-
-
 /*
 If the first character in a line is #, ; or //, the line is treated as comment.
 */
@@ -17,15 +15,15 @@ If the first character in a line is #, ; or //, the line is treated as comment.
 class XCube_IniHandler
 {
     /*** string[] ***/    protected $_mConfig = [];
-    /*** string ***/    protected $_mFilePath = null;
+    /*** string ***/    protected $_mFilePath;
     /*** bool ***/    protected $_mSectionFlag = false;
 
     /**
      * __construct
-     * 
+     *
      * @param	string	$filePath
      * @param	bool	$section
-     * 
+     *
      * @return	void
     **/
     public function __construct(/*** string ***/ $filePath, /*** bool ***/ $section=false)
@@ -37,9 +35,9 @@ class XCube_IniHandler
 
     /**
      * _loadIni
-     * 
+     *
      * @param	void
-     * 
+     *
      * @return	void
     **/
     protected function _loadIni()
@@ -67,7 +65,7 @@ class XCube_IniHandler
                     if (preg_match('/^"(.*)"$/', $val, $body)||preg_match('/^\'(.*)\'$/', $val, $body)) {
                         $val =& $body[1];
                     }
-                
+
                     if (true === $this->_mSectionFlag) {
                         $this->_mConfig[$key][$name] = $val;
                     } else {
@@ -80,26 +78,25 @@ class XCube_IniHandler
 
     /**
      * getConfig
-     * 
+     *
      * @param	string	$key
      * @param	string	$section
-     * 
+     *
      * @return	string
     **/
     public function getConfig(/*** string ***/ $key, /*** string ***/ $section='')
     {
         if (true === $this->_mSectionFlag) {
             return $this->_mConfig[$section][$key];
-        } else {
-            return $this->_mConfig[$key];
         }
+        return $this->_mConfig[$key];
     }
 
     /**
      * getSectionConfig
-     * 
+     *
      * @param	string	$section
-     * 
+     *
      * @return	string[]
     **/
     public function getSectionConfig(/*** string ***/ $section)
@@ -109,9 +106,9 @@ class XCube_IniHandler
 
     /**
      * getAllConfig
-     * 
+     *
      * @param	void
-     * 
+     *
      * @return	string[]
     **/
     public function getAllConfig()

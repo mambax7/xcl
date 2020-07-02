@@ -59,13 +59,13 @@ function smarty_resource_db_timestamp($tpl_name, &$tpl_timestamp, $smarty)
     return true;
 }
 
-function smarty_resource_db_secure($tpl_name, &$smarty)
+function smarty_resource_db_secure($tpl_name, $smarty)
 {
     // assume all templates are secure
     return true;
 }
 
-function smarty_resource_db_trusted($tpl_name, &$smarty)
+function smarty_resource_db_trusted($tpl_name, $smarty)
 {
     // not used for templates
 }
@@ -88,8 +88,8 @@ function smarty_resource_db_tplinfo($tpl_name, $smarty)
     }
 
     if (is_null($tplset)) {
-        $tplset = isset($xoopsConfig['template_set']) ? $xoopsConfig['template_set']: 'default' ;
-        $theme = isset($xoopsConfig['theme_set']) ? $xoopsConfig['theme_set'] : 'default';
+        $tplset = $xoopsConfig['template_set'] ?? 'default';
+        $theme = $xoopsConfig['theme_set'] ?? 'default';
 
         if (($_pos = strpos($theme, '_')) && substr($theme, $_pos) !== '_default') {
             $theme_default = XOOPS_THEME_PATH . '/' . substr($theme, 0, $_pos) . '_default/templates/';
@@ -109,7 +109,7 @@ function smarty_resource_db_tplinfo($tpl_name, $smarty)
         $dir_cache['d3'] = $dir_cache['def_d3'] = array();
     }
 
-    @list($dirname, $base_tpl_name) = explode('_', $tpl_name, 2) ;
+    [$dirname, $base_tpl_name] = explode('_', $tpl_name, 2);
     $mytrustdirname = Legacy_ResourcedbUtils::getTrustPath($dirname);
 
     // cache D3 dir exists
@@ -120,11 +120,17 @@ function smarty_resource_db_tplinfo($tpl_name, $smarty)
         $dir_cache['def_d3'][$mytrustdirname] = is_dir($theme_default . $mytrustdirname);
     }
 
+    //@gigamaster add dirname to theme path /templates / module-name
+
     foreach ($entries as $entry) {
         switch ($entry) {
             case 'THEME':
-                // check templates under themes/(theme)/templates/ (file template)
-                $filepath = $theme . $tpl_name ;
+
+                // @gigamaster add (modulename)
+                // check templates under themes/(theme)/templates/(modulename)/(file template)
+
+
+            $filepath = $theme . $dirname. '/'. $tpl_name ;
                 if (is_file($filepath)) {
                     return $cache[$tpl_name] = $filepath ;
                 }
@@ -163,8 +169,8 @@ function smarty_resource_db_tplinfo($tpl_name, $smarty)
             case 'DBTPLSET':
                 // find a DB template of the selected tplset
                 // check template update
-                $tplfileHandler = xoops_gethandler('tplfile');
-                $tplObj         = $tplfileHandler->find($tplset, null, null, null, $tpl_name, true);
+                $tplfileHandler =& xoops_gethandler('tplfile');
+                $tplObj = $tplfileHandler->find($tplset, null, null, null, $tpl_name, true);
                 if (!empty($tplObj)) {
                     return $cache[$tpl_name] = $tplObj[0];
                 }
@@ -176,7 +182,7 @@ function smarty_resource_db_tplinfo($tpl_name, $smarty)
 
     // Finally, find a DB template in default tplset
     if (! isset($tplfileHandler)) {
-        $tplfileHandler = xoops_gethandler('tplfile');
+        $tplfileHandler =& xoops_gethandler('tplfile');
     }
     $tplObj = $tplfileHandler->find('default', null, null, null, $tpl_name, true);
     if (empty($tplObj)) {
@@ -193,7 +199,7 @@ class Legacy_ResourcedbUtils
 {
     public static function getModuleTemplatePath(XoopsTplfile $tplObj)
     {
-        $block = ($tplObj->getVar('tpl_type')==='block') ? '/blocks' : null;
+        $block = ($tplObj->getVar('tpl_type')=='block') ? '/blocks' : null;
         $dirname = $tplObj->getVar('tpl_module');
         $modulePath = $dirname.'/templates'.$block;
 
@@ -243,16 +249,14 @@ class Legacy_ResourcedbUtils
     {
         if ($filepath = self::getModuleTemplatePath($tplObj)) {
             $file_modified = filemtime($filepath);
-            if ($file_modified > $tplObj->getVar('tpl_lastmodified')) {
-                if (false != $fp = fopen($filepath, 'r')) {
-                    $handler = xoops_gethandler('tplfile');
-                    $filesource = fread($fp, filesize($filepath));
-                    fclose($fp);
-                    $tplObj->setVar('tpl_source', $filesource, true);
-                    $tplObj->setVar('tpl_lastmodified', time());
-                    $tplObj->setVar('tpl_lastimported', time());
-                    $handler->forceUpdate($tplObj);
-                }
+            if (($file_modified > $tplObj->getVar('tpl_lastmodified')) && false !== $fp = fopen($filepath, 'r')) {
+                $handler = xoops_gethandler('tplfile');
+                $filesource = fread($fp, filesize($filepath));
+                fclose($fp);
+                $tplObj->setVar('tpl_source', $filesource, true);
+                $tplObj->setVar('tpl_lastmodified', time());
+                $tplObj->setVar('tpl_lastimported', time());
+                $handler->forceUpdate($tplObj);
             }
         }
     }

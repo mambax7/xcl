@@ -1,201 +1,192 @@
 /*
-	XOOPSCube Theme : XCL Admin Flex Grid
-	Distribution : XCL 2.3 Alpha
-	Version : 0.0.5
-	Author : Nuno Luciano aka Gigamaster
-	Date : 2019-11-11
-	URL : https://github.com/xoopscube/xcl/
+    XOOPSCube Theme : XCL Admin Flex Grid
+    Distribution : XCL 2.3 Alpha
+    Version : 0.7.0
+    Author : Nuno Luciano aka Gigamaster
+    Date : 2020-06-11
+    URL : https://github.com/xoopscube/xcl/
 
-	-------------------- -------------------- -------------------- SVG Default Settings */
+    -------------------- -------------------- -------------------- SVG Default Settings */
 
-	/* SVG Filter drop-shadow
-	* similar syntax to box-shadow :
-	* right, down, blur, opacity
-	*/
-	svg {
+    /* SVG Filter drop-shadow
+    * similar syntax to box-shadow :
+    * right, down, blur, opacity
+    */
+    svg {
 
-		/* filter              : drop-shadow( 0px 1px 0px var( --ui-link)); */
-		-webkit-user-select : none;
-		-moz-user-select    : none;
-		-ms-user-select     : none;
-		user-select         : none;
+        /* filter              : drop-shadow( 0px 1px 0px var( --ui-link)); */
+        -webkit-user-select : none;
+        -moz-user-select    : none;
+        -ms-user-select     : none;
+        user-select         : none;
 
-		-webkit-tap-highlight-color : rgba(255, 255, 255, 0);
+        -webkit-tap-highlight-color : rgba(255, 255, 255, 0);
 
-	}
+    }
 
-	/* SVG Default Path Color
-	* .block-icon
-	* .module-icon
-	*/
-	svg path.block-icon,
-	svg path.module-icon {
+    svg[class|="icon"]{
+        color               : var(  --ui-link   );
+        font-size           : 24px;
+    }
 
-		color              	: var(--ui-color-link);
-		transform          	: translate(12px, 12px); /* eq. padding */
-		transition         	: all 1s;
+    /* SVG Default Path Color
+    * .block-icon
+    * .module-icon
+    */
+    svg path.block-icon,
+    svg path.module-icon {
 
-	}
+        color              	: var(--ui-link);
+        transform          	: translate(12px, 12px); /* eq. padding */
+        transition         	: all 1s;
 
-	/* SVG Default Text Color
-	* .block-name
-	* .module-name
-	*/
-	svg text.block-name,
-	svg text.module-name {
+    }
 
-		color              	: var(--ui-color-link);
-		text-anchor        	: middle; /* align center */
-		dominant-baseline  	: middle; /* vertical alignment fix */
-		font-size          	: 24px;
-		font-weight        	: 300;
-		transition         	: all 1s;
+    /* SVG Default Text Color
+    * .block-name
+    * .module-name
+    */
+    svg text.block-name,
+    svg text.module-name {
 
-	}
+        color              	: var(--ui-link);
+        text-anchor        	: middle; /* align center */
+        dominant-baseline  	: middle; /* vertical alignment fix */
+        font-size          	: 24px;
+        font-weight        	: 300;
+        transition         	: all 1s;
 
-	/* SVG default text hover color
-	* .block-name:hover
-	* .module-name:hover
-	*/
-	svg text.block-name:hover,
-	svg text.module-name:hover {
+    }
 
-		color            : var(  --ui-color-amber	);
+    /* SVG default text hover color
+    * .block-name:hover
+    * .module-name:hover
+    */
+    svg text.block-name:hover,
+    svg text.module-name:hover {
 
-	}
+        color           : var(  --ui-color-amber	);
 
-/* -------------------- -------------------- -------------------- Block Type Icon Color */
+    }
 
-	svg.ui-block-module {
+    /* -------------------- -------------------- -------------------- Block Type Icon Color */
 
-		background			: var(  --ui-color-blue			);
+    svg.ui-block-module {
 
-	}
+        background      : var(  --ui-color-blue			);
 
-	svg.ui-block-html  {
+    }
 
-		background			: var(  --ui-color-blue			);
+    svg.ui-block-html  {
 
-	}
+        background      : var(  --ui-color-blue			);
 
-	svg.ui-block-html path.block-icon {
+    }
 
-		color						: var(  --ui-color-orange		);
-		transform				: translate(10px, 20px);
+    svg.ui-block-html path.block-icon {
 
-	}
+        color           : var(  --ui-color-orange		);
+        transform       : translate(10px, 20px);
 
-	svg.ui-block-php  {
+    }
 
-		background			: var(  --ui-color-indigo		);
+    svg.ui-block-php  {
 
-	}
+        background      : var(  --ui-color-indigo		);
 
-	svg.ui-block-smilies {
+    }
 
-		background			: var(  --ui-color-orange		);
+    svg.ui-block-smilies {
 
-	}
+        background      : var(  --ui-color-orange		);
 
-	svg.ui-block-no-smilies {
+    }
 
-		background			: var(  --ui-color-blue			);
+    svg.ui-block-no-smilies {
 
-	}
+        background      : var(  --ui-color-blue			);
 
-/* -------------------- -------------------- -------------------- Icons Colors */
+    }
 
-	.ui-icon-amber {
+    /* -------------------- -------------------- -------------------- Icons Colors */
 
-		background      : var(  --ui-color-amber		);
-		color						: var(  --ui-color-ligther	);
+    .ui-icon-amber {
 
-	}
+        background      : var(  --ui-color-amber	);
+        color           : var(  --ui-color-white	);
 
-	.ui-icon-blue {
+    }
 
-		background      : var(  --ui-color-blue			);
-		color						: var(  --ui-color-ligther	);
+    .ui-icon-blue {
 
-	}
+        background      : var(  --ui-color-blue		);
+        color           : var(  --ui-color-white	);
 
-	.ui-icon-green {
+    }
 
-		background      : var(  --ui-color-green		);
-		color						: var(  --ui-color-ligther	);
+    .ui-icon-green {
 
-	}
+        background      : var(  --ui-color-green	);
+        color           : var(  --ui-color-white	);
 
-	.ui-icon-indigo {
+    }
 
-		background      : var(  --ui-color-indigo		);
-		color						: var(  --ui-color-ligther	);
+    .ui-icon-indigo {
 
-	}
+        background      : var(  --ui-color-indigo		);
+        color           : var(  --ui-color-white	);
 
-	.ui-icon-orange {
+    }
 
-		background      : var(  --ui-color-orange		);
-		color						: var(  --ui-color-ligther	);
+    .ui-icon-orange {
 
-	}
+        background      : var(  --ui-color-orange		);
+        color           : var(  --ui-color-white	);
 
-	.ui-icon-purple {
+    }
 
-		background      : var(  --ui-color-purple		);
-		color						: var(  --ui-color-ligther	);
+    .ui-icon-purple {
 
-	}
+        background      : var(  --ui-color-purple		);
+        color           : var(  --ui-color-white	);
 
-	.ui-icon-red {
+    }
 
-		background      : var(  --ui-color-red			);
-		color						: var(  --ui-color-ligther	);
+    .ui-icon-red {
 
-	}
+        background      : var(  --ui-color-red			);
+        color           : var(  --ui-color-white	);
 
-/* -------------------- -------------------- -------------------- SVG Custom Settings */
+    }
 
-	svg[data-value] {
+    /* -------------------- -------------------- -------------------- SVG Custom Settings */
 
-		/* Attribute exists */
+    svg[data-value] {
+        /* Attribute exists */
+    }
 
-	}
+    svg[class="ui-block-module"] {
+        /* Attribute has this exact value */
+        background      : var(  --ui-color-block-module);
+    }
 
-	svg[class="ui-block-module"] {
+    svg text[class*="block"] {
+        /* Attribute value contains this value somewhere in it */
+        /* color          	: var(--ui-color-orange); */
+    }
 
-		/* Attribute has this exact value */
-		background     	: var(  --ui-color-block-module);
+    svg[data-value~="foo"] {
+        /* Attribute has this value in a space-separated list somewhere */
+    }
 
-	}
+    svg[data-value^="block"] {
+        /* Attribute value starts with this */
+    }
 
-	svg text[class*="block"] {
+    svg[data-value|="foo"] {
+        /* Attribute value starts with this in a dash-separated list */
+    }
 
-		/* Attribute value contains this value somewhere in it */
-		/* color          	: var(--ui-color-orange); */
-
-	}
-
-	svg[data-value~="foo"] {
-
-		/* Attribute has this value in a space-separated list somewhere */
-
-	}
-
-	svg[data-value^="block"] {
-
-		/* Attribute value starts with this */
-
-	}
-
-	svg[data-value|="foo"] {
-
-		/* Attribute value starts with this in a dash-separated list */
-
-	}
-
-	svg[data-value$="foo"] {
-
-		/* Attribute value ends with this */
-
-	}
+    svg[data-value$="foo"] {
+        /* Attribute value ends with this */
+    }

@@ -14,7 +14,7 @@ define('XCUBE_FORMFILE_CHMOD', 0644);
 /**
  * WARNING:
  * This class is simple wrapper class for proccessing the file uploaded.
- * However, we have to examine the position of this class. We aims to simple file tree.
+ * However, we have to examine the position of this class. We aim to simple file tree.
  * This class is only helper. We think that Cube system shouldn't offer misc helper.
  *
  * We put this class in root/class for the progress of this project. But, we will move
@@ -22,16 +22,16 @@ define('XCUBE_FORMFILE_CHMOD', 0644);
  */
 class XCube_FormFile
 {
-    public $mName=null;
+    public $mName;
 
-    public $mKey = null;
+    public $mKey;
 
-    public $mContentType=null;
+    public $mContentType;
 
-    public $mFileName=null;
+    public $mFileName;
     public $mFileSize=0;
 
-    public $_mTmpFileName=null;
+    public $_mTmpFileName;
 
     public $mUploadFileFlag=false;
 
@@ -81,7 +81,7 @@ class XCube_FormFile
 
     public function getFileData()
     {
-        // Now, implemeting.
+        // Now, implementing.
     }
 
     /**
@@ -283,10 +283,8 @@ class XCube_FormImageFile extends XCube_FormFile
     {
         parent::fetch();
 
-        if ($this->hasUploadFile()) {
-            if (!$this->_checkFormat()) {
-                $this->mUploadFileFlag = false;
-            }
+        if ($this->hasUploadFile() && !$this->_checkFormat()) {
+            $this->mUploadFileFlag = false;
         }
     }
 

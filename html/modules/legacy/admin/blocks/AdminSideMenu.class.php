@@ -33,7 +33,7 @@ class Legacy_AdminSideMenu extends Legacy_AbstractBlockProcedure
      *
      * @access protected
      */
-    public $mCurrentModule = null;
+    public $mCurrentModule;
 
     public function getName()
     {
@@ -59,10 +59,10 @@ class Legacy_AdminSideMenu extends Legacy_AbstractBlockProcedure
     {
         $root =& XCube_Root::getSingleton();
 
-        // load message catalog of legacy for _AD_LEGACY_LANG_NO_SETTING, even if the current module is not Legacy.
+        // load admin message catalog of legacy for _AD_LEGACY_LANG_NO_SETTING, even if the current module is not Legacy.
         $langMgr =& $root->mLanguageManager;
         $langMgr->loadModuleAdminMessageCatalog('legacy');
-        //
+        // load info message catalog
         $langMgr->loadModinfoMessageCatalog('legacy');
 
         $controller =& $root->mController;
@@ -78,13 +78,11 @@ class Legacy_AdminSideMenu extends Legacy_AbstractBlockProcedure
 
         $this->mCurrentModule =& $controller->mRoot->mContext->mXoopsModule;
 
-        if ('legacy' == $this->mCurrentModule->get('dirname')) {
-            if ('help' == xoops_getrequest('action')) {
-                $moduleHandler = xoops_gethandler('module');
-                $t_module      =& $moduleHandler->getByDirname(xoops_gethandler('legacy'));
-                if (is_object($t_module)) {
-                    $this->mCurrentModule =& $t_module;
-                }
+        if (('legacy' === $this->mCurrentModule->get('dirname')) && 'help' === xoops_getrequest('action')) {
+            $moduleHandler =& xoops_gethandler('module');
+            $t_module =& $moduleHandler->getByDirname(xoops_gethandler('legacy'));
+            if (is_object($t_module)) {
+                $this->mCurrentModule =& $t_module;
             }
         }
 
@@ -108,7 +106,7 @@ class Legacy_AdminSideMenu extends Legacy_AbstractBlockProcedure
 
         $result=$db->query($sql);
 
-        $handler = xoops_gethandler('module');
+        $handler =& xoops_gethandler('module');
 
         while (list($weight, $mid) = $db->fetchRow($result)) {
             $xoopsModule = & $handler->get($mid);

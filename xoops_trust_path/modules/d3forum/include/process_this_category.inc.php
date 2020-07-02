@@ -2,9 +2,13 @@
 
 // get this "category" from given $cat_id
 $sql = 'SELECT * FROM ' . $db->prefix($mydirname . '_categories') . " c WHERE $whr_read4cat AND c.cat_id=$cat_id" ;
-if( ! $crs = $db->query( $sql ) ) die( _MD_D3FORUM_ERR_SQL.__LINE__ ) ;
+if( ! $crs = $db->query( $sql ) ) {
+    die(_MD_D3FORUM_ERR_SQL . __LINE__);
+}
 //if( $db->getRowsNum( $crs ) <= 0 ) die( _MD_D3FORUM_ERR_READCATEGORY ) ;
-if( $db->getRowsNum( $crs ) <= 0 ) return false ;
+if( $db->getRowsNum( $crs ) <= 0 ) {
+    return false;
+}
 $cat_row = $db->fetchArray( $crs ) ;
 $isadminorcatmod = (boolean)$category_permissions[ $cat_id ]['is_moderator'] || $isadmin ;
 $can_makeforum = (boolean)$category_permissions[ $cat_id ]['can_makeforum'] ;
@@ -32,16 +36,20 @@ $category4assign = [
 
 // $xoopsModuleConfig override (module -> cat -> forum)
 $cat_configs = @unserialize( @$cat_row['cat_options'] ) ;
-if( is_array( $cat_configs ) ) foreach( $cat_configs as $key => $val ) {
-	if( isset( $xoopsModuleConfig[ $key ] ) ) {
-		$xoopsModuleConfig[ $key ] = $val ;
-	}
+if( is_array( $cat_configs ) ) {
+    foreach ($cat_configs as $key => $val) {
+        if (isset($xoopsModuleConfig[$key])) {
+            $xoopsModuleConfig[$key] = $val;
+        }
+    }
 }
 $forum_configs = @unserialize( @$forum_row['forum_options'] ) ;
-if( is_array( $forum_configs ) ) foreach( $forum_configs as $key => $val ) {
-	if( isset( $xoopsModuleConfig[ $key ] ) ) {
-		$xoopsModuleConfig[ $key ] = $val ;
-	}
+if( is_array( $forum_configs ) ) {
+    foreach ($forum_configs as $key => $val) {
+        if (isset($xoopsModuleConfig[$key])) {
+            $xoopsModuleConfig[$key] = $val;
+        }
+    }
 }
 
 // icon meanings
@@ -51,5 +59,3 @@ $d3forum_icon_meanings = explode( '|' , $xoopsModuleConfig['icon_meanings'] ) ;
 foreach( array_reverse( $category4assign['paths_raw'] , true ) as $cat_id_tmp => $cat_title_tmp ) {
 	array_splice($xoops_breadcrumbs , 1 , 0 , [['url' => XOOPS_URL . '/modules/' . $mydirname . '/index.php?cat_id=' . $cat_id_tmp, 'name' => $cat_title_tmp]]) ;
 }
-
-?>

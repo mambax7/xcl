@@ -18,11 +18,7 @@ class XCube_ServiceUtils
 {
     public function isXSD($typeName)
     {
-        if ('string' === $typeName || 'int' === $typeName) {
-            return true;
-        }
-
-        return false;
+        return 'string' === $typeName || 'int' === $typeName;
     }
 }
 
@@ -44,7 +40,7 @@ class XCube_ServiceManager
     /**
      * Array of XCube_Service instances.
      *
-     * @var Array
+     * @var
      */
     public $mServices = [];
 
@@ -53,12 +49,12 @@ class XCube_ServiceManager
      * @param &$client
      * @param $service
      */
-    public $mCreateClient = null;
+    public $mCreateClient;
 
     /**
      * @var XCube_Delegate
      */
-    public $mCreateServer = null;
+    public $mCreateServer;
 
     public function __construct()
     {

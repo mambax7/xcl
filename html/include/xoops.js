@@ -4,7 +4,7 @@ function xoopsGetElementById(id){
     } else if (document.all) {
         return (document.all[id]);
     } else {
-        if ((navigator.appname.indexOf("Netscape") != -1) && parseInt(navigator.appversion == 4)) {
+        if ((navigator.appname.indexOf("Netscape") !== -1) && parseInt(navigator.appversion === 4)) {
             return (document.layers[id]);
         }
     }
@@ -28,6 +28,30 @@ function xoopsGetFormElement(fname, ctlname) {
 function justReturn() {
     return;
 }
+/*
+    Print any HTML element using a link to an id e.g.:
+    <a class="print-friendly" href="#" onclick="xoopsPrintag('printhis');">
+    then add the id="printhis" e.g.:
+    <div class="module-content" id="printhis">...</div>
+ */
+function xoopsPrintag(tagid) {
+    var hashid = "#"+ tagid;
+    var tagname =  $(hashid).prop("tagName").toLowerCase() ;
+    var attributes = "";
+    var attrs = document.getElementById(tagid).attributes;
+    $.each(attrs,function(i,elem){
+        attributes +=  " "+  elem.name+" ='"+elem.value+"' " ;
+    })
+    var tagToPrint= $(hashid).html() ;
+    var head = "<html><head>"+ $("head").html() + "</head>" ;
+    var allcontent = head + "<body  onload='window.print()' >"+ "<" + tagname + attributes + ">" +  tagToPrint + "</" + tagname + ">" +  "</body></html>"  ;
+    var newWin=window.open('','Print-Window');
+    newWin.document.open();
+    newWin.document.write(allcontent);
+    newWin.document.close();
+    // setTimeout(function(){newWin.close();},10);
+}
+
 
 function openWithSelfMain(url, name, width, height, returnwindow) {
     var options = "width=" + width + ",height=" + height + ",toolbar=no,location=no,directories=no,status=no,menubar=no,scrollbars=yes,resizable=yes,copyhistory=no";

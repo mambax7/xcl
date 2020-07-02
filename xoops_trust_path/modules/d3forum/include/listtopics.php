@@ -3,10 +3,14 @@
 $forum_id = (int) @$_GET['forum_id'];
 
 // get&check this forum ($forum4assign, $forum_row, $cat_id, $isadminormod), override options
-if (!include __DIR__ . '/process_this_forum.inc.php') redirect_header(XOOPS_URL . '/user.php', 3, _MD_D3FORUM_ERR_READFORUM);
+if (!include __DIR__ . '/process_this_forum.inc.php') {
+    redirect_header(XOOPS_URL . '/user.php', 3, _MD_D3FORUM_ERR_READFORUM);
+}
 
 // get&check this category ($category4assign, $category_row), override options
-if (!include __DIR__ . '/process_this_category.inc.php') redirect_header(XOOPS_URL . '/user.php', 3, _MD_D3FORUM_ERR_READCATEGORY);
+if (!include __DIR__ . '/process_this_category.inc.php') {
+    redirect_header(XOOPS_URL . '/user.php', 3, _MD_D3FORUM_ERR_READCATEGORY);
+}
 
 // get $odr_options, $solved_options, $query4assign
 $query4nav = "forum_id=$forum_id";
@@ -20,8 +24,10 @@ $sql = 'SELECT COUNT(t.topic_id) FROM '
     . $db->prefix($mydirname . '_topics') . ' t LEFT JOIN '
     . $db->prefix($mydirname . '_users2topics') . " u2t ON t.topic_id=u2t.topic_id AND u2t.uid=$uid LEFT JOIN " . $db->prefix($mydirname . '_posts') . ' lp ON lp.post_id=t.topic_last_post_id LEFT JOIN '
     . $db->prefix($mydirname . '_posts') . " fp ON fp.post_id=t.topic_first_post_id WHERE t.forum_id=$forum_id AND ($whr_invisible) AND ($whr_solved) AND ($whr_txt) AND ($whr_external_link_id)";
-if (!$trs = $db->query($sql)) die(_MD_D3FORUM_ERR_SQL . __LINE__);
-list($topic_hits) = $db->fetchRow($trs);
+if (!$trs = $db->query($sql)) {
+    die(_MD_D3FORUM_ERR_SQL . __LINE__);
+}
+[$topic_hits] = $db->fetchRow($trs);
 
 // pagenav
 $pagenav = '';
@@ -44,12 +50,18 @@ $sql = 'SELECT t.*, lp.post_text AS lp_post_text, lp.subject AS lp_subject, lp.i
 	WHERE t.forum_id=$forum_id AND ($whr_invisible) AND ($whr_solved) AND ($whr_txt)
 	AND ($whr_external_link_id) ORDER BY $odr_query LIMIT $pos,$num";
 
-if (!$trs = $db->query($sql)) die(_MD_D3FORUM_ERR_SQL . __LINE__);
+if (!$trs = $db->query($sql)) {
+    die(_MD_D3FORUM_ERR_SQL . __LINE__);
+}
 
 // naao
 // d3comment object
-if (!empty($forum_row['forum_external_link_format'])) $d3com = d3forum_main_get_comment_object($mydirname, $forum_row['forum_external_link_format'], $forum_id);
-else $d3com = false;
+if (!empty($forum_row['forum_external_link_format'])) {
+    $d3com = d3forum_main_get_comment_object($mydirname, $forum_row['forum_external_link_format'], $forum_id);
+}
+else {
+    $d3com = false;
+}
 
 // topics loop
 $topics = [];
@@ -64,7 +76,7 @@ while ($topic_row = $db->fetchArray($trs)) {
     // naao from
     //$last_post_uname4html = is_object( $last_poster_obj ) ? $last_poster_obj->getVar( 'uname' ) : $xoopsConfig['anonymous'] ;
     if (is_object($last_poster_obj)) {
-        if (1 == $xoopsModuleConfig['use_name'] && $last_poster_obj->getVar('name')) {
+        if (1 === $xoopsModuleConfig['use_name'] && $last_poster_obj->getVar('name')) {
             $last_post_uname4html =  $last_poster_obj->getVar('name');
         } else {
             $last_post_uname4html =  $last_poster_obj->getVar('uname');
@@ -75,7 +87,7 @@ while ($topic_row = $db->fetchArray($trs)) {
 
     //$first_post_uname4html = is_object( $first_poster_obj ) ? $first_poster_obj->getVar( 'uname' ) : $xoopsConfig['anonymous'] ;
     if (is_object($first_poster_obj)) {
-        if (1 == $xoopsModuleConfig['use_name'] && $first_poster_obj->getVar('name')) {
+        if (1 === $xoopsModuleConfig['use_name'] && $first_poster_obj->getVar('name')) {
             $first_post_uname4html =  $first_poster_obj->getVar('name');
         } else {
             $first_post_uname4html =  $first_poster_obj->getVar('uname');
@@ -96,7 +108,7 @@ while ($topic_row = $db->fetchArray($trs)) {
     }    // naao to
 
     // topics array
-    if (true == $can_display) {    // naao
+    if (true === $can_display) {    // naao
         $topics[] = [
             'id' => $topic_row['topic_id'],
             'title' => $myts->makeTboxData4Show($topic_row['topic_title'], $topic_row['fp_number_entity'], $topic_row['fp_special_entity']),
@@ -161,6 +173,5 @@ $xoopsTpl->assign(
         'xoops_breadcrumbs' => $xoops_breadcrumbs,
     ]
 );
-
 // TODO
 // u2t_marked

@@ -2,7 +2,7 @@
 
 require_once dirname(__DIR__) . '/include/main_functions.php';
 require_once dirname(__DIR__) . '/include/common_functions.php';
-require_once dirname(__DIR__) . '/class/pico.textsanitizer.php';
+require_once dirname(__DIR__) . '/class/PicoTextSanitizer.class.php';
 require_once dirname(__DIR__) . '/class/PicoUriMapper.class.php';
 require_once dirname(__DIR__) . '/class/PicoPermission.class.php';
 require_once dirname(__DIR__) . '/class/PicoModelCategory.class.php';

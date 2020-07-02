@@ -28,7 +28,7 @@ class PicoControllerGetCategory extends PicoControllerAbstract
             exit;
         }
 
-        $cat_data                 = $this->currentCategoryObj->getData();
+        $cat_data = $this->currentCategoryObj->getData();
         $this->assign['category'] = $this->currentCategoryObj->getData4html();
 
         // permission check
@@ -39,7 +39,7 @@ class PicoControllerGetCategory extends PicoControllerAbstract
 
         // auto-register
         if (!empty($this->mod_config['wraps_auto_register'])
-            && '/' == @$cat_data['cat_vpath'][0]) {
+            && '/' === @$cat_data['cat_vpath'][0]) {
             $register_class = empty($this->mod_config['auto_register_class']) ? 'PicoAutoRegisterWraps' : $this->mod_config['auto_register_class'];
             require_once __DIR__ . '/' . $register_class . '.class.php';
             $register_obj = new $register_class($this->mydirname, $this->mod_config);
@@ -48,7 +48,7 @@ class PicoControllerGetCategory extends PicoControllerAbstract
 
         // contents
         $this->assign['contents'] = [];
-        $contentObjs              = $this->currentCategoryObj->getContents();
+        $contentObjs = $this->currentCategoryObj->getContents();
         foreach ($contentObjs as $contentObj) {
             $this->assign['contents'][] = $contentObj->getData4html();
         }
@@ -60,12 +60,12 @@ class PicoControllerGetCategory extends PicoControllerAbstract
             $this->assign['subcategories'][] = $subcategoryObj->getData4html();
         }
 
-        $breadcrumbsObj                    = &AltsysBreadcrumbs::getInstance();
+        $breadcrumbsObj = &AltsysBreadcrumbs::getInstance();
         $this->assign['xoops_breadcrumbs'] = $breadcrumbsObj->getXoopsbreadcrumbs();
-        $this->assign['xoops_pagetitle']   = $this->assign['category']['title'];
+        $this->assign['xoops_pagetitle'] = $this->assign['category']['title'];
 
         // views (no views other than 'listcontents')
-        $this->template_name         = $this->mydirname . '_main_listcontents.html';
+        $this->template_name = $this->mydirname . '_main_listcontents.html';
         $this->is_need_header_footer = true;
     }
 }

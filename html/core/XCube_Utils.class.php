@@ -87,14 +87,10 @@ class XCube_Utils
             $variables = $arr;
             array_shift($variables);
         }
-
-        for ($i = 0; $i < count($variables); $i++) {
-            $message = str_replace('{' . ($i) . '}', $variables[$i], $message);
-
+        foreach ($variables as $i => $iValue) {
             // Temporary....
-            $message = str_replace('{' . ($i) . ':ucFirst}', ucfirst($variables[$i]), $message);
-            $message = str_replace('{' . ($i) . ':toLower}', strtolower($variables[$i]), $message);
-            $message = str_replace('{' . ($i) . ':toUpper}', strtoupper($variables[$i]), $message);
+            // @gigamaster merged calls
+            $message = str_replace(array('{' . ($i) . '}', '{' . ($i) . ':ucFirst}', '{' . ($i) . ':toLower}', '{' . ($i) . ':toUpper}'), array($variables[$i], ucfirst($iValue), strtolower($iValue), strtoupper($iValue)), $message);
         }
 
         return $message;
@@ -164,7 +160,7 @@ class XCube_Utils
         $key = substr(md5($key), 0, 8);
 
         // PHP < 5.4.0 can not use `OPENSSL_ZERO_PADDING`
-        if (! function_exists('openssl_decrypt') || version_compare(PHP_VERSION, '5.4.0', '<')) {
+        if (! function_exists('openssl_decrypt') || PHP_VERSION_ID < 50400) {
             if (! extension_loaded('mcrypt')) {
                 return $crypt_text;
             }
@@ -203,12 +199,18 @@ class XCube_Utils
 
         if (0 == count($arr)) {
             return null;
-        } elseif (1 == count($arr)) {
-            return XCube_Utils::formatString($arr[0]);
-        } elseif (count($arr) > 1) {
+        }
+
+        if (1 == count($arr)) {
+            //@gigamaster replaced by self - this return XCube_Utils::formatString($arr[0]);
+            return self::formatString($arr[0]);
+        }
+
+        if (count($arr) > 1) {
             $vals = $arr;
             array_shift($vals);
-            return XCube_Utils::formatString($arr[0], $vals);
+            //@gigamaster replaced by self - return XCube_Utils::formatString($arr[0], $vals);
+            return self::formatString($arr[0], $vals);
         }
     }
 

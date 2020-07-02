@@ -15,7 +15,7 @@
   <div class="tips"><{$smarty.const._AD_LEGACYRENDER_TIPS_TEMPLATE_MANAGE_2}></div>
 <{/if}>
 
-<div class="ui-card-full">
+<section class="filter">
 
 	<div class="legacyRender_TemplateSearch">
 	<form method="get" action="index.php"><{$smarty.const._AD_LEGACYRENDER_LANG_SEARCH_TEMPLATE}> :
@@ -26,10 +26,10 @@
 	</div>
 
 	<ul class="toptab">
-		<li class="archive"><a href="./index.php?action=TplsetUpload"><{$smarty.const._AD_LEGACYRENDER_LANG_TPLSET_UPLOAD}></a></li>
+		<li class="archive ui-btn"><a href="./index.php?action=TplsetUpload"><{$smarty.const._AD_LEGACYRENDER_LANG_TPLSET_UPLOAD}></a></li>
 	</ul>
 
-</div>
+</section>
 
 <{if $actionForm->hasError()}>
 <div class="error">

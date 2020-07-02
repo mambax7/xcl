@@ -19,9 +19,9 @@ class XCube_HttpContext
     /**
      * Hashmap that can be used to organize and share data. Use setAttribute()
      * and get Attribute() to access this member property. But, direct access
-     * is allowed, because PHP4 is unpossible to handle reference well.
-     *
-     * @var Array
+     * is allowed, because it is impossible to handle reference well on older PHP versions.
+     * Array
+     * @var
      * @access protected
      */
     public $mAttributes = [];
@@ -31,12 +31,12 @@ class XCube_HttpContext
      *
      * @access XCube_AbstractRequest
      */
-    public $mRequest = null;
+    public $mRequest;
 
     /**
      * @var XCube_Principal
      */
-    public $mUser = null;
+    public $mUser;
 
     /**
      * String which expresses the type of the current request.
@@ -50,7 +50,7 @@ class XCube_HttpContext
      *
      * @access private
      */
-    public $mThemeName = null;
+    public $mThemeName;
 
     public function __construct()
     {
@@ -114,8 +114,8 @@ class XCube_HttpContext
 
     /**
      * Sets the object which has a interface of XCube_Principal.
-     *
-     * @param XCube_AbstractPrincipal $principal
+     * XCube_AbstractPrincipal
+     * @param  $principal
      */
     public function setUser(&$principal)
     {
@@ -189,18 +189,15 @@ class XCube_HttpRequest extends XCube_AbstractRequest
         if (!isset($_GET[$key]) && !isset($_POST[$key])) {
             return null;
         }
-
-        $value = isset($_GET[$key]) ? $_GET[$key] : $_POST[$key];
-
-        return $value;
+        return isset($_GET[$key]) ? $_GET[$key] : $_POST[$key];
     }
 
     /**
      * Supports getRequest().
-     *
+     * Array
      * @private
-     * @param Array $arr
-     * @return Array
+     * @param  $arr
+     * @return array
      */
     public function _getArrayRequest($arr)
     {
@@ -216,7 +213,8 @@ class XCube_GenericRequest extends XCube_AbstractRequest
 {
     /**
      * Hash map which stores registered values.
-     * @var Array
+     * Array
+     * @var
      */
     public $mAttributes = [];
 

@@ -28,7 +28,7 @@ class favoritesAction extends AbstractAction
         foreach ($adduid as $fuid) {
             $ret[] = $client->call('addFavorites', ['mid' => $mid, 'fuid' => $fuid, 'weight' => 0]);
         }
-        if (in_array(false, $ret)) {
+        if (in_array(false, $ret, true)) {
             $this->setErr(_MD_MESSAGE_FAVORITES1);
         } else {
             $this->setErr(_MD_MESSAGE_FAVORITES2);
@@ -45,12 +45,12 @@ class favoritesAction extends AbstractAction
         foreach ($weight as $id => $w) {
             $ret[] = $client->call('edtFavorites', ['id' => $id, 'weight' => $w]);
         }
-        if (in_array(false, $ret)) {
+        if (in_array(false, $ret, true)) {
             $this->setErr(_MD_MESSAGE_FAVORITES3);
             return false;
-        } else {
-            $this->setErr(_MD_MESSAGE_FAVORITES4);
         }
+
+        $this->setErr(_MD_MESSAGE_FAVORITES4);
         return true;
     }
 
@@ -64,7 +64,7 @@ class favoritesAction extends AbstractAction
         foreach ($delid as $id) {
             $ret[] = $client->call('delFavorites', ['id' => $id]);
         }
-        if (in_array(false, $ret)) {
+        if (in_array(false, $ret, true)) {
             $this->setErr(_MD_MESSAGE_FAVORITES3);
         } else {
             $this->setErr(_MD_MESSAGE_FAVORITES5);
@@ -108,7 +108,7 @@ class favoritesAction extends AbstractAction
         }
     }
 
-    public function executeView($render)
+    public function executeView(&$render)
     {
         $render->setTemplateName('message_favorites.html');
         $render->setAttribute('fuser', $this->favorites);

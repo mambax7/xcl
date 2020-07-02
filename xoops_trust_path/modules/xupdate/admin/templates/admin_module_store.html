@@ -133,7 +133,7 @@
 	          <{else}>
 	            (<{$module->modinfo.dirname}>)
 	          <{/if}>
-	          <span class="legacy_module_warning"><{$module->getShow('target_key')}></span>
+	          <span class="message-warning"><{$module->getShow('target_key')}></span>
 	        <{else}>
 	          <{if $module->getShow('detail_url')}>
 	          <a href="<{$module->getShow('detail_url')}>" target="_blank"><{$module->getShow('target_key')}></a>

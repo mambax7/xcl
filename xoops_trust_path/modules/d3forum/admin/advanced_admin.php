@@ -26,7 +26,6 @@ foreach( $modules as $module ) {
 //
 // transaction stage
 //
-
 if( ! empty( $_POST['do_synctopics'] ) ) {
 	set_time_limit( 0 ) ;
 
@@ -167,5 +166,3 @@ $tpl->assign([
 ) ;
 $tpl->display( 'db:'.$mydirname.'_admin_advanced_admin.html' ) ;
 xoops_cp_footer();
-
-?>

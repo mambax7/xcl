@@ -3,38 +3,38 @@
 class PicoControllerAbstract
 {
 
-    public $mydirname             = '';
-    public $mytrustdirname        = 'pico';
-    public $assign                = [];
-    public $mod_config            = [];
-    public $uid                   = 0;
-    public $currentCategoryObj    = null;
-    public $permissions           = [];
+    public $mydirname = '';
+    public $mytrustdirname = 'pico';
+    public $assign = [];
+    public $mod_config = [];
+    public $uid = 0;
+    public $currentCategoryObj = null;
+    public $permissions = [];
     public $is_need_header_footer = true;
-    public $template_name         = '';
-    public $html_header           = '';
-    public $contentObjs           = [];
+    public $template_name = '';
+    public $html_header = '';
+    public $contentObjs = [];
 
     public function __construct(&$currentCategoryObj)
     {
         global $xoopsUser;
 
         $this->currentCategoryObj = &$currentCategoryObj;
-        $this->mydirname          = $currentCategoryObj->mydirname;
-        $this->mod_config         = $currentCategoryObj->getOverriddenModConfig();
-        $this->uid                = is_object($xoopsUser) ? $xoopsUser->getVar('uid') : 0;
+        $this->mydirname = $currentCategoryObj->mydirname;
+        $this->mod_config = $currentCategoryObj->getOverriddenModConfig();
+        $this->uid = is_object($xoopsUser) ? $xoopsUser->getVar('uid') : 0;
 
-        $picoPermission      = &PicoPermission::getInstance();
-        $this->permissions   = $picoPermission->getPermissions($this->mydirname);
-        $this->assign        = [
-            'mymodname'      => htmlspecialchars($currentCategoryObj->mod_name, ENT_QUOTES),
-            'mydirname'      => $this->mydirname,
+        $picoPermission = &PicoPermission::getInstance();
+        $this->permissions = $picoPermission->getPermissions($this->mydirname);
+        $this->assign = [
+            'mymodname' => htmlspecialchars($currentCategoryObj->mod_name, ENT_QUOTES),
+            'mydirname' => $this->mydirname,
             'mytrustdirname' => $this->mytrustdirname,
-            'mod_url'        => XOOPS_URL . '/modules/' . $this->mydirname,
-            'mod_imageurl'   => XOOPS_URL . '/modules/' . $this->mydirname . '/' . $this->mod_config['images_dir'],
-            'xoops_config'   => $GLOBALS['xoopsConfig'],
-            'mod_config'     => $this->mod_config,
-            'uid'            => $this->uid,
+            'mod_url' => XOOPS_URL . '/modules/' . $this->mydirname,
+            'mod_imageurl' => XOOPS_URL . '/modules/' . $this->mydirname . '/' . $this->mod_config['images_dir'],
+            'xoops_config' => $GLOBALS['xoopsConfig'],
+            'mod_config' => $this->mod_config,
+            'uid' => $this->uid,
         ];
         $this->template_name = $this->mydirname . '_index.html';
     }
@@ -53,12 +53,12 @@ class PicoControllerAbstract
         $tpl->display($this->getTemplateName());
     }
 
-    public function isNeedHeaderFooter()
+    public function isNeedHeaderFooter(): bool
     {
         return $this->is_need_header_footer;
     }
 
-    public function getTemplateName()
+    public function getTemplateName(): string
     {
         $template_name = $this->template_name;
 
@@ -70,7 +70,7 @@ class PicoControllerAbstract
         return $template_name;
     }
 
-    public function getAssign()
+    public function getAssign(): array
     {
         foreach ($this->contentObjs as $index => $contentObj) {
             if (!is_object($contentObj)) {
@@ -84,12 +84,12 @@ class PicoControllerAbstract
         return $this->assign;
     }
 
-    public function getHtmlHeader()
+    public function getHtmlHeader(): string
     {
         return $this->html_header;
     }
 
-    public function exitFileNotFound()
+    public function exitFileNotFound(): void
     {
         $error404 = $this->mod_config['err_document_404'];
         if (!empty($error404)) {

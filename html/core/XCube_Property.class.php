@@ -139,13 +139,13 @@ class XCube_AbstractProperty extends XCube_PropertyInterface
      * @protected
      * @brief string
      */
-    public $mName = null;
+    public $mName;
 
     /**
      * @protected
      * @brief string
      */
-    public $mValue = null;
+    public $mValue;
 
     /**
      * @public
@@ -201,7 +201,7 @@ class XCube_AbstractProperty extends XCube_PropertyInterface
      */
     public function isNull()
     {
-        return (0 === strlen(trim($this->mValue)));
+        return (trim($this->mValue) === '');
     }
 
     /**
@@ -259,7 +259,7 @@ class XCube_GenericArrayProperty extends XCube_PropertyInterface
      * @protected
      * @brief string
      */
-    public $mName = null;
+    public $mName;
 
     /**
      * @protected
@@ -273,7 +273,7 @@ class XCube_GenericArrayProperty extends XCube_PropertyInterface
      *
      * If this class is XCube_GenericArrayProperty<T>, mPropertyClassName is <T>.
      */
-    public $mPropertyClassName = null;
+    public $mPropertyClassName;
 
     /**
      * @public
@@ -281,6 +281,7 @@ class XCube_GenericArrayProperty extends XCube_PropertyInterface
      * @param string $classname - <T>
      * @param string $name      - A name of the property.
      */
+
     public function __construct($classname, $name)
     {
         $this->mPropertyClassName = $classname;
@@ -328,7 +329,7 @@ class XCube_GenericArrayProperty extends XCube_PropertyInterface
                 $this->_set($t_key, $t_value);
             }
         } elseif ($arg1 !== null && $arg2 !== null) {
-            $this->_set($arg1, $arg2);
+            $this->_set((string)$arg1, $arg2);
         }
     }
 
@@ -621,7 +622,7 @@ class XCube_FileProperty extends XCube_AbstractProperty
      *
      * friend XCube_FileArrayProperty;
      */
-    public $mIndex = null;
+    public $mIndex;
 
     public function __construct($name)
     {

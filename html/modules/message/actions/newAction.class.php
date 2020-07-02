@@ -25,14 +25,14 @@ class newAction extends AbstractAction
             $inboxid = (int)$this->root->mContext->mRequest->getRequest('res');
             $to_userid = (int)$this->root->mContext->mRequest->getRequest('to_userid');
 
-            if ('POST' == $_SERVER['REQUEST_METHOD']) {
+            if ('POST' === $_SERVER['REQUEST_METHOD']) {
                 $this->mActionForm->fetch();
                 $this->mActionForm->validate();
                 if ($this->mActionForm->hasError()) {
                     $this->errMsg = $this->mActionForm->getErrorMessages();
                 } elseif (!$this->chk_use($this->mActionForm->fuid) || !$this->chk_deny($this->mActionForm->fuid)) {
                     $this->errMsg = _MD_MESSAGE_SETTINGS_MSG6;
-                } elseif ('' != $this->mActionForm->get('Legacy_Event_User_Submit')) {
+                } elseif ('' !== $this->mActionForm->get('Legacy_Event_User_Submit')) {
                     $this->isError = true;
                     $modHand = xoops_getmodulehandler('inbox', _MY_DIRNAME);
                     $modObj = $modHand->create();
@@ -52,10 +52,8 @@ class newAction extends AbstractAction
             } elseif ($inboxid > 0) {
                 $modHand = xoops_getmodulehandler('inbox', _MY_DIRNAME);
                 $modObj = $modHand->get($inboxid);
-                if (is_object($modObj) && $modObj->get('from_uid') > 0 && $modObj->get('uid') == $this->root->mContext->mXoopsUser->get('uid')) {
-                    if (!$this->mActionForm->setRes($modObj)) {
-                        $this->errMsg = _MD_MESSAGE_ACTIONMSG9;
-                    }
+                if (is_object($modObj) && $modObj->get('from_uid') > 0 && $modObj->get('uid') == $this->root->mContext->mXoopsUser->get('uid') && !$this->mActionForm->setRes($modObj)) {
+                    $this->errMsg = _MD_MESSAGE_ACTIONMSG9;
                 }
             } elseif ($to_userid > 0) {
                 $userhand = xoops_gethandler('user');
@@ -70,14 +68,16 @@ class newAction extends AbstractAction
         $fromid = $this->root->mContext->mXoopsUser->get('uid');
         $modObj = $this->getSettings($uid);
         $blacklist = $modObj->get('blacklist');
-        if ('' == $blacklist) {
+        if ('' === $blacklist) {
             return true;
-        } elseif (false !== strpos($blacklist, ',')) {
+        }
+
+        if (false !== strpos($blacklist, ',')) {
             $lists = explode(',', $blacklist);
-            if (!in_array($fromid, $lists)) {
+            if (!in_array($fromid, $lists, true)) {
                 return true;
             }
-        } elseif ($blacklist != $fromid) {
+        } elseif ($blacklist !== $fromid) {
             return true;
         }
         return false;
@@ -143,7 +143,7 @@ class newAction extends AbstractAction
         return $tpl->fetch(_MY_MODULE_PATH.'language/'.$this->root->mLanguageManager->mLanguageName.'/invitation.tpl');
     }
 
-    private function update_outbox($obj)
+    private function update_outbox(&$obj)
     {
         $outHand = xoops_getmodulehandler('outbox');
         $outHand->deleteDays($this->root->mContext->mModuleConfig['savedays']);
@@ -156,7 +156,7 @@ class newAction extends AbstractAction
         return $outHand->insert($outObj);
     }
 
-    public function executeView($render)
+    public function executeView(&$render)
     {
         $render->setTemplateName('message_new.html');
         $render->setAttribute('mActionForm', $this->mActionForm);

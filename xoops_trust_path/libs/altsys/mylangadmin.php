@@ -202,11 +202,11 @@ if (! empty($_POST['do_update'])) {
             // rewrite script for cache
             // comment-out the line of define()
             if (empty($constpref)) {
-                $from = '/.*define\s?\(\s*(["\'])'.preg_quote($name).'(\\1).*\;.*/' ;
+                $from = '/.*define\s?\(\s*(["\'])'.preg_quote($name) . '(\\1).*\;.*/' ;
             } else {
                 $from = '/.*define\s?\(\s*\$constpref\s*\.\s*(["\'])'.preg_quote(substr($name, strlen($constpref))).'(\\1).*\;.*/' ;
             }
-            $to = '//$0'."\ndefine('".addslashes($name)."','".addslashes($user_value)."');" ;
+            $to = '//$0' . "\ndefine('".addslashes($name)."','".addslashes($user_value) . "');" ;
             $file_contents = preg_replace($from, $to, $file_contents) ;
         }
     }
@@ -249,8 +249,10 @@ if (ALTSYS_CORE_TYPE_XCL21 == altsys_get_core_type()) {
         // the preload disabled
         $notice4disp = sprintf(_MYLANGADMIN_FMT_HOWTOENABLED3LANGMAN4XCL, 'SetupAltsysLangMgr.class.php', 'XOOPS_ROOT_PATH/preload') ;
     }
-} else {
-    // X2 core etc.
+
+    // X2 core etc
+}
+/* else {
     $notice4disp = _MYLANGADMIN_MSG_HOWTOENABLED3LANGMAN4X2.'<br>' ;
     $notice4disp .= '
 		<h4>include/common.php</h4>
@@ -267,7 +269,7 @@ if (ALTSYS_CORE_TYPE_XCL21 == altsys_get_core_type()) {
         $langman->read( "main.php" , $xoopsModule->getVar("dirname") ) ;
 		</pre>
 	' ;
-}
+} */
 
 
 //

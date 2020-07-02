@@ -12,29 +12,29 @@ define('_MD_A_PICO_TH_CONTENTSALLOWCOMMENT', 'COM');
 define('_MD_A_PICO_TH_CONTENTSFILTERS', 'Filters');
 define('_MD_A_PICO_TH_CONTENTSACTIONS', 'Actions');
 define('_MD_A_PICO_LEGEND_CONTENTSTHS', 'VIS: visible &nbsp; NAVI:show in page navigation &nbsp; MENU:show in menu &nbsp; COM:commentable');
-define('_MD_A_PICO_BTN_MOVE', 'MOVED');
-define('_MD_A_PICO_LABEL_CONTENTSRIGHTCHECKED', 'selected items will be:');
+define('_MD_A_PICO_BTN_MOVE', 'Moved');
+define('_MD_A_PICO_LABEL_CONTENTSRIGHTCHECKED', 'Selected items will be:');
 define('_MD_A_PICO_MSG_CONTENTSMOVED', 'Contents have been moved');
 define('_MD_A_PICO_LABEL_MAINDISP', 'View');
 define('_MD_A_PICO_BTN_DELETE', 'delete');
 define('_MD_A_PICO_CONFIRM_DELETE', 'Are you sure to delete them?');
 define('_MD_A_PICO_MSG_CONTENTSDELETED', 'Deleted successfully');
 define('_MD_A_PICO_BTN_EXPORT', 'Export');
-define('_MD_A_PICO_CONFIRM_EXPORT', 'Selected contents are exported as the top contents of the module. Comments will not be copied. Are you OK?');
+define('_MD_A_PICO_CONFIRM_EXPORT', 'Selected items are exported as the top contents of the module. Comments will not be copied. Please confirm to export the data');
 define('_MD_A_PICO_MSG_CONTENTSEXPORTED', 'Exported successfully');
 define('_MD_A_PICO_MSG_FMT_DUPLICATEDVPATH', 'Some contents have not been updated because of duplicated vpath (ID: %s)');
 
 // category_access
 define('_MD_A_PICO_LABEL_SELECTCATEGORY', 'Select a category');
-define('_MD_A_PICO_H2_INDEPENDENTPERMISSION', 'Independent Permission');
-define('_MD_A_PICO_LABEL_INDEPENDENTPERMISSION', 'Set permissions for this category independently from the parent category');
-define('_MD_A_PICO_LINK_CATPERMISSIONID', 'Check the parental permissions');
-define('_MD_A_PICO_H2_GROUPPERMS', 'Permissions about each groups');
-define('_MD_A_PICO_H2_USERPERMS', 'Permissions about each users');
+define('_MD_A_PICO_H2_INDEPENDENTPERMISSION', 'Create unique permissions');
+define('_MD_A_PICO_LABEL_INDEPENDENTPERMISSION', 'This item is currently inheriting permissions from the parent. You can check to customize unique permissions for this category.');
+define('_MD_A_PICO_LINK_CATPERMISSIONID', 'Verify inherited permissions from parent category.');
+define('_MD_A_PICO_H2_GROUPPERMS', 'Group Permissions');
+define('_MD_A_PICO_H2_USERPERMS', 'User Permissions');
 define('_MD_A_PICO_TH_UID', 'uid');
 define('_MD_A_PICO_TH_UNAME', 'uname');
-define('_MD_A_PICO_TH_GROUPNAME', 'groupname');
-define('_MD_A_PICO_NOTICE_ADDUSERS', 'Input either uid or uname.');
+define('_MD_A_PICO_TH_GROUPNAME', 'Group name');
+define('_MD_A_PICO_NOTICE_ADDUSERS', 'You can grant or deny permissions to specific users.<br>Add the <b>uid</b> or <b>uname</b> of the user, and then assign permissions.');
 
 // import
 define('_MD_A_PICO_H2_IMPORTFROM', 'Import');

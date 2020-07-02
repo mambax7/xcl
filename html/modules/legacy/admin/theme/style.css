@@ -1,9 +1,9 @@
 /*
-	XCL Admin Theme : XCL Admin Flex Grid
+	XOOPSCube Theme : XCL Admin Flex Grid
 	Distribution : XOOPSCube XCL 2.3
-	Version : 0.0.5
+	Version : 0.7.0
 	Author : Nuno Luciano aka Gigamaster
-	Date : 2019-11-11
+	Date : 2020-06-11
 	URL : https://github.com/xoopscube/xcl/
 
 	-------------------- -------------------- -------------------- ----- IMPORT   */
@@ -20,5 +20,5 @@
 	@import "./stylesheets/ui-notification.css";/*  Notifications      */
 	@import "./stylesheets/ui-svg.css";         /*  SVG settings      */
 	@import "./stylesheets/ui-table.css";       /*  Tables           */
-	@import "./stylesheets/ui-scrollbar.css";   /*  Scrollbar		*/
- /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+/*	@import "./stylesheets/ui-scrollbar.css";   /*  Scrollbar		*/
+/*  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/

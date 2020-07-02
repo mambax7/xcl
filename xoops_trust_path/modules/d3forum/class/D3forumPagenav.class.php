@@ -13,10 +13,10 @@ class D3forumPageNav
         $this->total   = (int)$total_items;
         $this->perpage = (int)$items_perpage;
         $this->current = (int)$current_start;
-        if ('' != $extra_arg && ('&amp;' != substr($extra_arg, -5) || '&' != substr($extra_arg, -1))) {
+        if ('' !== $extra_arg && ('&amp;' !== substr($extra_arg, -5) || '&' !== substr($extra_arg, -1))) {
             $extra_arg .= '&amp;';
         }
-        list($_uri_) = explode('?', $_SERVER['REQUEST_URI'], 2);
+        [$_uri_] = explode('?', $_SERVER['REQUEST_URI'], 2);
         $this->url = $_uri_ . '?' . $extra_arg . trim($start_name) . '=';
     }
 
@@ -41,14 +41,14 @@ class D3forumPageNav
             $i            = 1;
             $current_page = (int)floor(($this->current + $this->perpage) / $this->perpage);
             while ($i <= $total_pages) {
-                if ($i == $current_page) {
+                if ($i === $current_page) {
                     $ret .= '<b>(' . $i . ')</b> ';
-                } elseif (($i > $current_page - $offset && $i < $current_page + $offset) || 1 == $i || $i == $total_pages) {
-                    if ($i == $total_pages && $current_page < $total_pages - $offset) {
+                } elseif (($i > $current_page - $offset && $i < $current_page + $offset) || 1 === $i || $i === $total_pages) {
+                    if ($i === $total_pages && $current_page < $total_pages - $offset) {
                         $ret .= '... ';
                     }
                     $ret .= '<a href="' . $this->url . (($i - 1) * $this->perpage) . '">' . $i . '</a> ';
-                    if (1 == $i && $current_page > 1 + $offset) {
+                    if (1 === $i && $current_page > 1 + $offset) {
                         $ret .= '... ';
                     }
                 }
@@ -88,13 +88,13 @@ class D3forumPageNav
             $j            = 1;
             $current_page = (int)floor(($this->current + $this->perpage) / $this->perpage);
             while ($i <= $total_pages) {
-                if ($i == $current_page) {
+                if ($i === $current_page) {
                     $nav[$j]['txt']   = $i;
                     $nav[$j]['class'] = 'this';
                     $nav[$j]['url']   = '';
                     $j++;
-                } elseif (($i > $current_page - $offset && $i < $current_page + $offset) || 1 == $i || $i == $total_pages) {
-                    if ($i == $total_pages && $current_page < $total_pages - $offset) {
+                } elseif (($i > $current_page - $offset && $i < $current_page + $offset) || 1 === $i || $i === $total_pages) {
+                    if ($i === $total_pages && $current_page < $total_pages - $offset) {
                         $nav[$j]['txt']   = '... ';
                         $nav[$j]['class'] = 'txt';
                         $nav[$j]['url']   = '';
@@ -104,7 +104,7 @@ class D3forumPageNav
                     $nav[$j]['class'] = 'link';
                     $nav[$j]['url']   = $this->url . (($i - 1) * $this->perpage);
                     $j++;
-                    if (1 == $i && $current_page > 1 + $offset) {
+                    if (1 === $i && $current_page > 1 + $offset) {
                         $nav[$j]['txt']   = '... ';
                         $nav[$j]['class'] = 'txt';
                         $nav[$j]['url']   = '';
@@ -124,5 +124,3 @@ class D3forumPageNav
     }
 
 } //end class
-
-?>

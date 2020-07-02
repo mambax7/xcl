@@ -15,38 +15,38 @@ function d3forum_get_rssdata ($mydirname, $limit=0, $offset=0, $forum_id=0, $cat
 	} else {
 		$show_hidden_topic = false;
 	}
-	
+
 	// Get as guest
 	$GLOBALS['xoopsUser'] = false;
 
 	if( empty( $cat_ids ) ) {
 		// all topics in the module
 		$whr_cat_ids = '';
-	} else if(1 == count($cat_ids )) {
+	} else if(1 === count($cat_ids )) {
 		// topics under the specified category
 		$whr_cat_ids = 'f.cat_id='.$cat_ids[0];
 	} else {
 		// topics under categories separated with commma
 		$whr_cat_ids = 'f.cat_id IN (' . implode(',' , $cat_ids) . ')';
 	}
-	
+
 	require_once dirname(__DIR__) . '/class/d3forum.textsanitizer.php' ;
-	(method_exists('D3forumTextSanitizer', 'sGetInstance') and  $myts =& D3forumTextSanitizer::sGetInstance()) || $myts =& D3forumTextSanitizer::getInstance() ;
+	(method_exists('D3forumTextSanitizer', 'sGetInstance') and  $myts =& D3forumTextSanitizer::sGetInstance()) || $myts =& (new D3forumTextSanitizer)->getInstance() ;
 	$db =& Database::getInstance() ;
-	
+
 	$forum_id = ($forum_id)? ' AND f.forum_id=' . (int)$forum_id : '';
 	$cat_id = ($whr_cat_ids)? ' AND ' . $whr_cat_ids : '';
 	$last_post = ($last_post) ? ' AND t.topic_last_post_id = p.post_id' : '';
-	
+
 	require_once __DIR__ . '/common_functions.php' ;
 	$whr_forum = 't.forum_id IN (' . implode(',', d3forum_get_forums_can_read($mydirname )) . ')';
-	
+
 	$sql = 'SELECT c.cat_title, f.forum_id, f.forum_title, p.post_id, p.topic_id, p.post_time, p.uid, p.subject, p.html, p.smiley, p.xcode, p.br, p.guest_name, t.topic_views, t.topic_posts_count, p.post_text, f.forum_external_link_format, t.topic_external_link_id FROM '.$db->prefix($mydirname.'_posts').' p LEFT JOIN '.$db->prefix($mydirname.'_topics').' t ON t.topic_id=p.topic_id LEFT JOIN '.$db->prefix($mydirname.'_forums').' f ON f.forum_id=t.forum_id LEFT JOIN '.$db->prefix($mydirname.'_categories').' c ON c.cat_id=f.cat_id WHERE ('.$whr_forum.') AND ! topic_invisible'.$last_post.$forum_id.$cat_id.' ORDER BY p.post_time DESC' ;
-	
+
 	$result = $db->query( $sql , $limit , $offset ) ;
 	$ret = [];
 	$d3coms = [];
-	while ($row = $db->fetchArray($result)) 
+	while ($row = $db->fetchArray($result))
 	{
 		$is_readable = true;
 		if (! empty($row['forum_external_link_format'])) {
@@ -56,12 +56,12 @@ function d3forum_get_rssdata ($mydirname, $limit=0, $offset=0, $forum_id=0, $cat
 			}
 			$is_readable = $d3com->validate_id($row['topic_external_link_id']);
 		}
-		
+
 		if (true === $show_hidden_topic || false !== $is_readable) {
-			
+
 			if (false !== $is_readable) {
 				$html = $myts->displayTarea( $row['post_text'] , $row['html'] , $row['smiley'] , $row['xcode'] , 1 , $row['br'] );
-				
+
 				// quote `]]>`
 				$html = str_replace(']]>', ']]&gt;', $html);
 
@@ -70,7 +70,7 @@ function d3forum_get_rssdata ($mydirname, $limit=0, $offset=0, $forum_id=0, $cat
 				$html = preg_replace('#<(link|wbr).*?>#is', '',$html);
 
 				// remove relative links
-				$html = preg_replace('#<a[^>]+href=(?!(?:"|\')?\w+://)[^>]+>(.*?)</a>#is', '$1', $html);
+				$html = preg_replace('#<a[^>]+href=(?!["\']?\w+://)[^>]+>(.*?)</a>#is', '$1', $html);
 
 				// remove attrs
 				$_reg = '/(<[^>]*)\s+(?:id|class|name|on[^=]+)=("|\').*?\\2([^>]*>)/s';
@@ -80,7 +80,7 @@ function d3forum_get_rssdata ($mydirname, $limit=0, $offset=0, $forum_id=0, $cat
 			} else {
 				$html = '';
 			}
-			
+
 			$row['description'] = trim($html);
 			$row['link']        = XOOPS_URL.'/modules/'.$mydirname.'/index.php?'
 			                    . ($last_post ?
@@ -129,35 +129,40 @@ function d3forum_whatsnew_base($mydirname, $limit=0, $offset=0) {
 if (!function_exists('d3forum_make_context')) {
 function d3forum_make_context($text,$words= [],$l=255) {
 	static $strcut = '';
-	if (!$strcut)
-		$strcut = create_function ( '$a,$b,$c', (function_exists('mb_strcut'))?
-			'return mb_strcut($a,$b,$c);':
-			'return strcut($a,$b,$c);');
-	
+	if (!$strcut) {
+        $strcut = create_function('$a,$b,$c', (function_exists('mb_strcut')) ?
+            'return mb_strcut($a,$b,$c);' :
+            'return strcut($a,$b,$c);');
+    }
+
 	$text = str_replace(['&lt;', '&gt;', '&amp;', '&quot;', '&#039;'], ['<', '>', '&', '"', "'"], $text);
-	
-	if (!is_array($words)) $words = [];
-	
+
+	if (!is_array($words)) {
+        $words = [];
+    }
+
 	$ret = '';
 	$q_word = str_replace(' ', '|', preg_quote(implode(' ', $words), '/'));
-	
+
 	$match = [];
 	if (preg_match("/$q_word/i",$text,$match)) 	{
 		$ret = ltrim(preg_replace('/\s+/', ' ', $text));
-		list($pre, $aft) = array_pad(preg_split("/$q_word/i", $ret, 2), 2, '');
+		[$pre, $aft] = array_pad(preg_split("/$q_word/i", $ret, 2), 2, '');
 		$m = (int)($l / 2);
 		$ret = (strlen($pre) > $m)? '... ' : '';
 		$ret .= $strcut($pre, max(strlen($pre)-$m+1,0),$m).$match[0];
 		$m = $l-strlen($ret);
 		$ret .= $strcut($aft, 0, min(strlen($aft),$m));
-		if (strlen($aft) > $m) $ret .= ' ...';
+		if (strlen($aft) > $m) {
+            $ret .= ' ...';
+        }
 	}
-	
+
 	if (!$ret) {
 		$ret = $strcut($text, 0, $l);
 		$ret = preg_replace('/&([^;]+)?$/', '', $ret);
 	}
-	
+
 	return htmlspecialchars($ret, ENT_NOQUOTES);
 }
 }

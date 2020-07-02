@@ -79,10 +79,10 @@
 				<input type="checkbox" id="category_option_controller_onoff" onclick="if(this.checked){xoopsGetElementById('category_option_controller').style.display='block';}else{xoopsGetElementById('category_option_controller').style.display='none';};"  <{if $category.options}>checked="checked"<{/if}>><label for="category_option_controller_onoff"><{$smarty.const._MD_PICO_ONOFF}></label>
 				<div id="category_option_controller" <{if ! $category.options}>style="display:none;"<{/if}>>
 					<textarea name="cat_options" id="category_options" cols="50" rows="10"><{$category.options}></textarea>
-					<br>
-					<{$smarty.const._MD_PICO_HOWTO_OVERRIDEOPTIONS}>:
-					<br>
+                <div class="tips">
+					<{$smarty.const._MD_PICO_HOWTO_OVERRIDEOPTIONS}>
 					<span class="categoryoptiondesc"><{$category.option_desc}></span>
+                </div>
 				</div>
 			</td>
 		</tr>

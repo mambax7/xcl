@@ -1,130 +1,14 @@
 /*
     XOOPCube Theme : XCL Admin Flex Grid
     Distribution : XCL 2.3 Alpha
-    Version : 0.0.5
+    Version : 0.7.0
     Author : Nuno Luciano aka Gigamaster
-    Date : 2019-11-11
+    Date : 2020-06-11
     URL : https://github.com/xoopscube/xcl/
 
     -------------------- -------------------- -------------------- ADMIN DASHBOARD */
 
-    /**
-     * Remove html class='no-js'
-     * Show Color Mode Selection
-     */
-
-    document.documentElement.classList.remove('no-js');
-
-  /** ---------- ---------- ---------- ---------- ---------- Viewport Render Settings
-   *
-   * Get the value of the current viewport by using the global variable
-   * Set the consistent and correct sizing for Viewport units with a
-   * CSS custom variable '--vh'
-   * @param {HTMLELement} element=document.documentElement
-   * @param window.innerHeight
-   * @param vh='--vh'
-   */
-
-    // Set property vh
-    let vh = window.innerHeight * 0.01;
-    document.documentElement.style.setProperty('--vh', `${vh}px`);
-
-    window.addEventListener('resize', () => {
-
-      let vh = window.innerHeight * 0.01;
-      document.documentElement.style.setProperty('--vh', `${vh}px`);
-
-    });
-
-    // Request Full Screen
-    function fullScreen() {
-
-      if (document.documentElement.requestFullscreen) {
-        document.documentElement.requestFullscreen();
-      } else if (document.documentElement.mozRequestFullScreen) {
-        document.documentElement.mozRequestFullScreen();
-      } else if (document.documentElement.webkitRequestFullscreen) {
-        document.documentElement.webkitRequestFullscreen();
-      } else if (document.documentElement.msRequestFullscreen) {
-        document.documentElement.msRequestFullscreen();
-      }
-
-    }
-
-    // Exit Full Screen
-    function smallScreen() {
-
-      if (document.exitFullscreen) {
-        document.exitFullscreen();
-      } else if (document.webkitExitFullscreen) {
-        document.webkitExitFullscreen();
-      } else if (document.mozCancelFullScreen) {
-        document.mozCancelFullScreen();
-      } else if (document.msExitFullscreen) {
-        document.msExitFullscreen();
-      }
-
-    }
-
-    // Lock Screen Orientation
-    function lockScreen(orientation) {
-
-      fullScreen();
-      screen.orientation.lock(orientation);
-
-    }
-
-    /** ---------- ---------- ---------- ---------- ---------- Render SVG
-     *
-     * Replace < img > with < svg >
-     *
-     * Get the classname property of object < image >
-     * Get the element SVG
-     * Remove the element SVG unused attributes
-     * Set element SVG inline
-     * Set element with a new className property
-     * @param   {Object} img
-     * @param   {Id} imgID
-     * @param   {ClasseName} img.class='svg'
-     * @param   {imgURL} img src='ui-icon-*name*.svg'
-     * @returns {SVG} svg class="svg-ui-icon"
-     *
-     * !TODO
-     * Output svg with custom class="svg-ui-icon"
-     * and cache all icons or make a single sprite
-     */
-    $('img.svg').each(function(){
-
-      var $img      = $(this);
-      var imgID     = $img.attr('id');
-      var imgClass  = $img.attr('class');
-      var imgURL    = $img.attr('src');
-
-      $.get(imgURL, function(data) {
-
-        // Find image with class"svg"
-        var $svg  = $(data).find('svg');
-
-        if(typeof imgID !== 'undefined') {
-            $svg  = $svg.attr('id', imgID);
-        }
-
-        if(typeof imgClass !== 'undefined') {
-            // SVG inline with ClassName='svg-ui-icon'
-            $svg  = $svg.attr('class', imgClass+'-ui-icon');
-        }
-
-        // Remove the element SVG unused attributes
-        $svg = $svg.removeAttr('xmlns:a');
-        if(!$svg.attr('viewBox') && $svg.attr('height') && $svg.attr('width')) {
-            $svg.attr('viewBox', '0 0 ' + $svg.attr('height') + ' ' + $svg.attr('width'))
-        }
-
-        $img.replaceWith($svg);
-
-      }, 'xml');
-
-    });
+    /** ---------- ---------- ---------- ---------- ---------- Highligth Worker */
 
 
     /** ---------- ---------- ---------- ---------- ---------- Document Ready
@@ -136,32 +20,52 @@
 
     $(document).ready(() => {
 
-    sideNavControl();
-    mobileNavControl();
+        sideNavControl();
+        mobileNavControl();
 
-    /** Management switch status
-     *
-     * Block and Module Management
-     * Switch card block color on change
-     */
+        /** Management switch status
+         *
+         * Block and Module Management
+         * Switch card block color on change
+         */
 
-    // Sidebar - Theme Options
-    // .theme-options .theme-options-toogle
-    // $(".right-side-toggle").click(function() {
-    $(".theme-options").click(function() {
-        $(".right-sidebar").slideDown(50),
-        $(".right-sidebar").toggleClass("right-panel-show");
+        // Sidebar - Theme Options
+        // .theme-options .theme-options-toogle
+        // $(".right-side-toggle").click(function() {
+        $(".theme-options").click(function() {
+            $(".right-sidebar").slideDown(50),
+            $(".right-sidebar").toggleClass("right-panel-show");
+        });
+
+        /** Display Template file name
+         *
+         * Edit settings of --ui-root.css line 150
+         * --ui-dev-mode : block; // or none
+         */
+        $("div.ui-dev-mode").attr('title', 'The template file name. Edit display --ui-root.css liine 150.');
+
     });
+        // addEventListener('load', () => {
+        //     const code = querySelector('pre code');
+        //     const worker = new Worker('worker.js');
+        //     console.log('load worker: ', worker);
 
-    /** Display Template file name
-     *
-     * Edit settings of --ui-root.css line 150
-     * --ui-dev-mode : block; // or none
+        //     worker.onmessage = (event) => { code.innerHTML = event.data; }
+        //     worker.postMessage(code.textContent);
+        //   });
+    /** ---------- ---------- ---------- ---------- ---------- Reusable Toogle
+     * Hoow To Use
+     * - Call it from any clickcable element with the className to display:
+     * onclick="slideToggle('.className', this)"
+     * - Set the className display to :none
+     * <div class="className" style="display:none">
+     * </div>
+     * Customize : ( time, "effect", )
      */
-    $("div.ui-dev-mode").attr('title', 'The template file name. Edit display --ui-root.css liine 150.');
+    function slideToggle(className, obj) {
+        $(className).slideToggle(500,"easeInOutCubic", obj.checked );
+    }
 
-
-    });
 
 
     /** ---------- ---------- ---------- ---------- ---------- Navigation elements

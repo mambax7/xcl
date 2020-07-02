@@ -11,7 +11,12 @@
 
 <div class="ui-dev-mode"><{$smarty.template}></div>
 
-	<div class="tips"><{$smarty.const._AD_LEGACY_TIPS_MOD}></div>
+	<div class="tips">
+        <p><{$smarty.const._AD_LEGACY_TIPS_MOD}></p>
+        <!-- toggle display -->
+        <p><input class="switch" type="checkbox" id="module-filter" onclick="slideToggle('.module-filter', this)" value="0">
+            <label for="module-filter"> Display module filter</label></p>
+    </div>
 
 	<{if $actionForm->hasError()}>
 	<div class="error">
@@ -23,11 +28,10 @@
 	</div>
 	<{/if}>
 
-
-
-
+<{*  display module filer *}>
+<div class="module-filter" style="display: none">
 <{ include file="./components/module-filter.html" }>
-
+</div>
 
 <{* ---------- ---------- ---------- ---------- ---------- UI-GRID-BLOCKS *}>
 <div class="ui-grid-blocks">

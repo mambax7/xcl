@@ -1,5 +1,6 @@
 <div class="adminnavi" aria-label="breadcrumb">
-<a href="./index.php"><{$smarty.const._MI_LEGACY_NAME}></a>
+    <a href="<{$xoops_url}>/admin.php">Dashboard</a> &raquo;&raquo;
+    <a href="./index.php"><{$smarty.const._MI_LEGACY_NAME}></a>
 &raquo;&raquo; <span class="adminnaviTitle"><a href="./index.php?action=BlockList" aria-current="page"><{$smarty.const._MI_LEGACY_MENU_BLOCKLIST}></a></span>
 </div>
 
@@ -11,7 +12,11 @@
     <div class="ui-dev-mode"><{$smarty.template}></div>
 
     <div class="tips">
-    <{$smarty.const._AD_LEGACY_TIPS_ADD_CUSTOM_BLOCK}> <{$smarty.const._AD_LEGACY_TIPS_BLOCK}>
+        <p><{$smarty.const._AD_LEGACY_TIPS_ADD_CUSTOM_BLOCK}> <{$smarty.const._AD_LEGACY_TIPS_BLOCK}></p>
+        <p><input class="switch" type="checkbox" id="block-search" onclick="slideToggle('.block-search', this)" value="0">
+            <label for="block-search"> Display block search</label></p>
+        <p><input class="switch" type="checkbox" id="block-filter" onclick="slideToggle('.block-filter', this)" value="0">
+            <label for="block-filter"> Display block filter</label></p>
     </div>
 
     <{if $actionForm->hasError()}>
@@ -24,11 +29,15 @@
     </div>
     <{/if}>
 
+<{*  display block search *}>
+<div class="block-search" style="display: none">
+    <{ include file="./components/block-search.html" }>
+</div>
 
-<{ include file="./components/block-search.html" }>
-
-<{ include file="./components/block-filter.html" }>
-
+<{*  display block filer *}>
+<div class="block-filter" style="display: none">
+    <{ include file="./components/block-filter.html" }>
+</div>
 
     <form id="blockform" name="blockform" method="post" action="./index.php?action=BlockList">
     <{xoops_token form=$actionForm}>

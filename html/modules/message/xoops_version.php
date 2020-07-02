@@ -11,16 +11,16 @@ $mydirpath = basename(dirname(__DIR__)) ;
 
 $modversion['name'] = _MI_MESSAGE_NAME;
 $modversion['dirname'] = basename(__DIR__);
-$modversion['version'] = 2.3;
+$modversion['version'] = '2.4';
 $modversion['description'] = _MI_MESSAGE_DESC;
 $modversion['author'] = 'Marijuana';
 $modversion['credits'] = 'XOOPS Cube Project';
-$modversion['cube_style'] = true;
 $modversion['help'] = 'help.html';
 $modversion['license'] = 'MIT LICENSE';
 $modversion['image']       = 'images/module_message.svg';
 $modversion['mcl_update'] = 'message';
 
+$modversion['cube_style'] = true;
 $modversion['sqlfile']['mysql'] = 'sql/mysql.sql';
 $modversion['tables'][] = '{prefix}_{dirname}_inbox';
 $modversion['tables'][] = '{prefix}_{dirname}_outbox';

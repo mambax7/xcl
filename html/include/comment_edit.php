@@ -48,7 +48,7 @@ $t_root =& XCube_Root::getSingleton();
 $langManager =& $t_root->getLanguageManager();
 $langManager->loadModuleMessageCatalog('legacy');
 
-if ('system' != $xoopsModule->getVar('dirname') && XOOPS_COMMENT_APPROVENONE == $xoopsModuleConfig['com_rule']) {
+if ('system' !== $xoopsModule->getVar('dirname') && XOOPS_COMMENT_APPROVENONE === $xoopsModuleConfig['com_rule']) {
     exit();
 }
 
@@ -56,7 +56,7 @@ $t_root->mLanguageManager->loadPageTypeMessageCatalog('comment');
 
 $com_id = isset($_GET['com_id']) ? (int)$_GET['com_id'] : 0;
 $com_mode = isset($_GET['com_mode']) ? htmlspecialchars(trim($_GET['com_mode']), ENT_QUOTES) : '';
-if ('' == $com_mode) {
+if ('' === $com_mode) {
     if (is_object($xoopsUser)) {
         $com_mode = $xoopsUser->getVar('umode');
     } else {
@@ -92,7 +92,7 @@ $com_rootid = $comment->getVar('com_rootid');
 $handler      = xoops_gethandler('subjecticon');
 $subjectIcons =& $handler->getObjects();
 
-if ('system' != $xoopsModule->getVar('dirname')) {
+if ('system' !== $xoopsModule->getVar('dirname')) {
     if (is_object($xoopsUser) && $xoopsUser->isAdmin()) {
         $actionForm =new Legacy_CommentEditForm_Admin();
     } else {

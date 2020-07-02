@@ -13,10 +13,10 @@ class MessageForm extends XCube_ActionForm
 {
     public $fuid = 0;
 
-    public function __construct()
-    {
-        parent::__construct();
-    }
+//    public function __construct()
+//    {
+//        parent::__construct();
+//    }
 
     public function getTokenName()
     {
@@ -55,12 +55,12 @@ class MessageForm extends XCube_ActionForm
 
     public function validateUname()
     {
-        if ('' != $this->get('uname')) {
+        if ('' !== $this->get('uname')) {
             $uname = mb_strcut($this->get('uname'), 0, 30);
             $userhand = xoops_gethandler('user');
             $criteria = new CriteriaCompo(new Criteria('uname', $uname));
             $uobj = $userhand->getObjects($criteria);
-            if (isset($uobj) && is_array($uobj) && 1 == count($uobj)) {
+            if (isset($uobj) && is_array($uobj) && 1 === count($uobj)) {
                 $this->fuid = $uobj[0]->get('uid');
             } else {
                 $this->fuid = 0;
